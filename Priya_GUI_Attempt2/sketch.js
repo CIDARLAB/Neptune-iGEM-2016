@@ -2,23 +2,20 @@
 var gui_state = 'home';
 
 function setup() {
+ 
   home_background_image = loadImage("resources/background_img.png");
   fluigi_logo= loadImage("resources/fluigi.png");
+  fluigi_highlighted_logo= loadImage("resources/fluigi_highlighted.png");
   createCanvas(1440,1024);
   
-  fluigi_button = createButton('FLUIGI');
-  fluigi_button.position( (width/100)*40 , (height/100)*40 );
-  fluigi_button.size(300,100);
-  fluigi_button.mousePressed(fluigi_button_pressed);
-  
   about_button = createButton('About');
-  about_button.position( (width/100)*75 , (height/100)*77);
-  about_button.size(200,50);
+  about_button.position( (width/100)*75 , (height/100)*76);
+  about_button.size(250,70);
   about_button.mousePressed(about_button_pressed);
   
   help_button = createButton('Help');
-  help_button.position( (width/100)*75 , (height/100)*70);
-  help_button.size(200,50);
+  help_button.position( (width/100)* 75 , (height/100)*68);
+  help_button.size(250,70);
   help_button.mousePressed(help_button_pressed);
   
   exit_button = createButton('X');
@@ -29,29 +26,63 @@ function setup() {
 
 function draw() {
   
+  //////////////////////////////////////////////////////////////////
+  //                 HOME PAGE
+  //////////////////////////////////////////////////////////////////
+  
   if (gui_state == 'home'){
     background(home_background_image);
-    fluigi_button.show();
     about_button.show();
     help_button.show();
     exit_button.hide();
+    
+    //If the mouse is hovering over the logo, display the highlighted logo
+    if (mouseX > ((width/100)*35) && mouseX < (fluigi_logo.width + (width/100)*35) 
+        && mouseY > ((height/100)*35) && mouseY < (fluigi_logo.height + ((height/100)*35)) )
+    {
+      image(fluigi_highlighted_logo, (width/100)*35 , (height/100)*35, fluigi_logo.width, fluigi_logo.height )
+     //Move to next page if the mouse is pressed 
+      if (mouseIsPressed){
+        fluigi_button_pressed();
+      }
+    }
+    //If the mouse is not hovering over the logo, display the original logo
+    else
+    {
+      image(fluigi_logo, (width/100)*35 , (height/100)*35, fluigi_logo.width, fluigi_logo.height);
+    }
   }
-  if (gui_state == 'fluigi' || gui_state == 'about' || gui_state == 'help')
+  
+   //////////////////////////////////////////////////////////////////
+  //                 FLUIGI PAGE
+  //////////////////////////////////////////////////////////////////
+  if (gui_state == 'fluigi')
   {
     createCanvas(1440,1024);
     background(44, 62, 80);
-    fluigi_button.hide();
     about_button.hide();
     help_button.hide();
     exit_button.show();
   }
+  
+   //////////////////////////////////////////////////////////////////
+  //                 ABOUT PAGE
+  //////////////////////////////////////////////////////////////////
+  if (gui_state == 'about')
+  {
+    push();
+    rect(100,100,500,500,10,10,10,10);
+    
+  }
     
 }
 
-function fluigi_button_pressed() 
+ //////////////////////////////////////////////////////////////////
+  //                 BUTTONS
+  //////////////////////////////////////////////////////////////////
+function fluigi_button_pressed()
 {
-  gui_state = 'fluigi';
- 
+  gui_state= 'fluigi';
 }
 function about_button_pressed()
 {

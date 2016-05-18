@@ -4,7 +4,6 @@ import java.util.*;
 ControlP5 cp5;
 Serial myPort;
 
-
 //////////////////////////////////////////////////////////////////////////////////////////
 //    This variable determines what state the GUI is in, i.e. What screen we are on     // 
 String gui_state = "Home";                                                              //
@@ -135,7 +134,6 @@ void setup()
      .setFont(font)
      .setSize(45)
      ;
-  cp5.getController("FLUIGI");
      
    cp5.addButton("About")
      .setPosition( (width/10)*7 , (height/10)*7)
@@ -148,7 +146,6 @@ void setup()
      .setFont(font)
      .setSize(20)
      ;
-   cp5.getController("About");
      
    cp5.addButton("Help")
      .setPosition( (width/10)*7 , (height/10)*8)
@@ -161,8 +158,7 @@ void setup()
      .setFont(font)
      .setSize(20)
      ;
-   cp5.getController("Help");  
-   
+     
    cp5.addButton("Back_to_Home")
      .setPosition( (width/10)*3, (height/100)*8 )
      .setSize(buttonWidth*2,buttonHeight*2)
@@ -175,10 +171,9 @@ void setup()
      .setSize(20)
      .setVisible(false)
      ;
-   cp5.getController("Back_to_Home");
-    
+   
    //cp5.get(Button.class, "Back_to_Home").setVisible(false);
-   cp5.get(Button.class,"Back_to_Home").setBroadcast(false);
+   //cp5.get(Button.class,"Back_to_Home").setBroadcast(false);
 
    cp5.addButton("Settings")
      .setPosition( (width/10)*7, (height/100)*8 )
@@ -192,10 +187,9 @@ void setup()
      .setSize(20)
      .setVisible(false)
      ;
-    cp5.getController("Settings");
    
    //cp5.get(Button.class, "Settings").setVisible(false);
-   cp5.get(Button.class,"Settings").setBroadcast(false);
+   //cp5.get(Button.class,"Settings").setBroadcast(false);
   
 }
 
@@ -230,7 +224,6 @@ void controlEvent(ControlEvent theEvent) {
     {
       gui_state = "Fluigi";
       
-      cp5.getController("Back_to_Home").setBroadcast(true);
       /////////// Display Fluigi Screen Controllers ////////////
       cp5.get(Button.class,"Back_to_Home").setBroadcast(true);
       cp5.get(Button.class,"Back_to_Home").setVisible(true);

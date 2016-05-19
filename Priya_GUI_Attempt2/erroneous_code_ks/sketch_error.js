@@ -1,7 +1,8 @@
 
 var gui_state = 'home';
 
-function setup() {
+function setup() 
+{
   home_background_image = loadImage("resources/background_img.png");
   fluigi_logo= loadImage("resources/fluigi.png");
   createCanvas(1440,1024);
@@ -27,46 +28,67 @@ function setup() {
   settings_button.mousePressed(settings_button_pressed);
   
   home_button = createButton('Home');
-  home_button.position( (width/100)*35 , (height/100)*5 );
+  home_button.position( (width/100)*25 , (height/100)*85 );
   home_button.size(200,50);
   home_button.mousePressed(home_button_pressed)
   
   back_to_fluigi = createButton('FLUIGI');
-  back_to_fluigi.position( (width/100)*15 , (height/100)*5 );
+  back_to_fluigi.position( (width/100)*50 , (height/100)*85 );
   back_to_fluigi.size(200,50);
   back_to_fluigi.mousePressed(back_to_fluigi_pressed);
   
   // Because we always start with the "home" state, we set these variables as so: 
-  fluigi_button.show();
-  about_button.show();
-  help_button.show();
-  home_button.hide();
-  back_to_fluigi.hide();
-  settings_button.hide();
+  
   
 }
 
 function draw() {
   
-  if (gui_state == 'home'){
+  if (gui_state == 'home')
+  {
     background(home_background_image);
-
+    fluigi_button.show();
+    about_button.show();
+    help_button.show();
+    home_button.hide();
+    back_to_fluigi.hide();
+    settings_button.hide();
   }
   if (gui_state == 'fluigi')
   {
-    background(44, 62, 80);
+    fluigi_button.hide();
+    about_button.hide();
+    help_button.hide();
+    home_button.show();
+    back_to_fluigi.show();
+    settings_button.show();
   }
   if (gui_state == 'about')
   {
-    
+    fluigi_button.show();
+    about_button.show();
+    help_button.show();
+    home_button.hide();
+    back_to_fluigi.hide();
+    settings_button.hide();
   }
   if (gui_state == 'help')
   {
-    
+    fluigi_button.show();
+    about_button.show();
+    help_button.show();
+    home_button.hide();
+    back_to_fluigi.hide();
+    settings_button.hide();
   }
-  if (gui_state == "settings")
+  if (gui_state = "settings")
   {
-
+    fluigi_button.hide();
+    about_button.hide();
+    help_button.hide();
+    home_button.show();
+    back_to_fluigi.show();
+    settings_button.hide();
   }
   
 }
@@ -78,7 +100,7 @@ function fluigi_button_pressed()
   about_button.hide();
   help_button.hide();
   home_button.show();
-  back_to_fluigi.hide();
+  back_to_fluigi.show();
   settings_button.show();
  
 }
@@ -92,7 +114,7 @@ function about_button_pressed()
 function help_button_pressed()
 {
   gui_state= 'help';
-  var strWindowFeatures = '';
+  var strWindowFeatures = "";
   var help_window;
 }
 
@@ -125,6 +147,6 @@ function back_to_fluigi_pressed()
   about_button.hide();
   help_button.hide();
   home_button.show();
-  back_to_fluigi.hide();
+  back_to_fluigi.show();
   settings_button.show();
 }

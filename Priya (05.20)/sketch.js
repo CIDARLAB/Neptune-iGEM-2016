@@ -55,22 +55,25 @@ function draw() {
     back_to_fluigi.hide();
     settings_button.hide();
     
+    //HELP Button
     if (isOver((width/100)* 75 , (height/100)*68, width/9, height/13))
       {
         image(help_highlighted, (width/100)* 75 , (height/100)*68, width/9, height/13);
-          if (mouseIsPressed){
-            help_button_pressed();
-          }
+         // if (mouseIsPressed){
+          //  help_button_pressed();
+          //}
       }
     else{
       image(help, (width/100)* 75 , (height/100)*68, width/9, height/13);
     }
+    
+    //ABOUT Button
     if (isOver ((width/100)*75 , (height/100)*77, width/9,height/13))
       {
         image(about_highlighted, (width/100)* 75 , (height/100)*77, width/9, height/13);
-          if (mouseIsPressed){
-            about_button_pressed();
-          }
+          //if (mouseIsPressed){
+          //  about_button_pressed();
+          //}
       }
     else{
         image(about, (width/100)*75 , (height/100)*77, width/9,height/13);
@@ -176,7 +179,21 @@ function help_button_pressed()
     if ( (mouseX > im_x) && (mouseX < im_x + im_width) && (mouseY > im_y) && (mouseY < im_y + im_height) ) return true;
     else return false;
   }
-  
+ 
+ function mouseClicked(){
+   if(gui_state=='home'){
+      if (isOver ((width/100)*75 , (height/100)*77, width/9,height/13))
+      {
+        about_button_pressed();
+        
+      }
+      else if (isOver((width/100)* 75 , (height/100)*68, width/9, height/13))
+      {
+        help_button_pressed();
+        
+      }
+    } 
+ }
   function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }

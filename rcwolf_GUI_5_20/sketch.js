@@ -22,33 +22,12 @@ function setup() {
   
   createCanvas(windowWidth ,windowHeight);
   
-  exit_button = createButton('X');
-  exit_button.mousePressed(exit_button_pressed);
-  
-  settings_button = createButton('Settings');
-  settings_button.mousePressed(settings_button_pressed);
-  
-  //home_button = createButton('Home');
-  //home_button.mousePressed(home_button_pressed)
-  
-  back_to_fluigi = createButton('FLUIGI');
-  back_to_fluigi.mousePressed(back_to_fluigi_pressed);
   
   
 }
 function draw() {
  
-  exit_button.position ( (width/100)* 94, (height/100) * 2);
-  exit_button.size(width/25,height/25);
-
-  settings_button.position( (width/100)*15 , (height/100)*5 );
-  settings_button.size(width/9,height/13);
-
-  //home_button.position( (width/100)*35 , (height/100)*5 );
-  //home_button.size(width/9,height/13);
-
-  back_to_fluigi.position( (width/100)*15 , (height/100)*5 );
-  back_to_fluigi.size(width/9,height/13);
+ 
   
   //////////////////////////////////////////////////////////////////
   //                 HOME PAGE
@@ -56,10 +35,7 @@ function draw() {
   
   if (gui_state == 'home'){
     background(home_background_image);
-    exit_button.hide();
-   // home_button.hide();
-    back_to_fluigi.hide();
-    settings_button.hide();
+
     
     //HELP Button
     if (isOver((width/100)* 75 , (height/100)*68, width/9, height/13))
@@ -101,14 +77,6 @@ function draw() {
     createCanvas(windowWidth ,windowHeight);
     background(44, 62, 80);
     fill(52, 152, 219);
-    
-    //home_button.show();
-    back_to_fluigi.hide();
-    //settings_button.show();
-
-
-
-
       
   }
   
@@ -119,9 +87,6 @@ function draw() {
   
   if (gui_state == 'settings'){
   
-    //home_button.show();
-    back_to_fluigi.show();
-    //settings_button.hide();
   }
     
 }
@@ -134,16 +99,24 @@ function draw() {
     gui_state= 'fluigi';
 
 
+    // to be set when we determine if the device is connected or not
+    disconnected_path = "resources/not_connected.png";
+    connected_path = "resources/connected.png";
+
+
     webix.ui({
     view:"toolbar",
     id:"FluigiToolbar",
     cols:[
-        { view:"button", type:"imageTop", image:"resources/fluigi_transparent.png", width:360, height:95 },
+        { view:"button", type:"imageTop", id:"fluigi_logo_static", image:"resources/fluigi_transparent.png", width:360, height:95 },
         { view:"button", type:"imageTop", image:"resources/home.png", width:220, height:90, click: home_button_pressed},
         {},
-        { view:"button", type:"imageTop", image:"resources/not_connected.png", width:85, height:85 },
+        { view:"button", type:"imageTop", id:"device_indicator_static", image:connected_path, width:85, height:85 },
         { view:"button", type:"imageTop", image:"resources/settings.gif", width:85, height:85, click: settings_button_pressed}]
     }).show();
+
+    $$("fluigi_logo_static").disable();
+    $$("device_indicator_static").disable();
 
 
   }

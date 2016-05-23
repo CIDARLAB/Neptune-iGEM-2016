@@ -6,8 +6,8 @@ function setup() {
   home_background_image = loadImage("resources/background_img.png");
   
   //Home Page
-  fluigi_logo= loadImage("resources/fluigi.png");
-  fluigi_highlighted_logo= loadImage("resources/fluigi_highlighted.png");
+  fluigi_highlighted_logo = loadImage("resources/fluigi.png");
+  fluigi_logo= loadImage("resources/fluigi_highlighted.png");
   help= loadImage("resources/help.png");
   about= loadImage("resources/about.png");
   help_highlighted= loadImage("resources/help_highlighted.png");
@@ -36,36 +36,48 @@ function draw() {
   if (gui_state == 'home'){
     background(home_background_image);
 
+    // scale factor for help and about buttons
+    button_scale = 1 - 180/height;
+    fluigi_scale = 1 - 150/height;
+
+
+
+    help_X = (width/100)* 75;
+    help_Y = (height/100)*68;
     
     //HELP Button
-    if (isOver((width/100)* 75 , (height/100)*68, width/9, height/13))
+    if (isOver(help_X, help_Y, 301*button_scale, 87*button_scale))
       {
-        image(help_highlighted, (width/100)* 75 , (height/100)*68, width/9, height/13);
+        image(help_highlighted, help_X, help_Y, 301*button_scale, 87*button_scale);
       }
     else{
-      image(help, (width/100)* 75 , (height/100)*68, width/9, height/13);
+      image(help, help_X, help_Y, 301*button_scale, 87*button_scale);
     }
+
+
     
     //ABOUT Button
-    if (isOver ((width/100)*75 , (height/100)*77, width/9,height/13))
+    if (isOver (help_X , (help_Y + 87*button_scale + 15), 301*button_scale, 87*button_scale))
       {
-        image(about_highlighted, (width/100)* 75 , (height/100)*77, width/9, height/13);
+        image(about_highlighted, help_X, (help_Y + 87*button_scale + 15), 301*button_scale, 87*button_scale);
       }
     else{
-        image(about, (width/100)*75 , (height/100)*77, width/9,height/13);
+        image(about, help_X , (help_Y + 87*button_scale + 15), 301*button_scale, 87*button_scale);
       }
+
+
     
     // define the position of the logo with respect to the size of the board
-    fluigi_logo_X = ( (width/2)-(width/5) );
-    fluigi_logo_Y = ( (height/2)-(height/8) );
+    fluigi_logo_X = ( (width/2) - (508*fluigi_scale/2) );
+    fluigi_logo_Y = ( (height/2) - (height/8) );
     
     // if mouse is hovering over fluigi logo display hollow button, resopond to click
-    if (isOver(fluigi_logo_X, fluigi_logo_Y, fluigi_logo.width, fluigi_logo.height) ) {
-      image(fluigi_highlighted_logo, fluigi_logo_X , fluigi_logo_Y, width/3.3, height/6.5);
+    if (isOver(fluigi_logo_X, fluigi_logo_Y, 508*fluigi_scale, 127*fluigi_scale) ) {
+      image(fluigi_highlighted_logo, fluigi_logo_X , fluigi_logo_Y, 508*fluigi_scale, 127*fluigi_scale);
     }
     // otherwise display filled logo
     else {
-      image(fluigi_logo, fluigi_logo_X , fluigi_logo_Y, width/3.3, height/6.5);
+      image(fluigi_logo, fluigi_logo_X , fluigi_logo_Y, 508*fluigi_scale, 127*fluigi_scale);
     }
   }
   
@@ -99,20 +111,24 @@ function draw() {
     gui_state= 'fluigi';
 
 
-    // to be set when we determine if the device is connected or not
-    disconnected_path = "resources/not_connected.png";
-    connected_path = "resources/connected.png";
+
+
+    // to be set when device is connected
+    is_connected = false;
+
+    if (is_connected) connectivity = "resources/connected.png";
+    else connectivity = "resources/not_connected.png";
 
 
     webix.ui({
     view:"toolbar",
     id:"FluigiToolbar",
     cols:[
-        { view:"button", type:"imageTop", id:"fluigi_logo_static", image:"resources/fluigi_transparent.png", width:360, height:95 },
-        { view:"button", type:"imageTop", image:"resources/home.png", width:220, height:90, click: home_button_pressed},
+        { view:"button", type:"imageTop", id:"fluigi_logo_static", image:"resources/fluigi_transparent.png", width:360, height:80 },
+        { view:"button", type:"imageTop", image:"resources/home.png", width:210, height:80, click: home_button_pressed},
         {},
-        { view:"button", type:"imageTop", id:"device_indicator_static", image:connected_path, width:85, height:85 },
-        { view:"button", type:"imageTop", image:"resources/settings.gif", width:85, height:85, click: settings_button_pressed}]
+        { view:"button", type:"imageTop", id:"device_indicator_static", image:connectivity, width:85, height:80 },
+        { view:"button", type:"imageTop", image:"resources/settings.png", width:85, height:80, click: settings_button_pressed}]
     }).show();
 
     $$("fluigi_logo_static").disable();
@@ -129,7 +145,7 @@ function draw() {
 
   function help_button_pressed()
   {
-    //gui_state= 'help';
+
     
     var help_window_popup = webix.ui({
       view:"window",
@@ -160,27 +176,13 @@ function draw() {
     gui_state= 'home'; 
   }
   
-  // function settings_button_pressed()
-  // {
-  //   gui_state = 'settings';
-    
-  // }
+
   function settings_button_pressed()
   {
   if( settings_toggle == 'settings_is_closed'){
     //gui_state = 'settings';
   settings_toggle = 'settings_is_open';
     
-/*  var pumpTable = new webix.ui({
-    view:"datatable",
-    footer:true,
-    editable:true,
-    //autoconfig:true,
-    columns:[
-        {id:"Pump number", header:["Pump Number"]},
-        {id:"Open state", header:["Open State"]},
-        {id:"Closed state", header:["Closed State"]}
-        ]}) */
   
   var settings_window_popup = webix.ui({
       view:"window",

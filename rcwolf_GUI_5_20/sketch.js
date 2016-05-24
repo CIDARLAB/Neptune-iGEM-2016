@@ -105,7 +105,7 @@ function draw() {
 
 
 
-    image(temp_graph, 0, 0);
+    image(temp_graph, 0, 0, 1075, 980);
       
   }
   

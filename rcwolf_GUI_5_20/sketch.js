@@ -1,6 +1,9 @@
 var gui_state = 'home';
 var help_toggle= 'help_is_closed';
 var settings_toggle = "settings_is_closed";
+var numPumps = 11;
+var hide=0;
+
 function setup() {
  
   home_background_image = loadImage("resources/background_img.png");
@@ -20,13 +23,17 @@ function setup() {
   not_connected= loadImage("resources/not_connected.png");
   connected= loadImage("resources/connected.png");
   
-  createCanvas(windowWidth ,windowHeight);
+  createCanvas(windowWidth, windowHeight);
+
+  // TEMPLATE GRAPH c/o Krishna on Slack
+  temp_graph = loadImage("test1_device_flow.svg");
   
   
   
 }
+
+
 function draw() {
- 
  
   
   //////////////////////////////////////////////////////////////////
@@ -41,8 +48,7 @@ function draw() {
     fluigi_scale = 1 - 150/height;
 
 
-
-    help_X = (width/100)* 75;
+    help_X = (width/100)*75;
     help_Y = (height/100)*68;
     
     //HELP Button
@@ -89,6 +95,10 @@ function draw() {
     createCanvas(windowWidth ,windowHeight);
     background(44, 62, 80);
     fill(52, 152, 219);
+
+
+
+    //image(temp_graph, 0, 0);
       
   }
   
@@ -102,89 +112,232 @@ function draw() {
   }
     
 }
+
+
+
+
   //////////////////////////////////////////////////////////////////
   //                 BUTTONS
   //////////////////////////////////////////////////////////////////
  
-  function fluigi_button_pressed()
-  {
-    gui_state= 'fluigi';
+function fluigi_button_pressed() {
+  gui_state= 'fluigi';
 
+  // to be set when device is connected
+  is_connected = false;
+  if (9<20) is_connected = true;
 
-
-
-    // to be set when device is connected
-    is_connected = false;
-
-    if (is_connected) connectivity = "resources/connected.png";
-    else connectivity = "resources/not_connected.png";
-
+  if (is_connected) connectivity = "resources/connected.png";
+  else connectivity = "resources/not_connected.png";
 
     webix.ui({
-    view:"toolbar",
-    id:"FluigiToolbar",
-    cols:[
-        { view:"button", type:"imageTop", id:"fluigi_logo_static", image:"resources/fluigi_transparent.png", width:360, height:80 },
-        { view:"button", type:"imageTop", image:"resources/home.png", width:210, height:80, click: home_button_pressed},
-        {},
-        { view:"button", type:"imageTop", id:"device_indicator_static", image:connectivity, width:85, height:80 },
-        { view:"button", type:"imageTop", image:"resources/settings.png", width:85, height:80, click: settings_button_pressed}]
-    }).show();
+      view:"button"
+    })
 
-    $$("fluigi_logo_static").disable();
-    $$("device_indicator_static").disable();
+  image(temp_graph, 0, 0);
 
 
-  }
 
-  function about_button_pressed()
-  {
-    var strWindowFeatures = "resizable=yes";
-    var about_CIDAR_window = window.open('http://cidarlab.org/fluigi/','About',strWindowFeatures);
-  }
 
-  function help_button_pressed()
-  {
 
-    
-    var help_window_popup = webix.ui({
-      view:"window",
-      resize:true,
-      move:true,
-      id:"help_window",
-      head:{view:"button", label:"Close", width:70, click:help_handler}, //("$$('help_window').close();") click:(help_toggle = 'help_is_closed')},
-      width: 1050,
-      height: 800,
-      left:550,
-      top:100,
-      body:{
-          template:"<img src='resources/Fluigi_HELP.jpg'/>"
-      }
-      
+  webix.ui({
+  view:"toolbar",
+  id:"FluigiToolbar",
+  cols:[
+      { view:"button", type:"imageTop", id:"fluigi_logo_static", image:"resources/fluigi_transparent.png", width: 360, height: 80 },
+      { view:"button", type:"imageTop", image:"resources/home.png", width: 210, height: 80, click: home_button_pressed},
+      {},
+      { view:"button", type:"imageTop", id:"device_indicator_static", image:connectivity, width: 85, height: 80 },
+      { view:"button", type:"imageTop", image:"resources/settings.png", width: 85, height: 80, click: settings_button_pressed}]
   }).show();
-  }
+
+  $$("fluigi_logo_static").disable();
+  $$("device_indicator_static").disable();
+
+  var drag_and_drop_toolbar = webix.ui({
+    view:"toolbar",
+    complexData:true,
+    id:"file_inputs",
+    height: 100,
+    type: "head",
+    cols:[
+      {
+        view:"form",
+        rows:[
+          {
+            view:"uploader",
+            id: "upl1",
+            value:"Upload JSON file",
+            link:"mylist",
+            upload:"resources/upload.json", //path that gets uploaded information
+            datatype:"js"
+            //width: width/2
+            
+          }, 
+          {
+            view:"list",  
+            id:"mylist", 
+            type:"uploader", 
+            autoheight:true, 
+            borderless:true, 
+            multiple:false
+            //width: width/2
+
+          }
+        ]
+      },
+      {
+        view:"form", 
+        rows:[
+          {
+            view:"uploader",
+            id: "upl2",
+            value:"Upload SVG file",
+            link:"mylist2",
+            upload:"resources/upload.svg", //path that gets uploaded information
+            datatype:"svg"
+            //width: width/2
+          }, 
+          {
+            view:"list",  
+            id:"mylist2", 
+            type:"uploader",
+            autoheight:true, 
+            borderless:true, 
+            multiple: false
+            //width: width/2
+          }       
+        ]
+      }
+    ]
+  }).show();
   
-  function help_handler()
-    {
-    $$("help_window").close();
-    help_toggle = 'help_is_closed';
+  // ERROR CHECK for file uploads (file types)
+  $$("upl1").attachEvent("onBeforeFileAdd", function(item){
+    var type = item.type.toLowerCase();
+      if (type != "js"){
+        webix.alert("Only JSON files are supported");
+        return false;
+      }
+  });
+  
+  $$("upl2").attachEvent("onBeforeFileAdd", function(item){
+    var type = item.type.toLowerCase();
+    if (type != "svg"){
+      webix.alert("Only SVG files are supported");
+      return false;
     }
+  });
+        
   
+  //HOW TO ACCESS FILES: see: http://docs.webix.com/desktop__file_upload.html
+  /*
   
-  function exit_button_pressed()
+  $$("upl1").files.data.pull; 
+  
+  var file_id = $$("upl1").files.getFirstId(); //getting the ID
+  var fileobj = $$("upl1").files.getItem(file_id).file; //getting file object
+  filename = $$("upl1").files.getItem(file_id).name; //getting properties
+  
+  $$("upl1").files.getFirstId(); //get ID of the first element from the collection
+   
+  var file2= $$("upl1").files.getNextId(id);//get ID of the next file according to the specified one
+  
+  */
+
+var hide_toolbar = webix.ui({
+      view:"toolbar",
+      id:"hide_toolbar",
+      height: 35,
+      type: "head",
+      cols:[
+
+            {
+                view:"button",
+                type:"imageTop",
+                image:"resources/up-down.png",
+                value: "Hide/Show Toolbar",
+                height:35, click: hide_inputs,
+                id:"hide"
+            }
+          ]
+        }).show();
+
+
+
+}
+
+
+function hide_inputs()
   {
-    gui_state= 'home'; 
+    if (hide==0){ //hide toolbar
+      hide=1;
+      $$("file_inputs").hide();
+    }
+    else if (hide==1){ //show toolbar
+      hide=0;
+      $$("file_inputs").show();
+      $$("hide_toolbar").hide();
+      $$("hide_toolbar").show();
+    }
   }
+
+
+
+
+function about_button_pressed() {
+  var strWindowFeatures = "resizable=yes";
+  var about_CIDAR_window = window.open('http://cidarlab.org/fluigi/','About',strWindowFeatures);
+}
+
+function help_button_pressed() {
+
+    
+  var help_window_popup = webix.ui({
+    view:"window",
+    resize:true,
+    move:true,
+    id:"help_window",
+    head:{view:"button", label:"Close", width:70, click:help_handler}, //("$$('help_window').close();") click:(help_toggle = 'help_is_closed')},
+    width: 1050,
+    height: 800,
+    left: 550,
+    top: 100,
+    body: {
+        template:"<img src='resources/Fluigi_HELP.jpg'/>"
+    }
+  }).show();
+}
+
+
+  
+function help_handler() {
+  $$("help_window").close();
+  help_toggle = 'help_is_closed';
+}
+  
+  
+function exit_button_pressed() {
+  gui_state= 'home'; 
+}
   
 
-  function settings_button_pressed()
+function settings_button_pressed() {
+  gui_state = 'settings';
+
+  if( settings_toggle == 'settings_is_closed')
   {
-  if( settings_toggle == 'settings_is_closed'){
-    //gui_state = 'settings';
-  settings_toggle = 'settings_is_open';
-    
+    settings_toggle = 'settings_is_open';
   
-  var settings_window_popup = webix.ui({
+  var pumpData = [];
+  for (var i = 1; i <= numPumps; i++)
+  {
+     var singleStage = { id:i, Open_State:0, Closed_State:0, Pump_Number:i}
+  //pumpData[i] = singleStage;
+   pumpData.push(singleStage);
+  }
+
+    var settings_window_popup = webix.ui({
       view:"window",
       resize:true,
       move:true,
@@ -195,18 +348,17 @@ function draw() {
       left:550,
       top:100,
       body:{
-        view:"datatable",
-    editable:true,
-    columns:[
+//      container:"box",
+      view:"datatable",
+      editable:true,
+//      on: {"onItemClick": function () {alert("item has just been clicked");}},
+      columns:[
         { id:"Pump_Number",    header:"Pump Number",   width:50},
         { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
         { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
           ],
-    data: [
-        { id:1, Open_State:"a", Closed_State:"x", Pump_Number:1},
-        { id:2, Open_State:"b", Closed_State:"y", Pump_Number:2}
-        ]
-      }
+      data: pumpData
+     }
   }).show();
   }
   
@@ -214,48 +366,69 @@ function draw() {
   
   function settings_handler()
   {
+
     $$("settings_window").close();
     settings_toggle = 'settings_is_closed';
   }
 
 
 
-  function home_button_pressed()
-  {
-    gui_state = 'home';
-    $$("FluigiToolbar").hide();
-    
-  }
+function home_button_pressed() {
+  gui_state = 'home';
+  $$("FluigiToolbar").hide();
+  $$("file_inputs").hide();
+  $$("hide_toolbar").hide();
+}
   
-  function back_to_fluigi_pressed()
-  {
-    gui_state = 'fluigi';
-    $$("FluigiToolbar").show();
-   
-  }
-  // returns true if cursor is within button range
-  function isOver(im_x, im_y, im_width, im_height) {
-    if ( (mouseX > im_x) && (mouseX < im_x + im_width) && (mouseY > im_y) && (mouseY < im_y + im_height) ) return true;
-    else return false;
-  }
+
+
+function back_to_fluigi_pressed() {
+  gui_state = 'fluigi';
+  $$("FluigiToolbar").show();
+  $$("file_inputs").show();
+  $$("hide_toolbar").show();
+}
+
+
+
+// returns true if cursor is within button range
+function isOver(im_x, im_y, im_width, im_height) {
+  if ( (mouseX > im_x) && (mouseX < im_x + im_width) && (mouseY > im_y) && (mouseY < im_y + im_height) ) return true;
+  else return false;
+}
+
+
  
- function mouseClicked(){
-   if(gui_state=='home'){
-      if (isOver ((width/100)*75 , (height/100)*77, width/9,height/13))
-      {
-        about_button_pressed();
-      }
-      else if (isOver((width/100)* 75 , (height/100)*68, width/9, height/13) && (help_toggle == 'help_is_closed') )
-      {
-        help_button_pressed();
-        help_toggle = 'help_is_open';
-      }
-      else if (isOver(fluigi_logo_X, fluigi_logo_Y, fluigi_logo.width, fluigi_logo.height) ) 
-      {
-        fluigi_button_pressed();
-      }
-    } 
- }
-  function windowResized() {
+function mouseClicked() {
+  if(gui_state=='home') {
+    if (isOver ((width/100)*75 , (height/100)*77, width/9,height/13)) {
+      about_button_pressed();
+    }
+    else if (isOver((width/100)* 75 , (height/100)*68, width/9, height/13) && (help_toggle == 'help_is_closed') ) {
+      help_button_pressed();
+      help_toggle = 'help_is_open';
+    }
+    else if (isOver(fluigi_logo_X, fluigi_logo_Y, fluigi_logo.width, fluigi_logo.height) ) {
+      fluigi_button_pressed();
+    }
+  } 
+}
+
+
+
+function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
+
+
+
+function initiate_pump_DataTable(numPumps) {
+  var pumpData = [];
+  for (var i = 1; i <= numPumps; i++) {
+    //pumpData[i] = [i,0,0];
+    pumpData[i] = {id:i,Open_State:"x",Closed_State:"y",Pump_Number:i};
+  }
+  //  { id:1, Open_State:"x", Closed_State:"y", Pump_Number:1},
+  return pumpData; 
+}
+

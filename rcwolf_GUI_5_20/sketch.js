@@ -2,6 +2,7 @@ var gui_state = 'home';
 var help_toggle= 'help_is_closed';
 var settings_toggle = "settings_is_closed";
 var numPumps = 11;
+var hide=0;
 
 function setup() {
  
@@ -45,14 +46,6 @@ function draw() {
     // scale factor for help and about buttons
     button_scale = 1 - 180/height;
     fluigi_scale = 1 - 150/height;
-
-
-
-
-
-
-
-
 
 
     help_X = (width/100)*75;
@@ -105,7 +98,7 @@ function draw() {
 
 
 
-    image(temp_graph, 0, 0, 1075, 980);
+    //image(temp_graph, 0, 0);
       
   }
   
@@ -137,6 +130,12 @@ function fluigi_button_pressed() {
   if (is_connected) connectivity = "resources/connected.png";
   else connectivity = "resources/not_connected.png";
 
+    webix.ui({
+      view:"button"
+    })
+
+  image(temp_graph, 0, 0);
+
 
 
 
@@ -159,7 +158,7 @@ function fluigi_button_pressed() {
     view:"toolbar",
     complexData:true,
     id:"file_inputs",
-    height: 75,
+    height: 100,
     type: "head",
     cols:[
       {
@@ -172,6 +171,8 @@ function fluigi_button_pressed() {
             link:"mylist",
             upload:"resources/upload.json", //path that gets uploaded information
             datatype:"js"
+            //width: width/2
+            
           }, 
           {
             view:"list",  
@@ -180,6 +181,8 @@ function fluigi_button_pressed() {
             autoheight:true, 
             borderless:true, 
             multiple:false
+            //width: width/2
+
           }
         ]
       },
@@ -193,6 +196,7 @@ function fluigi_button_pressed() {
             link:"mylist2",
             upload:"resources/upload.svg", //path that gets uploaded information
             datatype:"svg"
+            //width: width/2
           }, 
           {
             view:"list",  
@@ -200,7 +204,8 @@ function fluigi_button_pressed() {
             type:"uploader",
             autoheight:true, 
             borderless:true, 
-            multiple: false 
+            multiple: false
+            //width: width/2
           }       
         ]
       }
@@ -240,11 +245,42 @@ function fluigi_button_pressed() {
   
   */
 
+var hide_toolbar = webix.ui({
+      view:"toolbar",
+      id:"hide_toolbar",
+      height: 35,
+      type: "head",
+      cols:[
 
+            {
+                view:"button",
+                type:"imageTop",
+                image:"resources/up-down.png",
+                value: "Hide/Show Toolbar",
+                height:35, click: hide_inputs,
+                id:"hide"
+            }
+          ]
+        }).show();
 
 
 
 }
+
+
+function hide_inputs()
+  {
+    if (hide==0){ //hide toolbar
+      hide=1;
+      $$("file_inputs").hide();
+    }
+    else if (hide==1){ //show toolbar
+      hide=0;
+      $$("file_inputs").show();
+      $$("hide_toolbar").hide();
+      $$("hide_toolbar").show();
+    }
+  }
 
 
 
@@ -287,15 +323,21 @@ function exit_button_pressed() {
   
 
 function settings_button_pressed() {
-  if( settings_toggle == 'settings_is_closed') {
+  gui_state = 'settings';
+
+  if( settings_toggle == 'settings_is_closed')
+  {
     settings_toggle = 'settings_is_open';
-    var pumpData = [];
-    for (var i = 1; i <= numPumps; i++) {
-      var singleStage = { id:i, Open_State:0, Closed_State:0, Pump_Number:i}
-      //pumpData[i] = singleStage;
-      pumpData.push(singleStage);
-    }
-    var settings_window_popup = webix.ui( {
+  
+  var pumpData = [];
+  for (var i = 1; i <= numPumps; i++)
+  {
+     var singleStage = { id:i, Open_State:0, Closed_State:0, Pump_Number:i}
+  //pumpData[i] = singleStage;
+   pumpData.push(singleStage);
+  }
+
+    var settings_window_popup = webix.ui({
       view:"window",
       resize:true,
       move:true,
@@ -303,36 +345,39 @@ function settings_button_pressed() {
       head:{view:"button", label:"Close", width:70, click:settings_handler},
       width: 1050,
       height: 800,
-      left: 550,
-      top: 100,
+      left:550,
+      top:100,
       body:{
-        //container:"box",
-        view:"datatable",
-        editable:true,
-        //on: {"onItemClick": function () {alert("item has just been clicked");}},
-        columns:[
-          { id: "Pump_Number",    header: "Pump Number",   width: 50},
-          { id: "Open_State",   header: "Open State",    width: 200, editor: "text"},
-          { id: "Closed_State",    header: "Closed State",  width: 80, editor: "text"}
-        ],
-        data: pumpData
-        }
-    }).show();
+//      container:"box",
+      view:"datatable",
+      editable:true,
+//      on: {"onItemClick": function () {alert("item has just been clicked");}},
+      columns:[
+        { id:"Pump_Number",    header:"Pump Number",   width:50},
+        { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
+        { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
+          ],
+      data: pumpData
+     }
+  }).show();
   }
-}
   
+  }
+  
+  function settings_handler()
+  {
 
-
-function settings_handler() {
-  $$("settings_window").close();
-  settings_toggle = 'settings_is_closed';
-}
+    $$("settings_window").close();
+    settings_toggle = 'settings_is_closed';
+  }
 
 
 
 function home_button_pressed() {
   gui_state = 'home';
   $$("FluigiToolbar").hide();
+  $$("file_inputs").hide();
+  $$("hide_toolbar").hide();
 }
   
 
@@ -340,6 +385,8 @@ function home_button_pressed() {
 function back_to_fluigi_pressed() {
   gui_state = 'fluigi';
   $$("FluigiToolbar").show();
+  $$("file_inputs").show();
+  $$("hide_toolbar").show();
 }
 
 

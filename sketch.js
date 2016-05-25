@@ -21,7 +21,7 @@ var dataTable_config = [
 				
 function setup() 
 {
-  home_background_image = loadImage("resources/background_img.png");
+  home_background_image = loadImage("resources/background_img.jpg");
   
   //Home Page
   fluigi_highlighted_logo = loadImage("resources/fluigi.png");
@@ -104,8 +104,7 @@ function draw()
   if (gui_state == 'fluigi')
   {
     createCanvas(windowWidth ,windowHeight);
-    background(44, 62, 80);
-    fill(52, 152, 219);
+    background(0, 2, 46);
   }
   
   

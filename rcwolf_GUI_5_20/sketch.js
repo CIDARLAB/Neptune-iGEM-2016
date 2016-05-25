@@ -26,7 +26,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
 
   // TEMPLATE GRAPH c/o Krishna on Slack
-  temp_graph = loadImage("test1_device_flow.svg");
+  //temp_graph = loadImage("test1_device_flow.svg");
   
   
   
@@ -130,11 +130,7 @@ function fluigi_button_pressed() {
   if (is_connected) connectivity = "resources/connected.png";
   else connectivity = "resources/not_connected.png";
 
-    webix.ui({
-      view:"button"
-    })
-
-  image(temp_graph, 0, 0);
+  //image(temp_graph, 0, 0);
 
 
 
@@ -153,6 +149,27 @@ function fluigi_button_pressed() {
 
   $$("fluigi_logo_static").disable();
   $$("device_indicator_static").disable();
+
+
+
+
+  var hide_toolbar = webix.ui({
+      view:"toolbar",
+      id:"hide_toolbar",
+      height: 35,
+      type: "head",
+      cols:[
+
+            {
+                view:"button",
+                type:"imageTop",
+                image:"resources/up-down.png",
+                value: "Hide/Show Toolbar",
+                height:35, click: hide_inputs,
+                id:"hide"
+            }
+          ]
+        }).show();
 
   var drag_and_drop_toolbar = webix.ui({
     view:"toolbar",
@@ -245,23 +262,7 @@ function fluigi_button_pressed() {
   
   */
 
-var hide_toolbar = webix.ui({
-      view:"toolbar",
-      id:"hide_toolbar",
-      height: 35,
-      type: "head",
-      cols:[
 
-            {
-                view:"button",
-                type:"imageTop",
-                image:"resources/up-down.png",
-                value: "Hide/Show Toolbar",
-                height:35, click: hide_inputs,
-                id:"hide"
-            }
-          ]
-        }).show();
 
 
 
@@ -277,11 +278,11 @@ function hide_inputs()
     else if (hide==1){ //show toolbar
       hide=0;
       $$("file_inputs").show();
-      $$("hide_toolbar").hide();
+
       $$("hide_toolbar").show();
     }
   }
-
+ 
 
 
 
@@ -387,6 +388,7 @@ function back_to_fluigi_pressed() {
   $$("FluigiToolbar").show();
   $$("file_inputs").show();
   $$("hide_toolbar").show();
+  hide = 1;
 }
 
 

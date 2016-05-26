@@ -19,6 +19,18 @@ var dataTable_config = [
 			{ id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
 				];
 				
+				
+// TO DO LIST (5/23 - 5/27) [Ordered in terms of priority]
+// -----------------------------------------------------
+// X  Fix "save" and "close" buttons for settings page
+// X Implement "Set all pumps" fourm in settings page
+// O Successfully upload and save files to local folder or server host
+// O Make popup windows correct size, i.e. unobtrusive and clean 
+// O Properly size datatable 
+// O Populate help page? 
+// O Begin looking into AutoDetect features for uploaded files. 
+//      Think about how we will display user information beyond the SVG graph 
+				
 function setup() 
 {
   home_background_image = loadImage("resources/background_img.jpg");
@@ -340,8 +352,10 @@ function settings_button_pressed()
       head:{view:"toolbar",cols:[
 	  {view:"button",id:"close_btn",label:"Close", width:70, click:close_settings_handler},
 	  {view:"button",id:"save_btn",label:"Save",width:70,click:save_handler,on: {"onItemClick": function () {alert("Your settings have been saved successfully!")}}},
-	  {view:"button",id:"clear_btn",label:"Clear",width:70,click:clear_settings_handler}
-	  //{view:"button",id:"set_btn",label:"Set Values for All Pumps",width:200,click:set_all_pumps_handler}
+	  {view:"button",id:"clear_btn",label:"Clear",width:70,click:clear_settings_handler},
+	  {view:"button",id:"set_btn",label:"Set Values for All Pumps",width:200,click:set_all_pumps_handler},
+	  {view:"button",id:"num_btn",label:"Set Number of Pumps",width:200,click:change_number_of_pumps_handler},
+	  {view:"text"  ,id:"num_frm",label:""}
 	  ]},
       width: 1050,
       height: 800,
@@ -355,13 +369,92 @@ function settings_button_pressed()
 		columns: [
 			{ id:"Pump_Number",    header:"Pump Number",   width:50},
 			{ id:"Open_State",   header:"Open State",    width:200, editor:"text"},
-			{ id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
+			{ id:"Closed_State",    header:"Closed State",  width:200, editor:"text"}
 				],
 		data: DataToLoad
       }
   }).show();
   }
 }
+  
+function set_all_pumps_handler()
+{
+  var set_all_pumps_popup = webix.ui({
+      view:"window",
+      resize:true,
+      move:true,
+      id:"pump_window",
+      head:{view:"toolbar",cols:[
+	  {view:"button",id:"cancel_btn",label:"Cancel", width:70, click:close_pumpPage_handler},
+	  {view:"button",id:"apply_btn",label:"Apply",width:70,click:apply_handler,on: {"onItemClick": function () {alert("Your settings have been applied!")}}}]},
+      body: 
+      {
+        view: "form",
+        elements:[
+          {view:"text",id:"open_form", labelWidth: 100, label:"Open State"},
+          {view:"text",id:"closed_form",labelWidth: 100, label:"Closed State"}
+          //{view:"button",value:"Set",type:"form",click:set_state_handler}
+          ]
+      }
+    }).show();
+} 
+
+function change_number_of_pumps_handler()
+{
+	var oldNumberofPumps = dataCenter.pumps;
+	var numberOfPumps = $$("num_frm").getValue();
+	dataCenter.pumps = numberOfPumps; 
+	var set_pumpData_newNum = [];
+	for (var i = 1; i <= dataCenter.pumps; i++)
+	{
+		if (i <= oldNumberofPumps)
+		{
+			var singleStage = ($$("pumpDataTable").getItem(i.toString()));
+			set_pumpData_newNum.push(singleStage);
+		}
+		else 
+		{
+			var singleStage2 = {id:i, Open_State:0, Closed_State:0, Pump_Number:i};
+			set_pumpData_newNum.push(singleStage2);
+		}
+	}
+	DataToLoad = set_pumpData_newNum;
+	$$("pumpDataTable").clearAll();
+	clear_toggle = true; 
+	dataCenter.unsavedData = DataToLoad;
+	$$("settings_window").close();
+	settings_toggle = 'settings_is_closed';
+	settings_button_pressed();
+}
+  
+function apply_handler()
+{
+    var open_state_value = $$("open_form").getValue();
+    var closed_state_value = $$("closed_form").getValue();
+    var set_pumpData = [];
+    for (var k = 1; k <= dataCenter.pumps; k++)
+    {
+      var singleStage = {id:k, Open_State:open_state_value, Closed_State:closed_state_value, Pump_Number:k};
+      set_pumpData.push(singleStage);
+    }
+    DataToLoad = set_pumpData;
+    $$("pumpDataTable").clearAll();
+	clear_toggle = true; 
+	dataCenter.unsavedData = DataToLoad;
+	$$("pump_window").close();
+	$$("settings_window").close();
+	settings_toggle = 'settings_is_closed';
+	settings_button_pressed();
+    //$$("pump_window").close();
+    //$$("settings_window").close();
+} 
+  
+function close_pumpPage_handler()
+{
+    $$("pump_window").close();
+    //$$("pumpDataTable").refreshColumns();
+}
+   
   
 function close_settings_handler()
 {
@@ -383,7 +476,7 @@ function clear_pumpData()
 function save_handler()
 {
 	var save_pumpData = [];
-	for (var i = 1; i <= numPumps; i++)
+	for (var i = 1; i <= dataCenter.pumps; i++)
 	{
 		var singleStage = ($$("pumpDataTable").getItem(i.toString()));
 		save_pumpData.push(singleStage);
@@ -402,8 +495,6 @@ function clear_settings_handler()
 	settings_button_pressed();
 }
 
-
-
 function home_button_pressed() 
 {
   gui_state = 'home';
@@ -412,8 +503,6 @@ function home_button_pressed()
   $$("hide_toolbar").hide();
 }
   
-
-
 function back_to_fluigi_pressed() 
 {
   gui_state = 'fluigi';
@@ -423,16 +512,12 @@ function back_to_fluigi_pressed()
   hide = 1;
 }
 
-
-
 // returns true if cursor is within button range
 function isOver(im_x, im_y, im_width, im_height) {
   if ( (mouseX > im_x) && (mouseX < im_x + im_width) && (mouseY > im_y) && (mouseY < im_y + im_height) ) return true;
   else return false;
 }
 
-
- 
 function mouseClicked() {
   if(gui_state=='home') {
     if (isOver ((width/100)*75 , (height/100)*77, width/9,height/13)) {
@@ -448,21 +533,8 @@ function mouseClicked() {
   } 
 }
 
-
-
-function windowResized() {
+function windowResized() 
+{
   resizeCanvas(windowWidth, windowHeight);
-}
-
-
-
-function initiate_pump_DataTable(numPumps) {
-  var pumpData = [];
-  for (var i = 1; i <= numPumps; i++) {
-    //pumpData[i] = [i,0,0];
-    pumpData[i] = {id:i,Open_State:"x",Closed_State:"y",Pump_Number:i};
-  }
-  //  { id:1, Open_State:"x", Closed_State:"y", Pump_Number:1},
-  return pumpData; 
 }
 

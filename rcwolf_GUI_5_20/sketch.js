@@ -41,6 +41,7 @@ function draw() {
   //////////////////////////////////////////////////////////////////
   
   if (gui_state == 'home'){
+    createCanvas(windowWidth, windowHeight);
     background(home_background_image);
 
     // scale factor for help and about buttons
@@ -92,7 +93,7 @@ function draw() {
   //////////////////////////////////////////////////////////////////
   if (gui_state == 'fluigi')
   {
-    createCanvas(windowWidth ,windowHeight);
+    createCanvas(windowWidth , 0);
     background(44, 62, 80);
     fill(52, 152, 219);
 
@@ -263,6 +264,11 @@ function fluigi_button_pressed() {
   */
 
 
+//var s = Snap();
+// Snap.load("test1_device_flow.svg", function(f) {
+//   s.append(f.select("g"));
+// });
+
 
 
 
@@ -370,6 +376,7 @@ function settings_button_pressed() {
 
     $$("settings_window").close();
     settings_toggle = 'settings_is_closed';
+    gui_state = 'fluigi';
   }
 
 

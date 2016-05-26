@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="fluigi_page">
 <head>
 
     <link rel="stylesheet" type="text/css" href="../styles/GUI_css.css" />
@@ -39,10 +39,8 @@
                 <li class="nav-item"><a class="nav-link" href="../index.html"> <img src="../resources/FLUIGI/HOME_button_transparent.png"> </a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item"> <a class="nav-link" href=""> <img src="../resources/FLUIGI/Settings_Icon.png"> </a></li>
 
-
-
+                <li class="nav-item"> <a class="nav-link"> <img data-toggle="modal" data-target="#SettingsModal" src="../resources/FLUIGI/Settings_Icon.png"> </a> </li>
             </ul>
 
 
@@ -55,6 +53,32 @@
 
 
 
+<!-- Modal -->
+<div id="SettingsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Hi there! Have some questions?</h4>
+            </div>
+            <div class="modal-body">
+
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->
@@ -66,14 +90,3 @@
 
 </html>
 
-
-
-<!-- LEAVE JS FOR LAST - faster loading time -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-</body>
-
-
-
-</html>

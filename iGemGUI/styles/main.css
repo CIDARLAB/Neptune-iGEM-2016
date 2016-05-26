@@ -1,6 +1,6 @@
-html {
-    background-color: #2c3e50;
-}
+/*html {*/
+    /*background-color: #2c3e50;*/
+/*}*/
 
 .navbar {
 
@@ -12,3 +12,26 @@ html {
 
 }
 
+.My_btn {
+    background-color: #34495e;
+    color: #34495e;
+    vertical-align: middle;
+    horiz-align: middle;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+
+.home_page {
+    background-color: #3498db;
+}
+.fluigi_page {
+    background-color: #34495e;
+}
+body{
+    background-color: #34495e;
+}
+
+ul {
+    list-style-type: none;
+}

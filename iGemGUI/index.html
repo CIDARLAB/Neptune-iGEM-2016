@@ -2,11 +2,19 @@
 <html lang="en">
 <head>
 
+    <link rel="stylesheet" type="text/css" href="styles/GUI_css.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
 </head>
 <body>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
 <script>
     function loadPage(){
-        window.location.href = "./newPage.html";
+        window.location.href = "html/newPage.html";
     }
 
 </script>
@@ -14,6 +22,42 @@
 <h2> HELLO WORLD</h2>
 
 <button onclick="loadPage()">next page</button>
+
+
+
+
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" >
+                <img alt="Brand" src="resources/FLUIGI/Fluigi_logo_fluigi.png">
+            </a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="html/newPage.html"> <img src="resources/FLUIGI/HOME_button_transparent.png"> </a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item"> <a class="nav-link" href=""> <img src="resources/FLUIGI/Settings_Icon.png"> </a></li>
+
+
+
+            </ul>
+
+
+
+        </div>
+    </div>
+</nav>
+
+
+
+    <link rel="stylesheet" type="text/css" href="css/fluigi/interactive-svg.css" />
+
+
+    <!-- LEAVE JS FOR LAST - faster loading time -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
 

@@ -7,21 +7,55 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+/* GET fluigi page. */
+router.get('/fluigipage', function(req, res, next) {
+    res.render('fluigipage', { title: 'Fluigi Page' });
 });
-
 
 /* GET Serial Communication page. */
 router.get('/serialcommunication', function(req, res, next) {
-  res.render('serialcommunication', { title: 'COM' });
+    serialcommunication.listPorts(); //populates ports export
+    var ports = serialcommunication.ports;
+
+    res.render('serialcommunication', { title: 'COM' , serialPorts: ports });
+
 });
 
-/* GET Serial Comm command */
-router.get('/serialcommunicationcommand', function(req, res, next) {
-  res.send(serialcommunication.command());
+/* POST Open Serial Comm command */
+router.post('/openSerialConnection', function(req, res, next) {
+    var port =  req.body.portName;
+    console.log( 'my port yo; ' + port);
+
+    res.send(serialcommunication.openConnection(port));
 });
+
+/* POST Close Serial Comm Command */
+router.post('/closeSerialConnection', function(req, res, next){
+    var openPort = serialcommunication.SerialPortConnection;
+
+    res.send(serialcommunication.closeConnection(openPort));
+
+});
+
+
+/* POST arduino ON Serial Comm Command */
+router.post('/arduinoON', function(req, res, next){
+    var openPort = serialcommunication.SerialPortConnection;
+
+    res.send(serialcommunication.sendToSerial('on', openPort));
+
+});
+
+/* POST arduino OFF Serial Comm Command */
+router.post('/arduinoOFF', function(req, res, next){
+    var openPort = serialcommunication.SerialPortConnection;
+
+    res.send(serialcommunication.sendToSerial('off', openPort));
+
+});
+
+
+
 
 
 module.exports = router;

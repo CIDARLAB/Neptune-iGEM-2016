@@ -9,6 +9,16 @@
 
 <button id="begin-comm"> Begin Communication</button>
 
+<script type="application/javascript">
+    $("#begin-comm").click(function(){
+
+        $.ajax(
+                {url: "../serialcommunicationcommand", async: false, success: function(result){
+
+            }});
+    })
+
+</script>
 
 
 </body>

@@ -4,10 +4,10 @@ var cmd=require('node-cmd');
 var command = function() {
 
     cmd.get(
-        'pwd',
+        "./hello",
         function(data){
             dataResponse = data;
-            console.log('the current working dir is : ',data)
+            console.log(data)
         }
     );
 

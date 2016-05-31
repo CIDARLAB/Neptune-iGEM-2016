@@ -1,7 +1,10 @@
 <!DOCTYPE html>
+
 <html lang="en" class="fluigi_page">
 <head>
     <title> {{title}} </title>
+    <link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css">
+    <script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
@@ -13,40 +16,39 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src="../javascripts/settings.js" > </script>
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+
     <script>
-        $(document).ready(function() {
-
-            $('#uploadForm').submit(function() {
-                $("#status").empty().text("File is uploading...");
-                $(this).ajaxSubmit({
-
-                    error: function(xhr) {
-                        status('Error: ' + xhr.status);
-                    },
-
-                    success: function(response) {
-                        $("#status").empty().text(response);
-                        console.log(response);
-                    }
-                });
-                //Very important line, it disable the page refresh.
-                return false;
-            });
-        });
+        localStorage.clear();
+        localStorage.settings_toggle = "settings_is_closed";
+        localStorage.hide=0;
+        localStorage.settings_button_has_been_pressed_before = false;
+        //localStorage.dataCenter = new Object();
+        localStorage.pumpData = [];
+        localStorage.unsavedData = [];
+        localStorage.oldPumpData = [];
+        localStorage.pumps =  11;
+        localStorage.settings_X_pos = 200;
+        localStorage.settings_Y_pos= 200;
+        localStorage.close_pressed_last = false;
+        localStorage.DataToLoad;
+        localStorage.clear_toggle = false;
+        localStorage.dataTable_config = [
+            { id:"Pump_Number",    header:"Pump Number",   width:50},
+            { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
+            { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
+        ];
+        localStorage.set_pump_page_is_open = false;
+        localStorage.pumpData = clear_pumpData();
     </script>
-
 </head>
 <body>
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-
-
-
-
 
 
 <nav class="navbar navbar-fixed-top">
@@ -62,7 +64,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
-                <li class="nav-item"> <a class="nav-link"> <img data-toggle="modal" data-target="#SettingsModal" src="../images/fluigi//Settings_Icon.png"> </a> </li>
+                <li class="nav-item"> <a class="nav-link"> <img onclick="settings_button_pressed();" src="../images/fluigi//Settings_Icon.png"> </a> </li>
             </ul>
 
 
@@ -72,46 +74,31 @@
 </nav>
 
 
-<nav class="uploadbar">
+<nav id= "upload_bar" class="uploadbar">
     <br/>
     <form id="uploadForm"
           enctype="multipart/form-data"
           action="/api/photo"
           method="post">
-        <input type="file" name="userPhoto" />
+        <input id= "inputfile" class="inputbutton" type="file" name="userPhoto" />
         <br/>
-        <input type="submit" value="Upload Image" name="submit">
+        <input id="uploadfile" class= "inputbutton" type="submit" value="Upload File" name="submit">
         <span id = "status"></span>
+        <br/>
+        <img class= "up-down" id= "up" src="../images/fluigi/up-down.png"
+            onclick= "
+            if (inputfile.style.visiblity != 'hidden'){
+            inputfile.style.visibility = 'hidden';
+            uploadfile.style.visibility = 'hidden';
+             }
+            else {
+             inputfile.style.visibility = 'initial';
+             uploadfile.style.visibility ='initial';
+            }"
+        >
     </form>
 
 </nav>
-
-
-<!-- Modal -->
-<div id="SettingsModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Hi there! Have some questions?</h4>
-            </div>
-            <div class="modal-body">
-
-                <p>Some text in the modal.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-
-
-
 
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
@@ -119,7 +106,30 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+    $(document).ready(function() {
 
+        $('#uploadForm').submit(function() {
+            $("#status").empty().text("File is uploading...");
+
+            $(this).ajaxSubmit({
+
+                error: function(xhr) {
+                    status('Error: ' + xhr.status);
+                },
+
+                success: function(response) {
+                    console.log(response)
+                    $("#status").empty().text(response);
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
 
 
 </html>

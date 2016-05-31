@@ -36,8 +36,6 @@ var fs = require('fs');
 
 var users = require('./routes/users');
 var routes = require('./routes/index');
-var fluigipage = require('./routes/fluigipage');
-var post = require('./routes/fluigipage');
 
 var app = express();
 
@@ -55,8 +53,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
-app.use('/fluigipage',fluigipage);
-app.use('/post',post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

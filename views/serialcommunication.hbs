@@ -3,22 +3,51 @@
     <title> {{title}} </title>
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
     <script src="../javascripts/serialcommunication.js"></script>
+    <style>
+        ul#ui li {
+            display: inline;
+        }
+        ul#ui li#port-list {
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
 
-<button id="begin-comm"> Begin Communication</button>
 
-<script type="application/javascript">
-    $("#begin-comm").click(function(){
 
-        $.ajax(
-                {url: "../serialcommunicationcommand", async: false, success: function(result){
 
-            }});
-    })
+<ul id="ui">
+    <li>
+        <button id="begin-comm"> Open Comm</button>
+    </li>
+    <li>
+        <button id="end-comm"> Close Comm</button>
+    </li>
+    <li>
+        <button id="on-cmd">Send On Command</button>
+    </li>
+    <li>
+        <button id="off-cmd">Send Off Command</button>
+    </li>
 
-</script>
+    <li id="port-list">
+
+        <select id="ports">
+            {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
+
+                <option value={{this.comName}}> name: {{ this.comName }} </option>​
+
+            {{/each}}
+
+        </select>
+    </li>
+
+
+</ul>
+
+
 
 
 </body>

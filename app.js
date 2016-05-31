@@ -1,4 +1,31 @@
-var express = require('express');
+var express =   require("express");
+var multer  =   require('multer');
+var app         =   express();
+var storage =   multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, './uploads');
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.fieldname + '-' + Date.now());
+  }
+});
+var upload = multer({ storage : storage}).single('userPhoto');
+
+app.get('/',function(req,res){
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.post('/api/photo',function(req,res){
+  upload(req,res,function(err) {
+    if(err) {
+      return res.end("Error uploading file.");
+    }
+    res.end("File is uploaded");
+  });
+});
+
+
+
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -7,6 +34,8 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var fluigipage = require('./routes/fluigipage');
+var post = require('./routes/fluigipage');
 
 var app = express();
 
@@ -24,6 +53,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/fluigipage',fluigipage);
+app.use('/post',post);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

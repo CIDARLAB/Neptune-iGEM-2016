@@ -1,11 +1,10 @@
 
-
 function settings_button_pressed()
 {
     if( localStorage.settings_toggle == 'settings_is_closed' )
     {
         localStorage.settings_toggle = 'settings_is_open';
-        if (localStorage.clear_toggle === true)
+        if (localStorage.clear_toggle == "true")
         {
             var DataToLoad = JSON.parse(localStorage.unsavedData);
         }
@@ -17,8 +16,8 @@ function settings_button_pressed()
 
         var settings_window_popup = webix.ui({
             view:"window",
-            resize:true,
-            move:true,
+            resize:false,
+            move:false,
             id:"settings_window",
             head:{view:"toolbar",cols:[
                 {view:"button",id:"close_btn",label:"Close", width:70, click:close_settings_handler},
@@ -51,18 +50,18 @@ function settings_button_pressed()
 
 function set_all_pumps_handler()
 {
-    if (localStorage.set_pump_page_is_open === true)
-    {
-        //Do nothing!
-    }
+    if (localStorage.set_pump_page_is_open == "true")
+    {}   // Do nothing!
 
-    else // Proceed.
+    else // Proceed!
     {
         localStorage.set_pump_page_is_open = true;
         var set_all_pumps_popup = webix.ui({
             view:"window",
-            resize:true,
-            move:true,
+            resize:false,
+            move:false,
+            left: 900,
+            top: localStorage.settings_Y_pos,
             id:"pump_window",
             head:{view:"toolbar",cols:[
                 {view:"button",id:"cancel_btn",label:"Cancel", width:70, click:close_pumpPage_handler},
@@ -71,8 +70,8 @@ function set_all_pumps_handler()
             {
                 view: "form",
                 elements:[
-                    {view:"text",id:"open_form",label:"Open State"},
-                    {view:"text",id:"closed_form",label:"Closed State"}
+                    {view:"text",id:"open_form",label:"Open State",labelWidth:115},
+                    {view:"text",id:"closed_form",label:"Closed State",labelWidth:115}
                     //{view:"button",value:"Set",type:"form",click:set_state_handler}
                 ]
             }
@@ -100,8 +99,8 @@ function change_number_of_pumps_handler()
         }
     }
     var DataToLoad = set_pumpData_newNum;
-    $$("settings_window").left = localStorage.settings_Y_pos;
-    $$("settings_window").top = localStorage.settings_X_pos;
+    //$$("settings_window").left = localStorage.settings_Y_pos;
+    //$$("settings_window").top = localStorage.settings_X_pos;
     $$("pumpDataTable").clearAll();
     localStorage.clear_toggle = true;
     localStorage.unsavedData = JSON.stringify(DataToLoad);
@@ -181,3 +180,16 @@ function clear_settings_handler()
     localStorage.settings_toggle = 'settings_is_closed';
     settings_button_pressed();
 }
+
+// function pumpData_to_ArduinoCompatibleFormat()
+// {
+//     var arduino_commands = [];
+//     for (var i = 0; i < length(localStorage.pumpData); 1++)
+//     {
+//         var pump_num = localStorage.pumpData[i].Pump_Number;
+//         var open_state = localStorage.pumpData[i].Open_State;
+//         var closed_state = localStorage.pumpData[]
+//         arduino_commans[i] = {}
+//     }
+//
+// }

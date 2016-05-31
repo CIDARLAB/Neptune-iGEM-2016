@@ -1,6 +1,13 @@
-/*html {*/
-    /*background-color: #2c3e50;*/
-/*}*/
+
+
+html, body, canvas {
+    margin: 0;
+    padding: 0;
+    background-color: #34495e;
+}
+body {
+    background-color: #34495e;
+}
 
 .centered {
     position: fixed;
@@ -23,7 +30,6 @@
 }
 
 .navbar {
-
     padding-top: 0px;
     padding-bottom: 0px;
     height: 90px;
@@ -45,14 +51,6 @@
 
 }
 
-/*.home_page {*/
-    /*background-color: #34495e;*/
-/*}*/
-
-/*body{*/
-    /*background-color: #34495e;*/
-/*}*/
-
 ul {
     list-style-type: none;
 }
@@ -67,4 +65,3 @@ ul {
     /*border-color: #3498db;*/
 
 }
-

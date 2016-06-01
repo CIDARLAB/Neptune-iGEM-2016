@@ -83,56 +83,69 @@ function change_number_of_pumps_handler()
 {
     var oldNumberofPumps = localStorage.pumps;
     var numberOfPumps = $$("num_frm").getValue();
-    localStorage.pumps = numberOfPumps;
-    var set_pumpData_newNum = [];
-    for (var i = 1; i <= localStorage.pumps; i++)
+
+    if (numberOfPumps == "")
     {
-        if (i <= oldNumberofPumps)
-        {
-            var singleStage = ($$("pumpDataTable").getItem(i.toString()));
-            set_pumpData_newNum.push(singleStage);
-        }
-        else
-        {
-            var singleStage2 = {id:i, Open_State:0, Closed_State:0, Pump_Number:i};
-            set_pumpData_newNum.push(singleStage2);
-        }
+        alert("You entered an empty value");
     }
-    var DataToLoad = set_pumpData_newNum;
-    //$$("settings_window").left = localStorage.settings_Y_pos;
-    //$$("settings_window").top = localStorage.settings_X_pos;
-    $$("pumpDataTable").clearAll();
-    localStorage.clear_toggle = true;
-    localStorage.unsavedData = JSON.stringify(DataToLoad);
-    $$("settings_window").close();
-    localStorage.settings_toggle = 'settings_is_closed';
-    settings_button_pressed();
+    else if (numberOfPumps >= 1000)
+    {
+        alert("Too many pumps!");
+    }
+    else {
+        localStorage.pumps = numberOfPumps;
+        var set_pumpData_newNum = [];
+        for (var i = 1; i <= localStorage.pumps; i++) {
+            if (i <= oldNumberofPumps) {
+                var singleStage = ($$("pumpDataTable").getItem(i.toString()));
+                set_pumpData_newNum.push(singleStage);
+            }
+            else {
+                var singleStage2 = {id: i, Open_State: 0, Closed_State: 0, Pump_Number: i};
+                set_pumpData_newNum.push(singleStage2);
+            }
+        }
+        var DataToLoad = set_pumpData_newNum;
+        //$$("settings_window").left = localStorage.settings_Y_pos;
+        //$$("settings_window").top = localStorage.settings_X_pos;
+        $$("pumpDataTable").clearAll();
+        localStorage.clear_toggle = true;
+        localStorage.unsavedData = JSON.stringify(DataToLoad);
+        $$("settings_window").close();
+        localStorage.settings_toggle = 'settings_is_closed';
+        settings_button_pressed();
+    }
 }
 
 function apply_handler()
 {
     var open_state_value = $$("open_form").getValue();
     var closed_state_value = $$("closed_form").getValue();
-    var set_pumpData = [];
-    for (var k = 1; k <= localStorage.pumps; k++)
-    {
-        var singleStage = {id:k, Open_State:open_state_value, Closed_State:closed_state_value, Pump_Number:k};
-        set_pumpData.push(singleStage);
-    }
-    var DataToLoad = set_pumpData;
-    $$("settings_window").left = localStorage.settings_Y_pos;
-    $$("settings_window").top = localStorage.settings_X_pos;
-    $$("pumpDataTable").clearAll();
-    localStorage.clear_toggle = true;
-    localStorage.unsavedData = JSON.stringify(DataToLoad);
-    $$("pump_window").close();
-    $$("settings_window").close();
-    localStorage.settings_toggle = 'settings_is_closed';
-    settings_button_pressed();
-    localStorage.set_pump_page_is_open = false;
 
-    //$$("pump_window").close();
-    //$$("settings_window").close();
+    if (open_state_value == "" || closed_state_value == "")
+    {
+     alert("You entered an empty value");
+    }
+    else {
+        var set_pumpData = [];
+
+        for (var k = 1; k <= localStorage.pumps; k++) {
+            var singleStage = {id: k, Open_State: open_state_value, Closed_State: closed_state_value, Pump_Number: k};
+            set_pumpData.push(singleStage);
+        }
+        var DataToLoad = set_pumpData;
+        $$("settings_window").left = localStorage.settings_Y_pos;
+        $$("settings_window").top = localStorage.settings_X_pos;
+        $$("pumpDataTable").clearAll();
+        localStorage.clear_toggle = true;
+        localStorage.unsavedData = JSON.stringify(DataToLoad);
+        $$("pump_window").close();
+        $$("settings_window").close();
+        localStorage.settings_toggle = 'settings_is_closed';
+        settings_button_pressed();
+        localStorage.set_pump_page_is_open = false;
+
+    }
 }
 
 function close_pumpPage_handler()

@@ -1,9 +1,5 @@
 
-.idea/.name
+.idea/*
 
-.idea/iGEM2016-GUI.iml
-
-.idea/iGEM2016-GUI.iml
-
-
-.idea/workspace.xml
+node_modules/*
+.DS_Store

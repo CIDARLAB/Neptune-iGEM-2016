@@ -1,8 +1,5 @@
 var express = require('express');
-<<<<<<< HEAD
-=======
 var serialcommunication = require('../serialcommunication');
->>>>>>> d791ecf2e4beedf56c3429180ddd7203a660f564
 var router = express.Router();
 var multer= require('multer');
 var upload = multer({ storage : storage}).single('userPhoto');
@@ -14,13 +11,6 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-<<<<<<< HEAD
-// Get Fluigi Page
-router.get('/fluigipage', function(req, res, next) {
-  res.render('fluigipage', { title: 'Fluigi Page' });
-});
-
-=======
 /* GET fluigi page. */
 router.get('/fluigipage', function(req, res, next) {
     res.render('fluigipage', { title: 'Fluigi Page' });
@@ -69,7 +59,6 @@ router.post('/arduinoOFF', function(req, res, next){
 });
 
 
->>>>>>> d791ecf2e4beedf56c3429180ddd7203a660f564
 // Store Files
 var storage =   multer.diskStorage({
   destination: function (req, file, callback) {
@@ -93,9 +82,5 @@ router.post('/api/photo',function(req,res){
   });
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d791ecf2e4beedf56c3429180ddd7203a660f564
 module.exports = router;
 

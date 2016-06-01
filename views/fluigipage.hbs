@@ -1,18 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en" class="fluigi_page">
 <head>
 
-    <title> {title}} </title>
-
-    <!-- Webix Libraries for Settings Table-->
-    <!--<link rel="stylesheet" href="webix\codebase\webix.css" type="text/css" media="screen" charset="utf-8">-->
-    <!--<script src="webix\codebase\webix.js" type="text/javascript" charset="utf-8"></script>-->
+    <title> {{title}} </title>
     <link rel="stylesheet" href="http://cdn.webix.com/edge/webix.css" type="text/css">
     <script src="http://cdn.webix.com/edge/webix.js" type="text/javascript"></script>
-
-
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
     <script src="../javascripts/settings.js" > </script>
 
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
@@ -62,8 +58,8 @@
                 <li class="nav-item"><a class="nav-link" href="../index.html"> <img src="../images/fluigi//HOME_button_transparent.png"> </a></li>
             </ul>
 
-            <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item"> <a class="nav-link"> <img data-toggle="modal" data-target="#SettingsModal" src="../images/fluigi//Settings_Icon.png"> </a> </li>
+                <li class="nav-item"> <a class="nav-link"> <img onclick="settings_button_pressed();" src="../images/fluigi//Settings_Icon.png"> </a> </li>
+
             </ul>
 
         </div>
@@ -71,47 +67,32 @@
 </nav>
 
 
-<nav class="uploadbar">
-
-    <form method='post' action='' enctype="multipart/form-data">
-        <br />
-        <input type='file' name='fileUploaded'>
-        <br />
-        <input type='submit'>
+<nav id= "upload_bar" class="uploadbar">
+    <br/>
+    <form id="uploadForm"
+          enctype="multipart/form-data"
+          action="/api/photo"
+          method="post">
+        <input id= "inputfile" class="inputbutton" type="file" name="userPhoto" />
+        <br/>
+        <input id="uploadfile" class= "inputbutton" type="submit" value="Upload File" name="submit">
+        <span id = "status"></span>
+        <br/>
+        <img class= "up-down" id= "up" src="../images/fluigi/up-down.png"
+            onclick= "
+            if (inputfile.style.visiblity != 'hidden'){
+            inputfile.style.visibility = 'hidden';
+            uploadfile.style.visibility = 'hidden';
+             }
+            else {
+             inputfile.style.visibility = 'initial';
+             uploadfile.style.visibility ='initial';
+            }"
+        >
     </form>
+
 </nav>
 
-
-<!-- Modal -->
-<div id="SettingsModal" class="modal fade" role="dialog">
-
-    <!--<script src="C:\Users\kestas\Desktop\iGEM2016-GUI\FluigiGUI\routes\settings.js" type="text/javascript"></script>-->
-
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Settings</h4>
-            </div>
-            <div class="modal-body">
-
-                <input id="pumpDataTable" type="button" value="Pump Settings" onclick="settings_button_pressed();" />
-                <!--<input id="pumpDataTable" type="button" value="Pump Settings"> </input>-->
-                <!--<script>-->
-                <!--document.getElementById("pumpDataTable").addEventListener("click",settings_button_pressed());-->
-                <!--</script>-->
-
-                <!--<table id="pumpDataTable"> </table>-->
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
@@ -119,6 +100,29 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $('#uploadForm').submit(function() {
+            $("#status").empty().text("File is uploading...");
+
+            $(this).ajaxSubmit({
+
+                error: function(xhr) {
+                    status('Error: ' + xhr.status);
+                },
+                success: function(response) {
+                    console.log(response);
+                    $("#status").empty().text(response);
+                }
+            });
+
+            return false;
+        });
+    });
+</script>
 
 </html>
 

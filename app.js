@@ -8,11 +8,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var fs = require('fs');
-
 var users = require('./routes/users');
 var routes = require('./routes/index');
-
 var app         =   express();
+
 
 
 // view engine setup

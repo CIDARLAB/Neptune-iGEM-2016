@@ -13,10 +13,6 @@
     <script src="../javascripts/settings.js" > </script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-
-
-</head>
-
     <script>
         localStorage.clear();
         localStorage.settings_toggle = "settings_is_closed";
@@ -40,6 +36,7 @@
         localStorage.set_pump_page_is_open = false;
         localStorage.pumpData = clear_pumpData();
     </script>
+
 </head>
 
 <body>
@@ -114,8 +111,6 @@
                 error: function(xhr) {
                     status('Error: ' + xhr.status);
                 },
-                success: function(response) {
-                    console.log(response)
                 success: function(response) {
                     console.log(response);
                     $("#status").empty().text(response);

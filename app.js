@@ -8,14 +8,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-<<<<<<< HEAD
 var users = require('./routes/users');
 var app = express();
-=======
-
-var app         =   express();
-
->>>>>>> 97fbcbd91865a2124fe256289477e8e2fb361f92
 
 
 

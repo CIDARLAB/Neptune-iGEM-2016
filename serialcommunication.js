@@ -51,7 +51,7 @@ exports.closeConnection = function(myPort){
     myPort.close(function(err){
         console.log('port closed', err !== null ? err : "" );
     });
-    exports.SerialPortConnection = "";
+    exports.SerialPortConnection.
 };
 
 exports.sendToSerial = function (data, myPort) {

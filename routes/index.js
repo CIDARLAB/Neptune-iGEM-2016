@@ -5,6 +5,10 @@ var multer= require('multer');
 // Store Files
 
 
+
+var fs = require('fs');
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -77,7 +81,22 @@ var upload = multer({ storage : storage}).single('userPhoto');
 
 
 router.post('/api/photo', function(req,res){
+  upload(req,res,function(err) {
+    if(err) {
+      return res.end("Error uploading file.");
+    }
+    res.end("File is uploaded");
+    console.log("My file: "+res);
 
+    // fs.writeFile("mysvg.svg", (res.body), function(err){
+    //   if(err) {
+    //     return console.log(err);
+    //   }
+    //   else {
+    //     console.log("The file was saved!");
+    //   }
+    // });
+  });
 });
 module.exports = router;
 

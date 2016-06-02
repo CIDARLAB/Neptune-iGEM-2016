@@ -5,6 +5,18 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
+    <!--Template for valves to be placed over graph canvas-->
+    <template id="valve-template" >
+        <div class ="valve" id="nootnoot">
+            <a class="valve_marker" href="" >
+                <img class="valve_color" src="../images/fluigi/valve_marker_open.svg" width="18.5" height="43">
+            </a>
+        </div>
+    </template>
+
+
+
+
 </head>
 <body>
 
@@ -31,7 +43,7 @@
                         console.log(response);
                     }
                 });
-                //Very important line, it disable the page refresh.
+                //Very important line, it disables the page refresh.
                 return false;
             });
         });
@@ -112,72 +124,21 @@
 
 
 
+
+
+
+
+
 <!--Draw Canvas (resize to page width/height in js)-->
-<canvas id="canvasID" >
-    <div style="display:none;">
-        <img id="valve_marker" src="../images/fluigi/valve_marker.svg" width="64" height="64">
-    </div>
-</canvas>
-
-<!--JS to draw SVG in canvas-->
-<script>
-    var cx = document.querySelector("canvas").getContext("2d");
-    // Formatting Canvas
-    //    cx.canvas.width  = window.innerWidth;
-    //    cx.canvas.height = window.innerHeight;
-    var canWidth = 1280;
-    var canHeight = 725;
-    cx.canvas.width  = canWidth;
-    cx.canvas.height = canHeight;
-    document.getElementById("canvasID").style.background = '#34495e';
-    //document.getElementById("canvasID").style.top = '90';
+<div id="container">
+    <canvas id="canvasID" ></canvas>
+    <!--JS to draw SVG in canvas-->
+    <script src="../fluigi_graph.js" type="application/javascript"></script>
+    <!--This is where valves go!-->
+    <div id="content"></div>
+</div>
 
 
-    // coordinates of valves (to be input in the form of a json file) - rectangles
-    var Xcoords = [35.716586, 52.157556];
-    var Ycoords = [34.866191, 34.866191];
-    // coords of center of valve circles
-//    var Xcoords = [37.702655, 54.143625];
-//    var Ycoords = [34.868005, 34.868005];
-
-
-
-
-    var svg = document.createElement("img");
-    svg.src = "../images/fluigi/test1_device_flow.svg";
-    svg.addEventListener("load", function() {
-        // original width and height of SVG upon load
-        SVGwidth = this.width;
-        SVGheight = this.height;
-
-        SVGscale = (canHeight)/SVGheight;
-
-        SVGx = canWidth/2 - ( (SVGwidth*( (canHeight)/SVGheight) )/2 );
-
-        cx.drawImage(svg, SVGx, -10*SVGscale, SVGwidth*SVGscale, SVGheight*SVGscale);
-        cx.drawImage(document.getElementById('valve_marker'),(35.716586*SVGscale) + SVGx, (34.866191*SVGscale) - 10*SVGscale, 17, 42);
-
-
-        for(i = 0; i < Xcoords.length; i++){
-
-            cx.drawImage(document.getElementById('valve_marker'),(Xcoords[i]*SVGscale) + SVGx, (Ycoords[i]*SVGscale) - 10*SVGscale, 17, 42);
-
-
-
-//            cx.beginPath();
-//            cx.rect((Xcoords[i]*SVGscale) + SVGx, (Ycoords[i]*SVGscale) - 10*SVGscale, 4*4, 10*4);
-//            cx.fillStyle = '#e74c3c';
-//            cx.fill();
-//            cx.lineWidth = 3;
-//            cx.strokeStyle = '#ffffff';
-//            cx.stroke();
-        }
-
-
-//        cx.drawImage(dot, 35.716586, 34.866191+90, 5, 5);
-//        cx.drawImage(dot, 52.157556, 34.866191+90, 5, 5);
-    });
-</script>
 
 
 

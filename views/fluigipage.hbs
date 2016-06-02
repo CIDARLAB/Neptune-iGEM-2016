@@ -63,7 +63,6 @@
 
 
         <div>
-
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/HOME_button_transparent.png"> </a>
                 </li>
@@ -85,44 +84,34 @@
     <div id="content"></div>
 </div>
 
-
-<nav id= "upload_bar" class="uploadbar">
-    <br/>
-    <div id="div1">
-        <form id="uploadForm"
-              enctype="multipart/form-data"
-              action="/api/photo"
-              method="post">
-            <a href=" " title="Input a json file with the pump specifications (See Help Page for details)"><input id= "inputfile" class="inputbutton" type="file" name="myjson" /> </a>
-            <br/>
-            <input id="uploadfile" class= "inputbutton" type="submit" value="Upload JSON" name="submit">
-            <span id = "status"></span>
-            <br/>
-            <img class= "up-down" id= "up" src="../images/fluigi/up-down.png"
-                onclick= "
-                if (inputfile.style.visiblity != 'hidden'){
-                inputfile.style.visibility = 'hidden';
-                uploadfile.style.visibility = 'hidden';
-                 }
-                else {
-                 inputfile.style.visibility = 'initial';
-                 uploadfile.style.visibility ='initial';
-                }"
-            >
-        </form>
-    </div>
-        <div id="div2">
-            <form id="uploadForm2"
+<div id ="top-bar" style="background-color: whitesmoke">
+    <nav id= "upload_bar" class="uploadbar" >
+        <div id="div1">
+            <form id="uploadForm"
                   enctype="multipart/form-data"
-                  action="/api/svg"
+                  action="/api/photo"
                   method="post">
-                <a href=" " title="Input an svg file with the microfluidic layout (See Help Page for details)"><input id= "inputfile2" onmouseover="popup('Input a JSON File')" class="inputbutton" type="file" name="mysvg" /> </a>
+                <a href=" " title="Input a json file with the pump specifications (See Help Page for details)"><input id= "inputfile" class="inputbutton" type="file" name="myjson" /> </a>
                 <br/>
-                <input id="uploadfile2" class= "inputbutton" type="submit" value="Upload SVG" name="submit">
-                <span id = "status2"></span>
+                <input id="uploadfile" class= "inputbutton" type="submit" value="Upload JSON" name="submit">
+                <span id = "status"></span>
+                <br/>
+
             </form>
         </div>
-</nav>
+        <div id="div2">
+                <form id="uploadForm2"
+                      enctype="multipart/form-data"
+                      action="/api/svg"
+                      method="post">
+                    <a href=" " title="Input an svg file with the microfluidic layout (See Help Page for details)"><input id= "inputfile2" onmouseover="popup('Input a JSON File')" class="inputbutton" type="file" name="mysvg" /> </a>
+                    <br/>
+                    <input id="uploadfile2" class= "inputbutton" type="submit" value="Upload SVG" name="submit">
+                    <span id = "status2"></span>
+                </form>
+            </div>
+    </nav>
+</div>
 
 
 <!-- LEAVE JS FOR LAST - faster loading time -->

@@ -5,99 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bb53de6-9125-44cb-b0b4-51396141879f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/iGEM2016-GUI.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/iGEM2016_GUI_node_modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/uploads/myjson.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/uploads/mysvg.svg" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/myjson.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public/uploads/mysvg.svg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_charts_ofc.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_charts_ofc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_editors.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_editors.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_renderers.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_renderers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_utils.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/examples/full/javascript/demo.js" afterPath="$PROJECT_DIR$/editablegrid-master/examples/full/javascript/demo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/highcharts.src.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/highcharts.src.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/canvas-tools.src.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/canvas-tools.src.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/data.src.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/data.src.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete/autocomplete.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete/autocomplete.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_1/autocomplete.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_1/autocomplete.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_2/autocomplete.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_2/autocomplete.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/multiselect/multiselect.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/multiselect/multiselect.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/openflashchart/js-ofc-library/ofc.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/openflashchart/js-ofc-library/ofc.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functional_javascript/fileStorage.js" afterPath="$PROJECT_DIR$/functional_javascript/fileStorage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/settings.js" afterPath="$PROJECT_DIR$/public/javascripts/settings.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/fluigipage.hbs" afterPath="$PROJECT_DIR$/views/fluigipage.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/serialcommunication.hbs" afterPath="$PROJECT_DIR$/views/serialcommunication.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/codebase/legacy/excanvas/excanvas.js" afterPath="$PROJECT_DIR$/webix/codebase/legacy/excanvas/excanvas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/codebase/webix_debug.js" afterPath="$PROJECT_DIR$/webix/codebase/webix_debug.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/01_layout/10_performance.html" afterPath="$PROJECT_DIR$/webix/samples/01_layout/10_performance.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/08_chart/03_api/01_group.html" afterPath="$PROJECT_DIR$/webix/samples/08_chart/03_api/01_group.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/09_calendar/07_calendar_localized.html" afterPath="$PROJECT_DIR$/webix/samples/09_calendar/07_calendar_localized.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons_image.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons_image.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/01_controls/14_toggle_images.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/01_controls/14_toggle_images.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/02_api/02_attributes.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/02_api/02_attributes.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/02_api/10_binding.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/02_api/10_binding.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/03_slider.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/03_slider.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/04_slider_step.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/04_slider_step.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/05_slider_title.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/05_slider_title.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/06_slider_negative.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/06_slider_negative.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/02_list.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/02_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/03_dataview.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/03_dataview.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/04_tree.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/04_tree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/06_datastore.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/06_datastore.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/10_csrf_atack.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/10_csrf_atack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/11_xss_atack.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/11_xss_atack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/01_loading/data/data.js" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/01_loading/data/data.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/02_custom.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/02_custom.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/03_sort_api.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/03_sort_api.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/04_one_for_all_2.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/04_one_for_all_2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/11_find_api.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/11_find_api.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/11_colorpicker.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/11_colorpicker.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/16_master_checkbox.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/16_master_checkbox.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/05_selection/07_map_selection.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/05_selection/07_map_selection.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/09_columns/09_tooltips_advanced.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/09_columns/09_tooltips_advanced.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/10_export/05_configuration.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/10_export/05_configuration.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/01_map_cell.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/01_map_cell.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/06_aggregation.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/06_aggregation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/07_lines.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/07_lines.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/08_aggregation_line.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/08_aggregation_line.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/20_templates/08_locales.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/20_templates/08_locales.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/01_basic.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/01_basic.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/02_column_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/02_column_styling.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/03_cell_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/03_cell_styling.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/04_rows_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/04_rows_styling.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/05_header_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/05_header_styling.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/23_html_only/04_access_by_id.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/23_html_only/04_access_by_id.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/03_big_datatree.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/03_big_datatree.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/15_paging.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/15_paging.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/32_grouping/04_custom_aggregation.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/32_grouping/04_custom_aggregation.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/16_skins/03_icons.html" afterPath="$PROJECT_DIR$/webix/samples/16_skins/03_icons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/02_xml_data.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/02_xml_data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/03_big_data.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/03_big_data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/03_filter.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/03_filter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/07_sync.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/07_sync.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/08_bind.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/08_bind.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/09_subdata.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/09_subdata.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/19_api/08_undo.html" afterPath="$PROJECT_DIR$/webix/samples/19_api/08_undo.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/20_multiview/11_close_button.html" afterPath="$PROJECT_DIR$/webix/samples/20_multiview/11_close_button.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/20_multiview/data/charts.js" afterPath="$PROJECT_DIR$/webix/samples/20_multiview/data/charts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/21_upload/09_integration_to_element.html" afterPath="$PROJECT_DIR$/webix/samples/21_upload/09_integration_to_element.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/30_backbone/05_views_models.html" afterPath="$PROJECT_DIR$/webix/samples/30_backbone/05_views_models.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/31_jquery/04_custom_component.html" afterPath="$PROJECT_DIR$/webix/samples/31_jquery/04_custom_component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/33_angular/js/complexApp.js" afterPath="$PROJECT_DIR$/webix/samples/33_angular/js/complexApp.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/autoid.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/autoid.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/dataview_formatting.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/dataview_formatting.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/dataview_type.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/dataview_type.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/grouplist_openstate.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/grouplist_openstate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/common/chartdata.js" afterPath="$PROJECT_DIR$/webix/samples/common/chartdata.js" />
     </list>
     <ignored path="FluigiGUI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -118,11 +30,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="fluigipage.hbs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fluigipage.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/fluigipage.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2517985">
-              <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+            <state vertical-scroll-proportion="-4.9411764">
+              <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -168,11 +80,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.5555556">
-              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.829932">
+              <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -228,9 +140,9 @@
         <option value="$PROJECT_DIR$/serialcommunication.js" />
         <option value="$PROJECT_DIR$/functional_javascript/fileStorage.js" />
         <option value="$PROJECT_DIR$/views/serialcommunication.hbs" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/views/fluigipage.hbs" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -304,6 +216,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="FluigiGUI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="iGEM2016-GUI" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -801,14 +731,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.5555556">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -843,8 +765,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/fluigipage.hbs">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2517985">
-          <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+        <state vertical-scroll-proportion="-4.9411764">
+          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.829932">
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding />
         </state>
       </provider>

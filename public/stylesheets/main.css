@@ -89,10 +89,11 @@ ul {
 .uploadbar {
     position:absolute;
     top: 90px;
+    width: 100%;
     padding-left: 25%;
-    padding-top: 35px;
-    height: 100px;
-    background-color: transparent;
+    padding-top: 20px;
+    height: 130px;
+    background-color: white;
     /*border-color: #3498db;*/
 }
 

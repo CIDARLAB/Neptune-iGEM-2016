@@ -17,6 +17,16 @@ body {
     margin-top: -60px;
     margin-left: -254px;
 }
+#div1{
+    width: 400px;
+    display: inline-block;
+}
+
+#div2{
+    display: inline-block;
+    width: 400px;
+}
+
 
 .fluigi_page {
     background-color: #34495e;
@@ -46,6 +56,7 @@ body {
 
 }
 
+
 .right-bottom {
     position: fixed;
     top: 75%;
@@ -73,7 +84,7 @@ ul {
     /*position:absolute;*/
     /*top: 180px;*/
     padding-top: 35px;
-    height: 130px;
+    height: 100px;
     background-color: transparent;
     /*border-color: #3498db;*/
 }

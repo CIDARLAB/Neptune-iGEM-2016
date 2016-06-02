@@ -5,8 +5,99 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8bb53de6-9125-44cb-b0b4-51396141879f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/iGEM2016-GUI.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/iGEM2016_GUI_node_modules.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/uploads/myjson.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/uploads/mysvg.svg" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_charts_ofc.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_charts_ofc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_editors.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_editors.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_renderers.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_renderers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/editablegrid_utils.js" afterPath="$PROJECT_DIR$/editablegrid-master/editablegrid_utils.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/examples/full/javascript/demo.js" afterPath="$PROJECT_DIR$/editablegrid-master/examples/full/javascript/demo.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/highcharts.src.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/highcharts.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/canvas-tools.src.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/canvas-tools.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/data.src.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/Highcharts-4.0.4/js/modules/data.src.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete/autocomplete.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete/autocomplete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_1/autocomplete.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_1/autocomplete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_2/autocomplete.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/autocomplete_variant_2/autocomplete.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/multiselect/multiselect.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/multiselect/multiselect.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editablegrid-master/extensions/openflashchart/js-ofc-library/ofc.js" afterPath="$PROJECT_DIR$/editablegrid-master/extensions/openflashchart/js-ofc-library/ofc.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/functional_javascript/fileStorage.js" afterPath="$PROJECT_DIR$/functional_javascript/fileStorage.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/javascripts/settings.js" afterPath="$PROJECT_DIR$/public/javascripts/settings.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/main.css" afterPath="$PROJECT_DIR$/public/stylesheets/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/fluigipage.hbs" afterPath="$PROJECT_DIR$/views/fluigipage.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/serialcommunication.hbs" afterPath="$PROJECT_DIR$/views/serialcommunication.hbs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/codebase/legacy/excanvas/excanvas.js" afterPath="$PROJECT_DIR$/webix/codebase/legacy/excanvas/excanvas.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/codebase/webix_debug.js" afterPath="$PROJECT_DIR$/webix/codebase/webix_debug.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/01_layout/10_performance.html" afterPath="$PROJECT_DIR$/webix/samples/01_layout/10_performance.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/08_chart/03_api/01_group.html" afterPath="$PROJECT_DIR$/webix/samples/08_chart/03_api/01_group.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/09_calendar/07_calendar_localized.html" afterPath="$PROJECT_DIR$/webix/samples/09_calendar/07_calendar_localized.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons_image.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/01_controls/10_buttons_image.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/01_controls/14_toggle_images.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/01_controls/14_toggle_images.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/02_api/02_attributes.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/02_api/02_attributes.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/02_api/10_binding.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/02_api/10_binding.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/03_slider.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/03_slider.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/04_slider_step.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/04_slider_step.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/05_slider_title.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/05_slider_title.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/13_form/05_extras/06_slider_negative.html" afterPath="$PROJECT_DIR$/webix/samples/13_form/05_extras/06_slider_negative.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/02_list.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/02_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/03_dataview.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/03_dataview.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/04_tree.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/04_tree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/06_datastore.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/06_datastore.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/10_csrf_atack.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/10_csrf_atack.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/14_dataprocessor/11_xss_atack.html" afterPath="$PROJECT_DIR$/webix/samples/14_dataprocessor/11_xss_atack.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/01_loading/data/data.js" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/01_loading/data/data.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/02_custom.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/02_custom.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/03_sort_api.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/02_sorting/03_sort_api.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/04_one_for_all_2.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/04_one_for_all_2.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/11_find_api.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/03_filtering/11_find_api.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/11_colorpicker.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/11_colorpicker.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/16_master_checkbox.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/04_editing/16_master_checkbox.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/05_selection/07_map_selection.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/05_selection/07_map_selection.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/09_columns/09_tooltips_advanced.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/09_columns/09_tooltips_advanced.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/10_export/05_configuration.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/10_export/05_configuration.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/01_map_cell.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/01_map_cell.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/06_aggregation.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/06_aggregation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/07_lines.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/07_lines.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/08_aggregation_line.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/15_api/08_aggregation_line.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/20_templates/08_locales.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/20_templates/08_locales.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/01_basic.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/01_basic.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/02_column_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/02_column_styling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/03_cell_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/03_cell_styling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/04_rows_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/04_rows_styling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/05_header_styling.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/21_styling/05_header_styling.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/23_html_only/04_access_by_id.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/23_html_only/04_access_by_id.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/03_big_datatree.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/03_big_datatree.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/15_paging.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/30_treetable/15_paging.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/15_datatable/32_grouping/04_custom_aggregation.html" afterPath="$PROJECT_DIR$/webix/samples/15_datatable/32_grouping/04_custom_aggregation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/16_skins/03_icons.html" afterPath="$PROJECT_DIR$/webix/samples/16_skins/03_icons.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/02_xml_data.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/02_xml_data.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/03_big_data.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/01_loading/03_big_data.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/03_filter.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/03_filter.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/07_sync.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/07_sync.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/08_bind.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/08_bind.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/09_subdata.html" afterPath="$PROJECT_DIR$/webix/samples/17_datatree/04_api/09_subdata.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/19_api/08_undo.html" afterPath="$PROJECT_DIR$/webix/samples/19_api/08_undo.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/20_multiview/11_close_button.html" afterPath="$PROJECT_DIR$/webix/samples/20_multiview/11_close_button.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/20_multiview/data/charts.js" afterPath="$PROJECT_DIR$/webix/samples/20_multiview/data/charts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/21_upload/09_integration_to_element.html" afterPath="$PROJECT_DIR$/webix/samples/21_upload/09_integration_to_element.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/30_backbone/05_views_models.html" afterPath="$PROJECT_DIR$/webix/samples/30_backbone/05_views_models.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/31_jquery/04_custom_component.html" afterPath="$PROJECT_DIR$/webix/samples/31_jquery/04_custom_component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/33_angular/js/complexApp.js" afterPath="$PROJECT_DIR$/webix/samples/33_angular/js/complexApp.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/autoid.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/autoid.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/dataview_formatting.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/dataview_formatting.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/dataview_type.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/dataview_type.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/80_docs/grouplist_openstate.html" afterPath="$PROJECT_DIR$/webix/samples/80_docs/grouplist_openstate.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webix/samples/common/chartdata.js" afterPath="$PROJECT_DIR$/webix/samples/common/chartdata.js" />
     </list>
     <ignored path="FluigiGUI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,14 +118,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="fluigipage.hbs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/views/fluigipage.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.2517985">
+              <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="fileStorage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/functional_javascript/fileStorage.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,8 +141,18 @@
       <file leaf-file-name="index.hbs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/index.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.625">
               <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="98" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -53,17 +162,17 @@
         <entry file="file://$PROJECT_DIR$/serialcommunication.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
+              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1433121">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.5555556">
+              <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -73,7 +182,7 @@
         <entry file="file://$PROJECT_DIR$/routes/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+              <caret line="2" column="30" selection-start-line="1" selection-start-column="6" selection-end-line="2" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -83,7 +192,7 @@
         <entry file="file://$PROJECT_DIR$/views/serialcommunication.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -116,12 +225,12 @@
         <option value="$PROJECT_DIR$/routes/post.js" />
         <option value="$PROJECT_DIR$/views/post.hbs" />
         <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/views/fluigipage.hbs" />
         <option value="$PROJECT_DIR$/serialcommunication.js" />
         <option value="$PROJECT_DIR$/functional_javascript/fileStorage.js" />
         <option value="$PROJECT_DIR$/views/serialcommunication.hbs" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
+        <option value="$PROJECT_DIR$/views/fluigipage.hbs" />
       </list>
     </option>
   </component>
@@ -133,7 +242,6 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="54" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="773" />
@@ -166,6 +274,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -208,20 +317,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="routes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FluigiGUI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="iGEM2016-GUI" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="public" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -240,7 +335,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="images" />
+              <option name="myItemId" value="javascripts" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -260,7 +355,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -354,7 +448,7 @@
     <option name="totallyTimeSpent" value="18263000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="23" width="1280" height="773" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21445592" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -362,18 +456,18 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2737921" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32503662" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39970717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27459618" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39970717" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -691,50 +785,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8638743">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/fluigipage.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.676259">
-          <caret line="111" column="50" selection-start-line="111" selection-start-column="50" selection-end-line="111" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/functional_javascript/fileStorage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="98" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serialcommunication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="19" selection-start-line="58" selection-start-column="19" selection-end-line="58" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/serialcommunication.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.5555556">
+          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -742,15 +812,39 @@
     <entry file="file://$PROJECT_DIR$/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+          <caret line="2" column="30" selection-start-line="1" selection-start-column="6" selection-end-line="2" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/serialcommunication.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1433121">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.625">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="98" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functional_javascript/fileStorage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/fluigipage.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.2517985">
+          <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
           <folding />
         </state>
       </provider>

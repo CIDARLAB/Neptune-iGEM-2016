@@ -28,16 +28,14 @@
 					rank: data.count() + 1
 				};
 				data.add(item);
-			};
-
+			}
 			function remove_item(){
 				var data = $$('data');
 				var sel = data.getSelectedId(true);
 				if (!sel) return;
 				for (var i = 0; i < sel.length; i++)
 					data.remove(sel[i]);
-			};
-
+			}
 			function update_item() {
 				var data = $$('data');
 				var sel = data.getSelectedId(true);

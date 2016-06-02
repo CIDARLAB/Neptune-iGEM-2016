@@ -33,7 +33,7 @@ webixApp.controller("webixCtrl", function($scope){
   
   $scope.showDetails = function(id){
       webix.message('I was clicked: ' + id);
-  }
+  };
     
    
   webix.event(window,"resize", function(){ $$("topview").resize() });

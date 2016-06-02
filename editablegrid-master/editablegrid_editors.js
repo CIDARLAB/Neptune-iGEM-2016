@@ -233,9 +233,9 @@ CellEditor.prototype.applyEditing = function(element, newValue)
 function TextCellEditor(size, maxlen, config) { 
 	if (size) this.fieldSize = size; 
 	if (maxlen) this.maxLength = maxlen; 
-	if (config) this.init(config); 
-};
+	if (config) this.init(config);
 
+}
 TextCellEditor.prototype = new CellEditor();
 TextCellEditor.prototype.fieldSize = -1;
 TextCellEditor.prototype.maxLength = -1;
@@ -470,9 +470,9 @@ SelectCellEditor.prototype.cancelEditing = function(element)
 function DateCellEditor(config) 
 {
 	// erase defaults with given options
-	this.init(config); 
-};
+	this.init(config);
 
+}
 //inherits TextCellEditor functionalities
 DateCellEditor.prototype = new TextCellEditor();
 

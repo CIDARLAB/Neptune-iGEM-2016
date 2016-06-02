@@ -230,7 +230,11 @@ DateCellRenderer.prototype.render = function(cell, value)
  * @class Class to add sorting functionalities to headers
  */
 
-function SortHeaderRenderer(columnName, cellRenderer) { this.columnName = columnName; this.cellRenderer = cellRenderer; };
+
+function SortHeaderRenderer(columnName, cellRenderer) {
+	this.columnName = columnName;
+	this.cellRenderer = cellRenderer;
+}
 SortHeaderRenderer.prototype = new CellRenderer();
 SortHeaderRenderer.prototype.render = function(cell, value) 
 {

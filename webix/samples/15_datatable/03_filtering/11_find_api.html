@@ -33,7 +33,7 @@
 									return obj.title.toLowerCase().indexOf(value) != -1;
 								});
 
-								table.clearCss("marker", true)
+								table.clearCss("marker", true);
 								for (var i = 0; i < res.length; i++)
 									table.addCss(res[i].id, "marker", true);
 								table.refresh();

@@ -22,15 +22,13 @@
 			function add_item(){
 				var item = { value: "New film" };
 				tree.add(item, null, tree.getSelectedId() || 0);
-			};
-
+			}
 			function remove_item(){
 				var sel = tree.getSelectedId(true);
 				if (!sel) return;
 				for (var i = 0; i < sel.length; i++)
 					tree.remove(sel[i]);
-			};
-
+			}
 			function update_item() {
 				var sel = tree.getSelectedId(true);
 				if (!sel) return;

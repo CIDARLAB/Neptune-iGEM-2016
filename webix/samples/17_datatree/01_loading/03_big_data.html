@@ -53,7 +53,7 @@
 			window.openAll = function(){
 				d1 = new Date();
 
-				tree.openAll()
+				tree.openAll();
 
 				webix.delay(function(){
 					webix.message(tree.count() + " items rendered in " + Math.round((new Date())-d1) + "ms");

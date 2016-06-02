@@ -22,8 +22,7 @@ function InfoHeaderRenderer(message) {
 	this.message = message; 
 	this.infoImage = new Image();
 	this.infoImage.src = image("information.png");
-};
-
+}
 InfoHeaderRenderer.prototype = new CellRenderer();
 InfoHeaderRenderer.prototype.render = function(cell, value) 
 {

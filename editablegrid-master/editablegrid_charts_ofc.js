@@ -344,7 +344,7 @@ EditableGrid.prototype.updateChart = function(divId, chart)
 				this.ofcSwf = e[i].src.substr(0, index + 15) + this.ofcSwf;
 				break;
 			}
-		};
+		}
 	}
 
 	with (this) {

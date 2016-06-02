@@ -23,9 +23,9 @@ function MultiselectCellEditor(config)
 	this.messageIfEmpty = "There are no possible values to choose from!";
 
 	// erase defaults with given options
-	this.init(config); 
-};
+	this.init(config);
 
+}
 //inherits SelectCellEditor functionalities
 MultiselectCellEditor.prototype = new SelectCellEditor();
 

@@ -44,8 +44,7 @@
 				}
 			});
 			grida.sort({ by:"title" });
-		};
-
+		}
 		function group_year_10(){
 			grida.group({
 				by:function(obj){ return Math.floor(obj.year/10); },
@@ -58,11 +57,11 @@
 				}
 			});
 			grida.sort({ by:"title" });
-		};
+		}
 		function ungroup(){
 			grida.ungroup();
 			grida.sort({ by:"rank", as:"int" });
-		};
+		}
 		</script>
 		<input type="button" value='Group by year' onclick='group_year()'>
 		<input type="button" value='Group by 10 years' onclick='group_year_10()'>

@@ -331,7 +331,7 @@ EditableGrid.prototype.checkDate = function(strDate, strDatestyle)
 	var intMonth;
 	var intYear;
 	var booFound = false;
-	var strSeparatorArray = new Array("-"," ","/",".");
+	var strSeparatorArray = ["-"," ","/","."];
 	var intElementNr;
 	var err = 0;
 

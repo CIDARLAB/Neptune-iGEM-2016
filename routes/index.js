@@ -1,6 +1,8 @@
 var express = require('express');
 var serialcommunication = require('../serialcommunication');
 var router = express.Router();
+var multer= require('multer');
+var fs = require('fs');
 
 
 
@@ -10,7 +12,6 @@ var router = express.Router();
     router.get('/serialcommunication', function (req, res, next) {
         serialcommunication.listPorts(); //populates ports export
         var ports = serialcommunication.ports;
-
         res.render('serialcommunication', {title: 'COM', serialPorts: ports});
 
     });
@@ -63,12 +64,12 @@ var router = express.Router();
 /************ FLUIGI PAGE *******************/
 
 
-
 /********** END FLUIGI PAGE *****************/
 /* GET fluigi page. */
 router.get('/fluigipage', function(req, res, next) {
     res.render('fluigipage', { title: 'Fluigi Page' });
 });
+
 
 router.get('/fluigipage',function(req,res){
   res.sendFile(__dirname + "./public/uploads");
@@ -80,11 +81,21 @@ var storage =   multer.diskStorage({
         callback(null, './public/uploads');
     },
     filename: function (req, file, callback) {
-        callback(null, file.fieldname + '-' + Date.now() + '.jpg');
+        callback(null, file.fieldname + '.json');
     }
 });
 
-var upload = multer({ storage : storage}).single('userPhoto');
+var upload = multer({
+    storage : storage,
+    fileFilter: function (req, file, cb) {
+            if (file.mimetype !== 'application/octet-stream') {
+                req.fileValidationError = 'Wrong Filetype!';
+                console.log('My filetype: '+file.mimetype);
+                return cb(null, false, new Error('goes wrong on the mimetype'));
+            }
+        cb(null, true);
+    }
+}).single('myjson');
 
 
 router.post('/api/photo', function(req,res){
@@ -92,19 +103,51 @@ router.post('/api/photo', function(req,res){
     if(err) {
       return res.end("Error uploading file.");
     }
-    res.end("File is uploaded");
-    console.log("My file: "+res);
+      if(req.fileValidationError) {
+          return res.end(req.fileValidationError);
+      }
+      res.end("JSON File is uploaded");
+    console.log("My JSON: "+res);
 
-    // fs.writeFile("mysvg.svg", (res.body), function(err){
-    //   if(err) {
-    //     return console.log(err);
-    //   }
-    //   else {
-    //     console.log("The file was saved!");
-    //   }
-    // });
   });
 });
+
+// File Upload for SVG
+var storage2 =   multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './public/uploads');
+    },
+    filename: function (req, file, callback) {
+        callback(null, file.fieldname + '.svg');
+    }
+});
+
+var upload2 = multer({
+    storage: storage2,
+    fileFilter: function (req, file, cb) {
+        if (file.mimetype !== 'image/svg+xml') {
+            req.fileValidationError = 'Wrong Filetype!';
+            console.log('My filetype: ' + file.mimetype);
+            return cb(null, false, new Error('goes wrong on the mimetype'));
+        }
+        cb(null, true);
+    }
+}).single('mysvg');
+
+router.post('/api/svg', function(req,res){
+    upload2(req,res,function(err) {
+        if(err) {
+            return res.end("Error uploading file2.");
+        }
+        if(req.fileValidationError) {
+            return res.end(req.fileValidationError);
+        }
+        res.end("SVG File is uploaded");
+        console.log("My SVG: "+res);
+
+    });
+});
+
 module.exports = router;
 
 

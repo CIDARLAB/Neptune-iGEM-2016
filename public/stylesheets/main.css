@@ -2,6 +2,7 @@
 
 html, body, canvas {
     margin: 0;
+
     padding: 0;
     background-color: #34495e;
 }
@@ -63,5 +64,23 @@ ul {
     height: 90px;
     /*background-color: #3498db;*/
     /*border-color: #3498db;*/
-
 }
+
+
+
+
+
+
+
+
+
+#container {
+    position: relative;
+}
+
+/*#valve-container {*/
+    /*top: 200px;*/
+    /*left: 0px;*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+/*}*/

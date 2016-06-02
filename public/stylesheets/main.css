@@ -70,6 +70,12 @@ body {
 
 }
 
+#top-bar{
+    width: 100px;
+    background-color: whitesmoke;
+    overflow: hidden;
+}
+
 ul {
     list-style-type: none;
 }
@@ -81,8 +87,9 @@ ul {
 }
 
 .uploadbar {
-    /*position:absolute;*/
-    /*top: 180px;*/
+    position:absolute;
+    top: 90px;
+    padding-left: 25%;
     padding-top: 35px;
     height: 100px;
     background-color: transparent;

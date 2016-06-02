@@ -23,7 +23,7 @@ function chart_remove_element(chart, index)
 
     // remove the old data from the chart:
     var element = modified_chart.elements[1];
-    var elements = new Array();
+    var elements = [];
     var c=0;
     for(i=0; i<modified_chart.elements.length; i++)
     {

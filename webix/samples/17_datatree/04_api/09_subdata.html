@@ -71,7 +71,7 @@
             { header:"Data", body:grid1 },
             { header:"Childs and Data", body:grid2 }
         ]
-    })
+    });
 
     $$("grid1").bind( $$("tree"), "$data", "records");
     $$("grid2").bind( $$("tree"), "$data", function(obj, source){

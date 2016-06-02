@@ -13,12 +13,12 @@
     </style>
 </head>
 
-<body>
+<body style="background-image:url(../images/index/background_img.png); background-color: #34495e">
 
 
 
 
-<ul id="ui">
+<ul id="ui" style="margin-bottom:10px">
     <li>
         <button id="begin-comm"> Open Comm</button>
     </li>
@@ -33,7 +33,7 @@
     </li>
 
     <li id="port-list">
-
+    <label for="ports" style="color:white">Serial Ports Available</label>
         <select id="ports">
             {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
 
@@ -43,6 +43,8 @@
 
         </select>
     </li>
+
+
 
 
 </ul>

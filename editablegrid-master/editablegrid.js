@@ -151,8 +151,7 @@ EditableGrid.prototype.init = function (name, config)
 {
 	if (typeof name != "string" || (typeof config != "object" && typeof config != "undefined")) {
 		alert("The EditableGrid constructor takes two arguments:\n- name (string)\n- config (object)\n\nGot instead " + (typeof name) + " and " + (typeof config) + ".");
-	};
-
+	}
 	// override default properties with the ones given
 	if (typeof config != 'undefined') for (var p in config) this[p] = config[p];
 
@@ -192,7 +191,7 @@ EditableGrid.prototype.init = function (name, config)
 			this.sortUpElement.src = config['sortIconUp'];
         } else {
             this.sortUpElement = document.createElement('span');
-			this.sortUpElement.innerHTML = '&#8593;' // Unicode 'up' arrow
+			this.sortUpElement.innerHTML = '&#8593;'; // Unicode 'up' arrow
         }
 
 		if ( typeof config != "undefined" && typeof config['sortIconDown'] != "undefined" ) {
@@ -200,7 +199,7 @@ EditableGrid.prototype.init = function (name, config)
 			this.sortDownElement.src = config['sortIconDown'];
         } else {
             this.sortDownElement = document.createElement('span');
-			this.sortDownElement.innerHTML = '&#8595;' // Unicode 'down' arrow
+			this.sortDownElement.innerHTML = '&#8595;'; // Unicode 'down' arrow
         }
 	}
 
@@ -1065,7 +1064,7 @@ EditableGrid.prototype.getColumnStack = function(columnIndexOrName)
 EditableGrid.prototype.isColumnNumerical = function(columnIndexOrName)
 {
 	var column = this.getColumn(columnIndexOrName);
-	return column.isNumerical();;
+	return column.isNumerical();
 };
 
 /**
@@ -1111,8 +1110,7 @@ EditableGrid.prototype.getDisplayValueAt = function(rowIndex, columnIndex)
 EditableGrid.prototype.setValueAt = function(rowIndex, columnIndex, value, render)
 {
 	if (typeof render == "undefined") render = true;
-	var previousValue = null;;
-
+	var previousValue = null;
 	// check and get column
 	if (columnIndex < 0 || columnIndex >= this.columns.length) { console.error("[setValueAt] Invalid column index " + columnIndex); return null; }
 	var column = this.columns[columnIndex];

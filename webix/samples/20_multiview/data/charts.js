@@ -130,4 +130,4 @@ var cchart = {
 		bottom: 55
 	},
 	data: multiple_dataset
-}
+};

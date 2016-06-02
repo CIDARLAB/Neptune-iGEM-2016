@@ -17,8 +17,7 @@
 			function test(value){
 				list.getItem(1).title = value;
 				list.updateItem(1);
-			};
-
+			}
 			function check_result(){
 				webix.ajax("./data/connector.php?action=get&id=1", function(text, xml){
 					var xml = webix.DataDriver.xml;

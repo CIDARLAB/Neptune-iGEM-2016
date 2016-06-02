@@ -23,9 +23,9 @@ function AutocompleteCellEditor(config)
 	this.suggestions = [("no suggestions")];
 	
 	// erase defaults with given options
-	this.init(config); 
-};
+	this.init(config);
 
+}
 // inherits TextCellEditor functionalities
 AutocompleteCellEditor.prototype = new TextCellEditor();
 

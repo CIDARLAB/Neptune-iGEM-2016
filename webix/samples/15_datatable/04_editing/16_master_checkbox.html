@@ -21,15 +21,14 @@
 
 		function check(){
 			$$("dt").getHeaderContent("mc1").check();
-		};
+		}
 		function uncheck(){
 			$$("dt").getHeaderContent("mc1").uncheck();
-		};
+		}
 		function isChecked(){
 			var state = $$("dt").getHeaderContent("mc1").isChecked();
 			webix.message(state?"checked":"unchecked");
-		};
-
+		}
 		webix.ready(function(){
 			grida = webix.ui({
 				container:"testA",

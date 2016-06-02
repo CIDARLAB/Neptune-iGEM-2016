@@ -767,7 +767,7 @@ if (!document.createElement('canvas').getContext) {
 
   contextPrototype.fill = function() {
     this.stroke(true);
-  }
+  };
 
   contextPrototype.closePath = function() {
     this.currentPath_.push({type: 'close'});

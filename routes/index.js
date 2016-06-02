@@ -1,70 +1,77 @@
 var express = require('express');
 var serialcommunication = require('../serialcommunication');
 var router = express.Router();
-var multer= require('multer');
-// Store Files
 
 
 
-var fs = require('fs');
+/**************** SERIAL COMMUNICATION ****************/
+{
+    /* GET Serial Communication page. */
+    router.get('/serialcommunication', function (req, res, next) {
+        serialcommunication.listPorts(); //populates ports export
+        var ports = serialcommunication.ports;
+
+        res.render('serialcommunication', {title: 'COM', serialPorts: ports});
+
+    });
+
+    /* POST Open Serial Comm command */
+    router.post('/openSerialConnection', function (req, res, next) {
+        var port = req.body.portName;
+        console.log('my port yo; ' + port);
+
+        res.send(serialcommunication.openConnection(port));
+    });
+
+    /* POST Close Serial Comm Command */
+    router.post('/closeSerialConnection', function (req, res, next) {
+        var openPort = serialcommunication.SerialPortConnection;
+
+        res.send(serialcommunication.closeConnection(openPort));
+
+    });
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+    /* POST arduino ON Serial Comm Command */
+    router.post('/arduinoON', function (req, res, next) {
+        var openPort = serialcommunication.SerialPortConnection;
 
+        res.send(serialcommunication.sendToSerial('on', openPort));
+
+    });
+
+    /* POST arduino OFF Serial Comm Command */
+    router.post('/arduinoOFF', function (req, res, next) {
+        var openPort = serialcommunication.SerialPortConnection;
+
+        res.send(serialcommunication.sendToSerial('off', openPort));
+
+    });
+}
+/************** END SERIAL COMMUNICATION  ************/
+/************* HOME PAGE  ********************/
+{
+    /* GET home page. */
+    router.get('/', function(req, res, next) {
+        res.render('index', { title: 'Express' });
+    });
+
+}
+/************* END HOME PAGE *****************/
+
+
+/************ FLUIGI PAGE *******************/
+
+
+
+/********** END FLUIGI PAGE *****************/
 /* GET fluigi page. */
 router.get('/fluigipage', function(req, res, next) {
     res.render('fluigipage', { title: 'Fluigi Page' });
 });
 
-/* GET Serial Communication page. */
-router.get('/serialcommunication', function(req, res, next) {
-    serialcommunication.listPorts(); //populates ports export
-    var ports = serialcommunication.ports;
-
-    res.render('serialcommunication', { title: 'COM' , serialPorts: ports });
-
-});
-
-/* POST Open Serial Comm command */
-router.post('/openSerialConnection', function(req, res, next) {
-    var port =  req.body.portName;
-    console.log( 'my port yo; ' + port);
-
-    res.send(serialcommunication.openConnection(port));
-});
-
-/* POST Close Serial Comm Command */
-router.post('/closeSerialConnection', function(req, res, next){
-    var openPort = serialcommunication.SerialPortConnection;
-
-    res.send(serialcommunication.closeConnection(openPort));
-
-});
-
-
-/* POST arduino ON Serial Comm Command */
-router.post('/arduinoON', function(req, res, next){
-    var openPort = serialcommunication.SerialPortConnection;
-
-    res.send(serialcommunication.sendToSerial('on', openPort));
-
-});
-
-/* POST arduino OFF Serial Comm Command */
-router.post('/arduinoOFF', function(req, res, next){
-    var openPort = serialcommunication.SerialPortConnection;
-
-    res.send(serialcommunication.sendToSerial('off', openPort));
-
-});
-
-
-
 router.get('/fluigipage',function(req,res){
-  res.sendFile(__dirname + "/public/uploads");
+  res.sendFile(__dirname + "./public/uploads");
 });
 
 

@@ -166,7 +166,7 @@ function clear_pumpData()
     var c_pumpData = [];
     for (var i = 1; i <= localStorage.pumps; i++)
     {
-        var singleStage = { id:i, Open_State:0, Closed_State:0, Pump_Number:i}
+        var singleStage = { id:i, Open_State:0, Closed_State:0, Pump_Number:i};
         c_pumpData.push(singleStage);
     }
     return JSON.stringify(c_pumpData);

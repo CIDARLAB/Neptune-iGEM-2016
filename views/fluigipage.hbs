@@ -76,41 +76,32 @@
 
 
 <!--Draw Canvas (resize to page width/height in js)-->
-<div id="container">
-    <canvas id="canvasID" ></canvas>
-    <!--JS to draw SVG in canvas-->
-    <script src="../javascripts/fluigi_graph.js" type="application/javascript"></script>
-    <!--This is where valves go!-->
-    <div id="content"></div>
-</div>
 
-<div id ="top-bar" style="background-color: whitesmoke">
-    <nav id= "upload_bar" class="uploadbar" >
-        <div id="div1">
-            <form id="uploadForm"
+<div id= "upload_bar" class="uploadbar" >
+    <div id="div1">
+        <form id="uploadForm"
+              enctype="multipart/form-data"
+              action="/api/photo"
+              method="post">
+            <a href=" " title="Input a json file with the pump specifications (See Help Page for details)" onclick="return false;"><input id= "inputfile" class="inputbutton" type="file" name="myjson" /> </a>
+            <br/>
+            <input id="uploadfile" class= "inputbutton" type="submit" value="Upload JSON" name="submit">
+            <span id = "status"></span>
+            <br/>
+
+        </form>
+    </div>
+    <div id="div2">
+            <form id="uploadForm2"
                   enctype="multipart/form-data"
-                  action="/api/photo"
+                  action="/api/svg"
                   method="post">
-                <a href=" " title="Input a json file with the pump specifications (See Help Page for details)"><input id= "inputfile" class="inputbutton" type="file" name="myjson" /> </a>
+                <a href=" " onclick="return false;" title="Input an svg file with the microfluidic layout (See Help Page for details)"><input id= "inputfile2" onmouseover="popup('Input a JSON File')" class="inputbutton" type="file" name="mysvg" /> </a>
                 <br/>
-                <input id="uploadfile" class= "inputbutton" type="submit" value="Upload JSON" name="submit">
-                <span id = "status"></span>
-                <br/>
-
+                <input id="uploadfile2" class= "inputbutton" type="submit" value="Upload SVG" name="submit">
+                <span id = "status2"></span>
             </form>
         </div>
-        <div id="div2">
-                <form id="uploadForm2"
-                      enctype="multipart/form-data"
-                      action="/api/svg"
-                      method="post">
-                    <a href=" " title="Input an svg file with the microfluidic layout (See Help Page for details)"><input id= "inputfile2" onmouseover="popup('Input a JSON File')" class="inputbutton" type="file" name="mysvg" /> </a>
-                    <br/>
-                    <input id="uploadfile2" class= "inputbutton" type="submit" value="Upload SVG" name="submit">
-                    <span id = "status2"></span>
-                </form>
-            </div>
-    </nav>
 </div>
 
 

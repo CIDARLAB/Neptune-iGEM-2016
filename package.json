@@ -15,6 +15,7 @@
     "multer": "1.1.0",
     "serve-favicon": "~2.3.0",
     "node-cmd": "~1.1.1",
-    "serialport": "~3.1.2"
+    "serialport": "~3.1.2",
+    "webix": "~3.3.2"
   }
 }

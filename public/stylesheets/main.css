@@ -82,10 +82,17 @@ ul {
 .uploadbar {
     position:absolute;
     top: 90px;
+    width: 100%;
     padding-left: 25%;
+<<<<<<< HEAD
     padding-top: 35px;
     height: 100px;
     background-color: whitesmoke;
+=======
+    padding-top: 20px;
+    height: 130px;
+    background-color: white;
+>>>>>>> bd4995ac899e67a40cbb256bdcdf536d4ecaf431
     /*border-color: #3498db;*/
 }
 

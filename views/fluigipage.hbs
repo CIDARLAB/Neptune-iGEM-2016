@@ -24,7 +24,6 @@
         </div>
     </template>
 
-
     <script>
         localStorage.clear();
         localStorage.settings_toggle = "settings_is_closed";
@@ -48,6 +47,7 @@
         localStorage.set_pump_page_is_open = false;
         localStorage.pumpData = clear_pumpData();
     </script>
+
 </head>
 
 <body>
@@ -65,11 +65,8 @@
         <div>
 
             <ul class="nav navbar-nav">
-
-                <li class="nav-item"><a class="nav-link" href="./index.hbs"> <img src="../images/fluigi/HOME_button_transparent.png"> </a>
+                <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/HOME_button_transparent.png"> </a>
                 </li>
-
-
                 <li class="nav-item"> <a class="nav-link"> <img onclick="settings_button_pressed();" src="../images/fluigi/Settings_Icon.png"> </a>
                 </li>
             </ul>
@@ -91,29 +88,46 @@
 
 <nav id= "upload_bar" class="uploadbar">
     <br/>
-    <form id="uploadForm"
-          enctype="multipart/form-data"
-          action="/api/photo"
-          method="post">
-        <input id= "inputfile" class="inputbutton" type="file" name="userPhoto" />
-        <br/>
-        <input id="uploadfile" class= "inputbutton" type="submit" value="Upload File" name="submit">
-        <span id = "status"></span>
-        <br/>
-        <img class= "up-down" id= "up" src="../images/fluigi/up-down.png"
-            onclick= "
-            if (inputfile.style.visiblity != 'hidden'){
-            inputfile.style.visibility = 'hidden';
-            uploadfile.style.visibility = 'hidden';
-             }
-            else {
-             inputfile.style.visibility = 'initial';
-             uploadfile.style.visibility ='initial';
-            }"
-        >
-    </form>
+    <div id="div1">
+        <form id="uploadForm"
+              enctype="multipart/form-data"
+              action="/api/photo"
+              method="post">
+            <a href=" " title="Input a json file with the pump specifications (See Help Page for details)"><input id= "inputfile" class="inputbutton" type="file" name="myjson" /> </a>
+            <br/>
+            <input id="uploadfile" class= "inputbutton" type="submit" value="Upload JSON" name="submit">
+            <span id = "status"></span>
+            <br/>
+            <img class= "up-down" id= "up" src="../images/fluigi/up-down.png"
+                onclick= "
+                if (inputfile.style.visiblity != 'hidden'){
+                inputfile.style.visibility = 'hidden';
+                uploadfile.style.visibility = 'hidden';
+                 }
+                else {
+                 inputfile.style.visibility = 'initial';
+                 uploadfile.style.visibility ='initial';
+                }"
+            >
+        </form>
+    </div>
 
 </nav>
+<nav>
+        <div id="div2">
+            <form id="uploadForm2"
+                  enctype="multipart/form-data"
+                  action="/api/svg"
+                  method="post">
+                <a href=" " title="Input an svg file with the microfluidic layout (See Help Page for details)"><input id= "inputfile2" onmouseover="popup('Input a JSON File')" class="inputbutton" type="file" name="mysvg" /> </a>
+                <br/>
+                <input id="uploadfile2" class= "inputbutton" type="submit" value="Upload SVG" name="submit">
+                <span id = "status2"></span>
+            </form>
+        </div>
+</nav>
+
+
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -133,8 +147,6 @@
                     status('Error: ' + xhr.status);
                 },
                 success: function(response) {
-                    console.log(response)
-                success: function(response) {
                     console.log(response);
                     $("#status").empty().text(response);
                 }
@@ -142,7 +154,24 @@
 
             return false;
         });
+        $('#uploadForm2').submit(function() {
+            $("#status2").empty().text("File is uploading...");
+
+            $(this).ajaxSubmit({
+
+                error: function(xhr) {
+                    status('Error: ' + xhr.status);
+                },
+                success: function(response) {
+                    console.log(response);
+                    $("#status2").empty().text(response);
+                }
+            });
+
+            return false;
+        });
     });
+
 </script>
 
 </html>

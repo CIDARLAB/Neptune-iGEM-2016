@@ -1,6 +1,4 @@
-/**
- * Created by rebeccawolf on 6/1/16.
- */
+//Graphing the SVG
 
 function onclickanchortag(){
     console.log('hey beb');
@@ -8,33 +6,31 @@ function onclickanchortag(){
     console.log( );
 
     switch (location.pathname){
-        case "/images/fluigi/valve_marker_open.svg":
-            $(this).attr("src", "../images/fluigi/valve_marker_closed.svg" );
+        case "/images/fluigi/valveMarkerOpen.svg":
+            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg" );
             break;
 
-        case "/images/fluigi/valve_marker_closed.svg":
-            $(this).attr("src", "../images/fluigi/valve_marker_open.svg" );
+        case "/images/fluigi/valveMarkerClosed.svg":
+            $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg" );
             break;
 
         default:
-            $(this).attr("src", "../images/fluigi/valve_marker_closed.svg" );
+            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg" );
             break;
     }
-    if (location.pathname == "/images/fluigi/valve_marker_open.svg"){
+    if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
 
     }
 
 
     return false;
 }
+
 var getLocation = function(href) {
     var l = document.createElement("a");
     l.href = href;
     return l;
 };
-
-
-
 
 // GRAPH FORMATTING
 $(document).ready(function(SVGscaleG){
@@ -54,7 +50,7 @@ $(document).ready(function(SVGscaleG){
 
     // load svg to canvas and reformat
      var svgGraph = document.createElement("img");
-     svgGraph.src = "../images/fluigi/test1_device_flow.svg";
+     svgGraph.src = "../images/fluigi/test1DeviceFlow.svg";
      svgGraph.addEventListener("load", function () {
 
          // original width and height of SVG upon load

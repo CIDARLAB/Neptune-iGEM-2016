@@ -1,5 +1,5 @@
 
-function settings_button_pressed()
+function settingsButtonPressed()
 {
     if( localStorage.settings_toggle == 'settings_is_closed' )
     {
@@ -20,11 +20,11 @@ function settings_button_pressed()
             move:false,
             id:"settings_window",
             head:{view:"toolbar",cols:[
-                {view:"button",id:"close_btn",label:"Close", width:70, click:close_settings_handler},
-                {view:"button",id:"save_btn",label:"Save",width:70,click:save_handler,on: {"onItemClick": function () {alert("Your settings have been saved successfully!")}}},
-                {view:"button",id:"clear_btn",label:"Clear",width:70,click:clear_settings_handler},
-                {view:"button",id:"set_btn",label:"Set Values for All Pumps",width:200,click:set_all_pumps_handler},
-                {view:"button",id:"num_btn",label:"Set Number of Pumps",width:200,click:change_number_of_pumps_handler},
+                {view:"button",id:"close_btn",label:"Close", width:70, click:closeSettingsHandler},
+                {view:"button",id:"save_btn",label:"Save",width:70,click:saveHandler,on: {"onItemClick": function () {alert("Your settings have been saved successfully!")}}},
+                {view:"button",id:"clear_btn",label:"Clear",width:70,click:clearSettingsHandler},
+                {view:"button",id:"set_btn",label:"Set Values for All Pumps",width:200,click:setAllPumpsHandler},
+                {view:"button",id:"num_btn",label:"Set Number of Pumps",width:200,click:changeNumberOfPumpsHandler},
                 {view:"text"  ,id:"num_frm",label:""}
             ]},
             width: 700,
@@ -48,7 +48,7 @@ function settings_button_pressed()
     }
 }
 
-function set_all_pumps_handler()
+function setAllPumpsHandler()
 {
     if (localStorage.set_pump_page_is_open == "true")
     {}   // Do nothing!
@@ -64,8 +64,8 @@ function set_all_pumps_handler()
             top: localStorage.settings_Y_pos,
             id:"pump_window",
             head:{view:"toolbar",cols:[
-                {view:"button",id:"cancel_btn",label:"Cancel", width:70, click:close_pumpPage_handler},
-                {view:"button",id:"apply_btn",label:"Apply",width:70,click:apply_handler,on: {"onItemClick": function () {alert("Your settings have been applied!")}}}]},
+                {view:"button",id:"cancel_btn",label:"Cancel", width:70, click:closePumpPageHandler},
+                {view:"button",id:"apply_btn",label:"Apply",width:70,click:applyHandler,on: {"onItemClick": function () {alert("Your settings have been applied!")}}}]},
             body:
             {
                 view: "form",
@@ -79,7 +79,7 @@ function set_all_pumps_handler()
     }
 }
 
-function change_number_of_pumps_handler()
+function changeNumberOfPumpsHandler()
 {
     var oldNumberofPumps = localStorage.pumps;
     var numberOfPumps = $$("num_frm").getValue();
@@ -113,11 +113,11 @@ function change_number_of_pumps_handler()
         localStorage.unsavedData = JSON.stringify(DataToLoad);
         $$("settings_window").close();
         localStorage.settings_toggle = 'settings_is_closed';
-        settings_button_pressed();
+        settingsButtonPressed();
     }
 }
 
-function apply_handler()
+function applyHandler()
 {
     var open_state_value = $$("open_form").getValue();
     var closed_state_value = $$("closed_form").getValue();
@@ -142,26 +142,26 @@ function apply_handler()
         $$("pump_window").close();
         $$("settings_window").close();
         localStorage.settings_toggle = 'settings_is_closed';
-        settings_button_pressed();
+        settingsButtonPressed();
         localStorage.set_pump_page_is_open = false;
 
     }
 }
 
-function close_pumpPage_handler()
+function closePumpPageHandler()
 {
     $$("pump_window").close();
     localStorage.set_pump_page_is_open = false;
     //$$("pumpDataTable").refreshColumns();
 }
 
-function close_settings_handler()
+function closeSettingsHandler()
 {
     $$("settings_window").close();
     localStorage.settings_toggle = 'settings_is_closed';
 }
 
-function clear_pumpData()
+function clearPumpData()
 {
     var c_pumpData = [];
     for (var i = 1; i <= localStorage.pumps; i++)
@@ -172,7 +172,7 @@ function clear_pumpData()
     return JSON.stringify(c_pumpData);
 }
 
-function save_handler()
+function saveHandler()
 {
     var save_pumpData = [];
     for (var i = 1; i <= localStorage.pumps; i++)
@@ -183,16 +183,17 @@ function save_handler()
     localStorage.pumpData = JSON.stringify(save_pumpData);
 }
 
-function clear_settings_handler()
+function clearSettingsHandler()
 {
-    var DataToLoad = JSON.parse(clear_pumpData());
+    var DataToLoad = JSON.parse(clearPumpData());
     $$("pumpDataTable").clearAll();
     localStorage.clear_toggle = true;
     localStorage.unsavedData = JSON.stringify(DataToLoad);
     $$("settings_window").close();
     localStorage.settings_toggle = 'settings_is_closed';
-    settings_button_pressed();
+    settingsButtonPressed();
 }
+
 
 // function pumpData_to_ArduinoCompatibleFormat()
 // {

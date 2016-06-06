@@ -1,4 +1,4 @@
-var cmd=require('node-cmd');
+var cmd = require('node-cmd');
 var serialport = require('serialport');
 var exports = module.exports;
 
@@ -13,8 +13,6 @@ exports.openConnection = function(fluigiPort) {
         }
     );
     */
-
-
 
     var SerialPort = serialport.SerialPort;
 
@@ -58,7 +56,6 @@ exports.sendToSerial = function (data, myPort) {
     console.log("sending to serial: " + data);
     myPort.write(data);
 };
-
 
 exports.listPorts = function(){
 

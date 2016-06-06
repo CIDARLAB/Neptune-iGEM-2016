@@ -1,15 +1,17 @@
 
-
+/*HTML and Body*/
 html, body, canvas {
     margin: 0;
 
     padding: 0;
     background-color: #34495e;
 }
+
 body {
     background-color: #34495e;
 }
 
+/*Buttons*/
 .centered {
     position: fixed;
     top: 35%;
@@ -17,29 +19,19 @@ body {
     margin-top: -60px;
     margin-left: -254px;
 }
-#div1{
-    width: 400px;
-    display: inline-block;
-}
 
-#div2{
-    display: inline-block;
-    width: 400px;
-}
-
-
-.fluigi_page {
+.fluigiPage {
     background-color: #34495e;
 }
 
-.inputbutton {
+.inputButton {
 
     height: 30px;
     border: 2px solid dodgerblue;
     border-radius: 4px;
 }
 
-.My_btn {
+.myBtn {
 
     vertical-align: center;
     horizontal-align: middle;
@@ -56,27 +48,21 @@ body {
 
 }
 
-
-.right-bottom {
+.rightBottom {
     position: fixed;
     top: 75%;
     left: 70%;
 }
-.right-center {
+
+.rightCenter {
     position: fixed;
     top: 75%;
     left: 70%;
     margin-top: -115px;
-
 }
+
 ul {
     list-style-type: none;
-}
-
-.up-down {
-    position: absolute;
-    padding-top: 10px;
-    left: 50%;
 }
 
 .uploadbar {
@@ -87,19 +73,21 @@ ul {
     padding-top: 20px;
     height: 130px;
     background-color: white;
-    /*border-color: #3498db;*/
 }
 
-
-
-
-
-
-
-
-
+/*Divisions*/
 #container {
     position: relative;
+}
+
+#div1 {
+    width: 400px;
+    display: inline-block;
+}
+
+#div2 {
+    display: inline-block;
+    width: 400px;
 }
 
 /*#valve-container {*/

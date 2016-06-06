@@ -1,6 +1,7 @@
 
 
 $(document).ready(function(){
+    
     $("#begin-comm").click(function () {
 
 
@@ -41,7 +42,6 @@ $(document).ready(function(){
 
 
     });
-
     $("#on-cmd").click(function () {
 
 
@@ -62,9 +62,7 @@ $(document).ready(function(){
 
 
     });
-
     $("#off-cmd").click(function () {
-
 
         $.ajax(
             {   url: "../arduinoOFF", type: 'POST', async: true,
@@ -83,9 +81,5 @@ $(document).ready(function(){
 
 
     });
-
-
-
-
-
+    
 });

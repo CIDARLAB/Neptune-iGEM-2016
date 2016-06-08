@@ -1,0 +1,39 @@
+{"name":"My Device","params":{"width":75800,"height":51000},"layers":[
+
+{
+	
+	"name":"flow","color":"indigo","params":{"z_offset":0,"flip":false},
+
+	"features":{
+
+
+		"a77ec780-2741-11e6-8a1e-ab9e1161cdff":{
+			"id":"a77ec780-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"CircleValve","set":"Basic","params":{"position":[30000,10000],"radius1":1400,"radius2":1200,"height":800}},
+
+		"aaed8870-2741-11e6-8a1e-ab9e1161cdff":{
+			"id":"aaed8870-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Channel","set":"Basic","params":{"start":[20000,10000],"end":[30000,10000],"width":410,"height":100}},
+
+		"acf5db90-2741-11e6-8a1e-ab9e1161cdff":{
+			"id":"acf5db90-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Channel","set":"Basic","params":{"start":[40000,10000],"end":[30000,10000],"width":410,"height":100}}
+	}
+},
+
+
+
+
+{
+
+	"name":"control","color":"red","params":{"z_offset":1200,"flip":true},"features":{
+        "92a652b0-2741-11e6-8a1e-ab9e1161cdff":{
+            "id":"92a652b0-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Port","set":"Basic","params":{"position":[20000,10000],"radius1":1380,"radius2":1380,"height":1100}},
+        "957be0e0-2741-11e6-8a1e-ab9e1161cdff":{
+            "id":"957be0e0-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Port","set":"Basic","params":{"position":[40000,10000],"radius1":1380,"radius2":1380,"height":1100}}
+
+}
+}
+
+
+
+
+]
+	,"groups":[]}

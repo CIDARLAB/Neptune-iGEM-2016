@@ -5,6 +5,10 @@ var multer= require('multer');
 var fs = require('fs');
 
 
+
+
+
+
 /**************** SERIAL COMMUNICATION ****************/
 {
     /* GET Serial Communication page. */
@@ -81,7 +85,7 @@ var fs = require('fs');
     var upload = multer({
         storage : storage,
         fileFilter: function (req, file, cb) {
-            if (file.mimetype !== 'application/octet-stream') {
+            if (file.mimetype !== 'application/json') {
                 req.fileValidationError = 'Wrong Filetype!';
                 console.log('My filetype: '+file.mimetype);
                 return cb(null, false, new Error('goes wrong on the mimetype'));
@@ -101,6 +105,8 @@ var fs = require('fs');
             }
             res.end("JSON File is uploaded");
             console.log("My JSON: "+res);
+
+            
 
         });
     });
@@ -141,7 +147,12 @@ var fs = require('fs');
         });
     });
 
+
+
 }
+
+
+
 /********** END FLUIGI PAGE *****************/
 
 

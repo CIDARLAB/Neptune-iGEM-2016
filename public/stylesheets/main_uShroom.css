@@ -1,0 +1,150 @@
+
+/*HTML and Body*/
+html, body, canvas {
+    margin: 0;
+    height: 96%;
+    padding: 0;
+    background-color: #34495e;
+}
+
+body {
+    background-color: #34495e;
+}
+
+/*Buttons*/
+.centered {
+    position: fixed;
+    top: 35%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -254px;
+}
+
+.fluigiPage {
+    background-color: #34495e;
+}
+
+.inputButton {
+    height: 30px;
+    border: 2px solid dodgerblue;
+    border-radius: 4px;
+}
+
+.place_and_route{
+    /*float: left;*/
+    /*padding-left: 600px;*/
+
+}
+
+.mintDisplay {
+    display: inline-block;
+    float: left;
+    width: 30%;
+    height: 100%;
+    padding-top: 10%;
+    padding-left: 3%;
+    background-color: lightblue;
+    border-radius: 100px;
+    border-color: black;
+}
+.mintImage {
+    display: inline-block;
+    float: right;
+    width: 30%;
+    height: 100%;
+    padding-top: 10%;
+    padding-left: 3%;
+    background-color: lightblue;
+    border-radius: 100px;
+    border-color: black;
+}
+
+.myBtn {
+    vertical-align: center;
+    horizontal-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 90px;
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+.inputdiv1{
+    overflow: auto;
+}
+.inputdiv2{
+    overflow: auto;
+}
+
+.rightBottom {
+    position: fixed;
+    top: 75%;
+    left: 70%;
+}
+
+.rightCenter {
+    position: fixed;
+    top: 75%;
+    left: 70%;
+    margin-top: -115px;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.uploadbar {
+    position:absolute;
+    top: 90px;
+    width: 100%;
+    padding-left: 100px;
+    padding-top: 10px;
+    height: 45px;
+    background-color: white;
+}
+
+/*Divisions*/
+#container {
+    position: relative;
+}
+
+#div1 {
+    float: left;
+    display: inline-block;
+}
+
+#div2 {
+    display: inline-block;
+    float: left;
+    padding-left: 300px;
+}
+
+#div3 {
+    float: left;
+    display: inline-block;
+}
+
+#div4 {
+    display: inline-block;
+    float: left;
+}
+
+
+
+/*iframe{*/
+    /*border:none;*/
+    /*width:400px;*/
+    /*display:block;*/
+/*}*/
+
+/*#valve-container {*/
+/*top: 200px;*/
+/*left: 0px;*/
+/*position: absolute;*/
+/*width: 100%;*/
+/*}*/

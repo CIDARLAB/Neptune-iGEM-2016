@@ -16,6 +16,7 @@ function mediateValveState()
     //localStorage.valveData
     changedData[valve_to_control]['Physical_State'] = state_to_set_valve_to;
     localStorage.valveData = JSON.stringify(changedData);
+
     //These changes are to allow this function toa send to Arduino
     sendCommand();
 }

@@ -89,8 +89,6 @@
         <div>
             <ul class="nav navbar-nav">
                 <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/homeButtonTransparent.png"> </a></li>
-                <li class="nav-item"> <a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/uShroom/GenerateMINT.png"> </a></li>
-
                 <!--LEAVE IN COMMENTS. SETTINGS PAGE NOT IMPLEMENTED YET IN uSHROOM, BUT WE WILL ADD FUNCTIONALITY HERE LATER-->
                 <!--<li class="nav-item"> <a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/fluigi/settingsIcon.png"> </a></li>-->
             </ul>
@@ -195,7 +193,6 @@
 </div>
 
 
-
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
@@ -223,6 +220,7 @@
                     success: function (response) {
                         console.log(response);
                         $("#statusVerilog").empty().text(response);
+                        location.reload();
                         UCFUploaded();
                         updateIndicators();
                     }
@@ -241,6 +239,7 @@
                     success: function (response) {
                         console.log(response);
                         $("#statusUCF").empty().text(response);
+                        location.reload();
                         verilogUploaded();
                         updateIndicators();
                     }

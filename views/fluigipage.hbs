@@ -10,9 +10,10 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="../javascripts/settings.js" > </script>
+    <script type="text/javascript" src="../javascripts/valvecontrol.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
-
+    <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
     <!--Template for valves to be placed over graph canvas-->
     <template id="valve-template" >
         <div class ="valve" id="nootnoot">
@@ -22,36 +23,13 @@
         </div>
     </template>
 
-    <script>
-        //Local Storage Inializations
-        {
-            localStorage.clear();
-            localStorage.settings_toggle = "settings_is_closed";
-            localStorage.hide = 0;
-            localStorage.settings_button_has_been_pressed_before = false;
-            //localStorage.dataCenter = new Object();
-            localStorage.pumpData = [];
-            localStorage.unsavedData = [];
-            localStorage.oldPumpData = [];
-            localStorage.pumps = 11;
-            localStorage.settings_X_pos = 200;
-            localStorage.settings_Y_pos = 200;
-            localStorage.close_pressed_last = false;
-            localStorage.DataToLoad;
-            localStorage.clear_toggle = false;
-            localStorage.dataTable_config = [
-                {id: "Pump_Number", header: "Pump Number", width: 50},
-                {id: "Open_State", header: "Open State", width: 200, editor: "text"},
-                {id: "Closed_State", header: "Closed State", width: 80, editor: "text"}
-            ];
-            localStorage.set_pump_page_is_open = false;
-            localStorage.pumpData = clearPumpData();
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 </head>
 
 <body>
+
 
 <!--Fluigi Navigation Bar-->
 <nav class="navbar navbar-fixed-top">
@@ -99,9 +77,9 @@
             <input id="uploadfile" class= "inputButton" type="submit" value="Upload JSON" name="submit">
             <span id = "status"></span>
             <br/>
-
         </form>
     </div>
+
     <div id="div2">
             <form id="uploadForm2"
                   enctype="multipart/form-data"
@@ -115,7 +93,13 @@
         </div>
 </div>
 
-
+<form>
+    Valve to Actuate:<br>
+    <input id="ValveNumberSelector" type="text" ><br>
+    State to Apply:<br>
+    <input id="ValveStateAssigner" type="text" ><br><br>
+    <input type="submit" value="Send to Arduino" onclick="mediateValveState()">
+</form>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->

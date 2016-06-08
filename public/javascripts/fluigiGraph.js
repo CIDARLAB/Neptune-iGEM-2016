@@ -50,7 +50,7 @@ $(document).ready(function(SVGscaleG){
 
     // load svg to canvas and reformat
      var svgGraph = document.createElement("img");
-     svgGraph.src = "../images/fluigi/test1DeviceFlow.svg";
+     svgGraph.src = "../uploads/mysvg.svg";
      svgGraph.addEventListener("load", function () {
 
          // original width and height of SVG upon load

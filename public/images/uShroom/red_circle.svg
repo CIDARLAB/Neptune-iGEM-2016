@@ -1,0 +1,9 @@
+<?xml version="1.0"?><svg width="640" height="480" xmlns="http://www.w3.org/2000/svg">
+ <!-- Created with SVG-edit - http://svg-edit.googlecode.com/ -->
+ <title>Transparent Red Circle</title>
+ <g>
+  <title>Layer 1</title>
+  <ellipse transform="rotate(0.24380291998386383 256.66665649413807,239.16667175293307) " id="svg_1" ry="228.335977" rx="241.067749" cy="239.166665" cx="256.666664" stroke-width="15" stroke="#ff0000" fill="#ff0000"/>
+  <line id="svg_2" y2="412.666679" x2="416.666693" y1="94.666687" x1="75.666687" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="15" stroke="#ff0000" fill="none"/>
+ </g>
+</svg>

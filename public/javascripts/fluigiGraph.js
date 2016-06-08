@@ -26,11 +26,24 @@ function onclickanchortag(){
     return false;
 }
 
+
+
+
 var getLocation = function(href) {
     var l = document.createElement("a");
     l.href = href;
     return l;
 };
+
+
+
+
+
+
+
+
+
+
 
 // GRAPH FORMATTING
 $(document).ready(function(SVGscaleG){
@@ -59,8 +72,6 @@ $(document).ready(function(SVGscaleG){
 
         // ratio to preserve aspect ratio of svg
          SVGscale = (canHeight) / SVGheight;
-
-
 
 
         // starting x position of SVG on canvas
@@ -102,15 +113,6 @@ $(document).ready(function(SVGscaleG){
         
         
     }
-    
-    
-    
-
-
-
-
-
-
 
  });
 

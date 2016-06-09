@@ -1,14 +1,20 @@
 
 /*HTML and Body*/
-html, body, canvas {
+html, body {
     margin: 0;
 
     padding: 0;
     background-color: #34495e;
 }
 
+
 body {
-    background-color: #34495e;
+    /*background-color: #34495e;*/
+}
+
+
+canvas {
+    margin-top: 220px;
 }
 
 /*Buttons*/
@@ -21,7 +27,7 @@ body {
 }
 
 .fluigiPage {
-    background-color: #34495e;
+    /*background-color: #34495e;*/
 }
 
 .inputButton {
@@ -89,10 +95,3 @@ ul {
     display: inline-block;
     width: 400px;
 }
-
-/*#valve-container {*/
-    /*top: 200px;*/
-    /*left: 0px;*/
-    /*position: absolute;*/
-    /*width: 100%;*/
-/*}*/

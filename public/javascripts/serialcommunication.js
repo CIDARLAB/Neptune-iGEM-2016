@@ -1,9 +1,9 @@
 
 
 $(document).ready(function(){
-    
-    $("#begin-comm").click(function () {
+   
 
+    $("#begin-comm").click(function () {
 
         $.ajax(
             {   url: "../openSerialConnection", type: 'POST', async: true,
@@ -17,7 +17,6 @@ $(document).ready(function(){
                 }
 
             });
-
 
     });
     $("#end-comm").click(function () {

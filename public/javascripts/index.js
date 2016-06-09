@@ -22,14 +22,12 @@ var fs = require('fs');
     router.post('/openSerialConnection', function (req, res, next) {
         var port = req.body.portName;
         console.log('my port yo; ' + port);
-
         res.send(serialcommunication.openConnection(port));
     });
 
     /* POST Close Serial Comm Command */
     router.post('/closeSerialConnection', function (req, res, next) {
         var openPort = serialcommunication.SerialPortConnection;
-
         res.send(serialcommunication.closeConnection(openPort));
 
     });
@@ -46,7 +44,6 @@ var fs = require('fs');
     /* POST arduino OFF Serial Comm Command */
     router.post('/arduinoOFF', function (req, res, next) {
         var openPort = serialcommunication.SerialPortConnection;
-
         res.send(serialcommunication.sendToSerial('off', openPort));
 
     });

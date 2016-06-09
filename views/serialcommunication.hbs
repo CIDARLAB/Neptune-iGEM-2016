@@ -1,8 +1,9 @@
 <html>
 <head>
     <title> {{title}} </title>
+
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    <script src="../javascripts/serialcommunication.js"></script>
+    <script src="../public/javascripts/serialcommunication.js"></script>
     <style>
         ul#ui li {
             display: inline;
@@ -15,8 +16,10 @@
 
 <body style="background-image:url(../images/index/background_img.png); background-color: #34495e">
 
+<ul id="ui">
+    <!--<img src="../public/images/fluigi/"-->
+    <label style="font-family: 'FontAwesome'; color:white; font-size:50px; padding-left:30% ">Serial Communication <br/><br/></label>
 
-<ul id="ui" style="margin-bottom:10px">
     <li>
         <button id="begin-comm"> Open Comm</button>
     </li>
@@ -30,7 +33,9 @@
         <button id="off-cmd">Send Off Command</button>
     </li>
 
+
     <li id="port-list">
+        <br/>
     <label for="ports" style="color:white">Serial Ports Available</label>
         <select id="ports">
             {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
@@ -38,9 +43,9 @@
                 <option value={{this.comName}}> name: {{ this.comName }} </option>​
 
             {{/each}}
-
         </select>
     </li>
+    <label style="color:white; font-size:15px"><br/><br/>*Reload page to display ports </label>
 </ul>
 
 

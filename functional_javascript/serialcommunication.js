@@ -58,8 +58,6 @@ exports.sendToSerial = function (data, myPort) {
 };
 
 exports.listPorts = function(){
-
-
     var returnPorts = [{}];
 
     // list serial ports:

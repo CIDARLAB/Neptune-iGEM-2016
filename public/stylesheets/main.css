@@ -2,7 +2,6 @@
 /*HTML and Body*/
 html, body {
     margin: 0;
-
     padding: 0;
     background-color: #34495e;
 }
@@ -18,23 +17,42 @@ canvas {
 }
 
 /*Buttons*/
-.centered {
+.centeredTop {
     position: fixed;
-    top: 35%;
+    top: 10%;
+    left: 54%;
+    margin-top: -60px;
+    margin-left: -254px;
+}
+
+.centeredBottom {
+    position: fixed;
+    top: 50%;
     left: 50%;
     margin-top: -60px;
     margin-left: -254px;
 }
 
+.actuators {
+    position: fixed;
+    top: 100px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+    border: inset;
+    padding-left: 30px;
+    background-color: lightskyblue;
+}
+
 .fluigiPage {
     /*background-color: #34495e;*/
 }
-
 .inputButton {
-
-    height: 30px;
+    outline-style: none;
+    height: 25px;
     border: 2px solid dodgerblue;
     border-radius: 4px;
+    background: white;
 }
 
 .myBtn {
@@ -72,26 +90,48 @@ ul {
 }
 
 .uploadbar {
-    position:absolute;
+    position:fixed;
     top: 90px;
+    height: 180px;
     width: 100%;
-    padding-left: 25%;
-    padding-top: 20px;
-    height: 130px;
-    background-color: white;
+    left: 50px;
+    padding-left: 0%;
+    padding-top: 100px;
+    /*min-height: 130px;*/
+    /*max-height: 150px;*/
+    background: url("../images/fluigi/mustache.jpg");
+    background-position: center;
+    background-size: 550px;
+    background-repeat: no-repeat;
+
+    /*background-color: white;*/
 }
 
+
+/*img{*/
+    /*max-width: 50%;*/
+    /*height: auto;*/
+    /*/*z-index: -1;*/*/
+/*}*/
 /*Divisions*/
 #container {
     position: relative;
 }
 
 #div1 {
-    width: 400px;
     display: inline-block;
 }
 
 #div2 {
     display: inline-block;
-    width: 400px;
 }
+
+
+
+/*#valve-container {*/
+    /*top: 200px;*/
+    /*left: 0px;*/
+    /*position: absolute;*/
+    /*width: 100%;*/
+/*}*/
+

@@ -60,7 +60,9 @@ $(document).ready(function(){
 
     // load svg to canvas and reformat
      var svgGraph = document.createElement("img");
-     svgGraph.src = "../images/fluigi/Test3duf1.svg";
+
+     svgGraph.src = "../uploads/mysvg.svg";
+
      svgGraph.addEventListener("load", function () {
 
 

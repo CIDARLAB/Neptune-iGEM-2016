@@ -61,6 +61,7 @@ var fs = require('fs');
 
 }
 /************* END HOME PAGE *****************/
+
 /************ FLUIGI PAGE *******************/
 {
     /* GET fluigi page. */
@@ -68,11 +69,19 @@ var fs = require('fs');
         res.render('fluigipage', {title: 'Fluigi Page'});
     });
 
-
     router.get('/fluigipage', function (req, res) {
         res.sendFile(__dirname + "./public/uploads");
     });
 
+    router.get('/uShroomPage',function(req,res,next) {
+        res.render('uShroomPage',{title: 'Fluigi Page'});
+    });
+
+    router.get('/uShroomPage', function (req, res) {
+        res.sendFile(__dirname + "./public/uploads");
+    });
+    
+    // FILE UPLOAD FOR JSON ---------------------------------------------------------------------------------
     var storage =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');
@@ -111,7 +120,7 @@ var fs = require('fs');
         });
     });
 
-// File Upload for SVG
+    // FILE UPLOAD FOR SVG ---------------------------------------------------------------------------------
     var storage2 =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');
@@ -148,6 +157,78 @@ var fs = require('fs');
     });
 
 
+    // FILE UPLOAD FOR VERILOG ---------------------------------------------------------------------------------
+    var storage_VERILOG =   multer.diskStorage({
+        destination: function (req, file, callback) {
+            callback(null, './public/uploads');
+        },
+        filename: function (req, file, callback) {
+            callback(null, file.fieldname + '.json');
+        }
+    });
+
+    var upload_VERILOG = multer({
+        storage : storage_VERILOG,
+        fileFilter: function (req, file, cb) {
+            if (file.mimetype !== 'text/x-verilog') {
+                req.fileValidationError = 'Wrong Filetype!';
+                console.log('My filetype: '+file.mimetype);
+                return cb(null, false, new Error('goes wrong on the mimetype'));
+            }
+            cb(null, true);
+        }
+    }).single('myVerilog');
+
+
+    router.post('/api/verilog', function(req,res){
+        upload_VERILOG(req,res,function(err) {
+            if(err) {
+                return res.end("Error uploading file.");
+            }
+            if(req.fileValidationError) {
+                return res.end(req.fileValidationError);
+            }
+            res.end("Verilog File is uploaded");
+            console.log("My Verilog: "+res);
+
+        });
+    });
+
+    // FILE UPLOAD FOR UCF ---------------------------------------------------------------------------------
+    var storage_UCF =   multer.diskStorage({
+        destination: function (req, file, callback) {
+            callback(null, './public/uploads');
+        },
+        filename: function (req, file, callback) {
+            callback(null, file.fieldname + '.svg');
+        }
+    });
+
+    var upload_UCF = multer({
+        storage: storage_UCF
+        // fileFilter: function (req, file, cb) {
+        //     if (file.mimetype !== 'image/svg+xml') {
+        //         req.fileValidationError = 'Wrong Filetype!';
+        //         console.log('My filetype: ' + file.mimetype);
+        //         return cb(null, false, new Error('goes wrong on the mimetype'));
+        //     }
+        //     cb(null, true);
+        // }
+    }).single('myUCF');
+
+    router.post('/api/ucf', function(req,res){
+        upload_UCF(req,res,function(err) {
+            if(err) {
+                return res.end("Error uploading file2.");
+            }
+            if(req.fileValidationError) {
+                return res.end(req.fileValidationError);
+            }
+            res.end("UCF File is uploaded");
+            console.log("My UCF: "+res);
+
+        });
+    });
 
 }
 

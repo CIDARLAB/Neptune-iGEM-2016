@@ -12,10 +12,8 @@ $(document).ready(function(){
                   portName: $("#ports").val()
                 },
                 success: function(response){
-
                 },
                 error: function(response){
-
                 }
 
             });

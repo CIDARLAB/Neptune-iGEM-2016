@@ -6,7 +6,6 @@
 
 	"features":{
 
-
 		"a77ec780-2741-11e6-8a1e-ab9e1161cdff":{
 			"id":"a77ec780-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"CircleValve","set":"Basic","params":{"position":[30000,10000],"radius1":1400,"radius2":1200,"height":800}},
 

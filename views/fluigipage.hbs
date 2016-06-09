@@ -15,7 +15,7 @@
 
     <!--Template for valves to be placed over graph canvas-->
     <template id="valve-template" >
-        <div class ="valve" id="nootnoot">
+        <div class ="valve">
             <a class="valve_marker" href="" >
                 <img class="valve_color" src="../images/fluigi/valveMarkerOpen.svg" width="18.5" height="43">
             </a>
@@ -107,7 +107,7 @@
                   enctype="multipart/form-data"
                   action="/api/svg"
                   method="post">
-                <input id= "inputfile2" onmouseover="popup('Input a JSON File')" class="inputButton" type="file" name="mysvg" />
+                <input id= "inputfile2" onmouseover="('Input a JSON File')" class="inputButton" type="file" name="mysvg" />
                 <br/>
                 <input id="uploadfile2" class= "inputButton" type="submit" value="Upload SVG" name="submit">
                 <span id = "status2"></span>
@@ -126,152 +126,121 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
 
+<!--<script src="../javascripts/uploadBar.js" type="application/javascript"></script>-->
+
 <script>
+
     //Upload AJAX Forms
-    {
-        $(document).ready(function () {
 
-            $('#uploadForm').submit(function () {
-                $("#status").empty().text("File is uploading...");
+    $(document).ready(function () {
 
-                $(this).ajaxSubmit({
+        $('#uploadForm').submit(function () {
+            $("#status").empty().text("File is uploading...");
 
-                    error: function (xhr) {
-                        status('Error: ' + xhr.status);
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        $("#status").empty().text(response);
+            $(this).ajaxSubmit({
 
-
-                        // Json successfully uploaded
-                        var fileOfChoice = "../uploads/myjson.json";
-                        $.getJSON(fileOfChoice, function (json) {
-                            //alert('awesome possum');
-
-                            //console.log( Object.keys( json.name ).length ) ;
-//                            for(i=0; i < Object.keys( json.name ).length; i++) {
-//                                console.log('plz');
-//
-//
-//                            }
-                            //console.log (json.hasOwnProperty('name: flow'));
+                error: function (xhr) {
+                    status('Error: ' + xhr.status);
+                },
+                success: function (response) {
+                    console.log(response);
+                    $("#status").empty().text(response);
 
 
-
-                            // Use Json as a string
-                            jsonString = JSON.stringify(json);
-                            var controlOnly;
-
-                            // figure out indices of flow and control and cut json_string to substring to only contain control
-                            flowIndex = jsonString.search('flow');
-                            controlIndex = jsonString.search('control');
-                            if(flowIndex < controlIndex){   // control is after flow
-                                controlOnly = jsonString.substr(controlIndex);
-                            }
-                            else {  // control is before flow
-                                controlOnly = jsonString.substr(controlIndex, (flowIndex-controlIndex));
-                            }
-
-                            // Now look for all Port in the control layer only
-                            var Re = /Port.+?\[(.+?),(.+?)\].+?"radius1":(.+?),"radius2":(.+?),/g;
-                            var myArray;
-                            var portArray = [];
-                            var portX = [];
-                            var portY = [];
-                            var portRadius1 = [];
-                            var portRadius2 = [];
+                    // Json successfully uploaded
+                    var fileOfChoice = "../uploads/myjson.json";
+                    $.getJSON(fileOfChoice, function (json) {
+                        //alert('awesome possum');
 
 
-                            while ((myArray = Re.exec(controlOnly)) !== null) {
-                                //console.log(myArray);
-                                portX.push(myArray[1]);
-                                portY.push(myArray[2]);
-                                portRadius1.push(myArray[3]);
-                                portRadius2.push(myArray[4]);
-                                portArray.push(myArray.index);
-                            }
-                            console.log("Port string index: " + portArray);
-                            console.log("Port X coordinates: " + portX);
-                            console.log("Port Y coordinates: " + portY);
-                            console.log("Port Radius1: " + portRadius1);
-                            console.log("Port Radius2: " + portRadius2);
+                        // Use Json as a string
+                        jsonString = JSON.stringify(json);
+                        var controlOnly;
+
+                        // figure out indices of flow and control and cut json_string to substring to only contain control
+                        flowIndex = jsonString.search('flow');
+                        controlIndex = jsonString.search('control');
+                        if(flowIndex < controlIndex){   // control is after flow
+                            controlOnly = jsonString.substr(controlIndex);
+                        }
+                        else {  // control is before flow
+                            controlOnly = jsonString.substr(controlIndex, (flowIndex-controlIndex));
+                        }
+
+                        // Now look for all Port in the control layer only
+                        var Re = /Port.+?\[(.+?),(.+?)\].+?"radius1":(.+?),"radius2":(.+?),/g;
+                        var myArray;
+                        var portArray = [];
+                        var portX = [];
+                        var portY = [];
+                        var portRadius1 = [];
+                        var portRadius2 = [];
+
+
+                        while ((myArray = Re.exec(controlOnly)) !== null) {
+                            //console.log(myArray);
+                            portX.push(myArray[1]);
+                            portY.push(myArray[2]);
+                            portRadius1.push(myArray[3]);
+                            portRadius2.push(myArray[4]);
+                            portArray.push(myArray.index);
+                        }
+                        console.log("Port string index: " + portArray);
+                        console.log("Port X coordinates: " + portX);
+                        console.log("Port Y coordinates: " + portY);
+                        console.log("Port Radius1: " + portRadius1);
+                        console.log("Port Radius2: " + portRadius2);
+
+                        // Store json variables to localStorage
+                        localStorage.portX = portX;
+                        localStorage.portY = portY;
+                        localStorage.portRadius1 = portRadius1;
+                        localStorage.portRadius2 = portRadius2;
 
 
 
 
 
+                        // method using Json as JSON OBJECT
+                        //    for( var i=0; i < (Object.keys(json.layers)).length; i++) { // there will be 2 -> flow and control
+                        //        //console.log(json.layers[i].name);
+                        //        //console.log(Object.keys(json.layers[i].params));
+                        //        if(json.layers[i].name == 'flow') {
+                        //            console.log(Object.keys(json.layers[0].features));
+                        //            //console.log(json.layers[i].name);
+                        //        }
+                        //    }
 
 
+                    });
 
-
-
-
-
-
-                            // method using Json as JSON OBJECT
-//                            for( var i=0; i < (Object.keys(json.layers)).length; i++) { // there will be 2 -> flow and control
-//                                //console.log(json.layers[i].name);
-//                                //console.log(Object.keys(json.layers[i].params));
-//                                if(json.layers[i].name == 'flow') {
-//                                    console.log(Object.keys(json.layers[0].features));
-//                                    //console.log(json.layers[i].name);
-//                                }
-//                            }
-
-
-
-
-
-
-
-
-                            // Set the variables from the results array
-//                            var name = json.layers[0].name;
-//                            console.log('name : ', name);
-
-//                            var latitude = json.results[0].geometry.location.lat;
-//                            console.log('Latitude : ', latitude);
-//
-//                            var longitude = json.results[0].geometry.location.lng;
-//                            console.log('Longitude : ', longitude);
-//
-//                            // Set the table td text
-//                            $('#address').text(address);
-//                            $('#latitude').text(latitude);
-//                            $('#longitude').text(longitude);
-                        });
-
-                    }
-                });
-
-                return false;
+                }
             });
-            $('#uploadForm2').submit(function () {
-                $("#status2").empty().text("File is uploading...");
 
-                $(this).ajaxSubmit({
-
-                    error: function (xhr) {
-                        status('Error: ' + xhr.status);
-                    },
-                    success: function (response) {
-                        console.log(response);
-                        $("#status2").empty().text(response);
-
-                    }
-                });
-
-                return false;
-            });
+            return false;
         });
-    }
+        $('#uploadForm2').submit(function () {
+            $("#status2").empty().text("File is uploading...");
 
+            $(this).ajaxSubmit({
 
+                error: function (xhr) {
+                    status('Error: ' + xhr.status);
+                },
+                success: function (response) {
+                    console.log(response);
+                    $("#status2").empty().text(response);
 
-
+                }
+            });
+            return false;
+        });
+    });
 
 </script>
+
+
+
 
 </html>
 

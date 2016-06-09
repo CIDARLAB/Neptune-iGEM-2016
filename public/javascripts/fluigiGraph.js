@@ -46,7 +46,7 @@ var getLocation = function(href) {
 
 
 // GRAPH FORMATTING
-$(document).ready(function(SVGscaleG){
+$(document).ready(function(){
 
     var canWidth = 1280;
     var canHeight = 725;
@@ -55,30 +55,35 @@ $(document).ready(function(SVGscaleG){
     // Formatting Canvas
     cx.canvas.width = canWidth;
     cx.canvas.height = canHeight;
-    document.getElementById("canvasID").style.background = '#34495e';
+    //document.getElementById("canvasID").style.background = '#34495e';
 
-// coords of center of valve circles
-//    var Xcoords = [37.702655, 54.143625];
-//    var Ycoords = [34.868005, 34.868005];
 
     // load svg to canvas and reformat
      var svgGraph = document.createElement("img");
-     svgGraph.src = "../images/fluigi/test1DeviceFlow.svg";
+     svgGraph.src = "../images/fluigi/Test3duf1.svg";
      svgGraph.addEventListener("load", function () {
+
 
          // original width and height of SVG upon load
          SVGwidth = this.width;
          SVGheight = this.height;
+         console.log(SVGwidth);
+         console.log(SVGheight);
+         console.log(canWidth);
+         console.log(canHeight);
 
         // ratio to preserve aspect ratio of svg
-         SVGscale = (canHeight) / SVGheight;
+         SVGscaleX = (canWidth) / SVGwidth;
+         SVGscaleY = (canHeight) / SVGheight;
+
+
 
 
         // starting x position of SVG on canvas
-         SVGx = canWidth / 2 - ( (SVGwidth * ( (canHeight) / SVGheight) ) / 2 );
-         console.log(SVGx);
+         //SVGx = canWidth / 2 - ( (SVGwidth * SVGscale) / 2 );
 
-         cx.drawImage(svgGraph, SVGx, -10 * SVGscale, SVGwidth * SVGscale, SVGheight * SVGscale);
+         // cx.drawImage(svgGraph, SVGx - 200, -10 * SVGscale, SVGwidth * SVGscale, SVGheight * SVGscale);
+         cx.drawImage(svgGraph, 0, 0, canWidth, canHeight);
      });
 
 

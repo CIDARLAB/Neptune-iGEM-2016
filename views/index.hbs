@@ -15,15 +15,33 @@
 
     <img height= "100" src="../images/index/FluigiButton.png">
     <img height="100" src="../images/index/cidar-backgbround-no-js.png">
+    <img height="100" src="../images/index/buLogo.png">
 </div>
 
 <ul>
 
-    <li> <!-- Trigger the modal with a button -->
+    <div class="centeredTop" >
 
-    <li> <a class="centeredTop" href="../uShroomPage"><img height="300" src="../images/index/uShroomButtonHover.png"
-                                                           onmouseover="this.src='../images/index/uShroomButton.png'" onmouseout="this.src='../images/index/uShroomButtonHover.png'"></a></li>
-    <li> <a class="centeredBottom" href="../fluigipage"><img height= "150" src="../images/fluigi/MF.png" onmouseover="this.height='170'" onmouseout="this.height='150'"></a> </li>
+    <li align="center">
+        <label style="font-size:40px; color: white; font-family: FontAwesome "> Design </label>
+    </li>
+    <li align="center"> <a href="../uShroomPage">
+        <img  height="150" src="../images/uShroom/MINT_Logo.png"
+              onmouseover="this.height='170'" onmouseout="this.height='150'">
+        </a>
+    </li>
+    </div>
+
+
+        <div class="centeredBottom">
+    <li align="center">
+            <label style="font-size:40px; color: white; font-family: FontAwesome "> Import </label>
+        </li>
+    <li align="center"> <a href="../fluigipage">
+           <img  height= "150" src="../images/fluigi/MF.png" onmouseover="this.height='170'" onmouseout="this.height='150'">
+        </a>
+        </li>
+        </div>
 
 
     <li> <!-- Trigger the modal with a button -->
@@ -34,8 +52,17 @@
         <a class="rightCenter" href="http://cidarlab.org/Fluigi"><img class="myBtn" src="../images/index/aboutButtonTransparent.png"
                                                                       onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>
     </li>
-</ul>
+    <li> <!-- Trigger the modal with a button -->
+        <a class="mushroomHelp"><img height='100' class="myBtn" data-toggle="modal" data-target="#mushroomModal" src="../images/index/questionmark.png"> </a>
+    </li>
+    <li> <!-- Trigger the modal with a button -->
+        <a class="fluigiHelp"><img  height='100' class="myBtn" data-toggle="modal" data-target="#fluigiModal" src="../images/index/questionmark.png"> </a>
+    </li>
 
+
+
+
+</body>
 <!-- Modal -->
 <div id="HelpModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -43,17 +70,57 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Have some questions? </h4>
+                <h4 class="modal-title">FAQ </h4>
             </div>
             <div class="modal-body">
-                Click on the Mushroom to get started! Import your verilog and ucf file to display the mint file and the code. Then, save your files and proceed back to the home page.
+                Do I need to download anything? <br/>
+                Yes! You need to download node.js to create a local server.
                 <br/><br/>
-                The next step would be Fluigi. Import your svg and json files to display the microfluidics.
-                The buttons on the svg display will help you turn on and off the valves, and the settings button leads you to a table where you can set the open and closed states.
-                The connectivity button allows you to connect to your arduino.
+                My computer is not recognizing ports when I connect my arduino! <br/>
+                Please download the drivers for the arduino, and remember to connect the arduino before you open connections.
                 <br/><br/>
                 Email us here for further questions:
                 <a href="mailto:bu.igemhw2016@gmail.com" style="font-size:12px; color:blue; font-weight:400;">The FluigiGUI Team</a>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="mushroomModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">muShroom Mapper </h4>
+            </div>
+            <div class="modal-body">
+                Click on the Mushroom to get started! Import your verilog and ucf file to display the mint file and the code. Then, save your files and proceed back to the home page.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="fluigiModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"> MakerFluidics </h4>
+            </div>
+            <div class="modal-body">
+                Import your svg and json files to display the microfluidics.
+                The buttons on the svg display will help you turn on and off the valves, and the settings button leads you to a table where you can set the open and closed states.
+                The connectivity button allows you to connect to your arduino.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -67,7 +134,6 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-</body>
 
 
 

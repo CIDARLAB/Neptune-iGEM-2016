@@ -3,7 +3,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-color: #34495e;
+    background-image:url(../images/index/backgroundImg.png);
+    /*background-color: #34495e;*/
 }
 
 
@@ -19,16 +20,16 @@ canvas {
 /*Buttons*/
 .centeredTop {
     position: fixed;
-    top: 20%;
-    left: 55%;
+    top: 30%;
+    left: 50%;
     margin-top: -60px;
     margin-left: -254px;
 }
 
 .centeredBottom {
     position: fixed;
-    top: 55%;
-    left: 50%;
+    top: 58%;
+    left: 45%;
     margin-top: -60px;
     margin-left: -254px;
 }
@@ -80,17 +81,28 @@ canvas {
 
 }
 
+.mushroomHelp {
+    position: fixed;
+    top: 25%;
+    left: 60%;
+}
+
+.fluigiHelp {
+    position: fixed;
+    top: 55%;
+    left: 65%;
+}
+
 .rightBottom {
     position: fixed;
     top: 75%;
-    left: 70%;
+    left: 80%;
 }
 
 .rightCenter {
     position: fixed;
-    top: 75%;
-    left: 70%;
-    margin-top: -115px;
+    top: 87%;
+    left: 80%;
 }
 
 .serialBox {

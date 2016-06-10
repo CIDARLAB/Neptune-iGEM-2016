@@ -9,8 +9,6 @@ var pumpDataFile= require('../javascripts/initiate_data.js');
 
 
 
-
-
 /**************** SERIAL COMMUNICATION ****************/
 {
     /* GET Serial Communication page. */

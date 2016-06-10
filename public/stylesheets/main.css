@@ -3,8 +3,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    background-image:url(../images/index/backgroundImg.png);
-    /*background-color: #34495e;*/
+    /*background-image:url(../images/index/backgroundImg.png);*/
+    background-color: #34495e;
 }
 
 

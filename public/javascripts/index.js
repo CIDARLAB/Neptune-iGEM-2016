@@ -3,7 +3,7 @@ var serialcommunication = require('../../functional_javascript/serialCommunicati
 var router = express.Router();
 var multer= require('multer');
 var fs = require('fs');
-var pumpDataFile= require('../javascripts/initiate_data.js');
+// var pumpDataFile= require('../javascripts/initiate_data.js');
 
 
 

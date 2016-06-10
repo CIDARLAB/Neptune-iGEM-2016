@@ -39,12 +39,6 @@ var getLocation = function(href) {
 
 
 
-
-
-
-
-
-
 // GRAPH FORMATTING
 $(document).ready(function(){
 
@@ -67,22 +61,21 @@ $(document).ready(function(){
 
 
          // original width and height of SVG upon load
-         SVGwidth = this.width;
-         SVGheight = this.height;
-         console.log(SVGwidth);
-         console.log(SVGheight);
-         console.log(canWidth);
-         console.log(canHeight);
+         SVGwidth = JSON.parse(localStorage.getItem('SVGdimX'));
+         SVGheight = JSON.parse(localStorage.getItem('SVGdimY'));
+         // console.log('SVG width: ' + SVGwidth);
+
+
 
         // ratio to preserve aspect ratio of svg
          SVGscaleX = (canWidth) / SVGwidth;
          SVGscaleY = (canHeight) / SVGheight;
 
+         localStorage.setItem('SVGscaleX', SVGscaleX);
+         localStorage.setItem('SVGscaleY', SVGscaleY);
 
+         //console.log('SVG scale x: ' + JSON.parse(localStorage.getItem('SVGscaleX')));
 
-
-        // starting x position of SVG on canvas
-         //SVGx = canWidth / 2 - ( (SVGwidth * SVGscale) / 2 );
 
          // cx.drawImage(svgGraph, SVGx - 200, -10 * SVGscale, SVGwidth * SVGscale, SVGheight * SVGscale);
          cx.drawImage(svgGraph, 0, 0, canWidth, canHeight);
@@ -91,34 +84,31 @@ $(document).ready(function(){
 
 
 
-
-    // x and y coordinates of the valves --> provided at higher level, or limit formatting of svg
-    var Xcoords = [35.716586, 52.157556];
-    var Ycoords = [34.866191, 34.826191];
-
     // for each pump, create new instance of valve template
-    for(i=0; i<Xcoords.length; i++){
+    for(i=0; i<JSON.parse(localStorage.getItem('portXcoords')).length; i++){
 
         var content = $("#content");
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
         valveDiv.style.position = 'absolute';
-        valveDiv.style.top  = (Ycoords[i]*14.79) - 10*14.79 + 'px';
-        valveDiv.style.left = (Xcoords[i]*14.79) - 25.81 + 'px';
+
+        // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
+        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY')) + 220 - 20) + 'px';
+        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleX')) - 20) + 'px';
+
+        // console.log( ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY'))) + 'px' );
+        // console.log( ((JSON.parse(localStorage.getItem('portXcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleX'))) + 'px' );
+
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
         specificImage.id = 'valve'+i;
 
-
         specificImage.onclick = onclickanchortag;
 
-
-
-
         content.append(template);
-        
-        
+
+
     }
 
  });

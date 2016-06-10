@@ -2,6 +2,7 @@
  * Created by kestas on 6/1/2016.
  */
 
+
 function calibrateValveState_with_pumpSettings()
 {
 
@@ -68,8 +69,7 @@ function sendCommand()
         {   url: "/arduinoGetCode", type: 'POST', async: true,
             data:
             {
-                myCommand: command,
-                portName: $("#ports").val()
+                commandData: command
             },
             success: function(response){
 

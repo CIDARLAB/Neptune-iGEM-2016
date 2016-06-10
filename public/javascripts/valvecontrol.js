@@ -7,8 +7,9 @@ function calibrateValveState_with_pumpSettings()
 
 }
 
-function mediateValveState()
+function mediateValveState(event)
 {
+    event.preventDefault();
     var changedData = JSON.parse(localStorage.valveData);
     var valve_to_control = (document.getElementById("ValveNumberSelector").value);
     var state_to_set_valve_to = document.getElementById("ValveStateAssigner").value;
@@ -61,9 +62,10 @@ function sendCommand()
     var command = wrap_data_for_Arduino();
     // --- Include code to serial.write() the command to the Arduino here --- //
     //toastr.info(command);
-    window.alert(command);
+    console.log("Log: ajax function is being called");
+    // localStorage.command= command;
     $.ajax(
-        {   url: "../arduinoGetCode", type: 'POST', async: true,
+        {   url: "/arduinoGetCode", type: 'POST', async: true,
             data:
             {
                 myCommand: command,

@@ -40,7 +40,7 @@ exports.openConnection = function(fluigiPort) {
     }
 
     exports.SerialPortConnection = myPort;
-    exports.myCommand= command;
+    // exports.myCommand= command;
 
     return {message:"Serial Connection Established"};
 };
@@ -54,8 +54,8 @@ exports.closeConnection = function(myPort){
 };
 
 exports.sendToSerial = function (data, myPort) {
+    console.log("LOG: sending to serial: " + data);
     exports.myCommand= data;
-    console.log("sending to serial: " + data);
     myPort.write(data);
 };
 

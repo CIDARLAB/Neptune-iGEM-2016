@@ -107,33 +107,30 @@
 
 <!--Upload Bar-->
 <div id= "upload_bar" class="uploadbar" >
-    <div id="div1">
-        <form id="uploadVerilog"
-              enctype="multipart/form-data"
-              action="/api/verilog"
-              method="post">
 
-            <input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myVerilog" value="Browse Verilog" />
-    </div>
-    <div id="div3">
+    <form id="uploadVerilog"
+          enctype="multipart/form-data"
+          action="/api/verilog"
+          method="post">
+
+        <div id="div1"><input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myVerilog" value="Browse Verilog" /></div>
+        <div id="div3">
             <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload Verilog File" name="submit_verilog">
             <span id = "statusVerilog"></span>
-    </div>
-        </form>
+        </div>
+    </form>
 
-    <div id="div2">
-        <form id="uploadUCF"
-              enctype="multipart/form-data"
-              action="/api/ucf"
-              method="post">
 
-            <input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF"/>
-            </div>
-    <div id="div4">
+    <form id="uploadUCF"
+          enctype="multipart/form-data"
+          action="/api/ucf"
+          method="post">
+        <div id="div2"><input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF"/></div>
+        <div id="div4">
             <input id="upload_UCF_file" class= "inputButton_uShroom" type="submit" value="Upload UCF File" name="submit_UCF">
             <span id = "statusUCF"></span>
-            </div>
-        </form>
+        </div>
+    </form>
 
 
     <!--&lt;!&ndash;VERILOG SELECTED&ndash;&gt;-->

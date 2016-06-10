@@ -75,31 +75,46 @@
 
 <!--Upload Bar-->
 <div id= "upload_bar" class="uploadbar" align="center">
-    <div id="div1">
+    <div>
+
         <form id="uploadForm"
               enctype="multipart/form-data"
               action="/api/photo"
               method="post">
-            <input id= "inputfile" class="inputButton" type="file" name="myjson" />
-            <br/>
+            <div id="div1"><input id= "inputfile" class="inputButton" type="file" name="myjson" /></div>
+
+        <div id="div3">
             <input id="uploadfile" class= "inputButton" type="submit" value="Upload JSON" name="submit">
             <span id = "status"></span>
-            <br/>
+        </div>
+
         </form>
     </div>
 
-    <div id="div2">
-            <form id="uploadForm2"
+
+    <div>
+        <form id="uploadForm2"
                   enctype="multipart/form-data"
                   action="/api/svg"
                   method="post">
-                <input id= "inputfile2" class="inputButton" type="file" name="mysvg" />
-                <br/>
+                <div id="div2"><input id= "inputfile2" class="inputButton" type="file" name="mysvg" /></div>
+
+            <div id="div4">
                 <input id="uploadfile2" class= "inputButton" type="submit" value="Upload SVG" name="submit">
                 <span id = "status2"></span>
-            </form>
-        </div>
+            </div>
+
+        </form>
+    </div>
 </div>
+
+
+
+
+
+
+
+
 
 
 <form class="actuators">

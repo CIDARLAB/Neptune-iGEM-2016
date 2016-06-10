@@ -4,8 +4,6 @@ var router = express.Router();
 var multer= require('multer');
 var fs = require('fs');
 
-
-
 /**************** SERIAL COMMUNICATION ****************/
 {
     /* GET Serial Communication page. */
@@ -47,12 +45,11 @@ var fs = require('fs');
     
     router.post('/arduinoGetCode', function (req, res, next) {
         var openPort = serialcommunication.SerialPortConnection;
-        //var command= serialcommunication.myCommand;
+
         console.log("Log: POST request on arduinoGetCode endpoint");
-        console.log("Hello again");
-        //console.log("Command: " + localStorage.command);
-        //console.log("Port: " + localStorage.port);
-        serialcommunication.sendToSerial("ABC" , openPort );
+        var datacommand = req.body.commandData;
+        console.log("Data to arduino: " + datacommand);
+        serialcommunication.sendToSerial(datacommand , openPort );
         res.send();
 
     });

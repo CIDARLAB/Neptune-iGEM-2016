@@ -15,12 +15,14 @@
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+
     <script src="../javascripts/serialcommunication.js"></script>
+
     <!--Template for valves to be placed over graph canvas-->
     <template id="valve-template" >
         <div class ="valve">
             <a class="valve_marker" href="" >
-                <img class="valve_color" src="../images/fluigi/valveMarkerOpen.svg" width="18.5" height="43">
+                <img class="valve_color" src="../images/fluigi/valveMarkerOpen.svg" width="40" height="40">
             </a>
         </div>
     </template>
@@ -50,7 +52,9 @@
                 <li class="nav-item"> <a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/fluigi/settingsIcon.png"> </a>
                 </li>
                 <!--<li class="nav-item"> <a class="nav-link" href="../serialcommunication"> <img height= "60" src="../images/fluigi/connectedIcon.png"></a></li>-->
+
                 <li class="nav-item"><img onclick= "window.open('../serialcommunication')" height= "100" class="myBtn" src="../images/fluigi/connectedIcon.png">
+
                     </li>
 
             </ul>
@@ -105,6 +109,9 @@
     <input id="ValveStateAssigner" type="text" name="lastname" ><br><br>
     <input type="submit" value="Send to Arduino" onclick="mediateValveState()">
 </form>
+
+
+
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->

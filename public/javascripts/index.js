@@ -156,6 +156,7 @@ var pumpDataFile= require('../javascripts/initiate_data.js');
             }
             res.end("SVG File is uploaded");
             console.log("My SVG: "+res);
+            
 
         });
     });

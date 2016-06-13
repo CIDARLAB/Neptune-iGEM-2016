@@ -1,17 +1,20 @@
 //Graphing the SVG
 
 function onclickanchortag(){
-    console.log('hey beb');
+    //console.log('hey beb');
     var location = getLocation(this.src);
     console.log( );
 
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg" );
+            console.log(this.id);
+
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg" );
+            console.log(this.id);
             break;
 
         default:
@@ -21,6 +24,8 @@ function onclickanchortag(){
     if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
 
     }
+
+
 
 
     return false;
@@ -112,4 +117,3 @@ $(document).ready(function(){
     }
 
  });
-

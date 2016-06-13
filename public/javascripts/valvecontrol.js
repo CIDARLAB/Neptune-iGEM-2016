@@ -2,12 +2,6 @@
  * Created by kestas on 6/1/2016.
  */
 
-
-function calibrateValveState_with_pumpSettings()
-{
-
-}
-
 function mediateValveState(event)
 {
     event.preventDefault();
@@ -22,14 +16,18 @@ function mediateValveState(event)
     sendCommand();
 }
 
-function flipFlop_valveState()
+function flipFlop_valveState(valve_to_control)
 {
-    var valve_to_control; // This needs to be pulled from image overlay
-    if (localStorage.valveData[valve_to_control]['Physical_State'] == 0) {
-        localStorage.valveData[valve_to_control]['Physical_State'] = 1;
+    //var valve_to_control; // This needs to be pulled from image overlay
+    if (JSON.parse(localStorage.valveData)[valve_to_control - 1]['Physical_State'] == 0) {
+        var temp = JSON.parse(localStorage.valveData);//[valve_to_control]['Physical_State'] = 1;
+        temp[valve_to_control - 1]['Physical_State'] = 1;
+        localStorage.valveData = JSON.stringify(temp);
     }
     else {
-        localStorage.valveData[valve_to_control]['Physical_State'] = 0;
+        var temp = JSON.parse(localStorage.valveData);//[valve_to_control]['Physical_State'] = 1;
+        temp[valve_to_control - 1]['Physical_State'] = 0;
+        localStorage.valveData = JSON.stringify(temp);
     }
     sendCommand();
 }
@@ -44,8 +42,6 @@ function wrap_data_for_Arduino()
     var closed_state_parameter = data_for_selected_object[valve_to_control - 1]['State']['Closed_State'];
     var physical_state_parameter = data_for_selected_object[valve_to_control - 1]['State']['Physical_State'];
 
-    //var data_to_send_unabridged; //Concatenate above crap and send. If we don't need open and close state parameters,
-    // then we can send pump number and state.
     if (physical_state_parameter == 1)
     {
         var PWMval = open_state_parameter;
@@ -54,15 +50,27 @@ function wrap_data_for_Arduino()
     {
         var PWMval = closed_state_parameter;
     }
-    var data_to_send_abridged = valve_to_control.concat(PWMval);
-    return data_to_send_abridged;
+
+    // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
+    var valve_to_control_padded = zeroFill(valve_to_control,4);
+    // SECOND, PAD THE PWM VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
+    var PWMval_padded = zeroFill(PWMval,4);
+    // CONCAT THE VALVE NUMBER AND PWM VALUE
+    var pre_command = valve_to_control_padded.concat(PWMval_padded);
+    // ADD A START CODON TO SIGNIFY THE BEGINING OF SIGNAL
+    var startStr = 's';
+    var pre_command_s = startStr.concat(pre_command);
+    // ADD A STOP CODON TO SIGNIFY THE END OF SIGNAL
+    var command = pre_command_s.concat('\n');
+    // RETURN THE DATA
+    return command;
 }
 
 function sendCommand()
 {
     var command = wrap_data_for_Arduino();
     // --- Include code to serial.write() the command to the Arduino here --- //
-    //toastr.info(command);
+    toastr.info(command);
     console.log("Log: ajax function is being called");
     // localStorage.command= command;
     $.ajax(
@@ -77,7 +85,6 @@ function sendCommand()
             error: function(response){
 
             }
-
         });
 }
 
@@ -105,4 +112,20 @@ function combine_pumpData_valveData()
         master_data.push(singleStage);
     }
     return JSON.stringify(master_data);
+}
+
+function zeroFill( number, width )
+{
+    width -= number.toString().length;
+    if (width > 0) {
+        return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
+    }
+    return number + ""; // always return a string
+}
+
+function paddy(n, p, c)
+{
+    var pad_char = typeof c !== 'undefined' ? c : '0';
+    var pad = new Array(1 + p).join(pad_char);
+    return (pad + n).slice(-pad.length);
 }

@@ -124,14 +124,15 @@ canvas {
 
 .rightBottom {
     position: fixed;
-    top: 75%;
-    left: 80%;
+
+    top: 370px;
+    left: 75%;
 }
 
 .rightCenter {
     position: fixed;
-    top: 87%;
-    left: 80%;
+    top: 470px;
+    left: 75%;
 }
 
 .serialBox {

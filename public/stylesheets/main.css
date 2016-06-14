@@ -34,7 +34,9 @@ canvas {
     margin-left: -254px;
 }
 
-
+.clear_button{
+    float: right;
+}
 
 /*Divisions*/
 #container {

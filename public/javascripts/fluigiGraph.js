@@ -3,22 +3,25 @@
 function onclickanchortag(){
     //console.log('hey beb');
     var location = getLocation(this.src);
-    console.log( );
+    //this.preventDefault();
 
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
-            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg" );
+            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             console.log(this.id);
-
+            valve_to_control = this.id;
+            flipFlop_valveState(valve_to_control);
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
-            $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg" );
+            $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg");
             console.log(this.id);
+            valve_to_control = this.id;
+            flipFlop_valveState(valve_to_control);
             break;
 
         default:
-            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg" );
+            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             break;
     }
     if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
@@ -66,8 +69,8 @@ $(document).ready(function(){
 
 
          // original width and height of SVG upon load
-         SVGwidth = JSON.parse(localStorage.getItem('SVGdimX'));
-         SVGheight = JSON.parse(localStorage.getItem('SVGdimY'));
+         SVGwidth = (localStorage.getItem('SVGdimX'));
+         SVGheight = (localStorage.getItem('SVGdimY'));
          // console.log('SVG width: ' + SVGwidth);
 
 
@@ -104,10 +107,9 @@ $(document).ready(function(){
         // console.log( ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY'))) + 'px' );
         // console.log( ((JSON.parse(localStorage.getItem('portXcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleX'))) + 'px' );
 
-
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
-        specificImage.id = 'valve'+i;
+        specificImage.id = i + 1;
 
         specificImage.onclick = onclickanchortag;
 

@@ -8,6 +8,7 @@ function mediateValveState(event)
     var changedData = JSON.parse(localStorage.valveData);
     var valve_to_control = (document.getElementById("ValveNumberSelector").value);
     var state_to_set_valve_to = document.getElementById("ValveStateAssigner").value;
+    localStorage.portToControl = valve_to_control;
 
     //localStorage.valveData
     changedData[valve_to_control - 1]['Physical_State'] = state_to_set_valve_to;
@@ -18,6 +19,7 @@ function mediateValveState(event)
 
 function flipFlop_valveState(valve_to_control)
 {
+    localStorage.portToControl = valve_to_control;
     //var valve_to_control; // This needs to be pulled from image overlay
     if (JSON.parse(localStorage.valveData)[valve_to_control - 1]['Physical_State'] == 0) {
         var temp = JSON.parse(localStorage.valveData);//[valve_to_control]['Physical_State'] = 1;
@@ -35,7 +37,8 @@ function flipFlop_valveState(valve_to_control)
 
 function wrap_data_for_Arduino()
 {
-    var valve_to_control = (document.getElementById("ValveNumberSelector").value);
+    // var valve_to_control = (document.getElementById("ValveNumberSelector").value);
+    var valve_to_control = localStorage.portToControl;
     localStorage.MasterData = combine_pumpData_valveData();
 
     var data_for_selected_object = JSON.parse(localStorage.MasterData);
@@ -113,6 +116,7 @@ function combine_pumpData_valveData()
         var physical_state_singleInstance = (JSON.parse(localStorage.valveData))[i]['Physical_State'];
         var singleStage = {id:i, State:{Open_State:open_state_singleInstance,Closed_State:closed_state_singleInstance,Physical_State:physical_state_singleInstance}, Number:i};
         master_data.push(singleStage);
+
     }
     return JSON.stringify(master_data);
 }

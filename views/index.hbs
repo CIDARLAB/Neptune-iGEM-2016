@@ -3,6 +3,14 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script>
+        function clearAllData()
+        {
+            localStorage.clear();
+            alert('All local storage cleared');
+        }
+    </script>
 </head>
 
 
@@ -16,6 +24,7 @@
     <img height= "100" src="../images/index/FluigiButton.png">
     <img height="100" src="../images/index/cidar-backgbround-no-js.png">
     <img height="100" src="../images/index/buLogo.png">
+    <img class="clear_button" height="10" src="../images/index/clearData.png" onclick="clearAllData()">
 </div>
 
 <ul>

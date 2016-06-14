@@ -31,14 +31,10 @@ body {
 }
 
 .place_and_route{
-    /*float: left;*/
-    /*padding-left: 600px;*/
+    float: left;
+    padding-left: 600px;
+    padding-top: 10%;
 
-}
-
-.mintImage {
-    display: inline-block;
-    float: right;
 }
 
 .inputButton_uShroom {
@@ -49,8 +45,21 @@ body {
     background: white;
 }
 
+.mintImage {
+    float: right;
+    width: 53%;
+    height: 100%;
+    padding-top: 10%;
+    padding-left: 3%;
+    background-color: lightblue;
+    border-radius: 100px;
+    border-color: black;
+    border: ridge;
+}
+
 .mintDisplay {
-    width: 30%;
+    float: left;
+    width: 43%;
     height: 100%;
     padding-top: 10%;
     padding-left: 3%;

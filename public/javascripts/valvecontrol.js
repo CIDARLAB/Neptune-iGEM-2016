@@ -1,6 +1,7 @@
 /**
  * Created by kestas on 6/1/2016.
  */
+localStorage.VALVE_TO_CONTROL = 0;
 
 function mediateValveState(event)
 {
@@ -69,8 +70,10 @@ function wrap_data_for_Arduino()
 function sendCommand()
 {
     var command = wrap_data_for_Arduino();
+    var stringgggg = "Sending to Arduino: "
+    var command_info = stringgggg.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
-    toastr.info(command);
+    toastr.info(command_info);
     console.log("Log: ajax function is being called");
     // localStorage.command= command;
     $.ajax(
@@ -80,10 +83,8 @@ function sendCommand()
                 commandData: command
             },
             success: function(response){
-
             },
             error: function(response){
-
             }
         });
 }

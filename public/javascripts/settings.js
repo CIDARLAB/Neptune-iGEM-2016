@@ -182,7 +182,6 @@ function saveHandler()
     }
     localStorage.pumpData = JSON.stringify(save_pumpData);
     update_numberOfValves();
-
 }
 
 function update_numberOfValves() {
@@ -201,6 +200,7 @@ function update_numberOfValves() {
     var DataToLoad = new_valves;
     localStorage.valveData = JSON.stringify(DataToLoad);
 }
+
 
 function clearSettingsHandler()
 {

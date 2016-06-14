@@ -23,7 +23,7 @@ $(document).ready(function () {
                 console.log(response);
                 $("#status").empty().text(response);
 
-
+                console.log("Log: Reading the json file");
                 // Json successfully uploaded
                 var fileOfChoice = "../uploads/myjson.json";
                 $.getJSON(fileOfChoice, function (json) {

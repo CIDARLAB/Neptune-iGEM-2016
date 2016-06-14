@@ -181,6 +181,25 @@ function saveHandler()
         save_pumpData.push(singleStage);
     }
     localStorage.pumpData = JSON.stringify(save_pumpData);
+    update_numberOfValves();
+
+}
+
+function update_numberOfValves() {
+    var new_valves = [];
+    var oldNumberofValves = (JSON.parse(localStorage.valveData)).length;
+    for (var i = 1; i <= localStorage.pumps; i++) {
+        if (i <= oldNumberofValves) {
+            var singleStage = (JSON.parse(localStorage.valveData))[(i - 1)];
+            new_valves.push(singleStage);
+        }
+        else {
+            var singleStage2 = {id: i, Open_State: 0, Closed_State: 0, Pump_Number: i};
+            new_valves.push(singleStage2);
+        }
+    }
+    var DataToLoad = new_valves;
+    localStorage.valveData = JSON.stringify(DataToLoad);
 }
 
 function clearSettingsHandler()
@@ -193,17 +212,3 @@ function clearSettingsHandler()
     localStorage.settings_toggle = 'settings_is_closed';
     settingsButtonPressed();
 }
-
-
-// function pumpData_to_ArduinoCompatibleFormat()
-// {
-//     var arduino_commands = [];
-//     for (var i = 0; i < length(localStorage.pumpData); 1++)
-//     {
-//         var pump_num = localStorage.pumpData[i].Pump_Number;
-//         var open_state = localStorage.pumpData[i].Open_State;
-//         var closed_state = localStorage.pumpData[]
-//         arduino_commans[i] = {}
-//     }
-//
-// }

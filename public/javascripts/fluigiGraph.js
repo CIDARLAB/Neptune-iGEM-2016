@@ -64,6 +64,7 @@ $(document).ready(function(){
 
 
         // original width and height of SVG upon load
+        console.log("Testing if local storage works: " + localStorage.getItem('SVGdimX'));
         SVGwidth = JSON.parse(localStorage.getItem('SVGdimX'));
         SVGheight = JSON.parse(localStorage.getItem('SVGdimY'));
         // console.log('SVG width: ' + SVGwidth);

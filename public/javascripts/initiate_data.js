@@ -13,7 +13,7 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     //localStorage.dataCenter = new Object();
     localStorage.unsavedData = [];
     localStorage.oldPumpData = [];
-    localStorage.pumps =  11;
+    localStorage.pumps =  12;
     localStorage.settings_X_pos = 200;
     localStorage.settings_Y_pos= 200;
     localStorage.DataToLoad;
@@ -58,4 +58,7 @@ if (localStorage.getItem('SVGdimX') === null) {
 }
 if (localStorage.getItem('SVGdimY') === null) {
     localStorage.setItem('SVGdimY', 'default');
+}
+if(localStorage.getItem('portToControl') == null) {
+    localStorage.setItem('portToControl', 'null');
 }

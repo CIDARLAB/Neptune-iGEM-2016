@@ -8,14 +8,14 @@ function onclickanchortag(){
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
-            console.log(this.id);
+            console.log("Port " + this.id + " clicked");
             valve_to_control = this.id;
             flipFlop_valveState(valve_to_control);
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg");
-            console.log(this.id);
+            console.log("Port " + this.id + " clicked");
             valve_to_control = this.id;
             flipFlop_valveState(valve_to_control);
             break;

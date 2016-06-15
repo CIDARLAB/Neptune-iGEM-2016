@@ -76,7 +76,6 @@ function sendCommand()
     // --- Include code to serial.write() the command to the Arduino here --- //
     // toastr.info(command);
     console.log(command);
-    console.log("Log: ajax function is being called");
     // localStorage.command= command;
     $.ajax(
         {   url: "/arduinoGetCode", type: 'POST', async: true,

@@ -104,11 +104,7 @@ $(document).ready(function(){
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
-<<<<<<< 2ee2646f80b3105e74cdc13ce3f34f9a47b849fa
-        specificImage.id = i;
-=======
         specificImage.id = i + 1;
->>>>>>> removing white spaces
 
         specificImage.onclick = onclickanchortag;
 

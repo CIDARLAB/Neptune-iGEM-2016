@@ -2,6 +2,30 @@
  * Created by kestas on 6/1/2016.
  */
 
+function mediateMotorPosition(event)
+{
+    event.preventDefault();
+    var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
+    var PWM_to_send = (document.getElementById("MotorPositionAssignerDebug").value);
+    var command_core = valve_to_control.concat(PWM_to_send);
+    var begin_signal = 's';
+    var end_signal = '/n';
+    var pre_command = begin_signal.concat(command_core);
+    var command = pre_command.concat(end_signal);
+
+    $.ajax(
+        {   url: "/arduinoGetCode", type: 'POST', async: true,
+            data:
+            {
+                commandData: command
+            },
+            success: function(response){
+            },
+            error: function(response){
+            }
+        });
+}
+
 function mediateValveState(event)
 {
     event.preventDefault();

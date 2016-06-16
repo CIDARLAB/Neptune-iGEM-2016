@@ -32,7 +32,7 @@
     </template>
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+    <script type="text/javascript" src="../javascripts/modalSupportFluigi.js" > </script>
 </head>
 
 <body>
@@ -48,18 +48,13 @@
             </a>
         </div>
 
-
         <div>
             <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/homeButtonTransparent.png"> </a>
-                </li>
-                <li class="nav-item"> <a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/fluigi/settingsIcon.png"> </a>
-                </li>
+                <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/homeButtonTransparent.png"> </a></li>
+                <li class="nav-item"><a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/fluigi/settingsIcon.png" > </a></li>
                 <!--<li class="nav-item"> <a class="nav-link" href="../serialcommunication"> <img height= "60" src="../images/fluigi/connectedIcon.png"></a></li>-->
-
-                <li class="nav-item"><img onclick= "window.open('../serialcommunication')" height= "100" class="myBtn" src="../images/fluigi/connectedIcon.png">
-
-                    </li>
+                <li class="nav-item"><img onclick= "window.open('../serialcommunication')" height= "100" class="myBtn" src="../images/fluigi/connectedIcon.png" onmouseover="this.height='98'" onmouseout="this.height='100'"></li>
+                <li class="nav-item"><img onclick="openDebugger()" height="90" src="../images/fluigi/debug_icon4.png" id="myDebuggerBtn"  class="modal_button" onmouseover="this.height='88'" onmouseout="this.height='90'"></li>
 
             </ul>
         </div>
@@ -114,12 +109,42 @@
 
 
 
+<!-- Trigger/Open The Modal -->
+<!-- The Modal -->
+<div id="debugger_modal" class="modal">
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Pump & Motor Debugger</h2>
+        </div>
+        <div class="modal-body">
+        </br>
+        <p> Debugger in development. </br> This page allows you to select a pump, change its state, and precisely control the motor which controls the pump. </p>
+
+        <form class="actuators_debugger">
+            Valve/Motor to Control:<br>
+            <input id="ValveNumberSelectorDebug" type="text" ><br>
+            State to apply:<br>
+            <input id="ValveStateAssignerDebug" type="text" ><br>
+            Or, PWM value to apply:<br>
+            <input id="MotorPositionAssignerDebug" type="text" ><br><br>
+            <input class="operate_modal" type="submit" value="Change pump state" onclick="mediateValveState(event)">
+            <input class="operate_modal" type="submit" value="Change motor position" onclick="mediateMotorPosition(event)">
+        </form>
+        </div>
+        <div class="modal-footer">
+            <button class="close_modal" onclick="closeDebugger()" >Close Debugger</button>
+        </div>
+    </div>
+
+</div>
+
 
 <form class="actuators">
     Valve to Actuate:<br>
-    <input id="ValveNumberSelector" type="text" name="firstname" ><br>
+    <input id="ValveNumberSelector" type="text" ><br>
     State to Apply:<br>
-    <input id="ValveStateAssigner" type="text" name="lastname" ><br><br>
+    <input id="ValveStateAssigner" type="text" ><br><br>
     <input type="submit" value="Send to Arduino" onclick="mediateValveState(event)">
 </form>
 

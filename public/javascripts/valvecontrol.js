@@ -6,13 +6,18 @@ function mediateMotorPosition(event)
 {
     event.preventDefault();
     var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
+    var valve_to_control_padded = zeroFill(valve_to_control,4);
     var PWM_to_send = (document.getElementById("MotorPositionAssignerDebug").value);
-    var command_core = valve_to_control.concat(PWM_to_send);
+    var PWM_to_send_padded = zeroFill(PWM_to_send,4);
+    var command_core = valve_to_control_padded.concat(PWM_to_send_padded);
     var begin_signal = 's';
-    var end_signal = '/n';
+    var end_signal = 'e';
     var pre_command = begin_signal.concat(command_core);
     var command = pre_command.concat(end_signal);
-
+    var stringgggg = "Sending to Arduino: "
+    var command_info = stringgggg.concat(command);
+    // --- Include code to serial.write() the command to the Arduino here --- //
+    toastr.info(command_info);
     $.ajax(
         {   url: "/arduinoGetCode", type: 'POST', async: true,
             data:

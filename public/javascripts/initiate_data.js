@@ -27,7 +27,7 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     localStorage.valveData = inititateValveStates();
     localStorage.firstVisit = false;
 }
-
+localStorage.DEBUGGER_FLAG == false;
 localStorage.clear_toggle = false;
 localStorage.set_pump_page_is_open = false;
 localStorage.settings_toggle = "settings_is_closed";

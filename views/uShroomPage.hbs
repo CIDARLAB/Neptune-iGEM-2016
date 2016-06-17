@@ -78,6 +78,7 @@
 
 <!--uShroom Navigation Bar-->
 <nav class="navbar navbar-fixed-top">
+
     <div class="container-fluid">
 
         <div class="navbar-header">
@@ -93,6 +94,7 @@
                 <!--<li class="nav-item"> <a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/fluigi/settingsIcon.png"> </a></li>-->
             </ul>
         </div>
+
         <div>
             <ul class="nav navbar-nav">
                 <li class="nav-item" id="place_and_route"><img  src="../images/uShroom/PlacenRoute.png"></li>
@@ -101,8 +103,8 @@
             </ul>
         </div>
 
-
     </div>
+
 </nav>
 
 <!--Upload Bar-->
@@ -115,7 +117,7 @@
 
         <div id="div1"><input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myVerilog" value="Browse Verilog" /></div>
         <div id="div3">
-            <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload Verilog File" name="submit_verilog">
+            <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload LFR File" name="submit_verilog">
             <span id = "statusVerilog"></span>
         </div>
     </form>
@@ -225,7 +227,6 @@
                         updateIndicators();
                     }
                 });
-
                 return false;
             });
             $('#uploadUCF').submit(function () {
@@ -244,7 +245,6 @@
                         updateIndicators();
                     }
                 });
-
                 return false;
             });
         });

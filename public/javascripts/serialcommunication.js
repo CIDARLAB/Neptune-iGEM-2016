@@ -1,10 +1,7 @@
 
 
 $(document).ready(function(){
-   
-
     $("#begin-comm").click(function () {
-    
         $.ajax(
             {   url: "../openSerialConnection", type: 'POST', async: true,
                 data:
@@ -16,9 +13,7 @@ $(document).ready(function(){
                 },
                 error: function(response){
                 }
-
             });
-
     });
     $("#end-comm").click(function () {
 
@@ -30,52 +25,17 @@ $(document).ready(function(){
                     portName: $("#ports").val()
                 },
                 success: function(response){
-
                 },
                 error: function(response){
-
                 }
-
-            });
-
-
-    });
-    $("#on-cmd").click(function () {
-
-
-        $.ajax(
-            {   url: "../arduinoON", type: 'POST', async: true,
-                data:
-                {
-                    portName: $("#ports").val()
-                },
-                success: function(response){
-
-                },
-                error: function(response){
-
-                }
-
-            });
-
-
-    });
-    $("#off-cmd").click(function () {
-
-        $.ajax(
-            {   url: "../arduinoOFF", type: 'POST', async: true,
-                data:
-                {
-                    portName: $("#ports").val()
-                },
-                success: function(response){
-
-                },
-                error: function(response){
-
-                }
-
             });
     });
-    
 });
+
+function writeToSerialConsole(command_info)
+{
+    var doc = document.getElementById('serial_console').contentWindow.document;
+    doc.open();
+    doc.write('Test');
+    doc.close();
+}

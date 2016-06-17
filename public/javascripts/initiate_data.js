@@ -34,7 +34,7 @@ localStorage.settings_toggle = "settings_is_closed";
 localStorage.close_pressed_last = false;
 localStorage.hide=0;
 localStorage.settings_button_has_been_pressed_before = false;
-
+localStorage.SERIAL_CONSOLE = "";
 
 
 // Declarations for Graph Port Values

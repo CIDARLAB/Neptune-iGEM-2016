@@ -26,6 +26,7 @@ function mediateMotorPosition(event)
     var command_info = stringgggg.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
+    writeToSerialConsole(command_info);
     $.ajax(
         {   url: "/arduinoGetCode", type: 'POST', async: true,
             data:
@@ -144,6 +145,7 @@ function sendCommand()
     var command_info = stringgggg.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
+    writeToSerialConsole(command_info);
     console.log(command);
     // localStorage.command= command;
     $.ajax(

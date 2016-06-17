@@ -6,15 +6,23 @@ function mediateMotorPosition(event)
 {
     event.preventDefault();
     var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
+    if ((parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
+    {
+        toastr.warning("Pump Index Out of Bounds");
+    }
     var valve_to_control_padded = zeroFill(valve_to_control,4);
     var PWM_to_send = (document.getElementById("MotorPositionAssignerDebug").value);
+    if ((parseInt(PWM_to_send,10) > 4096) || (parseInt(PWM_to_send,10) < 0))
+    {
+        toastr.warning("Invalid PWM value");
+    }
     var PWM_to_send_padded = zeroFill(PWM_to_send,4);
     var command_core = valve_to_control_padded.concat(PWM_to_send_padded);
     var begin_signal = 's';
     var end_signal = 'e';
     var pre_command = begin_signal.concat(command_core);
     var command = pre_command.concat(end_signal);
-    var stringgggg = "Sending to Arduino: "
+    var stringgggg = "Sending to Arduino: ";
     var command_info = stringgggg.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
@@ -31,12 +39,42 @@ function mediateMotorPosition(event)
         });
 }
 
+function mediateValveState_fromDebugger(event)
+{
+    localStorage.DEBUGGER_FLAG = true;
+    mediateValveState(event);
+}
+
 function mediateValveState(event)
 {
     event.preventDefault();
     var changedData = JSON.parse(localStorage.valveData);
-    var valve_to_control = (document.getElementById("ValveNumberSelector").value);
-    var state_to_set_valve_to = document.getElementById("ValveStateAssigner").value;
+
+    if (localStorage.DEBUGGER_FLAG == false) {
+        var valve_to_control = (document.getElementById("ValveNumberSelector").value);
+        if ( (parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
+        {
+            toastr.warning("Pump Index Out of Bounds");
+        }
+        var state_to_set_valve_to = document.getElementById("ValveStateAssigner").value;
+        if ((parseInt(state_to_set_valve_to,10) != 0) && (parseInt(state_to_set_valve_to,10) != 1))
+        {
+            toastr.warning("Invalid State! Apply 0 or 1");
+        }
+    }
+    else {
+        var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
+        if ((parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
+        {
+            toastr.warning("Pump Index Out of Bounds");
+        }
+        var state_to_set_valve_to = document.getElementById("ValveStateAssignerDebug").value;
+        if ((parseInt(state_to_set_valve_to,10) != 0) && (parseInt(state_to_set_valve_to,10) != 1))
+        {
+            toastr.warning("Invalid State! Apply 0 or 1");
+        }
+    }
+    localStorage.DEBUGGER_FLAG == false;
     localStorage.portToControl = valve_to_control;
 
     //localStorage.valveData
@@ -102,10 +140,10 @@ function wrap_data_for_Arduino()
 function sendCommand()
 {
     var command = wrap_data_for_Arduino();
-    var stringgggg = "Sending to Arduino: "
+    var stringgggg = "Sending to Arduino: ";
     var command_info = stringgggg.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
-    // toastr.info(command);
+    toastr.info(command_info);
     console.log(command);
     // localStorage.command= command;
     $.ajax(
@@ -127,7 +165,7 @@ function inititateValveStates()
     var init_valveState = [];
     for( var i = 1; i <= localStorage.pumps; i++)
     {
-        var singleStage = {id:i, Physical_State:0, Valve_Number:i}
+        var singleStage = {id:i, Physical_State:0, Valve_Number:i};
         init_valveState.push(singleStage);
     }
     return JSON.stringify(init_valveState);

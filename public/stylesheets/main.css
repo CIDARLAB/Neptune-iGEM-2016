@@ -73,16 +73,16 @@ canvas {
 
 }
 
-.actuators {
-    position: fixed;
-    top: 150px;
-    left: 10px;
-    width: 300px;
-    height: 150px;
-    border: inset;
-    padding-left: 30px;
-    background-color: lightskyblue;
-}
+/*.actuators {*/
+    /*position: fixed;*/
+    /*top: 150px;*/
+    /*left: 10px;*/
+    /*width: 300px;*/
+    /*height: 150px;*/
+    /*border: inset;*/
+    /*padding-left: 30px;*/
+    /*background-color: lightskyblue;*/
+/*}*/
 
 .fluigiPage {
     /*background-color: #34495e;*/

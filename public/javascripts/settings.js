@@ -123,14 +123,12 @@ function setNumberOfPumps_JSON() {
     localStorage.pumps = JSON.parse(localStorage.portXcoords).length;
     var set_pumpData_newNum = [];
     for (var i = 1; i <= localStorage.pumps; i++) {
-        console.log("this is i: " + i);
         var singleStage2 = {id: i, Open_State: 0, Closed_State: 0, Pump_Number: i};
         set_pumpData_newNum.push(singleStage2);
     }
     var DataToLoad = set_pumpData_newNum;
     localStorage.clear_toggle = true;
     localStorage.unsavedData = JSON.stringify(DataToLoad);
-
 }
 
 

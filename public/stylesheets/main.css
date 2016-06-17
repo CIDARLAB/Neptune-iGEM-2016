@@ -14,7 +14,8 @@ body {
 
 
 canvas {
-    margin-top: 220px;
+    margin-top: 160px;
+    margin-bottom: 20px;
 }
 
 /*Buttons*/
@@ -242,6 +243,7 @@ ul {
     text-decoration: none;
     cursor: pointer;
 }
+
 /****************************** END DEBUGGER CSS *************************/
 
 /********************* START Serial Console CSS***************************/
@@ -320,3 +322,17 @@ ul {
     cursor: pointer;
 }
 /****************************** END Serial Console CSS *************************/
+
+
+.IDtext {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size:20px;
+    padding-top:5px;
+    padding-left:14px;
+}
+.valve_color {
+    position: absolute;
+}
+

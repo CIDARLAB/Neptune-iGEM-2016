@@ -71,6 +71,8 @@ $(document).ready(function () {
                     localStorage.portYcoords = JSON.stringify(portY);
                     localStorage.portRadius1vals = JSON.stringify(portRadius1);
                     localStorage.portRadius2vals = JSON.stringify(portRadius2);
+                    //  Update number of Pumps for settings page
+                    setNumberOfPumps_JSON();
 
                     //console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
 

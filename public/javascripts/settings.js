@@ -117,26 +117,7 @@ function changeNumberOfPumpsHandler()
     }
 }
 
-function setNumberOfPumps_SVG()
-{
-    localStorage.pumps = JSON.parse(localStorage.portXcoords.length);
-        var set_pumpData_newNum = [];
-        for (var i = 1; i <= localStorage.pumps; i++) {
-            if (i <= oldNumberofPumps) {
-                var singleStage = ($$("pumpDataTable").getItem(i.toString()));
-                set_pumpData_newNum.push(singleStage);
-            }
-            else {
-                var singleStage2 = {id: i, Open_State: 0, Closed_State: 0, Pump_Number: i};
-                set_pumpData_newNum.push(singleStage2);
-            }
-        }
-        var DataToLoad = set_pumpData_newNum;
-        //$$("pumpDataTable").clearAll();
-        //$$("settings_window").close();
-        //localStorage.settings_toggle = 'settings_is_closed';
-        settingsButtonPressed();
-}
+
 
 function setNumberOfPumps_JSON() {
     localStorage.pumps = JSON.parse(localStorage.portXcoords).length;

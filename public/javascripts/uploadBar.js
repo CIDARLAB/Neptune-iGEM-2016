@@ -12,7 +12,7 @@
 $(document).ready(function () {
 
     $('#uploadForm').submit(function () {
-        $("#status").empty().text("File is uploading...");
+        // $("#status").empty().text("File is uploading...");
 
         $(this).ajaxSubmit({
 
@@ -21,9 +21,12 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
-                $("#status").empty().text(response);
+                // $("#status").empty().text(response);
+                $("#status").empty().text();
+                var JSONbutton = document.getElementById("inputfile");
+                JSONbutton.style.backgroundColor = "#2ecc71";
 
-                console.log("Log: Reading the json file");
+
                 // Json successfully uploaded
                 var fileOfChoice = "../uploads/myjson.json";
                 $.getJSON(fileOfChoice, function (json) {
@@ -84,7 +87,7 @@ $(document).ready(function () {
         return false;
     });
     $('#uploadForm2').submit(function () {
-        $("#status2").empty().text("File is uploading...");
+        // $("#status2").empty().text("File is uploading...");
 
         $(this).ajaxSubmit({
 
@@ -93,7 +96,10 @@ $(document).ready(function () {
             },
             success: function (response) {
                 console.log(response);
-                $("#status2").empty().text(response);
+                // $("#status2").empty().text(response);
+                $("#status2").empty().text();
+                var SVGbutton = document.getElementById("inputfile2");
+                SVGbutton.style.backgroundColor = "#2ecc71";
                 // refresh the page so that svg loads
                 location.reload();
 

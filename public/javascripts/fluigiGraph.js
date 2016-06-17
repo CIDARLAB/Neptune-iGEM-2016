@@ -93,10 +93,11 @@ $(document).ready(function(){
         var content = $("#content");
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
+
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY')) + 220 - 20) + 'px';
+        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY')) + 160 - 20) + 'px';
         valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleX')) - 20) + 'px';
 
         // console.log( ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY'))) + 'px' );
@@ -107,6 +108,13 @@ $(document).ready(function(){
         specificImage.id = i + 1;
 
         specificImage.onclick = onclickanchortag;
+
+        valveButton = template.querySelector('.valve');
+        // valveButton.onclick = onclickanchortag;
+
+
+        var valveIDLabel = template.querySelector('.IDtext');
+        valveIDLabel.textContent = (i + 1);
 
         content.append(template);
 

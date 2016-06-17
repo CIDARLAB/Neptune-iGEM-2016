@@ -133,6 +133,7 @@ function setNumberOfPumps_JSON() {
 
 }
 
+
 function applyHandler()
 {
     var open_state_value = $$("open_form").getValue();

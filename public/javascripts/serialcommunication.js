@@ -32,10 +32,3 @@ $(document).ready(function(){
     });
 });
 
-function writeToSerialConsole(command_info)
-{
-    var doc = document.getElementById('serial_console').contentWindow.document;
-    doc.open();
-    doc.write('Test');
-    doc.close();
-}

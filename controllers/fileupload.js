@@ -22,7 +22,7 @@ exports.sendJSON = function(req, res) {
     var upload = multer({
         storage: storage,
         fileFilter: function (req, file, cb) {
-            if (file.mimetype !== 'application/json') {
+            if (file.mimetype !== 'application/octet-stream') {
                 req.fileValidationError = 'Wrong Filetype!';
                 console.log('My filetype: ' + file.mimetype);
                 return cb(null, false, new Error('goes wrong on the mimetype'));

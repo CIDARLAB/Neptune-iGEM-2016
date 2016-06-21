@@ -3,12 +3,12 @@
  */
 var cmd = require('node-cmd');
 var exports = module.exports;
-var multer= require('multer');
+var multer = require('multer');
 var express = require('express');
 var fs = require('fs');
 
 // FILE UPLOAD FOR JSON ---------------------------------------------------------------------------------
-exports.sendJSON = function(req, res, next) {
+exports.sendJSON = function(req, res) {
 
     var storage = multer.diskStorage({
         destination: function (req, file, callback) {
@@ -46,7 +46,7 @@ exports.sendJSON = function(req, res, next) {
 
 
     // FILE UPLOAD FOR SVG ---------------------------------------------------------------------------------
-exports.sendSVG = function(req, res, next) {
+exports.sendSVG = function(req, res) {
     var storage2 =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');
@@ -82,7 +82,7 @@ exports.sendSVG = function(req, res, next) {
 
 
     // FILE UPLOAD FOR VERILOG ---------------------------------------------------------------------------------
-exports.sendVERILOG = function(req, res, next) {
+exports.sendVERILOG = function(req, res) {
     var storage_VERILOG =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');
@@ -118,7 +118,7 @@ exports.sendVERILOG = function(req, res, next) {
 
 
     // FILE UPLOAD FOR UCF ---------------------------------------------------------------------------------
-exports.sendUCF = function(req, res, next) {
+exports.sendUCF = function(req, res) {
     var storage_UCF =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');

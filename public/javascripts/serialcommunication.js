@@ -3,7 +3,7 @@
 $(document).ready(function(){
     $("#begin-comm").click(function () {
         $.ajax(
-            {   url: "../serialcommunication/open", type: 'POST', async: true,
+            {   url: "/serialcommunication/open", type: 'POST', async: true,
                 data:
                 {
                   portName: $("#ports").val()
@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 
         $.ajax(
-            {   url: "../serialcommunication/close", type: 'POST', async: true,
+            {   url: "/serialcommunication/close", type: 'POST', async: true,
                 data:
                 {
                     portName: $("#ports").val()
@@ -31,42 +31,6 @@ $(document).ready(function(){
             });
     });
 
-    $("#on-cmd").click(function () {
-
-
-        $.ajax(
-            {   url: "../serialcommunication/on", type: 'POST', async: true,
-                data:
-                {
-                    portName: $("#ports").val()
-                },
-                success: function(response){
-
-                },
-                error: function(response){
-
-                }
-
-            });
-
-
-    });
-    $("#off-cmd").click(function () {
-
-        $.ajax(
-            {   url: "../serialcommunication/off", type: 'POST', async: true,
-                data:
-                {
-                    portName: $("#ports").val()
-                },
-                success: function(response){
-
-                },
-                error: function(response){
-
-                }
-
-            });
-    });
+  
 });
 

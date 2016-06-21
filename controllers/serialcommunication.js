@@ -5,34 +5,20 @@ var express = require('express');
 
 
 //******************* EXPORTS **************************************
-exports.loadSerialPage =  function (req, res, next) {
-    listPorts(); //populates ports export
-    var ports = ports;
-    res.render('/serialcommunication', {title: 'COM', serialPorts: ports});
-};
+{
 
-exports.openSerialConnection = function(req, res, next){
+exports.openSerialConnection = function(req, res){
     var port = req.body.portName;
     console.log('My Port: ' + port);
     res.send(openConnection(port));
 };
 
-exports.closeSerialConnection = function(req, res, next){
+exports.closeSerialConnection = function(req, res){
     var openPort = SerialPortConnection;
     res.send(closeConnection(openPort));
 };
 
-exports.arduinoOn = function(req, res, next){
-    var openPort = SerialPortConnection;
-    res.send(sendToSerial('on', openPort));
-};
-
-exports.arduinoOff = function(req, res, next){
-    var openPort = SerialPortConnection;
-    res.send(sendToSerial('off', openPort));
-};
-
-exports.arduinoSend = function(req, res, next){
+exports.arduinoSend = function(req, res){
     var openPort = SerialPortConnection;
     console.log("Log: POST request on arduinoGetCode endpoint");
     var datacommand = req.body.commandData;
@@ -40,6 +26,21 @@ exports.arduinoSend = function(req, res, next){
     sendToSerial(datacommand , openPort );
     res.send();
 };
+    
+exports.listPorts= function() {
+   var returnPorts = [{}];
+
+   // list serial ports:
+   serialport.list(function (err, ports) {
+      returnPorts = ports;
+      console.log(ports);
+      exports.ports = ports; //makes it available outside of this file
+   });
+   return returnPorts;
+};
+    
+}
+
 
 
 //******************* FUNCTIONS **************************************
@@ -90,18 +91,5 @@ function sendToSerial (data, myPort) {
     myPort.write(data);
 }
 
-function listPorts() {
-    var returnPorts = [{}];
-
-    // list serial ports:
-    serialport.list(function (err, ports) {
-        returnPorts = ports;
-        console.log(ports);
-        exports.ports = ports; //makes it available outside of this file
-    });
-
-    return returnPorts;
-
-}
 
 

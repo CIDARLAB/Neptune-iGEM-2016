@@ -5,10 +5,6 @@
 // Initialize localStorage values
 
 
-
-
-
-
 $(document).ready(function () {
 
     $('#uploadForm').submit(function () {

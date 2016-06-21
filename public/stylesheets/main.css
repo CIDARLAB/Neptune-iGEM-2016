@@ -14,25 +14,25 @@ body {
 
 
 canvas {
-    margin-top: 160px;
-    margin-bottom: 20px;
+    margin-top: 220px;
 }
 
 /*Buttons*/
 .centeredTop {
     position: fixed;
-    top: 30%;
-    left: 50%;
-    margin-top: -60px;
-    margin-left: -254px;
+    top: 300px;
+    left: 200px;
+    margin-top: 0px;
+    margin-left: 0px;
+
 }
 
 .centeredBottom {
     position: fixed;
-    top: 58%;
-    left: 45%;
-    margin-top: -60px;
-    margin-left: -254px;
+    top: 300px;
+    left: 750px;
+    margin-top: 0px;
+    margin-left: 0px;
 }
 
 .clear_button{
@@ -74,16 +74,16 @@ canvas {
 
 }
 
-/*.actuators {*/
-    /*position: fixed;*/
-    /*top: 150px;*/
-    /*left: 10px;*/
-    /*width: 300px;*/
-    /*height: 150px;*/
-    /*border: inset;*/
-    /*padding-left: 30px;*/
-    /*background-color: lightskyblue;*/
-/*}*/
+.actuators {
+    position: fixed;
+    top: 150px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+    border: inset;
+    padding-left: 30px;
+    background-color: lightskyblue;
+}
 
 .fluigiPage {
     /*background-color: #34495e;*/
@@ -110,19 +110,19 @@ canvas {
     height: 90px;
     background-color: #3498db;
     border-color: #3498db;
-}
 
+}
 
 .mushroomHelp {
     position: fixed;
-    top: 25%;
-    left: 60%;
+    top: 300px;
+    left: 550px;
 }
 
 .fluigiHelp {
     position: fixed;
-    top: 55%;
-    left: 65%;
+    top: 300px;
+    left: 1250px;
 }
 
 .rightBottom {
@@ -141,6 +141,7 @@ canvas {
 .serialBox {
     border-color: white;
     border: double;
+
 }
 
 ul {
@@ -153,10 +154,18 @@ ul {
     width: 100%;
     padding-left: 100px;
     padding-top: 10px;
-    height: 45px;
+    height: 50px;
     background-color: white;
+
 }
 
+
+/*img{*/
+/*max-width: 50%;*/
+/*height: auto;*/
+/*/*z-index: -1;*/
+/*}*/
+/*Divisions*/
 #container {
     position: relative;
 }
@@ -167,172 +176,15 @@ ul {
 
 #div2 {
     display: inline-block;
+
 }
 
-/********************* START DEBUGGER CSS***************************/
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
 
-/*.modal_button{*/
-    /*float:left;*/
-    /*top: 50%;*/
+
+/*#valve-container {*/
+/*top: 200px;*/
+/*left: 0px;*/
+/*position: absolute;*/
+/*width: 100%;*/
 /*}*/
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.modal-header {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-/* Modal Body */
-.modal-body {padding: 2px 16px;}
-
-/* Modal Footer */
-.modal-footer {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-/* The Close Button */
-.close_modal {
-    background-color: #7fb0ff;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-.operate_modal {
-    background-color: #7fb0ff;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 10px;
-}
-
-.close:hover,
-
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/****************************** END DEBUGGER CSS *************************/
-
-/********************* START Serial Console CSS***************************/
-/* The Modal (background) */
-.modal_serial {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/*.modal_button{ !*DO WE USE THIS??? *!*/
-    /*float:left;*/
-    /*top: 50%;*/
-/*}*/
-
-/* Modal Content/Box */
-.modal-content_serial {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-.modal-header_serial {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-/* Modal Body */
-.modal-body_serial {padding: 2px 16px;}
-
-/* Modal Footer */
-.modal-footer_serial {
-    padding: 2px 16px;
-    background-color: #5cb85c;
-    color: white;
-}
-
-/* The Close Button */
-.close_modal_serial {
-    background-color: #7fb0ff;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-}
-
-/*.operate_modal {*/
-    /*background-color: #7fb0ff;*/
-    /*border: none;*/
-    /*color: white;*/
-    /*padding: 15px 32px;*/
-    /*text-align: center;*/
-    /*text-decoration: none;*/
-    /*display: inline-block;*/
-    /*font-size: 10px;*/
-/*}*/
-
-.close:hover,
-
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-/****************************** END Serial Console CSS *************************/
-
-
-.IDtext {
-    position: absolute;
-    color: white;
-    font-weight: bold;
-    font-size:20px;
-    padding-top:5px;
-    padding-left:14px;
-}
-.valve_color {
-    position: absolute;
-}
 

@@ -18,7 +18,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-
+<!--Top Bar-->
 <div class="topBar">
 
     <img height= "100" src="../images/index/FluigiButton.png">
@@ -27,49 +27,66 @@
     <img class="clear_button" height="10" src="../images/index/clearData.png" onclick="clearAllData()">
 </div>
 
+<!--Main Page-->
+
+
+{
 <ul>
 
     <div class="centeredTop" >
-
-    <li align="center">
-        <label style="font-size:40px; color: white; font-family: FontAwesome "> Design </label>
-    </li>
-    <li align="center"> <a href="../uShroomPage">
-        <img  height="100" src="../images/uShroom/MINT_Logo.png"
-              onmouseover="this.height='170'" onmouseout="this.height='150'">
+        <div align="center"> <a href="../uShroomPage">
+            <img  height="150" src="../images/uShroom/MINT_Logo.png"
+                  onmouseover="this.height='170'" onmouseout="this.height='150'">
         </a>
-    </li>
+        </div>
+        <div align="center">
+            <label style="font-size:40px; color: white; font-family: FontAwesome "> Design </label>
+        </div>
+        <div align="center">
+            <label style="font-size:20px; color: white; font-family: FontAwesome "> Create your own microfluidic tool! </label>
+        </div>
+        <div align="center">
+            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#fluigiModal"> See details</a>
+        </div>
     </div>
 
 
-        <div class="centeredBottom">
-    <li align="center">
-            <label style="font-size:40px; color: white; font-family: FontAwesome "> Import </label>
-        </li>
-    <li align="center"> <a href="../fluigipage">
-           <img  height= "100" src="../images/fluigi/MF.png" onmouseover="this.height='170'" onmouseout="this.height='150'">
+    <div class="centeredBottom">
+
+        <div align="center"> <a href="../fluigipage">
+            <img  height= "150" src="../images/fluigi/MF.png" onmouseover="this.height='170'" onmouseout="this.height='150'">
         </a>
-        </li>
         </div>
+        <div align="center">
+            <label style="font-size:40px; color: white; font-family: 'Times New Roman' ">Import </label>
+            ```</div>
+        <div align="center">
+            <label style="font-size:20px; color: white; font-family: 'Times New Roman' "> Place and route your design! </label>
+        </div>
+        <div align="center">
+            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#mushroomModal"> See details</a>
+        </div>
+    </div>
 
 
     <li> <!-- Trigger the modal with a button -->
         <a class="rightBottom"><img class="myBtn" data-toggle="modal" data-target="#HelpModal" src="../images/index/helpButtonTransparent.png"
-                                     onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>
+                                    onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>
     </li>
     <li>
         <a class="rightCenter" href="http://cidarlab.org/Fluigi"><img class="myBtn" src="../images/index/aboutButtonTransparent.png"
                                                                       onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>
     </li>
-    <li> <!-- Trigger the modal with a button -->
-        <a class="mushroomHelp"><img height='60' class="myBtn" data-toggle="modal" data-target="#mushroomModal" src="../images/index/questionmark.png"> </a>
-    </li>
-    <li> <!-- Trigger the modal with a button -->
-        <a class="fluigiHelp"><img  height='60' class="myBtn" data-toggle="modal" data-target="#fluigiModal" src="../images/index/questionmark.png"> </a>
-    </li>
+
+
+</ul>
+}
+
 
 
 </body>
+
+
 <!-- Modal -->
 <div id="HelpModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -136,6 +153,7 @@
 
     </div>
 </div>
+
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->

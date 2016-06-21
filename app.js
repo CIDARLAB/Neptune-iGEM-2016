@@ -105,34 +105,16 @@ var http = require('http');
 
 /**************** SERIAL COMMUNICATION ****************/
 {
-
-  app.post('/serialcommunication/open', function(req, res){
-    serialController.openSerialConnection(req, res);
-  });
-  app.post('/serialcommunication/close', function(req, res){
-    serialController.closeSerialConnection(req, res);
-  });
-  app.post('/serialcommunication/send', function(req, res){
-    serialController.arduinoSend(req, res);
-  });
-
+  app.post('/serialcommunication/open', serialController.openSerialConnection);
+  app.post('/serialcommunication/close', serialController.closeSerialConnection);
+  app.post('/serialcommunication/send', serialController.arduinoSend);
 }
 
 /************** FILE UPLOAD  ************/
 {
-
-  app.post('/api/json', function(req, res) {
-    fileController.sendJSON(req, res);
-  });
-  app.post('/api/svg', function(req, res) {
-    fileController.sendSVG(req, res);
-  });
-  app.post('/api/verilog', function(req, res) {
-    fileController.sendVERILOG(req, res);
-  });
-  app.post('/api/ucf', function(req, res){
-    fileController.sendUCF(req, res);
-  });
-
+  app.post('/api/json', fileController.sendJSON);
+  app.post('/api/svg', fileController.sendSVG);
+  app.post('/api/verilog', fileController.sendVERILOG);
+  app.post('/api/ucf', fileController.sendUCF);
 }
 

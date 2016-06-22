@@ -1,7 +1,3 @@
-/**
- * Created by kestas on 6/2/2016.
- */
-
 
 if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
 {

@@ -153,3 +153,9 @@ exports.sendUCF = function(req, res) {
         });
     };
 
+    // SEND TO FLUIGI AND MUSHROOM PAGES --------------------------------------------------------------------------
+
+exports.sendToUploads= function(req, res) {
+        res.sendFile(__dirname + "./public/uploads");
+};
+

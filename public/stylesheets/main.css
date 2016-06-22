@@ -3,8 +3,7 @@
 html, body {
     margin: 0;
     padding: 0;
-    /*background-image:url(../images/index/backgroundImg.png);*/
-    background-color: #34495e;
+    background-image:url(../images/index/backgroundImg.png);
 }
 
 
@@ -35,83 +34,16 @@ canvas {
     margin-left: 0px;
 }
 
-.clear_button{
-    float: right;
-}
-
 /*Divisions*/
-#container {
-    position: relative;
-}
-
-#div1 {
-    float: left;
-    display: inline-block;
-    padding-left: 50px;
-}
-
-#div2 {
-    display: inline-block;
-    float: left;
-    padding-left: 300px;
-}
-
-#div3 {
-    float: left;
-    display: inline-block;
-}
-
-#div4 {
-    display: inline-block;
-    float: left;
-}
 
 .topBar {
     padding-left: 0px;
     background: white;
     width: 100%;
     height: 100px;
-
+    overflow: hidden;
 }
 
-.actuators {
-    position: fixed;
-    top: 150px;
-    left: 10px;
-    width: 300px;
-    height: 150px;
-    border: inset;
-    padding-left: 30px;
-    background-color: lightskyblue;
-}
-
-.fluigiPage {
-    /*background-color: #34495e;*/
-}
-.inputButton {
-    outline-style: none;
-    height: 25px;
-    border: 2px solid dodgerblue;
-    border-radius: 4px;
-    background: white;
-}
-
-.myBtn {
-
-    vertical-align: center;
-    horizontal-align: middle;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.navbar {
-    padding-top: 0px;
-    padding-bottom: 0px;
-    height: 90px;
-    background-color: #3498db;
-    border-color: #3498db;
-
-}
 
 .mushroomHelp {
     position: fixed;
@@ -126,65 +58,19 @@ canvas {
 }
 
 .rightBottom {
-    position: fixed;
 
-    top: 370px;
-    left: 75%;
+    position: fixed;
+    top: 350px;
+    left: 1400px;
+    margin-top: 0px;
+    margin-left: 0px;
+
 }
 
 .rightCenter {
     position: fixed;
-    top: 470px;
-    left: 75%;
+    top: 460px;
+    left: 1400px;
+    margin-top: 0px;
+    margin-left: 0px;
 }
-
-.serialBox {
-    border-color: white;
-    border: double;
-
-}
-
-ul {
-    list-style-type: none;
-}
-
-.uploadbar {
-    position:absolute;
-    top: 90px;
-    width: 100%;
-    padding-left: 100px;
-    padding-top: 10px;
-    height: 50px;
-    background-color: white;
-
-}
-
-
-/*img{*/
-/*max-width: 50%;*/
-/*height: auto;*/
-/*/*z-index: -1;*/
-/*}*/
-/*Divisions*/
-#container {
-    position: relative;
-}
-
-#div1 {
-    display: inline-block;
-}
-
-#div2 {
-    display: inline-block;
-
-}
-
-
-
-/*#valve-container {*/
-/*top: 200px;*/
-/*left: 0px;*/
-/*position: absolute;*/
-/*width: 100%;*/
-/*}*/
-

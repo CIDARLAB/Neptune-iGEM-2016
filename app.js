@@ -66,55 +66,39 @@ var http = require('http');
 
 /**************** CONTROLLERS ****************/
 {
-// var homeController = require('./controllers/');
+  var homeController = require('./controllers/homepage');
   var fileController = require('./controllers/fileupload');
-//   var mmController = require('./controllers/mm');
+  var mmController = require('./controllers/mm');
   var serialController = require('./controllers/serialcommunication');
+  var fluigiController= require('./controllers/fluigi');
 }
 
 /**************** RENDER PAGES ****************/
 {
+  app.get('/' , homeController.openHomePage);
+  app.get('/fluigipage', fluigiController.getFluigiPage);
+  app.get('/uShroomPage',mmController.openMMPage);
+  app.get('/serialcommunication', serialController.openSerialPage);
 
- app.get('/' , function (req,res) {
- res.render('index', { title: 'Express' });
- });
-
-  app.get('/fluigipage', function (req, res, next) {
-    res.render('fluigipage', {title: 'Fluigi Page'});
-  });
-
-  app.get('/uShroomPage',function(req,res,next) {
-    res.render('uShroomPage', {title: 'MM Page'});
-  });
-
-  app.get('/serialcommunication', function(req, res) {
-    serialController.listPorts(); //populates ports export
-    var ports = serialController.ports;
-    res.render('serialcommunication', {title: 'COM', serialPorts: ports});
-  });
-
-  app.get('/fluigipage',function(req,res,next) {
-    res.sendFile(__dirname + "./public/uploads");
-  });
-
-  app.get('/uShroomPage',function(req,res,next) {
-    res.sendFile(__dirname + "./public/uploads");
-  });
-
- }
+}
 
 /**************** SERIAL COMMUNICATION ****************/
 {
+
   app.post('/serialcommunication/open', serialController.openSerialConnection);
   app.post('/serialcommunication/close', serialController.closeSerialConnection);
   app.post('/serialcommunication/send', serialController.arduinoSend);
+
 }
 
 /************** FILE UPLOAD  ************/
 {
+  app.get('/fluigipage', fileController.sendToUploads);
+  app.get('/uShroomPage', fileController.sendToUploads);
   app.post('/api/json', fileController.sendJSON);
   app.post('/api/svg', fileController.sendSVG);
   app.post('/api/verilog', fileController.sendVERILOG);
   app.post('/api/ucf', fileController.sendUCF);
 }
+
 

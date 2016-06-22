@@ -7,6 +7,12 @@ var express = require('express');
 //******************* EXPORTS **************************************
 {
 
+exports.openSerialPage= function(req, res) {
+            exports.listPorts(); //populates ports export
+            var ports = ports;
+            res.render('serialcommunication', {title: 'COM', serialPorts: ports});
+    };
+
 exports.openSerialConnection = function(req, res){
     var port = req.body.portName;
     console.log('My Port: ' + port);
@@ -38,7 +44,6 @@ exports.listPorts= function() {
    });
    return returnPorts;
 };
-    
 }
 
 

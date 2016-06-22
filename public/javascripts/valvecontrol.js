@@ -1,7 +1,3 @@
-/**
- * Created by kestas on 6/1/2016.
- */
-
 function mediateMotorPosition(event)
 {
     event.preventDefault();

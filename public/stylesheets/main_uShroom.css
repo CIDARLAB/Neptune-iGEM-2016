@@ -47,25 +47,19 @@ body {
 
 .mintImage {
     float: right;
-    width: 53%;
+    width: 50%;
     height: 100%;
     padding-top: 10%;
     padding-left: 3%;
-    background-color: lightblue;
-    border-radius: 100px;
-    border-color: black;
     border: ridge;
 }
 
 .mintDisplay {
     float: left;
-    width: 43%;
+    width: 40%;
     height: 100%;
     padding-top: 10%;
     padding-left: 3%;
-    background-color: lightblue;
-    border-radius: 100px;
-    border-color: black;
     border: ridge;
 }
 
@@ -82,6 +76,7 @@ body {
     height: 90px;
     background-color: #3498db;
     border-color: #3498db;
+    overflow: hidden;
 }
 
 .inputdiv1{

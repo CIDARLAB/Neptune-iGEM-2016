@@ -101,4 +101,10 @@ var http = require('http');
   app.post('/api/ucf', fileController.sendUCF);
 }
 
+/************** muShroomMapper  ************/
+{
+  app.post('/executemm', mmController.executeJAR);
+  // Must call /executemm at target button
+}
+
 

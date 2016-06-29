@@ -74,7 +74,7 @@ $(document).ready(function () {
                     setNumberOfPumps_JSON();
 
                     //console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
-
+              
                 });
 
             }
@@ -98,6 +98,7 @@ $(document).ready(function () {
                 SVGbutton.style.backgroundColor = "#2ecc71";
                 // refresh the page so that svg loads
                 location.reload();
+
 
             }
         });

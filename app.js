@@ -18,7 +18,7 @@ var http = require('http');
     var host = server.address().address;
     var port = server.address().port;
 
-    console.log("Runing the server on " + host + " " + port);
+    console.log("Running the server on " + host + " " + port);
   });
 }
 

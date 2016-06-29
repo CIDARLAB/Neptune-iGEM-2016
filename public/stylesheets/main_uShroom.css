@@ -51,7 +51,7 @@ body {
     height: 100%;
     padding-top: 10%;
     padding-left: 3%;
-    border: ridge;
+    /*border: ridge;*/
 }
 
 .mintDisplay {
@@ -60,7 +60,7 @@ body {
     height: 100%;
     padding-top: 10%;
     padding-left: 3%;
-    border: ridge;
+    /*border: ridge;*/
 }
 
 .myBtn {

@@ -15,7 +15,9 @@ $(document).ready(function(){
                 }
             });
     });
-    $("#end-comm").click(function () {
+
+  //example for AJAX onclick 
+  $("#end-comm").click(function () {
 
 
         $.ajax(

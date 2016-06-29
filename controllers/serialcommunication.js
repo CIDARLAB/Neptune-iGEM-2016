@@ -9,19 +9,21 @@ var express = require('express');
 
 exports.openSerialPage= function(req, res) {
             exports.listPorts(); //populates ports export
-            var ports = ports;
+            var ports = exports.ports;
             res.render('serialcommunication', {title: 'COM', serialPorts: ports});
     };
 
 exports.openSerialConnection = function(req, res){
     var port = req.body.portName;
     console.log('My Port: ' + port);
-    res.send(openConnection(port));
+    openConnection(port);
+    res.send();
 };
 
 exports.closeSerialConnection = function(req, res){
     var openPort = SerialPortConnection;
-    res.send(closeConnection(openPort));
+    closeConnection(openPort);
+    res.send();
 };
 
 exports.arduinoSend = function(req, res){

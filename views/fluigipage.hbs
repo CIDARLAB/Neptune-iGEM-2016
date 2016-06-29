@@ -24,8 +24,8 @@
 
     <!--Template for valves to be placed over graph canvas-->
     <template id="valve-template" action="this.preventDefault();">
-        <div class ="valve" action="this.preventDefault();">
-            <a class="valve_marker" action="this.preventDefault();">
+        <div class ="valve"  action="this.preventDefault();">
+            <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
                 <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/valveMarkerOpen.svg" width="40" height="40">
                 <p class="IDtext">beb</p>
             </a>
@@ -57,7 +57,7 @@
                 <!--<li class="nav-item"> <a class="nav-link" href="../serialcommunication"> <img height= "60" src="../images/fluigi/connectedIcon.png"></a></li>-->
                 <li class="nav-item"><a class="nav-link"><img onclick= "window.open('../serialcommunication')"  src="../images/fluigi/connectedIcon.png"></a></li>
                 <li class="nav-item"><a class="nav-link"><img onclick="openDebugger()"  src="../images/fluigi/buildIcon.png" id="myDebuggerBtn"  ></a></li>
-                <li class="nav-item"><a class="nav-link"><img onclick="openSerialConsole()" src="../images/fluigi/consoleIcon.png" id="myConsoleBtn" ></a></li>
+                <!--<li class="nav-item"><a class="nav-link"><img onclick="openSerialConsole()" src="../images/fluigi/consoleIcon.png" id="myConsoleBtn" ></a></li>-->
             </ul>
         </div>
     </div>
@@ -107,6 +107,9 @@
 
         </form>
     </div>
+    <div>
+        <label> *Refresh Page to load buttons</label>
+    </div>
 </div>
 
 <div id="debugger_modal" class="modal" style="width: 500px; padding-left: 10px; padding-top: 150px;">
@@ -137,34 +140,34 @@
 
 </div>
 
-<div id="serialConsole_modal" class="modal_serial">
+<!--<div id="serialConsole_modal" class="modal_serial">-->
 
-    <div class="modal-content_serial">
-        <div class="modal-header_serial">
-            <h2>Serial Console</h2>
-        </div>
-        <div class="modal-body_serial">
-            </br>
-            <p> Serial Console in development. </br> This page provides a history of your serial commands.</p>
-            </br>
-            <iframe id="serial_console"
-                    width="95%"
-                    height="90%"
-                    frameborder="0"
-                    scrolling="yes"
-                    marginheight="0"
-                    marginwidth="0"
-                    src="../uploads/mySerialConsole.txt">
-            </iframe>
+    <!--<div class="modal-content_serial">-->
+        <!--<div class="modal-header_serial">-->
+            <!--<h2>Serial Console</h2>-->
+        <!--</div>-->
+        <!--<div class="modal-body_serial">-->
+            <!--</br>-->
+            <!--<p> Serial Console in development. </br> This page provides a history of your serial commands.</p>-->
+            <!--</br>-->
+            <!--<iframe id="serial_console"-->
+                    <!--width="95%"-->
+                    <!--height="90%"-->
+                    <!--frameborder="0"-->
+                    <!--scrolling="yes"-->
+                    <!--marginheight="0"-->
+                    <!--marginwidth="0"-->
+                    <!--src="../uploads/mySerialConsole.txt">-->
+            <!--</iframe>-->
 
 
-        </div>
-        <div class="modal-footer_serial">
-            <button class="close_modal_serial" onclick="closeSerialConsole()" >Close Serial Console</button>
-        </div>
-    </div>
+        <!--</div>-->
+        <!--<div class="modal-footer_serial">-->
+            <!--<button class="close_modal_serial" onclick="closeSerialConsole()" >Close Serial Console</button>-->
+        <!--</div>-->
+    <!--</div>-->
 
-</div>
+<!--</div>-->
 
 <!--<form class="actuators">-->
     <!--Valve to Actuate:<br>-->

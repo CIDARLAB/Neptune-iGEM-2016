@@ -42,6 +42,7 @@ jspm_packages
 
 public/uploads
 .DS_Store
+/public/ace-builds/
 
 # Ignoring Webstorm Project files
 **/.idea/workspace.xml

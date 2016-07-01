@@ -2,10 +2,14 @@
  * Created by Priya on 22/06/2016.
  */
 
+/*  //Backend integration code (not fully implemented)
 exports.openMMPage = function (req, res)
 {
   res.render('uShroomPage', {title: 'MM Page'});
 };
+
+var lfrFile = "";
+var ucfFile = "";
 
 const spawn = require('child_process').spawn;
 const mm = spawn('java', ['-jar', 'MuShroomMapper.jar', '-l ' + lfrFile, '-u ' + ucfFile]);
@@ -21,6 +25,7 @@ mm.stderr.on('data', (data) => {
 mm.on('close', (code) => {
   console.log(`child process exited with code ${code}`);
 });
+*/
 
 /*  //Notes on what to do for MM integration
  var mmJAR = require('child_process').spawn('java', ['-jar', 'MuShroomMapper.jar', '-l ' + lfrFile, '-u ' + ucfFile]);

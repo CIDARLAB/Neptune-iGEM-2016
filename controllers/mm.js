@@ -2,11 +2,12 @@
  * Created by Priya on 22/06/2016.
  */
 
-/*  //Backend integration code (not fully implemented)
+
 exports.openMMPage = function (req, res)
 {
   res.render('uShroomPage', {title: 'MM Page'});
 };
+/*  //Backend integration code (not fully implemented)
 
 var lfrFile = "";
 var ucfFile = "";

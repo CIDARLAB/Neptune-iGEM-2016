@@ -12,7 +12,7 @@
     <style type="text/css" media="screen">
         #MINT_editor {
             position: absolute;
-            top: 135px;
+            top: 140px;
             right: 1000px;
             bottom: 0;
             left: 0;
@@ -142,18 +142,14 @@
 </div>
 
 <div id="MINT_editor">
-    <br><br><br><br>
-    function foo(items)
-    {
-    var x = "All this is syntax highlighted";
-    return x;
-    }
 </div>
-<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="/ace-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("MINT_editor");
     editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
+    editor.getSession().setMode("ace/mode/mint");
+
 </script>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->

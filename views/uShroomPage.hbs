@@ -8,69 +8,15 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/main_uShroom.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
-    <!--<script>-->
-        <!--UCF_uploaded = false;-->
-        <!--UCF_selected = false;-->
-        <!--verilog_uploaded = false;-->
-        <!--verilog_selected = false;-->
-    <!--</script>-->
-
-    <!--<script>-->
-        <!--function verilogSelected()-->
-        <!--{-->
-            <!--UCF_selected = true;-->
-        <!--}-->
-        <!--function UCFSelected()-->
-        <!--{-->
-            <!--verilog_selected = true;-->
-        <!--}-->
-        <!--function verilogUploaded()-->
-        <!--{-->
-            <!--UCF_uploaded = true;-->
-        <!--}-->
-        <!--function UCFUploaded()-->
-        <!--{-->
-            <!--verilog_uploaded = true;-->
-        <!--}-->
-    <!--</script>-->
-
-    <!--<script>-->
-        <!--function updateIndicators() {-->
-            <!--if (verilog_selected == false) {-->
-                <!--(document.getElementById('red_alert_verilog_selected')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('green_alert_verilog_selected')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-            <!--else {-->
-                <!--(document.getElementById('green_alert_verilog_selected')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('red_alert_verilog_selected')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-            <!--if (UCF_selected == false) {-->
-                <!--(document.getElementById('red_alert_UCF_selected')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('green_alert_UCF_selected')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-            <!--else {-->
-                <!--(document.getElementById('green_alert_UCF_selected')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('red_alert_UCF_selected')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-
-            <!--if (verilog_uploaded == false) {-->
-                <!--(document.getElementById('red_alert_verilog_uploaded')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('green_alert_verilog_uploaded')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-            <!--else {-->
-                <!--(document.getElementById('green_alert_verilog_uploaded')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('red_alert_verilog_uploaded')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-            <!--if (UCF_uploaded == false) {-->
-                <!--(document.getElementById('red_alert_UCF_uploaded')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('green_alert_UCF_uploaded')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-            <!--else {-->
-                <!--(document.getElementById('green_alert_UCF_uploaded')).setAttribute('style', 'visibility:visible');-->
-                <!--(document.getElementById('red_alert_UCF_uploaded')).setAttribute('style', 'visibility:hidden');-->
-            <!--}-->
-        <!--}-->
-    <!--</script>-->
+    <style type="text/css" media="screen">
+        #MINT_editor {
+            position: absolute;
+            top: 135px;
+            right: 1000px;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
 
 </head>
 
@@ -97,9 +43,19 @@
 
         <div>
             <ul class="nav navbar-nav">
-                <li class="nav-item" id="place_and_route"> <a class="nav-link" href="../fluigipage"><img  src="../images/uShroom/PlacenRoute.png"></a></li>
+                <li class="nav-item" id="place_and_route"><img  src="../images/uShroom/PlacenRoute.png"></li>
                 <!--LEAVE IN COMMENTS. SETTINGS PAGE NOT IMPLEMENTED YET IN uSHROOM, BUT WE WILL ADD FUNCTIONALITY HERE LATER-->
                 <!--<li class="nav-item"> <a class="nav-link"> <img onclick="settingsButtonPressed();" src="../images/fluigi/settingsIcon.png"> </a></li>-->
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <button class="nav-item" id="SHANE_1" onclick="SHANE_1()"></button>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <button class="nav-item" id="SHANE_2" onclick="SHANE_2()"></button>
             </ul>
         </div>
 
@@ -115,9 +71,9 @@
           action="/api/verilog"
           method="post">
 
-        <div id="div1"><input id= "input_verilog_file" class="btn btn-default" type="file" name="myVerilog" value="Browse Verilog" /></div>
+        <div id="div1"><input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myVerilog" value="Browse Verilog" /></div>
         <div id="div3">
-            <input id="upload_verilog_file" class= "btn btn-default" type="submit" value="Upload LFR File" name="submit_verilog">
+            <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload LFR File" name="submit_verilog">
             <span id = "statusVerilog"></span>
         </div>
     </form>
@@ -127,73 +83,27 @@
           enctype="multipart/form-data"
           action="/api/ucf"
           method="post">
-        <div id="div2"><input id= "input_UCF_file"  class="btn btn-default" type="file" name="myUCF" value="Browse UCF"/></div>
+        <div id="div2"><input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF"/></div>
         <div id="div4">
-            <input id="upload_UCF_file" class= "btn btn-default" type="submit" value="Upload UCF File" name="submit_UCF">
+            <input id="upload_UCF_file" class= "inputButton_uShroom" type="submit" value="Upload UCF File" name="submit_UCF">
             <span id = "statusUCF"></span>
         </div>
     </form>
-
-
-    <!--&lt;!&ndash;VERILOG SELECTED&ndash;&gt;-->
-    <!--<div id='green_alert_verilog_selected' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
-    <!--</div>-->
-    <!--<div id='red_alert_verilog_selected' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash;VERILOG UPLOADED&ndash;&gt;-->
-    <!--<div id='green_alert_verilog_uploaded' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
-    <!--</div>-->
-    <!--<div id='red_alert_verilog_uploaded' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash;UCF SELECTED&ndash;&gt;-->
-    <!--<div id='green_alert_UCF_selected' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
-    <!--</div>-->
-    <!--<div id='red_alert_UCF_selected' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
-    <!--</div>-->
-
-    <!--&lt;!&ndash;UCF UPLOADED&ndash;&gt;-->
-    <!--<div id='green_alert_UCF_uploaded' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
-    <!--</div>-->
-    <!--<div id='red_alert_UCF_uploaded' style='visibility: hidden'>-->
-        <!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
-    <!--</div>-->
-
 </div>
 
-<!--<div class="mintDisplay">-->
-<!--<iframe id="text_frame"-->
-        <!--width="95%"-->
-        <!--height="90%"-->
-        <!--frameborder="0"-->
-        <!--scrolling="yes"-->
-        <!--marginheight="0"-->
-        <!--marginwidth="0"-->
-        <!--src="../uploads/myMINT.txt">-->
-<!--</iframe>-->
-<!--</div>-->
-
-<!--<div class="mintImage">-->
-<!--<iframe id="image_frame"-->
-        <!--width="95%"-->
-        <!--height="90%"-->
-        <!--frameborder="0"-->
-        <!--scrolling="yes"-->
-        <!--marginheight="0"-->
-        <!--marginwidth="0"-->
-        <!--src="../uploads/myMINT.png">-->
-<!--</iframe>-->
-<!--</div>-->
-
-
+<div id="MINT_editor">
+    function foo(items)
+    {
+    var x = "All this is syntax highlighted";
+    return x;
+    }
+</div>
+<script src="/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var editor = ace.edit("MINT_editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->
@@ -252,4 +162,135 @@
 </script>
 
 </html>
+
+<!--<script>-->
+<!--UCF_uploaded = false;-->
+<!--UCF_selected = false;-->
+<!--verilog_uploaded = false;-->
+<!--verilog_selected = false;-->
+<!--</script>-->
+
+<!--<script>-->
+<!--function verilogSelected()-->
+<!--{-->
+<!--UCF_selected = true;-->
+<!--}-->
+<!--function UCFSelected()-->
+<!--{-->
+<!--verilog_selected = true;-->
+<!--}-->
+<!--function verilogUploaded()-->
+<!--{-->
+<!--UCF_uploaded = true;-->
+<!--}-->
+<!--function UCFUploaded()-->
+<!--{-->
+<!--verilog_uploaded = true;-->
+<!--}-->
+<!--</script>-->
+
+<!--<script>-->
+<!--function updateIndicators() {-->
+<!--if (verilog_selected == false) {-->
+<!--(document.getElementById('red_alert_verilog_selected')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('green_alert_verilog_selected')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--else {-->
+<!--(document.getElementById('green_alert_verilog_selected')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('red_alert_verilog_selected')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--if (UCF_selected == false) {-->
+<!--(document.getElementById('red_alert_UCF_selected')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('green_alert_UCF_selected')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--else {-->
+<!--(document.getElementById('green_alert_UCF_selected')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('red_alert_UCF_selected')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+
+<!--if (verilog_uploaded == false) {-->
+<!--(document.getElementById('red_alert_verilog_uploaded')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('green_alert_verilog_uploaded')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--else {-->
+<!--(document.getElementById('green_alert_verilog_uploaded')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('red_alert_verilog_uploaded')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--if (UCF_uploaded == false) {-->
+<!--(document.getElementById('red_alert_UCF_uploaded')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('green_alert_UCF_uploaded')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--else {-->
+<!--(document.getElementById('green_alert_UCF_uploaded')).setAttribute('style', 'visibility:visible');-->
+<!--(document.getElementById('red_alert_UCF_uploaded')).setAttribute('style', 'visibility:hidden');-->
+<!--}-->
+<!--}-->
+<!--</script>-->
+
+<!--<div class="MINT_editor">-->
+<!--<textarea id="MINT_editor_slot"></textarea>-->
+<!--&lt;!&ndash; Create a simple CodeMirror instance &ndash;&gt;-->
+<!--<script src="../codemirror/lib/codemirror.js"></script>-->
+<!--<link rel="stylesheet" href="../codemirror/lib/codemirror.css">-->
+<!--<script src="../codemirror/mode/javascript/javascript.js"></script>-->
+
+<!--<script>-->
+<!--myCodeMirror = CodeMirror.fromTextArea(document.getElementById("MINT_editor_slot"));-->
+<!--</script>-->
+<!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--&lt;!&ndash;var myCodeMirror = CodeMirror(document.body, {&ndash;&gt;-->
+<!--&lt;!&ndash;value: "function myScript(){return 100;}\n",&ndash;&gt;-->
+<!--&lt;!&ndash;mode:  "javascript"&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+<!--&lt;!&ndash;<script>&ndash;&gt;-->
+<!--&lt;!&ndash;var editor = CodeMirror.fromTextArea(myTextarea, {&ndash;&gt;-->
+<!--&lt;!&ndash;lineNumbers: true&ndash;&gt;-->
+<!--&lt;!&ndash;});&ndash;&gt;-->
+<!--&lt;!&ndash;</script>&ndash;&gt;-->
+<!--</div>-->
+
+<!--<div class="mintImage">-->
+<!--<iframe id="image_frame"-->
+<!--width="95%"-->
+<!--height="90%"-->
+<!--frameborder="0"-->
+<!--scrolling="yes"-->
+<!--marginheight="0"-->
+<!--marginwidth="0"-->
+<!--src="../uploads/myMINT.png">-->
+<!--</iframe>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;VERILOG SELECTED&ndash;&gt;-->
+<!--<div id='green_alert_verilog_selected' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
+<!--</div>-->
+<!--<div id='red_alert_verilog_selected' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;VERILOG UPLOADED&ndash;&gt;-->
+<!--<div id='green_alert_verilog_uploaded' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
+<!--</div>-->
+<!--<div id='red_alert_verilog_uploaded' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;UCF SELECTED&ndash;&gt;-->
+<!--<div id='green_alert_UCF_selected' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
+<!--</div>-->
+<!--<div id='red_alert_UCF_selected' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
+<!--</div>-->
+
+<!--&lt;!&ndash;UCF UPLOADED&ndash;&gt;-->
+<!--<div id='green_alert_UCF_uploaded' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/green_circle.gif" height="24" width="24"/>-->
+<!--</div>-->
+<!--<div id='red_alert_UCF_uploaded' style='visibility: hidden'>-->
+<!--<img src="../images/uShroom/red_circle.svg" height="24" width="30"/>-->
+<!--</div>-->
 

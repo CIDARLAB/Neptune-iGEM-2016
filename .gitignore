@@ -40,4 +40,4 @@ public/uploads
 .DS_Store
 
 .idea/workspace.xml
-
+/public/ace-builds/

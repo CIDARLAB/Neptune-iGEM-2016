@@ -77,7 +77,7 @@ var http = require('http');
 {
   app.get('/' , homeController.openHomePage);
   app.get('/fluigipage', fluigiController.getFluigiPage);
-  //app.get('/uShroomPage',mmController.openMMPage);  //temporarily commented out
+  app.get('/uShroomPage',mmController.openMMPage);
   app.get('/serialcommunication', serialController.openSerialPage);
 
 }

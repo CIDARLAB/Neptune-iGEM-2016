@@ -22,7 +22,7 @@ mm.on('close', (code) => {
   console.log(`child process exited with code ${code}`);
 });
 
-/*
+/*  //Notes on what to do for MM integration
  var mmJAR = require('child_process').spawn('java', ['-jar', 'MuShroomMapper.jar', '-l ' + lfrFile, '-u ' + ucfFile]);
 
 

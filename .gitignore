@@ -1,3 +1,5 @@
+### Node ###
+
 # Logs
 logs
 *.log
@@ -36,8 +38,12 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+### Other ###
+
 public/uploads
 .DS_Store
 
-.idea/workspace.xml
-
+# Ignoring Webstorm Project files
+**/.idea/workspace.xml
+**/idea/tasks.xml
+*.iws

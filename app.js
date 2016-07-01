@@ -77,7 +77,7 @@ var http = require('http');
 {
   app.get('/' , homeController.openHomePage);
   app.get('/fluigipage', fluigiController.getFluigiPage);
-  app.get('/uShroomPage',mmController.openMMPage);
+  //app.get('/uShroomPage',mmController.openMMPage);  //temporarily commented out
   app.get('/serialcommunication', serialController.openSerialPage);
 
 }
@@ -103,7 +103,7 @@ var http = require('http');
 
 /************** muShroomMapper  ************/
 {
-  app.post('/executemm', mmController.executeJAR);
+  //app.post('/executemm', mmController.executeJAR); temporarily commented out
   // Must call /executemm at target button
 }
 

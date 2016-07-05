@@ -116,6 +116,7 @@ $(document).ready(function(){
         var valveIDLabel = template.querySelector('.IDtext');
         valveIDLabel.textContent = (i + 1);
 
+        console.log("found another valve!");
         content.append(template);
 
 

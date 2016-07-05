@@ -139,3 +139,15 @@ ul {
 /*width: 100%;*/
 /*}*/
 
+
+.IDtext {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size:20px;
+    padding-top:5px;
+    padding-left:14px;
+}
+.valve_color {
+    position: absolute;
+}

@@ -73,7 +73,13 @@ $(document).ready(function () {
                     //  Update number of Pumps for settings page
                     setNumberOfPumps_JSON();
 
-                    //console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
+                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[0]);
+                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
+                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[2]);
+                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[3]);
+                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[4]);
+                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[5]);
+
               
                 });
 

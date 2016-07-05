@@ -129,6 +129,7 @@ function setNumberOfPumps_JSON() {
     var DataToLoad = set_pumpData_newNum;
     localStorage.clear_toggle = true;
     localStorage.unsavedData = JSON.stringify(DataToLoad);
+    //localStorage.pumpData = JSON.stringify(DataToLoad);
 }
 
 

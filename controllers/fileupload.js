@@ -1,13 +1,16 @@
-/**
- * Created by Priya on 20/06/2016.
- */
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------  Required  -------------------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 var cmd = require('node-cmd');
 var exports = module.exports;
 var multer = require('multer');
 var express = require('express');
 var fs = require('fs');
 
-// FILE UPLOAD FOR JSON ---------------------------------------------------------------------------------
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------FILE UPLOAD FOR JSON ----------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.sendJSON = function(req, res) {
 
     var storage = multer.diskStorage({
@@ -45,7 +48,9 @@ exports.sendJSON = function(req, res) {
 };
 
 
-    // FILE UPLOAD FOR SVG ---------------------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------FILE UPLOAD FOR SVG -----------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.sendSVG = function(req, res) {
     var storage2 =   multer.diskStorage({
         destination: function (req, file, callback) {
@@ -81,28 +86,23 @@ exports.sendSVG = function(req, res) {
     };
 
 
-    // FILE UPLOAD FOR VERILOG ---------------------------------------------------------------------------------
-exports.sendVERILOG = function(req, res) {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------FILE UPLOAD FOR LFR -----------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+exports.sendLFR = function(req, res) {
     var storage_VERILOG =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.v');
+
+            callback(null, file.fieldname + '.txt');
         }
     });
 
     var upload_VERILOG = multer({
-        storage : storage_VERILOG,
-        fileFilter: function (req, file, cb) {
-            if (file.mimetype !== 'text/x-verilog') {
-                req.fileValidationError = 'Wrong Filetype!';
-                console.log('My filetype: '+file.mimetype);
-                return cb(null, false, new Error('goes wrong on the mimetype'));
-            }
-            cb(null, true);
-        }
-    }).single('myVerilog');
+        storage : storage_VERILOG
+        }).single('myLFR');
 
         upload_VERILOG(req,res,function(err) {
             if(err) {
@@ -112,19 +112,22 @@ exports.sendVERILOG = function(req, res) {
                 return res.end(req.fileValidationError);
             }
             res.end("Verilog File is uploaded");
-            console.log("My Verilog: "+res);
+            console.log("My Verilog: " + res);
         });
     };
 
-
-    // FILE UPLOAD FOR UCF ---------------------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------FILE UPLOAD FOR UCF -----------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.sendUCF = function(req, res) {
     var storage_UCF =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.ucf');
+
+            callback(null, file.fieldname + '.json');
+
         }
     });
 
@@ -149,10 +152,8 @@ exports.sendUCF = function(req, res) {
             }
             res.end("UCF File is uploaded");
             console.log("My UCF: " + res);
-
         });
     };
-
 
 // FILE UPLOAD FOR MINT ---------------------------------------------------------------------------------
 exports.sendMINT = function(req, res) {
@@ -190,12 +191,9 @@ exports.sendMINT = function(req, res) {
     });
 };
 
-
-
-
 // SEND TO FLUIGI AND MUSHROOM PAGES --------------------------------------------------------------------------
 
-exports.sendToUploads= function(req, res) {
+exports.sendToUploads= function(req , res) {
         res.sendFile(__dirname + "./public/uploads");
 };
 

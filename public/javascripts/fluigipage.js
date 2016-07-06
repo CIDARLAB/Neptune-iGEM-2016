@@ -459,7 +459,6 @@ function paddy(n, p, c)
     return (pad + n).slice(-pad.length);
 }
 
-
 //Navbar
 $(function(){
 
@@ -475,3 +474,4 @@ $(function(){
         $('.mini-submenu').hide();
     })
 })
+

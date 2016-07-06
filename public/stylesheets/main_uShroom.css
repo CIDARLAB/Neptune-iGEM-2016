@@ -11,6 +11,15 @@ body {
     background-color: #34495e;
 }
 
+#MINT_editor
+{
+    position: absolute;
+    top: 140px;
+    right: 1000px;
+    bottom: 0;
+    left: 0;
+}
+
 /*Buttons*/
 .centered {
     position: fixed;
@@ -169,16 +178,16 @@ ul {
     padding-left: 100px;
 }
 
+.theme_select {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+}
+.syntax_select {
+    font-size: 16px;
+    position: relative;
+    display: inline-block;
+}
 
-/*iframe{*/
-/*border:none;*/
-/*width:400px;*/
-/*display:block;*/
-/*}*/
 
-/*#valve-container {*/
-/*top: 200px;*/
-/*left: 0px;*/
-/*position: absolute;*/
-/*width: 100%;*/
-/*}*/
+

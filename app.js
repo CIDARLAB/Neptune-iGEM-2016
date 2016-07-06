@@ -97,15 +97,11 @@ var http = require('http');
   app.get('/uShroomPage', fileController.sendToUploads);
   app.post('/api/json', fileController.sendJSON);
   app.post('/api/svg', fileController.sendSVG);
-  app.post('/api/verilog', fileController.sendVERILOG);
+  app.post('/api/LFR', fileController.sendLFR);
   app.post('/api/ucf', fileController.sendUCF);
+
   app.post('/api/mint', fileController.sendMINT);
 }
 
-/************** muShroomMapper  ************/
-{
-  //app.post('/executemm', mmController.executeJAR); temporarily commented out
-  // Must call /executemm at target button
-}
 
 

@@ -1,10 +1,3 @@
-
-
-//Upload AJAX Forms
-
-// Initialize localStorage values
-
-
 $(document).ready(function () {
 
     $('#uploadForm').submit(function () {
@@ -21,20 +14,18 @@ $(document).ready(function () {
                 $("#status").empty().text();
                 var JSONbutton = document.getElementById("inputfile");
                 JSONbutton.style.backgroundColor = "#2ecc71";
-
-
+                
                 // Json successfully uploaded
                 var fileOfChoice = "../uploads/myjson.json";
                 $.getJSON(fileOfChoice, function (json) {
 
                     // Use Json as a string
-                    jsonString = JSON.stringify(json);
+                    var jsonString = JSON.stringify(json);
                     var controlOnly;
 
                     // find size of entire SVG from JSON
                     localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
                     localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
-
 
                     // figure out indices of flow and control and cut json_string to substring to only contain control
                     flowIndex = jsonString.search('flow');
@@ -55,7 +46,6 @@ $(document).ready(function () {
                     var portRadius1 = [];
                     var portRadius2 = [];
 
-
                     while ((myArray = Re.exec(controlOnly)) !== null) {
                         portX.push(myArray[1]);
                         portY.push(myArray[2]);
@@ -63,8 +53,7 @@ $(document).ready(function () {
                         portRadius2.push(myArray[4]);
                         portArray.push(myArray.index);
                     }
-
-
+                    
                     // Store json variables to localStorage in form of JSON object...
                     localStorage.portXcoords = JSON.stringify(portX);
                     localStorage.portYcoords = JSON.stringify(portY);
@@ -72,17 +61,14 @@ $(document).ready(function () {
                     localStorage.portRadius2vals = JSON.stringify(portRadius2);
                     //  Update number of Pumps for settings page
                     setNumberOfPumps_JSON();
-
+                    
                     console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[0]);
                     console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
                     console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[2]);
                     console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[3]);
                     console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[4]);
                     console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[5]);
-
-              
                 });
-
             }
         });
 
@@ -104,8 +90,6 @@ $(document).ready(function () {
                 SVGbutton.style.backgroundColor = "#2ecc71";
                 // refresh the page so that svg loads
                 location.reload();
-
-
             }
         });
         return false;

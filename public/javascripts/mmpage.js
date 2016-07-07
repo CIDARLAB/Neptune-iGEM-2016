@@ -14,15 +14,22 @@ function closeMintEditorModal()
 
 function saveEditorChanges()
 {
-    var THEME =  (document.getElementById('theme_selectID')).value;
-    var SYNTAX = (document.getElementById('syntax_selectID')).value;
+    localStorage.THEME =  (document.getElementById('theme_selectID')).value;
+    localStorage.SYNTAX = (document.getElementById('syntax_selectID')).value;
+    localStorage.FONT_SIZE =  (document.getElementById('theme_selectID')).value;
+    localStorage.FONT_FAMILY = (document.getElementById('syntax_selectID')).value;
     var editor = ace.edit("MINT_editor");
 
-    var theme_str = "ace/theme/" + THEME;
-    var mode_str = "ace/mode/" + SYNTAX;
+    var theme_str = "ace/theme/" + localStorage.THEME;
+    var mode_str = "ace/mode/" + localStorage.SYNTAX;
+
 
     editor.setTheme(theme_str);
     editor.getSession().setMode(mode_str);
+    editor.setOptions({
+        fontFamily: localStorage.FONT_FAMILY,
+        fontSize: localStorage.FONT_SIZE
+    });
 }
 
 function saveMintEditorSession()
@@ -39,12 +46,13 @@ function saveMintEditorSession()
 
 function refreshMintEditorSession()
 {
+    editor.session.setValue('');
     for (var i = 0; i < localStorage.MintEditorFileSize; i++)
     {
         editor.session.replace({
             start: {row: i, column: 0},
             end: {row: i, column: Number.MAX_VALUE}
-        }, JSON.parse(localStorage.MINT_EDITOR_SESSION)[i])
+        }, JSON.parse(localStorage.MINT_EDITOR_SESSION)[i] + '\n')
     }
 }
 
@@ -56,7 +64,9 @@ function loadMintFromLocal()
 function saveUploadedLFR()
 {
     var lines = (localStorage.LFR_STRING).split("\n");
-    localStorage.LFR_STRING_ARRAY = lines;
-    
+    localStorage.LFR_STRING_ARRAY = JSON.stringify(lines);
+    localStorage.MINT_EDITOR_SESSION = JSON.stringify(lines);
+    localStorage.MintEditorFileSize = lines.length;
+    refreshMintEditorSession();
 }
 

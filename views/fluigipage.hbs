@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <script type="text/javascript" src="../javascripts/serialcommunication.js"></script>
 
 
@@ -56,6 +57,7 @@
                 <li class="nav-item"><a class="nav-link"><img onclick= "window.open('../serialcommunication')"  src="../images/fluigi/connectedIcon.png"></a></li>
                 <li class="nav-item"><a class="nav-link"><img onclick="openDebugger()"  src="../images/fluigi/buildIcon.png" id="myDebuggerBtn"  ></a></li>
                 <!--<li class="nav-item"><a class="nav-link"><img onclick="openSerialConsole()" src="../images/fluigi/consoleIcon.png" id="myConsoleBtn" ></a></li>-->
+                 <!--<li class="nav-item" style="padding-top: 15px;"><a class="btn btn-default" role="button" data-toggle="modal" data-target="#serialConsoleModal"> Open Serial Console</a></li>-->
             </ul>
         </div>
     </div>
@@ -63,13 +65,38 @@
 
 
 <!--Draw Canvas (resize to page width/height in js)-->
+
 <div id="container">
+    <div class="col-sm-6 col-md-3 sidebar" style="padding-top: 150px; padding-left: 10px;">
+        <div class="mini-submenu">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </div>
+        <div class="list-group">
+        <span href="#" class="list-group-item active">
+            Serial Commands Console
+            <span class="pull-right" id="slide-submenu">
+                <i class="fa fa-times"></i>
+            </span>
+        </span>
+            <form name='form1'>
+                <textarea class="form-control" style="resize:vertical;" rows="5" cols="10" name='area'></textarea>
+            </form>
+        </div>
+    </div>
+
+
+
     <canvas id="canvasID" ></canvas>
     <!--JS to draw SVG in canvas-->
     <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
     <!--This is where valves go!-->
     <div id="content"></div>
+
 </div>
+
+
 
 
 <!--Upload Bar-->
@@ -108,6 +135,8 @@
     <div>
         <label> *Refresh Page to load buttons</label>
     </div>
+
+
 </div>
 
 <div id="debugger_modal" class="modal" style="width: 500px; padding-left: 10px; padding-top: 150px;">
@@ -137,6 +166,18 @@
     </div>
 
 </div>
+
+
+<!--<div class="list-group">-->
+        <!--<h4 style="color: white;">Serial Commands Console</h4>-->
+        <!--<form name='form1'>-->
+            <!--<textarea class="form-control" rows="5" cols="10" name='area'></textarea>-->
+        <!--</form>-->
+<!--</div>-->
+
+
+
+
 
 <!--<div id="serialConsole_modal" class="modal_serial">-->
 

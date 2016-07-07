@@ -278,18 +278,19 @@ function mediateMotorPosition(event)
     var command_info = stringgggg.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
-    writeToSerialConsole(command_info);
-    $.ajax(
-        {   url: "/arduinoGetCode", type: 'POST', async: true,
-            data:
-            {
-                commandData: command
-            },
-            success: function(response){
-            },
-            error: function(response){
-            }
-        });
+    localStorage.setItem('myCommand', command);
+    document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
+    // $.ajax(
+    //     {   url: "/arduinoGetCode", type: 'POST', async: true,
+    //         data:
+    //         {
+    //             commandData: command
+    //         },
+    //         success: function(response){
+    //         },
+    //         error: function(response){
+    //         }
+    //     });
 }
 
 function mediateValveState_fromDebugger(event)
@@ -399,18 +400,19 @@ function sendCommand()
     toastr.info(command_info);
     writeToSerialConsole(command_info);
     console.log(command);
-    // localStorage.command= command;
-    $.ajax(
-        {   url: "/arduinoGetCode", type: 'POST', async: true,
-            data:
-            {
-                commandData: command
-            },
-            success: function(response){
-            },
-            error: function(response){
-            }
-        });
+    localStorage.setItem('myCommand', command);
+    document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
+    // $.ajax(
+    //     {   url: "/arduinoGetCode", type: 'POST', async: true,
+    //         data:
+    //         {
+    //             commandData: command
+    //         },
+    //         success: function(response){
+    //         },
+    //         error: function(response){
+    //         }
+    //     });
 
 }
 
@@ -456,3 +458,20 @@ function paddy(n, p, c)
     var pad = new Array(1 + p).join(pad_char);
     return (pad + n).slice(-pad.length);
 }
+
+
+//Navbar
+$(function(){
+
+    $('#slide-submenu').on('click',function() {
+        $(this).closest('.list-group').fadeOut('slide',function(){
+            $('.mini-submenu').fadeIn();
+        });
+
+    });
+
+    $('.mini-submenu').on('click',function(){
+        $(this).next('.list-group').toggle('slide');
+        $('.mini-submenu').hide();
+    })
+})

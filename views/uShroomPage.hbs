@@ -57,7 +57,7 @@
                 <li class="nav-item"><a class="nav-link" onclick="openMintEditorModal()"> <img src="../images/uShroom/editorSettings.svg"> </a> </li>
                 <li class="nav-item"><a class="nav-link" onclick="saveMintEditorSession()"> <img src="../images/uShroom/saveEditorSession.svg"> </a> </li>
                 <li class="nav-item"><a class="nav-link" onclick="refreshMintEditorSession()"> <img src="../images/uShroom/refreshEditorSession.svg"> </a> </li>
-                <li class="nav-item"><a class="nav-link" onclick="saveUploadedLFR()"> <img src="../images/uShroom/loadMintFromLocal.svg"> </a> </li>
+                <li class="nav-item"><a class="nav-link" onclick="saveUploadedLFR()"> <img src="../images/uShroom/saveUploadedLFR.svg"> </a> </li>
                 <!--<li class="nav-item" id="place_and_route"><img  src="../images/uShroom/PlacenRoute.png"></li>-->
                 <!--<button class="nav-item" id="SHANE_1" onclick="SHANE_1()"></button>-->
                 <!--<button class="nav-item" id="SHANE_2" onclick="SHANE_2()"></button>-->
@@ -186,6 +186,7 @@
 
                 Choose a theme:<br>
                 <select class = "theme_select" id = "theme_selectID">
+                    <option> monokai </option>
                     <option> eclipse </option>
                     <option> github </option>
                     <option> clouds </option>
@@ -199,6 +200,24 @@
                     <option> javascript </option>
                     <option> LFR </option>
                     <option> UCF </option>
+                </select>
+                <br>
+                Font Family:
+                <select class="font_select" id="font_selectID">
+                    <option> mint </option>
+                    <option> javascript </option>
+                    <option> LFR </option>
+                    <option> UCF </option>
+                </select>
+                <br>
+                Font Size:
+                <select class="fontSize_select" id="fontSize_selectID">
+                    <option> 6 </option>
+                    <option> 8 </option>
+                    <option> 10 </option>
+                    <option> 12 </option>
+                    <option> 14 </option>
+                    <option> 16 </option>
                 </select>
                 <br>
                 <br>
@@ -220,7 +239,7 @@
 
 
 <script src="/ace-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script> var editor = ace.edit("MINT_editor"); editor.setTheme("ace/theme/monokai");editor.getSession().setMode("ace/mode/mint");
+<script> var editor = ace.edit("MINT_editor"); editor.setTheme("ace/theme/" + localStorage.EditorSettings.THEME);editor.getSession().setMode("ace/mode/" + localStorage.EditorSettings.SYNTAX);
 </script>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->

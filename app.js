@@ -99,6 +99,7 @@ var http = require('http');
   app.post('/api/svg', fileController.sendSVG);
   app.post('/api/verilog', fileController.sendVERILOG);
   app.post('/api/ucf', fileController.sendUCF);
+  app.post('/api/mint', fileController.sendMINT);
 }
 
 /************** muShroomMapper  ************/

@@ -88,7 +88,7 @@ exports.sendVERILOG = function(req, res) {
             callback(null, './public/uploads');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.json');
+            callback(null, file.fieldname + '.v');
         }
     });
 
@@ -124,7 +124,7 @@ exports.sendUCF = function(req, res) {
             callback(null, './public/uploads');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.svg');
+            callback(null, file.fieldname + '.ucf');
         }
     });
 
@@ -153,7 +153,47 @@ exports.sendUCF = function(req, res) {
         });
     };
 
-    // SEND TO FLUIGI AND MUSHROOM PAGES --------------------------------------------------------------------------
+
+// FILE UPLOAD FOR MINT ---------------------------------------------------------------------------------
+exports.sendMINT = function(req, res) {
+    var storage_MINT =   multer.diskStorage({
+        destination: function (req, file, callback) {
+            callback(null, './public/uploads');
+        },
+        filename: function (req, file, callback) {
+            callback(null, file.fieldname + '.uf');
+        }
+    });
+
+    var upload_UCF = multer({
+        storage: storage_MINT
+        // fileFilter: function (req, file, cb) {
+        //     if (file.mimetype !== 'image/svg+xml') {
+        //         req.fileValidationError = 'Wrong Filetype!';
+        //         console.log('My filetype: ' + file.mimetype);
+        //         return cb(null, false, new Error('goes wrong on the mimetype'));
+        //     }
+        //     cb(null, true);
+        // }
+    }).single('myMint');
+
+    upload_UCF(req, res, function (err) {
+        if (err) {
+            return res.end("Error uploading mint file.");
+        }
+        if (req.fileValidationError) {
+            return res.end(req.fileValidationError);
+        }
+        res.end("MINT File is uploaded");
+        console.log("My MINT: " + res);
+
+    });
+};
+
+
+
+
+// SEND TO FLUIGI AND MUSHROOM PAGES --------------------------------------------------------------------------
 
 exports.sendToUploads= function(req, res) {
         res.sendFile(__dirname + "./public/uploads");

@@ -10,6 +10,7 @@
 {
     $(document).ready(function () {
 
+
         $('#uploadLFR').submit(function () {
 
             $(this).ajaxSubmit({
@@ -21,12 +22,13 @@
 
                     $.get('../uploads/Design/myLFR.txt',function(data)
                     {
-                        localStorage.LFR_STRING = data;
+                        localStorage.LFR_STRING = JSON.stringify(data.split("\n"));
                     });
                 }
             });
             return false;
         });
+
         $('#uploadUCF').submit(function () {
             //$("#statusUCF").empty().text("File is uploading...");
 
@@ -38,12 +40,13 @@
                 success: function (response) {
                     $.get('../uploads/Design/myUCF.json',function(data)
                     {
-                        localStorage.UCF_STRING = data;
+                        localStorage.UCF_STRING = JSON.stringify(data.split("\n"));
                     });
                 }
             });
             return false;
         });
+
         $('#uploadMINT').submit(function () {
 
             $(this).ajaxSubmit({
@@ -55,13 +58,13 @@
 
                     $.get('../uploads/Design/myMINT.txt',function(data)
                     {
-                        localStorage.MINT_STRING = data;
+                        localStorage.MINT_STRING = JSON.stringify(data.split("\n"));
                     });
                 }
             });
             return false;
         });
+
     });
-    
 }
 

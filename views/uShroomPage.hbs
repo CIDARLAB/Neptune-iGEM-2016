@@ -70,7 +70,7 @@
 
 </nav>
 
-<!--Upload Bar-->
+<!-- UPLOAD BAR: UPLOAD LFR, UCF, MINT FILES -->
 <div id= "upload_bar" class="uploadbar" >
 
     <form id="uploadLFR"
@@ -78,6 +78,7 @@
           action="/api/LFR"
           method="post">
 
+<<<<<<< HEAD
         <div id="div1"><input id= "input_verilog_file" class="btn btn-default" type="file" name="myVerilog" value="Browse Verilog" /></div>
 
         <div id="div1">
@@ -87,75 +88,99 @@
         <div id="div3">
             <input id="upload_verilog_file" class= "btn btn-default" type="submit" value="Upload LFR File" name="submit_verilog">
 
+=======
+        <div id="div_LFR1">
+            <input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myLFR" value="Browse LFR" />
+        </div>
+        <div id="div_LFR2">
+            <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload LFR File" name="submit_verilog">
+            <span id = "statusVerilog"></span>
+>>>>>>> File Upload System Refactored
         </div>
 
     </form>
 
     <form id="uploadUCF"
           enctype="multipart/form-data"
-          action="/api/ucf"
+          action="/api/UCF"
           method="post">
 
-        <div id="div2"><input id= "input_UCF_file"  class="btn btn-default" type="file" name="myUCF" value="Browse UCF"/></div>
-
-        <div id="div2">
-            <input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF"/>
+        <div id="div_UCF1">
+            <input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF" />
         </div>
-
-        <div id="div4">
-            <input id="upload_UCF_file" class= "btn btn-default" type="submit" value="Upload UCF File" name="submit_UCF">
+        <div id="div_UCF2">
+            <input id="upload_UCF_file" class= "inputButton_uShroom" type="submit" value="Upload UCF File" name="submit_UCF">
+            <span id = "statusUCF"></span>
 
         </div>
 
     </form>
 
-<div id="div7">
-    <h3 style="margin-top: 3px;"> OR </h3>
-    </div>
+<!--<<<<<<< HEAD-->
+<!--<div id="div7">-->
+    <!--<h3 style="margin-top: 3px;"> OR </h3>-->
+    <!--</div>-->
 
-    <form id="uploadMint"
+    <!--<form id="uploadMint"-->
+          <!--enctype="multipart/form-data"-->
+          <!--action="/api/mint"-->
+          <!--method="post">-->
+
+        <!--<div id="div5"><input id= "input_mint_file" class="btn btn-default" type="file" name="myMint" value="Browse Mint" /></div>-->
+        <!--<div id="div6">-->
+            <!--<input id="upload_mint_file" class= "btn btn-default" type="submit" value="Upload MINT File" name="submit_MINT">-->
+
+        <!--</div>-->
+    <!--</form>-->
+
+<!--</div>-->
+<!--<div class="uploadbar2">-->
+    <!--<ul class="nav navbar-nav" style="margin-left: 35%;">-->
+        <!--<a class="nav-link">-->
+            <!--<a href="download/../uploads/myMint.uf" download="mfMINT.uf">-->
+                <!--<button type="button" class="btn btn-default btn-sm">-->
+                    <!--<span class="glyphicon glyphicon-download"></span> Download MINT-->
+                <!--</button>-->
+            <!--</a>-->
+        <!--</a>-->
+    <!--</ul>-->
+    <!--<div>-->
+        <!--<ul class="nav navbar-nav" style="margin-left: 5px;">-->
+            <!--<a class="nav-link">-->
+                <!--<a href="download/../uploads/myjson.json" download="mfJSON.json">-->
+                <!--<button type="button" class="btn btn-default btn-sm">-->
+                    <!--<span class="glyphicon glyphicon-download"></span> Download JSON-->
+                <!--</button>-->
+                <!--</a>-->
+            <!--</a>-->
+        <!--</ul>-->
+        <!--<ul class="nav navbar-nav" style="margin-left: 5px;">-->
+            <!--<a class="nav-link">-->
+                <!--<a href="download/../uploads/mysvg.svg" download="mfSVG.svg">-->
+                    <!--<button type="button" class="btn btn-default btn-sm">-->
+                        <!--<span class="glyphicon glyphicon-download"></span> Download SVG-->
+                    <!--</button>-->
+                <!--</a>-->
+            <!--</a>-->
+        <!--</ul>-->
+    <!--</div>-->
+<!--=======-->
+
+    <form id="uploadMINT"
           enctype="multipart/form-data"
-          action="/api/mint"
+          action="/api/MINT"
           method="post">
 
-        <div id="div5"><input id= "input_mint_file" class="btn btn-default" type="file" name="myMint" value="Browse Mint" /></div>
-        <div id="div6">
-            <input id="upload_mint_file" class= "btn btn-default" type="submit" value="Upload MINT File" name="submit_MINT">
-
+        <div id="div_MINT1">
+            <input id= "input_MINT_file"  class="inputButton_uShroom" type="file" name="myMINT" value="Browse MINT" />
         </div>
+        <div id="div_MINT2">
+            <input id="upload_MINT_file" class= "inputButton_uShroom" type="submit" value="Upload MINT File" name="submit_MINT">
+            <span id = "statusMINT"></span>
+        </div>
+
     </form>
 
-</div>
-<div class="uploadbar2">
-    <ul class="nav navbar-nav" style="margin-left: 35%;">
-        <a class="nav-link">
-            <a href="download/../uploads/myMint.uf" download="mfMINT.uf">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-download"></span> Download MINT
-                </button>
-            </a>
-        </a>
-    </ul>
-    <div>
-        <ul class="nav navbar-nav" style="margin-left: 5px;">
-            <a class="nav-link">
-                <a href="download/../uploads/myjson.json" download="mfJSON.json">
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-download"></span> Download JSON
-                </button>
-                </a>
-            </a>
-        </ul>
-        <ul class="nav navbar-nav" style="margin-left: 5px;">
-            <a class="nav-link">
-                <a href="download/../uploads/mysvg.svg" download="mfSVG.svg">
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-download"></span> Download SVG
-                    </button>
-                </a>
-            </a>
-        </ul>
-    </div>
 </div>
 
 <div id="MINT_editor">

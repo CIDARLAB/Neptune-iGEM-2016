@@ -10,7 +10,7 @@
 {
     $(document).ready(function () {
 
-        $('#uploadLFR').submit(function () {
+        $('#uploadLFR_start').submit(function () {
 
             $(this).ajaxSubmit({
 
@@ -19,49 +19,13 @@
                 },
                 success: function (response) {
 
-                    $.get('../uploads/Design/myLFR.txt',function(data)
+                    $.get('../uploads/Specify/myLFR_start.txt',function(data)
                     {
-                        localStorage.LFR_STRING = data;
-                    });
-                }
-            });
-            return false;
-        });
-        $('#uploadUCF').submit(function () {
-            //$("#statusUCF").empty().text("File is uploading...");
-
-            $(this).ajaxSubmit({
-
-                error: function (xhr) {
-                    status('Error: ' + xhr.status);
-                },
-                success: function (response) {
-                    $.get('../uploads/Design/myUCF.json',function(data)
-                    {
-                        localStorage.UCF_STRING = data;
-                    });
-                }
-            });
-            return false;
-        });
-        $('#uploadMINT').submit(function () {
-
-            $(this).ajaxSubmit({
-
-                error: function (xhr) {
-                    status('Error: ' + xhr.status);
-                },
-                success: function (response) {
-
-                    $.get('../uploads/Design/myMINT.txt',function(data)
-                    {
-                        localStorage.MINT_STRING = data;
+                        localStorage.LFR_start_STRING = data;
                     });
                 }
             });
             return false;
         });
     });
-    
 }
-

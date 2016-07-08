@@ -139,26 +139,41 @@ ul {
     position: relative;
 }
 
-#div1 {
+#div_LFR1 {
     float: left;
     display: inline-block;
     padding-left: 20px;
 }
 
-#div2 {
+#div_LFR2 {
     display: inline-block;
     float: left;
     padding-left: 90px;
+
 }
 
-#div3 {
+#div_UCF1 {
     float: left;
     display: inline-block;
+    padding-left: 60px;
 }
 
-#div4 {
+#div_UCF2 {
     display: inline-block;
     float: left;
+    padding-left: 15px;
+}
+
+#div_MINT1 {
+    display: inline-block;
+    float: left;
+    padding-left: 60px;
+}
+
+#div_MINT2 {
+    display: inline-block;
+    float: left;
+    padding-left: 15px;
 }
 
 #div5 {

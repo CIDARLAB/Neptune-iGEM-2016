@@ -21,7 +21,7 @@
 
                     $.get('../uploads/Specify/myLFR_start.txt',function(data)
                     {
-                        localStorage.LFR_start_STRING = data;
+                        localStorage.LFR_start_STRING = JSON.stringify(data.split("\n"));
                     });
                 }
             });

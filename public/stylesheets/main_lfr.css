@@ -1,0 +1,130 @@
+#LFR_start_editor
+{
+    position: absolute;
+    top: 140px;
+    right: 1000px;
+    bottom: 0;
+    left: 0;
+}
+
+
+/*HTML and Body*/
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #34495e;
+}
+
+
+body {
+    /*background-color: #34495e;*/
+}
+
+canvas {
+    margin-top: 220px;
+}
+
+
+.clear_button{
+    float: right;
+}
+
+/*Divisions*/
+#container {
+    position: relative;
+}
+
+#div1 {
+    float: left;
+    display: inline-block;
+    padding-left: 50px;
+}
+
+#div2 {
+    display: inline-block;
+    float: left;
+    padding-left: 300px;
+}
+
+#div3 {
+    float: left;
+    display: inline-block;
+}
+
+#div4 {
+    display: inline-block;
+    float: left;
+}
+
+.topBar {
+    padding-left: 0px;
+    background: white;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+}
+
+.actuators {
+    position: fixed;
+    top: 150px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+    border: inset;
+    padding-left: 30px;
+    background-color: lightskyblue;
+}
+
+.fluigiPage {
+    /*background-color: #34495e;*/
+}
+.inputButton {
+    outline-style: none;
+    height: 25px;
+    border: 2px solid dodgerblue;
+    border-radius: 4px;
+    background: white;
+}
+
+.myBtn {
+
+    vertical-align: center;
+    horizontal-align: middle;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 90px;
+    background-color: #3498db;
+    border-color: #3498db;
+    overflow: hidden;
+
+}
+
+.serialBox {
+    border-color: white;
+    border: double;
+
+}
+
+ul {
+    list-style-type: none;
+}
+
+.uploadbar {
+    position:absolute;
+    top: 90px;
+    width: 100%;
+    padding-left: 100px;
+    padding-top: 10px;
+    height: 50px;
+    background-color: white;
+
+}
+
+#container {
+    position: relative;
+}

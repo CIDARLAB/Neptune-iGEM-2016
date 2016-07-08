@@ -58,7 +58,7 @@ $(document).ready(function(){
     // load svg to canvas and reformat
     var svgGraph = document.createElement("img");
 
-    svgGraph.src = "../uploads/mysvg.svg";
+    svgGraph.src = "../uploads/Build_Verify/mySVG.svg";
 
     svgGraph.addEventListener("load", function () {
 

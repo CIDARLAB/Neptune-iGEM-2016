@@ -3,24 +3,46 @@
 <html lang="en" class="uShroomPage">
 
 <head>
-    <title> {{title}} </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+    <title> {{title}} </title>
+
+    <!-- CDN DEPENDENCIES-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <!--must include script to onclick button mmexec-->
 
+    <!-- JAVASCRIPT DEPENDENCIES -->
     <script type="text/javascript" src="../javascripts/mmpage.js"></script>
-    <script type="text/javascript" src="../javascripts/initiate_data_editor.js"></script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+
+    <!-- CSS DEPENDENCIES -->
     <link rel="stylesheet" type="text/css" href="../stylesheets/main_uShroom.css" />
 
 </head>
 
 <body>
 
-<!--uShroom Navigation Bar-->
-<nav class="navbar navbar-fixed-top">
-    <div class="container-fluid">
+    <!--uShroom Navigation Bar-->
+    <nav class="navbar navbar-fixed-top">
+        <div class="container-fluid">
 
+            <div class="navbar-header">
+                <a class="navbar-brand" >
+                    <img alt="Brand" src="../images/uShroom/MINT_Logo.png" height="52" width="126">
+                </a>
+            </div>
+
+            <div>
+                <ul class="nav navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/homeButtonTransparent.png"> </a> </li>
+                    <li class="nav-item"><a class="nav-link" onclick="openMintEditorModal()"> <img src="../images/uShroom/editorSettings.svg"> </a> </li>
+                    <li class="nav-item"><a class="nav-link" onclick="pushFileToEditor(MINT_editor,'MINT')"> <img src="../images/editor_control_icons/push_file.svg"> </a> </li>
+                    <li class="nav-item"><a class="nav-link" onclick="refreshEditor(JSON.parse(localStorage.MINT_STRING),MINT_editor)"> <img src="../images/editor_control_icons/reload_file.svg"> </a> </li>
+                    <li class="nav-item"><a class="nav-link" onclick="saveEditorContent(MINT_editor,'MINT')"> <img src="../images/editor_control_icons/save_file.svg"> </a> </li>
+                </ul>
+            </div>
+
+<<<<<<< HEAD
         <div class="navbar-header">
             <a class="navbar-brand" >
                 <img alt="Brand" src="../images/uShroom/MINT_Logo.png" height="52" width="126">
@@ -64,287 +86,145 @@
                 <!--<button id="editor_settings_btn" onclick="openMintEditorModal();"></button>-->
 
             </ul>
-        </div>
-
-    </div>
-
-</nav>
-
-<!-- UPLOAD BAR: UPLOAD LFR, UCF, MINT FILES -->
-<div id= "upload_bar" class="uploadbar" >
-
-    <form id="uploadLFR"
-          enctype="multipart/form-data"
-          action="/api/LFR"
-          method="post">
-
-<<<<<<< HEAD
-        <div id="div1"><input id= "input_verilog_file" class="btn btn-default" type="file" name="myVerilog" value="Browse Verilog" /></div>
-
-        <div id="div1">
-            <input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myVerilog" value="Browse Verilog" />
-        </div>
-
-        <div id="div3">
-            <input id="upload_verilog_file" class= "btn btn-default" type="submit" value="Upload LFR File" name="submit_verilog">
-
 =======
-        <div id="div_LFR1">
-            <input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myLFR" value="Browse LFR" />
-        </div>
-        <div id="div_LFR2">
-            <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload LFR File" name="submit_verilog">
-            <span id = "statusVerilog"></span>
->>>>>>> File Upload System Refactored
+>>>>>>> Working File System!
         </div>
 
-    </form>
+    </nav>
 
-    <form id="uploadUCF"
-          enctype="multipart/form-data"
-          action="/api/UCF"
-          method="post">
+    <!-- UPLOAD BAR: UPLOAD LFR, UCF, MINT FILES -->
+    <div id= "upload_bar" class="uploadbar" >
 
-        <div id="div_UCF1">
-            <input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF" />
-        </div>
-        <div id="div_UCF2">
-            <input id="upload_UCF_file" class= "inputButton_uShroom" type="submit" value="Upload UCF File" name="submit_UCF">
-            <span id = "statusUCF"></span>
+        <form id="uploadLFR"
+              enctype="multipart/form-data"
+              action="/api/LFR"
+              method="post">
 
-        </div>
+            <div id="div_LFR1">
+                <input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myLFR" value="Browse LFR" />
+            </div>
+            <div id="div_LFR2">
+                <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload LFR File" name="submit_verilog">
+                <span id = "statusVerilog"></span>
+            </div>
 
-    </form>
+        </form>
 
-<!--<<<<<<< HEAD-->
-<!--<div id="div7">-->
-    <!--<h3 style="margin-top: 3px;"> OR </h3>-->
-    <!--</div>-->
+        <form id="uploadUCF"
+              enctype="multipart/form-data"
+              action="/api/UCF"
+              method="post">
 
-    <!--<form id="uploadMint"-->
-          <!--enctype="multipart/form-data"-->
-          <!--action="/api/mint"-->
-          <!--method="post">-->
+            <div id="div_UCF1">
+                <input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF" />
+            </div>
+            <div id="div_UCF2">
+                <input id="upload_UCF_file" class= "inputButton_uShroom" type="submit" value="Upload UCF File" name="submit_UCF">
+                <span id = "statusUCF"></span>
+            </div>
 
-        <!--<div id="div5"><input id= "input_mint_file" class="btn btn-default" type="file" name="myMint" value="Browse Mint" /></div>-->
-        <!--<div id="div6">-->
-            <!--<input id="upload_mint_file" class= "btn btn-default" type="submit" value="Upload MINT File" name="submit_MINT">-->
+        </form>
 
-        <!--</div>-->
-    <!--</form>-->
+        <form id="uploadMINT"
+              enctype="multipart/form-data"
+              action="/api/MINT"
+              method="post">
 
-<!--</div>-->
-<!--<div class="uploadbar2">-->
-    <!--<ul class="nav navbar-nav" style="margin-left: 35%;">-->
-        <!--<a class="nav-link">-->
-            <!--<a href="download/../uploads/myMint.uf" download="mfMINT.uf">-->
-                <!--<button type="button" class="btn btn-default btn-sm">-->
-                    <!--<span class="glyphicon glyphicon-download"></span> Download MINT-->
-                <!--</button>-->
-            <!--</a>-->
-        <!--</a>-->
-    <!--</ul>-->
-    <!--<div>-->
-        <!--<ul class="nav navbar-nav" style="margin-left: 5px;">-->
-            <!--<a class="nav-link">-->
-                <!--<a href="download/../uploads/myjson.json" download="mfJSON.json">-->
-                <!--<button type="button" class="btn btn-default btn-sm">-->
-                    <!--<span class="glyphicon glyphicon-download"></span> Download JSON-->
-                <!--</button>-->
-                <!--</a>-->
-            <!--</a>-->
-        <!--</ul>-->
-        <!--<ul class="nav navbar-nav" style="margin-left: 5px;">-->
-            <!--<a class="nav-link">-->
-                <!--<a href="download/../uploads/mysvg.svg" download="mfSVG.svg">-->
-                    <!--<button type="button" class="btn btn-default btn-sm">-->
-                        <!--<span class="glyphicon glyphicon-download"></span> Download SVG-->
-                    <!--</button>-->
-                <!--</a>-->
-            <!--</a>-->
-        <!--</ul>-->
-    <!--</div>-->
-<!--=======-->
+            <div id="div_MINT1">
+                <input id= "input_MINT_file"  class="inputButton_uShroom" type="file" name="myMINT" value="Browse MINT" />
+            </div>
+            <div id="div_MINT2">
+                <input id="upload_MINT_file" class= "inputButton_uShroom" type="submit" value="Upload MINT File" name="submit_MINT">
+                <span id = "statusMINT"></span>
+            </div>
 
-    <form id="uploadMINT"
-          enctype="multipart/form-data"
-          action="/api/MINT"
-          method="post">
-
-        <div id="div_MINT1">
-            <input id= "input_MINT_file"  class="inputButton_uShroom" type="file" name="myMINT" value="Browse MINT" />
-        </div>
-        <div id="div_MINT2">
-            <input id="upload_MINT_file" class= "inputButton_uShroom" type="submit" value="Upload MINT File" name="submit_MINT">
-            <span id = "statusMINT"></span>
-        </div>
-
-    </form>
-
-</div>
-
-<div id="MINT_editor">
-
-    Welcome to the embedded editor!
-
-    Upload a LFR file, and uShroom PAR
-    will generate a output MINT file
-    that will be displayed here.
-
-    Or, upload and edit you own  MINT file.
-
-    When you are ready, press the next button
-    to generate a SVG and JSON file that you
-    can use til fabricate your microfluidic chip.
-
-</div>
-
-<div id="mintEditorSettings_modal" class="modal" style="width: 500px; padding-left: 10px; padding-top: 150px;">
-
-    <div class="modal-content">
-        <div class="modal-header">
-            <h2>MINT Editor Settings</h2>
-        </div>
-        <div class="modal-body">
-            </br>
-            <p> MINT Editor. </br> Change the settings of your editor window here. </p>
-
-                Choose a theme:<br>
-                <select class = "theme_select" id = "theme_selectID">
-                    <option> monokai </option>
-                    <option> eclipse </option>
-                    <option> github </option>
-                    <option> clouds </option>
-                    <option> chrome </option>
-                    <option> twilight </option>
-                </select>
-                <br>
-                Syntax Highlighting:<br>
-                <select class="syntax_select" id="syntax_selectID">
-                    <option> mint </option>
-                    <option> javascript </option>
-                    <option> LFR </option>
-                    <option> UCF </option>
-                </select>
-                <br>
-                Font Family:
-                <select class="font_select" id="font_selectID">
-                    <option> mint </option>
-                    <option> javascript </option>
-                    <option> LFR </option>
-                    <option> UCF </option>
-                </select>
-                <br>
-                Font Size:
-                <select class="fontSize_select" id="fontSize_selectID">
-                    <option> 6 </option>
-                    <option> 8 </option>
-                    <option> 10 </option>
-                    <option> 12 </option>
-                    <option> 14 </option>
-                    <option> 16 </option>
-                </select>
-                <br>
-                <br>
-                <!--<input id="setTheme" type="text" ><br>-->
-                <!--Syntax highlighting: .ucf or .LFR:<br>-->
-                <!--<input id="setMode" type="text" ><br>-->
-                <!--Or, PWM value to apply:<br>-->
-                <!--<input id="MotorPositionAssignerDebug" type="text" ><br><br>-->
-                <!--<input class="operate_modal" type="submit" value="Change pump state" onclick="mediateValveState_fromDebugger(event)">-->
-                <input class="save_editorSettings" type="submit" value="Save and Apply" onclick="saveEditorChanges()">
-
-        </div>
-        <div class="modal-footer">
-            <button class="close_modal" onclick="closeMintEditorModal()"> Close </button>
-        </div>
+        </form>
     </div>
 
-</div>
 
+    <!-- THE FOLLOWING CODE IS USED TO RENDER AND CONTROL THE EMBEDDED ACE EDITOR: -->
+    <!-- BEGIN ACE EDITOR -->
+    <div id="MINT_editor"></div> <!-- EDITOR DIV; EDITOR CONTENT GOES IN HERE-->
+    <div id="mintEditorSettings_modal" class="modal" style="width: 500px; padding-left: 10px; padding-top: 150px;">
 
-<script src="/ace-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script> var editor = ace.edit("MINT_editor"); editor.setTheme("ace/theme/" + localStorage.EditorSettings.THEME);editor.getSession().setMode("ace/mode/" + localStorage.EditorSettings.SYNTAX);
-</script>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>MINT Editor Settings</h2>
+                </div>
+                <div class="modal-body">
+                    </br>
+                    <p> MINT Editor. </br> Change the settings of your editor window here. </p>
 
-<!-- LEAVE JS FOR LAST - faster loading time -->
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+                    Choose a theme:<br>
+                    <select class = "theme_select" id = "theme_selectID">
+                        <option> monokai </option>
+                        <option> eclipse </option>
+                        <option> github </option>
+                        <option> clouds </option>
+                        <option> chrome </option>
+                        <option> twilight </option>
+                    </select>
+                    <br>
+                    Syntax Highlighting:<br>
+                    <select class="syntax_select" id="syntax_selectID">
+                        <option> mint </option>
+                        <option> javascript </option>
+                        <option> LFR </option>
+                        <option> UCF </option>
+                    </select>
+                    <br>
+                    Font Family:
+                    <select class="font_select" id="font_selectID">
+                        <option> mint </option>
+                        <option> javascript </option>
+                        <option> LFR </option>
+                        <option> UCF </option>
+                    </select>
+                    <br>
+                    Font Size:
+                    <select class="fontSize_select" id="fontSize_selectID">
+                        <option> 6 </option>
+                        <option> 8 </option>
+                        <option> 10 </option>
+                        <option> 12 </option>
+                        <option> 14 </option>
+                        <option> 16 </option>
+                    </select>
+                    <br>
+                    <br>
+                    <!--<input id="setTheme" type="text" ><br>-->
+                    <!--Syntax highlighting: .ucf or .LFR:<br>-->
+                    <!--<input id="setMode" type="text" ><br>-->
+                    <!--Or, PWM value to apply:<br>-->
+                    <!--<input id="MotorPositionAssignerDebug" type="text" ><br><br>-->
+                    <!--<input class="operate_modal" type="submit" value="Change pump state" onclick="mediateValveState_fromDebugger(event)">-->
+                    <input class="save_editorSettings" type="submit" value="Save and Apply" onclick="saveEditorChanges()">
+
+                </div>
+            <div class="modal-footer">
+                <button class="close_modal" onclick="closeMintEditorModal()"> Close </button>
+            </div>
+        </div>
+
+    </div>
+    <script src="/ace-master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script> var MINT_editor = ace.edit("MINT_editor"); MINT_editor.setTheme("ace/theme/twilight"); MINT_editor.getSession().setMode("ace/mode/javascript"); </script>
+    <!-- END ACE EDITOR -->
+
+    <!-- ENDGAME DEPENDENCIES HERE -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 </body>
 
-<!--<script>updateIndicators();</script>-->
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
-
-<script>
-    //Upload AJAX Forms
-    {
-        $(document).ready(function () {
-
-            $('#uploadVerilog').submit(function () {
 
 
-                $(this).ajaxSubmit({
+    <!-- AND, ENDGAME DEPENDENCIES HERE -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+    <script src="../javascripts/mint_editor_support.js" type="application/javascript"></script>
+    <script type="text/javascript" src="../javascripts/initiate_mint_editor.js"></script>
+    <script src="../javascripts/uploadBar_mm.js" type="application/javascript"></script>
 
-                    error: function (xhr) {
-                        status('Error: ' + xhr.status);
-                    },
-                    success: function (response) {
-                        console.log(response);
-
-
-                        var Verilogbutton = document.getElementById("input_verilog_file");
-                        Verilogbutton.style.backgroundColor = "#2ecc71";
-                        VerilogUploaded();
-
-                    }
-                });
-                return false;
-            });
-            $('#uploadUCF').submit(function () {
-                     $(this).ajaxSubmit({
-
-                    error: function (xhr) {
-                        status('Error: ' + xhr.status);
-                    },
-                    success: function (response) {
-                        console.log(response);
-
-                        location.reload();
-                        var UCFbutton = document.getElementById("input_UCF_file");
-                        UCFbutton.style.backgroundColor = "#2ecc71";
-                        UCFUploaded();
-                     }
-                });
-                return false;
-            });
-            $('#uploadMint').submit(function () {
-
-
-                $(this).ajaxSubmit({
-
-                    error: function (xhr) {
-                        status('Error: ' + xhr.status);
-                    },
-                    success: function (response) {
-                        console.log(response);
-
-                        location.reload();
-                        var MINTbutton = document.getElementById("input_mint_file");
-                        MINTbutton.style.backgroundColor = "#2ecc71";
-                        MINTUploaded();
-                    }
-                });
-                return false;
-            });
-        });
-    }
-</script>
-
-<script src="../javascripts/mint_editor_support.js" type="application/javascript"></script>
-<script src="../javascripts/uploadBar_mm.js" type="application/javascript"></script>
 
 
 </html>

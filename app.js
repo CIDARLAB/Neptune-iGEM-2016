@@ -70,7 +70,8 @@ var http = require('http');
   var fileController = require('./controllers/fileupload');
   var mmController = require('./controllers/mm');
   var serialController = require('./controllers/serialcommunication');
-  var fluigiController= require('./controllers/fluigi');
+  var fluigiController = require('./controllers/fluigi');
+  var lfrController = require('./controllers/lfrpage');
 }
 
 /**************** RENDER PAGES ****************/
@@ -79,7 +80,7 @@ var http = require('http');
   app.get('/fluigipage', fluigiController.getFluigiPage);
   app.get('/uShroomPage',mmController.openMMPage);
   app.get('/serialcommunication', serialController.openSerialPage);
-
+  app.get('/lfrpage', lfrController.openLfrPage);
 }
 
 /**************** SERIAL COMMUNICATION ****************/
@@ -92,15 +93,15 @@ var http = require('http');
 }
 
 /************** FILE UPLOAD  ************/
-{
-  app.get('/fluigipage', fileController.sendToUploads);
-  app.get('/uShroomPage', fileController.sendToUploads);
-  app.post('/api/json', fileController.sendJSON);
-  app.post('/api/svg', fileController.sendSVG);
+{ app.get('/lfrpage', fileController.sendToUploadsSpecify);
+  app.get('/uShroomPage', fileController.sendToUploadsDesign);
+  app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
+  app.post('/api/JSON', fileController.sendJSON);
+  app.post('/api/SVG', fileController.sendSVG);
   app.post('/api/LFR', fileController.sendLFR);
-  app.post('/api/ucf', fileController.sendUCF);
-
-  app.post('/api/mint', fileController.sendMINT);
+  app.post('/api/LFR_start', fileController.sendLFR_start);
+  app.post('/api/UCF', fileController.sendUCF);
+  app.post('/api/MINT',fileController.sendMINT);
 }
 
 

@@ -113,6 +113,18 @@ ul {
     background-color: white;
 }
 
+.uploadbar2 {
+    position:absolute;
+    top: 140px;
+    width: 100%;
+    padding-left: 100px;
+    padding-top: 10px;
+    height: 50px;
+    background-color: #34495e;
+    align-content: center;
+}
+
+
 /*Divisions*/
 #container {
     position: relative;
@@ -121,13 +133,13 @@ ul {
 #div1 {
     float: left;
     display: inline-block;
-    padding-left: 50px;
+    padding-left: 20px;
 }
 
 #div2 {
     display: inline-block;
     float: left;
-    padding-left: 300px;
+    padding-left: 90px;
 }
 
 #div3 {
@@ -140,6 +152,22 @@ ul {
     float: left;
 }
 
+#div5 {
+    display: inline-block;
+    float: left;
+    padding-left: 150px;
+}
+
+#div6 {
+    float: left;
+    display: inline-block;
+}
+
+#div7 {
+    float: left;
+    display: inline-block;
+    padding-left: 100px;
+}
 
 
 /*iframe{*/

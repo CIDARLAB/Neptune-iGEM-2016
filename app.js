@@ -66,42 +66,69 @@ var http = require('http');
 
 /**************** CONTROLLERS ****************/
 {
-  var homeController = require('./controllers/homepage');
-  var fileController = require('./controllers/fileupload');
-  var mmController = require('./controllers/mm');
-  var serialController = require('./controllers/serialcommunication');
-  var fluigiController = require('./controllers/fluigi');
-  var lfrController = require('./controllers/lfrpage');
+    var homeController = require('./controllers/homepage');
+    var fileController = require('./controllers/fileupload');
+    var writeController = require('./controllers/filewrite');
+    var mmController = require('./controllers/mm');
+    var serialController = require('./controllers/serialcommunication');
+    var fluigiController = require('./controllers/fluigi');
+    var lfrController = require('./controllers/lfrpage');
+    var lfr_bsController = require('./controllers/lfrpage_bs');
 }
 
 /**************** RENDER PAGES ****************/
 {
-  app.get('/' , homeController.openHomePage);
-  app.get('/fluigipage', fluigiController.getFluigiPage);
-  app.get('/uShroomPage',mmController.openMMPage);
-  app.get('/serialcommunication', serialController.openSerialPage);
-  app.get('/lfrpage', lfrController.openLfrPage);
+    app.get('/' , homeController.openHomePage);
+    app.get('/fluigipage', fluigiController.getFluigiPage);
+    app.get('/uShroomPage',mmController.openMMPage);
+    app.get('/serialcommunication', serialController.openSerialPage);
+    app.get('/lfrpage', lfrController.openLfrPage);
+    app.get('/lfrpage_bs', lfr_bsController.openLfr_bsPage);
 }
 
 /**************** SERIAL COMMUNICATION ****************/
 {
 
-  app.post('/serialcommunication/open', serialController.openSerialConnection);
-  app.post('/serialcommunication/close', serialController.closeSerialConnection);
-  app.post('/serialcommunication/send', serialController.arduinoSend);
+    app.post('/serialcommunication/open', serialController.openSerialConnection);
+    app.post('/serialcommunication/close', serialController.closeSerialConnection);
+    app.post('/serialcommunication/send', serialController.arduinoSend);
 
 }
 
 /************** FILE UPLOAD  ************/
-{ app.get('/lfrpage', fileController.sendToUploadsSpecify);
-  app.get('/uShroomPage', fileController.sendToUploadsDesign);
-  app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
-  app.post('/api/JSON', fileController.sendJSON);
-  app.post('/api/SVG', fileController.sendSVG);
-  app.post('/api/LFR', fileController.sendLFR);
-  app.post('/api/LFR_start', fileController.sendLFR_start);
-  app.post('/api/UCF', fileController.sendUCF);
-  app.post('/api/MINT',fileController.sendMINT);
+{
+     app.get('/lfrpage', fileController.sendToUploadsSpecify);
+     app.get('/lfrpage_bs', fileController.sendToUploadsSpecify);
+     app.get('/uShroomPage', fileController.sendToUploadsDesign);
+     app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
+     app.post('/api/JSON', fileController.sendJSON);
+     app.post('/api/SVG', fileController.sendSVG);
+     app.post('/api/LFR', fileController.sendLFR);
+     app.post('/api/LFR_start', fileController.sendLFR_start);
+     app.post('/api/UCF', fileController.sendUCF);
+     app.post('/api/MINT',fileController.sendMINT);
+}
+
+/************** FILE WRITE ********************/
+{
+    // app.get('/lfrpage',writeController.toWrite);
+    // app.post('/api/writeToFile', function(req,res) {
+    //     res.send(200);
+    //     writeToFile();
+    // });
+    app.post('/api/writeToFile',writeController.writeToFile)
+}
+
+function writeToFile()
+{
+    //console.log('abc123');
+    // //var fs = require('fs');
+    // fs.writeFile("../public/downloads/test.txt", "Hey there!", function(err) {
+    //     if(err) {
+    //         return console.log(err);
+    //     }
+    //     console.log("The file was saved!");
+    // });
 }
 
 

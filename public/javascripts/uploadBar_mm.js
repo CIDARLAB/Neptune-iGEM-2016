@@ -20,6 +20,8 @@
                 },
                 success: function (response) {
 
+                    toastr.success('Your LFR File was uploaded successfully!');
+
                     $.get('../uploads/Design/myLFR.txt',function(data)
                     {
                         localStorage.LFR_STRING = JSON.stringify(data.split("\n"));
@@ -38,6 +40,9 @@
                     status('Error: ' + xhr.status);
                 },
                 success: function (response) {
+
+                    toastr.success('Your UCF File was uploaded successfully!');
+
                     $.get('../uploads/Design/myUCF.json',function(data)
                     {
                         localStorage.UCF_STRING = JSON.stringify(data.split("\n"));
@@ -55,6 +60,8 @@
                     status('Error: ' + xhr.status);
                 },
                 success: function (response) {
+
+                    toastr.success('Your MINT File was uploaded successfully!');
 
                     $.get('../uploads/Design/myMINT.txt',function(data)
                     {

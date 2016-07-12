@@ -76,7 +76,7 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
     }
     switch(FILE_TYPE)
     {
-        case 'LFR-start':
+        case 'LFR_start':
             localStorage.LFR_start_STRING =  JSON.stringify(EDITOR_SESSION);
             break;
         case 'LFR':
@@ -111,3 +111,60 @@ function saveEditorOptions(Editor_To_Update,theme_ID,syntax_ID,fontSize_ID,fontF
         fontSize: FONT_SIZE
     });
 }
+
+function downloadFile(File_Type,File_Name)
+{
+    var string_to_write = '';
+    var file_name = File_Name;
+    switch(File_Type)
+    {
+        case 'LFR File (Specify)':
+            string_to_write = localStorage.LFR_start_STRING;
+            break;
+        case 'UCF File (Specify)':
+            break;
+        case 'LFR File (Design)':
+            string_to_write = localStorage.LFR_STRING;
+            break;
+        case 'UCF File (Design)':
+            string_to_write = localStorage.UCF_STRING;
+            break;
+        case 'MINT File (Design)':
+            string_to_write = localStorage.MINT_STRING;
+            break;
+        case 'JSON File (Build)':
+            break;
+        case 'SVG File (Build)':
+            break;
+    }
+
+    $.post("/api/writeToFile",{fileData: string_to_write});
+    //window.open('../public/downloads/test.txt');
+    uriContent = "data:application/octet-stream," + encodeURIComponent(string_to_write);
+    newWindow = window.open(uriContent, 'New Document');
+}
+
+function openDownloadModal()
+{
+    (document.getElementById('download_modal')).style.display = "block";
+}
+function closeDownloadModal()
+{
+    (document.getElementById('download_modal')).style.display = "none";
+}
+
+    // $.ajax({
+    //     type: 'POST'
+    //     //action: '/api/writeToFile' ,
+    //     //url: url, //url of receiver file on server
+    //     //data: data //your data
+    //     //success: success, //callback when ajax request finishes
+    //     //dataType: dataType //text/json...
+    // });
+
+
+    // $.post(url, myText, function(data){
+    //     console.log('response from the callback function: '+ data);
+    // }).fail(function(jqXHR){
+    //     alert(jqXHR.status +' '+jqXHR.statusText+ ' $.post failed!');
+    // });

@@ -19,6 +19,9 @@ $(document).ready(function () {
                 status('Error: ' + xhr.status);
             },
             success: function (response) {
+                
+                toastr.success('Your JSON File was uploaded successfully!');
+                
                 console.log(response);
                 // $("#status").empty().text(response);
                 $("#status").empty().text();
@@ -85,7 +88,9 @@ $(document).ready(function () {
         return false;
     });
     $('#uploadForm2').submit(function () {
-        // $("#status2").empty().text("File is uploading...");
+
+        toastr.success('Your SVG File was uploaded successfully!');
+        
 
         $(this).ajaxSubmit({
 

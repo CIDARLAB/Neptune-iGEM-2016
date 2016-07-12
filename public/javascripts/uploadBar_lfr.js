@@ -19,6 +19,8 @@
                 },
                 success: function (response) {
 
+                    toastr.success('Your LFR File was uploaded successfully!');
+
                     $.get('../uploads/Specify/myLFR_start.txt',function(data)
                     {
                         localStorage.LFR_start_STRING = JSON.stringify(data.split("\n"));

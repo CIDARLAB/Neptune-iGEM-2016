@@ -18,6 +18,14 @@
     <!-- CSS DEPENDENCIES -->
     <link rel="stylesheet" type="text/css" href="../stylesheets/main_uShroom.css" />
 
+    <!--Walkthrough tour-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
+    <script src="../javascripts/tour.js"></script>
+
 </head>
 
 <body>
@@ -38,7 +46,7 @@
                     <li class="nav-item"><a class="nav-link" onclick="openMintEditorModal()"> <img src="../images/uShroom/editorSettings.svg"> </a> </li>
                     <li class="nav-item"><a class="nav-link" onclick="pushFileToEditor(MINT_editor,'MINT')"> <img src="../images/editor_control_icons/push_file.svg"> </a> </li>
                     <li class="nav-item"><a class="nav-link" onclick="refreshEditor(JSON.parse(localStorage.MINT_STRING),MINT_editor)"> <img src="../images/editor_control_icons/reload_file.svg"> </a> </li>
-                    <li class="nav-item"><a class="nav-link" onclick="saveEditorContent(MINT_editor,'MINT')"> <img src="../images/editor_control_icons/save_file.svg"> </a> </li>
+                    <li class="nav-item" id="saveMINT"><a class="nav-link" onclick="saveEditorContent(MINT_editor,'MINT')"> <img src="../images/editor_control_icons/save_file.svg"> </a> </li>
                 </ul>
             </div>
 
@@ -55,10 +63,10 @@
               method="post">
 
             <div id="div_LFR1">
-                <input id= "input_verilog_file" class="inputButton_uShroom" type="file" name="myLFR" value="Browse LFR" />
+                <input id= "input_verilog_file" class="btn btn-default" type="file" name="myLFR" value="Browse LFR" />
             </div>
             <div id="div_LFR2">
-                <input id="upload_verilog_file" class= "inputButton_uShroom" type="submit" value="Upload LFR File" name="submit_verilog">
+                <input id="upload_verilog_file" class= "btn btn-default" type="submit" value="Upload LFR File" name="submit_verilog">
                 <span id = "statusVerilog"></span>
             </div>
 
@@ -70,10 +78,10 @@
               method="post">
 
             <div id="div_UCF1">
-                <input id= "input_UCF_file"  class="inputButton_uShroom" type="file" name="myUCF" value="Browse UCF" />
+                <input id= "input_UCF_file"  class="btn btn-default" type="file" name="myUCF" value="Browse UCF" />
             </div>
             <div id="div_UCF2">
-                <input id="upload_UCF_file" class= "inputButton_uShroom" type="submit" value="Upload UCF File" name="submit_UCF">
+                <input id="upload_UCF_file" class= "btn btn-default" type="submit" value="Upload UCF File" name="submit_UCF">
                 <span id = "statusUCF"></span>
             </div>
 
@@ -85,10 +93,10 @@
               method="post">
 
             <div id="div_MINT1">
-                <input id= "input_MINT_file"  class="inputButton_uShroom" type="file" name="myMINT" value="Browse MINT" />
+                <input id= "input_MINT_file"  class="btn btn-default" type="file" name="myMINT" value="Browse MINT" />
             </div>
             <div id="div_MINT2">
-                <input id="upload_MINT_file" class= "inputButton_uShroom" type="submit" value="Upload MINT File" name="submit_MINT">
+                <input id="upload_MINT_file" class= "btn btn-default" type="submit" value="Upload MINT File" name="submit_MINT">
                 <span id = "statusMINT"></span>
             </div>
 

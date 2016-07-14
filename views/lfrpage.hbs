@@ -33,6 +33,14 @@
     <!-- CSS DEPENDENCIES -->
     <link rel="stylesheet" type="text/css" href="../stylesheets/main_lfr.css" />
 
+    <!--Walkthrough tour-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
+    <script src="../javascripts/tour.js"></script>
+
 </head>
 
 <body>
@@ -51,10 +59,10 @@
                 <script type="text/javascript"> var myText = 'GARDEN OF EDEN'; var url = '../controllers/filewrite.js' </script>
                 <ul class="nav navbar-nav">
                     <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/homeButtonTransparent.png"> </a></li>
-                    <li class="nav-item"><a class="nav-link" onclick="pushFileToEditor(LFR_start_editor,'LFR_start')"> <img src="../images/editor_control_icons/push_file.svg"> </a> </li>
-                    <li class="nav-item"><a class="nav-link" onclick="refreshEditor(JSON.parse(localStorage.LFR_start_STRING),LFR_start_editor)"> <img src="../images/editor_control_icons/reload_file.svg"> </a> </li>
-                    <li class="nav-item"><a class="nav-link" onclick="saveEditorContent(LFR_start_editor,'LFR_start')"> <img src="../images/editor_control_icons/save_file.svg"> </a> </li>
-                    <li class="nav-item"><a class="nav-link" onclick="openDownloadModal()"> <img src="../images/editor_control_icons/download_file.svg"> </a> </li>
+                    <li class="nav-item" id="pushFile"><a class="nav-link" onclick="pushFileToEditor(LFR_start_editor,'LFR_start')"> <img src="../images/editor_control_icons/push_file.svg"> </a> </li>
+                    <li class="nav-item" id="reloadFile"><a class="nav-link" onclick="refreshEditor(JSON.parse(localStorage.LFR_start_STRING),LFR_start_editor)"> <img src="../images/editor_control_icons/reload_file.svg"> </a> </li>
+                    <li class="nav-item" id="saveFile"><a class="nav-link" onclick="saveEditorContent(LFR_start_editor,'LFR_start')"> <img src="../images/editor_control_icons/save_file.svg"> </a> </li>
+                    <li class="nav-item" id="downloadFile"><a class="nav-link" onclick="openDownloadModal()"> <img src="../images/editor_control_icons/download_file.svg"> </a> </li>
                     <!--<li class="nav-item">-->
                         <!--<form action="/api/writeToFile" method="post">-->
                             <!--<a class="nav-link"> <img src="../images/editor_control_icons/download_file.svg" onclick="submit"> </a>-->
@@ -88,10 +96,6 @@
                 </div>
 
             </form>
-        </div>
-
-        <div>
-            <label> *Refresh Page to load buttons</label>
         </div>
 
     </div>

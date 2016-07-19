@@ -49,8 +49,6 @@ exports.listPorts= function() {
 };
 }
 
-
-
 //******************* FUNCTIONS **************************************
 function openConnection (fluigiPort) {
 

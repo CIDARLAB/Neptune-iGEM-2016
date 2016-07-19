@@ -109,6 +109,7 @@ var http = require('http');
     app.get('/specify',fileController.sendToUploadsSpecify);
     app.get('/design',fileController.sendToUploadsDesign);
     app.get('/build',fileController.sendToUploadsBuild_Verify);
+
     app.post('/api/specify_LFR',fileController.send_specifyLFR);
     app.post('/api/specify_UCF',fileController.send_specifyUCF);
     app.post('/api/design_INI',fileController.send_designINI);
@@ -117,10 +118,10 @@ var http = require('http');
     app.post('/api/build_JSON',fileController.send_buildJSON);
 
     // Pre-Bootstrap:
-     app.get('/lfrpage', fileController.sendToUploadsSpecify);
-     app.get('/lfrpage_bs', fileController.sendToUploadsSpecify);
-     app.get('/uShroomPage', fileController.sendToUploadsDesign);
-     app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
+    //  app.get('/lfrpage', fileController.sendToUploadsSpecify);
+    //  app.get('/lfrpage_bs', fileController.sendToUploadsSpecify);
+    //  app.get('/uShroomPage', fileController.sendToUploadsDesign);
+    //  app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
      // app.post('/api/JSON', fileController.sendJSON);
      // app.post('/api/SVG', fileController.sendSVG);
      // app.post('/api/LFR', fileController.sendLFR);

@@ -2,6 +2,65 @@
  * Created by kestas on 7/8/2016.
  */
 
+function displayFileContent(File_To_Display)
+{
+    var string_to_display = '';
+    var title = ''
+
+    switch (File_To_Display)
+    {
+        case 'specifyLFR':
+            localStorage.display_file_modal_state = 'specifyLFR';
+            localStorage.display_file_modal_name = 'Specify LFR';
+            string_to_display = localStorage.FILE_specifyLFR;
+            title = 'LFR Preview';
+            break;
+        case 'specifyUCF':
+            localStorage.display_file_modal_state = 'specifyUCF';
+            localStorage.display_file_modal_name = 'Specify_UCF';
+            string_to_display = localStorage.FILE_specifyUCF;
+            title = 'UCF Preview';
+            break;
+        case 'designMINT':
+            localStorage.display_file_modal_state = 'designMINT';
+            localStorage.display_file_modal_name = 'Design_MINT';
+            string_to_display = localStorage.FILE_designMINT;
+            title = 'MINT Preview';
+            break;
+        case 'designINI':
+            localStorage.display_file_modal_state = 'designINI';
+            localStorage.display_file_modal_name = 'Design_INI';
+            string_to_display = localStorage.FILE_designINI;
+            title = 'INI Preview';
+            break;
+        case 'buildSVG':
+            localStorage.display_file_modal_state = 'buildSVG';
+            localStorage.display_file_modal_name = 'Build_SVG';
+            string_to_display = localStorage.FILE_buildSVG;
+            title = 'SVG Preview';
+            break;
+        case 'buildJSON':
+            localStorage.display_file_modal_state = 'buildJSON';
+            localStorage.display_file_modal_name = 'Build_JSON';
+            string_to_display = localStorage.FILE_buildJSON;
+            title = 'JSON Preview';
+            break;
+
+    }
+    var dataArray = JSON.parse(string_to_display);
+    $('#myModalLabel').append(title);
+    for (var i = 0; i < dataArray.length; i++)
+    {
+        $('#fileGoesHere').append(dataArray[i] + '<br>');
+    }
+    //$('#fileGoesHere').text(string_to_display);
+}
+
+function clearPreviewModalContent() {
+    $('#fileGoesHere').empty();
+    $('#myModalLabel').empty();
+}
+
 function changeSpecifyTabs(Editor,Tab_To_Switch_To,SessionArray)
 {
     switch (Tab_To_Switch_To)
@@ -9,28 +68,37 @@ function changeSpecifyTabs(Editor,Tab_To_Switch_To,SessionArray)
         case 'LFRtab':
             document.getElementById('LFRtab').className = 'active';
             document.getElementById('UCFtab').className = '';
-            document.getElementById('INItab').className = '';
             localStorage.specify_editor_state = 'specifyLFR';
             Editor.setSession(SessionArray[0]);
             break;
         case 'UCFtab':
             document.getElementById('LFRtab').className = '';
             document.getElementById('UCFtab').className = 'active';
-            document.getElementById('INItab').className = '';
             localStorage.specify_editor_state = 'specifyUCF';
             Editor.setSession(SessionArray[1]);
             break;
+    }
+}
+
+function changeDesignTabs(Editor,Tab_To_Switch_To,SessionArray)
+{
+    switch (Tab_To_Switch_To)
+    {
+        case 'MINTtab':
+            document.getElementById('INItab').className = '';
+            document.getElementById('MINTtab').className = 'active';
+            localStorage.design_editor_state = 'designMINT';
+            Editor.setSession(SessionArray[0]);
+            break;
         case 'INItab':
-            document.getElementById('LFRtab').className = '';
-            document.getElementById('UCFtab').className = '';
             document.getElementById('INItab').className = 'active';
-            localStorage.specify_editor_state = 'specifyINI';
-            Editor.setSession(SessionArray[2]);
+            document.getElementById('MINTtab').className = '';
+            localStorage.design_editor_state = 'designINI';
+            Editor.setSession(SessionArray[1]);
             break;
     }
-
-
 }
+
 function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
 {
     var EDITOR_SESSION = [];
@@ -48,23 +116,20 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
         case 'specifyUCF':
             localStorage.FILE_specifyUCF =  JSON.stringify(EDITOR_SESSION);
             break;
-        case 'specifyINI':
-            localStorage.FILE_specifyINI =  JSON.stringify(EDITOR_SESSION);
+        case 'designINI':
+            localStorage.FILE_designINI =  JSON.stringify(EDITOR_SESSION);
             break;
-        case 'LFR':// Fix
-            localStorage.LFR_STRING =  JSON.stringify(EDITOR_SESSION);
-            break;
-        case 'MINT':// Fix
-            localStorage.MINT_STRING =  JSON.stringify(EDITOR_SESSION);
-            break;
-        case 'UCF':// Fix
-            localStorage.UCF_STRING =  JSON.stringify(EDITOR_SESSION);
+        case 'designMINT':// Fix
+            localStorage.FILE_designMINT =  JSON.stringify(EDITOR_SESSION);
             break;
     }
 }
 
 function downloadFile(File_Name,FILE_TYPE)
 {
+    // IMPLEMENT AUTO SAVE BEFORE DOWNLOAD!
+    // ALSO LOOK INTO res.download!
+
     var string_to_write = '';
     var file_name = File_Name; // NOTE: File_Name argument is overwritten internally, for now
     switch(FILE_TYPE)
@@ -77,12 +142,13 @@ function downloadFile(File_Name,FILE_TYPE)
             string_to_write = localStorage.FILE_specifyUCF;
             file_name = 'specifyUCF';
             break;
-        case 'specifyINI':
-            string_to_write = localStorage.FILE_specifyINI;
-            file_name = 'specifyINI';
+        case 'designINI':
+            string_to_write = localStorage.FILE_designINI;
+            file_name = 'designINI';
             break;
-        case 'UCF File (Design)':
-            string_to_write = localStorage.UCF_STRING;
+        case 'designMINT':
+            string_to_write = localStorage.FILE_designMINT;
+            file_name = 'designMINT';
             break;
         case 'MINT File (Design)':
             string_to_write = localStorage.MINT_STRING;
@@ -93,10 +159,14 @@ function downloadFile(File_Name,FILE_TYPE)
             break;
     }
 
-    $.post("/api/writeToFile",{fileData: string_to_write});
-    //window.open('../public/downloads/test.txt');
-    uriContent = "data:application/octet-stream," + encodeURIComponent(string_to_write);
-    newWindow = window.open(uriContent, 'New Document');
+    //$.post("/api/writeToFile",{fileData: string_to_write});
+
+    var w = window.open();
+    var html = JSON.parse(string_to_write);
+    for (var i = 0; i < html.length; i++) {
+        $(w.document.body).append(html[i] + '<br>');
+    }
+
 }
 
 function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill)
@@ -131,23 +201,23 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
             break;
         case 'specifyUCF':
-            $.get('../uploads/Design/specifyUCF.txt',function(data)
+            $.get('../uploads/Specify/specifyUCF.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
             });
             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_STRING);
             break;
-        case 'specifyINI':
-            $.get('../uploads/Design/specifyINI.txt',function(data)
+        case 'designINI':
+            $.get('../uploads/Design/designINI.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
             });
             //CONTENT_TO_PUSH = JSON.parse(localStorage.MINT_STRING);
             break;
-        case 'UCF':
-            $.get('../uploads/Design/myUCF.json',function(data)
+        case 'designMINT':
+            $.get('../uploads/Design/designMINT.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
@@ -157,10 +227,32 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
     }
 }
 
-function refreshEditor(File_To_Fill_Editor_With, Editor_To_Refresh)
+function refreshEditor(Editor_To_Refresh, File_To_Fill_Editor_With)
 {
-    fill_editor(File_To_Fill_Editor_With, Editor_To_Refresh);
+    var file = [];
+    switch (File_To_Fill_Editor_With)
+    {
+        case 'specifyLFR':
+            file = JSON.parse(localStorage.FILE_specifyLFR);
+            break;
+        case 'specifyUCF':
+            file = JSON.parse(localStorage.FILE_specifyUCF);
+            break;
+        case 'designMINT':
+            file = JSON.parse(localStorage.FILE_designMINT);
+            break;
+        case 'designINI':
+            file = JSON.parse(localStorage.FILE_designINI);
+            break;
+    }
+    fill_editor(file, Editor_To_Refresh);
 }
+
+
+
+
+
+
 
 function saveEditorOptions(Editor_To_Update,theme_ID,syntax_ID,fontSize_ID,fontFamily_ID)
 {
@@ -181,8 +273,6 @@ function saveEditorOptions(Editor_To_Update,theme_ID,syntax_ID,fontSize_ID,fontF
         fontSize: FONT_SIZE
     });
 }
-
-
 
 function openDownloadModal()
 {

@@ -1,13 +1,4 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// -----------------------------------  Required  -------------------------------------------------------//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//                           The following uploads SHOULD have a file filter implemented:                //
-//   o  UCF --> JSON Filter                                                                              //
-//   o  JSON --> JSON Filter                                                                             //
-//   x  SVG --> SVG Filter                                                                               //
-//                    o = Needs to be Implemented    x = Implemented and Working                         //                                        //
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 var cmd = require('node-cmd');
 var exports = module.exports;
@@ -65,6 +56,7 @@ exports.send_specifyLFR = function(req, res) {
 // -----------------------------------FILE UPLOAD FOR specify_UCF -----------------------------------------//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.send_specifyUCF = function(req, res) {
+
     var storage_specifyUCF =   multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads/Specify');
@@ -85,7 +77,7 @@ exports.send_specifyUCF = function(req, res) {
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        return res.end("UCF file is uploaded");
+        return res.send("UCF file is uploaded");
         console.log("My specifyUCF: " + res);
     });
 };
@@ -113,7 +105,7 @@ exports.send_designINI = function(req, res) {
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        return res.end("INI file is uploaded");
+        return res.send("INI file is uploaded");
         console.log("My designINI: " + res);
     });
 };
@@ -142,7 +134,7 @@ exports.send_designMINT = function(req, res) {
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        return res.end("MINT file is uploaded");
+        return res.send("MINT file is uploaded");
         console.log("My designMINT: " + res);
     });
 };
@@ -179,7 +171,7 @@ exports.send_buildJSON = function(req, res) {
         if (req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        return res.end("JSON file is uploaded");
+        return res.send("JSON file is uploaded");
         console.log("My buildJSON: " + res);
 
     });
@@ -217,7 +209,7 @@ exports.send_buildJSON = function(req, res) {
         if (req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        return res.end("JSON file is uploaded");
+        return res.send("JSON file is uploaded");
         console.log("My buildJSON: " + res);
 
     });
@@ -255,7 +247,7 @@ exports.send_buildSVG = function(req, res) {
         if (req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        return res.end("SVG file is uploaded");
+        return res.send("SVG file is uploaded");
         console.log("My buildSVG: " + res);
 
     });

@@ -88,11 +88,9 @@ var http = require('http');
 
 /**************** SERIAL COMMUNICATION ****************/
 {
-
     app.post('/serialcommunication/open', serialController.openSerialConnection);
     app.post('/serialcommunication/close', serialController.closeSerialConnection);
     app.post('/serialcommunication/send', serialController.arduinoSend);
-
 }
 
 /************** FILE UPLOAD  ************/

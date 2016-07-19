@@ -118,6 +118,9 @@ $(document).ready(function(){
 
         var valveIDLabel = template.querySelector('.IDtext');
         valveIDLabel.textContent = (i + 1);
+        if ((i + 1) > 9) {
+            template.querySelector('.IDtext').style = "padding-left: 9px";
+        }
 
         console.log("found another valve!");
         content.append(template);

@@ -2,10 +2,42 @@
  * Created by kestas on 7/8/2016.
  */
 
+function popToast(CASE)
+{
+    switch (CASE)
+    {
+        case 'LFR _upload_s':
+            toastr.success('LFR file upload successful');
+            break;
+        case 'LFR_upload_f':
+            break;
+        case 'UCF _upload_s':
+            break;
+        case 'UCF_upload_f':
+            break;
+        case 'MINT _upload_s':
+            break;
+        case 'MINT_upload_f':
+            break;
+        case 'INI _upload_s':
+            break;
+        case 'INI_upload_f':
+            break;
+        case 'SVG _upload_s':
+            break;
+        case 'SVG_upload_f':
+            break;
+        case 'JSON _upload_s':
+            break;
+        case 'JSON_upload_f':
+            break;
+    }
+}
+
 function displayFileContent(File_To_Display)
 {
     var string_to_display = '';
-    var title = ''
+    var title = '';
 
     switch (File_To_Display)
     {
@@ -56,7 +88,8 @@ function displayFileContent(File_To_Display)
     //$('#fileGoesHere').text(string_to_display);
 }
 
-function clearPreviewModalContent() {
+function clearPreviewModalContent() 
+{
     $('#fileGoesHere').empty();
     $('#myModalLabel').empty();
 }
@@ -70,12 +103,28 @@ function changeSpecifyTabs(Editor,Tab_To_Switch_To,SessionArray)
             document.getElementById('UCFtab').className = '';
             localStorage.specify_editor_state = 'specifyLFR';
             Editor.setSession(SessionArray[0]);
+            if (localStorage.lfr_state == 'write')
+            {
+                Editor.setReadOnly(false);
+            }
+            else 
+            {
+                Editor.setReadOnly(true);
+            }
             break;
         case 'UCFtab':
             document.getElementById('LFRtab').className = '';
             document.getElementById('UCFtab').className = 'active';
             localStorage.specify_editor_state = 'specifyUCF';
             Editor.setSession(SessionArray[1]);
+            if (localStorage.ucf_state == 'write')
+            {
+                Editor.setReadOnly(false);
+            }
+            else
+            {
+                Editor.setReadOnly(true);
+            }
             break;
     }
 }
@@ -89,12 +138,28 @@ function changeDesignTabs(Editor,Tab_To_Switch_To,SessionArray)
             document.getElementById('MINTtab').className = 'active';
             localStorage.design_editor_state = 'designMINT';
             Editor.setSession(SessionArray[0]);
+            if (localStorage.mint_state == 'write')
+            {
+                Editor.setReadOnly(false);
+            }
+            else
+            {
+                Editor.setReadOnly(true);
+            }
             break;
         case 'INItab':
             document.getElementById('INItab').className = 'active';
             document.getElementById('MINTtab').className = '';
             localStorage.design_editor_state = 'designINI';
             Editor.setSession(SessionArray[1]);
+            if (localStorage.ini_state == 'write')
+            {
+                Editor.setReadOnly(false);
+            }
+            else
+            {
+                Editor.setReadOnly(true);
+            }
             break;
     }
 }
@@ -169,9 +234,10 @@ function downloadFile(File_Name,FILE_TYPE)
 
 }
 
-function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill)
+function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill,session)
 {
     // Clear Editor before adding our file 
+    Editor_To_Fill.setSession(session);
     Editor_To_Fill.session.setValue('');
     
     // We'll fill the editor line-by-line, so we needa know how many lines we're adding
@@ -187,7 +253,7 @@ function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill)
     }
 }
 
-function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
+function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
 {
     var CONTENT_TO_PUSH = [];
     switch(FILE_TYPE)
@@ -196,7 +262,10 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
             $.get('../uploads/Specify/specifyLFR.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
+                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+
+                document.getElementById('LFRtab').className = 'active';
+                document.getElementById('UCFtab').className = '';
             });
             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
             break;
@@ -204,7 +273,10 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
             $.get('../uploads/Specify/specifyUCF.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
+                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+
+                document.getElementById('LFRtab').className = '';
+                document.getElementById('UCFtab').className = 'active';
             });
             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_STRING);
             break;
@@ -212,7 +284,10 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
             $.get('../uploads/Design/designINI.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
+                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+
+                document.getElementById('INItab').className = 'active';
+                document.getElementById('MINTtab').className = '';
             });
             //CONTENT_TO_PUSH = JSON.parse(localStorage.MINT_STRING);
             break;
@@ -220,7 +295,10 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE)
             $.get('../uploads/Design/designMINT.txt',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward);
+                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+
+                document.getElementById('INItab').className = '';
+                document.getElementById('MINTtab').className = 'active';
             });
             //CONTENT_TO_PUSH = JSON.parse(localStorage.UCF_STRING);
             break;
@@ -248,12 +326,6 @@ function refreshEditor(Editor_To_Refresh, File_To_Fill_Editor_With)
     fill_editor(file, Editor_To_Refresh);
 }
 
-
-
-
-
-
-
 function saveEditorOptions(Editor_To_Update,theme_ID,syntax_ID,fontSize_ID,fontFamily_ID)
 {
     var THEME =  (document.getElementById(theme_ID)).value;
@@ -278,23 +350,9 @@ function openDownloadModal()
 {
     (document.getElementById('download_modal')).style.display = "block";
 }
+
 function closeDownloadModal()
 {
     (document.getElementById('download_modal')).style.display = "none";
 }
 
-    // $.ajax({
-    //     type: 'POST'
-    //     //action: '/api/writeToFile' ,
-    //     //url: url, //url of receiver file on server
-    //     //data: data //your data
-    //     //success: success, //callback when ajax request finishes
-    //     //dataType: dataType //text/json...
-    // });
-
-
-    // $.post(url, myText, function(data){
-    //     console.log('response from the callback function: '+ data);
-    // }).fail(function(jqXHR){
-    //     alert(jqXHR.status +' '+jqXHR.statusText+ ' $.post failed!');
-    // });

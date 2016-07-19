@@ -12,9 +12,10 @@ body {
 }
 
 
-canvas {
-    margin-top: 220px;
-}
+/*canvas {*/
+    /*padding-top: 220px;*/
+/*}*/
+
 
 
 .clear_button{
@@ -186,4 +187,28 @@ ul {
     padding: 0 8px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+
+#c {
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events:none;
+    margin-top: 90px;
+}
+
+.hidden-block {
+    visibility: hidden;
+    opacity: 0;
+}
+
+main {
+    /*padding-top: 20px;*/
+}
+
+#uploadIcon {
+    width: 100%;
+    position: fixed;
+    bottom: 20px;
+    right: -20px;
 }

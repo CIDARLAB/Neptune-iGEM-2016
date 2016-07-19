@@ -97,8 +97,11 @@ $(document).ready(function(){
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY')) + 200) + 'px';
-        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleX')) - 22) + 'px';
+        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*0.010294117647058823 + 90) + 'px';
+        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*0.010294117647058823 - 22) + 'px';
+
+
+        // console.log("this is the 3DUF Zoom: " + paper.view.zoom);
 
         // console.log( ((JSON.parse(localStorage.getItem('portYcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleY'))) + 'px' );
         // console.log( ((JSON.parse(localStorage.getItem('portXcoords'))[i])*JSON.parse(localStorage.getItem('SVGscaleX'))) + 'px' );

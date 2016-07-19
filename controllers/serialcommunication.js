@@ -6,8 +6,6 @@ var express = require('express');
 
 
 
-
-
 //******************* FUNCTIONS **************************************
 function openConnection (fluigiPort) {
 

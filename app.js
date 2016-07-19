@@ -67,8 +67,11 @@ var http = require('http');
 /**************** CONTROLLERS ****************/
 {
     var homeController = require('./controllers/homepage');
+    var dashboardController = require('./controllers/dashboard');
     var fileController = require('./controllers/fileupload');
     var writeController = require('./controllers/filewrite');
+    var specifyController = require('./controllers/specify');
+    var designController = require('./controllers/design');
     var mmController = require('./controllers/mm');
     var serialController = require('./controllers/serialcommunication');
     var fluigiController = require('./controllers/fluigi');
@@ -78,7 +81,12 @@ var http = require('http');
 
 /**************** RENDER PAGES ****************/
 {
+    // Bootstrap:
     app.get('/' , homeController.openHomePage);
+    app.get('/dashboard',dashboardController.openDashboard);
+    app.get('/specify',specifyController.openSpecifyPage);
+    app.get('/design',designController.openDesignPage);
+
     app.get('/fluigipage', fluigiController.getFluigiPage);
     app.get('/uShroomPage',mmController.openMMPage);
     app.get('/serialcommunication', serialController.openSerialPage);
@@ -95,39 +103,37 @@ var http = require('http');
 
 /************** FILE UPLOAD  ************/
 {
-     app.get('/lfrpage', fileController.sendToUploadsSpecify);
-     app.get('/lfrpage_bs', fileController.sendToUploadsSpecify);
-     app.get('/uShroomPage', fileController.sendToUploadsDesign);
-     app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
-     app.post('/api/JSON', fileController.sendJSON);
-     app.post('/api/SVG', fileController.sendSVG);
-     app.post('/api/LFR', fileController.sendLFR);
-     app.post('/api/LFR_start', fileController.sendLFR_start);
-     app.post('/api/UCF', fileController.sendUCF);
-     app.post('/api/MINT',fileController.sendMINT);
+    // Bootstrap:
+    app.get('/specify',fileController.sendToUploadsSpecify);
+    app.get('/design',fileController.sendToUploadsDesign);
+    app.get('/build',fileController.sendToUploadsBuild_Verify);
+
+    app.post('/api/specify_LFR',fileController.send_specifyLFR);
+    app.post('/api/specify_UCF',fileController.send_specifyUCF);
+    app.post('/api/design_INI',fileController.send_designINI);
+    app.post('/api/design_MINT',fileController.send_designMINT);
+    app.post('/api/build_SVG',fileController.send_buildSVG);
+    app.post('/api/build_JSON',fileController.send_buildJSON);
+
+    // Pre-Bootstrap:
+    //  app.get('/lfrpage', fileController.sendToUploadsSpecify);
+    //  app.get('/lfrpage_bs', fileController.sendToUploadsSpecify);
+    //  app.get('/uShroomPage', fileController.sendToUploadsDesign);
+    //  app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
+     // app.post('/api/JSON', fileController.sendJSON);
+     // app.post('/api/SVG', fileController.sendSVG);
+     // app.post('/api/LFR', fileController.sendLFR);
+     // app.post('/api/LFR_start', fileController.sendLFR_start);
+     // app.post('/api/UCF', fileController.sendUCF);
+     // app.post('/api/MINT',fileController.sendMINT);
 }
 
 /************** FILE WRITE ********************/
 {
-    // app.get('/lfrpage',writeController.toWrite);
-    // app.post('/api/writeToFile', function(req,res) {
-    //     res.send(200);
-    //     writeToFile();
-    // });
     app.post('/api/writeToFile',writeController.writeToFile)
 }
 
-function writeToFile()
-{
-    //console.log('abc123');
-    // //var fs = require('fs');
-    // fs.writeFile("../public/downloads/test.txt", "Hey there!", function(err) {
-    //     if(err) {
-    //         return console.log(err);
-    //     }
-    //     console.log("The file was saved!");
-    // });
-}
+
 
 
 

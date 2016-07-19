@@ -9,15 +9,10 @@ exports.writeToFile = function(req, res)
     fs.writeFile("./public/downloads/test.txt", data , function(err) {
         console.log("The file was saved!");
     });
-
     
     res.end;
 };
 
-exports.toWrite = function(req , res)
-{
-   
-};
 
 
 

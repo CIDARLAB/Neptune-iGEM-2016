@@ -4,50 +4,7 @@ var exports = module.exports;
 var express = require('express');
 
 
-//******************* EXPORTS **************************************
-{
 
-exports.openSerialPage= function(req, res) {
-            exports.listPorts(); //populates ports export
-            var ports = exports.ports;
-            res.render('serialcommunication', {title: 'COM', serialPorts: ports});
-    };
-
-exports.openSerialConnection = function(req, res){
-    console.log("got here");
-    var port = req.body.portName;
-    console.log('My Port: ' + port);
-    openConnection(port);
-    res.send();
-};
-
-exports.closeSerialConnection = function(req, res){
-    var openPort = SerialPortConnection;
-    closeConnection(openPort);
-    res.send();
-};
-
-exports.arduinoSend = function(req, res){
-    var openPort = SerialPortConnection;
-    console.log("Log: POST request on arduinoGetCode endpoint");
-    var datacommand = req.body.commandData;
-    console.log("Data to arduino: " + datacommand);
-    sendToSerial(datacommand , openPort );
-    res.send();
-};
-    
-exports.listPorts= function() {
-   var returnPorts = [{}];
-
-   // list serial ports:
-   serialport.list(function (err, ports) {
-      returnPorts = ports;
-      console.log(ports);
-      exports.ports = ports; //makes it available outside of this file
-   });
-   return returnPorts;
-};
-}
 
 
 
@@ -101,3 +58,52 @@ function sendToSerial (data, myPort) {
 
 
 
+//******************* EXPORTS **************************************
+
+
+
+
+
+
+{
+
+    exports.openSerialPage= function(req, res) {
+        exports.listPorts(); //populates ports export
+        var ports = exports.ports;
+        res.render('serialcommunication', {title: 'COM', serialPorts: ports});
+    };
+
+    exports.openSerialConnection = function(req, res){
+        var port = req.body.portName;
+        console.log('My Port: ' + port);
+        openConnection(port);
+        res.send();
+    };
+
+    exports.closeSerialConnection = function(req, res){
+        var openPort = SerialPortConnection;
+        closeConnection(openPort);
+        res.send();
+    };
+
+    exports.arduinoSend = function(req, res){
+        var openPort = SerialPortConnection;
+        console.log("Log: POST request on arduinoGetCode endpoint");
+        var datacommand = req.body.commandData;
+        console.log("Data to arduino: " + datacommand);
+        sendToSerial(datacommand , openPort );
+        res.send();
+    };
+
+    exports.listPorts= function() {
+        var returnPorts = [{}];
+
+        // list serial ports:
+        serialport.list(function (err, ports) {
+            returnPorts = ports;
+            console.log(ports);
+            exports.ports = ports; //makes it available outside of this file
+        });
+        return returnPorts;
+    };
+}

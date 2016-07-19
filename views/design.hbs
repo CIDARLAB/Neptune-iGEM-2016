@@ -10,12 +10,19 @@
     <meta name="author" content="">
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+    <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
+    <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
         localStorage.design_editor_state = 'designMINT';
+        localStorage.mint_state = 'write';
+        localStorage.ini_state = 'write';
+        localStorage.FILE_designMINT = '';
+        localStorage.FILE_designINI = '';
     </script>
 
     <!-- JAVASCRIPT DEPENDENCIES -->
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+
     <!-- CSS DEPENDENCIES -->
     <style type="text/css" media="screen">
         #editor_design {
@@ -462,12 +469,12 @@
                                     <ul class="dropdown-menu pull-right" role="menu">
                                         <li><a onclick="saveEditorContent(editor_design,localStorage.design_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes Internally </a>
                                         </li>
-                                        <li><a onclick="downloadFile('temporary',localStorage.design_editor_state)"> <i class="fa fa-download  fa-fw"></i> Download File </a>
-                                        </li>
-                                        <li><a onclick="pushFileToEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>
-                                        </li>
                                         <li><a onclick="refreshEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
                                         </li>
+                                        <li><a onclick="downloadFile('temporary',localStorage.design_editor_state)"> <i class="fa fa-download  fa-fw"></i> Download File </a>
+                                        </li>
+                                        <!--<li><a onclick="pushFileToEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>-->
+                                        <!--</li>-->
                                         <li class="divider"></li>
                                         <li><a href="#"> Editor Settings </a>
                                         </li>
@@ -521,6 +528,36 @@
 
             <!-- START: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
             <div class="col-lg-4">
+
+                <!-- START: ACTION CENTER -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-play fa-fw"></i> Action Center
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-1"> </div>
+                            <div class="col-md-4" > <a id="commit_MINT" onclick="commitMINT(editor_design)" class="btn btn-default btn-block"> Commit MINT </a> </div>
+                            <div class="col-md-2"> </div>
+                            <div class="col-md-4" > <a id="commit_INI" onclick="commitINI(editor_design)" class="btn btn-default btn-block"> Commit INI </a> </div>
+                            <div class="col-md-1"> </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-3"> </div>
+                            <div class="col-md-6" >
+                                <a id="compile_btn" href="#" class="btn btn-default btn-block"> COMPILE </a>
+                            </div>
+                            <div class="col-md-3"> </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- END: ACTION CENTER -->
 
                 <!-- START: UPLOAD FORM -->
                 <div class="panel panel-default">
@@ -586,7 +623,7 @@
                 </div>
                 <!-- END: UPLOAD FORM -->
 
-                <!--START: FILE TRAY -->
+                <!-- START: FILE TRAY -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-list-alt fa-fw"></i> File Tray
@@ -596,33 +633,38 @@
                         <div class="list-group">
 
                             Specify Files: <br>
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('specifyUCF')" ondblclick="downloadFile('Specify_UCF','specifyUCF')">
                                 <i class="fa fa-file-text-o fa-fw"></i> User Constraint File (UCF)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
 
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('specifyLFR')" ondblclick="downloadFile('Specify_LFR','specifyLFR')">
                                 <i class="fa fa-file-text-o fa-fw"></i> Liquid Flow Relations File (LFR)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
                             <br>
                             Design Files: <br>
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('designMINT')" ondblclick="downloadFile('Design_MINT','designMINT')">
                                 <i class="fa fa-file-text fa-fw"></i> Microfluidic Netlist File (MINT)
+                                    <span class="pull-right text-muted small"> <em> Click to preview </em>
+                                    </span>
+                            </a>
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('designINI')" ondblclick="downloadFile('Design_INI','design_INI')">
+                                <i class="fa fa-file-text fa-fw"></i> Configuration File (INI)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
                             <br>
                             Build Files: <br>
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('buildJSON')" ondblclick="downloadFile('Build_JSON','buildJSON')">
                                 <i class="fa fa-file-code-o fa-fw"></i> Design Schematic (JSON)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
 
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('buildSVG')" ondblclick="downloadFile('Build_SVG','buildSVG')">
                                 <i class="fa fa-file-code-o fa-fw"></i> Design Schematic (SVG)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
@@ -660,6 +702,28 @@
             </div>
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
 
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <button type="button" class="btn btn-primary" onclick="downloadFile(localStorage.display_file_modal_name,localStorage.display_file_modal_state)"> Download </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         <!--PAGE CONTENT WRAP END: ALL PAGE CONTENT IS EMBEDDED ABOVE -->
 
@@ -670,22 +734,25 @@
 <!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
 
 
-<!-- *** START: DEPENDENCIES *** -->
-<!-- jQuery -->
-<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="/javascripts/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-<!-- Morris Charts JavaScript -->
-<script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
-<script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
-<!--<script src="/javascripts/js/morris-data.js"></script>-->
-<!-- Custom Theme JavaScript -->
-<script src="/javascripts/dist/js/sb-admin-2.js"></script>
-<!-- *** END: DEPENDENCIES *** -->
+    <!-- *** START: DEPENDENCIES *** -->
+    <!-- jQuery -->
+    <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/javascripts/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <!-- Morris Charts JavaScript -->
+    <script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
+    <script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
+    <!--<script src="/javascripts/js/morris-data.js"></script>-->
+    <!-- Custom Theme JavaScript -->
+    <script src="/javascripts/dist/js/sb-admin-2.js"></script>
+    <!-- *** END: DEPENDENCIES *** -->
 
 </body>
 <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->
-<script src="../javascripts/upload.js" type="application/javascript"></script>
+
+    <script src="../javascripts/uploads2.js" type="application/javascript"></script>
+
+
 </html>

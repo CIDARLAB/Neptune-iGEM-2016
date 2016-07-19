@@ -2,17 +2,18 @@
  * Created by kestas on 7/18/2016.
  */
 
-var form = document.getElementById('upload_specifyLFR');
-var fileSelect = document.getElementById('selectfile_LFR');
-var uploadButton = document.getElementById('uploadfile_LFR');
+var LFR_form = document.getElementById('upload_specifyLFR');
+var LFR_fileSelect = document.getElementById('selectfile_LFR');
+var LFR_uploadButton = document.getElementById('uploadfile_LFR');
 
-form.onsubmit = function(event) {
+
+LFR_form.onsubmit = function(event) {
     event.preventDefault();
-    uploadButton.innerHTML = 'Uploading...';
+    LFR_uploadButton.innerHTML = 'Uploading...';
 
-    var file = fileSelect.files[0];
+    var file = LFR_fileSelect.files[0];
     var formData = new FormData();
-    
+
     formData.append('specifyLFR',file,'specifyLFR');
 
     var xhr = new XMLHttpRequest();
@@ -20,10 +21,43 @@ form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
-            uploadButton.innerHTML = 'Uploaded';
+            pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
+            LFR_uploadButton.innerHTML = 'Uploaded';
         } else {
-            alert('An error occurred!');
+            alert('File upload failed.');
         }
     };
     xhr.send(formData);
 };
+
+///////////////////////////////////////////////////////////
+
+var UCF_form = document.getElementById('upload_specifyUCF');
+var UCF_fileSelect = document.getElementById('selectfile_UCF');
+var UCF_uploadButton = document.getElementById('uploadfile_UCF');
+
+UCF_form.onsubmit = function(event) {
+    event.preventDefault();
+    UCF_uploadButton.innerHTML = 'Uploading...';
+
+    var file = UCF_fileSelect.files[0];
+    var formData = new FormData();
+
+    formData.append('specifyUCF',file,'specifyUCF');
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/specify_UCF', true);
+    xhr.onload = function () {
+        if (xhr.status === 200) {
+            // File(s) uploaded.
+            pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
+            UCF_uploadButton.innerHTML = 'Uploaded';
+        } else {
+            alert('File upload failed.');
+        }
+    };
+    xhr.send(formData);
+};
+
+///////////////////////////////////////////////////////////
+

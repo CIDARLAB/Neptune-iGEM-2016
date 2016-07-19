@@ -34,7 +34,8 @@ exports.sendToUploadsBuild_Verify = function(req , res) {
 // -----------------------------------FILE UPLOAD FOR specify_LFR -----------------------------------------//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.send_specifyLFR = function(req, res) {
-    var storage_specifyLFR =   multer.diskStorage({
+
+    var storage_specifyLFR = multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads/Specify');
         },
@@ -48,16 +49,18 @@ exports.send_specifyLFR = function(req, res) {
     }).single('specifyLFR');
 
     upload_specifyLFR(req,res,function(err) {
+
         if(err) {
             return res.end("Error uploading LFR file.");
         }
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("LFR File is uploaded");
+        return res.send("LFR file is uploaded");
         console.log("My specifyLFR: " + res);
     });
 };
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -----------------------------------FILE UPLOAD FOR specify_UCF -----------------------------------------//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -82,7 +85,7 @@ exports.send_specifyUCF = function(req, res) {
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("UCF File is uploaded");
+        return res.end("UCF file is uploaded");
         console.log("My specifyUCF: " + res);
     });
 };
@@ -110,7 +113,7 @@ exports.send_designINI = function(req, res) {
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("INI File is uploaded");
+        return res.end("INI file is uploaded");
         console.log("My designINI: " + res);
     });
 };
@@ -139,7 +142,7 @@ exports.send_designMINT = function(req, res) {
         if(req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("MINT File is uploaded");
+        return res.end("MINT file is uploaded");
         console.log("My designMINT: " + res);
     });
 };
@@ -176,7 +179,7 @@ exports.send_buildJSON = function(req, res) {
         if (req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("JSON File is uploaded");
+        return res.end("JSON file is uploaded");
         console.log("My buildJSON: " + res);
 
     });
@@ -191,7 +194,7 @@ exports.send_buildJSON = function(req, res) {
             callback(null, './public/uploads/');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.json');
+            callback(null, file.fieldname + '.txt');
         }
     });
 
@@ -214,7 +217,7 @@ exports.send_buildJSON = function(req, res) {
         if (req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("JSON File is uploaded");
+        return res.end("JSON file is uploaded");
         console.log("My buildJSON: " + res);
 
     });
@@ -252,7 +255,7 @@ exports.send_buildSVG = function(req, res) {
         if (req.fileValidationError) {
             return res.end(req.fileValidationError);
         }
-        res.end("SVG File is uploaded");
+        return res.end("SVG file is uploaded");
         console.log("My buildSVG: " + res);
 
     });

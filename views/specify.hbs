@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+
     <script>
         localStorage.specify_editor_state = 'specifyLFR';
     </script>
@@ -450,10 +451,9 @@
                             <ul class="nav nav-tabs">
                                 <li><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp &nbsp</li>
                                 <li> Editor &nbsp &nbsp </li>
-                                <li id="LFRtab" class="active"><a onclick="changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab,INI_tab])">LFR</a></li>
-                                <li id="UCFtab"><a onclick="changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab,INI_tab])">UCF</a></li>
-                                <li id="INItab"><a onclick="changeSpecifyTabs(editor_specify,'INItab',[LFR_tab,UCF_tab,INI_tab])">INI</a></li>
-                                <!--<li><a href="#">Menu 3</a></li>-->
+                                <li id="LFRtab" class="active"><a onclick="changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab])">LFR</a></li>
+                                <li id="UCFtab"><a onclick="changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])">UCF</a></li>
+
                                 <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -466,6 +466,8 @@
                                         <li><a onclick="downloadFile('temporary',localStorage.specify_editor_state)"> <i class="fa fa-download  fa-fw"></i> Download File </a>
                                         </li>
                                         <li><a onclick="pushFileToEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>
+                                        </li>
+                                        <li><a onclick="refreshEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#"> Editor Settings </a>
@@ -513,7 +515,6 @@
             <script>
                 var LFR_tab = ace.createEditSession('LFR_tab',"ace/mode/mint");
                 var UCF_tab =ace.createEditSession('UCF_tab',"ace/mode/mint");
-                var INI_tab =ace.createEditSession('INI_tab',"ace/mode/mint");
                 editor_specify.setSession(LFR_tab);
             </script>
 
@@ -574,7 +575,35 @@
                 </div>
                 <!-- END: UPLOAD FORM -->
 
-                <!--START: FILE TRAY -->
+                <!-- START: ACTION CENTER -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-play fa-fw"></i> Action Center
+                    </div>
+
+                    <div class="panel-body">
+
+                        <div class="row">
+                            <div class="col-md-4"> <a href="#" class="btn btn-default btn-block"> Commit LFR </a> </div>
+                            <div class="col-md-4"> </div>
+                            <div class="col-md-4"> <a href="#" class="btn btn-default btn-block"> Commit UCF </a> </div>
+                        </div>
+
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-3"> </div>
+                            <div class="col-md-6">
+                                <a href="#" class="btn btn-default btn-block"> Compile! </a>
+                            </div>
+                            <div class="col-md-3"> </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- END: ACTION CENTER -->
+
+                <!-- START: FILE TRAY -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <i class="fa fa-list-alt fa-fw"></i> File Tray
@@ -638,10 +667,8 @@
                             <!--</a>-->
 
                         </div>
-                        <!-- /.list-group -->
                         <a href="#" class="btn btn-default btn-block">View All Files</a>
                     </div>
-                    <!-- /.panel-body -->
                 </div>
                 <!-- END: FILE TRAY -->
 
@@ -660,6 +687,7 @@
 
 <!-- *** START: DEPENDENCIES *** -->
 <!-- jQuery -->
+
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -675,5 +703,6 @@
 
 </body>
     <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->
-    <script src="../javascripts/upload.js" type="application/javascript"></script>
+    <script src="../javascripts/uploads.js" type="application/javascript"></script>
+
 </html>

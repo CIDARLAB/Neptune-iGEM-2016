@@ -9,6 +9,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+    <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
+    <script type="text/javascript">
+        localStorage.WORKFLOW_STAGE = "start"; //start, specify, design, build, done
+    </script>
+
     <!-- Bootstrap Core CSS -->
     <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -675,9 +681,9 @@
 
                             <!-- START -->
                             <li>
-                                <div class="timeline-badge start"><i class="fa fa-check"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge start"><a></a><i class="fa fa-check"></i> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" id="start_box">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title"> Start </h4>
                                         <!--<p><small class="text-muted"><i class="fa fa-clock-o"></i> </small>-->
@@ -694,9 +700,9 @@
 
                             <!-- SPECIFY -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge specify"><i class="fa fa-pencil-square-o"></i>
+                                <div class="timeline-badge specify"><a href="../specify"></a><i class="fa fa-pencil-square-o"></i>
                                 </div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" id="specify_box">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title"> Specify </h4>
                                     </div>
@@ -709,9 +715,9 @@
 
                             <!-- DESIGN -->
                             <li>
-                                <div class="timeline-badge design"><i class="fa fa-cogs" aria-hidden="true"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge design"><a href="../design"></a><i class="fa fa-cogs" aria-hidden="true"></i> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" id="design_box">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title"> Design </h4>
                                     </div>
@@ -725,9 +731,9 @@
 
                             <!-- BUILD and VERIFY -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge build"><i class="fa fa-gavel" aria-hidden="true"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge build"><a href="../build"></a><i class="fa fa-gavel" aria-hidden="true"></i> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" id="build_box">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title"> Build and Verify </h4>
                                     </div>
@@ -741,9 +747,9 @@
 
                             <!-- DONE -->
                             <li>
-                                <div class="timeline-badge done"><i class="fa fa-trophy"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge done"><a></a><i class="fa fa-trophy"></i> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
-                                <div class="timeline-panel">
+                                <div class="timeline-panel" id="done_box">
                                     <div class="timeline-heading">
                                         <h4 class="timeline-title"> Done! </h4>
                                     </div>
@@ -848,33 +854,38 @@
                         <div class="list-group">
 
                             Specify Files: <br>
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('specifyUCF')" ondblclick="downloadFile('Specify_UCF','specifyUCF')">
                                 <i class="fa fa-file-text-o fa-fw"></i> User Constraint File (UCF)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
 
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('specifyLFR')" ondblclick="downloadFile('Specify_LFR','specifyLFR')">
                                 <i class="fa fa-file-text-o fa-fw"></i> Liquid Flow Relations File (LFR)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
                             <br>
                             Design Files: <br>
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('designMINT')" ondblclick="downloadFile('Design_MINT','designMINT')">
                                 <i class="fa fa-file-text fa-fw"></i> Microfluidic Netlist File (MINT)
+                                    <span class="pull-right text-muted small"> <em> Click to preview </em>
+                                    </span>
+                            </a>
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('designINI')" ondblclick="downloadFile('Design_INI','design_INI')">
+                                <i class="fa fa-file-text fa-fw"></i> Configuration File (INI)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
                             <br>
                             Build Files: <br>
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('buildJSON')" ondblclick="downloadFile('Build_JSON','buildJSON')">
                                 <i class="fa fa-file-code-o fa-fw"></i> Design Schematic (JSON)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
 
-                            <a href="#" class="list-group-item">
+                            <a type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('buildSVG')" ondblclick="downloadFile('Build_SVG','buildSVG')">
                                 <i class="fa fa-file-code-o fa-fw"></i> Design Schematic (SVG)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
@@ -1044,6 +1055,27 @@
 
             </div>
             <!-- 3 PANEL DIV END: FILE TRAY AND OTHER CONTENT -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <button type="button" class="btn btn-primary" onclick="downloadFile(localStorage.display_file_modal_name,localStorage.display_file_modal_state)"> Download </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!--PAGE CONTENT WRAP END: ALL PAGE CONTENT IS EMBEDDED ABOVE -->

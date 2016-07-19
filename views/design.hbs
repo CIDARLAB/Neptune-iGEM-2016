@@ -450,11 +450,9 @@
                         <ul class="nav nav-tabs">
                             <li><i class="fa fa-bar-chart-o fa-fw"></i>&nbsp &nbsp</li>
                             <li> Editor &nbsp &nbsp </li>
-                            <li id="MINTtab" class="active"><a> MINT </a></li>
-                            <!--<li id="LFRtab" class="active"><a onclick="changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab,INI_tab])">LFR</a></li>-->
-                            <!--<li id="UCFtab"><a onclick="changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab,INI_tab])">UCF</a></li>-->
-                            <!--<li id="INItab"><a onclick="changeSpecifyTabs(editor_specify,'INItab',[LFR_tab,UCF_tab,INI_tab])">INI</a></li>-->
-                            <!--<li><a href="#">Menu 3</a></li>-->
+                            <li id="MINTtab" class="active"><a onclick="changeDesignTabs(editor_design,'MINTtab',[MINT_tab,INI_tab])">MINT</a></li>
+                            <li id="INItab"><a onclick="changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])">INI</a></li>
+
                             <div class="pull-right">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -467,6 +465,8 @@
                                         <li><a onclick="downloadFile('temporary',localStorage.design_editor_state)"> <i class="fa fa-download  fa-fw"></i> Download File </a>
                                         </li>
                                         <li><a onclick="pushFileToEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>
+                                        </li>
+                                        <li><a onclick="refreshEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
                                         </li>
                                         <li class="divider"></li>
                                         <li><a href="#"> Editor Settings </a>
@@ -506,15 +506,14 @@
             </div>
 
             <script src="/javascripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-            <script> var editor_design = ace.edit("editor_specify"); editor_design.setTheme("ace/theme/github");
+            <script> var editor_design = ace.edit("editor_design"); editor_design.setTheme("ace/theme/github");
             editor_design.setOptions({
                 fontFamily: "tahoma",
                 fontSize: "11pt"
             });</script>
             <script>
                 var MINT_tab = ace.createEditSession('MINT_tab',"ace/mode/mint");
-//                var UCF_tab =ace.createEditSession('UCF_tab',"ace/mode/mint");
-//                var INI_tab =ace.createEditSession('INI_tab',"ace/mode/mint");
+                var INI_tab = ace.createEditSession('INI_tab',"ace/mode/mint");
                 editor_design.setSession(MINT_tab);
             </script>
 

@@ -7,9 +7,11 @@ $(document).ready(function(){
                 data:
                 {
                   portName: $("#ports").val()
+
                 },
                 success: function(response){
                     localStorage.port= $("#ports").val();
+                    console.log('Youve selected port: ' + localStorage.port);
                 },
                 error: function(response){
                 }
@@ -18,7 +20,6 @@ $(document).ready(function(){
 
   //example for AJAX onclick 
   $("#end-comm").click(function () {
-
 
         $.ajax(
             {   url: "/serialcommunication/close", type: 'POST', async: true,

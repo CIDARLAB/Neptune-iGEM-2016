@@ -119,24 +119,12 @@ ul {
 
 }
 
-
-/*img{*/
-/*max-width: 50%;*/
-/*height: auto;*/
-/*/*z-index: -1;*/
-/*}*/
-/*Divisions*/
 #container {
     position: relative;
 }
 
 
-/*#valve-container {*/
-/*top: 200px;*/
-/*left: 0px;*/
-/*position: absolute;*/
-/*width: 100%;*/
-/*}*/
+
 
 
 .IDtext {
@@ -144,7 +132,7 @@ ul {
     color: white;
     font-weight: bold;
     font-size:20px;
-    padding-top:5px;
+    padding-top:8px;
     padding-left:14px;
 }
 .valve_color {

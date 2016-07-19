@@ -14,6 +14,7 @@ exports.openSerialPage= function(req, res) {
     };
 
 exports.openSerialConnection = function(req, res){
+    console.log("got here");
     var port = req.body.portName;
     console.log('My Port: ' + port);
     openConnection(port);

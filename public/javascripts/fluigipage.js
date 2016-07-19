@@ -279,7 +279,7 @@ function mediateMotorPosition(event)
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
     localStorage.setItem('myCommand', command);
-    document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
+    //document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
     // $.ajax(
     //     {   url: "/arduinoGetCode", type: 'POST', async: true,
     //         data:
@@ -383,7 +383,7 @@ function wrap_data_for_Arduino()
     // CONCAT THE VALVE NUMBER AND PWM VALUE
     var pre_command = valve_to_control_padded.concat(PWMval_padded);
     // ADD A START CODON TO SIGNIFY THE BEGINING OF SIGNAL
-    var startStr = 's';
+    var startStr = '';
     var pre_command_s = startStr.concat(pre_command);
     // ADD A STOP CODON TO SIGNIFY THE END OF SIGNAL
     var command = pre_command_s.concat('\n');
@@ -401,7 +401,7 @@ function sendCommand()
     writeToSerialConsole(command_info);
     console.log(command);
     localStorage.setItem('myCommand', command);
-    document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
+    //document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
     // $.ajax(
     //     {   url: "/arduinoGetCode", type: 'POST', async: true,
     //         data:

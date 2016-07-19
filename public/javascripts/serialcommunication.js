@@ -9,7 +9,7 @@ $(document).ready(function(){
                   portName: $("#ports").val()
                 },
                 success: function(response){
-                    localStorage.port= $("#ports").val()
+                    localStorage.port= $("#ports").val();
                 },
                 error: function(response){
                 }

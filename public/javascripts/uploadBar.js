@@ -23,13 +23,15 @@ $(document).ready(function () {
                 toastr.success('Your JSON File was uploaded successfully!');
                 
                 console.log(response);
+                
+
                 // $("#status").empty().text(response);
                 $("#status").empty().text();
-                var JSONbutton = document.getElementById("inputfile");
+                var JSONbutton = document.getElementById("inputfile_JSON");
                 JSONbutton.style.backgroundColor = "#2ecc71";
                 
                 // Json successfully uploaded
-                var fileOfChoice = "../uploads/Build_Verify/myJSON.json";
+                var fileOfChoice = "../uploads/myjson.json";
                 $.getJSON(fileOfChoice, function (json) {
 
                     // Use Json as a string
@@ -66,7 +68,7 @@ $(document).ready(function () {
                         portRadius2.push(myArray[4]);
                         portArray.push(myArray.index);
                     }
-                    
+
                     // Store json variables to localStorage in form of JSON object...
                     localStorage.portXcoords = JSON.stringify(portX);
                     localStorage.portYcoords = JSON.stringify(portY);
@@ -74,23 +76,38 @@ $(document).ready(function () {
                     localStorage.portRadius2vals = JSON.stringify(portRadius2);
                     //  Update number of Pumps for settings page
                     setNumberOfPumps_JSON();
-                    
-                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[0]);
-                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
-                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[2]);
-                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[3]);
-                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[4]);
-                    console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[5]);
+
+                    // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[0]);
+                    // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
+                    // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[2]);
+                    // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[3]);
+                    // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[4]);
+                    // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[5]);
+
+                    // console.log(JSON.parse(JSON.stringify(json)));
+                    // var result = JSON.parse(JSON.stringify(json));
+
+
+                    // Display JSON via 3DuF
+                    var result = json;
+                    Registry.viewManager.loadDeviceFromJSON(result);
                 });
+                location.reload();
             }
         });
-
+        // location.reload();
         return false;
     });
+
+
+    
+    
+    
+    
+    
     $('#uploadForm2').submit(function () {
 
         toastr.success('Your SVG File was uploaded successfully!');
-        
 
         $(this).ajaxSubmit({
 
@@ -104,7 +121,7 @@ $(document).ready(function () {
                 var SVGbutton = document.getElementById("inputfile2");
                 SVGbutton.style.backgroundColor = "#2ecc71";
                 // refresh the page so that svg loads
-                location.reload();
+                // location.reload();
             }
         });
         return false;

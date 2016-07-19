@@ -85,7 +85,7 @@ $(function() {
             },
             {
                 path: "/fluigipage",
-                element: "#canvasID",
+                element: "#c",
                 title: "Graph",
                 content: "Your chip will be displayed here with clickable buttons to open and close valves"
             },

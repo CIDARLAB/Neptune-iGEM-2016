@@ -153,7 +153,7 @@ exports.sendJSON = function(req, res) {
 
     var storageJSON = multer.diskStorage({
         destination: function (req, file, callback) {
-            callback(null, './public/uploads/Build_Verify');
+            callback(null, './public/uploads/');
         },
         filename: function (req, file, callback) {
             callback(null, file.fieldname + '.json');
@@ -170,19 +170,21 @@ exports.sendJSON = function(req, res) {
         //     }
         //     cb(null, true);
         // }
-    }).single('myJSON');
+    }).single('myjson');
 
-        uploadJSON(req, res, function (err) {
-            if (err) {
-                return res.end("Error uploading file.");
-            }
-            if (req.fileValidationError) {
-                return res.end(req.fileValidationError);
-            }
-            res.end("JSON File is uploaded");
-            console.log("My JSON: " + res);
+    uploadJSON(req, res, function (err) {
+        if (err) {
 
-        });
+            return res.end("Error uploading file.");
+
+        }
+        if (req.fileValidationError) {
+            return res.end(req.fileValidationError);
+        }
+        res.end("JSON File is uploaded");
+        console.log("My JSON: " + res);
+
+    });
 };
 
 
@@ -192,7 +194,7 @@ exports.sendJSON = function(req, res) {
 exports.sendSVG = function(req, res) {
     var storageSVG =   multer.diskStorage({
         destination: function (req, file, callback) {
-            callback(null, './public/uploads/Build_Verify');
+            callback(null, './public/uploads/');
         },
         filename: function (req, file, callback) {
             callback(null, file.fieldname + '.svg');
@@ -211,17 +213,17 @@ exports.sendSVG = function(req, res) {
         }
     }).single('mySVG');
 
-        uploadSVG(req, res, function (err) {
-            if (err) {
-                return res.end("Error uploading file2.");
-            }
-            if (req.fileValidationError) {
-                return res.end(req.fileValidationError);
-            }
-            res.end("SVG File is uploaded");
-            console.log("My SVG: " + res);
-        });
-    };
+    uploadSVG(req, res, function (err) {
+        if (err) {
+            return res.end("Error uploading file2.");
+        }
+        if (req.fileValidationError) {
+            return res.end(req.fileValidationError);
+        }
+        res.end("SVG File is uploaded");
+        console.log("My SVG: " + res);
+    });
+};
 
 
 // FILE UPLOAD FOR MINT ---------------------------------------------------------------------------------

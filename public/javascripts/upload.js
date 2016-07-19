@@ -4,8 +4,8 @@
 {
     $(document).ready(function () {
 
-        $('#upload_specifyLFR').submit(function () {
-
+        $('#upload_specifyLFR').submit(function (e) {
+            //e.preventDefault();
             $(this).ajaxSubmit({
 
                 error: function (xhr) {
@@ -24,6 +24,7 @@
             return false;
         });
     });
+
 }
 
 {

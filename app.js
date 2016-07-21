@@ -77,6 +77,7 @@ var http = require('http');
     var fluigiController = require('./controllers/fluigi');
     var lfrController = require('./controllers/lfrpage');
     var lfr_bsController = require('./controllers/lfrpage_bs');
+    var BaVController = require('./controllers/BuildAndVerify');
 }
 
 /**************** RENDER PAGES ****************/
@@ -86,6 +87,7 @@ var http = require('http');
     app.get('/dashboard',dashboardController.openDashboard);
     app.get('/specify',specifyController.openSpecifyPage);
     app.get('/design',designController.openDesignPage);
+    app.get('/BuildAndVerify',BaVController.openBaVPage);
 
     app.get('/fluigipage', fluigiController.getFluigiPage);
     app.get('/uShroomPage',mmController.openMMPage);

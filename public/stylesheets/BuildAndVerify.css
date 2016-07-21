@@ -1,0 +1,115 @@
+body {
+    padding: 0;
+}
+
+
+
+/*Divisions*/
+#container {
+    position: relative;
+}
+
+
+.actuators {
+    position: fixed;
+    top: 150px;
+    left: 10px;
+    width: 300px;
+    height: 150px;
+    border: inset;
+    padding-left: 30px;
+    background-color: lightskyblue;
+}
+
+.inputButton {
+    outline-style: none;
+    height: 25px;
+    border: 2px solid dodgerblue;
+    border-radius: 4px;
+    background: white;
+}
+
+.serialBox {
+    border-color: white;
+    border: double;
+
+}
+
+
+
+.uploadbar {
+    position:absolute;
+    top: 90px;
+    width: 100%;
+    padding-left: 100px;
+    padding-top: 10px;
+    height: 50px;
+    background-color: white;
+
+}
+
+#container {
+    position: relative;
+}
+
+
+.IDtext {
+    position: absolute;
+    color: white;
+    font-weight: bold;
+    font-size:20px;
+    padding-top:8px;
+    padding-left:14px;
+    pointer-events: none;
+}
+.valve_color {
+    position: absolute;
+}
+
+
+
+#c {
+    width: -moz-calc(100% - 250px);
+    width: -webkit-calc(100% - 250px);
+    width: -o-calc(100% - 250px);
+    width: calc(100% - 250px);
+    height: 100% !important;
+    pointer-events:none;
+    margin-top: 0px;
+    margin-left: 250px;
+    z-index: 2000;
+}
+
+.hidden-block {
+    visibility: hidden;
+    opacity: 0;
+}
+
+main {
+    /*padding-top: 20px;*/
+}
+
+#uploadIcon {
+    width: 100%;
+    position: fixed;
+    bottom: 20px;
+    right: -20px;
+}
+
+
+
+
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 0 !important;
+    background-color: #fff;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        border-left: 1px solid #e7e7e7;
+    }
+}

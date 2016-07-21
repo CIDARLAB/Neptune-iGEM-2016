@@ -31,7 +31,7 @@ $(document).ready(function () {
                 JSONbutton.style.backgroundColor = "#2ecc71";
                 
                 // Json successfully uploaded
-                var fileOfChoice = "../uploads/myjson.json";
+                var fileOfChoice = "../uploads/Build_Verify/myjson.json";
                 $.getJSON(fileOfChoice, function (json) {
 
                     // Use Json as a string

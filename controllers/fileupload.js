@@ -141,11 +141,49 @@ exports.send_designMINT = function(req, res) {
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 // -----------------------------------FILE UPLOAD FOR JSON ----------------------------------------------//
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// exports.send_buildJSON = function(req, res) {
+//
+//     var storage_buildJSON = multer.diskStorage({
+//         destination: function (req, file, callback) {
+//             callback(null, './public/uploads/Build_Verify');
+//         },
+//         filename: function (req, file, callback) {
+//             callback(null, file.fieldname + '.json');
+//         }
+//     });
+//
+//     var upload_buildJSON = multer({
+//         storage: storage_buildJSON
+//         // fileFilter: function (req, file, cb) {
+//         //     if (file.mimetype !== 'application/octet-stream') {
+//         //         req.fileValidationError = 'Wrong Filetype!';
+//         //         console.log('My filetype: ' + file.mimetype);
+//         //         return cb(null, false, new Error('goes wrong on the mimetype'));
+//         //     }
+//         //     cb(null, true);
+//         // }
+//     }).single('buildJSON');
+//
+//     upload_buildJSON(req, res, function (err) {
+//         if (err) {
+//             return res.end("Error uploading JSON file.");
+//         }
+//         if (req.fileValidationError) {
+//             return res.end(req.fileValidationError);
+//         }
+//         return res.send("JSON file is uploaded");
+//         console.log("My buildJSON: " + res);
+//
+//     });
+// };
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+// -----------------------------------FILE UPLOAD FOR JSON ----------------------------------------------//
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
 exports.send_buildJSON = function(req, res) {
 
     var storage_buildJSON = multer.diskStorage({
         destination: function (req, file, callback) {
-            callback(null, './public/uploads/');
+            callback(null, './public/uploads/Build_Verify/');
         },
         filename: function (req, file, callback) {
             callback(null, file.fieldname + '.json');
@@ -162,45 +200,7 @@ exports.send_buildJSON = function(req, res) {
         //     }
         //     cb(null, true);
         // }
-    }).single('buildJSON');
-
-    upload_buildJSON(req, res, function (err) {
-        if (err) {
-            return res.end("Error uploading JSON file.");
-        }
-        if (req.fileValidationError) {
-            return res.end(req.fileValidationError);
-        }
-        return res.send("JSON file is uploaded");
-        console.log("My buildJSON: " + res);
-
-    });
-};
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// -----------------------------------FILE UPLOAD FOR JSON ----------------------------------------------//
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-exports.send_buildJSON = function(req, res) {
-
-    var storage_buildJSON = multer.diskStorage({
-        destination: function (req, file, callback) {
-            callback(null, './public/uploads/');
-        },
-        filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.txt');
-        }
-    });
-
-    var upload_buildJSON = multer({
-        storage: storage_buildJSON
-        // fileFilter: function (req, file, cb) {
-        //     if (file.mimetype !== 'application/octet-stream') {
-        //         req.fileValidationError = 'Wrong Filetype!';
-        //         console.log('My filetype: ' + file.mimetype);
-        //         return cb(null, false, new Error('goes wrong on the mimetype'));
-        //     }
-        //     cb(null, true);
-        // }
-    }).single('buildJSON');
+    }).single('myjson'); // MUST MATCH FILE NAME!
 
     upload_buildJSON(req, res, function (err) {
         if (err) {
@@ -221,7 +221,7 @@ exports.send_buildSVG = function(req, res) {
 
     var storage_buildSVG = multer.diskStorage({
         destination: function (req, file, callback) {
-            callback(null, './public/uploads/Build_Verify');
+            callback(null, './public/uploads/');
         },
         filename: function (req, file, callback) {
             callback(null, file.fieldname + '.svg');
@@ -238,7 +238,7 @@ exports.send_buildSVG = function(req, res) {
         //     }
         //     cb(null, true);
         // }
-    }).single('buildSVG');
+    }).single('mysvg');
 
     upload_buildSVG(req, res, function (err) {
         if (err) {

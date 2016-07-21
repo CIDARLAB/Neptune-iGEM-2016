@@ -11147,7 +11147,7 @@ window.onload = function () {
     Registry.viewManager = viewManager;
 
   // Load last uploaded file  to canvas
-  $.getJSON("../uploads/myjson.json", function (json) {
+  $.getJSON("../uploads/Build_Verify/myjson.json", function (json) {
     viewManager.loadDeviceFromJSON(JSON.parse(JSON.stringify((json))));
     viewManager.updateGrid();
     Registry.currentDevice.updateView();

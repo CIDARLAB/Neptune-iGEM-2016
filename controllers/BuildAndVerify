@@ -1,0 +1,4 @@
+exports.openBaVPage = function(req, res)
+{
+    res.render('BuildAndVerify', {title: 'BuildAndVerify'});
+};

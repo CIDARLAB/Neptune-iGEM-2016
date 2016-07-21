@@ -10,7 +10,9 @@ function onclickanchortag(){
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             console.log("Port " + this.id + " clicked");
             valve_to_control = this.id;
-            flipFlop_valveState(valve_to_control);
+            // flipFlop_valveState(valve_to_control);
+            flipFlop_valveState(1);
+
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
@@ -52,39 +54,6 @@ $(document).ready(function(){
     // Formatting Canvas
     cx.canvas.width = canWidth;
     cx.canvas.height = canHeight;
-    //document.getElementById("canvasID").style.background = '#34495e';
-
-
-    // load svg to canvas and reformat
-    var svgGraph = document.createElement("img");
-
-    svgGraph.src = "../uploads/Build_Verify/mySVG.svg";
-
-    svgGraph.addEventListener("load", function () {
-
-
-         // original width and height of SVG upon load
-         SVGwidth = (localStorage.getItem('SVGdimX'));
-         SVGheight = (localStorage.getItem('SVGdimY'));
-         // console.log('SVG width: ' + SVGwidth);
-
-
-
-        // ratio to preserve aspect ratio of svg
-        SVGscaleX = (canWidth) / SVGwidth;
-        SVGscaleY = (canHeight) / SVGheight;
-
-        localStorage.setItem('SVGscaleX', SVGscaleX);
-        localStorage.setItem('SVGscaleY', SVGscaleY);
-
-        //console.log('SVG scale x: ' + JSON.parse(localStorage.getItem('SVGscaleX')));
-
-
-        // cx.drawImage(svgGraph, SVGx - 200, -10 * SVGscale, SVGwidth * SVGscale, SVGheight * SVGscale);
-        cx.drawImage(svgGraph, 0, 0, canWidth, canHeight);
-    });
-
-
 
 
     // for each pump, create new instance of valve template
@@ -97,8 +66,8 @@ $(document).ready(function(){
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*0.010294117647058823 + 90) + 'px';
-        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*0.010294117647058823 - 22) + 'px';
+        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*0.010294117647058823 + 90 + 110) + 'px';
+        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*0.010294117647058823 - 20 + 150 + 100) + 'px';
 
 
         // console.log("this is the 3DUF Zoom: " + paper.view.zoom);

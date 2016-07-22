@@ -10,14 +10,23 @@
     <meta name="author" content="">
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+
+    <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
+    <!--//<script src="/socket.io/socket.io.js"></script>-->
+    <!--<script>-->
+        <!--var socket = io.connect('http://localhost/app');-->
+        <!--socket.on('time', function (data) {-->
+            <!--console.log(data);-->
+            <!--socket.emit('my other event', { my: 'data' });-->
+        <!--});-->
+    <!--</script>-->
+
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
         localStorage.specify_editor_state = 'specifyLFR';
         localStorage.lfr_state = 'write';
         localStorage.ucf_state = 'write';
-        localStorage.FILE_specifyLFR = '';
-        localStorage.FILE_specifyUCF = '';
     </script>
 
     <!-- JAVASCRIPT DEPENDENCIES -->
@@ -59,6 +68,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+        body {  padding: 0 !important;  }
+    </style>
 
 </head>
 
@@ -552,7 +565,8 @@
                         <div class="row">
                             <div class="col-md-3"> </div>
                             <div class="col-md-6" >
-                                <a id="translate_btn" href="#" class="btn btn-default btn-block"> TRANSLATE </a>
+                                <input id="translate_btnn" class="btn btn-default" value="TRANSLATE" onclick="translateLFR()" > </input>
+                                <!--<a data-toggle="modal" data-target="#myModal_translate"> </a>-->
                             </div>
                             <div class="col-md-3"> </div>
                         </div>
@@ -577,7 +591,7 @@
                                     <input id= "selectfile_LFR" class="btn btn-default" type="file" name="specifyLFR" />
                                 </div>
                                 <div id="upload_div">
-                                    <input id="uploadfile_LFR" class= "btn btn-default" type="submit" value="Upload LFR" name="submit" onsubmit="LFRsubmit(event,editor_specify)">
+                                    <input id="uploadfile_LFR" class= "btn btn-default" type="submit" value="Upload LFR" name="submit">
                                     <span id = "status"></span>
                                 </div>
                             </form>
@@ -692,7 +706,39 @@
             </div>
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
 
-            <!-- Modal -->
+            <!-- Modal: Translate Actions -->
+            <div class="modal fade" id="myModal_translate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Translating LFR to MINT</h4>
+                        </div>
+                        <div class="modal-body">
+                            Your Liquid Flow Relations (LFR) file is being compiled into a Microfluidic Netlist File (MINT).
+                            This should take up to a few minutes.
+                            When ready, you can choose to download your MINT file and manually upload it to the design stage,
+                            or you can push the contents of this file to the next stage of the workflow automatically.
+                        </div>
+                        <div class="modal-footer">
+                            <!--<div class="row">-->
+                                <!--<div class=".col-md-4"><a id="downloadLFR" class="btn btn-default btn-block"> </a> </div>-->
+                                <!--<div class=".col-md-2"> </div>-->
+                                <!--<div class=".col-md-4"><a id="pushLFR" class="btn btn-default btn-block"></a> </div>-->
+                            <!--</div> -->
+                            <button type="button" class="btn btn-success" onclick="MINTflow('download')">Download MINT</button>
+                            <button type="button" class="btn btn-success" onclick="MINTflow('push')">Push MINT</button>
+                            <button type="button" class="btn btn-success">Download and Push</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: File Preview -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -714,6 +760,7 @@
             </div>
 
         </div>
+
         <!--PAGE CONTENT WRAP END: ALL PAGE CONTENT IS EMBEDDED ABOVE -->
 
     </div>
@@ -742,4 +789,5 @@
     <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->
     <script src="../javascripts/uploads.js" type="application/javascript"></script>
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+    <script> (document.getElementById('translate_btnn')).disabled = true; </script>
 </html>

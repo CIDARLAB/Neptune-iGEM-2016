@@ -22,6 +22,7 @@ LFR_form.onsubmit = function(event) {
         if (xhr.status === 200) {
             // File(s) uploaded.
             pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
+            localStorage.WORKFLOW_STAGE = 'specify';
             LFR_uploadButton.innerHTML = 'Uploaded';
         } else {
             alert('File upload failed.');
@@ -50,6 +51,7 @@ UCF_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            localStorage.WORKFLOW_STAGE = 'specify';
             pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
             UCF_uploadButton.innerHTML = 'Uploaded';
         } else {

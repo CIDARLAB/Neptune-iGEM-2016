@@ -17,6 +17,7 @@ function commitLFR(EDITOR){
         localStorage.lfr_state = 'write';
         EDITOR.setReadOnly(false);
         lock_translate();
+        (document.getElementById('upload_specifyLFR')).elements["uploadfile_LFR"].disabled = false;
     }
     else // FILE IS NOT COMMITED -- COMMIT
     {
@@ -29,6 +30,7 @@ function commitLFR(EDITOR){
         }
         localStorage.lfr_state = 'readOnly';
         EDITOR.setReadOnly(true);
+        (document.getElementById('upload_specifyLFR')).elements["uploadfile_LFR"].disabled = true;
     }
 }
 
@@ -39,6 +41,7 @@ function commitUCF(EDITOR){
         localStorage.ucf_state = 'write';
         EDITOR.setReadOnly(false);
         lock_translate();
+        (document.getElementById('upload_specifyUCF')).elements["uploadfile_UCF"].disabled = false;
     }
     else // FILE IS NOT COMMITED -- COMMIT
     {
@@ -51,6 +54,7 @@ function commitUCF(EDITOR){
         }
         localStorage.ucf_state = 'readOnly';
         EDITOR.setReadOnly(true);
+        (document.getElementById('upload_specifyUCF')).elements["uploadfile_UCF"].disabled = true;
     }
 }
 
@@ -61,6 +65,7 @@ function commitMINT(EDITOR){
         localStorage.mint_state = 'write';
         EDITOR.setReadOnly(false);
         lock_compile();
+        (document.getElementById('upload_designMINT')).elements["uploadfile_MINT"].disabled = false;
     }
     else // FILE IS NOT COMMITED -- COMMIT
     {
@@ -73,6 +78,7 @@ function commitMINT(EDITOR){
         }
         localStorage.mint_state = 'readOnly';
         EDITOR.setReadOnly(true);
+        (document.getElementById('upload_designMINT')).elements["uploadfile_MINT"].disabled = true;
     }
 }
 
@@ -83,6 +89,7 @@ function commitINI(EDITOR){
         localStorage.ini_state = 'write';
         EDITOR.setReadOnly(false);
         lock_compile();
+        (document.getElementById('upload_designINI')).elements["uploadfile_INI"].disabled = false;
     }
     else // FILE IS NOT COMMITED -- COMMIT
     {
@@ -95,87 +102,27 @@ function commitINI(EDITOR){
         }
         localStorage.ini_state = 'readOnly';
         EDITOR.setReadOnly(true);
+        (document.getElementById('upload_designINI')).elements["uploadfile_INI"].disabled = true;
     }
 }
-// function commitUCF(EDITOR){
-//     if ((document.getElementById('commit_LFR')).style.backgroundColor == chartreuse)
-//     {
-//         var LFR_FILE = localStorage.FILE_specifyUCF;
-//         (document.getElementById('commit_UCF')).style.backgroundColor = '';
-//
-//         if ((document.getElementById('commit_LFR')).style.backgroundColor == chartreuse)
-//         {
-//             unlock_translate();
-//         }
-//         localStorage.ucf_state = 'readOnly';
-//         EDITOR.setReadOnly(true);
-//         lock_translate();
-//     }
-//     else
-//     {
-//         (document.getElementById('commit_UCF')).style.backgroundColor = '';
-//         localStorage.ucf_state = 'write';
-//         EDITOR.setReadOnly(false)
-//     }
-// }
-//
-// function commitMINT(EDITOR){
-//     if ((document.getElementById('commit_INI')).style.backgroundColor == chartreuse)
-//     {
-//         var LFR_FILE = localStorage.FILE_designMINT;
-//         (document.getElementById('commit_MINT')).style.backgroundColor = chartreuse;
-//
-//         if ((document.getElementById('commit_INI')).style.backgroundColor == chartreuse)
-//         {
-//             unlock_compile();
-//         }
-//         localStorage.mint_state = 'readOnly';
-//         EDITOR.setReadOnly(true);
-//         lock_compile();
-//     }
-//     else
-//     {
-//         (document.getElementById('commit_MINT')).style.backgroundColor = '';
-//         localStorage.mint_state = 'write';
-//         EDITOR.setReadOnly(false);
-//     }
-// }
-//
-// function commitINI(EDITOR){
-//     if ((document.getElementById('commit_MINT')).style.backgroundColor == chartreuse)
-//     {
-//         var LFR_FILE = localStorage.FILE_designINI;
-//         (document.getElementById('commit_INI')).style.backgroundColor = chartreuse;
-//
-//         if ((document.getElementById('commit_MINT')).style.backgroundColor == chartreuse)
-//         {
-//             unlock_compile();
-//         }
-//         localStorage.ini_state = 'readOnly';
-//         EDITOR.setReadOnly(true);
-//         lock_compile();
-//     }
-//     else
-//     {
-//         (document.getElementById('commit_INI')).style.backgroundColor = chartreuse;
-//         localStorage.ini_state = 'write';
-//         EDITOR.setReadOnly(false);
-//     }
-// }
 
 function unlock_translate()
 {
-    (document.getElementById('translate_btn')).style.backgroundColor = 'forestgreen';
+    (document.getElementById('translate_btnn')).style.boxShadow = '0 0 1em gold';
+    (document.getElementById('translate_btnn')).disabled = false;
 }
 function lock_translate()
 {
-    (document.getElementById('translate_btn')).style.backgroundColor = '';
+    (document.getElementById('translate_btnn')).style.boxShadow = '';
+    (document.getElementById('translate_btnn')).disabled = true
 }
 function unlock_compile()
 {
-    (document.getElementById('compile_btn')).style.backgroundColor = 'forestgreen';
+    (document.getElementById('compile_btnn')).style.boxShadow = '0 0 1em gold';
+    (document.getElementById('compile_btnn')).disabled = false;
 }
 function lock_compile()
 {
-    (document.getElementById('compile_btn')).style.backgroundColor = '';
+    (document.getElementById('compile_btnn')).style.boxShadow = '';
+    (document.getElementById('compile_btnn')).disabled = true;
 }

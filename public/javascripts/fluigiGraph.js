@@ -10,8 +10,8 @@ function onclickanchortag(){
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             console.log("Port " + this.id + " clicked");
             valve_to_control = this.id;
-            // flipFlop_valveState(valve_to_control);
-            flipFlop_valveState(1);
+            flipFlop_valveState(valve_to_control);
+            
 
             break;
 

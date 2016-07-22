@@ -88,7 +88,7 @@ function changeNumberOfPumpsHandler()
     {
         alert("You entered an empty value");
     }
-    else if (numberOfPumps >= 1000)
+    else if (numberOfPumps >= 992)
     {
         alert("Too many pumps!");
     }
@@ -360,6 +360,7 @@ function wrap_data_for_Arduino()
 {
     // var valve_to_control = (document.getElementById("ValveNumberSelector").value);
     var valve_to_control = localStorage.portToControl;
+    console.log(valve_to_control + 'CHECK THE VALVE');
     localStorage.MasterData = combine_pumpData_valveData();
 
     var data_for_selected_object = JSON.parse(localStorage.MasterData);

@@ -12,16 +12,16 @@ function workflow_tracker(WORKFLOW_STAGE)
             //$('#start_box').
             break;
         case 'specify':
-            document.getElementById("start_box").style.boxShadow = '0 0 1em gold';
+            document.getElementById("specify_box").style.boxShadow = '0 0 1em gold';
             break;
         case 'design':
-            document.getElementById("start_box").style.boxShadow = '0 0 1em gold';
+            document.getElementById("design_box").style.boxShadow = '0 0 1em gold';
             break;
         case 'build':
-            document.getElementById("start_box").style.boxShadow = '0 0 1em gold';
+            document.getElementById("build_box").style.boxShadow = '0 0 1em gold';
             break;
         case 'end':
-            document.getElementById("start_box").style.boxShadow = '0 0 1em gold';
+            document.getElementById("done_box").style.boxShadow = '0 0 1em gold';
             break;
     }
 }

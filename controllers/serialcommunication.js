@@ -1,7 +1,8 @@
 var cmd = require('node-cmd');
 var serialport = require('serialport');
-var exports = module.exports;
+var exports = module.exports = {};
 var express = require('express');
+var SerialPortConnection;
 
 
 
@@ -18,9 +19,7 @@ function openConnection (fluigiPort) {
     });
 
 
-    myPort.on('open', showPortOpen);
-    myPort.on('data', sendSerialData);
-    myPort.on('error', showError);
+
 
     function showPortOpen() {
         console.log('port open. Data rate: ' + myPort.options.baudRate);
@@ -34,7 +33,12 @@ function openConnection (fluigiPort) {
         console.log('Serial port error: ' + error);
     }
 
-    exports.SerialPortConnection = myPort;
+    myPort.on('open', showPortOpen);
+    myPort.on('data', sendSerialData);
+    myPort.on('error', showError);
+
+
+    SerialPortConnection = myPort;
     // exports.myCommand= command;
 
     return {message:"Serial Connection Established"};
@@ -45,7 +49,7 @@ function closeConnection (myPort){
     myPort.close(function(err){
         console.log('port closed', err !== null ? err : "" );
     });
-    exports.SerialPortConnection = "";
+    SerialPortConnection = "";
 }
 
 function sendToSerial (data, myPort) {

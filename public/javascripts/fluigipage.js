@@ -406,17 +406,17 @@ function sendCommand()
     
 
 
-        // $.ajax(
-        //     {
-        //         url: "/serialcommunication/send", type: 'POST', async: true,
-        //         data: {
-        //             commandData: command
-        //         },
-        //         success: function (response) {
-        //         },
-        //         error: function (response) {
-        //         }
-        //     });
+        $.ajax(
+            {
+                url: "/serialcommunication/send", type: 'POST', async: true,
+                data: {
+                    commandData: command
+                },
+                success: function (response) {
+                },
+                error: function (response) {
+                }
+            });
 
 
     // $.ajax(

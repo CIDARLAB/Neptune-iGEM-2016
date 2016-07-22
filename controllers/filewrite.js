@@ -5,8 +5,32 @@ var fs = require('fs');
 
 exports.writeToFile = function(req, res)
 {
-    var data = JSON.parse(req.body.fileData);
-    fs.writeFile("./public/downloads/test.txt", data , function(err) {
+    var data = req.body.fileData;
+    var file_type = req.body.fileType;
+    var path = '';
+    
+    switch (file_type)
+    {
+        case 'specifyLFR':
+            path = "./public/uploads/Specify/specifyLFR.v";
+            break;
+        case 'specifyUCF':
+            path = "./public/uploads/Specify/specifyUCF.json";
+            break;
+        case 'designMINT':
+            path = "./public/uploads/Design/designMINT.txt";
+            break;
+        case 'designINI':
+            path = "./public/uploads/Design/designINI.txt";
+            break;
+        case 'buildJSON':
+            path = "./public/uploads/Build_Verify/buildJSON.txt";
+            break;
+        case 'buildSVG':
+            path = "./public/uploads/Build_Verify/buildSVG.txt";
+            break;
+    }
+    fs.writeFile(path, data , function(err) {
         console.log("The file was saved!");
     });
     

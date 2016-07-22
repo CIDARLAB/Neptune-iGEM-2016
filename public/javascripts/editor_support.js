@@ -190,48 +190,56 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
     }
 }
 
-function downloadFile(File_Name,FILE_TYPE)
+function downloadFile(File_Name,FILE_TYPE,String_To_Write,method)
 {
     // IMPLEMENT AUTO SAVE BEFORE DOWNLOAD!
     // ALSO LOOK INTO res.download!
-
+    var file_name = '';
     var string_to_write = '';
-    var file_name = File_Name; // NOTE: File_Name argument is overwritten internally, for now
-    switch(FILE_TYPE)
+    if (method == 'localStorage')
     {
-        case 'specifyLFR':
-            string_to_write = localStorage.FILE_specifyLFR;
-            file_name = 'specifyLFR';
-            break;
-        case 'specifyUCF':
-            string_to_write = localStorage.FILE_specifyUCF;
-            file_name = 'specifyUCF';
-            break;
-        case 'designINI':
-            string_to_write = localStorage.FILE_designINI;
-            file_name = 'designINI';
-            break;
-        case 'designMINT':
-            string_to_write = localStorage.FILE_designMINT;
-            file_name = 'designMINT';
-            break;
-        case 'MINT File (Design)':
-            string_to_write = localStorage.MINT_STRING;
-            break;
-        case 'JSON File (Build)':
-            break;
-        case 'SVG File (Build)':
-            break;
+        switch (FILE_TYPE) {
+            case 'specifyLFR':
+                string_to_write = localStorage.FILE_specifyLFR;
+                file_name = 'specifyLFR';
+                break;
+            case 'specifyUCF':
+                string_to_write = localStorage.FILE_specifyUCF;
+                file_name = 'specifyUCF';
+                break;
+            case 'designINI':
+                string_to_write = localStorage.FILE_designINI;
+                file_name = 'designINI';
+                break;
+            case 'designMINT':
+                string_to_write = localStorage.FILE_designMINT;
+                file_name = 'designMINT';
+                break;
+            case 'buildJSON':
+                string_to_write = localStorage.FILE_buildJSON;
+                file_name = 'buildJSON';
+                break;
+            case 'buildSVG':
+                string_to_write = localStorage.FILE_buildSVG;
+                file_name = 'buildSVG';
+                break;
+            case 'other':
+                break;
+        }
+    }
+    if (method == 'inputString')
+    {
+        string_to_write = String_To_Write;
+        file_name = File_Name;
     }
 
-    //$.post("/api/writeToFile",{fileData: string_to_write});
+    $.post("/api/writeToFile",{fileData: String_To_Write, fileType: FILE_TYPE});
 
-    var w = window.open();
-    var html = JSON.parse(string_to_write);
-    for (var i = 0; i < html.length; i++) {
-        $(w.document.body).append(html[i] + '<br>');
-    }
-
+    // var w = window.open();
+    // var html = JSON.parse(string_to_write);
+    // for (var i = 0; i < html.length; i++) {
+    //     $(w.document.body).append(html[i] + '<br>');
+    // }
 }
 
 function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill,session)
@@ -259,7 +267,7 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
     switch(FILE_TYPE)
     {
         case 'specifyLFR':
-            $.get('../uploads/Specify/specifyLFR.txt',function(data)
+            $.get('../uploads/Specify/specifyLFR.v',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
@@ -270,11 +278,11 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
             break;
         case 'specifyUCF':
-            $.get('../uploads/Specify/specifyUCF.txt',function(data)
+            $.get('../uploads/Specify/specifyUCF.json',function(data)
             {
-                CONTENT_TO_PUSH = data.split("\n");
+                var Data = JSON.stringify(data);
+                CONTENT_TO_PUSH = Data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-
                 document.getElementById('LFRtab').className = '';
                 document.getElementById('UCFtab').className = 'active';
             });
@@ -356,3 +364,180 @@ function closeDownloadModal()
     (document.getElementById('download_modal')).style.display = "none";
 }
 
+// *********** LFR --> MINT Functions ************ //
+
+function translateLFR()
+{
+    localStorage.WORKFLOW_STAGE = 'design';
+    restartTranslateCenter();
+    $("#myModal_translate").modal();
+    //var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'});
+}
+
+function restartTranslateCenter()
+{
+    (document.getElementById('commit_LFR')).style.backgroundColor = '';
+    (document.getElementById('upload_specifyLFR')).elements["uploadfile_LFR"].disabled = false;
+    (document.getElementById('commit_UCF')).style.backgroundColor = '';
+    (document.getElementById('upload_specifyUCF')).elements["uploadfile_UCF"].disabled = false;
+    lock_translate();
+}
+
+function MINTflow(method)
+{
+    switch (method)
+    {
+        case 'push':
+            var postDownload = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'mint'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                localStorage.FILE_designMINT = JSON.stringify(content);
+            });
+            break;
+        case 'download':
+            var postDownload = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'mint'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload.done(function(data)
+            {
+                var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('designMINT','designMINT',data,'inputString');
+                var string_to_write = content;
+                var w = window.open();
+                var html = JSON.parse(string_to_write);
+                for (var i = 0; i < html.length; i++) {
+                    $(w.document.body).append(html[i] + '<br>');
+                }
+            });
+            break;
+    }
+}
+
+// *********** MINT --> SVG,JSON Functions ************ //
+
+function compileMINT()
+{
+    
+    localStorage.WORKFLOW_STAGE = 'build';
+    restartCompileCenter();
+    $("#myModal_compile").modal();
+    $.post('/api/compileMint',{filePath: '../public/uploads/Design/designMINT.uf'},function(data)
+    {
+        console.log(data.toString());
+    });
+}
+
+function restartCompileCenter()
+{
+    (document.getElementById('commit_MINT')).style.backgroundColor = '';
+    (document.getElementById('upload_designMINT')).elements["uploadfile_MINT"].disabled = false;
+    (document.getElementById('commit_INI')).style.backgroundColor = '';
+    (document.getElementById('upload_designINI')).elements["uploadfile_INI"].disabled = false;
+    lock_compile();
+}
+
+function JSON_SVGflow(method)
+{
+    switch (method)
+    {
+        case 'push':
+            var postDownloadJSON = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'json'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownloadJSON.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                localStorage.FILE_buildJSON = JSON.stringify(content);
+            });
+
+            var postDownloadSVG = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'svg'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownloadSVG.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                localStorage.FILE_buildSVG = JSON.stringify(content);
+            });
+            break;
+
+        case 'download':
+            var postDownloadJSON = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'json'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownloadJSON.done(function(data)
+            {
+
+                var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildJSON','buildJSON',data,'inputString');
+                var string_to_write = content;
+                var w = window.open();
+                var html = JSON.parse(string_to_write);
+                for (var i = 0; i < html.length; i++) {
+                    $(w.document.body).append(html[i] + '<br>');
+                }
+            });
+
+            var postDownloadSVG = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'svg'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownloadSVG.done(function(data)
+            {
+                var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildSVG','buildSVG',data,'inputString');
+                var string_to_write = content;
+                var w2 = window.open();
+                var html = JSON.parse(string_to_write);
+                for (var i = 0; i < html.length; i++) {
+                    $(w2.document).append(html[i] + '<br>');
+                }
+            });
+            break;
+    }
+}
+
+
+//
+// function writeToFile(data){
+//     var fso = new ActiveXObject("Scripting.FileSystemObject");
+//     var fh = fso.OpenTextFile("../uploads/Build_Verify/buildJSON.txt", 8, false, 0);
+//    
+//     for(var i = 0; i < data.length; i++)
+//     {
+//         fh.WriteLine(data[i]);
+//        
+//     }
+//     fh.Close();
+// }

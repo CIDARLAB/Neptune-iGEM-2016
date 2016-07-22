@@ -21,6 +21,7 @@ MINT_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            localStorage.WORKFLOW_STAGE = 'design';
             pushFileToEditor(editor_design,'designMINT',MINT_tab);
             MINT_uploadButton.innerHTML = 'Uploaded';
         } else {
@@ -50,6 +51,7 @@ INI_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            localStorage.WORKFLOW_STAGE = 'design';
             pushFileToEditor(editor_design,'designINI',INI_tab);
             INI_uploadButton.innerHTML = 'Uploaded';
         } else {

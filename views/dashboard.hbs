@@ -11,8 +11,12 @@
 
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
+
     <script type="text/javascript">
-        localStorage.WORKFLOW_STAGE = "start"; //start, specify, design, build, done
+        if (localStorage.firstVisit_dashboard == undefined) {
+            localStorage.firstVisit_dashboard = 'visited';
+            localStorage.WORKFLOW_STAGE = "start"; //start, specify, design, build, done
+        }
     </script>
 
     <!-- Bootstrap Core CSS -->
@@ -43,10 +47,14 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style>
+        body {  padding: 0 !important;  }
+    </style>
 
 </head>
 
 <body>
+
 
 <!-- *** START: THIS DIVISION WRAPS EVERYTHING *** -->
 <div id="wrapper">
@@ -699,7 +707,7 @@
 
                             <!-- SPECIFY -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge specify"><a href="../specify"></a><i class="fa fa-pencil-square-o"></i>
+                                <div class="timeline-badge specify"><a href="../specify"><i class="fa fa-pencil-square-o"></i></a>
                                 </div>
                                 <div class="timeline-panel" id="specify_box">
                                     <div class="timeline-heading">
@@ -714,7 +722,7 @@
 
                             <!-- DESIGN -->
                             <li>
-                                <div class="timeline-badge design"><a href="../design"></a><i class="fa fa-cogs" aria-hidden="true"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge design"><a href="../design"><i class="fa fa-cogs" aria-hidden="true"></i></a> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="design_box">
                                     <div class="timeline-heading">
@@ -730,7 +738,7 @@
 
                             <!-- BUILD and VERIFY -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge build"><a href="../build"></a><i class="fa fa-gavel" aria-hidden="true"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge build"><a href="../build"><i class="fa fa-gavel" aria-hidden="true"></i></a> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="build_box">
                                     <div class="timeline-heading">
@@ -1085,6 +1093,9 @@
 </div>
 <!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
 
+<script>
+    workflow_tracker(localStorage.WORKFLOW_STAGE);
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js"></script>
 

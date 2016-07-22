@@ -10,14 +10,30 @@
     <meta name="author" content="">
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+
+    <!--<script src="/socket.io/socket.io.js"></script>-->
+    <!--<script>-->
+    <!--var socket = io.connect('http://localhost/controllers/compileMint');-->
+    <!--socket.on('news', function (data) {-->
+    <!--console.log(data);-->
+    <!--socket.emit('my other event', { my: 'data' });-->
+    <!--});-->
+    <!--</script>-->
+    <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
+    <!--<script type="text/javascript">-->
+    <!--var socket = io();-->
+
+    <!--socket.on('time', function(timeString) {-->
+        <!--var str = timeString;-->
+    <!--});-->
+    <!--</script>-->
+
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
         localStorage.design_editor_state = 'designMINT';
         localStorage.mint_state = 'write';
         localStorage.ini_state = 'write';
-        localStorage.FILE_designMINT = '';
-        localStorage.FILE_designINI = '';
     </script>
 
     <!-- JAVASCRIPT DEPENDENCIES -->
@@ -59,6 +75,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<style>
+    body {  padding: 0 !important;  }
+</style>
 
 </head>
 
@@ -552,7 +572,8 @@
                         <div class="row">
                             <div class="col-md-3"> </div>
                             <div class="col-md-6" >
-                                <a id="compile_btn" href="#" class="btn btn-default btn-block"> COMPILE </a>
+                                <input id="compile_btnn" class="btn btn-default" value="COMPILE" onclick="compileMINT()"> </input>
+                                <!--<a id="compile_btn" href="#" class="btn btn-default btn-block"> COMPILE </a>-->
                             </div>
                             <div class="col-md-3"> </div>
                         </div>
@@ -704,6 +725,38 @@
             </div>
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
 
+            <!-- Modal: Compile Actions -->
+            <div class="modal fade" id="myModal_compile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Compiling MINT to design schematic</h4>
+                        </div>
+                        <div class="modal-body">
+                            Your Microfluidic Netlist File (MINT) is being compiled into a design schematic (SVG and JSON).
+                            This should take up to a few minutes.
+                            When ready, you can choose to download your SVG and JSON files and manually upload them to the design stage,
+                            or you can push the contents of these files to the next stage of the workflow automatically.
+                        </div>
+                        <div class="modal-footer">
+                            <!--<div class="row">-->
+                            <!--<div class=".col-md-4"><a id="downloadLFR" class="btn btn-default btn-block"> </a> </div>-->
+                            <!--<div class=".col-md-2"> </div>-->
+                            <!--<div class=".col-md-4"><a id="pushLFR" class="btn btn-default btn-block"></a> </div>-->
+                            <!--</div> -->
+                            <button type="button" class="btn btn-success" onclick="JSON_SVGflow('download')">Download Schematic</button>
+                            <button type="button" class="btn btn-success" onclick="JSON_SVGflow('push')">Push Schematic</button>
+                            <button type="button" class="btn btn-success">Download and Push</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog" role="document">
@@ -755,6 +808,6 @@
 <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->
 
     <script src="../javascripts/uploads2.js" type="application/javascript"></script>
-
+<script> (document.getElementById('compile_btnn')).disabled = true; </script>
 
 </html>

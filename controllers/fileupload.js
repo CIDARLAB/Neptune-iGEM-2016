@@ -31,7 +31,7 @@ exports.send_specifyLFR = function(req, res) {
             callback(null, './public/uploads/Specify');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.txt');
+            callback(null, file.fieldname + '.v');
         }
     });
 
@@ -62,7 +62,7 @@ exports.send_specifyUCF = function(req, res) {
             callback(null, './public/uploads/Specify');
         },
         filename: function (req, file, callback) {
-            callback(null, file.fieldname + '.txt');
+            callback(null, file.fieldname + '.json');
         }
     });
 
@@ -184,6 +184,7 @@ exports.send_buildJSON = function(req, res) {
     var storage_buildJSON = multer.diskStorage({
         destination: function (req, file, callback) {
             callback(null, './public/uploads/Build_Verify/');
+
         },
         filename: function (req, file, callback) {
             callback(null, file.fieldname + '.json');

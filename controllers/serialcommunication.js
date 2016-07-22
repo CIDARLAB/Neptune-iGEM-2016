@@ -3,7 +3,7 @@ var serialport = require('serialport');
 var exports = module.exports = {};
 var express = require('express');
 var SerialPortConnection;
-
+var returnPorts = [{}];
 
 
 
@@ -68,11 +68,14 @@ function sendToSerial (data, myPort) {
 
 
 {
+    
+    
 
     exports.openSerialPage= function(req, res) {
-        exports.listPorts(); //populates ports export
-        var ports = exports.ports;
+        //exports.listPorts(); //populates ports export
+        var ports = exports.listPorts(); //populates ports export
         res.render('serialcommunication', {title: 'COM', serialPorts: ports});
+
     };
 
     exports.openSerialConnection = function(req, res){
@@ -98,7 +101,7 @@ function sendToSerial (data, myPort) {
     };
 
     exports.listPorts= function() {
-        var returnPorts = [{}];
+
 
         // list serial ports:
         serialport.list(function (err, ports) {

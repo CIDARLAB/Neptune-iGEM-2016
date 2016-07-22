@@ -89,9 +89,8 @@
                 <!--<li class="nav-item"> <a class="nav-link" href="../serialcommunication"> <img id="connected" height= "60" src="../images/fluigi/connectedIcon.png"></a></li>-->
                 <li class="nav-item"><a class="nav-link"><img onclick= "window.open('../serialcommunication')"  src="../images/fluigi/connectedIcon.png"></a></li>
                 <li class="nav-item"><a class="nav-link"><img onclick="openDebugger()"  src="../images/fluigi/buildIcon.png" id="myDebuggerBtn"  ></a></li>
-                <!--<li class="nav-item"><a class="nav-link"><img onclick="openSerialConsole()" src="../images/fluigi/consoleIcon.png" id="myConsoleBtn" ></a></li>-->
-                 <!--<li class="nav-item" style="padding-top: 15px;"><a class="btn btn-default" role="button" data-toggle="modal" data-target="#serialConsoleModal"> Open Serial Console</a></li>-->
-                <!--<li class="nav-item"><a class="nav-link"><img onclick="openSerialConsole()" src="../images/fluigi/consoleIcon.png" id="myConsoleBtn" ></a></li>-->
+                <!--<li class="nav-item"><a class="nav-link" id="connection"><img onclick="openConnectionPage()"  src="../images/fluigi/connectedIcon.png"></a></li>-->
+
             </ul>
 
         </div>
@@ -148,29 +147,6 @@
 
 
 
-
-
-
-
-
-<!--Upload Bar-->
-
-<!--<div id="uploadIcon">-->
-    <!--<div style="height:0px;overflow:hidden">-->
-        <!--<input type="file" id="inputfile" name="fileInput" />-->
-    <!--</div>-->
-    <!--<button type="button" onclick="chooseFile();">choose file</button>-->
-
-<!--</div>-->
-
-
-<!--<script>-->
-    <!--function chooseFile() {-->
-        <!--$("#fileInput").click();-->
-    <!--}-->
-<!--</script>-->
-
-
 <div id= "upload_bar" class="uploadbar" align="center">
     <div>
 
@@ -187,26 +163,7 @@
 
         </form>
     </div>
-
-
-    <div>
-        <!--<form id="uploadForm2"-->
-                  <!--enctype="multipart/form-data"-->
-                  <!--action="/api/SVG"-->
-                  <!--method="post">-->
-                <!--<div id="div2"><input id= "inputfile2" class="btn btn-default" type="file" name="mySVG" /></div>-->
-
-            <!--<div id="div4">-->
-                <!--<input id="uploadfile2" class= "btn btn-default" type="submit" value="Upload SVG" name="submit">-->
-                <!--<span id = "status2"></span>-->
-            <!--</div>-->
-
-        <!--</form>-->
-    </div>
 </div>
-
-
-
 
 
 
@@ -239,81 +196,53 @@
 
 </div>
 
+<!--SERIAL COMMUNICATION MODAL-->
+<style>
+    ul#ui li {
+        display: inline;
+    }
+    ul#ui li#port-list {
+        display: block;
+    }
+</style>
 
 
-<!--<div class="list-group">-->
-        <!--<h4 style="color: white;">Serial Commands Console</h4>-->
-        <!--<form name='form1'>-->
-            <!--<textarea class="form-control" rows="5" cols="10" name='area'></textarea>-->
-        <!--</form>-->
-<!--</div>-->
+<script src="../javascripts/serialcommunication.js"></script>
 
-<!--<div id="serialConsole_modal" class="modal_serial">-->
+<div id="connection_modal" class="modal" style="width: 500px; padding-left: 10px; padding-top: 150px;">
 
-    <!--<div class="modal-content_serial">-->
-        <!--<div class="modal-header_serial">-->
-            <!--<h2>Serial Console</h2>-->
-        <!--</div>-->
-        <!--<div class="modal-body_serial">-->
-            <!--</br>-->
-            <!--<p> Serial Console in development. </br> This page provides a history of your serial commands.</p>-->
-            <!--</br>-->
-            <!--<iframe id="serial_console"-->
-                    <!--width="95%"-->
-                    <!--height="90%"-->
-                    <!--frameborder="0"-->
-                    <!--scrolling="yes"-->
-                    <!--marginheight="0"-->
-                    <!--marginwidth="0"-->
-                    <!--src="../uploads/mySerialConsole.txt">-->
-            <!--</iframe>-->
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Arduino Connection</h2>
+        </div>
+        <div class="modal-body">
+            <ul id="ui">
+                <div class="btn-group" role="group" style="padding-left: 10px; padding-top: 10px;">
+                    <li>
+                        <button class="btn btn-default" id="begin-comm"> Open Connection</button>
+                    </li>
+                    <li>
+                        <button class="btn btn-default" id="end-comm"> Close Connection</button>
+                    </li>
+                    <li id="port-list">
+                        <label for="ports" >Serial Ports Available</label>
+                        <select id="ports">
+                            {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
+                                <option value={{this.comName}}> name: {{ this.comName }} </option>​
 
 
-        <!--</div>-->
-        <!--<div class="modal-footer_serial">-->
-            <!--<button class="close_modal_serial" onclick="closeSerialConsole()" >Close Serial Console</button>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
-
-
-
-<!--<div id="serialConsole_modal" class="modal_serial" style="width: 500px; padding-left: 10px; padding-top: 150px;">-->
-
-    <!--<div class="modal-content_serial">-->
-        <!--<div class="modal-header_serial">-->
-            <!--<h2>Serial Console</h2>-->
-        <!--</div>-->
-        <!--<div class="modal-body_serial">-->
-            <!--</br>-->
-            <!--<p> Serial Console in development. </br> This page provides a history of your serial commands.</p>-->
-            <!--</br>-->
-            <!--<iframe id="serial_console"-->
-                    <!--width="95%"-->
-                    <!--height="90%"-->
-                    <!--frameborder="0"-->
-                    <!--scrolling="yes"-->
-                    <!--marginheight="0"-->
-                    <!--marginwidth="0"-->
-                    <!--src="../uploads/mySerialConsole.txt">-->
-            <!--</iframe>-->
-
-        <!--</div>-->
-        <!--<div class="modal-footer_serial">-->
-            <!--<button class="close_modal_serial" onclick="closeSerialConsole()" >Close Serial Console</button>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
-
-<!--<form class="actuators">-->
-    <!--Valve to Actuate:<br>-->
-    <!--<input id="ValveNumberSelector" type="text" ><br>-->
-    <!--State to Apply:<br>-->
-    <!--<input id="ValveStateAssigner" type="text" ><br><br>-->
-    <!--<input type="submit" value="Send to Arduino" onclick="mediateValveState(event)">-->
-<!--</form>-->
+                            {{/each}}
+                        </select>
+                    </li>
+                </div>
+            </ul>
+        </div>
+        <div class="modal-footer">
+            <button class="close_modal" onclick="closeConnectionPage()" >Close Debugger</button>
+        </div>
+    </div>
+</div>
+<!--END SERIAL COMMUNICATTION MODAL-->
 
 
 <!-- LEAVE JS FOR LAST - faster loading time -->

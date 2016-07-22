@@ -391,6 +391,39 @@ function wrap_data_for_Arduino()
     return command;
 }
 
+
+
+
+// Function to open Arduino Modal
+function openConnectionPage() {
+    (document.getElementById('connection_modal')).style.display = "block";
+
+
+}
+// THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
+$(document).ready(function(){
+    $.ajax(
+        {   url: "/serialcommunication/list", type: 'POST', async: true,
+            data:
+            {
+            },
+            success: function(response){
+
+            },
+            error: function(response){
+            }
+        });
+});
+
+function closeConnectionPage()
+{
+    (document.getElementById('connection_modal')).style.display = "none";
+}
+
+
+
+
+
 function sendCommand()
 {
     var command = wrap_data_for_Arduino();

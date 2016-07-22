@@ -129,9 +129,13 @@
 
 <!--</div>-->
 
+
+
+
+
 <div>
     <main>
-        <div id="view_container" class="page-content">
+        <div id="view_container" class="page-content ">
             <div id="canvas_block" class="shown-block fade-transition">
                 <canvas id="c" tabindex="0" ></canvas>
                 <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
@@ -229,8 +233,6 @@
                         <select id="ports">
                             {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
                                 <option value={{this.comName}}> name: {{ this.comName }} </option>​
-
-
                             {{/each}}
                         </select>
                     </li>

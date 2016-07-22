@@ -92,6 +92,7 @@ var http = require('http');
     app.get('/fluigipage', fluigiController.getFluigiPage);
     app.get('/uShroomPage',mmController.openMMPage);
     app.get('/serialcommunication', serialController.openSerialPage);
+
     app.get('/lfrpage', lfrController.openLfrPage);
     app.get('/lfrpage_bs', lfr_bsController.openLfr_bsPage);
 }
@@ -101,6 +102,7 @@ var http = require('http');
     app.post('/serialcommunication/open', serialController.openSerialConnection);
     app.post('/serialcommunication/close', serialController.closeSerialConnection);
     app.post('/serialcommunication/send', serialController.arduinoSend);
+    app.post('/serialcommunication/list', serialController.listPorts);
 }
 
 /************** FILE UPLOAD  ************/

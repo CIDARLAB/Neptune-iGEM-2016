@@ -45,7 +45,6 @@
 <body style="background-color: #34495e">
 
 <ul id="ui">
-    <!--<img src="../public/images/fluigi/"-->
 
     <div class="btn-group" role="group" style="padding-left: 10px; padding-top: 150px;">
         <li>
@@ -61,13 +60,10 @@
         <label for="ports" style="color:white">Serial Ports Available</label>
         <select id="ports">
             {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
-
                 <option value={{this.comName}}> name: {{ this.comName }} </option>​
-
             {{/each}}
         </select>
     </li>
-    <label style="color:white; font-size:15px"><br/><br/>*Reload page to display ports </label>
 </ul>
 
 <!--<iframe src="../uploads/console.txt" height="100px" width="100%"> </iframe>-->

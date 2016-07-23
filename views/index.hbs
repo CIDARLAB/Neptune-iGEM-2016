@@ -140,6 +140,37 @@
 
 
 <!-- Modal -->
+<div id="setSession" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Resume Session or New Session?</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    You may choose to resume your previous session, or start a new session.
+                    <br>
+                    If you choose to resume your previous session, you will have your old file content
+                    available to you to download and continue your session
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();"> Start New Session </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"> Resume Previous Session </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).load(function(){
+        $('#setSession').modal('show');
+    });
+</script>
+
+
+<!-- Modal -->
 <div id="HelpModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -162,7 +193,6 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -181,7 +211,6 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 

@@ -11,23 +11,6 @@
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
 
-    <!--<script src="/socket.io/socket.io.js"></script>-->
-    <!--<script>-->
-    <!--var socket = io.connect('http://localhost/controllers/compileMint');-->
-    <!--socket.on('news', function (data) {-->
-    <!--console.log(data);-->
-    <!--socket.emit('my other event', { my: 'data' });-->
-    <!--});-->
-    <!--</script>-->
-    <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
-    <!--<script type="text/javascript">-->
-    <!--var socket = io();-->
-
-    <!--socket.on('time', function(timeString) {-->
-        <!--var str = timeString;-->
-    <!--});-->
-    <!--</script>-->
-
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
@@ -787,6 +770,9 @@
 <!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
 
 
+
+
+
     <!-- *** START: DEPENDENCIES *** -->
     <!-- jQuery -->
     <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
@@ -801,6 +787,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="/javascripts/dist/js/sb-admin-2.js"></script>
     <!-- *** END: DEPENDENCIES *** -->
+
+    <script type="text/javascript">
+        pushFileToEditor(editor_design,'designINI',INI_tab);
+        pushFileToEditor(editor_design,'designMINT',MINT_tab);
+    </script>
 
 </body>
 <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->

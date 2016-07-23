@@ -300,7 +300,7 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
             //CONTENT_TO_PUSH = JSON.parse(localStorage.MINT_STRING);
             break;
         case 'designMINT':
-            $.get('../uploads/Design/designMINT.txt',function(data)
+            $.get('../uploads/Design/designMINT.uf',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
@@ -400,6 +400,7 @@ function MINTflow(method)
             {
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 localStorage.FILE_designMINT = JSON.stringify(content);
+                downloadFile('designMINT','designMINT',data,'inputString');
             });
             break;
         case 'download':
@@ -414,7 +415,6 @@ function MINTflow(method)
             postDownload.done(function(data)
             {
                 var content = JSON.stringify(data.split(/[\r\n]+/));
-                downloadFile('designMINT','designMINT',data,'inputString');
                 var string_to_write = content;
                 var w = window.open();
                 var html = JSON.parse(string_to_write);
@@ -466,6 +466,7 @@ function JSON_SVGflow(method)
             {
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 localStorage.FILE_buildJSON = JSON.stringify(content);
+                downloadFile('buildJSON','buildJSON',data,'inputString');
             });
 
             var postDownloadSVG = $.ajax
@@ -480,6 +481,7 @@ function JSON_SVGflow(method)
             {
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 localStorage.FILE_buildSVG = JSON.stringify(content);
+                downloadFile('buildSVG','buildSVG',data,'inputString');
             });
             break;
 
@@ -496,7 +498,6 @@ function JSON_SVGflow(method)
             {
 
                 var content = JSON.stringify(data.split(/[\r\n]+/));
-                downloadFile('buildJSON','buildJSON',data,'inputString');
                 var string_to_write = content;
                 var w = window.open();
                 var html = JSON.parse(string_to_write);
@@ -516,7 +517,6 @@ function JSON_SVGflow(method)
             postDownloadSVG.done(function(data)
             {
                 var content = JSON.stringify(data.split(/[\r\n]+/));
-                downloadFile('buildSVG','buildSVG',data,'inputString');
                 var string_to_write = content;
                 var w2 = window.open();
                 var html = JSON.parse(string_to_write);

@@ -18,16 +18,16 @@ exports.writeToFile = function(req, res)
             path = "./public/uploads/Specify/specifyUCF.json";
             break;
         case 'designMINT':
-            path = "./public/uploads/Design/designMINT.txt";
+            path = "./public/uploads/Design/designMINT.uf";
             break;
         case 'designINI':
             path = "./public/uploads/Design/designINI.txt";
             break;
         case 'buildJSON':
-            path = "./public/uploads/Build_Verify/buildJSON.txt";
+            path = "./public/uploads/Build_Verify/buildJSON.json";
             break;
         case 'buildSVG':
-            path = "./public/uploads/Build_Verify/buildSVG.txt";
+            path = "./public/uploads/Build_Verify/buildSVG.svg";
             break;
     }
     fs.writeFile(path, data , function(err) {

@@ -18,7 +18,7 @@ exports.writeToFile = function(req, res)
             path = "./public/uploads/Specify/specifyUCF.json";
             break;
         case 'designMINT':
-            path = "./public/uploads/Design/designMINT.txt";
+            path = "./public/uploads/Design/designMINT.uf";
             break;
         case 'designINI':
             path = "./public/uploads/Design/designINI.txt";

@@ -22,8 +22,8 @@ const readline = require('readline');
 
 exports.translateLFR = function(req, res)
 {
-    var file_path_lfr_in = './public/uploads/Specify/specifyLFR.v'; //req.body.filePath;
-    var file_path_ucf_in = './backend/specifyUCF.json';
+    var file_path_lfr_in = './public/uploads/Specify/specifyLFR.v'; //req.body.filePath; 
+    var file_path_ucf_in = './public/uploads/Specify/specifyUCF.json';
     var file_path_mint_out = './backend_results/designMINT.uf';
 
     var par_terminal = require('child_process').spawn(

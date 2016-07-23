@@ -699,7 +699,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideProceed()">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Translating LFR to MINT</h4>
@@ -716,15 +716,21 @@
                                 <!--<div class=".col-md-2"> </div>-->
                                 <!--<div class=".col-md-4"><a id="pushLFR" class="btn btn-default btn-block"></a> </div>-->
                             <!--</div> -->
-                            <button type="button" class="btn btn-success" onclick="MINTflow('download')">Download MINT</button>
-                            <button type="button" class="btn btn-success" onclick="MINTflow('push')">Push MINT</button>
-                            <button type="button" class="btn btn-success">Download and Push</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="MINTflow('download')">Download MINT</button>
+                            <button type="button" class="btn btn-primary" onclick="MINTflow('push')">Push MINT</button>
+                            <button type="button" class="btn btn-primary">Download and Push</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideProceed()">Close</button>
+                            <div class="row"><br>
+                                <a href="../design">
+                            <button type="button" class="btn btn-success btn-lg center-block" id="proceedDesign" onclick="hideProceed()"> Proceed to Design Stage </button>
+                                </a>
+                            </div>
                             <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- Modal: File Preview -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -778,6 +784,10 @@
     <script type="text/javascript">
         pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
         pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
+    </script>
+    <script type="text/javascript">
+        function hideProceed() {$("#proceedDesign").hide();}
+        hideProceed();
     </script>
 
 </body>

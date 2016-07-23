@@ -400,6 +400,8 @@ function MINTflow(method)
             {
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 localStorage.FILE_designMINT = JSON.stringify(content);
+                downloadFile('designMINT','designMINT',data,'inputString');
+                $("#proceedDesign").show();
             });
             break;
         case 'download':
@@ -414,13 +416,13 @@ function MINTflow(method)
             postDownload.done(function(data)
             {
                 var content = JSON.stringify(data.split(/[\r\n]+/));
-                downloadFile('designMINT','designMINT',data,'inputString');
                 var string_to_write = content;
                 var w = window.open();
                 var html = JSON.parse(string_to_write);
                 for (var i = 0; i < html.length; i++) {
                     $(w.document.body).append(html[i] + '<br>');
                 }
+                $("#proceedDesign").show();
             });
             break;
     }
@@ -466,6 +468,8 @@ function JSON_SVGflow(method)
             {
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 localStorage.FILE_buildJSON = JSON.stringify(content);
+                downloadFile('buildJSON','buildJSON',data,'inputString');
+                $("#proceedVerify").show();
             });
 
             var postDownloadSVG = $.ajax
@@ -480,6 +484,8 @@ function JSON_SVGflow(method)
             {
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 localStorage.FILE_buildSVG = JSON.stringify(content);
+                downloadFile('buildSVG','buildSVG',data,'inputString');
+                $("#proceedVerify").show();
             });
             break;
 
@@ -496,13 +502,13 @@ function JSON_SVGflow(method)
             {
 
                 var content = JSON.stringify(data.split(/[\r\n]+/));
-                downloadFile('buildJSON','buildJSON',data,'inputString');
                 var string_to_write = content;
                 var w = window.open();
                 var html = JSON.parse(string_to_write);
                 for (var i = 0; i < html.length; i++) {
                     $(w.document.body).append(html[i] + '<br>');
                 }
+                $("#proceedVerify").show();
             });
 
             var postDownloadSVG = $.ajax
@@ -516,13 +522,13 @@ function JSON_SVGflow(method)
             postDownloadSVG.done(function(data)
             {
                 var content = JSON.stringify(data.split(/[\r\n]+/));
-                downloadFile('buildSVG','buildSVG',data,'inputString');
                 var string_to_write = content;
                 var w2 = window.open();
                 var html = JSON.parse(string_to_write);
                 for (var i = 0; i < html.length; i++) {
                     $(w2.document).append(html[i] + '<br>');
                 }
+                $("#proceedVerify").show();
             });
             break;
     }

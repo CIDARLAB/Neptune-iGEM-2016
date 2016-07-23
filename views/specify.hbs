@@ -11,16 +11,6 @@
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
 
-    <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>-->
-    <!--//<script src="/socket.io/socket.io.js"></script>-->
-    <!--<script>-->
-        <!--var socket = io.connect('http://localhost/app');-->
-        <!--socket.on('time', function (data) {-->
-            <!--console.log(data);-->
-            <!--socket.emit('my other event', { my: 'data' });-->
-        <!--});-->
-    <!--</script>-->
-
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
@@ -709,7 +699,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideProceed()">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Translating LFR to MINT</h4>
@@ -726,15 +716,21 @@
                                 <!--<div class=".col-md-2"> </div>-->
                                 <!--<div class=".col-md-4"><a id="pushLFR" class="btn btn-default btn-block"></a> </div>-->
                             <!--</div> -->
-                            <button type="button" class="btn btn-success" onclick="MINTflow('download')">Download MINT</button>
-                            <button type="button" class="btn btn-success" onclick="MINTflow('push')">Push MINT</button>
-                            <button type="button" class="btn btn-success">Download and Push</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="MINTflow('download')">Download MINT</button>
+                            <button type="button" class="btn btn-primary" onclick="MINTflow('push')">Push MINT</button>
+                            <button type="button" class="btn btn-primary">Download and Push</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideProceed()">Close</button>
+                            <div class="row"><br>
+                                <a href="../design">
+                            <button type="button" class="btn btn-success btn-lg center-block" id="proceedDesign" onclick="hideProceed()"> Proceed to Design Stage </button>
+                                </a>
+                            </div>
                             <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                         </div>
                     </div>
                 </div>
             </div>
+
 
             <!-- Modal: File Preview -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -768,6 +764,8 @@
 <!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
 
 
+
+
     <!-- *** START: DEPENDENCIES *** -->
     <!-- jQuery -->
     <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
@@ -782,6 +780,15 @@
     <!-- Custom Theme JavaScript -->
     <script src="/javascripts/dist/js/sb-admin-2.js"></script>
     <!-- *** END: DEPENDENCIES *** -->
+
+    <script type="text/javascript">
+        pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
+        pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
+    </script>
+    <script type="text/javascript">
+        function hideProceed() {$("#proceedDesign").hide();}
+        hideProceed();
+    </script>
 
 </body>
     <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->

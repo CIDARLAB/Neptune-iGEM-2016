@@ -91,7 +91,7 @@
 
                     toastr.success('Your MINT File was uploaded successfully!');
 
-                    $.get('../uploads/Design/designMINT.txt',function(data)
+                    $.get('../uploads/Design/designMINT.uf',function(data)
                     {
                         localStorage.FILE_designMINT = JSON.stringify(data.split("\n"));
                     });

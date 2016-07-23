@@ -300,7 +300,7 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
             //CONTENT_TO_PUSH = JSON.parse(localStorage.MINT_STRING);
             break;
         case 'designMINT':
-            $.get('../uploads/Design/designMINT.txt',function(data)
+            $.get('../uploads/Design/designMINT.uf',function(data)
             {
                 CONTENT_TO_PUSH = data.split("\n");
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);

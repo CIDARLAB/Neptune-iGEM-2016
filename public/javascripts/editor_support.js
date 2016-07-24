@@ -223,8 +223,8 @@ function downloadFile(File_Name,FILE_TYPE,String_To_Write,method)
                 string_to_write = localStorage.FILE_buildSVG;
                 file_name = 'buildSVG';
                 break;
-            case 'other':
-                break;
+            case 'clear':
+                string_to_write = '';
         }
     }
     if (method == 'inputString')
@@ -370,8 +370,8 @@ function translateLFR()
 {
     localStorage.WORKFLOW_STAGE = 'design';
     restartTranslateCenter();
-    $("#myModal_translate").modal();
-    var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'});
+    $("#myModal_translateWait").modal();
+    var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'},function(data)
     {
         var status = data.terminalStatus;
         if (status == 'Success')
@@ -389,10 +389,12 @@ function translateLFR()
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 //localStorage.FILE_buildJSON = JSON.stringify(content);
                 downloadFile('designMINT','designMINT',data,'inputString');
-                $('#myModal_compile').find(".modal-body").load('uploads/Design/designMINT.uf');
+                $("#myModal_translateWait").modal('hide');
+                $("#myModal_translate").modal();
+                $('#myModal_translate').find(".modal-body").load('uploads/Design/designMINT.uf');
             });
         }
-    }
+    });
 }
 
 function restartTranslateCenter()
@@ -453,10 +455,15 @@ function MINTflow(method)
 
 function compileMINT()
 {
-    
+    // var clientINI = '';
+    // $.get('../uploads/Design/designINI.txt',function(data)
+    // {
+    //     clientINI = data;
+    // });
+    // $.post('/api/writeToFile',{fileData: clientINI, fileType: 'designINIserver'});
     localStorage.WORKFLOW_STAGE = 'build';
     restartCompileCenter();
-    $("#myModal_compile").modal();
+    $("#myModal_compileWait").modal();
     $.post('/api/compileMint',{filePath: '../public/uploads/Design/designMINT.uf'},function(data)
     {
         var status = data.terminalStatus;
@@ -475,6 +482,8 @@ function compileMINT()
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 //localStorage.FILE_buildJSON = JSON.stringify(content);
                 downloadFile('buildJSON','buildJSON',data,'inputString');
+                $('#myModal_compileWait').modal('hide');
+                $('#myModal_compile').modal();
                 $('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
             });
         }
@@ -572,17 +581,3 @@ function JSON_SVGflow(method)
             break;
     }
 }
-
-
-//
-// function writeToFile(data){
-//     var fso = new ActiveXObject("Scripting.FileSystemObject");
-//     var fh = fso.OpenTextFile("../uploads/Build_Verify/buildJSON.txt", 8, false, 0);
-//    
-//     for(var i = 0; i < data.length; i++)
-//     {
-//         fh.WriteLine(data[i]);
-//        
-//     }
-//     fh.Close();
-// }

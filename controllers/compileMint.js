@@ -14,7 +14,7 @@ exports.compileMint = function(req, res)
     var file_path = './public/uploads/Design/designMINT.uf'; //req.body.filePath;
 
     var par_terminal = require('child_process').spawn(
-        'java', ['-jar', './backend/Fluigi-jar-with-dependencies.jar', file_path, '-i', './backend/fluigi.ini', '-o', 'sej']
+        'java', ['-jar', './backend/Fluigi-jar-with-dependencies.jar', file_path, '-i', './public/uploads/Design/designINI.txt', '-o', 'sej']
     );
 
     par_terminal.stdout.on('data', function(data) {

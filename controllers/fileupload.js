@@ -119,7 +119,7 @@ exports.send_designMINT = function(req, res) {
         },
         filename: function (req, file, callback) {
 
-            callback(null, file.fieldname + '.txt');
+            callback(null, file.fieldname + '.uf');
         }
     });
 

@@ -707,18 +707,20 @@
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
 
             <!-- Modal: Compile Actions -->
-            <div class="modal fade" id="myModal_compile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="myModal_compile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" onclick="hideProceed()" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Compiling MINT to design schematic</h4>
+                            <h4 class="modal-title" id="myModalLabel">Compiling MINT to design schematic...</h4>
                         </div>
                         <div class="modal-body">
                             Your Microfluidic Netlist File (MINT) is being compiled into a design schematic (SVG and JSON).
+                            <br>
                             This should take up to a few minutes.
+                            <br>
                             When ready, you can choose to download your SVG and JSON files and manually upload them to the design stage,
                             or you can push the contents of these files to the next stage of the workflow automatically.
                         </div>
@@ -797,6 +799,10 @@
     </script>
     <script type="text/javascript">
         function hideProceed() {$("#proceedVerify").hide();}
+//        $('#myModal_compile').modal({
+//            backdrop: 'static',
+//            keyboard: false
+//        });
         hideProceed();
     </script>
 

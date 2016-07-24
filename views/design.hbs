@@ -706,6 +706,29 @@
             </div>
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
 
+            <!-- Modal: Please Wait... -->
+            <div class="modal fade" id="myModal_compileWait" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" onclick="hideProceed()" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Compilation in progress...</h4>
+                        </div>
+                        <div class="modal-body">
+                            Your Microfluidic Netlist File (MINT) is being compiled into a design schematic (SVG and JSON).
+                            <br><br>
+                            This should take up to a few minutes.
+                            <br><br>
+                            When ready, you can choose to download your SVG and JSON files and manually upload them to the design stage,
+                            or you can push the contents of these files to the next stage of the workflow automatically.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- Modal: Compile Actions -->
             <div class="modal fade" id="myModal_compile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" role="document">
@@ -714,22 +737,12 @@
                             <button type="button" class="close" data-dismiss="modal" onclick="hideProceed()" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Compiling MINT to design schematic...</h4>
+                            <h4 class="modal-title" id="myModalLabel">Compilation successful: JSON Output Preview</h4>
                         </div>
                         <div class="modal-body">
-                            Your Microfluidic Netlist File (MINT) is being compiled into a design schematic (SVG and JSON).
-                            <br>
-                            This should take up to a few minutes.
-                            <br>
-                            When ready, you can choose to download your SVG and JSON files and manually upload them to the design stage,
-                            or you can push the contents of these files to the next stage of the workflow automatically.
+
                         </div>
                         <div class="modal-footer">
-                            <!--<div class="row">-->
-                            <!--<div class=".col-md-4"><a id="downloadLFR" class="btn btn-default btn-block"> </a> </div>-->
-                            <!--<div class=".col-md-2"> </div>-->
-                            <!--<div class=".col-md-4"><a id="pushLFR" class="btn btn-default btn-block"></a> </div>-->
-                            <!--</div> -->
                             <button type="button" class="btn btn-primary" onclick="JSON_SVGflow('download')">Download Schematic</button>
                             <button type="button" class="btn btn-primary" onclick="JSON_SVGflow('push')">Push Schematic</button>
                             <button type="button" class="btn btn-primary">Download and Push</button>
@@ -799,10 +812,6 @@
     </script>
     <script type="text/javascript">
         function hideProceed() {$("#proceedVerify").hide();}
-//        $('#myModal_compile').modal({
-//            backdrop: 'static',
-//            keyboard: false
-//        });
         hideProceed();
     </script>
 
@@ -810,6 +819,7 @@
 <!--<script type="text/javascript" src="../javascripts/initiate_lfr_start_editor.js"></script>-->
 
     <script src="../javascripts/uploads2.js" type="application/javascript"></script>
-<script> (document.getElementById('compile_btnn')).disabled = true; </script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+    <script> (document.getElementById('compile_btnn')).disabled = true; </script>
 
 </html>

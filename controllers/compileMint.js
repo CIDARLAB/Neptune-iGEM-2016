@@ -26,4 +26,9 @@ exports.compileMint = function(req, res)
     par_terminal.stderr.on("data", function (data) {
         console.log(data.toString());
     });
+
+    par_terminal.on('close', (code) => {
+        console.log(`child process exited with code ${code}`);
+        res.send({terminalStatus: 'Success'});
+    });
 };

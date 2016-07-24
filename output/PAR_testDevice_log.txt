@@ -1,0 +1,671 @@
+Beginning Place and Route
+PAR iteration 1
+Initial Place
+Initial Temp
+temp = 83423.35644170642
+temp = 41711.67822085321
+temp = 37540.51039876789
+temp = 33786.4593588911
+temp = 30407.813423001993
+temp = 27367.032080701796
+temp = 24630.328872631617
+temp = 22167.295985368455
+temp = 19950.56638683161
+temp = 17955.50974814845
+temp = 16159.958773333607
+temp = 14543.962896000246
+temp = 13089.566606400222
+temp = 11780.6099457602
+temp = 10602.54895118418
+temp = 9542.294056065763
+temp = 8588.064650459186
+temp = 8158.661417936226
+temp = 7750.728347039414
+temp = 7363.191929687443
+temp = 6995.03233320307
+temp = 6645.280716542917
+temp = 6313.01668071577
+temp = 5997.365846679982
+temp = 5697.497554345982
+temp = 5412.622676628683
+temp = 5141.991542797248
+temp = 4884.891965657385
+temp = 4640.647367374516
+temp = 4408.61499900579
+temp = 4188.184249055501
+temp = 3978.775036602726
+temp = 3779.8362847725894
+temp = 3590.84447053396
+temp = 3411.3022470072615
+temp = 3240.7371346568984
+temp = 3078.7002779240534
+temp = 2924.7652640278507
+temp = 2778.527000826458
+temp = 2639.600650785135
+temp = 2507.6206182458777
+temp = 2382.2395873335836
+temp = 2263.127607966904
+temp = 2149.971227568559
+temp = 2042.4726661901307
+temp = 1940.349032880624
+temp = 1843.3315812365927
+temp = 1751.165002174763
+temp = 1663.6067520660247
+temp = 1580.4264144627234
+temp = 1501.405093739587
+temp = 1426.3348390526075
+temp = 1355.018097099977
+temp = 1287.267192244978
+temp = 1222.903832632729
+temp = 1161.7586410010927
+temp = 1103.670708951038
+temp = 1048.487173503486
+temp = 996.0628148283116
+temp = 946.259674086896
+temp = 898.9466903825512
+temp = 853.9993558634236
+temp = 811.2993880702523
+temp = 770.7344186667397
+temp = 732.1976977334026
+temp = 695.5878128467324
+temp = 660.8084222043957
+temp = 627.7680010941759
+temp = 596.3796010394672
+temp = 566.5606209874937
+temp = 538.2325899381191
+temp = 511.3209604412131
+temp = 485.75491241915245
+temp = 461.4671667981948
+temp = 438.39380845828504
+temp = 416.4741180353708
+temp = 395.65041213360223
+temp = 375.8678915269221
+temp = 357.07449695057596
+temp = 339.2207721030471
+temp = 322.25973349789473
+temp = 306.146746823
+temp = 290.83940948185
+temp = 276.2974390077575
+temp = 262.4825670573696
+temp = 249.35843870450108
+temp = 236.89051676927602
+temp = 225.0459909308122
+temp = 213.79369138427157
+temp = 203.10400681505797
+temp = 192.94880647430506
+temp = 183.30136615058979
+temp = 174.13629784306028
+temp = 165.42948295090724
+temp = 157.15800880336187
+temp = 149.30010836319377
+temp = 141.83510294503407
+temp = 134.74334779778235
+temp = 128.00618040789323
+temp = 121.60587138749855
+temp = 115.52557781812362
+temp = 109.74929892721744
+temp = 104.26183398085657
+temp = 99.04874228181373
+temp = 94.09630516772305
+temp = 89.39148990933688
+temp = 84.92191541387004
+temp = 80.67581964317654
+temp = 76.6420286610177
+temp = 72.80992722796681
+temp = 69.16943086656846
+temp = 65.71095932324003
+temp = 62.425411357078026
+temp = 59.30414078922412
+temp = 56.338933749762916
+temp = 53.52198706227477
+temp = 50.845887709161026
+temp = 48.30359332370297
+temp = 45.888413657517816
+temp = 43.59399297464192
+temp = 41.414293325909824
+temp = 39.34357865961433
+temp = 37.376399726633615
+temp = 35.507579740301935
+temp = 33.73220075328684
+temp = 32.045590715622495
+temp = 30.44331117984137
+temp = 28.9211456208493
+temp = 27.47508833980683
+temp = 26.101333922816487
+temp = 24.79626722667566
+temp = 23.556453865341876
+temp = 22.37863117207478
+temp = 21.25969961347104
+temp = 20.196714632797487
+temp = 19.186878901157613
+temp = 18.22753495609973
+temp = 17.316158208294745
+temp = 16.450350297880007
+temp = 15.627832782986006
+temp = 14.846441143836705
+temp = 14.104119086644868
+temp = 13.398913132312623
+temp = 12.728967475696992
+temp = 12.092519101912142
+temp = 11.487893146816534
+temp = 10.913498489475707
+temp = 10.36782356500192
+temp = 9.849432386751824
+temp = 9.356960767414233
+temp = 8.88911272904352
+temp = 8.444657092591344
+temp = 8.022424237961776
+temp = 7.6213030260636865
+temp = 7.240237874760502
+temp = 6.878225981022476
+temp = 6.5343146819713525
+temp = 6.207598947872785
+temp = 5.897219000479145
+temp = 5.602358050455188
+temp = 5.322240147932429
+temp = 5.056128140535807
+temp = 4.803321733509017
+temp = 4.5631556468335654
+temp = 4.334997864491887
+temp = 4.118247971267293
+temp = 3.912335572703928
+temp = 3.7167187940687314
+temp = 3.5308828543652946
+temp = 3.3543387116470296
+temp = 3.186621776064678
+temp = 3.027290687261444
+temp = 2.8759261528983715
+temp = 2.7321298452534526
+temp = 2.5955233529907797
+temp = 2.4657471853412405
+temp = 2.3424598260741782
+temp = 2.225336834770469
+temp = 2.1140699930319458
+temp = 2.0083664933803482
+temp = 1.9079481687113307
+temp = 1.812550760275764
+temp = 1.7219232222619758
+temp = 1.635827061148877
+temp = 1.554035708091433
+temp = 1.4763339226868615
+temp = 1.4025172265525183
+temp = 1.3323913652248924
+temp = 1.2657717969636477
+temp = 1.2024832071154652
+temp = 1.1423590467596918
+temp = 1.0852410944217072
+Overlap =0
+Placement Complete
+Time Elapsed: 0:0:2.789765053
+RUNNING CLEANUP
+Moving target
+sp Y = 2726 tp Y 2718 deltaY = 8
+Moving target
+sp Y = 2714 tp Y 2716 deltaY = -2
+Moving target
+sp Y = 2739 tp Y 2893 deltaY = -154
+In channel cleanup, undo Y
+moving source
+sp Y = 2726 tp Y 2726 deltaY = 0
+Moving target
+sp Y = 2751 tp Y 2560 deltaY = 191
+In channel cleanup, undo Y
+Moving target
+sp Y = 2738 tp Y 2731 deltaY = 7
+moving source
+sp Y = 2714 tp Y 2714 deltaY = 0
+moving source
+sp Y = 2739 tp Y 2893 deltaY = -154
+In channel cleanup, undo Y
+moving source
+sp Y = 2751 tp Y 2560 deltaY = 191
+In channel cleanup, undo Y
+moving source
+sp Y = 2738 tp Y 2738 deltaY = 0
+grid width: 1130
+grid length: 773
+Routing Channel channel0 on Layer flow
+Routing Successful
+Routing Channel channel1 on Layer flow
+Routing Successful
+Routing Channel channel2 on Layer flow
+Routing Successful
+Routing Channel channel3 on Layer flow
+Routing Successful
+Routing Channel channel4 on Layer flow
+Routing Successful
+Decomposing Channel channel0
+Decomposing Channel channel1
+Decomposing Channel channel2
+sInd 1tInd 1
+s x:323 y: 553
+p x:323 y: 553
+s x:323 y: 553
+p x:442 y: 553
+Source pin: 1 Target pin: 3
+Decomposed Channel:
+Source x: 323 y: 553
+Target: 442 y: 553
+Path start:
+Path end
+s x:442 y: 553
+p x:442 y: 399
+Source pin: 0 Target pin: 2
+Decomposed Channel:
+Source x: 442 y: 553
+Target: 442 y: 399
+Path start:
+Path end
+s x:442 y: 399
+p x:453 y: 399
+Source pin: 1 Target pin: 1
+Decomposed Channel:
+Source x: 442 y: 399
+Target: 453 y: 399
+Path start:
+Path end
+Decomposing Channel channel3
+sInd 1tInd 1
+s x:323 y: 220
+p x:323 y: 220
+s x:323 y: 220
+p x:687 y: 220
+Source pin: 1 Target pin: 3
+Decomposed Channel:
+Source x: 323 y: 220
+Target: 687 y: 220
+Path start:
+Path end
+s x:687 y: 220
+p x:687 y: 416
+Source pin: 2 Target pin: 0
+Decomposed Channel:
+Source x: 687 y: 220
+Target: 687 y: 416
+Path start:
+Path end
+s x:687 y: 416
+p x:677 y: 416
+Source pin: 3 Target pin: 1
+Decomposed Channel:
+Source x: 687 y: 416
+Target: 677 y: 416
+Path start:
+Path end
+s x:677 y: 416
+p x:677 y: 425
+Source pin: 2 Target pin: 0
+Decomposed Channel:
+Source x: 677 y: 416
+Target: 677 y: 425
+Path start:
+Path end
+s x:677 y: 425
+p x:584 y: 425
+Source pin: 3 Target pin: 1
+Decomposed Channel:
+Source x: 677 y: 425
+Target: 584 y: 425
+Path start:
+Path end
+s x:584 y: 425
+p x:584 y: 411
+Source pin: 0 Target pin: 2
+Decomposed Channel:
+Source x: 584 y: 425
+Target: 584 y: 411
+Path start:
+Path end
+s x:584 y: 411
+p x:585 y: 411
+Source pin: 1 Target pin: 1
+Decomposed Channel:
+Source x: 584 y: 411
+Target: 585 y: 411
+Path start:
+Path end
+Decomposing Channel channel4
+sInd 2tInd 3
+s x:677 y: 398
+p x:677 y: 398
+s x:677 y: 398
+p x:677 y: 361
+Source pin: 2 Target pin: 2
+Decomposed Channel:
+Source x: 677 y: 398
+Target: 677 y: 361
+Path start:
+Path end
+s x:677 y: 361
+p x:555 y: 361
+Source pin: 3 Target pin: 1
+Decomposed Channel:
+Source x: 677 y: 361
+Target: 555 y: 361
+Path start:
+Path end
+s x:555 y: 361
+p x:555 y: 330
+Source pin: 0 Target pin: 2
+Decomposed Channel:
+Source x: 555 y: 361
+Target: 555 y: 330
+Path start:
+Path end
+s x:555 y: 330
+p x:302 y: 330
+Source pin: 3 Target pin: 1
+Decomposed Channel:
+Source x: 555 y: 330
+Target: 302 y: 330
+Path start:
+Path end
+s x:302 y: 330
+p x:302 y: 209
+Source pin: 0 Target pin: 2
+Decomposed Channel:
+Source x: 302 y: 330
+Target: 302 y: 209
+Path start:
+Path end
+s x:302 y: 209
+p x:799 y: 209
+Source pin: 1 Target pin: 3
+Decomposed Channel:
+Source x: 302 y: 209
+Target: 799 y: 209
+Path start:
+Path end
+s x:799 y: 209
+p x:799 y: 398
+Source pin: 2 Target pin: 0
+Decomposed Channel:
+Source x: 799 y: 209
+Target: 799 y: 398
+Path start:
+Path end
+s x:799 y: 398
+p x:900 y: 398
+Source pin: 1 Target pin: 3
+Decomposed Channel:
+Source x: 799 y: 398
+Target: 900 y: 398
+Path start:
+Path end
+Routing Complete
+Time Elapsed: 0:0:2.237547092
+Spacing violation: channel4_c5 inPort2
+channel4_c5 minX 293 maxX 808 minY 200 maxY 218
+inPort2 minX 203 maxX 423 minY 110 maxY 330
+channel4_c5 inPort2 : Left overlap by 30
+channel4_c5 inPort2 : Right overlap by 505
+channel4_c5 inPort2 : Bottom overlap by 8
+channel4_c5 inPort2 : Top overlap by 30
+Spacing violation: channel4_c4 inPort2
+channel4_c4 minX 293 maxX 311 minY 200 maxY 339
+inPort2 minX 203 maxX 423 minY 110 maxY 330
+channel4_c4 inPort2 : Left overlap by 30
+channel4_c4 inPort2 : Right overlap by 8
+channel4_c4 inPort2 : Bottom overlap by 129
+channel4_c4 inPort2 : Top overlap by 30
+Beginning Place and Route
+PAR iteration 2
+Initial Place
+Initial Temp
+temp = 104293.94357615724
+temp = 52146.97178807862
+temp = 46932.27460927076
+temp = 42239.047148343685
+temp = 38015.14243350932
+temp = 34213.628190158386
+temp = 30792.26537114255
+temp = 27713.038834028295
+temp = 24941.734950625465
+temp = 22447.561455562918
+temp = 20202.805310006628
+temp = 18182.524779005966
+temp = 16364.27230110537
+temp = 14727.845070994832
+temp = 13255.06056389535
+temp = 11929.554507505814
+temp = 10736.599056755233
+temp = 9662.93915107971
+temp = 8696.64523597174
+temp = 8261.812974173154
+temp = 7848.722325464496
+temp = 7456.286209191271
+temp = 7083.471898731707
+temp = 6729.298303795122
+temp = 6392.833388605365
+temp = 6073.191719175096
+temp = 5769.532133216341
+temp = 5481.055526555524
+temp = 5207.002750227747
+temp = 4946.65261271636
+temp = 4699.319982080541
+temp = 4464.353982976514
+temp = 4241.136283827688
+temp = 4029.0794696363037
+temp = 3827.6254961544882
+temp = 3636.244221346764
+temp = 3454.4320102794254
+temp = 3281.710409765454
+temp = 3117.6248892771814
+temp = 2961.743644813322
+temp = 2813.656462572656
+temp = 2672.973639444023
+temp = 2539.3249574718216
+temp = 2412.3587095982302
+temp = 2291.7407741183188
+temp = 2177.1537354124025
+temp = 2068.2960486417824
+temp = 1964.8812462096932
+temp = 1866.6371838992086
+temp = 1773.305324704248
+temp = 1684.6400584690355
+temp = 1600.4080555455837
+temp = 1520.3876527683044
+temp = 1444.3682701298892
+temp = 1372.1498566233947
+temp = 1303.542363792225
+temp = 1238.3652456026136
+temp = 1176.446983322483
+temp = 1117.6246341563588
+temp = 1061.7434024485408
+temp = 1008.6562323261137
+temp = 958.223420709808
+temp = 910.3122496743175
+temp = 864.7966371906016
+temp = 821.5568053310715
+temp = 780.4789650645179
+temp = 741.4550168112919
+temp = 704.3822659707273
+temp = 669.1631526721909
+temp = 635.7049950385813
+temp = 603.9197452866522
+temp = 573.7237580223195
+temp = 545.0375701212035
+temp = 517.7856916151434
+temp = 491.8964070343862
+temp = 467.3015866826669
+temp = 443.9365073485335
+temp = 421.7396819811068
+temp = 400.6526978820514
+temp = 380.6200629879488
+temp = 361.58905983855135
+temp = 343.50960684662374
+temp = 326.33412650429256
+temp = 310.01742017907793
+temp = 294.516549170124
+temp = 279.7907217116178
+temp = 265.8011856260369
+temp = 252.51112634473503
+temp = 239.88557002749826
+temp = 227.89129152612333
+temp = 216.49672694981714
+temp = 205.67189060232627
+temp = 195.38829607220995
+temp = 185.61888126859944
+temp = 176.33793720516945
+temp = 167.52104034491097
+temp = 159.1449883276654
+temp = 151.18773891128214
+temp = 143.62835196571802
+temp = 136.4469343674321
+temp = 129.6245876490605
+temp = 123.14335826660745
+temp = 116.98619035327707
+temp = 111.13688083561321
+temp = 105.58003679383255
+temp = 100.30103495414092
+temp = 95.28598320643387
+temp = 90.52168404611217
+temp = 85.99559984380656
+temp = 81.69581985161622
+temp = 77.6110288590354
+temp = 73.73047741608363
+temp = 70.04395354527945
+temp = 66.54175586801547
+temp = 63.21466807461469
+temp = 60.053934670883955
+temp = 57.05123793733976
+temp = 54.19867604047277
+temp = 51.48874223844913
+temp = 48.91430512652667
+temp = 46.46858987020033
+temp = 44.14516037669031
+temp = 41.9379023578558
+temp = 39.841007239963005
+temp = 37.84895687796485
+temp = 35.956509034066606
+temp = 34.158683582363274
+temp = 32.45074940324511
+temp = 30.828211933082855
+temp = 29.28680133642871
+temp = 27.822461269607274
+temp = 26.43133820612691
+temp = 25.10977129582056
+temp = 23.85428273102953
+temp = 22.661568594478055
+temp = 21.528490164754153
+temp = 20.452065656516446
+temp = 19.429462373690622
+temp = 18.45798925500609
+temp = 17.535089792255786
+temp = 16.658335302642996
+temp = 15.825418537510846
+temp = 15.034147610635303
+temp = 14.282440230103537
+temp = 13.56831821859836
+temp = 12.889902307668441
+temp = 12.245407192285018
+temp = 11.633136832670766
+temp = 11.051479991037228
+temp = 10.498905991485366
+temp = 9.973960691911097
+temp = 9.475262657315541
+temp = 9.001499524449764
+temp = 8.551424548227276
+temp = 8.123853320815911
+temp = 7.717660654775115
+temp = 7.331777622036359
+temp = 6.965188740934541
+temp = 6.616929303887813
+temp = 6.286082838693423
+temp = 5.971778696758752
+temp = 5.673189761920813
+temp = 5.389530273824772
+temp = 5.120053760133533
+temp = 4.864051072126856
+temp = 4.620848518520513
+temp = 4.389806092594488
+temp = 4.170315787964763
+temp = 3.9617999985665246
+temp = 3.7637099986381983
+temp = 3.5755244987062884
+temp = 3.396748273770974
+temp = 3.226910860082425
+temp = 3.0655653170783035
+temp = 2.9122870512243884
+temp = 2.766672698663169
+temp = 2.62833906373001
+temp = 2.4969221105435095
+temp = 2.372076005016334
+temp = 2.253472204765517
+temp = 2.140798594527241
+temp = 2.033758664800879
+temp = 1.932070731560835
+temp = 1.8354671949827932
+temp = 1.7436938352336535
+temp = 1.6565091434719708
+temp = 1.573683686298372
+temp = 1.4949995019834534
+temp = 1.4202495268842807
+temp = 1.3492370505400666
+temp = 1.2817751980130632
+temp = 1.21768643811241
+temp = 1.1568021162067894
+Overlap =0
+Placement Complete
+Time Elapsed: 0:0:3.324867881
+RUNNING CLEANUP
+Moving target
+sp Y = 4304 tp Y 4302 deltaY = 2
+Moving target
+sp Y = 4292 tp Y 4472 deltaY = -180
+In channel cleanup, undo Y
+Moving target
+sp Y = 4317 tp Y 4317 deltaY = 0
+moving source
+sp Y = 4304 tp Y 4304 deltaY = 0
+Moving target
+sp Y = 4329 tp Y 4138 deltaY = 191
+In channel cleanup, undo Y
+Moving target
+sp Y = 4316 tp Y 4315 deltaY = 1
+moving source
+sp Y = 4292 tp Y 4472 deltaY = -180
+In channel cleanup, undo Y
+moving source
+sp Y = 4317 tp Y 4317 deltaY = 0
+moving source
+sp Y = 4329 tp Y 4138 deltaY = 191
+In channel cleanup, undo Y
+moving source
+sp Y = 4316 tp Y 4316 deltaY = 0
+grid width: 1130
+grid length: 774
+Routing Channel channel0 on Layer flow
+Routing Successful
+Routing Channel channel1 on Layer flow
+Routing Successful
+Routing Channel channel2 on Layer flow
+Routing Successful
+Routing Channel channel3 on Layer flow
+Routing Successful
+Routing Channel channel4 on Layer flow
+Routing Successful
+Decomposing Channel channel0
+Decomposing Channel channel1
+sInd 1tInd 0
+s x:323 y: 554
+p x:323 y: 554
+s x:323 y: 554
+p x:442 y: 554
+Source pin: 1 Target pin: 3
+Decomposed Channel:
+Source x: 323 y: 554
+Target: 442 y: 554
+Path start:
+Path end
+s x:442 y: 554
+p x:442 y: 374
+Source pin: 0 Target pin: 2
+Decomposed Channel:
+Source x: 442 y: 554
+Target: 442 y: 374
+Path start:
+Path end
+s x:442 y: 374
+p x:453 y: 374
+So

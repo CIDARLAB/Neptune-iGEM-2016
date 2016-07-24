@@ -371,7 +371,28 @@ function translateLFR()
     localStorage.WORKFLOW_STAGE = 'design';
     restartTranslateCenter();
     $("#myModal_translate").modal();
-    //var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'});
+    var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'});
+    {
+        var status = data.terminalStatus;
+        if (status == 'Success')
+        {
+            var postDownload = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'mint'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                //localStorage.FILE_buildJSON = JSON.stringify(content);
+                downloadFile('designMINT','designMINT',data,'inputString');
+                $('#myModal_compile').find(".modal-body").load('uploads/Design/designMINT.uf');
+            });
+        }
+    }
 }
 
 function restartTranslateCenter()
@@ -438,7 +459,25 @@ function compileMINT()
     $("#myModal_compile").modal();
     $.post('/api/compileMint',{filePath: '../public/uploads/Design/designMINT.uf'},function(data)
     {
-        console.log(data.toString());
+        var status = data.terminalStatus;
+        if (status == 'Success')
+        {
+            var postDownload = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'json'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                //localStorage.FILE_buildJSON = JSON.stringify(content);
+                downloadFile('buildJSON','buildJSON',data,'inputString');
+                $('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
+            });
+        }
     });
 }
 

@@ -14,20 +14,26 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
     <script src="../javascripts/tour.js"></script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
 
     <script type="text/javascript">
-        function clearAllData()
+        function setNewSession()
         {
             localStorage.clear();
-            alert('All local storage cleared');
+            localStorage.WORKFLOW_STAGE = 'start';
+            localStorage.FILE_specifyLFR = '';
+            //localStorage.FILE_specifyUCF = '';
+            localStorage.FILE_designMINT = '';
+            //localStorage.FILE_designINI = '';
+            localStorage.FILE_buildJSON = '';
+            localStorage.FILE_buildSVG = '';
+            downloadFile('','specifyLFR','','inputString');
+            //downloadFile('','specifyUCF','','inputString');
+            downloadFile('','designMINT','','inputString');
+            //downloadFile('','designINI','','inputString');
+            downloadFile('','buildJSON','','inputString');
+            downloadFile('','buildSVG','','inputString');
         }
-    </script>
-    <script type="text/javascript">
-        localStorage.WORKFLOW_STAGE = 'start';
-        localStorage.FILE_specifyLFR = '';
-        localStorage.FILE_specifyUCF = '';
-        localStorage.FILE_designMINT = '';
-        localStorage.FILE_designINI = '';
     </script>
 </head>
 

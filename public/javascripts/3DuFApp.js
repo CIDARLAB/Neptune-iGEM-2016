@@ -30699,22 +30699,13 @@ window.onload = function () {
     grid.setColor(Colors.BLUE_500);
 
     Registry.viewManager = viewManager;
-
-
-
-
-  // Load last uploaded file  to canvas
-  $.getJSON("../uploads/Build_Verify/buildJSON.json", function (json) {
-    console.log(json);
-    viewManager.loadDeviceFromJSON(JSON.parse(JSON.stringify((json))));
-    viewManager.updateGrid();
-    Registry.currentDevice.updateView();
-  });
-
-
-    // viewManager.loadDeviceFromJSON(JSON.parse(Examples.example1));
-    // viewManager.updateGrid();
-    // Registry.currentDevice.updateView();
+    // Load last uploaded file  to canvas
+    $.getJSON("../uploads/Build_Verify/buildJSON.json", function (json) {
+        console.log(json);
+        viewManager.loadDeviceFromJSON(JSON.parse(JSON.stringify((json))));
+        viewManager.updateGrid();
+        Registry.currentDevice.updateView();
+    });
 
     window.dev = Registry.currentDevice;
     window.Registry = Registry;
@@ -31463,7 +31454,7 @@ exports.featureDefaults = featureDefaults;
 exports.threeRenderer = threeRenderer;
 
 },{"node-uuid":261}],275:[function(require,module,exports){
-module.exports.example1 = '{"name":"My Device","params":{"width":75800,"height":51000},"layers":[{"name":"flow","color":"indigo","params":{"z_offset":0,"flip":false},"features":{"92a652b0-2741-11e6-8a1e-ab9e1161cdff":{"id":"92a652b0-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Port","set":"Basic","params":{"position":[20000,10000],"radius1":1380,"radius2":1380,"height":1100}},"957be0e0-2741-11e6-8a1e-ab9e1161cdff":{"id":"957be0e0-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Port","set":"Basic","params":{"position":[40000,10000],"radius1":1380,"radius2":1380,"height":1100}},"a77ec780-2741-11e6-8a1e-ab9e1161cdff":{"id":"a77ec780-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"CircleValve","set":"Basic","params":{"position":[30000,10000],"radius1":1400,"radius2":1200,"height":800}},"aaed8870-2741-11e6-8a1e-ab9e1161cdff":{"id":"aaed8870-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Channel","set":"Basic","params":{"start":[20000,10000],"end":[30000,10000],"channelWidth":410,"height":100}},"acf5db90-2741-11e6-8a1e-ab9e1161cdff":{"id":"acf5db90-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Channel","set":"Basic","params":{"start":[40000,10000],"end":[30000,10000],"channelWidth":410,"height":100}}}},{"name":"control","color":"red","params":{"z_offset":1200,"flip":true},"features":{}}],"groups":[]}';
+module.exports.example1 = '{"name":"My Device","params":{"width":75800,"height":51000},"layers":[{"name":"flow","color":"indigo","params":{"z_offset":0,"flip":false},"features":{"92a652b0-2741-11e6-8a1e-ab9e1161cdff":{"id":"92a652b0-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Port","set":"Basic","params":{"position":[20000,10000],"portRadius":1380,"height":1100}},"957be0e0-2741-11e6-8a1e-ab9e1161cdff":{"id":"957be0e0-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Port","set":"Basic","params":{"position":[40000,10000],"portRadius":1380,"height":1100}},"a77ec780-2741-11e6-8a1e-ab9e1161cdff":{"id":"a77ec780-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"CircleValve","set":"Basic","params":{"position":[30000,10000],"radius1":1400,"radius2":1200,"height":800}},"aaed8870-2741-11e6-8a1e-ab9e1161cdff":{"id":"aaed8870-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Channel","set":"Basic","params":{"start":[20000,10000],"end":[30000,10000],"channelWidth":410,"height":100}},"acf5db90-2741-11e6-8a1e-ab9e1161cdff":{"id":"acf5db90-2741-11e6-8a1e-ab9e1161cdff","name":"New Feature","type":"Channel","set":"Basic","params":{"start":[40000,10000],"end":[30000,10000],"channelWidth":410,"height":100}}}},{"name":"control","color":"red","params":{"z_offset":1200,"flip":true},"features":{}}],"groups":[]}';
 
 },{}],276:[function(require,module,exports){
 let basicFeatures = {
@@ -31481,7 +31472,7 @@ let basicFeatures = {
             "height": .1 * 1000
         },
         minimum: {
-            "channelWidth": 10,
+            "channelWidth": 8,
             "height": 10
         },
         maximum: {
@@ -31511,6 +31502,31 @@ let basicFeatures = {
             "height": 1200
         }
     },
+    "Node": {
+        unique: {
+            "position": "Point"
+        },
+        heritable: {
+            "radius1": "Float",
+            "radius2": "Float",
+            "height": "Float"
+        },
+        defaults: {
+            "radius1": .41 * 1000,
+            "radius2": .41 * 1000,
+            "height": .1 * 1000
+        },
+        minimum: {
+            "radius1": 10,
+            "radius2": 10,
+            "height": 10
+        },
+        maximum: {
+            "radius1": 2000,
+            "radius2": 2000,
+            "height": 1200
+        }
+    },
     "CircleValve": {
         unique: {
             "position": "Point"
@@ -31536,6 +31552,36 @@ let basicFeatures = {
             "height": 1200
         }
     },
+    "Valve3D": {
+        unique: {
+            "position": "Point"
+        },
+        heritable: {
+            "orientation": "String",
+            "valveRadius": "Float",
+            "height": "Float",
+            "gap": "Float"
+        },
+        defaults: {
+            "orientation": "V",
+            "valveRadius": 1.2 * 1000,
+            "height": .8 * 1000,
+            "gap": 0.6 * 1000
+        },
+        minimum: {
+            //  "orientation": "V",
+            "valveRadius": .1 * 100,
+            "height": .1 * 100,
+            "gap": .5 * 10
+        },
+        maximum: {
+            //    "orientation": "H",
+            "valveRadius": .2 * 10000,
+            "height": 1.2 * 1000,
+            "gap": .1 * 10000
+        }
+    },
+
     "Via": {
         unique: {
             "position": "Point"
@@ -31566,74 +31612,58 @@ let basicFeatures = {
             "position": "Point"
         },
         heritable: {
-            "radius1": "Float",
-            "radius2": "Float",
+            "portRadius": "Float",
+            //   "radius2": "Float",
             "height": "Float"
         },
         defaults: {
-            "radius1": .7 * 1000,
-            "radius2": .7 * 1000,
+            "portRadius": .7 * 1000,
+            // "radius2": .7 * 1000,
             "height": 1.1 * 1000
         },
         minimum: {
-            "radius1": 10,
-            "radius2": 10,
+            "portRadius": .8 * 10,
+            //   "radius2": 10,
             "height": 10
         },
         maximum: {
-            "radius1": 2000,
-            "radius2": 2000,
+            "portRadius": 2000,
+            //    "radius2": 2000,
             "height": 1200
         }
     },
-    "DiamondChamber": {
-        unique: {
-            "start": "Point",
-            "end": "Point"
-        },
-        heritable: {
-            "borderWidth": "Float",
-            "height": "Float"
-        },
-        defaults: {
-            "borderWidth": .41 * 1000,
-            "height": .1 * 1000
-        },
-        minimum: {
-            "borderWidth": 10,
-            "height": 10
-        },
-        maximum: {
-            "borderWidth": 2000,
-            "height": 1200
-        }
-        /*
+    "DiamondReactionChamber": {
         unique: {
             "position": "Point"
         },
         heritable: {
-            "flowChannelWidth": "Float",
-            "chamberLength":"Float",
-            "orientation":"String",
-            "height": "Float"
+            "channelWidth": "Float",
+            "length": "Float",
+            "width": "Float",
+            "height": "Float",
+            "orientation": "String"
         },
         defaults: {
-            "flowChannelWidth": .41 * 1000,
-            "chamberLength": 2 * 1000,
-            "orientation": "H",
-            "height": .1 * 1000
+            "channelWidth": .41 * 1000,
+            "length": 4 * 1000,
+            "width": 1 * 1000,
+            "height": .1 * 1000,
+            "orientation": "H"
         },
         minimum: {
-            "flowChannelWidth": 10,
-            "chamberLength": 10,
-            "height": 10
+            "borderWidth": .1 * 100,
+            "length": 1 * 1000,
+            "width": .25 * 1000,
+            "height": .1 * 100
         },
         maximum: {
-            "flowChannelWidth": 2000,
-            "chamberLength": 2000000,
-            "height": 1200
-        }*/
+            "borderWidth": .2 * 10000,
+            "length": 1.20 * 100000,
+            "width": .3 * 100000,
+            "height": 1.2 * 1000
+        }
     }
+
 };
 
 module.exports = basicFeatures;
@@ -31664,6 +31694,21 @@ let render2D = {
     Port: {
         featureParams: {
             position: "position",
+            radius1: "portRadius",
+            radius2: "portRadius"
+        },
+        targetParams: {
+            radius1: "portRadius",
+            radius2: "portRadius"
+        },
+        featurePrimitiveSet: "Basic2D",
+        featurePrimitiveType: "GradientCircle",
+        targetPrimitiveType: "CircleTarget",
+        targetPrimitiveSet: "Basic2D"
+    },
+    Node: {
+        featureParams: {
+            position: "position",
             radius1: "radius1",
             radius2: "radius2"
         },
@@ -31685,6 +31730,22 @@ let render2D = {
         targetParams: {
             radius1: "radius1",
             radius2: "radius2"
+        },
+        featurePrimitiveSet: "Basic2D",
+        featurePrimitiveType: "GradientCircle",
+        targetPrimitiveType: "CircleTarget",
+        targetPrimitiveSet: "Basic2D"
+    },
+    Valve3D: {
+        featureParams: {
+            position: "position",
+            orientation: "orientation",
+            radius1: "valveRadius",
+            radius2: "valveRadius"
+        },
+        targetParams: {
+            radius1: "valveRadius",
+            radius2: "valveRadius"
         },
         featurePrimitiveSet: "Basic2D",
         featurePrimitiveType: "GradientCircle",
@@ -31719,19 +31780,23 @@ let render2D = {
         targetPrimitiveSet: "Basic2D",
         targetPrimitiveType: "CircleTarget"
     },
-    DiamondChamber: {
+    DiamondReactionChamber: {
         featureParams: {
-            start: "start",
-            end: "end",
-            borderWidth: "borderWidth"
+            position: "position",
+            orientation: "orientation",
+            channelWidth: "channelWidth",
+            radius1: "length",
+            radius2: "width"
         },
         targetParams: {
-            diameter: "borderWidth"
+            //  channelWidth: "channelWidth",
+            radius1: "length",
+            radius2: "width"
         },
         featurePrimitiveSet: "Basic2D",
-        featurePrimitiveType: "RoundedRect",
-        targetPrimitiveSet: "Basic2D",
-        targetPrimitiveType: "CircleTarget"
+        featurePrimitiveType: "GradientCircle",
+        targetPrimitiveType: "CircleTarget",
+        targetPrimitiveSet: "Basic2D"
     }
 };
 
@@ -31752,6 +31817,16 @@ let render3D = {
     Port: {
         featureParams: {
             position: "position",
+            radius1: "portRadius",
+            radius2: "portRadius",
+            height: "height"
+        },
+        featurePrimitiveSet: "Basic3D",
+        featurePrimitive: "ConeFeature"
+    },
+    Node: {
+        featureParams: {
+            position: "position",
             radius1: "radius1",
             radius2: "radius2",
             height: "height"
@@ -31764,6 +31839,17 @@ let render3D = {
             position: "position",
             radius1: "radius1",
             radius2: "radius2",
+            height: "height"
+        },
+        featurePrimitiveSet: "Basic3D",
+        featurePrimitive: "ConeFeature"
+    },
+    Valve3D: {
+        featureParams: {
+            position: "position",
+            orientation: "orientation",
+            radius1: "valveRadius",
+            radius2: "valveRadius",
             height: "height"
         },
         featurePrimitiveSet: "Basic3D",
@@ -31789,15 +31875,17 @@ let render3D = {
         featurePrimitiveSet: "Basic3D",
         featurePrimitive: "TwoPointRoundedBoxFeature"
     },
-    DiamondChamber: {
+    DiamondReactionChamber: {
         featureParams: {
-            start: "start",
-            end: "end",
-            borderWidth: "borderWidth",
+            position: "position",
+            orientation: "orientation",
+            channelWidth: "channelWidth",
+            radius1: "length",
+            radius2: "width",
             height: "height"
         },
         featurePrimitiveSet: "Basic3D",
-        featurePrimitive: "TwoPointRoundedBoxFeature"
+        featurePrimitive: "ConeFeature"
     }
 };
 
@@ -31817,7 +31905,19 @@ let tools = {
         },
         placementTool: "PositionTool"
     },
+    Node: {
+        toolParams: {
+            position: "position"
+        },
+        placementTool: "PositionTool"
+    },
     CircleValve: {
+        toolParams: {
+            position: "position"
+        },
+        placementTool: "PositionTool"
+    },
+    Valve3D: {
         toolParams: {
             position: "position"
         },
@@ -31837,12 +31937,11 @@ let tools = {
         },
         placementTool: "DragTool"
     },
-    DiamondChamber: {
+    DiamondReactionChamber: {
         toolParams: {
-            start: "start",
-            end: "end"
+            position: "position"
         },
-        placementTool: "DragTool"
+        placementTool: "PositionTool"
     }
 };
 
@@ -32213,7 +32312,7 @@ var createValueField = function (start, id) {
   var div = document.createElement("div");
   var error = document.createElement("span");
   var span = document.createElement("span");
-  span.innerHTML = "μm";
+  span.innerHTML = ""; //"μm";
   span.style.fontSize = "14px";
   error.className = "mdl-textfield__error";
   error.innerHTML = "Digits only";
@@ -32276,6 +32375,14 @@ var createTableRow = function (one, two, three) {
   return tr;
 };
 
+var createTableRow2 = function (two, three) {
+  var tr = document.createElement("tr");
+  two.style.borderBottom = "none";
+  tr.appendChild(two);
+  tr.appendChild(three);
+  return tr;
+};
+
 var generateUpdateFunction = function (sourceID, targetID, typeString, setString, paramString) {
   return function () {
     var source = document.getElementById(sourceID);
@@ -32285,6 +32392,21 @@ var generateUpdateFunction = function (sourceID, targetID, typeString, setString
       param = new FloatValue(parseFloat(source.value));
     } catch (err) {
       console.log("Invalid Float value.");
+      return;
+    }
+    target.value = String(param.getValue());
+    Registry.viewManager.adjustParams(typeString, setString, paramString, param.getValue());
+  };
+};
+var generateUpdateFunctionString = function (sourceID, targetID, typeString, setString, paramString) {
+  return function () {
+    var source = document.getElementById(sourceID);
+    var target = document.getElementById(targetID);
+    var param;
+    try {
+      param = new StringValue(parseString(source.value));
+    } catch (err) {
+      console.log("Invalid value.");
       return;
     }
     target.value = String(param.getValue());
@@ -32331,6 +32453,21 @@ var createSliderRow = function (featureID, typeString, setString, key) {
   return row;
 };
 
+var createStringRow = function (featureID, typeString, setString, key) {
+  var definition = FeatureSets.getDefinition(typeString, setString);
+  var value = Feature.getDefaultsForType(typeString, setString)[key];
+  var titleID = featureID + "_" + key + "_title";
+  var fieldID = featureID + "_" + key + "_value";
+  var title = createSpan(key, titleID);
+  var titleContainer = createTableElement(title);
+  titleContainer.style.borderBottom = "none";
+  var field = createValueField(value, fieldID);
+  var fieldContainer = createTableElement(field);
+  var row = createTableRow2(titleContainer, fieldContainer);
+  field.oninput = generateUpdateFunctionString(fieldID, typeString, setString, key);
+  return row;
+};
+
 var createCheckboxRow = function (featureID, typeString, setString, key) {
   var title = createSpan(key);
   var checkID = featureID + "_" + key + "_checkbox";
@@ -32356,7 +32493,7 @@ var createFeatureTableRows = function (typeString, setString) {
   for (var key in heritable) {
     var row;
     var type = heritable[key];
-    if (type == "Float" || type == "Integer") row = createSliderRow(id, typeString, setString, key);else if (type == "Boolean") row = createCheckboxRow(id, typeString, setString, key);
+    if (type == "Float" || type == "Integer") row = createSliderRow(id, typeString, setString, key);else if (type == "Boolean") row = createCheckboxRow(id, typeString, setString, key);else if (type == "String") row = createStringRow(id, typeString, setString, key);
     rows.push(row);
   }
   return rows;
@@ -32663,6 +32800,7 @@ let activeButton = null;
 let activeLayer = null;
 let channelButton = document.getElementById("channel_button");
 let circleValveButton = document.getElementById("circleValve_button");
+let valve3dButton = document.getElementById("valve3d_button");
 let portButton = document.getElementById("port_button");
 let viaButton = document.getElementById("via_button");
 let chamberButton = document.getElementById("chamber_button");
@@ -32670,6 +32808,7 @@ let diamondButton = document.getElementById("diamond_button");
 
 let channelParams = document.getElementById("channel_params_button");
 let circleValveParams = document.getElementById("circleValve_params_button");
+let valve3dParams = document.getElementById("valve3d_params_button");
 let portParams = document.getElementById("port_params_button");
 let viaParams = document.getElementById("via_params_button");
 let chamberParams = document.getElementById("chamber_params_button");
@@ -32704,8 +32843,9 @@ let buttons = {
     "Via": viaButton,
     "Port": portButton,
     "CircleValve": circleValveButton,
+    "Valve3D": valve3dButton,
     "Chamber": chamberButton,
-    "DiamondChamber": diamondButton
+    "DiamondReactionChamber": diamondButton
 };
 
 let layerButtons = {
@@ -32831,6 +32971,12 @@ function setupAppPage() {
         setActiveButton("CircleValve");
         switchTo2D();
     };
+    valve3dButton.onclick = function () {
+        Registry.viewManager.activateTool("Valve3D");
+        let bg = Colors.getDefaultFeatureColor("Valve3D", "Basic", Registry.currentLayer);
+        setActiveButton("Valve3D");
+        switchTo2D();
+    };
 
     portButton.onclick = function () {
         Registry.viewManager.activateTool("Port");
@@ -32853,9 +32999,9 @@ function setupAppPage() {
         switchTo2D();
     };
     diamondButton.onclick = function () {
-        Registry.viewManager.activateTool("DiamondChamber");
-        let bg = Colors.getDefaultFeatureColor("DiamondChamber", "Basic", Registry.currentLayer);
-        setActiveButton("DiamondChamber");
+        Registry.viewManager.activateTool("DiamondReactionChamber");
+        let bg = Colors.getDefaultFeatureColor("DiamondReactionChamber", "Basic", Registry.currentLayer);
+        setActiveButton("DiamondReactionChamber");
         switchTo2D();
     };
 
@@ -32932,10 +33078,11 @@ function setupAppPage() {
 
     channelParams.onclick = paramsWindowFunction("Channel", "Basic");
     circleValveParams.onclick = paramsWindowFunction("CircleValve", "Basic");
+    valve3dParams.onclick = paramsWindowFunction("Valve3D", "Basic");
     portParams.onclick = paramsWindowFunction("Port", "Basic");
     viaParams.onclick = paramsWindowFunction("Via", "Basic");
     chamberParams.onclick = paramsWindowFunction("Chamber", "Basic");
-    diamondParams.onclick = paramsWindowFunction("DiamondChamber", "Basic");
+    diamondParams.onclick = paramsWindowFunction("DiamondReactionChamber", "Basic");
 
     function setupDragAndDropLoad(selector) {
         let dnd = new HTMLUtils.DnDFileController(selector, function (files) {
@@ -33675,6 +33822,18 @@ var GradientCircle = function (params) {
     return outerCircle;
 };
 
+var GroverValve = function (params) {
+    let baseCircle = GradientCircle(params);
+    let position = params["position"];
+    let gap = params["gap"];
+    let startX = position[0] - gap / 2;
+    let startY = position[1];
+};
+
+var Valve3D = function (params) {
+    baseCircle = CircleTarget(params);
+};
+
 var CircleTarget = function (params) {
     let targetRadius;
     if (params.hasOwnProperty("diameter")) targetRadius = params["diameter"] / 2;else {
@@ -33699,8 +33858,10 @@ var CircleTarget = function (params) {
 
 module.exports.RoundedRectLine = RoundedRectLine;
 module.exports.GradientCircle = GradientCircle;
+module.exports.Valve3D = Valve3D;
 module.exports.RoundedRect = RoundedRect;
 module.exports.CircleTarget = CircleTarget;
+module.exports.GroverValve = GroverValve;
 
 },{}],297:[function(require,module,exports){
 module.exports.Basic2D = require("./basic2D");
@@ -36111,10 +36272,12 @@ class ViewManager {
     setupTools() {
         this.tools["Chamber"] = new ChannelTool("Chamber", "Basic");
         this.tools["Channel"] = new ChannelTool("Channel", "Basic");
+        this.tools["Node"] = new PositionTool("Node", "Basic");
         this.tools["CircleValve"] = new PositionTool("CircleValve", "Basic");
+        this.tools["Valve3D"] = new PositionTool("CircleValve", "Basic");
         this.tools["Port"] = new PositionTool("Port", "Basic");
         this.tools["Via"] = new PositionTool("Via", "Basic");
-        this.tools["DiamondChamber"] = new ChannelTool("DiamondChamber", "Basic");
+        this.tools["DiamondReactionChamber"] = new PositionTool("DiamondReactionChamber", "Basic");
     }
 }
 

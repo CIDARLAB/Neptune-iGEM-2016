@@ -8,6 +8,10 @@
     overflow-y: auto;
 }
 
+#fileGoesHere {
+    white-space: pre-line;
+}
+
 #editor_design *
 {
     font-family: monospace, monospace;

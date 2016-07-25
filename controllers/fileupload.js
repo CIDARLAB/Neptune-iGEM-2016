@@ -201,7 +201,7 @@ exports.send_buildJSON = function(req, res) {
         //     }
         //     cb(null, true);
         // }
-    }).single('myjson'); // MUST MATCH FILE NAME!
+    }).single('buildJSON'); // MUST MATCH FILE NAME!
 
     upload_buildJSON(req, res, function (err) {
         if (err) {

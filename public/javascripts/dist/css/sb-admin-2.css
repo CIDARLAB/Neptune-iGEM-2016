@@ -3,6 +3,20 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
+.modal .modal-body {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+#editor_design *
+{
+    font-family: monospace, monospace;
+}
+
+#editor_specify *
+{
+    font-family: monospace, monospace;
+}
 
 body {
     background-color: #f8f8f8;

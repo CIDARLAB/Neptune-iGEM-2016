@@ -12,37 +12,45 @@ var path = require('path');
 exports.download = function(req, res)
 {
     var CASE = req.body.downloadType;
-    console.log(CASE);
     switch (CASE)
     {
         case 'mint':
-            var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/backend_results/designMINT.uf';
-            var file = __dirname + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
-            var filename = path.basename(fileLong);
-            var mimetype = mime.lookup(fileLong);
+            //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+            var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/testMINT.uf';
+            var filename = path.basename(file);
+            var mimetype = mime.lookup(file);
             res.setHeader('Content-disposition', 'attachment; filename=' + filename);
             res.setHeader('Content-type', mimetype);
-            var filestream = fs.createReadStream(fileLong);
+            var filestream = fs.createReadStream(file);
             filestream.pipe(res);
             break;
         case 'json':
-            var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/output/testDevice.json';
-            var file = __dirname + '/output/PAR_testdevice_log.txt'; // the right way to do it-- but __dirname is at /controllers, which is one down
-            var filename = path.basename(fileLong);
-            var mimetype = mime.lookup(fileLong);
+            //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/output/testDevice.json';
+            var file = __dirname; // + '/output/PAR_testdevice_log.txt'; // the right way to do it-- but __dirname is at /controllers, which is one down
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice.json';
+            var filename = path.basename(file);
+            var mimetype = mime.lookup(file);
             res.setHeader('Content-disposition', 'attachment; filename=' + filename);
             res.setHeader('Content-type', mimetype);
-            var filestream = fs.createReadStream(fileLong);
+            var filestream = fs.createReadStream(file);
             filestream.pipe(res);
             break;
         case 'svg':
-            var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/output/testDevice_device_flow.svg';
-            var file = __dirname + '/output/PAR_testdevice_log.txt'; // the right way to do it-- but __dirname is at /controllers, which is one down
-            var filename = path.basename(fileLong);
-            var mimetype = mime.lookup(fileLong);
+            //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/output/testDevice_device_flow.svg';
+            var file = __dirname; // + '/output/PAR_testdevice_log.txt'; // the right way to do it-- but __dirname is at /controllers, which is one down
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_device_control.svg';
+            var filename = path.basename(file);
+            var mimetype = mime.lookup(file);
             res.setHeader('Content-disposition', 'attachment; filename=' + filename);
             res.setHeader('Content-type', mimetype);
-            var filestream = fs.createReadStream(fileLong);
+            var filestream = fs.createReadStream(file);
             filestream.pipe(res);
             break;
     }

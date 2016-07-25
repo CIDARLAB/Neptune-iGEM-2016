@@ -24,6 +24,13 @@ LFR_form.onsubmit = function(event) {
             pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
             localStorage.WORKFLOW_STAGE = 'specify';
             LFR_uploadButton.innerHTML = 'Uploaded';
+            $.get('../uploads/Specify/specifyLFR.v',function(data)
+            {
+                // var Data = JSON.stringify(data);
+                // var content = Data.split(/[\r\n]+/);
+                var content = data.split(/[\r\n]+/);
+                localStorage.FILE_specifyLFR = JSON.stringify(content);
+            });
         } else {
             alert('File upload failed.');
         }
@@ -52,6 +59,13 @@ UCF_form.onsubmit = function(event) {
         if (xhr.status === 200) {
             // File(s) uploaded.
             localStorage.WORKFLOW_STAGE = 'specify';
+            $.get('../uploads/Specify/specifyUCF.json',function(data)
+            {
+                // var Data = JSON.stringify(data);
+                // var content = Data.split(/[\r\n]+/);
+                var content = data.split(/[\r\n]+/);
+                localStorage.FILE_specifyUCF = JSON.stringify(content);
+            });
             pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
             UCF_uploadButton.innerHTML = 'Uploaded';
         } else {

@@ -430,7 +430,10 @@ function translateLFR()
                 downloadFile('designMINT','designMINT',data,'inputString');
                 $("#myModal_translateWait").modal('hide');
                 $("#myModal_translate").modal();
-                $('#myModal_translate').find(".modal-body").load('uploads/Design/designMINT.uf');
+                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                //$('#myModal_translate').find(".modal-body").load('uploads/Design/designMINT.uf');
             });
         }
     });
@@ -523,7 +526,10 @@ function compileMINT()
                 downloadFile('buildJSON','buildJSON',data,'inputString');
                 $('#myModal_compileWait').modal('hide');
                 $('#myModal_compile').modal();
-                $('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
+                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                //$('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
             });
         }
     });

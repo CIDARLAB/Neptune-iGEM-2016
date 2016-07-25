@@ -44,48 +44,53 @@ function displayFileContent(File_To_Display)
         case 'specifyLFR':
             localStorage.display_file_modal_state = 'specifyLFR';
             localStorage.display_file_modal_name = 'Specify LFR';
-            string_to_display = localStorage.FILE_specifyLFR;
+            //string_to_display = localStorage.FILE_specifyLFR;
             title = 'LFR Preview';
+            $('#fileGoesHere').load('/uploads/Specify/specifyLFR.v');
             break;
         case 'specifyUCF':
             localStorage.display_file_modal_state = 'specifyUCF';
             localStorage.display_file_modal_name = 'Specify_UCF';
-            string_to_display = localStorage.FILE_specifyUCF;
+            //string_to_display = localStorage.FILE_specifyUCF;
             title = 'UCF Preview';
+            $('#fileGoesHere').load('/uploads/Specify/specifyUCF.json');
             break;
         case 'designMINT':
             localStorage.display_file_modal_state = 'designMINT';
             localStorage.display_file_modal_name = 'Design_MINT';
-            string_to_display = localStorage.FILE_designMINT;
+            //string_to_display = localStorage.FILE_designMINT;
             title = 'MINT Preview';
+            $('#fileGoesHere').load('/uploads/Design/designMINT.uf');
             break;
         case 'designINI':
             localStorage.display_file_modal_state = 'designINI';
             localStorage.display_file_modal_name = 'Design_INI';
-            string_to_display = localStorage.FILE_designINI;
+            //string_to_display = localStorage.FILE_designINI;
             title = 'INI Preview';
+            $('#fileGoesHere').load('/uploads/Design/designINI.txt');
             break;
         case 'buildSVG':
             localStorage.display_file_modal_state = 'buildSVG';
             localStorage.display_file_modal_name = 'Build_SVG';
-            string_to_display = localStorage.FILE_buildSVG;
+            //string_to_display = localStorage.FILE_buildSVG;
             title = 'SVG Preview';
+            $('#fileGoesHere').load('/uploads/Build_Verify/buildSVG.svg');
             break;
         case 'buildJSON':
             localStorage.display_file_modal_state = 'buildJSON';
             localStorage.display_file_modal_name = 'Build_JSON';
-            string_to_display = localStorage.FILE_buildJSON;
+            //string_to_display = localStorage.FILE_buildJSON;
             title = 'JSON Preview';
+            $('#fileGoesHere').load('/uploads/Build_Verify_buildJSON.json');
             break;
-
     }
-    var dataArray = JSON.parse(string_to_display);
-    $('#myModalLabel').append(title);
-    for (var i = 0; i < dataArray.length; i++)
-    {
-        $('#fileGoesHere').append(dataArray[i] + '<br>');
-    }
-    //$('#fileGoesHere').text(string_to_display);
+    // var dataArray = JSON.parse(string_to_display);
+    // $('#myModalLabel').append(title);
+    // for (var i = 0; i < dataArray.length; i++)
+    // {
+    //     $('#fileGoesHere').append(dataArray[i] + '<br>' + '<br>');
+    // }
+    // $('#fileGoesHere').text(string_to_display);
 }
 
 function clearPreviewModalContent() 
@@ -167,25 +172,35 @@ function changeDesignTabs(Editor,Tab_To_Switch_To,SessionArray)
 function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
 {
     var EDITOR_SESSION = [];
+    var editor_session = '';
     var file_size = Editor_To_Save_Content.session.getLength();
     for (var i = 0; i < file_size; i++)
     {
         var tempLine = Editor_To_Save_Content.session.getLine(i);
+        editor_session = editor_session + '\n' + tempLine;
         EDITOR_SESSION.push(tempLine);
     }
     switch(FILE_TYPE)
     {
         case 'specifyLFR':
             localStorage.FILE_specifyLFR =  JSON.stringify(EDITOR_SESSION);
+            //downloadFile('','specifyLFR','','localStorage');
+            downloadFile('','specifyLFR',editor_session,'inputString');
             break;
         case 'specifyUCF':
             localStorage.FILE_specifyUCF =  JSON.stringify(EDITOR_SESSION);
+            //downloadFile('','specifyUCF','','localStorage');
+            downloadFile('','specifyUCF',editor_session,'inputString');
             break;
         case 'designINI':
             localStorage.FILE_designINI =  JSON.stringify(EDITOR_SESSION);
+            //downloadFile('','designINI','','localStorage');
+            downloadFile('','buildINI',editor_session,'inputString');
             break;
         case 'designMINT':// Fix
             localStorage.FILE_designMINT =  JSON.stringify(EDITOR_SESSION);
+            //downloadFile('','designMINT','','localStorage');
+            downloadFile('','buildMINT',editor_session,'inputString');
             break;
     }
     fileTrayIndicators();
@@ -234,7 +249,7 @@ function downloadFile(File_Name,FILE_TYPE,String_To_Write,method)
         file_name = File_Name;
     }
 
-    $.post("/api/writeToFile",{fileData: String_To_Write, fileType: FILE_TYPE});
+    $.post("/api/writeToFile",{fileData: string_to_write, fileType: FILE_TYPE});
 
     // var w = window.open();
     // var html = JSON.parse(string_to_write);
@@ -281,9 +296,26 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
         case 'specifyUCF':
             $.get('../uploads/Specify/specifyUCF.json',function(data)
             {
-                var Data = JSON.stringify(data);
-                CONTENT_TO_PUSH = Data.split(/[\r\n]+/);
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+
+                Editor_To_Push_Toward.setSession(session);
+                Editor_To_Push_Toward.session.setValue('');
+                Editor_To_Push_Toward.session.setValue(JSON.stringify(data, null, '\t'));
+
+                // var strArray = [];
+                // for (var i; i < data.length; i++)
+                // {
+                //     var ss = data[i];
+                //     for (var j in ss)
+                //     {
+                //         strArray.push(ss[j]);
+                //     }
+                // }
+                //     result.push([i, json_data [i]]);
+                //
+                //
+                // var Data = JSON.stringify(data);
+                // CONTENT_TO_PUSH = Data.split(/[\r\n]+/);
+                // fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
                 document.getElementById('LFRtab').className = '';
                 document.getElementById('UCFtab').className = 'active';
             });

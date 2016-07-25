@@ -477,9 +477,9 @@
                                         </li>
                                         <li><a onclick="refreshEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
                                         </li>
-                                        <li><a href="download/../uploads/myMint.uf" download="myMint.uf"> <i class="fa fa-download  fa-fw"></i> Download MINT </a>
+                                        <li><a href="download/../uploads/Design/designMINT.uf" download="myMint.uf"> <i class="fa fa-download  fa-fw"></i> Download MINT </a>
                                         </li>
-                                        <li><a href="download/../uploads/myIni.ini" download="myIni.ini"> <i class="fa fa-download  fa-fw"></i> Download INI </a>
+                                        <li><a href="download/../uploads/Design/designINI.txt" download="myIni.ini"> <i class="fa fa-download  fa-fw"></i> Download INI </a>
                                         </li>
                                         <!--<li><a onclick="pushFileToEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>-->
                                         <!--</li>-->
@@ -712,7 +712,6 @@
                 </div>
             </div>
 
-
             <!-- Modal: Compile Actions -->
             <div class="modal fade" id="myModal_compile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog" role="document">
@@ -723,7 +722,7 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Compilation successful: JSON Output Preview</h4>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body modal-body-compilePre modal-body-prev">
 
                         </div>
                         <div class="modal-footer">
@@ -761,14 +760,14 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>
                         </div>
-                        <div class="modal-body" id="fileGoesHere">
+                        <div class="modal-body-prev modal-body" id="fileGoesHere">
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-                            <a href="download/../uploads/myUCF.uf" download="myUCF.uf">
+                            <a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">
                                 <button type="button" class="btn btn-primary">
                                 Download
                                 </button>
@@ -785,14 +784,14 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>
                         </div>
-                        <div class="modal-body" id="fileGoesHere">
+                        <div class="modal-body-prev modal-body" id="fileGoesHere">
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-                            <a href="download/../uploads/myLFR.lfr" download="myLFR.lfr">
+                            <a href="download/../uploads/Specify/specifyLFR.v" download="myLFR.lfr">
                                 <button type="button" class="btn btn-primary">
                                     Download
                                 </button>
@@ -809,14 +808,14 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>
                         </div>
-                        <div class="modal-body" id="fileGoesHere">
+                        <div class="modal-body-prev modal-body" id="fileGoesHere">
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-                            <a href="download/../uploads/myMint.uf" download="myMINT.uf">
+                            <a href="download/../uploads/Design/designMINT.uf" download="myMINT.uf">
                                 <button type="button" class="btn btn-primary">
                                     Download
                                 </button>
@@ -833,9 +832,9 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>
                         </div>
-                        <div class="modal-body" id="fileGoesHere">
+                        <div class="modal-body-prev modal-body" id="fileGoesHere">
 
                         </div>
                         <div class="modal-footer">
@@ -857,9 +856,9 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>
                         </div>
-                        <div class="modal-body" id="fileGoesHere">
+                        <div class="modal-body-prev modal-body" id="fileGoesHere">
 
                         </div>
                         <div class="modal-footer">
@@ -881,9 +880,9 @@
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>
                         </div>
-                        <div class="modal-body" id="fileGoesHere">
+                        <div class="modal-body-prev modal-body" id="fileGoesHere">
 
                         </div>
                         <div class="modal-footer">

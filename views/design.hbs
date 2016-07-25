@@ -518,12 +518,12 @@
             <script src="/javascripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
             <script> var editor_design = ace.edit("editor_design"); editor_design.setTheme("ace/theme/github");
             editor_design.setOptions({
-                fontFamily: "tahoma",
-                fontSize: "11pt"
+                fontFamily: "monospace",
+                fontSize: "12pt"
             });</script>
             <script>
                 var MINT_tab = ace.createEditSession('MINT_tab',"ace/mode/mint");
-                var INI_tab = ace.createEditSession('INI_tab',"ace/mode/mint");
+                var INI_tab = ace.createEditSession('INI_tab',"ace/mode/ini");
                 editor_design.setSession(MINT_tab);
             </script>
 

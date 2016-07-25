@@ -518,12 +518,12 @@
             <script src="/javascripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
             <script> var editor_specify = ace.edit("editor_specify"); editor_specify.setTheme("ace/theme/github");
             editor_specify.setOptions({
-                fontFamily: "tahoma",
-                fontSize: "11pt"
+                fontFamily: "monospace",
+                fontSize: "12pt"
             });</script>
             <script>
-                var LFR_tab = ace.createEditSession('LFR_tab',"ace/mode/mint");
-                var UCF_tab = ace.createEditSession('UCF_tab',"ace/mode/mint");
+                var LFR_tab = ace.createEditSession('LFR_tab',"ace/mode/verilog");
+                var UCF_tab = ace.createEditSession('UCF_tab',"ace/mode/json");
                 editor_specify.setSession(LFR_tab);
             </script>
 

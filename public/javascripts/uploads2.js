@@ -21,6 +21,7 @@ MINT_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            fileTrayIndicators();
             localStorage.WORKFLOW_STAGE = 'design';
             $.get('../uploads/Design/designMINT.uf',function(data)
             {
@@ -58,6 +59,7 @@ INI_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            fileTrayIndicators();
             localStorage.WORKFLOW_STAGE = 'design';
             $.get('../uploads/Design/designINI.txt',function(data)
             {

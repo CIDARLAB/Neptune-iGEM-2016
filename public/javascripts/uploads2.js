@@ -21,7 +21,15 @@ MINT_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            fileTrayIndicators();
             localStorage.WORKFLOW_STAGE = 'design';
+            $.get('../uploads/Design/designMINT.uf',function(data)
+            {
+                // var Data = JSON.stringify(data);
+                // var content = Data.split(/[\r\n]+/);
+                var content = data.split(/[\r\n]+/);
+                localStorage.FILE_designMINT = JSON.stringify(content);
+            });
             pushFileToEditor(editor_design,'designMINT',MINT_tab);
             MINT_uploadButton.innerHTML = 'Uploaded';
         } else {
@@ -51,7 +59,15 @@ INI_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
+            fileTrayIndicators();
             localStorage.WORKFLOW_STAGE = 'design';
+            $.get('../uploads/Design/designINI.txt',function(data)
+            {
+                // var Data = JSON.stringify(data);
+                // var content = Data.split(/[\r\n]+/);
+                var content = data.split(/[\r\n]+/);
+                localStorage.FILE_designINI = JSON.stringify(content);
+            });
             pushFileToEditor(editor_design,'designINI',INI_tab);
             INI_uploadButton.innerHTML = 'Uploaded';
         } else {

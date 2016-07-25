@@ -690,7 +690,7 @@
 
                             <!-- START -->
                             <li>
-                                <div class="timeline-badge start"><a></a><i class="fa fa-check" style="color: white;"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge start"><i class="fa fa-check" style="color: white; cursor:pointer;"></i> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="start_box">
                                     <div class="timeline-heading">
@@ -740,7 +740,7 @@
 
                             <!-- BUILD and VERIFY -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge build"><a href="../build"><i class="fa fa-gavel" aria-hidden="true" style="color: white;"></i></a> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge build"><a href="../BuildAndVerify"><i class="fa fa-gavel" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="build_box">
                                     <div class="timeline-heading">
@@ -756,7 +756,7 @@
 
                             <!-- DONE -->
                             <li>
-                                <div class="timeline-badge done"><a></a><i class="fa fa-trophy"></i> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge done"><a></a><i class="fa fa-trophy" style="cursor:pointer;"></i> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="done_box">
                                     <div class="timeline-heading">
@@ -923,7 +923,7 @@
 
                         </div>
                         <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Files</a>
+                        <!--<a href="#" class="btn btn-default btn-block">View All Files</a>-->
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -1244,26 +1244,32 @@
         if (localStorage.FILE_specifyLFR != '') {
             document.getElementById('lfrPreview').style.color = 'SeaGreen';
             //document.getElementById('lfrPreview').style.opacity =  '.7';
+            document.getElementById('lfrPreview').style.cursor = 'pointer';
         }
         if (localStorage.FILE_specifyUCF != '') {
             document.getElementById('ucfPreview').style.color = 'SeaGreen';
             //document.getElementById('ucfPreview').style.opacity =  '.7';
+            document.getElementById('ucfPreview').style.cursor = 'pointer';
         }
         if (localStorage.FILE_designINI != '') {
             document.getElementById('iniPreview').style.color = 'SeaGreen';
             //document.getElementById('iniPreview').style.opacity =  '.7';
+            document.getElementById('iniPreview').style.cursor = 'pointer';
         }
         if (localStorage.FILE_designMINT != '') {
             document.getElementById('mintPreview').style.color = 'SeaGreen';
             //document.getElementById('mintPreview').style.opacity =  '.7';
+            document.getElementById('mintPreview').style.cursor = 'pointer';
         }
         if (localStorage.FILE_buildJSON != '') {
             document.getElementById('jsonPreview').style.color = 'SeaGreen';
             //document.getElementById('jsonPreview').style.opacity =  '.7';
+            document.getElementById('jsonPreview').style.cursor = 'pointer';
         }
         if (localStorage.FILE_buildSVG != '') {
             document.getElementById('svgPreview').style.color = 'SeaGreen';
             //document.getElementById('svgPreview').style.opacity =  '.7';
+            document.getElementById('svgPreview').style.cursor = 'pointer';
         }
     }
     fileTrayIndicators();

@@ -7,7 +7,7 @@ var multer = require('multer');
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
-var mime = require('mime');
+//var mime = require('mime');
 
 exports.download = function(req, res)
 {
@@ -21,9 +21,9 @@ exports.download = function(req, res)
             file = file.substring(0,len-12);
             file = file + '/testMINT.uf';
             var filename = path.basename(file);
-            var mimetype = mime.lookup(file);
+            //var mimetype = mime.lookup(file);
             res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-            res.setHeader('Content-type', mimetype);
+            //res.setHeader('Content-type', mimetype);
             var filestream = fs.createReadStream(file);
             filestream.pipe(res);
             break;
@@ -34,9 +34,9 @@ exports.download = function(req, res)
             file = file.substring(0,len-12);
             file = file + '/output/testDevice.json';
             var filename = path.basename(file);
-            var mimetype = mime.lookup(file);
+            //var mimetype = mime.lookup(file);
             res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-            res.setHeader('Content-type', mimetype);
+            //res.setHeader('Content-type', mimetype);
             var filestream = fs.createReadStream(file);
             filestream.pipe(res);
             break;

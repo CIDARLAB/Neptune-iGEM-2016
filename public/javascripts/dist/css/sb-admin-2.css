@@ -6,9 +6,10 @@
 .modal .modal-body {
     max-height: 420px;
     overflow-y: auto;
+
 }
 
-#fileGoesHere {
+.modal-body-prev {
     white-space: pre-line;
 }
 

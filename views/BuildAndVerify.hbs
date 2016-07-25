@@ -159,11 +159,40 @@
                     <i class="fa fa-cogs fa-fw"></i></a>
             </li>
 
-            <!--<li>-->
-            <!--<label class="btn btn-default btn-file">-->
-                <!--Browse <input type="file" style="display: none;">-->
-            <!--</label>-->
-                <!--</li>-->
+
+
+
+            <li style="display:inline-block !important;">
+                <div id= "upload_bar" class="uploadbar">
+                    <div>
+
+                        <form id="uploadForm"
+                              enctype="multipart/form-data"
+                              action="/api/build_JSON"
+                              method="post">
+                            <div id="div1" style="display:inline-block !important;"><input id= "inputfile_JSON" class="btn btn-default" type="file" name="myjson"/></div>
+
+                            <div id="div3" style="display:inline-block !important;">
+                                <input id="uploadfile" class= "btn btn-default" type="submit" value="Upload JSON" name="submit" >
+                                <span id = "status"></span>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </li>
+
+
+            <!--<li style="display:inline-block !important;">-->
+                <!--<a>-->
+                    <!--<label>-->
+                        <!--<i class="fa fa-upload fa-fw">-->
+                            <!--<input type="file" style="display: none;">-->
+                        <!--</i>-->
+                    <!--</label>-->
+                <!--</a>-->
+            <!--</li>-->
 
 
             <!-- START: PROGRESS DROP DOWN MENU -->
@@ -302,6 +331,8 @@
     </nav>
     <!-- END: THIS DIV HOSTS THE SIDE AND TOP NAVIGATION BARS -->
 
+
+
     <!-- START: PAGE WRAPER -->
     <div id="page-wrapper" style="padding:0 !important; margin:0 !important;">
         <!-- PAGE TITLE START -->
@@ -312,6 +343,9 @@
         <!-- /.col-lg-12 -->
         </div>
         <!-- PAGE TITLE END -->
+
+
+
 
 
 

@@ -474,7 +474,9 @@
                                         </li>
                                         <li><a onclick="refreshEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
                                         </li>
-                                        <li><a onclick="downloadFile('temporary',localStorage.design_editor_state)"> <i class="fa fa-download  fa-fw"></i> Download File </a>
+                                        <li><a href="download/../uploads/myMint.uf" download="myMint.uf"> <i class="fa fa-download  fa-fw"></i> Download MINT </a>
+                                        </li>
+                                        <li><a href="download/../uploads/myIni.ini" download="myIni.ini"> <i class="fa fa-download  fa-fw"></i> Download INI </a>
                                         </li>
                                         <!--<li><a onclick="pushFileToEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>-->
                                         <!--</li>-->
@@ -637,63 +639,42 @@
                         <div class="list-group">
 
                             Specify Files: <br>
-                            <a id='ucfPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('specifyUCF')" ondblclick="downloadFile('Specify_UCF','specifyUCF')">
+                            <a id='ucfPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myUcfPreviewModal" onclick="displayFileContent('specifyUCF')">
                                 <i class="fa fa-file-text-o fa-fw"></i> User Constraint File (UCF)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
-
-                            <a id='lfrPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('specifyLFR')" ondblclick="downloadFile('Specify_LFR','specifyLFR')">
+                            <a id='lfrPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myLfrPreviewModal" onclick="displayFileContent('specifyLFR')">
                                 <i class="fa fa-file-text-o fa-fw"></i> Liquid Flow Relations File (LFR)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
                             <br>
+
                             Design Files: <br>
-                            <a id='mintPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('designMINT')" ondblclick="downloadFile('Design_MINT','designMINT')">
+                            <a id='mintPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myMintPreviewModal" onclick="displayFileContent('designMINT')">
                                 <i class="fa fa-file-text fa-fw"></i> Microfluidic Netlist File (MINT)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
-                            <a id='iniPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('designINI')" ondblclick="downloadFile('Design_INI','design_INI')">
+                            <a id='iniPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myIniPreviewModal" onclick="displayFileContent('designINI')">
                                 <i class="fa fa-file-text fa-fw"></i> Configuration File (INI)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
                             <br>
+
                             Build Files: <br>
-                            <a id='jsonPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('buildJSON')" ondblclick="downloadFile('Build_JSON','buildJSON')">
+                            <a id='jsonPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myJsonPreviewModal" onclick="displayFileContent('buildJSON')">
                                 <i class="fa fa-file-code-o fa-fw"></i> Design Schematic (JSON)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
-
-                            <a id='svgPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myModal" onclick="displayFileContent('buildSVG')" ondblclick="downloadFile('Build_SVG','buildSVG')">
+                            <a id='svgPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#mySvgPreviewModal" onclick="displayFileContent('buildSVG')">
                                 <i class="fa fa-file-code-o fa-fw"></i> Design Schematic (SVG)
                                     <span class="pull-right text-muted small"> <em> Click to preview </em>
                                     </span>
                             </a>
-
-                            <!--<a href="#" class="list-group-item">-->
-                            <!--<i class="fa fa-bolt fa-fw"></i> Server Crashed!-->
-                            <!--<span class="pull-right text-muted small"><em>11:13 AM</em>-->
-                            <!--</span>-->
-                            <!--</a>-->
-                            <!--<a href="#" class="list-group-item">-->
-                            <!--<i class="fa fa-warning fa-fw"></i> Server Not Responding-->
-                            <!--<span class="pull-right text-muted small"><em>10:57 AM</em>-->
-                            <!--</span>-->
-                            <!--</a>-->
-                            <!--<a href="#" class="list-group-item">-->
-                            <!--<i class="fa fa-shopping-cart fa-fw"></i> New Order Placed-->
-                            <!--<span class="pull-right text-muted small"><em>9:49 AM</em>-->
-                            <!--</span>-->
-                            <!--</a>-->
-                            <!--<a href="#" class="list-group-item">-->
-                            <!--<i class="fa fa-money fa-fw"></i> Payment Received-->
-                            <!--<span class="pull-right text-muted small"><em>Yesterday</em>-->
-                            <!--</span>-->
-                            <!--</a>-->
 
                         </div>
                         <!-- /.list-group -->
@@ -743,23 +724,34 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="JSON_SVGflow('download')">Download Schematic</button>
+
+                            <a href="download/../uploads/Build_Verify/buildJSON.json" download="myJSON.json">
+                                <button type="button" class="btn btn-primary">
+                                    Download JSON
+                                </button>
+                            </a>
+                            <a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySVG.svg">
+                                <button type="button" class="btn btn-primary">
+                                    Download SVG
+                                </button>
+                            </a>
+
                             <button type="button" class="btn btn-primary" onclick="JSON_SVGflow('push')">Push Schematic</button>
                             <button type="button" class="btn btn-primary">Download and Push</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideProceed()">Close</button>
                             <div class="row"><br>
                                 <a href="../BuildAndVerify">
                                     <button type="button" class="btn btn-success btn-lg center-block" id="proceedVerify" onclick="hideProceed()"> Proceed to Verify Stage </button>
                                 </a>
                             </div>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideProceed()">Close</button>
                             <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+            <!-- Preview Modals -->
+            <div class="modal fade" id="myUcfPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -773,12 +765,135 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-                            <button type="button" class="btn btn-primary" onclick="downloadFile(localStorage.display_file_modal_name,localStorage.display_file_modal_state)"> Download </button>
+                            <a href="download/../uploads/myUCF.uf" download="myUCF.uf">
+                                <button type="button" class="btn btn-primary">
+                                Download
+                                </button>
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div class="modal fade" id="myLfrPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <a href="download/../uploads/myLFR.lfr" download="myLFR.lfr">
+                                <button type="button" class="btn btn-primary">
+                                    Download
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myMintPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <a href="download/../uploads/myMint.uf" download="myMINT.uf">
+                                <button type="button" class="btn btn-primary">
+                                    Download
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myIniPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <a href="download/../uploads/Design/designINI.txt" download="myIni.txt">
+                                <button type="button" class="btn btn-primary">
+                                    Download
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myJsonPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <a href="download/../uploads/Build_Verify/buildJSON.json" download="myJSON.json">
+                                <button type="button" class="btn btn-primary">
+                                    Download
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="mySvgPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
+                        <div class="modal-body" id="fileGoesHere">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+                            <a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySvg.svg">
+                                <button type="button" class="btn btn-primary">
+                                    Download
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!--PAGE CONTENT WRAP END: ALL PAGE CONTENT IS EMBEDDED ABOVE -->

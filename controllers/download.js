@@ -7,7 +7,8 @@ var multer = require('multer');
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
-// var mime = require('mime');
+
+var hello = '';
 
 exports.download = function(req, res)
 {

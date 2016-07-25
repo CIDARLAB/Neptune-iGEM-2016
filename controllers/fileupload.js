@@ -183,7 +183,7 @@ exports.send_buildJSON = function(req, res) {
 
     var storage_buildJSON = multer.diskStorage({
         destination: function (req, file, callback) {
-            callback(null, './public/uploads/Build_Verify/');
+            callback(null, './public/uploads/Build_Verify');
 
         },
         filename: function (req, file, callback) {

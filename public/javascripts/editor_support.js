@@ -46,42 +46,48 @@ function displayFileContent(File_To_Display)
             localStorage.display_file_modal_name = 'Specify LFR';
             //string_to_display = localStorage.FILE_specifyLFR;
             title = 'LFR Preview';
-            $('#fileGoesHere').load('/uploads/Specify/specifyLFR.v');
+            $('.modal-body-prev').load('/uploads/Specify/specifyLFR.v');
+            $('.modal-title-prev').text(title);
             break;
         case 'specifyUCF':
             localStorage.display_file_modal_state = 'specifyUCF';
             localStorage.display_file_modal_name = 'Specify_UCF';
             //string_to_display = localStorage.FILE_specifyUCF;
             title = 'UCF Preview';
-            $('#fileGoesHere').load('/uploads/Specify/specifyUCF.json');
+            $('.modal-body-prev').load('/uploads/Specify/specifyUCF.json');
+            $('.modal-title-prev').text(title);
             break;
         case 'designMINT':
             localStorage.display_file_modal_state = 'designMINT';
             localStorage.display_file_modal_name = 'Design_MINT';
             //string_to_display = localStorage.FILE_designMINT;
             title = 'MINT Preview';
-            $('#fileGoesHere').load('/uploads/Design/designMINT.uf');
+            $('.modal-body-prev').load('/uploads/Design/designMINT.uf');
+            $('.modal-title-prev').text(title);
             break;
         case 'designINI':
             localStorage.display_file_modal_state = 'designINI';
             localStorage.display_file_modal_name = 'Design_INI';
             //string_to_display = localStorage.FILE_designINI;
             title = 'INI Preview';
-            $('#fileGoesHere').load('/uploads/Design/designINI.txt');
+            $('.modal-body-prev').load('/uploads/Design/designINI.txt');
+            $('.modal-title-prev').text(title);
             break;
         case 'buildSVG':
             localStorage.display_file_modal_state = 'buildSVG';
             localStorage.display_file_modal_name = 'Build_SVG';
             //string_to_display = localStorage.FILE_buildSVG;
             title = 'SVG Preview';
-            $('#fileGoesHere').load('/uploads/Build_Verify/buildSVG.svg');
+            $('.modal-body-prev').load('/uploads/Build_Verify/buildSVG.svg');
+            $('.modal-title-prev').text(title);
             break;
         case 'buildJSON':
             localStorage.display_file_modal_state = 'buildJSON';
             localStorage.display_file_modal_name = 'Build_JSON';
             //string_to_display = localStorage.FILE_buildJSON;
             title = 'JSON Preview';
-            $('#fileGoesHere').load('/uploads/Build_Verify_buildJSON.json');
+            $('.modal-body-prev').load('/uploads/Build_Verify_buildJSON.json');
+            $('.modal-title-prev').text(title);
             break;
     }
     // var dataArray = JSON.parse(string_to_display);
@@ -195,12 +201,12 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
         case 'designINI':
             localStorage.FILE_designINI =  JSON.stringify(EDITOR_SESSION);
             //downloadFile('','designINI','','localStorage');
-            downloadFile('','buildINI',editor_session,'inputString');
+            downloadFile('','designINI',editor_session,'inputString');
             break;
         case 'designMINT':// Fix
             localStorage.FILE_designMINT =  JSON.stringify(EDITOR_SESSION);
             //downloadFile('','designMINT','','localStorage');
-            downloadFile('','buildMINT',editor_session,'inputString');
+            downloadFile('','designMINT',editor_session,'inputString');
             break;
     }
     fileTrayIndicators();

@@ -681,7 +681,7 @@
 
                         </div>
                         <!-- /.list-group -->
-                        <a href="#" class="btn btn-default btn-block">View All Files</a>
+                        <!--<a href="#" class="btn btn-default btn-block">View All Files</a>-->
                     </div>
                     <!-- /.panel-body -->
                 </div>
@@ -950,26 +950,32 @@
             if (localStorage.FILE_specifyLFR != '') {
                 document.getElementById('lfrPreview').style.color = 'SeaGreen';
                 //document.getElementById('lfrPreview').style.opacity =  '.7';
+                document.getElementById('lfrPreview').style.cursor = 'pointer';
             }
             if (localStorage.FILE_specifyUCF != '') {
                 document.getElementById('ucfPreview').style.color = 'SeaGreen';
                 //document.getElementById('ucfPreview').style.opacity =  '.7';
+                document.getElementById('ucfPreview').style.cursor = 'pointer';
             }
             if (localStorage.FILE_designINI != '') {
                 document.getElementById('iniPreview').style.color = 'SeaGreen';
                 //document.getElementById('iniPreview').style.opacity =  '.7';
+                document.getElementById('iniPreview').style.cursor = 'pointer';
             }
             if (localStorage.FILE_designMINT != '') {
                 document.getElementById('mintPreview').style.color = 'SeaGreen';
                 //document.getElementById('mintPreview').style.opacity =  '.7';
+                document.getElementById('mintPreview').style.cursor = 'pointer';
             }
             if (localStorage.FILE_buildJSON != '') {
                 document.getElementById('jsonPreview').style.color = 'SeaGreen';
                 //document.getElementById('jsonPreview').style.opacity =  '.7';
+                document.getElementById('jsonPreview').style.cursor = 'pointer';
             }
             if (localStorage.FILE_buildSVG != '') {
                 document.getElementById('svgPreview').style.color = 'SeaGreen';
                 //document.getElementById('svgPreview').style.opacity =  '.7';
+                document.getElementById('svgPreview').style.cursor = 'pointer';
             }
         }
         fileTrayIndicators();

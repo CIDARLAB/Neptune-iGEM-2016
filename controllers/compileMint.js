@@ -19,8 +19,6 @@ exports.compileMint = function(req, res)
 
     par_terminal.stdout.on('data', function(data) {
         console.log(data.toString());
-
-        //res.send(data.toString());
     });
 
     par_terminal.stderr.on("data", function (data) {

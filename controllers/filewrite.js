@@ -23,6 +23,9 @@ exports.writeToFile = function(req, res)
         case 'designINI':
             path = "./public/uploads/Design/designINI.txt";
             break;
+        case 'designINIserver':
+            path = "./backend/fluigi.ini";
+            break;
         case 'buildJSON':
             path = "./public/uploads/Build_Verify/buildJSON.json";
             break;

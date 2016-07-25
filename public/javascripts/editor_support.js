@@ -188,6 +188,7 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
             localStorage.FILE_designMINT =  JSON.stringify(EDITOR_SESSION);
             break;
     }
+    fileTrayIndicators();
 }
 
 function downloadFile(File_Name,FILE_TYPE,String_To_Write,method)
@@ -223,8 +224,8 @@ function downloadFile(File_Name,FILE_TYPE,String_To_Write,method)
                 string_to_write = localStorage.FILE_buildSVG;
                 file_name = 'buildSVG';
                 break;
-            case 'other':
-                break;
+            case 'clear':
+                string_to_write = '';
         }
     }
     if (method == 'inputString')
@@ -281,7 +282,7 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
             $.get('../uploads/Specify/specifyUCF.json',function(data)
             {
                 var Data = JSON.stringify(data);
-                CONTENT_TO_PUSH = Data.split("\n");
+                CONTENT_TO_PUSH = Data.split(/[\r\n]+/);
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
                 document.getElementById('LFRtab').className = '';
                 document.getElementById('UCFtab').className = 'active';
@@ -370,8 +371,31 @@ function translateLFR()
 {
     localStorage.WORKFLOW_STAGE = 'design';
     restartTranslateCenter();
-    $("#myModal_translate").modal();
-    //var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'});
+    $("#myModal_translateWait").modal();
+    var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'},function(data)
+    {
+        var status = data.terminalStatus;
+        if (status == 'Success')
+        {
+            var postDownload = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'mint'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                //localStorage.FILE_buildJSON = JSON.stringify(content);
+                downloadFile('designMINT','designMINT',data,'inputString');
+                $("#myModal_translateWait").modal('hide');
+                $("#myModal_translate").modal();
+                $('#myModal_translate').find(".modal-body").load('uploads/Design/designMINT.uf');
+            });
+        }
+    });
 }
 
 function restartTranslateCenter()
@@ -432,13 +456,38 @@ function MINTflow(method)
 
 function compileMINT()
 {
-    
+    // var clientINI = '';
+    // $.get('../uploads/Design/designINI.txt',function(data)
+    // {
+    //     clientINI = data;
+    // });
+    // $.post('/api/writeToFile',{fileData: clientINI, fileType: 'designINIserver'});
     localStorage.WORKFLOW_STAGE = 'build';
     restartCompileCenter();
-    $("#myModal_compile").modal();
+    $("#myModal_compileWait").modal();
     $.post('/api/compileMint',{filePath: '../public/uploads/Design/designMINT.uf'},function(data)
     {
-        console.log(data.toString());
+        var status = data.terminalStatus;
+        if (status == 'Success')
+        {
+            var postDownload = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'json'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                //localStorage.FILE_buildJSON = JSON.stringify(content);
+                downloadFile('buildJSON','buildJSON',data,'inputString');
+                $('#myModal_compileWait').modal('hide');
+                $('#myModal_compile').modal();
+                $('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
+            });
+        }
     });
 }
 
@@ -533,17 +582,3 @@ function JSON_SVGflow(method)
             break;
     }
 }
-
-
-//
-// function writeToFile(data){
-//     var fso = new ActiveXObject("Scripting.FileSystemObject");
-//     var fh = fso.OpenTextFile("../uploads/Build_Verify/buildJSON.txt", 8, false, 0);
-//    
-//     for(var i = 0; i < data.length; i++)
-//     {
-//         fh.WriteLine(data[i]);
-//        
-//     }
-//     fh.Close();
-// }

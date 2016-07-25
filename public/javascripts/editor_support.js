@@ -188,6 +188,7 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
             localStorage.FILE_designMINT =  JSON.stringify(EDITOR_SESSION);
             break;
     }
+    fileTrayIndicators();
 }
 
 function downloadFile(File_Name,FILE_TYPE,String_To_Write,method)
@@ -281,7 +282,7 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
             $.get('../uploads/Specify/specifyUCF.json',function(data)
             {
                 var Data = JSON.stringify(data);
-                CONTENT_TO_PUSH = Data.split("\n");
+                CONTENT_TO_PUSH = Data.split(/[\r\n]+/);
                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
                 document.getElementById('LFRtab').className = '';
                 document.getElementById('UCFtab').className = 'active';

@@ -1,33 +1,23 @@
 //Define all variables for modules
 
 var express = require("express");
+var app = express();
 var path = require('path');
 var multer = require("multer");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var app = express();
-
 var favicon = require('serve-favicon');
 var fs = require('fs');
 
 //Create server
 {
-  var server = app.listen(3000, function () {
+  global.server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
-
     console.log("Running the server on " + host + " " + port);
   });
 }
-
-// var io = require('socket.io');
-// io.on('connection', (socket) => {
-//     console.log('Client connected');
-//     socket.on('disconnect', () => console.log('Client disconnected'));
-// });
-// setInterval(() => io.emit('time', new Date().toTimeString()), 1000);
 
 //View engine setup
 {
@@ -160,16 +150,6 @@ var fs = require('fs');
     var downloadController = require('./controllers/download');
     app.post('/api/download',downloadController.download);
 
-// Websocket
 
-    //var websocketController = require('./controllers/websocket');
-    //app.post('/api/download',websocketController.socket);
-
-// io.on('connection', function(socket){
-//     console.log('a user connected');
-// });
-// http.listen(3000, function(){
-//     console.log('listening on *:3000');
-// });
 
 

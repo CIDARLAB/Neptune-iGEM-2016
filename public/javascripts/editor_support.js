@@ -409,7 +409,7 @@ function translateLFR()
 {
     localStorage.WORKFLOW_STAGE = 'design';
     restartTranslateCenter();
-    $("#myModal_translateWait").modal();
+    // $("#myModal_translateWait").modal();
     var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'},function(data)
     {
         var status = data.terminalStatus;
@@ -428,14 +428,30 @@ function translateLFR()
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 //localStorage.FILE_buildJSON = JSON.stringify(content);
                 downloadFile('designMINT','designMINT',data,'inputString');
-                //xyxyxyxyxyxyxy
-                //$("#myModal_translateWait").modal('hide');
-                //$("#myModal_translate").modal();
-                //$('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
-                //$('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
-                //$('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+
+                // $('.translate_readout').append('<br>');
+                // var errorMessage = '<span style="color:green" >Translation Successful!<br>Fluigi translator has successfuly generated a MINT file.<br>You may view and download your MINT file.<br>This file is used in the design stage to generate a schematic of your microfluidic chip.</span>';
+                // $('.translate_readout').append(errorMessage);
+
+                // $("#myModal_translateWait").modal('hide');
+
+                $("#myModal_translate").modal();
+                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+
                 //$('#myModal_translate').find(".modal-body").load('uploads/Design/designMINT.uf');
             });
+        }
+        if (status == 'Failure')
+        {
+            terminalLog('Translation Failed!');
+            terminalLog('Fluigi translator was unable to process your file.');
+            terminalLog('Please check your file for syntax errors.');
+            terminalLog('You may review you console readout to help diagnose your error.');
+            // $('.translate_readout').append('<br>');
+            // var errorMessage = '<span style="color:red">Translation Failed!<br>Fluigi translator was unable to process your file.<br>Please check your file for syntax errors.<br>You may review you console readout to help diagnose your error.</span>';
+            // $('.translate_readout').append(errorMessage);
         }
     });
 }
@@ -506,7 +522,7 @@ function compileMINT()
     // $.post('/api/writeToFile',{fileData: clientINI, fileType: 'designINIserver'});
     localStorage.WORKFLOW_STAGE = 'build';
     restartCompileCenter();
-    $("#myModal_compileWait").modal();
+    //$("#myModal_compileWait").modal();
     $.post('/api/compileMint',{filePath: '../public/uploads/Design/designMINT.uf'},function(data)
     {
         var status = data.terminalStatus;
@@ -525,14 +541,29 @@ function compileMINT()
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 //localStorage.FILE_buildJSON = JSON.stringify(content);
                 downloadFile('buildJSON','buildJSON',data,'inputString');
-                //xyxyxyxyxxyxyxy
-                //$('#myModal_compileWait').modal('hide');
-                //$('#myModal_compile').modal();
-                //$('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
-                //$('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
-                //$('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+
+                // $('.compile_readout').append('<br>');
+                // var errorMessage = '<span style="color:green" >Compilation Successful!<br>Fluigi place and route successfully created a design schematic.<br>You may view and download your design schematic.<br>This design schematic is used to fabricate your microfluidic chip.</span>';
+                // $('.compile_readout').append(errorMessage);
+                // $('#myModal_compileWait').modal('hide');
+
+                $('#myModal_compile').modal();
+                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                
                 //$('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
             });
+        }
+        if (status == 'Failure')
+        {
+            terminalLog('Compilation Failed!');
+            terminalLog('Fluigi place and route was unable to process your file.');
+            terminalLog('Please check your file for syntax errors.');
+            terminalLog('You may review you console readout to help diagnose your error.');
+            // $('.compile_readout').append('<br>');
+            // var errorMessage = '<span style="color:red">Compilation Failed!<br>Fluigi place and route was unable to process your file.<br>Please check your file for syntax errors.<br>You may review you console readout to help diagnose your error.</span>';
+            // $('.compile_readout').append(errorMessage);
         }
     });
 }

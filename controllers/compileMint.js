@@ -8,6 +8,11 @@ var express = require('express');
 var fs = require('fs');
 const readline = require('readline');
 
+io = require('socket.io')(global.server);
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
+
 exports.compileMint = function(req, res)
 {
     var count = 0;
@@ -19,6 +24,7 @@ exports.compileMint = function(req, res)
 
     par_terminal.stdout.on('data', function(data) {
         console.log(data.toString());
+        io.emit('compile_console_readout',data.toString());
     });
 
     par_terminal.stderr.on("data", function (data) {

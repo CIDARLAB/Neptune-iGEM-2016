@@ -626,3 +626,13 @@ function JSON_SVGflow(method)
             break;
     }
 }
+
+
+function calibrate()
+{
+    $.post('/api/calibrate',{filePath: '../public/uploads/Design/designMINT.uf'},function(data) 
+    {
+        
+    });
+}
+

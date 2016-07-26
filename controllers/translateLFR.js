@@ -8,17 +8,10 @@ var express = require('express');
 var fs = require('fs');
 const readline = require('readline');
 
-// exports.socket = function(req, res){
-//
-//     var io = require('socket.io');
-//
-//     io.on('connection', function (socket) {
-//         socket.emit('news', { hello: 'world' });
-//         socket.on('my other event', function (data) {
-//             console.log(data);
-//         });
-//     });
-// };
+io = require('socket.io')(global.server);
+io.on('connection', function(socket){
+    console.log('a user connected');
+});
 
 exports.translateLFR = function(req, res)
 {
@@ -32,6 +25,7 @@ exports.translateLFR = function(req, res)
 
     par_terminal.stdout.on('data', function(data) {
         console.log(data.toString());
+        io.emit('translate_console_readout',data.toString());
     });
 
     par_terminal.stderr.on("data", function (data) {
@@ -42,6 +36,7 @@ exports.translateLFR = function(req, res)
         console.log(`child process exited with code ${code}`);
         res.send({terminalStatus: 'Success'});
     });
+
 
 
 };

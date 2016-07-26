@@ -11,6 +11,15 @@
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
 
+    <!--<script type="text/javascript" src="../socket.io/socket.io.js"></script>-->
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script>
+        var socket = io();
+        socket.on('translate_console_readout', function(data){
+            $('.translate_readout').append(data + '<br><br>');
+        });
+    </script>
+
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
@@ -685,13 +694,13 @@
                             </button>
                             <h4 class="modal-title" id="myModalLabel">Translation in progress... </h4>
                         </div>
-                        <div class="modal-body">
-                            Your Liquid Flow Relations (LFR) file is being compiled into a Microfluidic Netlist File (MINT).
-                            <br><br>
-                            This should take up to a few minutes.
-                            <br><br>
-                            When ready, you can choose to download your MINT file and manually upload it to the design stage,
-                            or you can push the contents of this file to the next stage of the workflow automatically.
+                        <div class="modal-body translate_readout">
+                            <!--Your Liquid Flow Relations (LFR) file is being compiled into a Microfluidic Netlist File (MINT).-->
+                            <!--<br><br>-->
+                            <!--This should take up to a few minutes.-->
+                            <!--<br><br>-->
+                            <!--When ready, you can choose to download your MINT file and manually upload it to the design stage,-->
+                            <!--or you can push the contents of this file to the next stage of the workflow automatically.-->
                         </div>
                     </div>
                 </div>

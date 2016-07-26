@@ -428,11 +428,12 @@ function translateLFR()
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 //localStorage.FILE_buildJSON = JSON.stringify(content);
                 downloadFile('designMINT','designMINT',data,'inputString');
-                $("#myModal_translateWait").modal('hide');
-                $("#myModal_translate").modal();
-                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
-                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
-                $('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                //xyxyxyxyxyxyxy
+                //$("#myModal_translateWait").modal('hide');
+                //$("#myModal_translate").modal();
+                //$('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                //$('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
+                //$('.modal-body-translatePre').load('uploads/Design/designMINT.uf');
                 //$('#myModal_translate').find(".modal-body").load('uploads/Design/designMINT.uf');
             });
         }
@@ -524,11 +525,12 @@ function compileMINT()
                 var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
                 //localStorage.FILE_buildJSON = JSON.stringify(content);
                 downloadFile('buildJSON','buildJSON',data,'inputString');
-                $('#myModal_compileWait').modal('hide');
-                $('#myModal_compile').modal();
-                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
-                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
-                $('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                //xyxyxyxyxxyxyxy
+                //$('#myModal_compileWait').modal('hide');
+                //$('#myModal_compile').modal();
+                //$('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                //$('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
+                //$('.modal-body-compilePre').load('uploads/Build_Verify/buildJSON.json');
                 //$('#myModal_compile').find(".modal-body").load('uploads/Build_Verify/buildJSON.json');
             });
         }

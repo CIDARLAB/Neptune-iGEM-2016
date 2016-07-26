@@ -152,6 +152,9 @@ var fs = require('fs');
     var translateLFRController = require('./controllers/translateLFR');
     app.post('/api/translateLFR',translateLFRController.translateLFR);
 
+    var calibrateController = require('./controllers/calibrateController');
+    app.post('/api/calibrate',calibrateController.calibrate);
+
 // download 
 
     var downloadController = require('./controllers/download');

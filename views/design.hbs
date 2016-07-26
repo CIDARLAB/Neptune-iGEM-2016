@@ -10,11 +10,18 @@
     <meta name="author" content="">
 
     <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+    <script type="text/javascript">
+        function terminalLog(string){
+            DesignTerminal.echo(string);
+        }
+    </script>
     <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
     <script>
+        var DesignTerminal = null;
         var socket = io();
         socket.on('compile_console_readout', function(data){
-            $('.compile_readout').append(data + '<br><br>');
+            //$('.compile_readout').append(data + '<br><br>');
+            terminalLog(data);
         });
     </script>
 
@@ -544,6 +551,17 @@
             <!-- START: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
             <div class="col-lg-4">
 
+                <!-- START: TERMINAL -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-play fa-fw"></i> Terminal
+                    </div>
+                    <div class="panel-body">
+                        <div id="terminal_design"></div>
+                    </div>
+                </div>
+                <!-- END: TERMINAL -->
+
                 <!-- START: ACTION CENTER -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -714,6 +732,19 @@
                             <!--<br><br>-->
                             <!--When ready, you can choose to download your SVG and JSON files and manually upload them to the design stage,-->
                             <!--or you can push the contents of these files to the next stage of the workflow automatically.-->
+                        </div>
+                        <div class="modal-footer">
+                            <!--<button type="button" class="btn btn-primary">Download MINT</button>-->
+                            <button type="button" class="btn btn-danger" > Translate Again </button>
+                            <button type="button" class="btn btn-success"> View Results </button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal"> Save Console Log </button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"> Close </button>
+                            <!--<div class="row"><br>-->
+                            <!--<a href="../design">-->
+                            <!--<button type="button" class="btn btn-success btn-lg center-block" id="proceedDesign" onclick="hideProceed()"> Proceed to Design Stage </button>-->
+                            <!--</a>-->
+                            <!--</div>-->
+                            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
                         </div>
                     </div>
                 </div>
@@ -987,5 +1018,32 @@
         }
         fileTrayIndicators();
     </script>
+    <script src="/javascripts/jquery.terminal-0.10.12.min.js"></script>
+    <script src="/javascripts/jquery.mousewheel.min.js"></script>
+    <link href="/stylesheets/jquery.terminal-0.10.12.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            DesignTerminal = $('#terminal_design').terminal(function(command, term) {
+                if (command !== '') {
+                    try {
+                        var result = window.eval(command);
+                        if (result !== undefined) {
+                            term.echo(new String(result));
+                        }
+                    } catch(e) {
+                        term.error(new String(e));
+                    }
+                } else {
+                    term.echo('');
+                }
+            }, {
+                greetings: 'Fluigi Compiler',
+                name: 'terminal_design',
+                height: 400,
+                prompt: 'μF> '
+            });
+        });
+    </script>
+
 
 </html>

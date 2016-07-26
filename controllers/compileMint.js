@@ -33,6 +33,11 @@ exports.compileMint = function(req, res)
 
     par_terminal.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
-        res.send({terminalStatus: 'Success'});
+        if (code == 0) {
+            res.send({terminalStatus: 'Success'});
+        }
+        if (code != 0) {
+            res.send({terminalStatus: 'Failure'});
+        }
     });
 };

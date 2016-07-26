@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> {{title}} </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+
+    <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
+    <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
+    <script>
+        localStorage.design_editor_state = 'designMINT';
+        localStorage.mint_state = 'write';
+        localStorage.ini_state = 'write';
+    </script>
+
+    <!-- JAVASCRIPT DEPENDENCIES -->
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+
+    <!-- CSS DEPENDENCIES -->
+    <style type="text/css" media="screen">
+        #editor_design {
+            height: 300px;
+        }
+    </style>
+    <!-- END: ALL PERSONAL JAVASCRIPTS HERE -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="/javascripts/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Toastr CDN -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Morris Charts CSS -->
+    <!--<link href="/javascripts/bower_components/morrisjs/morris.css" rel="stylesheet">-->
+
+    <!-- Custom Fonts -->
+    <link href="/javascripts/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        body {  padding: 0 !important;  }
+    </style>
+
+</head>
+
+<body>
+
+<!-- *** START: THIS DIVISION WRAPS EVERYTHING *** -->
+<div id="wrapper">
+
+    <!-- START: THIS DIV HOSTS THE SIDE AND TOP NAVIGATION BARS -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+        <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+            <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
+            <!--<img height="50" src="../images/index/cidar-backgbround-no-js.png">-->
+
+        </div>
+        <!-- END: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
+
+        <!-- START: TOP RIGHT HALF OF NAVIGATION BAR; WE CAN PUT OUR LOGOUT, SETTINGS, ECT HERE -->
+        <ul class="nav navbar-top-links navbar-right">
+
+        </ul>
+        <!-- END: TOP RIGHT HALF OF NAVIGATION BAR; WE CAN PUT OUR LOGOUT, SETTINGS, ECT HERE -->
+
+        <!-- START: SIDE NAVIGATION BAR -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+
+                    <!-- *** NOTE: THIS CODE IS FOR A "SEARCH" INPUT BOX *** -->
+                    <!--<li class="sidebar-search">-->
+                    <!--<div class="input-group custom-search-form">-->
+                    <!--<input type="text" class="form-control" placeholder="Search...">-->
+                    <!--<span class="input-group-btn">-->
+                    <!--<button class="btn btn-default" type="button">-->
+                    <!--<i class="fa fa-search"></i>-->
+                    <!--</button>-->
+                    <!--</span>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; /input-group &ndash;&gt;-->
+                    <!--</li>-->
+
+                    <!-- THIS LINKS TO HOME -->
+
+                    <li>
+                        <a href="../"><i class="fa fa-home fa-fw"></i> Home </a>
+                    </li>
+
+                    <!-- THIS LINKS TO THE MAIN DASHBOARD -->
+                    <li>
+                        <a href="../dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
+                    </li>
+
+                    <!-- THESE LINKS PROVIDE USER NAVIGATION THROUGHOUT THE WORKFLOW -->
+                    <li>
+                        <a href="#"><i class="fa fa-share fa-fw"></i> Jump to Workflow Stage <span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="../specify"><i class="fa fa-pencil-square-o  fa-fw"></i> Specify </a>
+                            </li>
+                            <li>
+                                <a href="../design"><i class="fa fa-cogs" aria-hidden="true"></i> Design </a>
+                            </li>
+                            <li>
+                                <a href="../BuildAndVerify"><i class="fa fa-gavel" aria-hidden="true"></i> Build and Verify </a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+
+
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- END: SIDE NAVIGATION BAR -->
+
+    </nav>
+    <!-- END: THIS DIV HOSTS THE SIDE AND TOP NAVIGATION BARS -->
+
+    <!-- START: PAGE WRAPER -->
+    <div id="page-wrapper">
+
+        <!-- PAGE TITLE START -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header" style="font-family: 'Open Sans'"> Build </h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- PAGE TITLE END -->
+        <!--<div class="row" style="align: center;">-->
+            <!--&lt;!&ndash;<div class="hide-on-device" style="position: fixed; top: 20px; right: 0; z-index: 99;">&ndash;&gt;-->
+                <!--&lt;!&ndash;<script async="" src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>&ndash;&gt;-->
+                <!--&lt;!&ndash;&lt;!&ndash; Widget &ndash;&gt;&ndash;&gt;-->
+                <!--&lt;!&ndash;<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5022543728915243" data-ad-slot="3494641018" data-ad-format="auto"></ins>&ndash;&gt;-->
+                <!--&lt;!&ndash;<script>&ndash;&gt;-->
+                    <!--&lt;!&ndash;(adsbygoogle = window.adsbygoogle || []).push({});&ndash;&gt;-->
+                <!--&lt;!&ndash;</script>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--<div class="container">-->
+                <!--<ul class="payment-wizard">-->
+                    <!--<li class="active">-->
+                        <!--<div class="wizard-heading">-->
+                            <!--Hardware Specifications-->
+                            <!--<span class="icon-user"></span>-->
+                        <!--</div>-->
+                        <!--<div class="wizard-content">-->
+                            <!--<label for="Name">Volume of liquid to dispense in ml:</label>-->
+                            <!--<input id="Name" type="text" style="font-family: 'Open Sans'"/>-->
+                            <!--<p>Create your Login Form here as per your requirement.</p>-->
+                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nulla nisl, luctus sed sagittis in, lobortis ac dui. Donec scelerisque nisi at fringilla ullamcorper. Maecenas ullamcorper sapien at porta aliquam. Nulla id elit ipsum. Nullam eget elit laoreet, aliquam ligula quis, accumsan magna. Proin in mi nisl. Morbi commodo ipsum id ipsum condimentum hendrerit. </p>-->
+                            <!--<button class="btn-green done" type="submit">Continue</button>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="wizard-heading">-->
+                            <!--2. Delivery Address-->
+                            <!--<span class="icon-location"></span>-->
+                        <!--</div>-->
+                        <!--<div class="wizard-content">-->
+                            <!--<p>User address details section.</p>-->
+                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nulla nisl, luctus sed sagittis in, lobortis ac dui. Donec scelerisque nisi at fringilla ullamcorper. Maecenas ullamcorper sapien at porta aliquam. Nulla id elit ipsum. Nullam eget elit laoreet, aliquam ligula quis, accumsan magna. Proin in mi nisl. Morbi commodo ipsum id ipsum condimentum hendrerit. </p>-->
+                            <!--<button class="btn-green done" type="submit">Continue</button>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="wizard-heading">-->
+                            <!--3. Order Summary-->
+                            <!--<span class="icon-summary"></span>-->
+                        <!--</div>-->
+                        <!--<div class="wizard-content">-->
+                            <!--<p>Order summary details section.</p>-->
+                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nulla nisl, luctus sed sagittis in, lobortis ac dui. Donec scelerisque nisi at fringilla ullamcorper. Maecenas ullamcorper sapien at porta aliquam. Nulla id elit ipsum. Nullam eget elit laoreet, aliquam ligula quis, accumsan magna. Proin in mi nisl. Morbi commodo ipsum id ipsum condimentum hendrerit. </p>-->
+                            <!--<button class="btn-green done" type="submit">Continue</button>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<div class="wizard-heading">-->
+                            <!--4. Payment Method-->
+                            <!--<span class="icon-mode"></span>-->
+                        <!--</div>-->
+                        <!--<div class="wizard-content">-->
+                            <!--<p>Your payment methods detail section.</p>-->
+                            <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nulla nisl, luctus sed sagittis in, lobortis ac dui. Donec scelerisque nisi at fringilla ullamcorper. Maecenas ullamcorper sapien at porta aliquam. Nulla id elit ipsum. Nullam eget elit laoreet, aliquam ligula quis, accumsan magna. Proin in mi nisl. Morbi commodo ipsum id ipsum condimentum hendrerit. </p>-->
+                            <!--<button class="btn-green" type="submit">Done</button>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<a style="display: inline-block; margin-top: 40px;" href="http://usingcss3.com/awesome-checkout-wizard-using-jquery/">Go to tutorial</a>-->
+            <!--</div>-->
+
+
+                <!--&lt;!&ndash; /.nav-second-level &ndash;&gt;-->
+        <!--</div>-->
+
+
+
+
+
+
+    </div>
+    <!-- END: PAGE WRAPER -->
+
+</div>
+<!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
+
+<!--<script type="text/javascript">-->
+    <!--$(window).load(function(){-->
+        <!--$(".done").click(function(){-->
+            <!--var this_li_ind = $(this).parent().parent("li").index();-->
+            <!--if($('.payment-wizard li').hasClass("jump-here")){-->
+                <!--$(this).parent().parent("li").removeClass("active").addClass("completed");-->
+                <!--$(this).parent(".wizard-content").slideUp();-->
+                <!--$('.payment-wizard li.jump-here').removeClass("jump-here");-->
+            <!--}else{-->
+                <!--$(this).parent().parent("li").removeClass("active").addClass("completed");-->
+                <!--$(this).parent(".wizard-content").slideUp();-->
+                <!--$(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();-->
+            <!--}-->
+        <!--});-->
+
+        <!--$('.payment-wizard li .wizard-heading').click(function(){-->
+            <!--if($(this).parent().hasClass('completed')){-->
+                <!--var this_li_ind = $(this).parent("li").index();-->
+                <!--var li_ind = $('.payment-wizard li.active').index();-->
+                <!--if(this_li_ind < li_ind){-->
+                    <!--$('.payment-wizard li.active').addClass("jump-here");-->
+                <!--}-->
+                <!--$(this).parent().addClass('active').removeClass('completed');-->
+                <!--$(this).siblings('.wizard-content').slideDown();-->
+            <!--}-->
+        <!--});-->
+    <!--})-->
+<!--</script>-->
+
+<!--<style>-->
+    <!--body{float: left; height: 100%; align: center; width: 100%;}-->
+    <!--*{margin: 0; padding: 0; box-sizing: border-box;}-->
+    <!--/*:focus{outline: none;}*/-->
+    <!--/*a{text-decoration: none;}*/-->
+    <!--/*li{list-style: none;}*/-->
+    <!--/*h1{font-size: 24px; font-weight: 600; margin: 20px 0 10px; text-align: center;}*/-->
+    <!--.container{margin: 20px 5%; max-width: 700px;}-->
+    <!--/*= wizard css =*/-->
+    <!--.payment-wizard{float: left; width: 100%;}-->
+    <!--.payment-wizard li.active{position: relative; z-index: 1;}-->
+    <!--.wizard-heading{float: left; width: 100%; padding: 10px 15px; background-color: #fafafa; margin-bottom: 1px; box-sizing: border-box; font-size: 18px; color: #4c4c4c; text-transform: uppercase; transition: 0.3s;}-->
+    <!--.wizard-content{display: none; float: left; width: 100%; background-color: #fff; box-shadow: 0 8px 8px #d2d2d2; padding: 15px; box-sizing: border-box;}-->
+    <!--li:first-child .wizard-content{display: block;}-->
+    <!--.wizard-content p{margin-bottom: 15px; font-size: 15px; line-height: 26px; color: #4c4c4c;}-->
+    <!--.btn-green{color: #fff; float: right; border: 0; padding: 7px 10px; min-width: 92px; z-index: 1; cursor: pointer; font-size: 14px; text-transform: uppercase; background-color: #5fba57; border-radius: 3px; border-bottom: 3px solid #289422; position: relative; transition: 0.3s;}-->
+    <!--.btn-green:before{content: ""; width: 100%; height: 0; border-radius: 3px; z-index: -1; position: absolute; left: 0; bottom: 0; background-color: #289422; transition: 0.3s;}-->
+    <!--.btn-green:hover:before{height: 100%;}-->
+    <!--/*.wizard-heading span{float: right; background-image: url(http://usingcss3.com/wp-content/uploads/2016/02/wizard-icons.png); background-repeat: no-repeat;}*/-->
+    <!--.icon-user{width: 20px; height: 18px; background-position: 0 -40px; margin-top: 4px;}-->
+    <!--.icon-location{width: 15px; height: 20px; background-position: -22px -42px; margin-top: 4px;}-->
+    <!--.icon-summary{width: 20px; height: 20px; background-position: -39px -42px; margin-top: 4px;}-->
+    <!--.icon-mode{width: 20px; height: 16px; background-position: -61px -34px; margin-top: 6px;}-->
+    <!--.active .wizard-heading{background-color: #447294; color: #fff; margin-bottom: 0;}-->
+    <!--.active .icon-user{background-position: 0 0;}-->
+    <!--.active .icon-location{background-position: -22px 0;}-->
+    <!--.active .icon-summary{background-position: -39px 0;}-->
+    <!--.active .icon-mode{background-position: -61px 0;}-->
+    <!--.completed .wizard-heading{color: #447294; position: relative; padding: 10px 15px 10px 36px; cursor: pointer; transition: 0.3s;}-->
+    <!--.completed .wizard-heading:before{content: "✓"; color: #fff; text-align: center; font-size: 15px; font-weight: bold; position: absolute; min-height: 22px; left: -7px; top: 8px; width: 32px; padding: 4px 0; background-color: #447294; z-index: 99;}-->
+    <!--.completed .wizard-heading:after{content: ""; position: absolute; top: 38px; left: -7px; border-left: 7px solid transparent; border-top: 5px solid #001e34;}-->
+    <!--.completed .icon-user{background-position: 0 -20px;}-->
+    <!--.completed .icon-location{background-position: -22px -21px;}-->
+    <!--.completed .icon-summary{background-position: -39px -21px;}-->
+    <!--.completed .icon-mode{background-position: -61px -17px;}-->
+    <!--/*= wizard end =*/-->
+    <!--/* device-screen */-->
+    <!--@media only screen and (max-width: 960px){-->
+        <!--.hide-on-device{display: none;}-->
+    <!--}-->
+    <!--@media only screen and (max-width: 650px){-->
+        <!--.wizard-heading{font-size: 15px;}-->
+        <!--.wizard-content p{font-size: 13px; line-height: 20px; margin-bottom: 10px;}-->
+    <!--}-->
+    <!--/* device-screen end */-->
+<!--</style>-->
+
+
+<!-- *** START: DEPENDENCIES *** -->
+<!-- jQuery -->
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/javascripts/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
+<script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
+<!--<script src="/javascripts/js/morris-data.js"></script>-->
+<!-- Custom Theme JavaScript -->
+<script src="/javascripts/dist/js/sb-admin-2.js"></script>
+<!-- *** END: DEPENDENCIES *** -->
+
+</body>
+
+
+</html>

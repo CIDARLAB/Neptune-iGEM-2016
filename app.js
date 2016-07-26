@@ -75,6 +75,8 @@ var fs = require('fs');
     var lfrController = require('./controllers/lfrpage');
     var lfr_bsController = require('./controllers/lfrpage_bs');
     var BaVController = require('./controllers/BuildAndVerify');
+    var buildController = require('./controllers/build');
+    var assemblyController = require('./controllers/assembly');
 }
 
 /**************** RENDER PAGES ****************/
@@ -85,6 +87,8 @@ var fs = require('fs');
     app.get('/specify',specifyController.openSpecifyPage);
     app.get('/design',designController.openDesignPage);
     app.get('/BuildAndVerify',BaVController.openBaVPage);
+    app.get('/Build',buildController.openBuildPage);
+    app.get('/assembly', assemblyController.openAssemblyPage);
 
     app.get('/fluigipage', fluigiController.getFluigiPage);
     app.get('/uShroomPage',mmController.openMMPage);

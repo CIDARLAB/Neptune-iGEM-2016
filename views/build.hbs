@@ -39,7 +39,7 @@
     <link href="/javascripts/dist/css/timeline.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!--<link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">-->
 
     <!-- Toastr CDN -->
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
@@ -62,9 +62,6 @@
         body {  padding: 0 !important;  }
     </style>
 
-</head>
-
-<body>
 
 <!-- *** START: THIS DIVISION WRAPS EVERYTHING *** -->
 <div id="wrapper">
@@ -101,12 +98,13 @@
 
         </ul>
     </div>
+</div>
 
+    </head>
 
+<body>
 
-
-    <!-- START: PAGE WRAPER -->
-    <div>
+    <div id="buildContent">
         <!-- PAGE TITLE START -->
         <div class="row">
             <div class="col-lg-12">
@@ -135,7 +133,7 @@
                             <input class="btn btn-default" id="tolerance" type="text" style="font-family: 'Open Sans'"/>
                             <button class="btn btn-default" id="checkTolerance">Check tolerance</button>
                             <br>
-                            <button class="btn-green done" type="submit">Continue</button>
+                            <button class="btn-green" type="submit" id="specs">Continue</button>
                             <br><br>
                         </div>
                     </li>
@@ -150,7 +148,7 @@
                             <!--Dropdown Options-->
 
                             <p style="font-size: 15px;">Pick your selected hardware to add to the purchase list:</p>
-                            <select id="servoSyringe" class="selectpicker">
+                            <select id="servoSyringe" class="selectpicker btn btn-default">
                                 <option>Recommended</option>
                                 <option>Lowest cost</option>
                                 <option>Highest tolerance</option>
@@ -237,7 +235,7 @@
                             <br><br><br>
 
                             <div class="container">
-                            <a href='../'>
+                            <a data-toggle="modal" data-target="#customHWModal" id="customize">
                                     Didn't see what you wanted? Click here to enter your own specs!
                             </a>
 
@@ -270,7 +268,7 @@
                                 </div>
                             <br><br>
                             <div style="text-align: center;">
-                            <textarea disabled id="orderList" style="width: 80%; height: 100px; resize: none;"> </textarea>
+                            <textarea disabled id="orderList" style="border: none; background-color: white; width: 80%; height: 100px; resize: none;"> </textarea>
                             <br><br><br>
                                 </div>
 
@@ -296,18 +294,105 @@
                 <!-- /.nav-second-level -->
         </div>
 
-
-
-
-
-
     </div>
     <!-- END: PAGE WRAPER -->
 
 </div>
+
+
+    <!-- Modal -->
+    <div id="customHWModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Custom Hardware Setup</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        For Neptune, we require that you choose a syringe with volume between 0-100ml, and a servo with tolerance greater than 25 microliters.
+                    </p>
+                    <textarea disabled style="resize: none; width: 450px; border: none; height: 40px; background-color: white; " id="suggestion">
+                    </textarea>
+                    <p>
+                        Once you choose your custom hardware, please answer all of the following questions below to proceed:
+                    </p>
+                    <br>
+                    <div id="syringeDetails" style="display:inline-block;">
+                        <div class="col-md-8">
+                            <h4>Syringe</h4>
+                            <p>1. Diameter of syringe in mm:
+                            <input class="btn btn-default" id="diameter" type="text" style="font-family: 'Open Sans'"/>
+                            </p>
+
+                            <p>2. Length in mm between 1 ml:
+                            <input class="btn btn-default" id="length" type="text" style="font-family: 'Open Sans'"/>
+                            </p>
+
+                            <p>3. Diameter of the innner head of syringe in mm:
+                            <input class="btn btn-default" id="diameterInner" type="text" style="font-family: 'Open Sans'"/>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <img src="../images/build/syringeMeasure.jpg" height="180px">
+                        </div>
+
+                    </div>
+                    <div id="syringeDetails" style="display:inline-block;">
+                        <div class="col-md-8">
+                            <h4>Servo </h4>
+                        <p>1. Width of servo in mm:
+                        <input class="btn btn-default" id="width" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>2. Height of servo in mm:
+                        <input class="btn btn-default" id="height" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>3. Distance holes are apart in mm:
+                        <input class="btn btn-default" id="distanceHoles" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>4. Diameter of holes in mm:
+                        <input class="btn btn-default" id="diameterHoles" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>5. Length of extended servo in mm:
+                        <input class="btn btn-default" id="extendedLength" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>6. Torque at 5V (from datasheet):
+                        <input class="btn btn-default" id="torque" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>7. Limit angle (from datasheet):
+                        <input class="btn btn-default" id="angle" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="../images/build/servoMeasure.jpg" height="350px">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> Save </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 <!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
 
+
+
+
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 <script type="text/javascript">
     $(window).load(function(){
         $(".done").click(function(){
@@ -345,17 +430,76 @@
                     + 'You have selected the ' + combo + ' Servo and Syringe Combo'
             );
         });
+
+        $('#checkVolume').click(function(){
+            var liquid = $('#liquid').val();
+            if (liquid<=0 || liquid >100) {
+                toastr.warning('Volume of liquid must be between 0 and 100! Please enter again.');
+            }
+            else {
+                toastr.info('Volume value accepted.');
+            }
+        });
+        $('#checkTolerance').click(function(){
+            var tolerance = $('#tolerance').val();
+            if (tolerance<0.1) {
+                toastr.warning('Tolerance must be greater than 0.1! Please enter again.');
+            }
+            else {
+                toastr.info('Tolerance value accepted.');
+            }
+        });
+
+        $('#specs').click(function(){
+            var tolerance = $('#tolerance').val();
+            var liquid = $('#liquid').val();
+            if (liquid<=0 || liquid >100 || tolerance<0.1) {
+                toastr.warning('Error! Please enter values to proceed');
+            }
+            else {
+                var this_li_ind = $(this).parent().parent("li").index();
+                if($('.payment-wizard li').hasClass("jump-here")){
+                    $(this).parent().parent("li").removeClass("active").addClass("completed");
+                    $(this).parent(".wizard-content").slideUp();
+                    $('.payment-wizard li.jump-here').removeClass("jump-here");
+                }else{
+                    $(this).parent().parent("li").removeClass("active").addClass("completed");
+                    $(this).parent(".wizard-content").slideUp();
+                    $(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();
+                }
+            }
+        });
+
+        $('#customize').click(function(){
+            var tolerance = $('#tolerance').val();
+            var liquid = $('#liquid').val();
+            if (liquid>=0 && liquid <10) {
+               $('#suggestion').val('Suggestion: Choose a 10ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+            else if (liquid>=10 && liquid <25){
+                $('#suggestion').val('Suggestion: Choose a 25ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+            else if (liquid>=25 && liquid <50){
+                $('#suggestion').val('Suggestion: Choose a 50ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+            else{
+                $('#suggestion').val('Suggestion: Choose a 100ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+
+        });
+
+
     })
 </script>
 
 <style>
-    body{float: left; height: 100%; align: center; width: 100%; }
+    body{float: left; align: center; width: 100%;}
     *{margin: 0; padding: 0; box-sizing: border-box;}
     :focus{outline: none;}
     a{text-decoration: none;}
     li{list-style: none;}
     h1{font-size: 24px; font-weight: 600; margin: 20px 0 10px; text-align: center;}
-    .container{align: center; max-width: 90%;}
+    .container{align: center; max-width: 80%; }
     /*= wizard css =*/
     .payment-wizard{float: left; width: 100%;}
     .payment-wizard li.active{position: relative; z-index: 1;}
@@ -392,9 +536,21 @@
         .wizard-heading{font-size: 15px;}
         .wizard-content p{font-size: 13px; line-height: 20px; margin-bottom: 10px;}
     }
+
+    @media (min-width: 800px) {
+        .modal-dialog {
+            width: 55%;
+            margin: 30px auto;
+        }
+    }
     /* device-screen end */
 
-
+    /*body {*/
+        /*background-position-y: 90px;*/
+        /*background-image: url("../images/build/bg.jpg");*/
+        /*background-repeat: no-repeat;*/
+        /*background-size: 100% auto;*/
+    /*}*/
 
     #myCarousel {
         border-radius: 8px;
@@ -451,7 +607,7 @@
 <script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
 <!--<script src="/javascripts/js/morris-data.js"></script>-->
 <!-- Custom Theme JavaScript -->
-<script src="/javascripts/dist/js/sb-admin-2.js"></script>
+<!--<script src="/javascripts/dist/js/sb-admin-2.js"></script>-->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
 <!-- *** END: DEPENDENCIES *** -->
 

@@ -33,77 +33,100 @@
 
     <button type="button" id="demo" class="btn btn-default btn-lg">
         <span class="glyphicon glyphicon-play"></span>
-        Start Walkthrough
+        Walkthrough
     </button>
 
-    <a href="../dashboard"> <img class="DASHBOARD" height ="40" src="../images/index/dashboard.svg" > </a>
+    <!--<a href="../dashboard"> <img class="DASHBOARD" height ="40" src="../images/index/dashboard.svg" > </a>-->
 
 </div>
 
+<header>
+    <!--<div class="container">-->
+        <div class="row">
+            <div style="text-align: center;">
+                <!--<a href="../dashboard">-->
+                    <img id="dashboard" style="cursor: pointer; padding-top: 5%; text-align: center;" height="400px" src="../images/NeptuneLogo.png" alt=""
+                         onmouseover="this.height='410'" onmouseout="this.height='400'">
+                <!--</a>-->
+                <div>
+                    <br>
+                    <h1  style="font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; color: white;"> Welcome to Neptune </h1>
+                    <br><br><br>
+                    <a style="cursor:pointer;"><img height= "75" class="myBtn" data-toggle="modal" data-target="#HelpModal" src="../images/index/helpButtonTransparent.png"
+                        onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>
+                    <a style="padding-left: 50px;" href="http://cidarlab.org/Fluigi"><img height= "75" class="myBtn" src="../images/index/aboutButtonTransparent.png"
+                        onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>
+                </div>
+            </div>
+        </div>
+    <!--</div>-->
+</header>
+
+
 <!--Main Page-->
 
-    <!-- SPECIFY LINK -->
-    <div id="specify"  class="centeredMiddle" >
-        <div align="center"> <a href="../lfrpage">
-            <img  height="75" src="../images/index/specify_logo.svg"
-                  onmouseover="this.height='85'" onmouseout="this.height='75'">
-        </a>
-        </div>
-        <div align="center">
-            <label style="font-size:40px; color: white; font-family: FontAwesome "> Specify </label>
-        </div>
-        <div align="center">
-            <label style="font-size:15px; color: white; font-family: FontAwesome "> Describe the function of your device. </label>
-        </div>
-        <div align="center">
-            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#lfrModal"> See details </a>
-        </div>
-    </div>
+    <!--&lt;!&ndash; SPECIFY LINK &ndash;&gt;-->
+    <!--<div id="specify"  class="centeredMiddle" >-->
+        <!--<div align="center"> <a href="../lfrpage">-->
+            <!--<img  height="75" src="../images/index/specify_logo.svg"-->
+                  <!--onmouseover="this.height='85'" onmouseout="this.height='75'">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<label style="font-size:40px; color: white; font-family: FontAwesome "> Specify </label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<label style="font-size:15px; color: white; font-family: FontAwesome "> Describe the function of your device. </label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<a class="btn btn-default" role="button" data-toggle="modal" data-target="#lfrModal"> See details </a>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <!-- DESIGN LINK -->
-    <div id= "design" class="centeredTop" >
-        <div align="center"> <a href="../uShroomPage">
-            <img  height="75" src="../images/index/design_logo.svg"
-                  onmouseover="this.height='85'" onmouseout="this.height='75'">
-        </a>
-        </div>
-        <div align="center">
-            <label style="font-size:40px; color: white; font-family: FontAwesome "> Design </label>
-        </div>
-        <div align="center">
-            <label style="font-size:15px; color: white; font-family: FontAwesome "> Create the design schematic of your device </label>
-        </div>
-        <div align="center">
-            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#fluigiModal"> See details </a>
-        </div>
-    </div>
+    <!--&lt;!&ndash; DESIGN LINK &ndash;&gt;-->
+    <!--<div id= "design" class="centeredTop" >-->
+        <!--<div align="center"> <a href="../uShroomPage">-->
+            <!--<img  height="75" src="../images/index/design_logo.svg"-->
+                  <!--onmouseover="this.height='85'" onmouseout="this.height='75'">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<label style="font-size:40px; color: white; font-family: FontAwesome "> Design </label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<label style="font-size:15px; color: white; font-family: FontAwesome "> Create the design schematic of your device </label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<a class="btn btn-default" role="button" data-toggle="modal" data-target="#fluigiModal"> See details </a>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <!-- BUILD & VERIFY LINK -->
-    <div id="buildverify" class="centeredBottom">
-        <div align="center"> <a href="../fluigipage">
-            <img  height= "75" src="../images/index/build_logo.svg" onmouseover="this.height='85'" onmouseout="this.height='75'">
-        </a>
-        </div>
-        <div align="center">
-            <label style="font-size:40px; color: white; font-family: FontAwesome "> Build & Verify </label>
-            </div>
-        <div align="center">
-            <label style="font-size:15px; color: white; font-family: FontAwesome "> Build and control your physical microfluidic chip </label>
-        </div>
-        <div align="center">
-            <a class="btn btn-default" role="button" data-toggle="modal" data-target="#mushroomModal"> See details </a>
-        </div>
-    </div>
+    <!--&lt;!&ndash; BUILD & VERIFY LINK &ndash;&gt;-->
+    <!--<div id="buildverify" class="centeredBottom">-->
+        <!--<div align="center"> <a href="../fluigipage">-->
+            <!--<img  height= "75" src="../images/index/build_logo.svg" onmouseover="this.height='85'" onmouseout="this.height='75'">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<label style="font-size:40px; color: white; font-family: FontAwesome "> Build & Verify </label>-->
+            <!--</div>-->
+        <!--<div align="center">-->
+            <!--<label style="font-size:15px; color: white; font-family: FontAwesome "> Build and control your physical microfluidic chip </label>-->
+        <!--</div>-->
+        <!--<div align="center">-->
+            <!--<a class="btn btn-default" role="button" data-toggle="modal" data-target="#mushroomModal"> See details </a>-->
+        <!--</div>-->
+    <!--</div>-->
 
-    <!-- EXTRA CONTENT LINKS -->
-    <div>
-        <a class="rightBottom"><img height= "75" class="myBtn" data-toggle="modal" data-target="#HelpModal" src="../images/index/helpButtonTransparent.png"
-                                    onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>
-    </div>
-    <div>
-        <a class="rightCenter" href="http://cidarlab.org/Fluigi"><img height= "75" class="myBtn" src="../images/index/aboutButtonTransparent.png"
-                                                                      onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>
-    </div>
+    <!--&lt;!&ndash; EXTRA CONTENT LINKS &ndash;&gt;-->
+    <!--<div>-->
+        <!--<a class="rightBottom"><img height= "75" class="myBtn" data-toggle="modal" data-target="#HelpModal" src="../images/index/helpButtonTransparent.png"-->
+                                    <!--onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--<a class="rightCenter" href="http://cidarlab.org/Fluigi"><img height= "75" class="myBtn" src="../images/index/aboutButtonTransparent.png"-->
+                                                                      <!--onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>-->
+    <!--</div>-->
 
 
 </body>
@@ -142,14 +165,14 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();"> Start New Session </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal"> Resume Previous Session </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession(); window.location='../dashboard'"> Start New Session </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='../dashboard'"> Resume Previous Session </button>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    $(window).load(function(){
+    $('#dashboard').click(function(){
         $('#setSession').modal('show');
     });
 </script>

@@ -49,7 +49,7 @@
                             }, content[i] + '\n')
                         }
                     });
-                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyLFR.v" download="specifyLFR.v"><button type="button" class="btn btn-primary"> Download LFR </button></a>';
+                    document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyLFR.v" download="specifyLFR.v"><button type="button" class="btn btn-primary"> Download LFR </button></a>';
                     break;
                 case 'UCF':
                     $.get('../uploads/Specify/specifyUCF.json',function(data)
@@ -553,7 +553,7 @@
                                 <a href="../design"><i class="fa fa-cogs" aria-hidden="true"></i> Design </a>
                             </li>
                             <li>
-                                <a href="../BuildAndVerify"><i class="fa fa-gavel" aria-hidden="true"></i> Build and Verify </a>
+                                <a href="../control"><i class="fa fa-gavel" aria-hidden="true"></i> Build and Verify </a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
@@ -593,7 +593,7 @@
                     <!--</li>-->
 
                     <li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Files <span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Files <span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="#"> Specify Files <span class="fa arrow"></span></a>
@@ -642,13 +642,13 @@
                                         <a href="#" onclick="openEditorPreview('EPS_photo')"> EPS Photolithography </a>
                                     </li>
                                 </ul>
-                        <!-- /.nav-third-level -->
+                                <!-- /.nav-third-level -->
                             </li>
                             <li>
                                 <a href="#"> Download Project Zip </a>
                             </li>
                         </ul>
-                    <!-- /.nav-second-level -->
+                        <!-- /.nav-second-level -->
                     </li>
 
                     <!--<li>-->
@@ -987,17 +987,43 @@
                                 </div>
                             </li>
 
-                            <!-- BUILD and VERIFY -->
+                            <!-- Build -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge build"><a href="../BuildAndVerify"><i class="fa fa-gavel" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge build"><a href="../build"><i class="fa fa-gavel" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="build_box">
                                     <div class="timeline-heading">
-                                        <h4 class="timeline-title"> Build and Verify </h4>
+                                        <h4 class="timeline-title"> Build </h4>
                                     </div>
                                     <div class="timeline-body">
-                                        <p> Fabricate your microfluidic chip using the JSON and SVG design schematics from the DESIGN stage. </p>
-                                        <p> A CNC mill can take these files as inputs to build your device. </p>
+                                        <p> Build your setup of the hardware. </p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!--Assembly-->
+                            <li class="timeline">
+                                <div class="timeline-badge assembly"><a href="../assembly"><i class="fa fa-briefcase" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
+                                </div>
+                                <div class="timeline-panel" id="build_box">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title"> Assembly </h4>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p> Assemble all the hardware including CNC milling out the microfluidic chip, and 3D printing parts. </p>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!--Control-->
+                            <li class="timeline-inverted">
+                                <div class="timeline-badge control"><a href="../control"><i class="fa fa-bars" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
+                                </div>
+                                <div class="timeline-panel" id="build_box">
+                                    <div class="timeline-heading">
+                                        <h4 class="timeline-title"> Control </h4>
+                                    </div>
+                                    <div class="timeline-body">
                                         <p> Verify the functionality of your device here by controlling your pump and valve infrastructure through the user interface. </p>
                                     </div>
                                 </div>

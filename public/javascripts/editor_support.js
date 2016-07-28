@@ -532,6 +532,7 @@ function translateLFR()
                 //downloadFile('designMINT','designMINT',data,'inputString');
 
                 $("#myModal_translateComplete").modal();
+
                 editor_previewMMOutput.getSession().setMode('ace/mode/mint');
                 var file_size = content.length;
                 editor_previewMMOutput.session.setValue('');
@@ -623,125 +624,8 @@ function compileMINT()
         var status = data.terminalStatus;
         if (status == 'Success')
         {
-            $('#myModal_compilePreview').modal();
-            //  ******** PULL JSON FROM SERVER ********
-            var postDownload_JSON = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'json'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_JSON.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildJSON','buildJSON',data,'inputString');
-                
-            });
 
-            // ******** PULL SVG_BOUNDARY FROM SERVER ********
-            var postDownload_SVG_boundary = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'svg_bounding'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_SVG_boundary.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildSVG_boundary','buildSVG_boundary',data,'inputString');
-                $('#myModal_compilePreview').modal();
-            });
 
-            // ******** PULL SVG_CELL FROM SERVER ********
-            var postDownload_SVG_cell = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'svg_cell'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_SVG_cell.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildSVG_cell','buildSVG_cell',data,'inputString');
-                $('#myModal_compilePreview').modal();
-            });
-
-            // ******** PULL SVG_CONTROL FROM SERVER ********
-            var postDownload_SVG_control = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'svg_control'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_SVG_control.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildSVG_control','buildSVG_control',data,'inputString');
-                $('#myModal_compilePreview').modal();
-            });
-
-            // ******** PULL SVG_FLOW FROM SERVER ********
-            var postDownload_SVG_flow = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'svg_flow'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_SVG_flow.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildSVG_flow','buildSVG_flow',data,'inputString');
-                $('#myModal_compilePreview').modal();
-            });
-
-            // ******** PULL EPS_DEVICE FROM SERVER ********
-            var postDownload_EPS_device = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'eps_device'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_EPS_device.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildEPS_device','buildEPS_device',data,'inputString');
-                $('#myModal_compilePreview').modal();
-            });
-
-            // ******** PUL EPS_PHOTO FROM SERVER ********
-            var postDownload_EPS_photo = $.ajax
-            ({
-                type: "POST",
-                url: '/api/download',
-                data: {downloadType:'eps_photo'},
-                success: null,
-                dataType: 'text'
-            });
-            postDownload_EPS_photo.done(function(data)
-            {
-                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
-                //localStorage.FILE_buildJSON = JSON.stringify(content);
-                //downloadFile('buildEPS_photo','buildEPS_photo',data,'inputString');
-                $('#myModal_compilePreview').modal();
-            });
         }
 
         if (status == 'Failure')
@@ -763,7 +647,6 @@ function restartCompileCenter()
     lock_compile();
 }
 
-function JSON_SVsGflow(method)
 {
     switch (method)
     {

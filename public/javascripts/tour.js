@@ -125,7 +125,7 @@ $(function() {
                 content: "Once you're done, you can end the serial communication."
             },
             {
-                path: "/BuildAndVerify",
+                path: "/control",
                 element: "#wrapper",
                 title: "Control",
                 content: "Input your SVG file, and control the valves"

@@ -43,18 +43,18 @@ $(function() {
                 title: "Build",
                 content: "Build your setup and hardware to control the microfluidic chip."
             },
-            // {
-            //     path: "/dashboard",
-            //     element: "#assembly_box",
-            //     title: "Assembly",
-            //     content: "Put parts together and assemble the entire experiment to start using."
-            // },
-            // {
-            //     path: "/dashboard",
-            //     element: "#control_box",
-            //     title: "Control",
-            //     content: "Control your experiment by turning on and off valves, and opening the syringes to allow liquid into the chip."
-            // },
+            {
+                path: "/dashboard",
+                element: "#assembly_box",
+                title: "Assembly",
+                content: "Put parts together and assemble the entire experiment to start using."
+            },
+            {
+                path: "/dashboard",
+                element: "#control_box",
+                title: "Control",
+                content: "Control your experiment by turning on and off valves, and opening the syringes to allow liquid into the chip."
+            },
             {
                 path: "/specify",
                 element: "#editor_specify",
@@ -126,9 +126,15 @@ $(function() {
             },
             {
                 path: "/control",
-                element: "#wrapper",
+                element: "#page-wrapper",
                 title: "Control",
                 content: "Input your SVG file, and control the valves"
+            },
+            {
+                path: "/dashboard",
+                element: "#done_box",
+                title: "Done",
+                content: "That's all! Feel free to reach out to us, or view or wiki for more information."
             }
         ]
     });

@@ -126,7 +126,7 @@ $(function() {
             },
             {
                 path: "/BuildAndVerify",
-                element: "#view_container",
+                element: "#wrapper",
                 title: "Control",
                 content: "Input your SVG file, and control the valves"
             }

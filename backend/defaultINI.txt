@@ -1,0 +1,39 @@
+% basic initialization file
+% NO SPACES IN PARAMETER LINES
+% [foo]= distance/size in um
+%
+
+% MUST BE FIRST COMMAND, used for setting other parameters
+minResolution=10
+
+outputDirectory=output/
+enforceDRC=true
+ufLibraryDirectory=uflibrary/
+
+% Device Size
+maxDeviceWidth=76800
+maxDeviceLength=76800
+
+% Design Rules
+% Minimum spacing to leave for around components and to leave for routing channels during placement
+% Measurements in um
+routingSpacing=100
+portSpacing=1000
+channelSpacing=40
+valveSpacing=100
+componentSpacing=100
+
+% Place and Route Parameters
+iterations=20
+
+% Simulated Annealing
+movesPerTempPerComponent=250
+overlapCost=5000
+areaCost=0
+channelLengthCost=2
+
+% Routing
+routingBorder=1000
+bendPenalty=2
+spacingPenalty=5
+occupiedPenalty=10

@@ -23,18 +23,95 @@ exports.writeToFile = function(req, res)
         case 'designINI':
             path = "./public/uploads/Design/designINI.txt";
             break;
-        case 'designINIserver':
-            path = "./backend/fluigi.ini";
-            break;
         case 'buildJSON':
             path = "./public/uploads/Build_Verify/buildJSON.json";
             break;
-        case 'buildSVG':
-            path = "./public/uploads/Build_Verify/buildSVG.svg";
+        case 'buildSVG_boundary':
+            path = "./public/uploads/Build_Verify/buildSVG_boundary.svg";
+            break;
+        case 'buildSVG_cell':
+            path = "./public/uploads/Build_Verify/buildSVG_cell.svg";
+            break;
+        case 'buildSVG_control':
+            path = "./public/uploads/Build_Verify/buildSVG_control.svg";
+            break;
+        case 'buildSVG_flow':
+            path = "./public/uploads/Build_Verify/buildSVG_flow.svg";
+            break;
+        case 'buildEPS_device':
+            path = "./public/uploads/Build_Verify/buildEPS_device.txt";
+            break;
+        case 'buildEPS_photo':
+            path = "./public/uploads/Build_Verify/buildEPS_photo.txt";
+            break;
+
+        case 'serverMINT':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/testMINT.uf';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverJSON':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice.json';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverSVG_bounding':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_device_bounding_box.svg';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverSVG_cell':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_device_cell.svg';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverSVG_control':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_device_control.svg';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverSVG_flow':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_device_flow.svg';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverEPS_device':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_device.eps';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
+            break;
+        case 'serverEPS_photo':
+            var file = __dirname;
+            var len = file.length;
+            file = file.substring(0,len-12);
+            file = file + '/output/testDevice_photomask.eps';
+            var path = file;
+            //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
             break;
     }
     fs.writeFile(path, data , function(err) {
-        console.log("The file was saved!");
+        console.log("Wrote to: " + path);
     });
     
     res.end;

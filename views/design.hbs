@@ -690,27 +690,27 @@
                             <li id="INItab"><a onclick="changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])">INI</a></li>
 
                             <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a onclick="saveEditorContent(editor_design,localStorage.design_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes </a>
-                                        </li>
-                                        <li><a onclick="refreshEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
-                                        </li>
-                                        <li><a href="download/../uploads/Design/designMINT.uf" download="myMint.uf"> <i class="fa fa-download  fa-fw"></i> Download MINT </a>
-                                        </li>
-                                        <li><a href="download/../uploads/Design/designINI.txt" download="myIni.ini"> <i class="fa fa-download  fa-fw"></i> Download INI </a>
-                                        </li>
+                                <!--<div class="btn-group">-->
+                                    <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+                                        <!--Actions-->
+                                        <!--<span class="caret"></span>-->
+                                    <!--</button>-->
+                                    <!--<ul class="dropdown-menu pull-right" role="menu">-->
+                                <button class="btn btn-default" onclick="saveEditorContent(editor_design,localStorage.design_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes
+                                        </button>
+                                <button class="btn btn-default" onclick="refreshEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload
+                                        </button>
+                                        <!--<li><a href="download/../uploads/Design/designMINT.uf" download="myMint.uf"> <i class="fa fa-download  fa-fw"></i> Download MINT </a>-->
+                                        <!--</li>-->
+                                        <!--<li><a href="download/../uploads/Design/designINI.txt" download="myIni.ini"> <i class="fa fa-download  fa-fw"></i> Download INI </a>-->
+                                        <!--</li>-->
                                         <!--<li><a onclick="pushFileToEditor(editor_design,localStorage.design_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>-->
                                         <!--</li>-->
-                                        <li class="divider"></li>
-                                        <li><a href="#"> Editor Settings </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        <!--<li class="divider"></li>-->
+                                <button class="btn btn-default" href="#"> Editor Settings
+                                        </button>
+                                    <!--</ul>-->
+                                <!--</div>-->
                             </div>
                         </ul>
                     </div>

@@ -8,98 +8,108 @@ $(function() {
     var tour = new Tour({
         debug: true,
         basePath: location.pathname.slice(0, location.pathname.lastIndexOf('/')),
+        template: "<div class='popover tour' style='background-color: lightblue;'><div class='arrow'></div><h3 class='popover-title' ></h3>" +
+        "<div class='popover-content'></div>" +
+        "<div class='popover-navigation'>" +
+        "<button class='btn btn-default' data-role='prev'>« Prev</button>" +
+        "<button class='btn btn-default' data-role='next'>Next »</button>" +
+        "<button class='btn btn-default' data-role='end'>End tour</button>" +
+        "</div></div>",
         steps: [
             {
-                path: "/",
-                element: "#specify",
+                path: "/dashboard",
+                element: "#start_box",
+                title: "Start",
+                content: "To begin creating a microfluidic chip, you have multiple options:" +
+                "Start from scratch and begin with the 'specify' section of the workflow, " +
+                "or begin with the 'design' section and import an LFR or MINT." +
+                    " Also, you could jump to the 'build', 'assembly', and 'control' sections to fabricate and control your device."
+            },
+            {
+                path: "/dashboard",
+                element: "#specify_box",
                 title: "Specify",
-                content: "The first step to designing your microfluidic device is to describe the function of your device"
+                content: "Specify the function of your microfluidic chip through a high level description"
             },
             {
-                path: "/",
-                element: "#design",
+                path: "/dashboard",
+                element: "#design_box",
                 title: "Design",
-                content: "The second step is to create a design schematic of your device"
+                content: "Generate a design schematic of your microfluidic chip."
             },
             {
-                path: "/",
-                element: "#buildverify",
-                title: "Build and Verify",
-                content: "The last step is to build your device using a CNC mill and 3D printer, and use this interface to control the pump array"
+                path: "/dashboard",
+                element: "#build_box",
+                title: "Build",
+                content: "Build your setup and hardware to control the microfluidic chip."
+            },
+            // {
+            //     path: "/dashboard",
+            //     element: "#assembly_box",
+            //     title: "Assembly",
+            //     content: "Put parts together and assemble the entire experiment to start using."
+            // },
+            // {
+            //     path: "/dashboard",
+            //     element: "#control_box",
+            //     title: "Control",
+            //     content: "Control your experiment by turning on and off valves, and opening the syringes to allow liquid into the chip."
+            // },
+            {
+                path: "/specify",
+                element: "#editor_specify",
+                title: "Editor",
+                content: "Write your liquid flow relations (LFR) and UCF in the editor"
             },
             {
-                path: "/",
-                element: ".rightCenter",
-                title: "About",
-                content: "Click on the about button to learn more about the uses and future of Neptune"
+                path: "/specify",
+                element: "#upload_specifyLFR",
+                title: "Upload",
+                content: "Or, you could simply upload both files"
             },
             {
-                path: "/lfrpage",
-                element: "#uploadLFR_start",
-                title: "Upload an LFR",
-                content: "We can start with the specification. Upload the file containing the liquid flow relations (LFR)"
+                path: "/specify",
+                element: "#translate_btnn",
+                title: "Translate",
+                content: "And when you translate both files, " +
+                "you will get a microfluidic netlist (MINT) file that you can use for the next design stage"
             },
             {
-                path: "/lfrpage",
-                element: "#LFR_start_editor",
-                title: "LFR Editor",
-                content: "You can view your file and edit it here in the editor"
+                path: "/design",
+                element: "#editor_design",
+                title: "Editor",
+                content: "In the design stage, write or edit your MINT file, and the INI will be provided to you for editing if you wish."
             },
             {
-                path: "/lfrpage",
-                element: "#downloadFile",
-                title: "Push/ Reload/ Save/ Download File",
-                content: "After editing the file, you have four options: " +
-                "push the LFR to the next stage of designing once you're done, " +
-                "reload the LFR to discard all changes, " +
-                "save the file to add your changes, " +
-                "or download the file to your local directory."
+                path: "/design",
+                element: "#upload_designMINT",
+                title: "Upload",
+                content: "Or, you could simply upload your MINT from the previous stage."
             },
             {
-                path: "/uShroomPage",
-                element: "#uploadMINT",
-                title: "Upload Files",
-                content: "In the next design stage, upload your new files. You can upload an LFR and UCF, or you could directly upload a MINT file."
+                path: "/design",
+                element: "#compile_btnn",
+                title: "Compile",
+                content: "Compile both files to output a JSON and SVG to control and view your microfluidic chip."
             },
             {
-                path: "/uShroomPage",
-                element: "#MINT_editor",
-                title: "Download File",
-                content: "Once again, you can view your file and edit it here in the editor"
+                path: "/build",
+                element: "#checkVolume",
+                title: "Volume",
+                content: "Depending on your experiment, input the volume you wish to dispense."
             },
             {
-                path: "/uShroomPage",
-                element: "#saveMINT",
-                title: "MINT Options",
-                content: "After editing the file, you have four options: " +
-                "change the editor settings, " +
-                "push the file to the next step, " +
-                    "reload the file to discard changes, "+
-                "or save the file to add your changes, "
+                path: "/build",
+                element: "#checkTolerance",
+                title: "Tolerance",
+                content: "Also, input the tolerance of the servos. You will then be provided with a customized selection of hardware you wish to use, and be provided with an order list" +
+                " and your customized 3D printing (stl) files"
             },
             {
-                path: "/fluigipage",
-                element: "#uploadForm2",
-                title: "Upload JSON and then an SVG",
-                content: "In the last step, first upload the JSON file, and then the SVG file to display the microfluidic chip"
-            },
-            {
-                path: "/fluigipage",
-                element: "#c",
-                title: "Graph",
-                content: "Your chip will be displayed here with clickable buttons to open and close valves"
-            },
-            {
-                path: "/fluigipage",
-                element: "#settingspage",
-                title: "Settings",
-                content: "In the settings page, you can specify the pump PWM values that would specify if the pump is open or closed"
-            },
-            {
-                path: "/fluigipage",
-                element: "#connected",
-                title: "Connecting to an Arduino",
-                content: "Then, connect to the arduino to control the pumps"
+                path: "/assembly",
+                element: ".stepwizard-row",
+                title: "Assembly",
+                content: "Go through the steps to assemble your microfluidic chip."
             },
             {
                 path: "/serialcommunication",
@@ -115,16 +125,10 @@ $(function() {
                 content: "Once you're done, you can end the serial communication."
             },
             {
-                path: "/fluigipage",
-                element: "#myDebuggerBtn",
-                title: "Debugger",
-                content: "If you want to debug your pumps, you can use this modal to send direct serial commands to the pump array without clicking on the buttons."
-            },
-            {
-                path: "/",
-                element: ".rightBottom",
-                title: "Help",
-                content: "For any further questions, feel free to check out our help page, or email us. Thank you for taking the tour!"
+                path: "/BuildAndVerify",
+                element: "#view_container",
+                title: "Control",
+                content: "Input your SVG file, and control the valves"
             }
         ]
     });
@@ -137,7 +141,8 @@ $(function() {
         tour.restart();
     });
 
-
+    
+    
 });
 
 

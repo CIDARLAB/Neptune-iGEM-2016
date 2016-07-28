@@ -26,14 +26,14 @@
         }
     </style>
 
-    <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-        <a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">
-            <button type="button" class="btn btn-primary">
-                Download
-            </button>
-        </a>
-    </div>
+    <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+        <!--<a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">-->
+            <!--<button type="button" class="btn btn-primary">-->
+                <!--Download-->
+            <!--</button>-->
+        <!--</a>-->
+    <!--</div>-->
 
     <script type="text/javascript">
         function openEditorPreview(file_type)
@@ -57,7 +57,7 @@
                             }, content[i] + '\n')
                         }
                     });
-                        //$('#previewModalFooter').
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyLFR.v" download="specifyLFR.v"><button type="button" class="btn btn-primary"> Download LFR </button></a>';
                     break;
                 case 'UCF':
                     $.get('../uploads/Specify/specifyUCF.json',function(data)
@@ -67,6 +67,8 @@
                         var file_size = content.length;
                         editor_preview.session.setValue('');
                         editor_preview.session.setValue(JSON.stringify(data, null, '\t'));
+
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyUCF.json" download="specifyJSON.json"><button type="button" class="btn btn-primary"> Download UCF </button></a>';
                     });
                     break;
                 case 'MINT':
@@ -84,6 +86,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Design/designMINT.uf" download="designMINT.uf"><button type="button" class="btn btn-primary"> Download MINT </button></a>';
                     });
                     break;
                 case 'INI':
@@ -101,6 +104,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Design/designINI.txt" download="designINI.txt"><button type="button" class="btn btn-primary"> Download INI </button></a>';
                     });
                     break;
                 case 'JSON':
@@ -111,6 +115,8 @@
                         var file_size = content.length;
                         editor_preview.session.setValue('');
                         editor_preview.session.setValue(JSON.stringify(data, null, '\t'));
+
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildJSON.json" download="buildJSON.json"><button type="button" class="btn btn-primary"> Download JSON </button></a>';
                     });
                     break;
                 case 'SVG_boundary':
@@ -128,6 +134,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_boundary.svg" download="buildSVG_boundary.svg"><button type="button" class="btn btn-primary"> Download Boundary SVG </button></a>';
                     });
                     break;
                 case 'SVG_cell':
@@ -145,6 +152,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_cell.svg" download="buildSVG_cell.svg"><button type="button" class="btn btn-primary"> Download Cell SVG </button></a>';
                     });
                     break;
                 case 'SVG_control':
@@ -162,6 +170,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_control.svg" download="buildSVG_control.svg"><button type="button" class="btn btn-primary"> Download Control SVG </button></a>';
                     });
                     break;
                 case 'SVG_flow':
@@ -179,6 +188,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_flow.svg" download="buildSVG_flow.svg"><button type="button" class="btn btn-primary"> Download Flow SVG </button></a>';
                     });
                     break;
                 case 'EPS_device':
@@ -196,6 +206,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildEPS_device.eps" download="buildEPS_device.eps"><button type="button" class="btn btn-primary"> Download Device EPS </button></a>';
                     });
                     break;
                 case 'EPS_photo':
@@ -213,6 +224,7 @@
                                 end: {row: i, column: Number.MAX_VALUE}
                             }, content[i] + '\n')
                         }
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildEPS_photo.eps" download="buildEPS_photo.eps"><button type="button" class="btn btn-primary"> Download Photolithography EPS </button></a>';
                     });
                     break;
             }

@@ -1,0 +1,35 @@
+[
+  {
+    "operator":"+",
+    "name":"YMixer",
+    "inputs":2,
+    "inputTerms": [1,2],
+    "outputTerms": 3,
+    "outputs":1,
+    "picpath":"SampleIcons/ymixer.png",
+    "mint":"V TREE NAME 2 to 1 spacing=250 flowChannelWidth=100",
+    "layer":"flow"
+  },
+  {
+    "operator":"*",
+    "name":"serpmixer",
+    "inputs":2,
+    "outputs":1,
+    "picpath":"path/to/serpmixer/pic",
+    "import":"serpentine_mixer",
+    "mint":"sm",
+    "layer":"flow"
+  },
+  {
+    "operator":"/",
+    "name":"3DValve",
+    "inputs":2,
+    "outputs":1,
+    "controlTerms":"3",
+    "inputTerms":"4",
+    "outputTerms":"2",
+    "picpath":"path/to/valve/pic",
+    "mint":"H 3DVALVE NAME radius=250 gap=75",
+    "layer":"control"
+  }
+]

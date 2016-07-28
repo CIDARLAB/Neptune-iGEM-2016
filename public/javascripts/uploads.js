@@ -21,7 +21,7 @@ LFR_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
-            fileTrayIndicators();
+            //fileTrayIndicators();
             pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
             localStorage.WORKFLOW_STAGE = 'specify';
             $.get('../uploads/Specify/specifyLFR.v',function(data)
@@ -59,7 +59,7 @@ UCF_form.onsubmit = function(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // File(s) uploaded.
-            fileTrayIndicators();
+            //fileTrayIndicators();
             localStorage.WORKFLOW_STAGE = 'specify';
             $.get('../uploads/Specify/specifyUCF.json',function(data)
             {

@@ -11,7 +11,7 @@ function onclickanchortag(){
             console.log("Port " + this.id + " clicked");
             valve_to_control = this.id;
             flipFlop_valveState(valve_to_control);
-            
+
 
             break;
 

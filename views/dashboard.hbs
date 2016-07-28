@@ -25,6 +25,16 @@
             height: 300px;
         }
     </style>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
+        <a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">
+            <button type="button" class="btn btn-primary">
+                Download
+            </button>
+        </a>
+    </div>
+
     <script type="text/javascript">
         function openEditorPreview(file_type)
         {
@@ -47,6 +57,7 @@
                             }, content[i] + '\n')
                         }
                     });
+                        //$('#previewModalFooter').
                     break;
                 case 'UCF':
                     $.get('../uploads/Specify/specifyUCF.json',function(data)
@@ -1083,366 +1094,7 @@
             </div>
             <!-- 3 PANEL DIV END: WORKFLOW OVERVIEW AND OTHER CONTENT  -->
 
-            <!-- 3 PANEL DIV START: FILE TRAY AND OTHER CONTENT -->
-            <!--<div class="col-lg-4">-->
 
-
-                <!-- NOTIFICATION PANEL; WE WILL USE THIS AS A FILE LIST PANEL -->
-                <!--<div class="panel panel-default">-->
-                    <!--<div class="panel-heading">-->
-                        <!--<i class="fa fa-list-alt fa-fw"></i> File Tray-->
-                    <!--</div>-->
-
-                    <!--<div class="panel-body">-->
-                        <!--<div class="list-group">-->
-
-                            <!--Specify Files: <br>-->
-                            <!--<a id='ucfPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myUcfPreviewModal" onclick="displayFileContent('specifyUCF')">-->
-                                <!--<i class="fa fa-file-text-o fa-fw"></i> User Constraint File (UCF)-->
-                                    <!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
-                                    <!--</span>-->
-                            <!--</a>-->
-                            <!--<a id='lfrPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myLfrPreviewModal" onclick="displayFileContent('specifyLFR')">-->
-                                <!--<i class="fa fa-file-text-o fa-fw"></i> Liquid Flow Relations File (LFR)-->
-                                    <!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
-                                    <!--</span>-->
-                            <!--</a>-->
-                            <!--<br>-->
-
-                            <!--Design Files: <br>-->
-                            <!--<a id='mintPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myMintPreviewModal" onclick="displayFileContent('designMINT')">-->
-                                <!--<i class="fa fa-file-text fa-fw"></i> Microfluidic Netlist File (MINT)-->
-                                    <!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
-                                    <!--</span>-->
-                            <!--</a>-->
-                            <!--<a id='iniPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myIniPreviewModal" onclick="displayFileContent('designINI')">-->
-                                <!--<i class="fa fa-file-text fa-fw"></i> Configuration File (INI)-->
-                                    <!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
-                                    <!--</span>-->
-                            <!--</a>-->
-                            <!--<br>-->
-
-                            <!--Build Files: <br>-->
-                            <!--<a id='jsonPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myJsonPreviewModal" onclick="displayFileContent('buildJSON')">-->
-                                <!--<i class="fa fa-file-code-o fa-fw"></i> Design Schematic (JSON)-->
-                                    <!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
-                                    <!--</span>-->
-                            <!--</a>-->
-                            <!--<a id='svgPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#mySvgPreviewModal" onclick="displayFileContent('buildSVG')">-->
-                                <!--<i class="fa fa-file-code-o fa-fw"></i> Design Schematic (SVG)-->
-                                    <!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
-                                    <!--</span>-->
-                            <!--</a>-->
-
-                            <!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<i class="fa fa-bolt fa-fw"></i> Server Crashed!&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span class="pull-right text-muted small"><em>11:13 AM</em>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<i class="fa fa-warning fa-fw"></i> Server Not Responding&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span class="pull-right text-muted small"><em>10:57 AM</em>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<i class="fa fa-shopping-cart fa-fw"></i> New Order Placed&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span class="pull-right text-muted small"><em>9:49 AM</em>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                            <!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
-                            <!--&lt;!&ndash;<i class="fa fa-money fa-fw"></i> Payment Received&ndash;&gt;-->
-                            <!--&lt;!&ndash;<span class="pull-right text-muted small"><em>Yesterday</em>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</span>&ndash;&gt;-->
-                            <!--&lt;!&ndash;</a>&ndash;&gt;-->
-
-                        <!--</div>-->
-                        <!--&lt;!&ndash; /.list-group &ndash;&gt;-->
-                        <!--&lt;!&ndash;<a href="#" class="btn btn-default btn-block">View All Files</a>&ndash;&gt;-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
-                <!--</div>-->
-                <!-- /.panel -->
-
-                <!-- *** DOUGNUT PANEL ? *** -->
-                <!--<div class="panel panel-default">-->
-                <!--<div class="panel-heading">-->
-                <!--<i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example-->
-                <!--</div>-->
-                <!--<div class="panel-body">-->
-                <!--<div id="morris-donut-chart"></div>-->
-                <!--<a href="#" class="btn btn-default btn-block">View Details</a>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
-                <!--</div>-->
-                <!-- /.panel -->
-
-                <!-- *** CHAT PANEL *** -->
-                <!--<div class="chat-panel panel panel-default">-->
-                <!--<div class="panel-heading">-->
-                <!--<i class="fa fa-comments fa-fw"></i>-->
-                <!--Chat-->
-                <!--<div class="btn-group pull-right">-->
-                <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
-                <!--<i class="fa fa-chevron-down"></i>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu slidedown">-->
-                <!--<li>-->
-                <!--<a href="#">-->
-                <!--<i class="fa fa-refresh fa-fw"></i> Refresh-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<a href="#">-->
-                <!--<i class="fa fa-check-circle fa-fw"></i> Available-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<a href="#">-->
-                <!--<i class="fa fa-times fa-fw"></i> Busy-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--<li>-->
-                <!--<a href="#">-->
-                <!--<i class="fa fa-clock-o fa-fw"></i> Away-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--<li class="divider"></li>-->
-                <!--<li>-->
-                <!--<a href="#">-->
-                <!--<i class="fa fa-sign-out fa-fw"></i> Sign Out-->
-                <!--</a>-->
-                <!--</li>-->
-                <!--</ul>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.panel-heading &ndash;&gt;-->
-                <!--<div class="panel-body">-->
-                <!--<ul class="chat">-->
-                <!--<li class="left clearfix">-->
-                <!--<span class="chat-img pull-left">-->
-                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
-                <!--</span>-->
-                <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                <!--<strong class="primary-font">Jack Sparrow</strong>-->
-                <!--<small class="pull-right text-muted">-->
-                <!--<i class="fa fa-clock-o fa-fw"></i> 12 mins ago-->
-                <!--</small>-->
-                <!--</div>-->
-                <!--<p>-->
-                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-                <!--</div>-->
-                <!--</li>-->
-                <!--<li class="right clearfix">-->
-                <!--<span class="chat-img pull-right">-->
-                <!--<img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />-->
-                <!--</span>-->
-                <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                <!--<small class=" text-muted">-->
-                <!--<i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>-->
-                <!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
-                <!--</div>-->
-                <!--<p>-->
-                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-                <!--</div>-->
-                <!--</li>-->
-                <!--<li class="left clearfix">-->
-                <!--<span class="chat-img pull-left">-->
-                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
-                <!--</span>-->
-                <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                <!--<strong class="primary-font">Jack Sparrow</strong>-->
-                <!--<small class="pull-right text-muted">-->
-                <!--<i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>-->
-                <!--</div>-->
-                <!--<p>-->
-                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-                <!--</div>-->
-                <!--</li>-->
-                <!--<li class="right clearfix">-->
-                <!--<span class="chat-img pull-right">-->
-                <!--<img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />-->
-                <!--</span>-->
-                <!--<div class="chat-body clearfix">-->
-                <!--<div class="header">-->
-                <!--<small class=" text-muted">-->
-                <!--<i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>-->
-                <!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
-                <!--</div>-->
-                <!--<p>-->
-                <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
-                <!--</p>-->
-                <!--</div>-->
-                <!--</li>-->
-                <!--</ul>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
-                <!--<div class="panel-footer">-->
-                <!--<div class="input-group">-->
-                <!--<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />-->
-                <!--<span class="input-group-btn">-->
-                <!--<button class="btn btn-warning btn-sm" id="btn-chat">-->
-                <!--Send-->
-                <!--</button>-->
-                <!--</span>-->
-                <!--</div>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.panel-footer &ndash;&gt;-->
-                <!--</div>-->
-                <!-- /.panel .chat-panel -->
-
-            <!--</div>-->
-            <!-- 3 PANEL DIV END: FILE TRAY AND OTHER CONTENT -->
-
-            <!-- Preview Modals -->
-            <!--<div class="modal fade" id="myUcfPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
-
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
-                            <!--<a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">-->
-                                <!--<button type="button" class="btn btn-primary">-->
-                                    <!--Download-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="modal fade" id="myLfrPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
-
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
-                            <!--<a href="download/../uploads/Specify/specifyLFR.v" download="myLFR.lfr">-->
-                                <!--<button type="button" class="btn btn-primary">-->
-                                    <!--Download-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="modal fade" id="myMintPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
-
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
-                            <!--<a href="download/../uploads/Design/designMINT.uf" download="myMINT.uf">-->
-                                <!--<button type="button" class="btn btn-primary">-->
-                                    <!--Download-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="modal fade" id="myIniPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
-
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
-                            <!--<a href="download/../uploads/Design/designINI.txt" download="myIni.txt">-->
-                                <!--<button type="button" class="btn btn-primary">-->
-                                    <!--Download-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="modal fade" id="myJsonPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
-
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
-                            <!--<a href="download/../uploads/Build_Verify/buildJSON.json" download="myJSON.json">-->
-                                <!--<button type="button" class="btn btn-primary">-->
-                                    <!--Download-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--<div class="modal fade" id="mySvgPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
-
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
-                            <!--<a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySvg.svg">-->
-                                <!--<button type="button" class="btn btn-primary">-->
-                                    <!--Download-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
 
             <div class="modal fade" id="preview_dashboard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
                 <div class="modal-dialog" role="document">
@@ -1456,13 +1108,8 @@
 
                         <div class="modal-body ace_preview_modal" id="editor_preview"></div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-                            <a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">
-                                <button type="button" class="btn btn-primary">
-                                    Download
-                                </button>
-                            </a>
+                        <div class="modal-footer" id="previewModalFooter">
+
                         </div>
                     </div>
                 </div>
@@ -1550,3 +1197,364 @@
 <!--//        }-->
 <!--//    }-->
 <!--//      fileTrayIndicators();-->
+
+<!-- 3 PANEL DIV START: FILE TRAY AND OTHER CONTENT -->
+<!--<div class="col-lg-4">-->
+
+
+<!-- NOTIFICATION PANEL; WE WILL USE THIS AS A FILE LIST PANEL -->
+<!--<div class="panel panel-default">-->
+<!--<div class="panel-heading">-->
+<!--<i class="fa fa-list-alt fa-fw"></i> File Tray-->
+<!--</div>-->
+
+<!--<div class="panel-body">-->
+<!--<div class="list-group">-->
+
+<!--Specify Files: <br>-->
+<!--<a id='ucfPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myUcfPreviewModal" onclick="displayFileContent('specifyUCF')">-->
+<!--<i class="fa fa-file-text-o fa-fw"></i> User Constraint File (UCF)-->
+<!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
+<!--</span>-->
+<!--</a>-->
+<!--<a id='lfrPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myLfrPreviewModal" onclick="displayFileContent('specifyLFR')">-->
+<!--<i class="fa fa-file-text-o fa-fw"></i> Liquid Flow Relations File (LFR)-->
+<!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
+<!--</span>-->
+<!--</a>-->
+<!--<br>-->
+
+<!--Design Files: <br>-->
+<!--<a id='mintPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myMintPreviewModal" onclick="displayFileContent('designMINT')">-->
+<!--<i class="fa fa-file-text fa-fw"></i> Microfluidic Netlist File (MINT)-->
+<!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
+<!--</span>-->
+<!--</a>-->
+<!--<a id='iniPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myIniPreviewModal" onclick="displayFileContent('designINI')">-->
+<!--<i class="fa fa-file-text fa-fw"></i> Configuration File (INI)-->
+<!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
+<!--</span>-->
+<!--</a>-->
+<!--<br>-->
+
+<!--Build Files: <br>-->
+<!--<a id='jsonPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#myJsonPreviewModal" onclick="displayFileContent('buildJSON')">-->
+<!--<i class="fa fa-file-code-o fa-fw"></i> Design Schematic (JSON)-->
+<!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
+<!--</span>-->
+<!--</a>-->
+<!--<a id='svgPreview' type="button" class="list-group-item" data-toggle="modal" data-target="#mySvgPreviewModal" onclick="displayFileContent('buildSVG')">-->
+<!--<i class="fa fa-file-code-o fa-fw"></i> Design Schematic (SVG)-->
+<!--<span class="pull-right text-muted small"> <em> Click to preview </em>-->
+<!--</span>-->
+<!--</a>-->
+
+<!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;<i class="fa fa-bolt fa-fw"></i> Server Crashed!&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="pull-right text-muted small"><em>11:13 AM</em>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;<i class="fa fa-warning fa-fw"></i> Server Not Responding&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="pull-right text-muted small"><em>10:57 AM</em>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;<i class="fa fa-shopping-cart fa-fw"></i> New Order Placed&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="pull-right text-muted small"><em>9:49 AM</em>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;</a>&ndash;&gt;-->
+<!--&lt;!&ndash;<a href="#" class="list-group-item">&ndash;&gt;-->
+<!--&lt;!&ndash;<i class="fa fa-money fa-fw"></i> Payment Received&ndash;&gt;-->
+<!--&lt;!&ndash;<span class="pull-right text-muted small"><em>Yesterday</em>&ndash;&gt;-->
+<!--&lt;!&ndash;</span>&ndash;&gt;-->
+<!--&lt;!&ndash;</a>&ndash;&gt;-->
+
+<!--</div>-->
+<!--&lt;!&ndash; /.list-group &ndash;&gt;-->
+<!--&lt;!&ndash;<a href="#" class="btn btn-default btn-block">View All Files</a>&ndash;&gt;-->
+<!--</div>-->
+<!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
+<!--</div>-->
+<!-- /.panel -->
+
+<!-- *** DOUGNUT PANEL ? *** -->
+<!--<div class="panel panel-default">-->
+<!--<div class="panel-heading">-->
+<!--<i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example-->
+<!--</div>-->
+<!--<div class="panel-body">-->
+<!--<div id="morris-donut-chart"></div>-->
+<!--<a href="#" class="btn btn-default btn-block">View Details</a>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
+<!--</div>-->
+<!-- /.panel -->
+
+<!-- *** CHAT PANEL *** -->
+<!--<div class="chat-panel panel panel-default">-->
+<!--<div class="panel-heading">-->
+<!--<i class="fa fa-comments fa-fw"></i>-->
+<!--Chat-->
+<!--<div class="btn-group pull-right">-->
+<!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+<!--<i class="fa fa-chevron-down"></i>-->
+<!--</button>-->
+<!--<ul class="dropdown-menu slidedown">-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<i class="fa fa-refresh fa-fw"></i> Refresh-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<i class="fa fa-check-circle fa-fw"></i> Available-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<i class="fa fa-times fa-fw"></i> Busy-->
+<!--</a>-->
+<!--</li>-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<i class="fa fa-clock-o fa-fw"></i> Away-->
+<!--</a>-->
+<!--</li>-->
+<!--<li class="divider"></li>-->
+<!--<li>-->
+<!--<a href="#">-->
+<!--<i class="fa fa-sign-out fa-fw"></i> Sign Out-->
+<!--</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.panel-heading &ndash;&gt;-->
+<!--<div class="panel-body">-->
+<!--<ul class="chat">-->
+<!--<li class="left clearfix">-->
+<!--<span class="chat-img pull-left">-->
+<!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<strong class="primary-font">Jack Sparrow</strong>-->
+<!--<small class="pull-right text-muted">-->
+<!--<i class="fa fa-clock-o fa-fw"></i> 12 mins ago-->
+<!--</small>-->
+<!--</div>-->
+<!--<p>-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
+<!--</p>-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="right clearfix">-->
+<!--<span class="chat-img pull-right">-->
+<!--<img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<small class=" text-muted">-->
+<!--<i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>-->
+<!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
+<!--</div>-->
+<!--<p>-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
+<!--</p>-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="left clearfix">-->
+<!--<span class="chat-img pull-left">-->
+<!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<strong class="primary-font">Jack Sparrow</strong>-->
+<!--<small class="pull-right text-muted">-->
+<!--<i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>-->
+<!--</div>-->
+<!--<p>-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
+<!--</p>-->
+<!--</div>-->
+<!--</li>-->
+<!--<li class="right clearfix">-->
+<!--<span class="chat-img pull-right">-->
+<!--<img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />-->
+<!--</span>-->
+<!--<div class="chat-body clearfix">-->
+<!--<div class="header">-->
+<!--<small class=" text-muted">-->
+<!--<i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>-->
+<!--<strong class="pull-right primary-font">Bhaumik Patel</strong>-->
+<!--</div>-->
+<!--<p>-->
+<!--Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.-->
+<!--</p>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
+<!--<div class="panel-footer">-->
+<!--<div class="input-group">-->
+<!--<input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />-->
+<!--<span class="input-group-btn">-->
+<!--<button class="btn btn-warning btn-sm" id="btn-chat">-->
+<!--Send-->
+<!--</button>-->
+<!--</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; /.panel-footer &ndash;&gt;-->
+<!--</div>-->
+<!-- /.panel .chat-panel -->
+
+<!--</div>-->
+<!-- 3 PANEL DIV END: FILE TRAY AND OTHER CONTENT -->
+
+<!-- Preview Modals -->
+<!--<div class="modal fade" id="myUcfPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+<!--<a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="myLfrPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+<!--<a href="download/../uploads/Specify/specifyLFR.v" download="myLFR.lfr">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="myMintPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+<!--<a href="download/../uploads/Design/designMINT.uf" download="myMINT.uf">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="myIniPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+<!--<a href="download/../uploads/Design/designINI.txt" download="myIni.txt">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="myJsonPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+<!--<a href="download/../uploads/Build_Verify/buildJSON.json" download="myJSON.json">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="modal fade" id="mySvgPreviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title-prev modal-title" id="myModalLabel"></h4>-->
+<!--</div>-->
+<!--<div class="modal-body-prev modal-body" id="fileGoesHere">-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>-->
+<!--<a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySvg.svg">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

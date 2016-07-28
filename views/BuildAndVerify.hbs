@@ -69,8 +69,8 @@
     <!--<link rel="stylesheet" type="text/css" href="../stylesheets/main_fluigi.css" />-->
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bootstrap-tour/0.10.3/css/bootstrap-tour-standalone.min.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>
+    <!--<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.css">-->
+    <!--<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.js"></script>-->
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
 
@@ -99,6 +99,8 @@
 
 
 
+
+
     <script type="text/javascript" src="../javascripts/serialcommunication.js"></script>
     <script type="text/javascript" src="../javascripts/fluigipage.js" > </script>
     <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
@@ -117,6 +119,11 @@
 
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+
+
+
 
 
 
@@ -151,145 +158,145 @@
 
 
 
-            <!--<li style="display:inline-block !important;">-->
-                <!--<a onclick="loadButtons();">-->
-                    <!--<i class="fa fa-dot-circle-o fa-fw"></i></a>-->
-            <!--</li>-->
+        <!--<li style="display:inline-block !important;">-->
+        <!--<a onclick="loadButtons();">-->
+        <!--<i class="fa fa-dot-circle-o fa-fw"></i></a>-->
+        <!--</li>-->
 
 
-            <!--<li style="display:inline-block !important;">-->
-                <!--<a onclick= "window.open('../serialcommunication')">-->
-                    <!--<i class="fa fa-usb fa-fw"></i></a>-->
-            <!--</li>-->
-
-
-
-            <!--<li style="display:inline-block !important;">-->
-                <!--<a onclick="settingsButtonPressed();">-->
-                    <!--<i class="fa fa-cogs fa-fw"></i></a>-->
-            <!--</li>-->
+        <!--<li style="display:inline-block !important;">-->
+        <!--<a onclick= "window.open('../serialcommunication')">-->
+        <!--<i class="fa fa-usb fa-fw"></i></a>-->
+        <!--</li>-->
 
 
 
-
-
-
-
-            <!--<li style="display:inline-block !important;">-->
-                <!--<div id= "upload_bar" class="uploadbar">-->
-                    <!--<div>-->
-
-                        <!--<form id="uploadForm"-->
-                              <!--enctype="multipart/form-data"-->
-                              <!--action="/api/build_JSON"-->
-                              <!--method="post">-->
-                            <!--<div id="div1" style="display:inline-block !important;"><input id= "inputfile_JSON" class="btn btn-default" type="file" name="buildJSON"/></div>-->
-
-                            <!--<div id="div3" style="display:inline-block !important;">-->
-                                <!--<input id="uploadfile" class= "btn btn-default" type="submit" value="Upload JSON" name="submit" >-->
-                                <!--<span id = "status"></span>-->
-                            <!--</div>-->
-
-                        <!--</form>-->
-                    <!--</div>-->
-                <!--</div>-->
-
-            <!--</li>-->
+        <!--<li style="display:inline-block !important;">-->
+        <!--<a onclick="settingsButtonPressed();">-->
+        <!--<i class="fa fa-cogs fa-fw"></i></a>-->
+        <!--</li>-->
 
 
 
 
 
 
-            <!--<li style="display:inline-block !important;">-->
-                <!--<a>-->
-                    <!--<label>-->
-                        <!--<i class="fa fa-upload fa-fw">-->
-                            <!--<input type="file" style="display: none;">-->
-                        <!--</i>-->
-                    <!--</label>-->
-                <!--</a>-->
-            <!--</li>-->
+
+        <!--<li style="display:inline-block !important;">-->
+        <!--<div id= "upload_bar" class="uploadbar">-->
+        <!--<div>-->
+
+        <!--<form id="uploadForm"-->
+        <!--enctype="multipart/form-data"-->
+        <!--action="/api/build_JSON"-->
+        <!--method="post">-->
+        <!--<div id="div1" style="display:inline-block !important;"><input id= "inputfile_JSON" class="btn btn-default" type="file" name="buildJSON"/></div>-->
+
+        <!--<div id="div3" style="display:inline-block !important;">-->
+        <!--<input id="uploadfile" class= "btn btn-default" type="submit" value="Upload JSON" name="submit" >-->
+        <!--<span id = "status"></span>-->
+        <!--</div>-->
+
+        <!--</form>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--</li>-->
 
 
-            <!-- START: PROGRESS DROP DOWN MENU -->
-            <!--<li class="dropdown" style="display:inline-block !important;">-->
-                <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-                    <!--<i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-                <!--</a>-->
-                <!--<ul class="dropdown-menu dropdown-tasks">-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<div>-->
-                                <!--<p>-->
-                                    <!--<strong> Specify Stage </strong>-->
-                                    <!--<span class="pull-right text-muted"> Progress </span>-->
-                                <!--</p>-->
-                                <!--<div class="progress progress-striped active">-->
-                                    <!--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
-                                        <!--<span class="sr-only">40% Complete (success)</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<div>-->
-                                <!--<p>-->
-                                    <!--<strong> Design Stage </strong>-->
-                                    <!--<span class="pull-right text-muted"> Progress </span>-->
-                                <!--</p>-->
-                                <!--<div class="progress progress-striped active">-->
-                                    <!--<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
-                                        <!--<span class="sr-only">20% Complete</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<div>-->
-                                <!--<p>-->
-                                    <!--<strong> Build Stage </strong>-->
-                                    <!--<span class="pull-right text-muted"> Progress </span>-->
-                                <!--</p>-->
-                                <!--<div class="progress progress-striped active">-->
-                                    <!--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
-                                        <!--<span class="sr-only">60% Complete (warning)</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                    <!--</li>-->
-
-                    <!--<li class="divider"></li>-->
-
-                <!--</ul>-->
-                <!--&lt;!&ndash; /.dropdown-tasks &ndash;&gt;-->
-            <!--</li>-->
-            <!-- END: PROGRESS DROP DOWN MENU -->
 
 
-            <!-- START: SETTINGS DROP DOWN MENU -->
-            <!--<li class="dropdown" style="display:inline-block !important;">-->
-                <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-                    <!--<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-                <!--</a>-->
-                <!--<ul class="dropdown-menu dropdown-user">-->
-                    <!--<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>-->
-                    <!--</li>-->
-                    <!--<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!-- END: SETTINGS DROP DOWN MENU -->
+
+
+        <!--<li style="display:inline-block !important;">-->
+        <!--<a>-->
+        <!--<label>-->
+        <!--<i class="fa fa-upload fa-fw">-->
+        <!--<input type="file" style="display: none;">-->
+        <!--</i>-->
+        <!--</label>-->
+        <!--</a>-->
+        <!--</li>-->
+
+
+        <!-- START: PROGRESS DROP DOWN MENU -->
+        <!--<li class="dropdown" style="display:inline-block !important;">-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
+        <!--<i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu dropdown-tasks">-->
+        <!--<li>-->
+        <!--<a href="#">-->
+        <!--<div>-->
+        <!--<p>-->
+        <!--<strong> Specify Stage </strong>-->
+        <!--<span class="pull-right text-muted"> Progress </span>-->
+        <!--</p>-->
+        <!--<div class="progress progress-striped active">-->
+        <!--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
+        <!--<span class="sr-only">40% Complete (success)</span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li class="divider"></li>-->
+        <!--<li>-->
+        <!--<a href="#">-->
+        <!--<div>-->
+        <!--<p>-->
+        <!--<strong> Design Stage </strong>-->
+        <!--<span class="pull-right text-muted"> Progress </span>-->
+        <!--</p>-->
+        <!--<div class="progress progress-striped active">-->
+        <!--<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
+        <!--<span class="sr-only">20% Complete</span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</a>-->
+        <!--</li>-->
+        <!--<li class="divider"></li>-->
+        <!--<li>-->
+        <!--<a href="#">-->
+        <!--<div>-->
+        <!--<p>-->
+        <!--<strong> Build Stage </strong>-->
+        <!--<span class="pull-right text-muted"> Progress </span>-->
+        <!--</p>-->
+        <!--<div class="progress progress-striped active">-->
+        <!--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
+        <!--<span class="sr-only">60% Complete (warning)</span>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</a>-->
+        <!--</li>-->
+
+        <!--<li class="divider"></li>-->
+
+        <!--</ul>-->
+        <!--&lt;!&ndash; /.dropdown-tasks &ndash;&gt;-->
+        <!--</li>-->
+        <!-- END: PROGRESS DROP DOWN MENU -->
+
+
+        <!-- START: SETTINGS DROP DOWN MENU -->
+        <!--<li class="dropdown" style="display:inline-block !important;">-->
+        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
+        <!--<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
+        <!--</a>-->
+        <!--<ul class="dropdown-menu dropdown-user">-->
+        <!--<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>-->
+        <!--</li>-->
+        <!--<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>-->
+        <!--</li>-->
+        <!--<li class="divider"></li>-->
+        <!--<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>-->
+        <!--</li>-->
+        <!--</ul>-->
+        <!--</li>-->
+        <!-- END: SETTINGS DROP DOWN MENU -->
 
         <!--</ul>-->
         <!-- END: TOP RIGHT HALF OF NAVIGATION BAR; WE CAN PUT OUR LOGOUT, SETTINGS, ECT HERE -->
@@ -363,28 +370,6 @@
 
             <ul class="nav navbar-top-links navbar-right">
 
-                <!--<li style="display:inline-block !important;">-->
-                    <!--<div id= "upload_bar" class="uploadbar">-->
-                        <!--<div>-->
-
-                            <!--<form id="uploadForm"-->
-                                  <!--enctype="multipart/form-data"-->
-                                  <!--action="/api/build_JSON"-->
-                                  <!--method="post">-->
-                                <!--<div id="div1" style="display:inline-block !important;"><input id= "inputfile_JSON" class="btn btn-default" type="file" name="myjson"/></div>-->
-
-                                <!--<div id="div3" style="display:inline-block !important;">-->
-                                    <!--<input id="uploadfile" class= "btn btn-default" type="submit" value="Upload JSON" name="submit" >-->
-                                    <!--<span id = "status"></span>-->
-                                <!--</div>-->
-
-                            <!--</form>-->
-                        <!--</div>-->
-                    <!--</div>-->
-
-                <!--</li>-->
-
-
                 <li style="display:inline-block !important;">
 
                     <form id="upload_buildJSON"
@@ -392,7 +377,7 @@
                           action="/api/build_JSON"
                           method="post">
                         <div id="select_div" style="display:inline-block !important;">
-                            <input id= "selectfile_JSON" class="btn btn-default" type="file" name="buildJSON" />
+                            <input id= "selectfile_JSON" class="btn btn-default" type="file" name="buildJSON"/>
                         </div>
                         <div id="upload_div" style="display:inline-block !important;">
                             <input id="uploadfile_JSON" class= "btn btn-default" type="submit" value="Upload JSON" name="submit" >
@@ -427,14 +412,152 @@
     <div id="page-wrapper" style="padding:0 !important; margin:0 !important;">
         <!-- PAGE TITLE START -->
         <div class="row">
-        <div class="col-lg-12">
-        <h1 class="page-header" style="padding-left: 20px; font-family: 'Open Sans'" > Build and Verify </h1>
-        </div>
-        <!-- /.col-lg-12 -->
+            <div class="col-lg-12">
+                <h1 class="page-header" style="padding-left: 20px; font-family: 'Open Sans'" > Build and Verify </h1>
+            </div>
+            <!-- /.col-lg-12 -->
         </div>
         <!-- PAGE TITLE END -->
 
 
+
+
+        <!--<script>-->
+        <!--function CreateTableFromJSON() {-->
+        <!--var DataToLoad = JSON.parse(localStorage.pumpData);-->
+
+        <!--// EXTRACT VALUE FOR HTML HEADER.-->
+        <!--// ('Book ID', 'Book Name', 'Category' and 'Price')-->
+        <!--var col = [];-->
+        <!--for (var i = 0; i < DataToLoad.length; i++) {-->
+        <!--for (var key in DataToLoad[i]) {-->
+        <!--if (col.indexOf(key) === -1) {-->
+        <!--col.push(key);-->
+        <!--}-->
+        <!--}-->
+        <!--}-->
+
+        <!--// CREATE DYNAMIC TABLE.-->
+        <!--var table = document.createElement("table");-->
+
+        <!--// CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.-->
+
+        <!--var tr = table.insertRow(-1);                   // TABLE ROW.-->
+
+        <!--for (var i = 0; i < col.length; i++) {-->
+        <!--var th = document.createElement("th");      // TABLE HEADER.-->
+        <!--th.innerHTML = col[i];-->
+        <!--tr.appendChild(th);-->
+        <!--}-->
+
+        <!--// ADD JSON DATA TO THE TABLE AS ROWS.-->
+        <!--for (var i = 0; i < DataToLoad.length; i++) {-->
+
+        <!--tr = table.insertRow(-1);-->
+
+        <!--for (var j = 0; j < col.length; j++) {-->
+        <!--var tabCell = tr.insertCell(-1);-->
+        <!--tabCell.innerHTML = DataToLoad[i][col[j]];-->
+        <!--}-->
+        <!--}-->
+
+        <!--// FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.-->
+        <!--var divContainer = document.getElementById("showData");-->
+        <!--divContainer.innerHTML = "";-->
+        <!--divContainer.appendChild(table);-->
+        <!--}-->
+        <!--</script>-->
+
+        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+        <!--<button type="button" class="btn btn-primary btn-lg" onclick="CreateTableFromJSON()" data-toggle="modal" data-target="#myModal">-->
+        <!--Launch pumpInit Modal-->
+        <!--</button>-->
+
+
+
+
+        <!--&lt;!&ndash; Modal &ndash;&gt;-->
+        <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+        <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content">-->
+        <!--<div class="modal-header">-->
+        <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+        <!--<span aria-hidden="true">&times;</span>-->
+        <!--</button>-->
+        <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+        <!--</div>-->
+        <!--<div class="modal-body">-->
+        <!--<div id="showData"></div>-->
+        <!--</div>-->
+        <!--<div class="modal-footer">-->
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+        <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <script src="../javascripts/pumpControlInit.js" type="application/javascript"></script>
+
+
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData))" data-toggle="modal" data-target="#myModal">
+            Initialize
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Pump Initializations</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="editableTable">
+                            <h2>Valve Settings</h2>
+                            <table id="ValveTable" class="table table-striped">
+                                <tr>
+                                    <th>Valve Id</th>
+                                    <th>Motor Shield</th>
+                                    <th>Pin Number</th>
+                                    <th>Open</th>
+                                    <th>Closed</th>
+                                    <th>Current State</th>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <div class="editableTable">
+                            <h2>Dispenser Settings</h2>
+                            <table id="DispenserTable" class="table table-striped">
+                                <tr>
+                                    <th>Dispenser Id</th>
+                                    <th>Min</th>
+                                    <th>Max</th>
+                                    <th>Precision</th>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="export-btn" onclick="exporting();" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -486,7 +609,7 @@
                     </main>
 
                 </div>
-        </div>
+            </div>
 
 
         </div>

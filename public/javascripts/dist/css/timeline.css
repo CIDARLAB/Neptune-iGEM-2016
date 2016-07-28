@@ -130,10 +130,20 @@
     background-color: #e55934 !important;
 }
 
+.timeline-badge.assembly {
+    background-color: dodgerblue !important;
+}
+
+.timeline-badge.control {
+    background-color: greenyellow !important;
+}
+
 .timeline-badge.start:hover,
 .timeline-badge.specify:hover,
 .timeline-badge.design:hover,
 .timeline-badge.build:hover,
+.timeline-badge.control:hover,
+.timeline-badge.assembly:hover,
 .timeline-badge.done:hover {
     background-color: mediumpurple !important;
 }

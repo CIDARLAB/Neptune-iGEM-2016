@@ -8,7 +8,7 @@ $(function() {
     var tour = new Tour({
         debug: true,
         basePath: location.pathname.slice(0, location.pathname.lastIndexOf('/')),
-        template: "<div class='popover tour' style='background-color: lightblue;'><div class='arrow'></div><h3 class='popover-title' ></h3>" +
+        template: "<div class='popover tour' style='background-color: lightgrey;'><div class='arrow'></div><h3 class='popover-title' ></h3>" +
         "<div class='popover-content'></div>" +
         "<div class='popover-navigation'>" +
         "<button class='btn btn-default' data-role='prev'>« Prev</button>" +

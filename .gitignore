@@ -47,3 +47,9 @@ public/uploads
 **/.idea/workspace.xml
 **/idea/tasks.xml
 *.iws
+
+
+#Fluigi Crap
+
+data/
+ouput/

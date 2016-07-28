@@ -700,27 +700,27 @@
                                 <li id="UCFtab"><a onclick="changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])">UCF</a></li>
                                 <li> &nbsp &nbsp </li>
                                 <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes </a>
-                                        </li>
-                                        <li><a onclick="refreshEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload </a>
-                                        </li>
-                                        <li><a href="download/../uploads/Specify/specifyLFR" download="mfJSON.json"> Download LFR </a>
-                                        </li>
-                                        <li><a href="download/../uploads/Specify/specifyUCF" download="mfUCF.ucf"> Download UCF </a>
-                                        </li>
+                                <!--<div class="btn-group">-->
+                                    <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
+                                        <!--Actions-->
+                                        <!--<span class="caret"></span>-->
+                                    <!--</button>-->
+                                    <!--<ul class="dropdown-menu pull-right" role="menu">-->
+                                       <button class="btn btn-default" onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes
+                                       </button>
+                                    <button class="btn btn-default" onclick="refreshEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload
+                                        </button>
+                                        <!--<li><a href="download/../uploads/Specify/specifyLFR" download="mfJSON.json"> Download LFR </a>-->
+                                        <!--</li>-->
+                                        <!--<li><a href="download/../uploads/Specify/specifyUCF" download="mfUCF.ucf"> Download UCF </a>-->
+                                        <!--</li>-->
                                         <!--<li><a onclick="pushFileToEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>-->
                                         <!--</li>-->
-                                        <li class="divider"></li>
-                                        <li><a href="#"> Editor Settings </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                        <!--<li class="divider"></li>-->
+                                        <button class="btn btn-default" href="#"> Editor Settings
+                                        </button>
+                                    <!--</ul>-->
+                                <!--</div>-->
                                 </div>
                             </ul>
                     </div>

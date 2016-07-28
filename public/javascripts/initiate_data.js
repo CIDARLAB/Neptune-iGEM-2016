@@ -13,11 +13,11 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     localStorage.settings_X_pos = 200;
     localStorage.settings_Y_pos= 200;
     localStorage.DataToLoad;
-    localStorage.dataTable_config = [
-        { id:"Pump_Number",    header:"Pump Number",   width:50},
-        { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
-        { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
-                                    ];
+    // localStorage.dataTable_config = [
+    //     { id:"Pump_Number",    header:"Pump Number",   width:50},
+    //     { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
+    //     { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
+    //                                 ];
 
     localStorage.pumpData = clearPumpData();
     localStorage.valveData = inititateValveStates();

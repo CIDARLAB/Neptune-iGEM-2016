@@ -14,8 +14,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
     <script src="../javascripts/tour.js"></script>
-    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
 
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
 
 </head>
 
@@ -236,13 +236,21 @@
         localStorage.FILE_designMINT = '';
         localStorage.FILE_designINI = '';
         localStorage.FILE_buildJSON = '';
-        localStorage.FILE_buildSVG = '';
-        downloadFile('','specifyLFR','','inputString');
-        //downloadFile('','specifyUCF','','inputString');
-        downloadFile('','designMINT','','inputString');
-        //downloadFile('','designINI','','inputString');
-        downloadFile('','buildJSON','','inputString');
-        downloadFile('','buildSVG','','inputString');
+        localStorage.FILE_buildSVGcontrol = '';
+        localStorage.FILE_buildSVGcell = '';
+        localStorage.FILE_buildSVGflow = '';
+        localStorage.FILE_buildSVGboundary = '';
+        localStorage.FILE_buildEPSdevice = '';
+        localStorage.FILE_buildEPSphoto = '';
+
+//        downloadFile('','specifyLFR','','inputString');
+//        //downloadFile('','specifyUCF','','inputString');
+//        downloadFile('','designMINT','','inputString');
+//        //downloadFile('','designINI','','inputString');
+//        downloadFile('','buildJSON','','inputString');
+//        downloadFile('','buildSVG','','inputString');
+
+        initiateGUI();
 
         $.get('../uploads/Specify/specifyUCF.json',function(data)
         {

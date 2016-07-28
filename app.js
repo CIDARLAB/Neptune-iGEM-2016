@@ -74,7 +74,9 @@ var fs = require('fs');
     var fluigiController = require('./controllers/fluigi');
     var lfrController = require('./controllers/lfrpage');
     var lfr_bsController = require('./controllers/lfrpage_bs');
-    var BaVController = require('./controllers/BuildAndVerify');
+    var controlController = require('./controllers/control');
+    var buildController = require('./controllers/build');
+    var assemblyController = require('./controllers/assembly');
 }
 
 /**************** RENDER PAGES ****************/
@@ -84,7 +86,9 @@ var fs = require('fs');
     app.get('/dashboard',dashboardController.openDashboard);
     app.get('/specify',specifyController.openSpecifyPage);
     app.get('/design',designController.openDesignPage);
-    app.get('/BuildAndVerify',BaVController.openBaVPage);
+    app.get('/control',controlController.openControllersPage);
+    app.get('/Build',buildController.openBuildPage);
+    app.get('/assembly', assemblyController.openAssemblyPage);
 
     app.get('/fluigipage', fluigiController.getFluigiPage);
     app.get('/uShroomPage',mmController.openMMPage);

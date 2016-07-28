@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> {{title}} </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- START: ALL PERSONAL JAVASCRIPTS HERE -->
+
+    <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
+    <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
+    <script>
+        localStorage.design_editor_state = 'designMINT';
+        localStorage.mint_state = 'write';
+        localStorage.ini_state = 'write';
+    </script>
+
+
+
+    <!-- CSS DEPENDENCIES -->
+    <style type="text/css" media="screen">
+        #editor_design {
+            height: 300px;
+        }
+    </style>
+    <!-- END: ALL PERSONAL JAVASCRIPTS HERE -->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="/javascripts/dist/css/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <!--<link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">-->
+
+    <!-- Toastr CDN -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Morris Charts CSS -->
+    <!--<link href="/javascripts/bower_components/morrisjs/morris.css" rel="stylesheet">-->
+
+    <!-- Custom Fonts -->
+    <link href="/javascripts/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!--Walkthrough tour-->
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
+    <script src="../javascripts/tour.js"></script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+
+
+    <style>
+        body {  padding: 0 !important;  }
+    </style>
+
+
+<!-- *** START: THIS DIVISION WRAPS EVERYTHING *** -->
+<div id="wrapper">
+    <!-- START: THIS DIV HOSTS THE SIDE AND TOP NAVIGATION BARS -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+
+        <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+            <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
+        </div>
+
+
+    </nav>
+    <!-- END: THIS DIV HOSTS THE SIDE AND TOP NAVIGATION BARS -->
+
+    <div class="navbar-default nav-fixed-top"  role="navigation">
+        <!--<div class="sidebar-nav navbar-collapse collapseNav">-->
+        <ul class="nav" id="side-menu">
+            <li style="display: inline-block;">
+                <a href="../"><i class="fa fa-home fa-fw"></i> Home </a>
+            </li>
+
+            <!-- THIS LINKS TO THE MAIN DASHBOARD -->
+            <li style="display: inline-block;">
+                <a href="../dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+    </head>
+
+<body>
+
+    <div id="buildContent">
+        <!-- PAGE TITLE START -->
+        <div class="row">
+            <div class="col-lg-12">
+
+                <h1 class="page-header" style="font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px">
+                    <i class="fa fa-gavel" aria-hidden="true" style="color: #447294;"></i>
+                    Build </h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- PAGE TITLE END -->
+        <div class="row" style="align: center;">
+            <div class="container">
+                <ul class="payment-wizard">
+                    <li class="active">
+                        <div class="wizard-heading">
+                            Hardware Specifications
+                            <span class="icon-user"></span>
+                        </div>
+                        <div class="wizard-content">
+                            <p>Volume of liquid to dispense in ml:</p>
+                            <input class="btn btn-default" id="liquid" type="text" style="font-family: 'Open Sans'"/>
+                            <button class="btn btn-default" id="checkVolume">Check volume</button>
+                            <br><br>
+                            <p>Tolerance of servos:</p>
+                            <input class="btn btn-default" id="tolerance" type="text" style="font-family: 'Open Sans'"/>
+                            <button class="btn btn-default" id="checkTolerance">Check tolerance</button>
+                            <br>
+                            <button class="btn-green" type="submit" id="specs">Continue</button>
+                            <br><br>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wizard-heading">
+                            Suggested Servos and Syringe combinations
+                            <span class="icon-location"></span>
+                        </div>
+                        <div class="wizard-content">
+
+                        <p>Feel free to scroll through our options and select a servo and syringe combination:</p>
+                            <!--Dropdown Options-->
+
+                            <p style="font-size: 15px;">Pick your selected hardware to add to the purchase list:</p>
+                            <select id="servoSyringe" class="selectpicker btn btn-default">
+                                <option>Recommended</option>
+                                <option>Lowest cost</option>
+                                <option>Highest tolerance</option>
+                                <option>Custom hardware</option>
+                            </select>
+                            <br>
+
+                            <!--Picture Options-->
+                    <div style="text-align: center;">
+
+                        <button class="btn btn-default" href="#myCarousel" data-slide-to="1">
+                        <a class="glyphicon glyphicon-usd" style="font-size: 40px;"></a>
+                        <!--Lowest cost-->
+                        </button>
+                            <button class="btn btn-default" href="#myCarousel" data-slide-to="0">
+                                <a class="glyphicon glyphicon-star" style="font-size: 40px;"></a>
+                                <!--Recommended-->
+                            </button>
+
+                            <button class="btn btn-default" href="#myCarousel" data-slide-to="2">
+                                <a class="glyphicon glyphicon-wrench" style="font-size: 40px;"></a>
+                                <!--Highest tolerance-->
+                            </button>
+                            <br><br>
+                    </div>
+
+                            <div style="padding-left: 20px;" class="col-lg-10 col-lg-offset-1 text-vertical-center">
+                                <div id="myCarousel" class="carousel slide" data-interval="false" style=" overflow: hidden; position: relative;">
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active" id="recommended">
+                                            <div style="text-align: center;">
+                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                                    Recommended
+                                            </h2>
+                                            </div>
+                                            <div class="picture">
+                                                <img src="../images/build/hitec.jpg" width=334px;>
+                                                <img src="../images/build/10ml.jpg" width=334px;>
+                                            </div>
+                                        </div>
+
+                                        <div class="item" id="cost">
+                                            <div style="text-align: center;">
+                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                                Lowest cost
+                                            </h2>
+                                                </div>
+                                            <div class="picture">
+                                                <img src="../images/build/hitec.jpg" width=334px;>
+                                                <img src="../images/build/10ml.jpg" width=334px;>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="item" id="tolerance">
+                                            <div style="text-align: center;">
+                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                                Highest tolerance
+                                            </h2>
+                                                </div>
+                                            <div class="picture">
+                                                <img src="../images/build/hitec.jpg" width=334px;>
+                                                <img src="../images/build/10ml.jpg" width=334px;>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <br>
+
+                <!-- Left and  right controls -->
+                <a id="previous" class="left carousel-control" style="background: none; color: #447294;" href="#myCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">     </span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <br> <br>
+                <a id= "next" class="right carousel-control" style="background: none; color: #447294;" href="#myCarousel" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">     </span>
+                    <span class="sr-only">Next</span>
+                </a>
+
+                </div>
+            </div>
+                            <br><br><br>
+
+                            <div class="container">
+                            <a data-toggle="modal" data-target="#customHWModal" id="customize">
+                                    Didn't see what you wanted? Click here to enter your own specs!
+                            </a>
+
+                            <br><br>
+                            </div>
+
+                            <button class="btn-green done" type="submit">Continue</button>
+
+                            <br><br>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wizard-heading">
+                            Build Summary
+                            <span class="icon-summary"></span>
+                        </div>
+                        <div class="wizard-content">
+                            <p>Please download your SVG file, if you haven't already, so that you can CNC mill your chip.
+                                We also provide you with a zip file of parts that you need to 3D Print.
+                                Finally, we generate an ordering list for other miscellaneous parts that you will need for the setup.
+                            </p>
+                            <div style="text-align: center;">
+                            <a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySVG.svg">
+                                <button type="button" class="btn btn-primary">
+                                    Download SVG
+                                </button>
+                            </a>
+                            <button class="btn btn-primary" id="get3DParts">Get 3D Printing Files</button>
+                            <button class="btn btn-primary" id="getParts">Get Ordering List</button>
+                                </div>
+                            <br><br>
+                            <div style="text-align: center;">
+                            <textarea disabled id="orderList" style="border: none; background-color: white; width: 80%; height: 100px; resize: none;"> </textarea>
+                            <br><br><br>
+                                </div>
+
+                            <button class="btn-green done" type="submit">Continue</button>
+                            <br><br>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wizard-heading">
+                            Ready?
+                            <span class="icon-mode"></span>
+                        </div>
+                        <div class="wizard-content">
+                            <p> Feel free to go back and change any of your selections!
+                                If not, then proceed to assembly where we'll teach you how to put everything together.</p>
+                            <a href="../assembly"><button class="btn-green">Proceed to Assembly</button></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+                <!-- /.nav-second-level -->
+        </div>
+
+    </div>
+    <!-- END: PAGE WRAPER -->
+
+</div>
+
+
+    <!-- Modal -->
+    <div id="customHWModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Custom Hardware Setup</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        For Neptune, we require that you choose a syringe with volume between 0-100ml, and a servo with tolerance greater than 25 microliters.
+                    </p>
+                    <textarea disabled style="resize: none; width: 450px; border: none; height: 40px; background-color: white; " id="suggestion">
+                    </textarea>
+                    <p>
+                        Once you choose your custom hardware, please answer all of the following questions below to proceed:
+                    </p>
+                    <br>
+                    <div id="syringeDetails" style="display:inline-block;">
+                        <div class="col-md-8">
+                            <h4>Syringe</h4>
+                            <p>1. Diameter of syringe in mm:
+                            <input class="btn btn-default" id="diameter" type="text" style="font-family: 'Open Sans'"/>
+                            </p>
+
+                            <p>2. Length in mm between 1 ml:
+                            <input class="btn btn-default" id="length" type="text" style="font-family: 'Open Sans'"/>
+                            </p>
+
+                            <p>3. Diameter of the innner head of syringe in mm:
+                            <input class="btn btn-default" id="diameterInner" type="text" style="font-family: 'Open Sans'"/>
+                            </p>
+                        </div>
+
+                        <div class="col-md-4">
+                            <img src="../images/build/syringeMeasure.jpg" height="180px">
+                        </div>
+
+                    </div>
+                    <div id="syringeDetails" style="display:inline-block;">
+                        <div class="col-md-8">
+                            <h4>Servo </h4>
+                        <p>1. Width of servo in mm:
+                        <input class="btn btn-default" id="width" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>2. Height of servo in mm:
+                        <input class="btn btn-default" id="height" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>3. Distance holes are apart in mm:
+                        <input class="btn btn-default" id="distanceHoles" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>4. Diameter of holes in mm:
+                        <input class="btn btn-default" id="diameterHoles" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>5. Length of extended servo in mm:
+                        <input class="btn btn-default" id="extendedLength" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>6. Torque at 5V (from datasheet):
+                        <input class="btn btn-default" id="torque" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+
+                        <p>7. Limit angle (from datasheet):
+                        <input class="btn btn-default" id="angle" type="text" style="font-family: 'Open Sans'"/>
+                        </p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="../images/build/servoMeasure.jpg" height="350px">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> Save </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> Back to Home</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
+
+
+
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script type="text/javascript">
+    $(window).load(function(){
+        $(".done").click(function(){
+            var this_li_ind = $(this).parent().parent("li").index();
+            if($('.payment-wizard li').hasClass("jump-here")){
+                $(this).parent().parent("li").removeClass("active").addClass("completed");
+                $(this).parent(".wizard-content").slideUp();
+                $('.payment-wizard li.jump-here').removeClass("jump-here");
+            }else{
+                $(this).parent().parent("li").removeClass("active").addClass("completed");
+                $(this).parent(".wizard-content").slideUp();
+                $(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();
+            }
+        });
+
+        $('.payment-wizard li .wizard-heading').click(function(){
+            if($(this).parent().hasClass('completed')){
+                var this_li_ind = $(this).parent("li").index();
+                var li_ind = $('.payment-wizard li.active').index();
+                if(this_li_ind < li_ind){
+                    $('.payment-wizard li.active').addClass("jump-here");
+                }
+                $(this).parent().addClass('active').removeClass('completed');
+                $(this).siblings('.wizard-content').slideDown();
+            }
+        });
+
+        $('#getParts').click(function(){
+            var liquid = $('#liquid').val();
+            var tolerance= $('#tolerance').val();
+            var combo = $('#servoSyringe').find(":selected").text();
+            $('#orderList').val(
+                    'Volume of liquid required to dispense in ml: '  + liquid + '\n'
+                    + 'Tolerance of required servos: ' + tolerance + '\n'
+                    + 'You have selected the ' + combo + ' Servo and Syringe Combo'
+            );
+        });
+
+        $('#checkVolume').click(function(){
+            var liquid = $('#liquid').val();
+            if (liquid<=0 || liquid >100) {
+                toastr.warning('Volume of liquid must be between 0 and 100! Please enter again.');
+            }
+            else {
+                toastr.info('Volume value accepted.');
+            }
+        });
+        $('#checkTolerance').click(function(){
+            var tolerance = $('#tolerance').val();
+            if (tolerance<0.1) {
+                toastr.warning('Tolerance must be greater than 0.1! Please enter again.');
+            }
+            else {
+                toastr.info('Tolerance value accepted.');
+            }
+        });
+
+        $('#specs').click(function(){
+            var tolerance = $('#tolerance').val();
+            var liquid = $('#liquid').val();
+            if (liquid<=0 || liquid >100 || tolerance<0.1) {
+                toastr.warning('Error! Please enter values to proceed');
+            }
+            else {
+                var this_li_ind = $(this).parent().parent("li").index();
+                if($('.payment-wizard li').hasClass("jump-here")){
+                    $(this).parent().parent("li").removeClass("active").addClass("completed");
+                    $(this).parent(".wizard-content").slideUp();
+                    $('.payment-wizard li.jump-here').removeClass("jump-here");
+                }else{
+                    $(this).parent().parent("li").removeClass("active").addClass("completed");
+                    $(this).parent(".wizard-content").slideUp();
+                    $(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();
+                }
+            }
+        });
+
+        $('#customize').click(function(){
+            var tolerance = $('#tolerance').val();
+            var liquid = $('#liquid').val();
+            if (liquid>=0 && liquid <10) {
+               $('#suggestion').val('Suggestion: Choose a 10ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+            else if (liquid>=10 && liquid <25){
+                $('#suggestion').val('Suggestion: Choose a 25ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+            else if (liquid>=25 && liquid <50){
+                $('#suggestion').val('Suggestion: Choose a 50ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+            else{
+                $('#suggestion').val('Suggestion: Choose a 100ml syringe and a servo with '+tolerance+ ' tolerance.');
+            }
+
+        });
+
+
+    })
+</script>
+
+<style>
+    body{float: left; align: center; width: 100%;}
+    *{margin: 0; padding: 0; box-sizing: border-box;}
+    :focus{outline: none;}
+    a{text-decoration: none;}
+    li{list-style: none;}
+    h1{font-size: 24px; font-weight: 600; margin: 20px 0 10px; text-align: center;}
+    .container{align: center; max-width: 80%; }
+    /*= wizard css =*/
+    .payment-wizard{float: left; width: 100%;}
+    .payment-wizard li.active{position: relative; z-index: 1;}
+    .wizard-heading{font-family: 'Trocchi', serif; float: left; width: 100%; padding: 10px 15px; background-color: #fafafa; margin-bottom: 1px; box-sizing: border-box; font-size: 18px; color: #4c4c4c; text-transform: uppercase; transition: 0.3s;}
+    .wizard-content{display: none; float: left; width: 100%; background-color: #fff; box-shadow: 0 8px 8px #d2d2d2; padding: 15px; box-sizing: border-box;}
+    li:first-child .wizard-content{display: block;}
+    .wizard-content p{margin-bottom: 15px; font-size: 15px; line-height: 26px; color: #4c4c4c;}
+    .btn-green{color: #fff; float: right; border: 0; padding: 7px 10px; min-width: 92px; z-index: 1; cursor: pointer; font-size: 14px; text-transform: uppercase; background-color: #5fba57; border-radius: 3px; border-bottom: 3px solid #289422; position: relative; transition: 0.3s;}
+    .btn-green:before{content: ""; width: 100%; height: 0; border-radius: 3px; z-index: -1; position: absolute; left: 0; bottom: 0; background-color: #289422; transition: 0.3s;}
+    .btn-green:hover:before{height: 100%;}
+    /*.wizard-heading span{float: right; background-image: url(http://usingcss3.com/wp-content/uploads/2016/02/wizard-icons.png); background-repeat: no-repeat;}*/
+    .icon-user{width: 20px; height: 18px; background-position: 0 -40px; margin-top: 4px;}
+    .icon-location{width: 15px; height: 20px; background-position: -22px -42px; margin-top: 4px;}
+    .icon-summary{width: 20px; height: 20px; background-position: -39px -42px; margin-top: 4px;}
+    .icon-mode{width: 20px; height: 16px; background-position: -61px -34px; margin-top: 6px;}
+    .active .wizard-heading{background-color: #447294; color: #fff; margin-bottom: 0;}
+    .active .icon-user{background-position: 0 0;}
+    .active .icon-location{background-position: -22px 0;}
+    .active .icon-summary{background-position: -39px 0;}
+    .active .icon-mode{background-position: -61px 0;}
+    .completed .wizard-heading{color: #447294; position: relative; padding: 10px 15px 10px 36px; cursor: pointer; transition: 0.3s;}
+    .completed .wizard-heading:before{content: "✓"; color: limegreen; text-align: center; font-size: 15px; font-weight: bold; position: absolute; min-height: 22px; left: -7px; top: 8px; width: 32px; padding: 4px 0; background-color: #447294; z-index: 99;}
+    .completed .wizard-heading:after{content: ""; position: absolute; top: 38px; left: -7px; border-left: 7px solid transparent; border-top: 5px solid #001e34;}
+    .completed .icon-user{background-position: 0 -20px;}
+    .completed .icon-location{background-position: -22px -21px;}
+    .completed .icon-summary{background-position: -39px -21px;}
+    .completed .icon-mode{background-position: -61px -17px;}
+    /*= wizard end =*/
+    /* device-screen */
+    @media only screen and (max-width: 960px){
+        .hide-on-device{display: none;}
+    }
+    @media only screen and (max-width: 650px){
+        .wizard-heading{font-size: 15px;}
+        .wizard-content p{font-size: 13px; line-height: 20px; margin-bottom: 10px;}
+    }
+
+    @media (min-width: 800px) {
+        .modal-dialog {
+            width: 55%;
+            margin: 30px auto;
+        }
+    }
+    /* device-screen end */
+
+    /*body {*/
+        /*background-position-y: 90px;*/
+        /*background-image: url("../images/build/bg.jpg");*/
+        /*background-repeat: no-repeat;*/
+        /*background-size: 100% auto;*/
+    /*}*/
+
+    #myCarousel {
+        border-radius: 8px;
+        border: none;
+        align: center;
+
+    }
+
+    .carousel {
+        /*overflow-x: hidden;*/
+        /*overflow-y: hidden;*/
+        float: center;
+        display: block;
+        white-space: nowrap;
+    }
+
+    #myCarousel .picture {
+        margin-left:10px;
+        float: left;
+        display: inline-block;
+        margin: 14px;
+        word-wrap: normal;
+        word-break: normal;
+        white-space: normal;
+        overflow: hidden;
+    }
+
+    #myCarousel .texts {
+        margin-left:10px;
+        /*width: 500px;*/
+        /*height: 500px;*/
+        float: left;
+        display: inline-block;
+        margin: 14px;
+        word-wrap: normal;
+        word-break: normal;
+        white-space: normal;
+        overflow: hidden;
+    }
+
+
+</style>
+
+
+<!-- *** START: DEPENDENCIES *** -->
+<!-- jQuery -->
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/javascripts/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
+<script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
+<!--<script src="/javascripts/js/morris-data.js"></script>-->
+<!-- Custom Theme JavaScript -->
+<!--<script src="/javascripts/dist/js/sb-admin-2.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+<!-- *** END: DEPENDENCIES *** -->
+
+</body>
+
+
+</html>

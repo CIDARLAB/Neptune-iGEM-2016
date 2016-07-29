@@ -413,8 +413,20 @@
 
 
                 <li style="display:inline-block !important;">
-                    <a onclick="settingsButtonPressed();">
-                        <i class="fa fa-cogs fa-fw"></i></a>
+                    <!--<a onclick="settingsButtonPressed();">-->
+                        <!--<i class="fa fa-cogs fa-fw"></i></a>-->
+                    <a>
+
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData))" data-toggle="modal" data-target="#myModal">
+                            Initialize
+                        </button>
+
+
+                    </a>
+
+
+
                 </li>
             </ul>
 
@@ -519,10 +531,10 @@
 
 
 
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData))" data-toggle="modal" data-target="#myModal">
-            Initialize
-        </button>
+        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+        <!--<button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData))" data-toggle="modal" data-target="#myModal">-->
+            <!--Initialize-->
+        <!--</button>-->
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

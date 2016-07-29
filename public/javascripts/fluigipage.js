@@ -1,3 +1,8 @@
+ShieldIndex = 0;
+PinIndex = 0;
+
+
+
 function setNumberOfPumps_JSON() {
     localStorage.pumps = JSON.parse(localStorage.portXcoords).length;
     var set_pumpData_newNum = [];
@@ -7,11 +12,12 @@ function setNumberOfPumps_JSON() {
 
         var singleStage2 = {id: i, HW_shield: Math.floor(i/12), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened'};
         set_pumpData_newNum.push(singleStage2);
-
         j = j + 1;
         if(j == 13) {
             j = 1;
         }
+        ShieldIndex = i;
+        PinIndex = j;
     }
     var DataToLoad = set_pumpData_newNum;
     localStorage.clear_toggle = true;
@@ -157,6 +163,69 @@ function wrap_data_for_Arduino()
     // RETURN THE DATA
     return command;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function clearDispenserData() {
+
+    var dispenserData = [];
+    var j = PinIndex;  //  hardware pin (goes from 1 to 12)
+    var shield = ShieldIndex;
+    for (var i = 1; i <= localStorage.Dispensers; i++)
+    {
+        var singleStage = {id: i, HW_shield: Math.floor(shield/12), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0};
+        dispenserData.push(singleStage);
+        j = j + 1;
+        if(j == 13) {
+            j = 1;
+        }
+
+    }
+    return JSON.stringify(dispenserData);
+}
+
+function setNumberOfDispensers_JSON() {
+    localStorage.Dispensers = JSON.parse(localStorage.portXcoordsDisp).length;
+    var set_dispData_newNum = [];
+    var j = PinIndex;  //  hardware pin (goes from 1 to 12)
+    var shield = ShieldIndex;
+    for (var i = 1; i <= localStorage.Dispensers; i++) {
+        var singleStage2 = {id: i, HW_shield: Math.floor(shield/12), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0};
+        set_dispData_newNum.push(singleStage2);
+        j = j + 1;
+        if(j == 13) {
+            j = 1;
+        }
+        ShieldIndex = i;
+        PinIndex = j;
+    }
+    var DataToLoad = set_dispData_newNum;
+    localStorage.dispenserData = JSON.stringify(DataToLoad);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

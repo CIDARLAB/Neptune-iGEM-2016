@@ -1,35 +1,53 @@
-[
-  {
-    "operator":"+",
-    "name":"YMixer",
-    "inputs":2,
-    "inputTerms": [1,2],
-    "outputTerms": 3,
-    "outputs":1,
-    "picpath":"SampleIcons/ymixer.png",
-    "mint":"V TREE NAME 2 to 1 spacing=250 flowChannelWidth=100",
-    "layer":"flow"
-  },
-  {
-    "operator":"*",
-    "name":"serpmixer",
-    "inputs":2,
-    "outputs":1,
-    "picpath":"path/to/serpmixer/pic",
-    "import":"serpentine_mixer",
-    "mint":"sm",
-    "layer":"flow"
-  },
-  {
-    "operator":"/",
-    "name":"3DValve",
-    "inputs":2,
-    "outputs":1,
-    "controlTerms":"3",
-    "inputTerms":"4",
-    "outputTerms":"2",
-    "picpath":"path/to/valve/pic",
-    "mint":"H 3DVALVE NAME radius=250 gap=75",
-    "layer":"control"
-  }
+
+[ 
+	{		
+		"operator":"general information",
+		"channelWidth":750,
+		"portRadius":2020
+	},
+	{
+		"operator":"+",
+		"name":"YMixer",
+		"inputs":2,
+		"inputTerms": [1,2],
+		"outputTerms": 3,
+		"outputs":1,
+		"picpath":"SampleIcons/ymixer.png",
+		"mint":"V TREE NAME 2 to 1 spacing=7500 flowChannelWidth=750",
+		"layer":"flow"
+	},
+	{
+		"operator":"~",
+		"name":"serpmixer",
+		"inputs":1,
+		"outputs":1,
+		"inputTerms":[1],
+		"outputTerms":"2",
+		"picpath":"path/to/serpmixer/pic",
+		"mint":"H MIXER NAME numBends=10 bendSpacing=750 bendLength=1500 channelWidth=750",
+		"layer":"flow"
+	},
+	{
+		"operator":"/",
+		"name":"3DValve",
+		"inputs":2,
+		"outputs":1,
+		"controlTerms":"3",
+		"inputTerms":"4",
+		"outputTerms":"2",
+		"picpath":"path/to/valve/pic",
+		"mint":"H 3DVALVE NAME radius=1875 gap=600",
+		"layer":"control"
+	},
+	{
+		"operator":"*",
+		"name":"node",
+		"inputs":3,
+		"inputTerms": [1,4,3],
+		"outputTerms": 2,
+		"outputs":1,
+		"picpath":"SampleIcons/node.png",
+		"mint":"NODE NAME",
+		"layer":"flow"
+	}
 ]

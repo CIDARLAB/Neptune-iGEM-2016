@@ -3,10 +3,12 @@
  */
 
 var fs = require('fs');
+var exports = module.exports;
+var multer = require('multer');
+var express = require('express');
 
 exports.clearFiles = function(req, res)
 {
-
     var file = __dirname;
     var len = file.length;
     file = file.substring(0,len-12);
@@ -31,23 +33,65 @@ exports.clearFiles = function(req, res)
     var path10 = "./public/uploads/Build_Verify/buildEPS_device.eps";
     var path11 = "./public/uploads/Build_Verify/buildEPS_photo.eps";
 
-    fs.unlink(file1);
-    fs.unlink(file2);
-    fs.unlink(file3);
-    fs.unlink(file4);
-    fs.unlink(file5);
-    fs.unlink(file6);
-    fs.unlink(file7);
-    fs.unlink(file8);
-    fs.unlink(path1);
-    fs.unlink(path2);
-    fs.unlink(path3);
-    fs.unlink(path4);
-    fs.unlink(path5);
-    fs.unlink(path6);
-    fs.unlink(path7);
-    fs.unlink(path8);
-    fs.unlink(path9);
-    fs.unlink(path10);
-    fs.unlink(path11);
+    var fileArray = [
+        file1,file2,file3,file4,
+        file5,file6,file7,file8,
+        path1,path2,path3,path4,
+        path5,path6,path7,path8,
+        path9,path10,path11
+        ];
+
+    try
+    {
+        for (var j = 0; j < fileArray.length; j++)
+        {
+            fs.unlink(fileArray[j], function (err)
+            {
+                if (err)
+                {
+                    console.log(err);
+                }
+            });
+        }
+    }
+    catch (err)
+    {
+        console.log(err);
+    }
 };
+
+
+
+
+
+
+
+
+
+
+
+// fs.exists(fileArray[j], (exists) => {
+//     var filepath = fileArray[j];
+//     if (exists) {
+//         console.log('Deleting: ' + filepath);
+//         fs.unlink(filepath,function(error){
+//             if(error)
+//             {console.log(error)}
+//         });
+//     } else {
+//         console.log('File not found: ' + filepath);
+//     }
+// });
+
+// fs.exists(fileArray[j], function (exists) {
+//     var filepath = fileArray[j];
+//     if (exists) {
+//         console.log('Deleting: ' + filepath);
+//         fs.unlink(filepath,function(error){
+//             if(error)
+//             {console.log(error)}
+//         });
+//     } else {
+//         console.log('File not found: ' + filepath);
+//     }
+// });

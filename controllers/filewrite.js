@@ -26,9 +26,9 @@ exports.writeToFile = function(req, res)
         case 'buildJSON':
             path = "./public/uploads/Build_Verify/buildJSON.json";
             break;
-        case 'buildSVG_boundary':
-            path = "./public/uploads/Build_Verify/buildSVG_boundary.svg";
-            break;
+        // case 'buildSVG_boundary':
+        //     path = "./public/uploads/Build_Verify/buildSVG_boundary.svg";
+        //     break;
         case 'buildSVG_cell':
             path = "./public/uploads/Build_Verify/buildSVG_cell.svg";
             break;

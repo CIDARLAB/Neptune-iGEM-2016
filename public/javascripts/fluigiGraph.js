@@ -3,7 +3,6 @@
 function onclickanchortag(){
     console.log('hey beb');
     var location = getLocation(this.src);
-    //this.preventDefault();
 
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
@@ -27,7 +26,6 @@ function onclickanchortag(){
     if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
 
     }
-
 
     return false;
 }

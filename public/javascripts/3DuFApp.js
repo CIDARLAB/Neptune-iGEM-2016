@@ -35961,7 +35961,7 @@ class ChannelTool extends MouseTool {
 			PageSetup.killParamsWindow();
 			paper.project.deselectAll();
 			ref.dragging = true;
-			ref.initChannel();
+			// ref.initChannel();
 		};
 		this.up = function (event) {
 			ref.dragging = false;

@@ -8,6 +8,9 @@ function loadButtons() {
     $.getJSON(fileOfChoice, function (json) {
         // console.log(JSON.stringify((json.layers[2]).name));
 
+
+
+        // CONTROL ONLY
         if(((json.layers[1]).name) === "control")
         {
             controlOnly = JSON.stringify((json.layers[1]).features);
@@ -24,6 +27,25 @@ function loadButtons() {
             console.log(controlOnly);
         }
 
+        // FLOW ONLY
+        if(((json.layers[1]).name) === "flow")
+        {
+            flowOnly = JSON.stringify((json.layers[1]).features);
+            console.log(flowOnly);
+        }
+        else if(((json.layers[2]).name) === "flow")
+        {
+            flowOnly = JSON.stringify((json.layers[2]).features);
+            console.log(flowOnly);
+        }
+        else if(((json.layers[0]).name) === "flow")
+        {
+            flowOnly = JSON.stringify((json.layers[0]).features);
+            console.log(flowOnly);
+        }
+
+
+
         // Use Json as a string
         var jsonString = JSON.stringify(json);
 
@@ -33,7 +55,7 @@ function loadButtons() {
         localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
         console.log("height: " + JSON.stringify(Object(json.params.height)));
 
-        console.log("control only: " + controlOnly);
+        // console.log("control only: " + controlOnly);
 
         // Now look for all Port in the control layer only
         var Re = /Port.+?\[(.+?),(.+?)\].+?/g;
@@ -41,14 +63,12 @@ function loadButtons() {
         var portArray = [];
         var portX = [];
         var portY = [];
-        // var portRadius1 = [];
 
-
+        // look through control layer for ports
         while ((myArray = Re.exec(controlOnly)) !== null) {
             portX.push(myArray[1]);
             // console.log("should be x coord: " + myArray[1]);
             portY.push(myArray[2]);
-
             portArray.push(myArray.index);
         }
 
@@ -58,7 +78,43 @@ function loadButtons() {
 
         //  Update number of Pumps for settings page
         setNumberOfPumps_JSON();
+
         // clearPumpData();
+
+
+
+
+
+
+        // Now look for all Ports (Dispensers) in the control layer only
+        var myArrayDisp;
+        var portArrayDisp = [];
+        var portXDisp = [];
+        var portYDisp = [];
+
+        // look through flow layer for ports
+        while ((myArrayDisp = Re.exec(flowOnly)) !== null) {
+            portXDisp.push(myArrayDisp[1]);
+            // console.log("should be x coord in flow layer: " + myArrayDisp[1]);
+            portYDisp.push(myArrayDisp[2]);
+            portArrayDisp.push(myArrayDisp.index);
+        }
+
+
+        // Store json variables to localStorage in form of JSON object...
+        localStorage.portXcoordsDisp = JSON.stringify(portXDisp);
+        localStorage.portYcoordsDisp = JSON.stringify(portYDisp);
+        console.log('portX coords Dispensers: ' + localStorage.portXcoordsDisp);
+        console.log('portY coords Dispensers: ' + localStorage.portYcoordsDisp);
+
+        //  Update number of Pumps for settings page
+        setNumberOfDispensers_JSON();
+
+
+
+
+
+
 
 
         // Display JSON via 3DuF
@@ -100,7 +156,7 @@ JSON_form.onsubmit = function(event) {
 
             });
             loadButtons();
-            location.reload();
+            // location.reload();
             JSON_uploadButton.innerHTML = 'Uploaded';
         } else {
             alert('File upload failed.');

@@ -2,7 +2,7 @@
 <html lang="en" class="home_page">
 <head>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
@@ -161,14 +161,14 @@
                 </p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession(); window.location='../dashboard'"> Start New Session </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="window.location='../dashboard'"> Resume Previous Session </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" > Resume Previous Session </button>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    $('#dashboard').click(function(){
+    $(document).ready(function(){
         $('#setSession').modal('show');
     });
 </script>
@@ -243,7 +243,18 @@
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->
 <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>-->
-
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/javascripts/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
+<script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
+<!--<script src="/javascripts/js/morris-data.js"></script>-->
+<!-- Custom Theme JavaScript -->
+<script src="/javascripts/dist/js/sb-admin-2.js"></script>
+<!-- *** END: DEPENDENCIES *** -->
 
 <script type="text/javascript">
     function setNewSession()

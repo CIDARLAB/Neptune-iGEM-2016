@@ -11,8 +11,6 @@ function onclickanchortag(){
             console.log("Port " + this.id + " clicked");
             valve_to_control = this.id;
             flipFlop_valveState(valve_to_control);
-
-
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
@@ -92,6 +90,44 @@ $(document).ready(function(){
         }
 
         console.log("found another valve!");
+        content.append(template);
+
+
+    }
+
+
+
+
+    // for each DISPENSER, create new instance of DISPENSER template
+    for(var i=0; i<JSON.parse(localStorage.getItem('portXcoordsDisp')).length; i++){
+
+        var content = $("#content");
+        var template = document.getElementById("dispenser-template").content.cloneNode(true);
+        var valveDiv = template.querySelector('.valve');
+
+        valveDiv.style.position = 'absolute';
+
+        // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
+        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoordsDisp'))[i])*(51000/localStorage.getItem('SVGdimY'))*0.010294117647058823 + 90 + 110) + 'px';
+        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoordsDisp'))[i])*(75800/localStorage.getItem('SVGdimX'))*0.010294117647058823 - 20 + 150 + 100) + 'px';
+
+        var specificImage = template.querySelector('.valve_color');
+        // set id of each valve anchor based on location in array
+        specificImage.id = i + 1;
+
+        // specificImage.onclick = onclickanchortag;
+
+        valveButton = template.querySelector('.valve');
+        // valveButton.onclick = onclickanchortag;
+
+
+        var valveIDLabel = template.querySelector('.IDtext');
+        valveIDLabel.textContent = (i + 1);
+        if ((i + 1) > 9) {
+            template.querySelector('.IDtext').style = "padding-left: 9px";
+        }
+
+        console.log("found another dispenser!");
         content.append(template);
 
 

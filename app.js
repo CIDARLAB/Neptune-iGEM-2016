@@ -10,6 +10,10 @@ var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var fs = require('fs');
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 //Create server
 {
   global.server = app.listen(3000, function () {
@@ -154,6 +158,8 @@ var fs = require('fs');
     var downloadController = require('./controllers/download');
     app.post('/api/download',downloadController.download);
 
+    var clearFilesController = require('./controllers/clearFiles');
+    app.post('/api/clearFiles',clearFilesController.clearFiles);
 
 
 

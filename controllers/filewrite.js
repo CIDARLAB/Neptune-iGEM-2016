@@ -39,10 +39,10 @@ exports.writeToFile = function(req, res)
             path = "./public/uploads/Build_Verify/buildSVG_flow.svg";
             break;
         case 'buildEPS_device':
-            path = "./public/uploads/Build_Verify/buildEPS_device.txt";
+            path = "./public/uploads/Build_Verify/buildEPS_device.eps";
             break;
         case 'buildEPS_photo':
-            path = "./public/uploads/Build_Verify/buildEPS_photo.txt";
+            path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
             break;
 
         case 'serverMINT':

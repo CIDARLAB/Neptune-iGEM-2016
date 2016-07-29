@@ -254,6 +254,11 @@ function clearFrontEnd()
     $.post("/api/writeToFile",{fileData: string_to_write, fileType: 'buildEPS_photo'}); //Clear EPS_photo
 }
 
+function clearFiles()
+{
+    $.post('/api/clearFiles');
+}
+
 function loadDefaultFiles()
 {
     var postDownload_defaultUCF = $.ajax
@@ -287,8 +292,9 @@ function loadDefaultFiles()
 
 function initiateGUI()
 {
-    clearBackEnd();
-    clearFrontEnd();
+    //clearBackEnd();
+    //clearFrontEnd();
+    clearFiles();
     loadDefaultFiles();
 }
 
@@ -624,7 +630,144 @@ function compileMINT()
         var status = data.terminalStatus;
         if (status == 'Success')
         {
+            //  ******** PULL JSON FROM SERVER ********
+            var postDownload_JSON = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'json'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_JSON.done(function(data)
+            {
+                $.get('../uploads/Build_Verify/buildJSON.json',function(data)
+                {
+                    $("#myModal_compileComplete").modal();
+                    editor_previewFFOutput.getSession().setMode("ace/mode/json");
+                    //$('#preview_title').text('User Constrain File');
+                    //var file_size = content.length;
+                    editor_previewFFOutput.session.setValue('');
+                    editor_previewFFOutput.session.setValue(JSON.stringify(data, null, '\t'));
+                });
+            });
 
+            // ******** PULL SVG_BOUNDARY FROM SERVER ********
+            var postDownload_SVG_boundary = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'svg_bounding'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_SVG_boundary.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildSVG_boundary','buildSVG_boundary',data,'inputString');
+
+            });
+
+            // ******** PULL SVG_CELL FROM SERVER ********
+            var postDownload_SVG_cell = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'svg_cell'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_SVG_cell.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildSVG_cell','buildSVG_cell',data,'inputString');
+            });
+
+            // ******** PULL SVG_CONTROL FROM SERVER ********
+            var postDownload_SVG_control = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'svg_control'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_SVG_control.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildSVG_control','buildSVG_control',data,'inputString');
+            });
+
+            // ******** PULL SVG_FLOW FROM SERVER ********
+            var postDownload_SVG_flow = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'svg_flow'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_SVG_flow.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildSVG_flow','buildSVG_flow',data,'inputString');
+            });
+
+            // ******** PULL EPS_DEVICE FROM SERVER ********
+            var postDownload_EPS_device = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'eps_device'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_EPS_device.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildEPS_device','buildEPS_device',data,'inputString');
+            });
+
+            // ******** PUL EPS_PHOTO FROM SERVER ********
+            var postDownload_EPS_photo = $.ajax
+            ({
+                type: "POST",
+                url: '/api/download',
+                data: {downloadType:'eps_photo'},
+                success: null,
+                dataType: 'text'
+            });
+            postDownload_EPS_photo.done(function(data)
+            {
+                var content = data.split("\n"); //var content = JSON.stringify(data.split(/[\r\n]+/));
+                downloadFile('buildEPS_photo','buildEPS_photo',data,'inputString');
+            });
+            // var postDownload = $.ajax
+            // ({
+            //     type: "POST",
+            //     url: '/api/download',
+            //     data: {downloadType:'json'},
+            //     success: null,
+            //     dataType: 'text'
+            // });
+            // postDownload.done(function(data)
+            // {
+            //     //var content = data.split("\n");
+            //     downloadFile('buildJSON','buildJSON',data,'inputString');
+            //     $.get('../uploads/Build_Verify/buildJSON.json',function(data)
+            //     {
+            //         $("#myModal_compileComplete").modal();
+            //         editor_previewFFOutput.getSession().setMode("ace/mode/json");
+            //         //$('#preview_title').text('User Constrain File');
+            //         //var file_size = content.length;
+            //         editor_previewFFOutput.session.setValue('');
+            //         editor_previewFFOutput.session.setValue(JSON.stringify(data, null, '\t'));
+            //     });
+            //
+            //     //editor_previewFFOutput.getSession().setMode('ace/mode/json');
+            //     //editor_previewFFOutput.session.setValue('');
+            //     //editor_previewFFOutput.session.setValue(JSON.stringify(data, null, '\n'));
+            // });
 
             // //  ******** PULL JSON FROM SERVER ********
             // var postDownload_JSON = $.ajax
@@ -743,6 +886,7 @@ function compileMINT()
             //     //downloadFile('buildEPS_photo','buildEPS_photo',data,'inputString');
             //     $('#myModal_compilePreview').modal();
             // });
+
             $('#myModal_compileComplete').modal();
         }
 

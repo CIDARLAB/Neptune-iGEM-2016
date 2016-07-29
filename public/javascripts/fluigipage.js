@@ -301,6 +301,8 @@ function openConnectionPage() {
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){
     loadButtons();
+    paper.view.setCenter(2135.68, 610.967);
+    paper.view.setZoom(0.269988);
 
     $.ajax(
         {   url: "/serialcommunication/list", type: 'POST', async: true,

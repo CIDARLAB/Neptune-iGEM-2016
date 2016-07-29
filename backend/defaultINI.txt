@@ -1,10 +1,10 @@
 % basic initialization file
 % NO SPACES IN PARAMETER LINES
 % [foo]= distance/size in um
-%
+% 
 
 % MUST BE FIRST COMMAND, used for setting other parameters
-minResolution=10
+minResolution=20
 
 outputDirectory=output/
 enforceDRC=true
@@ -17,14 +17,14 @@ maxDeviceLength=76800
 % Design Rules
 % Minimum spacing to leave for around components and to leave for routing channels during placement
 % Measurements in um
-routingSpacing=100
-portSpacing=1000
-channelSpacing=40
-valveSpacing=100
-componentSpacing=100
+routingSpacing=400
+portSpacing=800
+channelSpacing=400
+valveSpacing=400
+componentSpacing=400
 
 % Place and Route Parameters
-iterations=20
+iterations=8
 
 % Simulated Annealing
 movesPerTempPerComponent=250

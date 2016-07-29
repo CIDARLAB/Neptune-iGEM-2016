@@ -30,6 +30,7 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     // Dispenser Control
     localStorage.Dispensers = 1;
     localStorage.dispenserData = clearDispenserData();
+    localStorage.dispenserToControl;
     
     
     

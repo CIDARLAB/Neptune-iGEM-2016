@@ -55,193 +55,216 @@
     </style>
     <style type="text/css" media="screen">
         #editor_previewMMOutput {
-            height: 800px;
+            height: 600px;
         }
     </style>
 
     <script type="text/javascript">
         function openEditorPreview(file_type)
         {
-            $('#preview_dashboard').modal("show");
-            switch (file_type)
-            {
-                case 'LFR':
-                    $.get('../uploads/Specify/specifyLFR.v',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/verilog");
+            if (file_type == 'LFR' || file_type == 'UCF' || file_type == 'MINT' || file_type == 'INI' || file_type ==  'JSON') {
+                $('#preview_dashboard').modal("show");
+                switch (file_type) {
+                    case 'LFR':
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyLFR.v" download="specifyLFR.v"><button type="button" class="btn btn-primary"> Download LFR </button></a>';
                         $('#preview_title').text('Liquid Flow Relations File');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
+                        $.get('../uploads/Specify/specifyLFR.v', function (data)
                         {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'UCF':
-                    $.get('../uploads/Specify/specifyUCF.json',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/json");
+                            editor_preview.getSession().setMode("ace/mode/verilog");
+                            var content = data.split("\n");
+                            var file_size = content.length;
+                            editor_preview.session.setValue('');
+                            for (var i = 0; i < file_size; i++) {
+                                editor_preview.session.replace({
+                                    start: {row: i, column: 0},
+                                    end: {row: i, column: Number.MAX_VALUE}
+                                }, content[i] + '\n')
+                            }
+                        });
+                        break;
+                    case 'UCF':
                         $('#preview_title').text('User Constrain File');
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        editor_preview.session.setValue(JSON.stringify(data, null, '\t'));
-                    });
-                    break;
-                case 'MINT':
-                    $.get('../uploads/Design/designMINT.uf',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/mint");
-                        $('#preview_title').text('Microfluidic Netlist File');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyUCF.json" download="specifyJSON.json"><button type="button" class="btn btn-primary"> Download UCF </button></a>';
+                        $.get('../uploads/Specify/specifyUCF.json', function (data)
                         {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'INI':
-                    $.get('../uploads/Design/designINI.txt',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/ini");
+                            editor_preview.getSession().setMode("ace/mode/json");
+                            var file_size = content.length;
+                            editor_preview.session.setValue('');
+                            editor_preview.session.setValue(JSON.stringify(data, null, '\t'));
+                        });
+                        break;
+                    case 'MINT':
+                        $('#preview_title').text('Microfluidic Netlist File')
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Design/designMINT.uf" download="designMINT.uf"><button type="button" class="btn btn-primary"> Download MINT </button></a>';
+                        $.get('../uploads/Design/designMINT.uf', function (data)
+                        {
+                            editor_preview.getSession().setMode("ace/mode/mint");
+                            var content = data.split("\n");
+                            var file_size = content.length;
+                            editor_preview.session.setValue('');
+                            for (var i = 0; i < file_size; i++) {
+                                editor_preview.session.replace({
+                                    start: {row: i, column: 0},
+                                    end: {row: i, column: Number.MAX_VALUE}
+                                }, content[i] + '\n')
+                            }
+                        });
+                        break;
+                    case 'INI':
                         $('#preview_title').text('Configuration File');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'JSON':
-                    $.get('../uploads/Build_Verify/buildJSON.json',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/json");
-                        $('#preview_title').text('User Constrain File');
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        editor_preview.session.setValue(JSON.stringify(data, null, '\t'));
-                    });
-                    break;
-                case 'SVG_boundary':
-                    $.get('../uploads/Build_Verify/buildSVG_boundary.svg',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/svg");
-                        $('#preview_title').text('Design Schematic: Boundary Layer');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'SVG_cell':
-                    $.get('../uploads/Build_Verify/buildSVG_cell.svg',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/svg");
-                        $('#preview_title').text('Design Schematic: Cell Layer');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'SVG_control':
-                    $.get('../uploads/Build_Verify/buildSVG_control.svg',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/svg");
-                        $('#preview_title').text('Design Schematic: Control Layer');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'SVG_flow':
-                    $.get('../uploads/Build_Verify/buildSVG_flow.svg',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/svg");
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Design/designINI.txt" download="designINI.txt"><button type="button" class="btn btn-primary"> Download INI </button></a>';
+                        $.get('../uploads/Design/designINI.txt', function (data) {
+                            editor_preview.getSession().setMode("ace/mode/ini");
+                            var content = data.split("\n");
+                            var file_size = content.length;
+                            editor_preview.session.setValue('');
+                            for (var i = 0; i < file_size; i++) {
+                                editor_preview.session.replace({
+                                    start: {row: i, column: 0},
+                                    end: {row: i, column: Number.MAX_VALUE}
+                                }, content[i] + '\n')
+                            }
+                        });
+                        break;
+                    case 'JSON':
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildJSON.json" download="buildJSON.json"><button type="button" class="btn btn-primary"> Download JSON </button></a>';
+                        $('#preview_title').text('JSON Design Schematic');
+                        $.get('../uploads/Build_Verify/buildJSON.json', function (data) {
+                            editor_preview.getSession().setMode("ace/mode/json");
+                            var file_size = content.length;
+                            editor_preview.session.setValue('');
+                            editor_preview.session.setValue(JSON.stringify(data, null, '\t'));
+                        });
+                        break;
+                }
+            }
+            else
+            {
+                $('#preview_dashboard_img').modal("show");
+                switch (file_type)
+                {
+//                case 'SVG_boundary':
+//                    document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_boundary.svg" download="buildSVG_boundary.svg"><button type="button" class="btn btn-primary"> Download Boundary SVG </button></a>';
+//                    document.getElementById('previewModalFooter').innerHTML = '<img src='../../output/testDevice_device_' '
+//                    $.get('../uploads/Build_Verify/buildSVG_boundary.svg',function(data)
+//                    {
+//                        editor_preview.getSession().setMode("ace/mode/svg");
+//                        $('#preview_title').text('Design Schematic: Boundary Layer');
+//                        var content = data.split("\n");
+//                        var file_size = content.length;
+//                        editor_preview.session.setValue('');
+//                        for (var i = 0; i < file_size; i++)
+//                        {
+//                            editor_preview.session.replace({
+//                                start: {row: i, column: 0},
+//                                end: {row: i, column: Number.MAX_VALUE}
+//                            }, content[i] + '\n')
+//                        }
+//                    });
+//                    break;
+                    case'SVG_cell':
+                        document.getElementById('previewModalFooter_img').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_device_cell.svg" download="buildSVG_cell.svg"><button type="button" class="btn btn-primary"> Download Cell SVG </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device_cell.svg" width=600px;>';
+                        $('#preview_title_img').text('Design Schematic: Cell Layer');
+//                            $.get('../uploads/Build_Verify/buildSVG_cell.svg', function (data) {
+//                                editor_preview.getSession().setMode("ace/mode/svg");
+//                                $('#preview_title_img').text('Design Schematic: Cell Layer');
+//                                var content = data.split("\n");
+//                                var file_size = content.length;
+//                                editor_preview.session.setValue('');
+//                                for (var i = 0; i < file_size; i++) {
+//                                    editor_preview.session.replace({
+//                                        start: {row: i, column: 0},
+//                                        end: {row: i, column: Number.MAX_VALUE}
+//                                    }, content[i] + '\n')
+//                                }
+//                            });
+                        break;
+                    case'SVG_control':
+                        document.getElementById('previewModalFooter_img').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_device_control.svg" download="buildSVG_control.svg"><button type="button" class="btn btn-primary"> Download Control SVG </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device_control.svg" width=600px;>';
+                        $('#preview_title_img').text('Design Schematic: Control Layer');
+//                    $.get('../uploads/Build_Verify/buildSVG_control.svg', function (data) {
+//                        editor_preview.getSession().setMode("ace/mode/svg");
+//                        $('#preview_title').text('Design Schematic: Control Layer');
+//                        var content = data.split("\n");
+//                        var file_size = content.length;
+//                        editor_preview.session.setValue('');
+//                        for (var i = 0; i < file_size; i++) {
+//                            editor_preview.session.replace({
+//                                start: {row: i, column: 0},
+//                                end: {row: i, column: Number.MAX_VALUE}
+//                            }, content[i] + '\n')
+//                        }
+//                    });
+                        break;
+                    case'SVG_flow':
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_flow.svg" download="buildSVG_flow.svg"><button type="button" class="btn btn-primary"> Download Flow SVG </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device_flow.svg" width=600px;>';
                         $('#preview_title').text('Design Schematic: FlowLayer');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'EPS_device':
-                    $.get('../uploads/Build_Verify/buildEPS_device.eps',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/eps");
-                        $('#preview_title').text('Design Schematic: EPS Device');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
-                case 'EPS_photo':
-                    $.get('../uploads/Build_Verify/buildEPS_photo.eps',function(data)
-                    {
-                        editor_preview.getSession().setMode("ace/mode/eps");
-                        $('#preview_title').text('Design Schematic: EPS Photolithography');
-                        var content = data.split("\n");
-                        var file_size = content.length;
-                        editor_preview.session.setValue('');
-                        for (var i = 0; i < file_size; i++)
-                        {
-                            editor_preview.session.replace({
-                                start: {row: i, column: 0},
-                                end: {row: i, column: Number.MAX_VALUE}
-                            }, content[i] + '\n')
-                        }
-                    });
-                    break;
+//                    $.get('../uploads/Build_Verify/buildSVG_flow.svg', function (data) {
+//                        editor_preview.getSession().setMode("ace/mode/svg");
+//                        $('#preview_title').text('Design Schematic: FlowLayer');
+//                        var content = data.split("\n");
+//                        var file_size = content.length;
+//                        editor_preview.session.setValue('');
+//                        for (var i = 0; i < file_size; i++) {
+//                            editor_preview.session.replace({
+//                                start: {row: i, column: 0},
+//                                end: {row: i, column: Number.MAX_VALUE}
+//                            }, content[i] + '\n')
+//                        }
+//                    });
+                        break;
+                    case'EPS_device':
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildEPS_device.eps" download="buildEPS_device.eps"><button type="button" class="btn btn-primary"> Download Device EPS </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device.eps" width=600px;>';
+                        $('#preview_title').text('Design Schematic: FlowLayer');
+//                    $.get('../uploads/Build_Verify/buildEPS_device.eps', function (data) {
+//                        editor_preview.getSession().setMode("ace/mode/eps");
+//                        $('#preview_title').text('Design Schematic: EPS Device');
+//                        var content = data.split("\n");
+//                        var file_size = content.length;
+//                        editor_preview.session.setValue('');
+//                        for (var i = 0; i < file_size; i++) {
+//                            editor_preview.session.replace({
+//                                start: {row: i, column: 0},
+//                                end: {row: i, column: Number.MAX_VALUE}
+//                            }, content[i] + '\n')
+//                        }
+//                    });
+                        break;
+                    case'EPS_photo':
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildEPS_photo.eps" download="buildEPS_photo.eps"><button type="button" class="btn btn-primary"> Download Photolithography EPS </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device.eps" width=600px;>';
+                        $('#preview_title').text('Design Schematic: FlowLayer');
+//                    $.get('../uploads/Build_Verify/buildEPS_photo.eps', function (data) {
+//                        editor_preview.getSession().setMode("ace/mode/eps");
+//                        $('#preview_title').text('Design Schematic: EPS Photolithography');
+//                        var content = data.split("\n");
+//                        var file_size = content.length;
+//                        editor_preview.session.setValue('');
+//                        for (var i = 0; i < file_size; i++) {
+//                            editor_preview.session.replace({
+//                                start: {row: i, column: 0},
+//                                end: {row: i, column: Number.MAX_VALUE}
+//                            }, content[i] + '\n')
+//                        }
+//                    });
+                        break;
+                }
             }
         }
     </script>
     <!-- FILE PREVIEW SCRIPTS END -->
+
+
+    <style type="text/css">
+        #myModal_translateCompleteComplete .modal-body
+        {
+            max-height: 1200px;
+        }
+    </style>
 
 
     <!-- Bootstrap Core CSS -->
@@ -848,13 +871,8 @@
 
                         <div class="modal-body ace_preview_modal" id="editor_preview"></div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button>
-                            <a href="download/../uploads/Specify/specifyUCF.json" download="myUCF.uf">
-                                <button type="button" class="btn btn-primary">
-                                    Download
-                                </button>
-                            </a>
+                        <div class="modal-footer" id="previewModalFooter">
+
                         </div>
                     </div>
                 </div>
@@ -866,10 +884,31 @@
                 fontSize: "12pt"
             });</script>
 
+            <div class="modal fade" id="preview_dashboard_img" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title-prev modal-title" id="preview_title_img"></h4>
+                        </div>
+
+                        <div class="modal-body ace_preview_modal" id="img_here">
+
+                        </div>
+
+                        <div class="modal-footer" id="previewModalFooter_img">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Modal: Translate Actions -->
             <div class="modal fade" id="myModal_translateComplete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideProceed()">

@@ -9,9 +9,6 @@ var fs = require('fs');
 var path = require('path');
 
 
-
-var hello = '';
-
 exports.download = function(req, res)
 {
     var CASE = req.body.downloadType;

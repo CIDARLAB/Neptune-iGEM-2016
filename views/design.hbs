@@ -868,9 +868,51 @@
                             <h4 class="modal-title" id="myModalLabel">Compilation successful: JSON Output Preview</h4>
                         </div>
 
-                        <div class="modal-body" id="editor_previewFFOutput"></div>
+                        <div class="modal-body" >
 
-                        
+                            <div style="padding-left: 20px;" class="col-lg-10 col-lg-offset-1 text-vertical-center">
+                                <div id="myCarousel" class="carousel slide" data-interval="false" style=" overflow: hidden; position: relative;">
+                                    <!-- Wrapper for slides -->
+                                    <div class="carousel-inner" role="listbox">
+
+                                        <div class="item active" id="editor_previewFFOutput"></div>
+
+                                        <div class="item" id="svg_flow">
+                                            <img src="../uploads/Build_Verify/buildSVG_flow.svg" width=334px;>
+                                        </div>
+
+                                        <div class="item" id="svg_control">
+                                            <img src="../uploads/Build_Verify/buildSVG_control.svg" width=334px;>
+                                        </div>
+
+                                        <div class="item" id="svg_cell">
+                                            <img src="../uploads/Build_Verify/buildSVG_cell.svg" width=334px;>
+                                        </div>
+
+                                        <div class="item" id="svg_boundary">
+                                            <img src="../uploads/Build_Verify/buildSVG_boundary.svg" width=334px;>
+                                        </div>
+
+                                    <br>
+                                    <br>
+
+                                    <!-- Left and  right controls -->
+                                    <a id="previous" class="left carousel-control" style="background: none; color: #447294;" href="#myCarousel" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">     </span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <br> <br>
+                                    <a id= "next" class="right carousel-control" style="background: none; color: #447294;" href="#myCarousel" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">     </span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
                         <div class="modal-footer">
                             <a href="" download="buildJSON.json">
                                 <button type="button" class="btn btn-primary">
@@ -987,14 +1029,47 @@
 
 
 
+<style type="text/css">
+    #myCarousel
+    {
+    border-radius: 8px;
+    border: none;
+    align: center;
+    }
 
+    .carousel
+    {
+    float: center;
+    display: block;
+    white-space: nowrap;
+    }
 
+    #myCarousel .picture
+    {
+    margin-left:10px;
+    float: left;
+    display: inline-block;
+    margin: 14px;
+    word-wrap: normal;
+    word-break: normal;
+    white-space: normal;
+    overflow: hidden;
+    }
 
-
-
-
-
-
+    #myCarousel .texts
+    {
+    margin-left:10px;
+    /*width: 500px;*/
+    /*height: 500px;*/
+    float: left;
+    display: inline-block;
+    margin: 14px;
+    word-wrap: normal;
+    word-break: normal;
+    white-space: normal;
+    overflow: hidden;
+    }
+</style>
 
 
 
@@ -1205,4 +1280,4 @@
 <!--<input id="uploadfile_INI" class= "btn btn-default" type="submit" value="Upload INI" name="submit" >-->
 <!--<span id = "status"></span>-->
 <!--</div>-->
-<!--</form>-->+
+<!--</form>-->

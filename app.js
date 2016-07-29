@@ -14,6 +14,8 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+
+
 //Create server
 {
   global.server = app.listen(3000, function () {
@@ -26,17 +28,24 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 //View engine setup
 {
   app.use(express.static(path.join(__dirname, 'public')));
+
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'hbs');
 }
+//app.use(express.static(__dirname + '/public'));
+
 
 //App usage
 {
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({extended: false}));
-  app.use(cookieParser());
-  app.use(express.static(path.join(__dirname, 'public')));
+
+      app.use(logger('dev'));
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({extended: false}));
+      app.use(cookieParser());
+      //app.use(express.static(path.join(__dirname + 'output')));
+      app.use(express.static(path.join(__dirname, 'public')));
+
+    app.use("/output", express.static(__dirname + "/output"));
 }
 
 //Error handlers
@@ -160,6 +169,8 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
     var clearFilesController = require('./controllers/clearFiles');
     app.post('/api/clearFiles',clearFilesController.clearFiles);
+
+
 
 
 

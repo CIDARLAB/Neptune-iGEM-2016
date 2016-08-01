@@ -30700,18 +30700,12 @@ window.onload = function () {
 
     Registry.viewManager = viewManager;
 
-    // viewManager.loadDeviceFromJSON(JSON.parse(Examples.example1));
-    // viewManager.updateGrid();
-    // Registry.currentDevice.updateView();
-
     // Load last uploaded file  to canvas
     $.getJSON("../uploads/Build_Verify/buildJSON.json", function (json) {
-        console.log(json);
         viewManager.loadDeviceFromJSON(JSON.parse(JSON.stringify((json))));
         viewManager.updateGrid();
         Registry.currentDevice.updateView();
     });
-
 
     window.dev = Registry.currentDevice;
     window.Registry = Registry;
@@ -35961,7 +35955,7 @@ class ChannelTool extends MouseTool {
 			PageSetup.killParamsWindow();
 			paper.project.deselectAll();
 			ref.dragging = true;
-			// ref.initChannel();
+			ref.initChannel();
 		};
 		this.up = function (event) {
 			ref.dragging = false;

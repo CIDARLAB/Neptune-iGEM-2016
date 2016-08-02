@@ -1,3 +1,5 @@
+<html>
+
 <head>
 
     <!--3Duf Dependencies-->
@@ -35,31 +37,56 @@
     <!-- Custom Fonts -->
     <link href="/javascripts/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
 
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
 
 
+    <script src="../javascripts/uploadsJSON.js" type="application/javascript"></script>
+    <script>loadButtons();</script>
+
+
+    <script type="text/javascript" src="../javascripts/serialcommunication.js"></script>
+    <script type="text/javascript" src="../javascripts/fluigipage.js" > </script>
+    <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
+
+
+    <!--Template for valves to be placed over graph canvas-->
+    <template id="valve-template" action="this.preventDefault();">
+        <div class ="valve"  action="this.preventDefault();">
+            <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
+                <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/valveMarkerOpen.svg" width="40" height="40">
+                <p class="IDtext" style="pointer-events: none;">beb</p>
+            </a>
+
+        </div>
+    </template>
+
+
+
+    <!--Template for valves to be placed over graph canvas-->
+    <template id="dispenser-template" action="this.preventDefault();">
+        <div class ="valve"  action="this.preventDefault();">
+            <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
+                <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/dispenseMarker.svg" width="40" height="40">
+                <p class="IDtext" style="pointer-events: none;">beb</p>
+            </a>
+
+        </div>
+    </template>
+
+
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 </head>
 
 
 
+
+
 <body>
 
-<style>
-    .collapseNav {
-        display: none;
-    }
-    .navbarFloating:hover .collapseNav {
-        display: table !important;
-    }
-    .leftFocusedNav {
-        width: 206px !important;
-    }
-
-</style>
-
-
-<nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation">
+<nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation" style="margin: 0;">
 
     <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
     <div class="navbar-header">
@@ -124,24 +151,96 @@
 </nav>
 
 
+<!-- Button trigger modal -->
+<!--<button type="button" class="btn btn-primary btn-lg" id="initializationToggle" onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal">-->
+    <!--Initialize-->
+<!--</button>-->
+
+<a onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal" id="settingsToggle">
+    <i class="fa fa-cog fa-3x"></i>
+</a>
+
+<a onclick= "window.open('../serialcommunication')" id="serialCommToggle">
+    <i class="fa fa-usb fa-3x"></i>
+</a>
 
 
 
-<div id="fullPageWrapper">
-    <div id="mainWindow">
+
+
+<script src="../javascripts/pumpControlInit.js" type="application/javascript"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h2 class="modal-title" id="myModalLabel">Pump Initializations</h2>
+            </div>
+            <div class="modal-body">
+
+
+                <div class="editableTable">
+                    <h3>Valve Settings</h3>
+                    <table id="ValveTable" class="table table-striped">
+                        <tr>
+                            <th>Valve Id</th>
+                            <th>Motor Shield</th>
+                            <th>Pin Number</th>
+                            <th>Open</th>
+                            <th>Closed</th>
+                            <th>Current State</th>
+                        </tr>
+                    </table>
+                </div>
+
+                <br>
+
+                <div class="editableTable">
+                    <h3>Dispenser Settings</h3>
+                    <table id="DispenserTable" class="table table-striped">
+                        <tr>
+                            <th>Dispenser Id</th>
+                            <th>Motor Shield</th>
+                            <th>Pin Number</th>
+                            <th>Precision</th>
+                            <th>Min</th>
+                            <th>Max</th>
+                            <th>Current State</th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" onclick="setNumberOfPumps_JSON(); setNumberOfDispensers_JSON();">Clear</button>
+                <button id="export-btn" onclick="exporting(); exportingDispenser();" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
         <main id="fullPage">
-            <div id="view_container" class="page-content" style="width: 100%; height: 100%;">
-                <div id="canvas_block" class="shown-block fade-transition " style="width: 100%; height: 100%;">
-                    <canvas id="c" tabindex="0" style="width: 100%; height: 100%; pointer-events: none"></canvas>
+            <div id="view_container" class="page-content" >
+                <div id="canvas_block" class="shown-block fade-transition " >
+                    <canvas id="c" tabindex="0" resize></canvas>
+                    <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
+
+                    <!--This is where valves go!-->
+                    <div id="content"></div>
                 </div>
                 <div id="renderContainer" class="hidden-block fade-transition"></div>
             </div>
         </main>
 
-    </div>
-
-</div>
 
 
 <!-- jQuery -->
@@ -160,14 +259,15 @@
 
 
 <script>
-    var bodyElement = document.getElementsByTagName("body");
-    var canvasElement = document.getElementById("c");
-    bodyElement.onresize = function (e) {
-                canvasElement.width = window.innerWidth;
-                canvasElement.height = window.innerHeight;
-            }
+//    var bodyElement = document.getElementsByTagName("body");
+//    var canvasElement = document.getElementById("c");
+//    bodyElement.onresize = function (e) {
+//                canvasElement.width = window.innerWidth;
+//                canvasElement.height = window.innerHeight;
+//            }
 </script>
 
 
 </body>
 
+</html>

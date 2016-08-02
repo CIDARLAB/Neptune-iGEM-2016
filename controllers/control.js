@@ -6,3 +6,8 @@ exports.openControllersPage = function(req, res)
 {
     res.render('control', {title: 'Control'});
 };
+
+exports.openControlFullPage = function(req, res)
+{
+    res.render('controlFull', {title: 'ControlFull'});
+};

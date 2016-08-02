@@ -14,34 +14,34 @@ function loadButtons() {
         if(((json.layers[1]).name) === "control")
         {
             controlOnly = JSON.stringify((json.layers[1]).features);
-            console.log(controlOnly);
+            // console.log(controlOnly);
         }
         else if(((json.layers[2]).name) === "control")
         {
             controlOnly = JSON.stringify((json.layers[2]).features);
-            console.log(controlOnly);
+            // console.log(controlOnly);
         }
         else if(((json.layers[0]).name) === "control")
         {
             controlOnly = JSON.stringify((json.layers[0]).features);
-            console.log(controlOnly);
+            // console.log(controlOnly);
         }
 
         // FLOW ONLY
         if(((json.layers[1]).name) === "flow")
         {
             flowOnly = JSON.stringify((json.layers[1]).features);
-            console.log(flowOnly);
+            // console.log(flowOnly);
         }
         else if(((json.layers[2]).name) === "flow")
         {
             flowOnly = JSON.stringify((json.layers[2]).features);
-            console.log(flowOnly);
+            // console.log(flowOnly);
         }
         else if(((json.layers[0]).name) === "flow")
         {
             flowOnly = JSON.stringify((json.layers[0]).features);
-            console.log(flowOnly);
+            // console.log(flowOnly);
         }
 
 
@@ -51,9 +51,9 @@ function loadButtons() {
 
         // find size of entire SVG from JSON
         localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
-        console.log("width: " + JSON.stringify(Object(json.params.width)));
+        // console.log("width: " + JSON.stringify(Object(json.params.width)));
         localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
-        console.log("height: " + JSON.stringify(Object(json.params.height)));
+        // console.log("height: " + JSON.stringify(Object(json.params.height)));
 
         // console.log("control only: " + controlOnly);
 
@@ -77,7 +77,14 @@ function loadButtons() {
         localStorage.portYcoords = JSON.stringify(portY);
 
         //  Update number of Pumps for settings page
-        setNumberOfPumps_JSON();
+        if(localStorage.pumpsInitial == "TRUE") {
+            setNumberOfPumps_JSON();
+        }
+
+
+        
+        
+        
 
         // clearPumpData();
 
@@ -104,11 +111,16 @@ function loadButtons() {
         // Store json variables to localStorage in form of JSON object...
         localStorage.portXcoordsDisp = JSON.stringify(portXDisp);
         localStorage.portYcoordsDisp = JSON.stringify(portYDisp);
-        console.log('portX coords Dispensers: ' + localStorage.portXcoordsDisp);
-        console.log('portY coords Dispensers: ' + localStorage.portYcoordsDisp);
+        // console.log('portY coords Dispensers: ' + localStorage.portYcoordsDisp);
 
-        //  Update number of Pumps for settings page
-        setNumberOfDispensers_JSON();
+        //  Update number of Dispensers for settings page
+        if (localStorage.initialDispensers == "TRUE") {
+            setNumberOfDispensers_JSON();
+        }
+        
+        
+        
+        console.log(localStorage.dispenserData);
 
 
 

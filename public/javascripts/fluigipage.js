@@ -23,6 +23,7 @@ function setNumberOfPumps_JSON() {
     localStorage.clear_toggle = true;
     localStorage.unsavedData = JSON.stringify(DataToLoad);
     localStorage.pumpData = JSON.stringify(DataToLoad);
+    localStorage.pumpInitial = "FALSE";
 }
 
 function clearPumpData()
@@ -192,6 +193,7 @@ function clearDispenserData() {
         }
 
     }
+
     return JSON.stringify(dispenserData);
 }
 
@@ -212,6 +214,7 @@ function setNumberOfDispensers_JSON() {
     }
     var DataToLoad = set_dispData_newNum;
     localStorage.dispenserData = JSON.stringify(DataToLoad);
+    localStorage.dispenserInitial = "FALSE";
 }
 
 

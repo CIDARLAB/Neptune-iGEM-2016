@@ -222,7 +222,7 @@ function increaseDispenserOutput(dispenser_to_control)
 {
     localStorage.dispenserToControl = dispenser_to_control;
     // assumes the capacity of the syringe is 9 mL
-    if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] <= JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max']) {
+    if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max']) {
         var temp = JSON.parse(localStorage.dispenserData);//[valve_to_control]['Physical_State'] = 1;
         temp[dispenser_to_control - 1]['Current_State'] += 1;
         localStorage.dispenserData = JSON.stringify(temp);

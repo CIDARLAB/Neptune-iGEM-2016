@@ -135,8 +135,20 @@ $(document).ready(function(){
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*(51000/localStorage.getItem('SVGdimY'))*0.010294117647058823 + 90 + 425) + 'px';
-        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*(75800/localStorage.getItem('SVGdimX'))*0.010294117647058823 - 20 + 363 + 100) + 'px';
+        // valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*(51000/localStorage.getItem('SVGdimY'))*0.010294117647058823 + 90 ) + 'px';
+        // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*(75800/localStorage.getItem('SVGdimX'))*0.010294117647058823 - 20 + 363 + 100) + 'px';
+
+
+        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])* paper.view.zoom)+ 'px';
+        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])* paper.view.zoom)+ 'px';
+
+
+
+        console.log("page center object: ");
+        console.log(paper.view.center);
+        console.log("page center coorinates: ");
+        console.log('(' + paper.view.center['_x'] + ',' + paper.view.center['_y']);
+        console.log(paper.view.zoom);
 
 
         // console.log("this is the 3DUF Zoom: " + paper.view.zoom);

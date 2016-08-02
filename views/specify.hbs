@@ -127,7 +127,7 @@
                         });
                         break;
                     case 'JSON':
-                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildJSON.json" download="buildJSON.json"><button type="button" class="btn btn-primary"> Download JSON </button></a>';
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice.json" download="buildJSON.json"><button type="button" class="btn btn-primary"> Download JSON </button></a>';
                         $('#preview_title').text('JSON Design Schematic');
                         $.get('../uploads/Build_Verify/buildJSON.json', function (data) {
                             editor_preview.getSession().setMode("ace/mode/json");
@@ -164,7 +164,7 @@
 //                    break;
                     case'SVG_cell':
                         document.getElementById('previewModalFooter_img').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_device_cell.svg" download="buildSVG_cell.svg"><button type="button" class="btn btn-primary"> Download Cell SVG </button></a>';
-                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device_cell.svg" width=600px;>';
+                        document.getElementById('img_here').innerHTML = '<img src="../output/testDevice_device_cell.svg" style="margin-left: 28%" width=300px;>';
                         $('#preview_title_img').text('Design Schematic: Cell Layer');
 //                            $.get('../uploads/Build_Verify/buildSVG_cell.svg', function (data) {
 //                                editor_preview.getSession().setMode("ace/mode/svg");
@@ -182,7 +182,7 @@
                         break;
                     case'SVG_control':
                         document.getElementById('previewModalFooter_img').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_device_control.svg" download="buildSVG_control.svg"><button type="button" class="btn btn-primary"> Download Control SVG </button></a>';
-                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device_control.svg" width=600px;>';
+                        document.getElementById('img_here').innerHTML = '<img src="../output/testDevice_device_control.svg" style="margin-left: 28%" width=300px;>';
                         $('#preview_title_img').text('Design Schematic: Control Layer');
 //                    $.get('../uploads/Build_Verify/buildSVG_control.svg', function (data) {
 //                        editor_preview.getSession().setMode("ace/mode/svg");
@@ -199,8 +199,8 @@
 //                    });
                         break;
                     case'SVG_flow':
-                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildSVG_flow.svg" download="buildSVG_flow.svg"><button type="button" class="btn btn-primary"> Download Flow SVG </button></a>';
-                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device_flow.svg" width=600px;>';
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_device_flow.svg" download="buildSVG_flow.svg"><button type="button" class="btn btn-primary"> Download Flow SVG </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../output/testDevice_device_flow.svg" style="margin-left: 28%" width=300px;>';
                         $('#preview_title').text('Design Schematic: FlowLayer');
 //                    $.get('../uploads/Build_Verify/buildSVG_flow.svg', function (data) {
 //                        editor_preview.getSession().setMode("ace/mode/svg");
@@ -217,8 +217,8 @@
 //                    });
                         break;
                     case'EPS_device':
-                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildEPS_device.eps" download="buildEPS_device.eps"><button type="button" class="btn btn-primary"> Download Device EPS </button></a>';
-                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device.eps" width=600px;>';
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_device.eps" download="buildEPS_device.eps"><button type="button" class="btn btn-primary"> Download Device EPS </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../output/testDevice_device.eps" style="margin-left: 28%" width=300px;>';
                         $('#preview_title').text('Design Schematic: FlowLayer');
 //                    $.get('../uploads/Build_Verify/buildEPS_device.eps', function (data) {
 //                        editor_preview.getSession().setMode("ace/mode/eps");
@@ -235,8 +235,8 @@
 //                    });
                         break;
                     case'EPS_photo':
-                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Build_Verify/buildEPS_photo.eps" download="buildEPS_photo.eps"><button type="button" class="btn btn-primary"> Download Photolithography EPS </button></a>';
-                        document.getElementById('img_here').innerHTML = '<img src="../../output/testDevice_device.eps" width=600px;>';
+                        document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../../output/testDevice_photomask.eps" download="buildEPS_photo.eps"><button type="button" class="btn btn-primary"> Download Photolithography EPS </button></a>';
+                        document.getElementById('img_here').innerHTML = '<img src="../output/testDevice_device.eps" style="margin-left: 28%" width=300px;>';
                         $('#preview_title').text('Design Schematic: FlowLayer');
 //                    $.get('../uploads/Build_Verify/buildEPS_photo.eps', function (data) {
 //                        editor_preview.getSession().setMode("ace/mode/eps");
@@ -336,200 +336,6 @@
         <!-- START: TOP RIGHT HALF OF NAVIGATION BAR; WE CAN PUT OUR LOGOUT, SETTINGS, ECT HERE -->
         <ul class="nav navbar-top-links navbar-right">
 
-            <!--&lt;!&ndash; START: MESSAGE DROP DOWN MENU &ndash;&gt;-->
-            <!--<li class="dropdown">-->
-            <!--<a class="dropdown-fileTrayIndicatorstoggle" data-toggle="dropdown" href="#">-->
-            <!--<i class="fa fa-envelope fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-            <!--</a>-->
-            <!--<ul class="dropdown-menu dropdown-messages">-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<strong>John Smith</strong>-->
-            <!--<span class="pull-right text-muted">-->
-            <!--<em>Yesterday</em>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<strong>John Smith</strong>-->
-            <!--<span class="pull-right text-muted">-->
-            <!--<em>Yesterday</em>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<strong>John Smith</strong>-->
-            <!--<span class="pull-right text-muted">-->
-            <!--<em>Yesterday</em>-->
-            <!--</span>-->
-            <!--</div>-->
-            <!--<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a class="text-center" href="#">-->
-            <!--<strong>Read All Messages</strong>-->
-            <!--<i class="fa fa-angle-right"></i>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--&lt;!&ndash; /.dropdown-messages &ndash;&gt;-->
-            <!--</li>-->
-            <!--&lt;!&ndash; END: MESSAGE DROP DOWN MENU &ndash;&gt;-->
-
-            <!-- START: PROGRESS DROP DOWN MENU -->
-            <!--<li class="dropdown">-->
-                <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-                    <!--<i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-                <!--</a>-->
-                <!--<ul class="dropdown-menu dropdown-tasks">-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<div>-->
-                                <!--<p>-->
-                                    <!--<strong> Specify Stage </strong>-->
-                                    <!--<span class="pull-right text-muted"> Progress </span>-->
-                                <!--</p>-->
-                                <!--<div class="progress progress-striped active">-->
-                                    <!--<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
-                                        <!--<span class="sr-only">40% Complete (success)</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<div>-->
-                                <!--<p>-->
-                                    <!--<strong> Design Stage </strong>-->
-                                    <!--<span class="pull-right text-muted"> Progress </span>-->
-                                <!--</p>-->
-                                <!--<div class="progress progress-striped active">-->
-                                    <!--<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
-                                        <!--<span class="sr-only">20% Complete</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li>-->
-                        <!--<a href="#">-->
-                            <!--<div>-->
-                                <!--<p>-->
-                                    <!--<strong> Build Stage </strong>-->
-                                    <!--<span class="pull-right text-muted"> Progress </span>-->
-                                <!--</p>-->
-                                <!--<div class="progress progress-striped active">-->
-                                    <!--<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">-->
-                                        <!--<span class="sr-only">60% Complete (warning)</span>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--&lt;!&ndash;<li class="divider"></li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<a href="#">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<strong>Task 4</strong>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="pull-right text-muted">80% Complete</span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="progress progress-striped active">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 80%">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<span class="sr-only">80% Complete (danger)</span>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                    <!--<li class="divider"></li>-->
-                    <!--&lt;!&ndash;<li>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<a class="text-center" href="#">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<strong>See All Tasks</strong>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<i class="fa fa-angle-right"></i>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</a>&ndash;&gt;-->
-                    <!--&lt;!&ndash;</li>&ndash;&gt;-->
-                <!--</ul>-->
-                <!--&lt;!&ndash; /.dropdown-tasks &ndash;&gt;-->
-            <!--</li>-->
-            <!-- END: PROGRESS DROP DOWN MENU -->
-
-            <!--<li class="dropdown">-->
-            <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-            <!--<i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-            <!--</a>-->
-            <!--<ul class="dropdown-menu dropdown-alerts">-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<i class="fa fa-comment fa-fw"></i> New Comment-->
-            <!--<span class="pull-right text-muted small">4 minutes ago</span>-->
-            <!--</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<i class="fa fa-twitter fa-fw"></i> 3 New Followers-->
-            <!--<span class="pull-right text-muted small">12 minutes ago</span>-->
-            <!--</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<i class="fa fa-envelope fa-fw"></i> Message Sent-->
-            <!--<span class="pull-right text-muted small">4 minutes ago</span>-->
-            <!--</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<i class="fa fa-tasks fa-fw"></i> New Task-->
-            <!--<span class="pull-right text-muted small">4 minutes ago</span>-->
-            <!--</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a href="#">-->
-            <!--<div>-->
-            <!--<i class="fa fa-upload fa-fw"></i> Server Rebooted-->
-            <!--<span class="pull-right text-muted small">4 minutes ago</span>-->
-            <!--</div>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--<li class="divider"></li>-->
-            <!--<li>-->
-            <!--<a class="text-center" href="#">-->
-            <!--<strong>See All Alerts</strong>-->
-            <!--<i class="fa fa-angle-right"></i>-->
-            <!--</a>-->
-            <!--</li>-->
-            <!--</ul>-->
-            <!--&lt;!&ndash; /.dropdown-alerts &ndash;&gt;-->
-            <!--</li>-->
-
             <!-- START: SETTINGS DROP DOWN MENU -->
             <!--<li class="dropdown">-->
                 <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
@@ -554,21 +360,6 @@
         <div class="navbar-default sidebar" role="navigation">
             <div class="sidebar-nav navbar-collapse">
                 <ul class="nav" id="side-menu">
-
-                    <!-- *** NOTE: THIS CODE IS FOR A "SEARCH" INPUT BOX *** -->
-                    <!--<li class="sidebar-search">-->
-                    <!--<div class="input-group custom-search-form">-->
-                    <!--<input type="text" class="form-control" placeholder="Search...">-->
-                    <!--<span class="input-group-btn">-->
-                    <!--<button class="btn btn-default" type="button">-->
-                    <!--<i class="fa fa-search"></i>-->
-                    <!--</button>-->
-                    <!--</span>-->
-                    <!--</div>-->
-                    <!--&lt;!&ndash; /input-group &ndash;&gt;-->
-                    <!--</li>-->
-
-                    <!-- THIS LINKS TO HOME -->
 
                     <li>
                         <a href="../"><i class="fa fa-home fa-fw"></i> Home </a>
@@ -601,14 +392,6 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
-                    <!--<li>-->
-                    <!--<a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>-->
-                    <!--</li>-->
-
-                    <!--<li>-->
-                    <!--<a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>-->
-                    <!--</li>-->
 
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Files <span class="fa arrow"></span></a>
@@ -663,24 +446,11 @@
                                 <!-- /.nav-third-level -->
                             </li>
                             <li>
-                                <a href="#"> Download Project Zip </a>
+                                <a data-toggle="modal" href="#myModal_zip"  onclick="downloadZip()" data-target="#myModal_zip"> Download Project Zip </a>
                             </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-
-                    <!--<li>-->
-                    <!--<a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>-->
-                    <!--<ul class="nav nav-second-level">-->
-                    <!--<li>-->
-                    <!--<a href="blank.html">Blank Page</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                    <!--<a href="login.html">Login Page</a>-->
-                    <!--</li>-->
-                    <!--</ul>-->
-                    <!--&lt;!&ndash; /.nav-second-level &ndash;&gt;-->
-                    <!--</li>-->
 
                 </ul>
             </div>
@@ -954,6 +724,29 @@
                 fontFamily: "monospace",
                 fontSize: "12pt"
             });</script>
+
+            <!-- ZIP OVERVIEW MODAL -->
+            <div class="modal fade" id="myModal_zip">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Project Zip Overview</h4>
+                        </div>
+                        <div class="modal-body" id="zipInfo">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <a href="download/../../output/ProjectContents.zip">
+                                <button type="button" class="btn btn-primary">Download Zip</button>
+                            </a>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
 
 
         </div>

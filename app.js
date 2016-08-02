@@ -170,7 +170,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
     var clearFilesController = require('./controllers/clearFiles');
     app.post('/api/clearFiles',clearFilesController.clearFiles);
 
-
-
+    var zipController = require('./controllers/zipFiles');
+    app.post('/api/zipFiles',zipController.zipFiles);
 
 

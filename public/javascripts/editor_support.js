@@ -645,9 +645,10 @@ function compileMINT()
             postDownload_JSON.done(function(data)
             {
                 downloadFile('buildJSON','buildJSON',data,'inputString');
-                $.get('../uploads/Build_Verify/buildJSON.json',function(data)
+                $.get('../../output/testDevice.json',function(data)
                 {
-                    $("#myModal_compileComplete").modal();
+                    //(document).getElementById('myModal_compileComplete').modal('show');
+                    $("#myModal_compileComplete").modal('show');
                     editor_previewFFOutput.getSession().setMode("ace/mode/json");
                     //$('#preview_title').text('User Constrain File');
                     //var file_size = content.length;
@@ -1009,3 +1010,16 @@ function syncFilesWithServer()
     
 }
 
+function downloadZip()
+{
+    
+    $.post('/api/zipFiles',function (data)
+    {
+        var content = data.split('\n');
+        for (var i = 0; i < content.length; i++)
+        {
+            var div = document.getElementById('zipInfo');
+            div.innerHTML = div.innerHTML + content[i] + '<br>';
+    }
+    });
+}

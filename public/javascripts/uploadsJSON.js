@@ -8,41 +8,55 @@ function loadButtons() {
     $.getJSON(fileOfChoice, function (json) {
         // console.log(JSON.stringify((json.layers[2]).name));
 
+        console.log(json.layers.length);
+
+        for(var i = 0; i < json.layers.length; i++){
+            if(((json.layers[i]).name) === "control") {
+                controlOnly = JSON.stringify((json.layers[i]).features);
+                console.log(controlOnly);
+            }
+            if(((json.layers[i]).name) === "flow"){
+                flowOnly = JSON.stringify((json.layers[i]).features);
+                console.log(flowOnly);
+            }
+        }
+
+
 
 
         // CONTROL ONLY
-        if(((json.layers[1]).name) === "control")
-        {
-            controlOnly = JSON.stringify((json.layers[1]).features);
-            // console.log(controlOnly);
-        }
-        else if(((json.layers[2]).name) === "control")
-        {
-            controlOnly = JSON.stringify((json.layers[2]).features);
-            // console.log(controlOnly);
-        }
-        else if(((json.layers[0]).name) === "control")
-        {
-            controlOnly = JSON.stringify((json.layers[0]).features);
-            // console.log(controlOnly);
-        }
-
-        // FLOW ONLY
-        if(((json.layers[1]).name) === "flow")
-        {
-            flowOnly = JSON.stringify((json.layers[1]).features);
-            // console.log(flowOnly);
-        }
-        else if(((json.layers[2]).name) === "flow")
-        {
-            flowOnly = JSON.stringify((json.layers[2]).features);
-            // console.log(flowOnly);
-        }
-        else if(((json.layers[0]).name) === "flow")
-        {
-            flowOnly = JSON.stringify((json.layers[0]).features);
-            // console.log(flowOnly);
-        }
+        // if(((json.layers[1]).name) === "control")
+        // {
+        //     controlOnly = JSON.stringify((json.layers[1]).features);
+        //     console.log(controlOnly);
+        // }
+        // // else if(((json.layers[2]).name) === "control")
+        // // {
+        // //     controlOnly = JSON.stringify((json.layers[2]).features);
+        // //     // console.log(controlOnly);
+        // // }
+        // else if(((json.layers[0]).name) === "control")
+        // {
+        //     controlOnly = JSON.stringify((json.layers[0]).features);
+        //     console.log(controlOnly);
+        // }
+        //
+        // // FLOW ONLY
+        // if(((json.layers[1]).name) === "flow")
+        // {
+        //     flowOnly = JSON.stringify((json.layers[1]).features);
+        //     console.log(flowOnly);
+        // }
+        // // else if(((json.layers[2]).name) === "flow")
+        // // {
+        // //     flowOnly = JSON.stringify((json.layers[2]).features);
+        // //     // console.log(flowOnly);
+        // // }
+        // else if(((json.layers[0]).name) === "flow")
+        // {
+        //     flowOnly = JSON.stringify((json.layers[0]).features);
+        //     console.log(flowOnly);
+        // }
 
 
 
@@ -120,7 +134,7 @@ function loadButtons() {
         
         
         
-        console.log(localStorage.dispenserData);
+        // console.log(localStorage.dispenserData);
 
 
 

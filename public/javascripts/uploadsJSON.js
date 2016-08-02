@@ -8,16 +8,14 @@ function loadButtons() {
     $.getJSON(fileOfChoice, function (json) {
         // console.log(JSON.stringify((json.layers[2]).name));
 
-        console.log(json.layers.length);
-
         for(var i = 0; i < json.layers.length; i++){
             if(((json.layers[i]).name) === "control") {
                 controlOnly = JSON.stringify((json.layers[i]).features);
-                console.log(controlOnly);
+                // console.log(controlOnly);
             }
             if(((json.layers[i]).name) === "flow"){
                 flowOnly = JSON.stringify((json.layers[i]).features);
-                console.log(flowOnly);
+                // console.log(flowOnly);
             }
         }
 

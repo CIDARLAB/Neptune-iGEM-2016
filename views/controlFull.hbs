@@ -77,25 +77,36 @@
 
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
 </head>
-
-
 
 
 
 <body>
 
-<nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation" style="margin: 0;">
+<style>
+    .collapseNav {
+        display: none;
+    }
+    .navbarFloating:hover .collapseNav {
+        display: table !important;
+    }
+    .leftFocusedNav {
+        width: 206px !important;
+    }
+
+</style>
+
+
+<nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation">
 
     <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
     <div class="navbar-header">
-        <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
-            <!--<span class="sr-only">Toggle navigation</span>-->
-            <!--<span class="icon-bar"></span>-->
-            <!--<span class="icon-bar"></span>-->
-            <!--<span class="icon-bar"></span>-->
-        <!--</button>-->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
         <img class="pull-left" id="dropdownHover" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
         <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
     </div>
@@ -247,7 +258,6 @@
 <!--</div>-->
 
 
-
 <!-- jQuery -->
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
@@ -262,7 +272,6 @@
 <!-- 3DuF JavaScript -->
 <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
 <script src="../javascripts/3DuFApp.js"></script>
-
 
 
 

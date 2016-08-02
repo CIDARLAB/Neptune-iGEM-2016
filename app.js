@@ -6,7 +6,7 @@ var path = require('path');
 var multer = require("multer");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+// var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var fs = require('fs');
 
@@ -100,6 +100,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
     app.get('/specify',specifyController.openSpecifyPage);
     app.get('/design',designController.openDesignPage);
     app.get('/control',controlController.openControllersPage);
+    app.get('/controlFull',controlController.openControlFullPage);
     app.get('/Build',buildController.openBuildPage);
     app.get('/assembly', assemblyController.openAssemblyPage);
 

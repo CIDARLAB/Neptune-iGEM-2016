@@ -18,10 +18,25 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     //     { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
     //     { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
     //                                 ];
-
+    
+    
+    
+    // Valve Control
     localStorage.pumpData = clearPumpData();
     localStorage.valveData = inititateValveStates();
     localStorage.firstVisit = false;
+    localStorage.pumpInitial = "TRUE";  //  keeps track if this is the first time pump data is being displayed (so that its not cleared on page reload)
+    
+    
+    // Dispenser Control
+    localStorage.Dispensers = 1;
+    localStorage.dispenserData = clearDispenserData();
+    localStorage.dispenserToControl;
+    localStorage.dispenserInitial == "TRUE";    //  keeps track if this is the first time dispenser data is being displayed (so that its not cleared on page reload)
+    
+    
+    
+    
 }
 localStorage.DEBUGGER_FLAG == false;
 localStorage.clear_toggle = false;
@@ -34,7 +49,7 @@ localStorage.settings_button_has_been_pressed_before = false;
 localStorage.SERIAL_CONSOLE_SESSION = [];
 
 
-// Declarations for Graph Port Values
+// Variables for Valve Control (ports in Control layer)
 if (localStorage.getItem('portXcoords') === null) {
     localStorage.setItem('portXcoords', 'default');
 }
@@ -59,4 +74,20 @@ if (localStorage.getItem('SVGdimY') === null) {
 }
 if(localStorage.getItem('portToControl') == null) {
     localStorage.setItem('portToControl', 'null');
+}
+
+
+
+
+// Variables for Dispenser Control (ports in flow layer)
+if (localStorage.getItem('portXcoordsDisp') === null) {
+    localStorage.setItem('portXcoordsDisp', 'default');
+}
+
+if (localStorage.getItem('portYcoordsDisp') === null) {
+    localStorage.setItem('portYcoordsDisp', 'default');
+}
+
+if(localStorage.getItem('DispenserToControl') == null) {
+    localStorage.setItem('DispenserToControl', 'null');
 }

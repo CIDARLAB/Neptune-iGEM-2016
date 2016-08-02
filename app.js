@@ -100,6 +100,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
     app.get('/specify',specifyController.openSpecifyPage);
     app.get('/design',designController.openDesignPage);
     app.get('/control',controlController.openControllersPage);
+    app.get('/controlFull',controlController.openControlFullPage);
     app.get('/Build',buildController.openBuildPage);
     app.get('/assembly', assemblyController.openAssemblyPage);
 

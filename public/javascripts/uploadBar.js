@@ -8,12 +8,20 @@
 //                    o = Needs to be Implemented    x = Implemented and Working                         //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+
+//  NO LONGER USED
+
+
+
+
 function loadButtons() {
 
     var fileOfChoice = "../uploads/Build_Verify/buildJSON.json";
     $.getJSON(fileOfChoice, function (json) {
         // console.log(JSON.stringify((json.layers[2]).name));
 
+        // CONTROL LAYER ONLY
         if(((json.layers[1]).name) === "control")
         {
             controlOnly = JSON.stringify((json.layers[1]).features);
@@ -31,6 +39,27 @@ function loadButtons() {
         }
 
 
+
+        // FLOW LAYER ONLY
+        if(((json.layers[1]).name) === "flow")
+        {
+            flowOnly = JSON.stringify((json.layers[1]).features);
+            console.log(flowOnly);
+        }
+        else if(((json.layers[2]).name) === "flow")
+        {
+            flowOnly = JSON.stringify((json.layers[2]).features);
+            console.log(flowOnly);
+        }
+        else if(((json.layers[0]).name) === "flow") {
+            flowOnly = JSON.stringify((json.layers[0]).features);
+            console.log(flowOnly);
+        }
+
+
+
+
+
         // Use Json as a string
         var jsonString = JSON.stringify(json);
         // var controlOnly;
@@ -43,16 +72,6 @@ function loadButtons() {
 
         // controlOnly = JSON.stringify((json.layers[2]).features);
 
-
-        // figure out indices of flow and control and cut json_string to substring to only contain control
-        // flowIndex = jsonString.search('\"name\":\"flow\",\"type\":\"flow\"');
-        // controlIndex = jsonString.search('\"name\":\"control\",\"type\":\"control\"');
-        // if(flowIndex < controlIndex){   // control is after flow
-        //     controlOnly = jsonString.substr(controlIndex);
-        // }
-        // else {  // control is before flow
-        //     controlOnly = jsonString.substr(controlIndex, (flowIndex-controlIndex));
-        // }
         console.log("control only: " + controlOnly);
 
         // Now look for all Port in the control layer only

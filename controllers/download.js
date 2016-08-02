@@ -42,7 +42,7 @@ exports.download = function(req, res)
                 filestream.pipe(res);
                 break;
             case 'mint':
-                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
@@ -55,11 +55,11 @@ exports.download = function(req, res)
                 filestream.pipe(res);
                 break;
             case 'mint_previewImg':
-                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testMINT.uf';
+                file = file + '/testDevice.uf';
                 var filename = path.basename(file);
                 //var mimetype = mime.lookup(file);
                 res.setHeader('Content-disposition', 'attachment; filename=' + filename);
@@ -183,18 +183,18 @@ exports.download = function(req, res)
                 file = file + '/backend/defaultINI.txt';
                 break;
             case 'mint':
-                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testMINT.uf';
+                file = file + '/testDevice.uf';
                 break;
             case 'mint_previewImg':
-                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+                //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testMINT.uf';
+                file = file + '/testDevice.uf';
                 break;
             case 'json':
                 //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/output/testDevice.json';
@@ -272,7 +272,7 @@ exports.download = function(req, res)
         //     filestream.pipe(res);
         //     break;
         // case 'mint':
-        //     //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+        //     //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
         //     var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
         //     var len = file.length;
         //     file = file.substring(0,len-12);
@@ -285,11 +285,11 @@ exports.download = function(req, res)
         //     filestream.pipe(res);
         //     break;
         // case 'mint_previewImg':
-        //     //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testMINT.uf';
+        //     //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
         //     var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
         //     var len = file.length;
         //     file = file.substring(0,len-12);
-        //     file = file + '/testMINT.uf';
+        //     file = file + '/testDevice.uf';
         //     var filename = path.basename(file);
         //     //var mimetype = mime.lookup(file);
         //     res.setHeader('Content-disposition', 'attachment; filename=' + filename);

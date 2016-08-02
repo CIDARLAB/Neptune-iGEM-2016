@@ -122,6 +122,22 @@
         </div>
     </template>
 
+
+
+    <!--Template for valves to be placed over graph canvas-->
+    <template id="dispenser-template" action="this.preventDefault();">
+        <div class ="valve"  action="this.preventDefault();">
+            <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
+                <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/dispenseMarker.svg" width="40" height="40">
+                <p class="IDtext" style="pointer-events: none;">beb</p>
+            </a>
+
+        </div>
+    </template>
+
+
+
+
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
@@ -423,7 +439,7 @@
                     <a>
 
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData))" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal">
                             Initialize
                         </button>
 
@@ -534,28 +550,21 @@
 
         <script src="../javascripts/pumpControlInit.js" type="application/javascript"></script>
 
-
-
-        <!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
-        <!--<button type="button" class="btn btn-primary btn-lg" onclick="drawValveTable(JSON.parse(localStorage.pumpData))" data-toggle="modal" data-target="#myModal">-->
-            <!--Initialize-->
-        <!--</button>-->
-
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
-                        <h4 class="modal-title" id="myModalLabel">Pump Initializations</h4>
+                        <h2 class="modal-title" id="myModalLabel">Pump Initializations</h2>
                     </div>
                     <div class="modal-body">
 
 
                         <div class="editableTable">
-                            <h2>Valve Settings</h2>
+                            <h3>Valve Settings</h3>
                             <table id="ValveTable" class="table table-striped">
                                 <tr>
                                     <th>Valve Id</th>
@@ -571,13 +580,16 @@
                         <br>
 
                         <div class="editableTable">
-                            <h2>Dispenser Settings</h2>
+                            <h3>Dispenser Settings</h3>
                             <table id="DispenserTable" class="table table-striped">
                                 <tr>
                                     <th>Dispenser Id</th>
+                                    <th>Motor Shield</th>
+                                    <th>Pin Number</th>
+                                    <th>Precision</th>
                                     <th>Min</th>
                                     <th>Max</th>
-                                    <th>Precision</th>
+                                    <th>Current State</th>
                                 </tr>
                             </table>
                         </div>
@@ -587,7 +599,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button id="export-btn" onclick="exporting();" class="btn btn-primary">Save Changes</button>
+                        <button type="button" class="btn btn-secondary" onclick="setNumberOfPumps_JSON(); setNumberOfDispensers_JSON();">Clear</button>
+                        <button id="export-btn" onclick="exporting(); exportingDispenser();" class="btn btn-primary">Save Changes</button>
                     </div>
                 </div>
             </div>
@@ -604,7 +617,7 @@
             #c {
                 width: 100% !important;
                 height: 100% !important;
-                /*pointer-events:none;*/
+                pointer-events:none;
                 /*margin-top: 90px;*/
                 overflow-x:hidden;
             }
@@ -624,7 +637,7 @@
 
 
 
-        <div class="row" style="height:100%; width: 90%; margin-right:0px; margin-left: 10px; overflow:hidden">
+        <div class="row" style="height:100%; width: 98%; margin-right:0px; margin-left: 10px; overflow:hidden">
 
             <div class=".col-md-12">
 

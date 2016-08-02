@@ -1,0 +1,173 @@
+<head>
+
+    <!--3Duf Dependencies-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script src="../lib/nouislider/nouislider.min.js"></script>
+    <script src="../lib/paper/paper-full.min.js"></script>
+    <script src="../lib/filesaver/FileSaver.min.js"></script>
+    <script src="../lib/three/three.min.js"></script>
+
+    <link rel="stylesheet" href="../lib/nouislider/nouislider.min.css">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!--<link rel="stylesheet" href="../stylesheets/modified.css">-->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for Page -->
+    <link href="../stylesheets/controlFull.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="/javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+
+    <!-- Custom CSS -->
+    <link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Toastr CDN -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    <!-- Custom Fonts -->
+    <link href="/javascripts/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+
+
+
+
+</head>
+
+
+
+<body>
+
+<style>
+    .collapseNav {
+        display: none;
+    }
+    .navbarFloating:hover .collapseNav {
+        display: table !important;
+    }
+    .leftFocusedNav {
+        width: 206px !important;
+    }
+
+</style>
+
+
+<nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation">
+
+    <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <img class="pull-left" id="dropdownHover" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+        <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
+    </div>
+
+
+
+
+    <!-- START: SIDE NAVIGATION BAR -->
+    <div class="navbar-default sidebar leftFocusedNav"  role="navigation">
+        <div class="sidebar-nav navbar-collapse collapseNav">
+            <ul class="nav" id="side-menu">
+
+                <!-- THIS LINKS TO HOME -->
+
+                <li>
+                    <a href=""><i class="fa fa-home fa-fw"></i> Home </a>
+                </li>
+
+                <!-- THIS LINKS TO THE MAIN DASHBOARD -->
+                <li>
+                    <a href="../dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
+                </li>
+
+                <!-- THESE LINKS PROVIDE USER NAVIGATION THROUGHOUT THE WORKFLOW -->
+                <li>
+                    <a><i class="fa fa-share fa-fw"></i> Jump to Workflow Stage</a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="../specify"><i class="fa fa-pencil-square-o  fa-fw"></i> Specify </a>
+                        </li>
+                        <li>
+                            <a href="../design"><i class="fa fa-cogs" aria-hidden="true"></i> Design </a>
+                        </li>
+                        <li>
+                            <a href="../build"><i class="fa fa-briefcase" aria-hidden="true"></i> Build</a>
+                        </li>
+                        <li>
+                            <a href="../assembly"><i class="fa fa-gavel" aria-hidden="true"></i> Assembly</a>
+                        </li>
+                        <li>
+                            <a href="../control"><i class="fa fa-bars" aria-hidden="true"></i> Control</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- END: SIDE NAVIGATION BAR -->
+
+</nav>
+
+
+
+
+
+<div id="fullPageWrapper">
+    <div id="mainWindow">
+
+        <main id="fullPage">
+            <div id="view_container" class="page-content" style="width: 100%; height: 100%;">
+                <div id="canvas_block" class="shown-block fade-transition " style="width: 100%; height: 100%;">
+                    <canvas id="c" tabindex="0" style="width: 100%; height: 100%; pointer-events: none"></canvas>
+                </div>
+                <div id="renderContainer" class="hidden-block fade-transition"></div>
+            </div>
+        </main>
+
+    </div>
+
+</div>
+
+
+<!-- jQuery -->
+<script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/javascripts/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="/javascripts/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+<!-- Morris Charts JavaScript -->
+<script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
+<script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
+<!-- Custom Theme JavaScript -->
+<script src="/javascripts/dist/js/sb-admin-2.js"></script>
+<!-- 3DuF JavaScript -->
+<script src="../javascripts/3DuFApp.js"></script>
+
+
+<script>
+    var bodyElement = document.getElementsByTagName("body");
+    var canvasElement = document.getElementById("c");
+    bodyElement.onresize = function (e) {
+                canvasElement.width = window.innerWidth;
+                canvasElement.height = window.innerHeight;
+            }
+</script>
+
+
+</body>
+

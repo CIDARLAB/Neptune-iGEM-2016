@@ -27,6 +27,7 @@
         });
     </script>
 
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
     <script>
@@ -499,19 +500,9 @@
                                         <!--<span class="caret"></span>-->
                                     <!--</button>-->
                                     <!--<ul class="dropdown-menu pull-right" role="menu">-->
-                                       <button class="btn btn-default" onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes
-                                       </button>
-                                    <button class="btn btn-default" onclick="refreshEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-refresh  fa-fw"></i> Reload
-                                        </button>
-                                        <!--<li><a href="download/../uploads/Specify/specifyLFR" download="mfJSON.json"> Download LFR </a>-->
-                                        <!--</li>-->
-                                        <!--<li><a href="download/../uploads/Specify/specifyUCF" download="mfUCF.ucf"> Download UCF </a>-->
-                                        <!--</li>-->
-                                        <!--<li><a onclick="pushFileToEditor(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-upload  fa-fw"></i> Push Upload to Editor </a>-->
-                                        <!--</li>-->
-                                        <!--<li class="divider"></li>-->
-                                        <button class="btn btn-default" href="#"> Editor Settings
-                                        </button>
+                                        <button class="btn btn-default" onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes</button>
+                                        <button class="btn btn-default" href="#"> Editor Settings</button>
+                                        <!--<button class="btn btn-default" data-toggle="modal" href="#myModal_ucf" data-target="#myModal_ucf"> UCF Creator </button>-->
                                     <!--</ul>-->
                                 <!--</div>-->
                                 </div>
@@ -542,6 +533,19 @@
 
             <!-- START: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
             <div class="col-lg-4">
+
+                <!-- START: UCF Summary -->
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <i class="fa fa-play fa-fw"></i> UCF Creator
+                        &nbsp &nbsp <button onclick="generateUCF()"> Generate New UCF </button>
+                    </div>
+
+                    <div class="panel-body" id="ucf_maker" ></div>
+
+                </div>
+                <!-- END: ACTION CENTER -->
 
                 <!-- START: ACTION CENTER -->
                 <div class="panel panel-default">
@@ -748,6 +752,29 @@
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
 
+            <!--&lt;!&ndash; UCF CREATOR &ndash;&gt;-->
+            <!--<div class="modal fade" id="myModal_ucf">-->
+                <!--<div class="modal-dialog" role="document">-->
+                    <!--<div class="modal-content">-->
+                        <!--<div class="modal-header">-->
+                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                                <!--<span aria-hidden="true">&times;</span>-->
+                            <!--</button>-->
+                            <!--<h4 class="modal-title"> User Constrain File Creator </h4>-->
+                        <!--</div>-->
+                        <!--<div class="modal-body" id="ucf_content">-->
+
+                        <!--</div>-->
+                        <!--<div class="modal-footer">-->
+                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
+                            <!--<a href="download/../../output/ProjectContents.zip">-->
+                                <!--<button type="button" class="btn btn-primary">Download Zip</button>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+            <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+
 
         </div>
 
@@ -817,8 +844,47 @@
     });
 </script>
 
-</html>
 
+<!--<script id="ucf_template" type="text/x-handlebars-template">-->
+
+<!--</script>-->
+
+<!--<script src="../javascripts/ucf_template.js" type="text/x-handlebars-template" id="ucf_template"></script>-->
+
+<script type="text/javascript">
+    $.get('../javascripts/ucf_template.hbs', function (data)
+    {
+        var template = Handlebars.compile(data);
+        $.get('../uploads/Specify/specifyUCF.json',function(data)
+        {
+            var json = {content: data};
+            var myhtml = template(data);
+            $("#ucf_maker").html(myhtml);
+        });
+    },'html');
+
+//    var source   = $("#ucf_template").html();
+//    var template = Handlebars.compile(source);
+//    var data = {headerTitle:"Shop Page", weekDay:"Wednesday"};
+//    var myhtml = template(data);
+
+    //    var data = {
+    //        people: [
+    //            {firstName: "Yehuda", lastName: "Katz"},
+    //            {firstName: "Carl", lastName: "Lerche"},
+    //            {firstName: "Alan", lastName: "Johnson"}
+    //        ]
+    //    };
+    //    $.get('../uploads/Specify/specifyUCF.json',function(data)
+    //    {
+    //        var json = {content: data};
+    //        $("#ucf_maker").html(template(data));
+    //    });
+
+</script>
+
+
+</html>
 
 <!--<script type="text/javascript">-->
 <!--function fileTrayIndicators()-->

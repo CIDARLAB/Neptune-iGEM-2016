@@ -1023,3 +1023,41 @@ function downloadZip()
     }
     });
 }
+
+function generateUCF()
+{
+    console.log('pussy');
+    var numOperators = $("#accordion div.panel-default").length;
+    var JSON = [];
+    for (var i = 0; i < numOperators; i++)
+    {
+        var operator = document.getElementById('operator_' + i).value;
+        var name = document.getElementById('name_' + i).value;
+        var inputs = document.getElementById('inputs_' + i).value;
+        var inputTerms = document.getElementById('inputTerms_' + i).value;
+        var outputs = document.getElementById('outputs_' + i).value;
+        var outputTerms = document.getElementById('outputTerms_' + i).value;
+        var Import = document.getElementById('import_' + i).value;
+        var path = document.getElementById('path_' + i).value;
+        var mint = document.getElementById('mint_' + i).value;
+        var layer = document.getElementById('layer_' + i).value;
+
+        var single_stage =
+        {
+            "operator":operator,
+            "name":name,
+            "inputs":inputs,
+            "inputTerms":inputTerms,
+            "outputs":outputs,
+            "outputTerms":outputTerms,
+            "import":Import,
+            "picpath":path,
+            "mint":mint,
+            "layer":layer
+        };
+
+        JSON.push(single_stage);
+    }
+    
+    $.post('/api/generateUCF',{content:JSON})
+}

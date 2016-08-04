@@ -11,7 +11,7 @@
 		"inputs":2,
 		"inputTerms": [1,2],
 		"outputTerms": 3,
-		"outputs":1,
+		"outputs":1
 		"picpath":"SampleIcons/ymixer.png",
 		"mint":"V TREE NAME 2 to 1 spacing=7500 flowChannelWidth=750",
 		"layer":"flow"

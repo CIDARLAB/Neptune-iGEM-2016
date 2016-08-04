@@ -45,7 +45,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
       //app.use(express.static(path.join(__dirname + 'output')));
       app.use(express.static(path.join(__dirname, 'public')));
 
-    app.use("/output", express.static(__dirname + "/output"));
+      app.use("/output", express.static(__dirname + "/output"));
 }
 
 //Error handlers
@@ -173,5 +173,8 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
     var zipController = require('./controllers/zipFiles');
     app.post('/api/zipFiles',zipController.zipFiles);
+
+    var ucfMaker = require('./controllers/generateUCF');
+    app.post('/api/generateUCF',ucfMaker.generateUCF);
 
 

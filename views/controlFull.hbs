@@ -225,21 +225,24 @@
 
 
 
+<canvas id="c" tabindex="0" resize="true"></canvas>
+<!--This is where valves go!-->
+<div id="content"></div>
 
 
 
-        <main id="fullPage">
-            <div id="view_container" class="page-content" >
-                <div id="canvas_block" class="shown-block fade-transition " >
-                    <canvas id="c" tabindex="0" resize></canvas>
-                    <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
 
-                    <!--This is where valves go!-->
-                    <div id="content"></div>
-                </div>
-                <div id="renderContainer" class="hidden-block fade-transition"></div>
-            </div>
-        </main>
+
+        <!--<main id="fullPage">-->
+            <!--<div id="view_container" class="page-content" >-->
+                <!--<div id="canvas_block" class="shown-block fade-transition " >-->
+                    <!--<canvas id="c" tabindex="0" resize="true"></canvas>-->
+                    <!--&lt;!&ndash;This is where valves go!&ndash;&gt;-->
+                    <!--<div id="content"></div>-->
+                <!--</div>-->
+                <!--<div id="renderContainer" class="hidden-block fade-transition"></div>-->
+            <!--</div>-->
+        <!--</main>-->
 
 
 
@@ -255,17 +258,12 @@
 <!-- Custom Theme JavaScript -->
 <script src="/javascripts/dist/js/sb-admin-2.js"></script>
 <!-- 3DuF JavaScript -->
+<script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
 <script src="../javascripts/3DuFApp.js"></script>
 
 
-<script>
-//    var bodyElement = document.getElementsByTagName("body");
-//    var canvasElement = document.getElementById("c");
-//    bodyElement.onresize = function (e) {
-//                canvasElement.width = window.innerWidth;
-//                canvasElement.height = window.innerHeight;
-//            }
-</script>
+
+
 
 
 </body>

@@ -1024,9 +1024,33 @@ function downloadZip()
     });
 }
 
+generateUCF_UI()
+{
+
+    generateUCF_UI.count = generateUCF_UI.count++ || 100;
+    var titleRef = "#content" + generateUCF_UI.count;
+    var operator_id = "operator_" + generateUCF_UI.count;
+    var name_id = "name_" + generateUCF_UI.count;
+    var input_id = "inputs_" + generateUCF_UI.count;
+    var inputTerms_id = "inputTerms_" + generateUCF_UI.count;
+    var outputs_id = "outputs_" + generateUCF_UI.count;
+    var outputTerms_id = "outputTerms_" + generateUCF_UI.count;
+    var import_id = "import_" + generateUCF_UI.count;
+    var path_id = "path_" + generateUCF_UI.count;
+    var mint_id = "mint_" + generateUCF_UI.count;
+    var layer_id = "layer_" + generateUCF_UI.count;
+
+    var operator;
+    var name;
+
+    var html; 
+
+    $("#ucf_maker").appendChild(html);
+
+}
+
 function generateUCF()
 {
-    console.log('pussy');
     var numOperators = $("#accordion div.panel-default").length;
     var JSON = [];
     for (var i = 0; i < numOperators; i++)

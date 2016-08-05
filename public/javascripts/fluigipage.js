@@ -232,7 +232,7 @@ function increaseDispenserOutput(dispenser_to_control)
         sendCommandDispense();
     }
     else {
-        toastr.info('You have already dispensed the full amount of this syringe.');
+        toastr.warning('You have already dispensed the full amount of this syringe.');
     }
     return false;
 }

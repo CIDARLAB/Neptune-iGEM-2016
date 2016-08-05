@@ -133,8 +133,9 @@ function placeButtons() {
 
         console.log("canvas bounds: ");
         console.log(paper.view.bounds);
-        console.log("canvas zoom: ");
+
         console.log(canvasZoom);
+
         // console.log(paper.view.zoom);
         console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
 
@@ -180,6 +181,7 @@ function placeButtons() {
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
+
         valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoordsDisp)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
         valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
 

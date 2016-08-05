@@ -98,13 +98,15 @@ function onclickanchortagDispense(){
 
 function placeButtons() {
 
-    var canWidth = 1280;
-    var canHeight = 725;
+    // var canWidth = 1280;
+    // var canHeight = 725;
+    //
+    // var cx = document.querySelector("canvas").getContext("2d");
+    // // Formatting Canvas
+    // cx.canvas.width = canWidth;
+    // cx.canvas.height = canHeight;
 
-    var cx = document.querySelector("canvas").getContext("2d");
-    // Formatting Canvas
-    cx.canvas.width = canWidth;
-    cx.canvas.height = canHeight;
+    var canvasZoom = paper.view.zoom;
 
 
     // for each pump, create new instance of valve template
@@ -113,6 +115,7 @@ function placeButtons() {
         var content = $("#content");
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
+
 
         valveDiv.style.position = 'absolute';
 
@@ -125,13 +128,13 @@ function placeButtons() {
         // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])* paper.view.zoom)+ 'px';
 
 
-        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * paper.view.zoom +'px';
-        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * paper.view.zoom +'px';
+        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
+        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
 
         console.log("canvas bounds: ");
         console.log(paper.view.bounds);
         console.log("canvas zoom: ");
-        console.log(paper.view.zoom);
+        console.log(canvasZoom);
         // console.log(paper.view.zoom);
         console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
 
@@ -177,8 +180,8 @@ function placeButtons() {
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoordsDisp)[i]) - paper.view.bounds.topLeft['_y']) * paper.view.zoom + 'px';
-        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * paper.view.zoom + 'px';
+        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoordsDisp)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
+        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array

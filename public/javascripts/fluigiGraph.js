@@ -96,25 +96,7 @@ function onclickanchortagDispense(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// GRAPH FORMATTING
-$(document).ready(function(){
+function placeButtons() {
 
     var canWidth = 1280;
     var canHeight = 725;
@@ -139,16 +121,19 @@ $(document).ready(function(){
         // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*(75800/localStorage.getItem('SVGdimX'))*0.010294117647058823 - 20 + 363 + 100) + 'px';
 
 
-        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])* paper.view.zoom)+ 'px';
-        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])* paper.view.zoom)+ 'px';
+        // valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])* paper.view.zoom)+ 'px';
+        // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])* paper.view.zoom)+ 'px';
 
 
+        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * paper.view.zoom +'px';
+        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * paper.view.zoom +'px';
 
-        console.log("page center object: ");
-        console.log(paper.view.center);
-        console.log("page center coorinates: ");
-        console.log('(' + paper.view.center['_x'] + ',' + paper.view.center['_y']);
+        console.log("canvas bounds: ");
+        console.log(paper.view.bounds);
+        console.log("canvas zoom: ");
         console.log(paper.view.zoom);
+        // console.log(paper.view.zoom);
+        console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
 
 
         // console.log("this is the 3DUF Zoom: " + paper.view.zoom);
@@ -182,26 +167,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     // for each DISPENSER, create new instance of DISPENSER template
     for(var i=0; i<JSON.parse(localStorage.getItem('portXcoordsDisp')).length; i++){
 
@@ -212,8 +177,8 @@ $(document).ready(function(){
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoordsDisp'))[i])*(51000/localStorage.getItem('SVGdimY'))*0.010294117647058823 + 90 + 110) + 'px';
-        valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoordsDisp'))[i])*(75800/localStorage.getItem('SVGdimX'))*0.010294117647058823 - 20 + 150 + 100) + 'px';
+        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoordsDisp)[i]) - paper.view.bounds.topLeft['_y']) * paper.view.zoom + 'px';
+        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * paper.view.zoom + 'px';
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
@@ -237,5 +202,16 @@ $(document).ready(function(){
 
     }
 
-});
+}
+
+
+
+
+
+// GRAPH FORMATTING
+// $(document).ready(function(){
+//
+//     placeButtons();
+//
+// });
 

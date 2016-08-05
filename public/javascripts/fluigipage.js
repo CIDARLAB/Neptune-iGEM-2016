@@ -101,7 +101,7 @@ function mediateValveState(event)
             toastr.warning("Invalid State! Apply 0 or 1");
         }
     }
-    localStorage.DEBUGGER_FLAG == false;
+    localStorage.DEBUGGER_FLAG = false;
     localStorage.portToControl = valve_to_control;
 
     //localStorage.valveData
@@ -194,7 +194,10 @@ function clearDispenserData() {
 
     }
 
+
     return JSON.stringify(dispenserData);
+
+
 }
 
 function setNumberOfDispensers_JSON() {
@@ -300,6 +303,7 @@ function openConnectionPage() {
 }
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){
+    // placeButtons();
     loadButtons();
     paper.view.setCenter(2135.68, 610.967);
     paper.view.setZoom(0.269988);
@@ -315,6 +319,7 @@ $(document).ready(function(){
             error: function(response){
             }
         });
+    
 });
 
 function closeConnectionPage()

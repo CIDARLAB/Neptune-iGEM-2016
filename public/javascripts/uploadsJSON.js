@@ -19,45 +19,6 @@ function loadButtons() {
             }
         }
 
-
-
-
-        // CONTROL ONLY
-        // if(((json.layers[1]).name) === "control")
-        // {
-        //     controlOnly = JSON.stringify((json.layers[1]).features);
-        //     console.log(controlOnly);
-        // }
-        // // else if(((json.layers[2]).name) === "control")
-        // // {
-        // //     controlOnly = JSON.stringify((json.layers[2]).features);
-        // //     // console.log(controlOnly);
-        // // }
-        // else if(((json.layers[0]).name) === "control")
-        // {
-        //     controlOnly = JSON.stringify((json.layers[0]).features);
-        //     console.log(controlOnly);
-        // }
-        //
-        // // FLOW ONLY
-        // if(((json.layers[1]).name) === "flow")
-        // {
-        //     flowOnly = JSON.stringify((json.layers[1]).features);
-        //     console.log(flowOnly);
-        // }
-        // // else if(((json.layers[2]).name) === "flow")
-        // // {
-        // //     flowOnly = JSON.stringify((json.layers[2]).features);
-        // //     // console.log(flowOnly);
-        // // }
-        // else if(((json.layers[0]).name) === "flow")
-        // {
-        //     flowOnly = JSON.stringify((json.layers[0]).features);
-        //     console.log(flowOnly);
-        // }
-
-
-
         // Use Json as a string
         var jsonString = JSON.stringify(json);
 
@@ -92,19 +53,9 @@ function loadButtons() {
         if(localStorage.pumpsInitial == "TRUE") {
             setNumberOfPumps_JSON();
         }
-
-
         
-        
-        
-
         // clearPumpData();
-
-
-
-
-
-
+        
         // Now look for all Ports (Dispensers) in the control layer only
         var myArrayDisp;
         var portArrayDisp = [];

@@ -60,8 +60,10 @@ html, body, main {
     left: 0px;
     top: 0px;
     cursor: default;
-    width: 100%;
+    min-width: 100%;
+    /*height: auto;*/
     /*height: 100%;*/
+    min-height: 100%;
     pointer-events: none;
 }
 

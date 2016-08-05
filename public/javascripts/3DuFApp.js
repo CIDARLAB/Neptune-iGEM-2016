@@ -30693,6 +30693,7 @@ var grid;
 paper.setup("c");
 
 window.onload = function () {
+
     view = new PaperView(document.getElementById("c"));
     viewManager = new ViewManager(view);
     grid = new AdaptiveGrid();
@@ -30705,6 +30706,7 @@ window.onload = function () {
         viewManager.loadDeviceFromJSON(JSON.parse(JSON.stringify((json))));
         viewManager.updateGrid();
         Registry.currentDevice.updateView();
+        placeButtons(); // external function found in fluigiGraph.js
     });
 
     window.dev = Registry.currentDevice;
@@ -30714,6 +30716,8 @@ window.onload = function () {
 
     Registry.threeRenderer = new ThreeDeviceRenderer(document.getElementById("renderContainer"));
     PageSetup.setupAppPage();
+
+    
 };
 
 },{"./core/device":263,"./core/layer":265,"./core/registry":274,"./examples/jsonExamples":275,"./view/colors":289,"./view/grid/adaptiveGrid":290,"./view/pageSetup":291,"./view/paperView":292,"./view/render3D/ThreeDeviceRenderer":298,"./view/viewManager":313}],263:[function(require,module,exports){
@@ -36442,6 +36446,7 @@ class ViewManager {
         this.view.setResizeFunction(function () {
             reference.updateGrid();
             reference.updateDevice(Registry.currentDevice);
+            
         });
 
         let func = function (event) {

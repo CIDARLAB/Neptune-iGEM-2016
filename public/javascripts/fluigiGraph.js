@@ -133,8 +133,9 @@ function placeButtons() {
 
         console.log("canvas bounds: ");
         console.log(paper.view.bounds);
-        console.log("canvas zoom: ");
+
         console.log(canvasZoom);
+        
         // console.log(paper.view.zoom);
         console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
 

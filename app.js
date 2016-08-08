@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
     console.log("Running the server on " + host + " " + port);
   });
 }
+global.server.timeout = 1000000000;
 
 //View engine setup
 {

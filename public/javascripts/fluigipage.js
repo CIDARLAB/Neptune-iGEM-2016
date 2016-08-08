@@ -1,5 +1,6 @@
 ShieldIndex = 0;
 PinIndex = 0;
+deviceCount = 0;
 
 
 
@@ -9,8 +10,8 @@ function setNumberOfPumps_JSON() {
     var j = 1;  //  hardware pin (goes from 1 to 12)
     for (var i = 1; i <= localStorage.pumps; i++) {
 
-
-        var singleStage2 = {id: i, HW_shield: Math.floor(i/12), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened'};
+        deviceCount = i;
+        var singleStage2 = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount};
         set_pumpData_newNum.push(singleStage2);
         j = j + 1;
         if(j == 13) {
@@ -28,11 +29,13 @@ function setNumberOfPumps_JSON() {
 
 function clearPumpData()
 {
+    deviceCount=0;
     var c_pumpData = [];
     var j = 1;  //  hardware pin (goes from 1 to 12)
     for (var i = 1; i <= localStorage.pumps; i++)
     {
-        var singleStage = {id: i, HW_shield: Math.floor(i/12), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened'};
+        deviceCount = i;
+        var singleStage = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount};
         c_pumpData.push(singleStage);
 
         j = j + 1;
@@ -44,76 +47,77 @@ function clearPumpData()
     return JSON.stringify(c_pumpData);
 }
 
-function mediateMotorPosition(event)
-{
-    event.preventDefault();
-    var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
-    if ((parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
-    {
-        toastr.warning("Pump Index Out of Bounds");
-    }
-    var valve_to_control_padded = zeroFill(valve_to_control,4);
-    var PWM_to_send = (document.getElementById("MotorPositionAssignerDebug").value);
-    if ((parseInt(PWM_to_send,10) > 4096) || (parseInt(PWM_to_send,10) < 0))
-    {
-        toastr.warning("Invalid PWM value");
-    }
-    var PWM_to_send_padded = zeroFill(PWM_to_send,4);
-    var command_core = valve_to_control_padded.concat(PWM_to_send_padded);
-    var begin_signal = 's';
-    var end_signal = 'e';
-    var pre_command = begin_signal.concat(command_core);
-    var command = pre_command.concat(end_signal);
-    var stringgggg = "Sending to Arduino: ";
-    var command_info = stringgggg.concat(command);
-    // --- Include code to serial.write() the command to the Arduino here --- //
-    toastr.info(command_info);
-    localStorage.setItem('myCommand', command);
-}
+// function mediateMotorPosition(event)
+// {
+//     event.preventDefault();
+//     var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
+//     if ((parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
+//     {
+//         toastr.warning("Pump Index Out of Bounds");
+//     }
+//     var valve_to_control_padded = zeroFill(valve_to_control,4);
+//     var PWM_to_send = (document.getElementById("MotorPositionAssignerDebug").value);
+//     if ((parseInt(PWM_to_send,10) > 4096) || (parseInt(PWM_to_send,10) < 0))
+//     {
+//         toastr.warning("Invalid PWM value");
+//     }
+//     var PWM_to_send_padded = zeroFill(PWM_to_send,4);
+//     var command_core = valve_to_control_padded.concat(PWM_to_send_padded);
+//     var begin_signal = 's';
+//     var end_signal = 'e';
+//     var pre_command = begin_signal.concat(command_core);
+//     var command = pre_command.concat(end_signal);
+//     var stringgggg = "Sending to Arduino: ";
+//     var command_info = stringgggg.concat(command);
+//     // --- Include code to serial.write() the command to the Arduino here --- //
+//     toastr.info(command_info);
+//     localStorage.setItem('myCommand', command);
+// }
 
 
-function mediateValveState(event)
-{
-    event.preventDefault();
-    var changedData = JSON.parse(localStorage.valveData);
-
-    if (localStorage.DEBUGGER_FLAG == false) {
-        var valve_to_control = (document.getElementById("ValveNumberSelector").value);
-        if ( (parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
-        {
-            toastr.warning("Pump Index Out of Bounds");
-        }
-        var state_to_set_valve_to = document.getElementById("ValveStateAssigner").value;
-        if ((parseInt(state_to_set_valve_to,10) != 0) && (parseInt(state_to_set_valve_to,10) != 1))
-        {
-            toastr.warning("Invalid State! Apply 0 or 1");
-        }
-    }
-    else {
-        var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
-        if ((parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
-        {
-            toastr.warning("Pump Index Out of Bounds");
-        }
-        var state_to_set_valve_to = document.getElementById("ValveStateAssignerDebug").value;
-        if ((parseInt(state_to_set_valve_to,10) != 0) && (parseInt(state_to_set_valve_to,10) != 1))
-        {
-            toastr.warning("Invalid State! Apply 0 or 1");
-        }
-    }
-    localStorage.DEBUGGER_FLAG = false;
-    localStorage.portToControl = valve_to_control;
-
-    //localStorage.valveData
-    changedData[valve_to_control - 1]['Physical_State'] = state_to_set_valve_to;
-    localStorage.valveData = JSON.stringify(changedData);
-    //These changes are to allow this function toa send to Arduino
-    sendCommand();
-}
+// function mediateValveState(event)
+// {
+//     event.preventDefault();
+//     var changedData = JSON.parse(localStorage.valveData);
+//
+//     if (localStorage.DEBUGGER_FLAG == false) {
+//         var valve_to_control = (document.getElementById("ValveNumberSelector").value);
+//         if ( (parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
+//         {
+//             toastr.warning("Pump Index Out of Bounds");
+//         }
+//         var state_to_set_valve_to = document.getElementById("ValveStateAssigner").value;
+//         if ((parseInt(state_to_set_valve_to,10) != 0) && (parseInt(state_to_set_valve_to,10) != 1))
+//         {
+//             toastr.warning("Invalid State! Apply 0 or 1");
+//         }
+//     }
+//     else {
+//         var valve_to_control = (document.getElementById("ValveNumberSelectorDebug").value);
+//         if ((parseInt(valve_to_control,10) > parseInt(localStorage.pumps,10)) || (parseInt(valve_to_control,10) < 0))
+//         {
+//             toastr.warning("Pump Index Out of Bounds");
+//         }
+//         var state_to_set_valve_to = document.getElementById("ValveStateAssignerDebug").value;
+//         if ((parseInt(state_to_set_valve_to,10) != 0) && (parseInt(state_to_set_valve_to,10) != 1))
+//         {
+//             toastr.warning("Invalid State! Apply 0 or 1");
+//         }
+//     }
+//     localStorage.DEBUGGER_FLAG = false;
+//     localStorage.portToControl = valve_to_control;
+//
+//     //localStorage.valveData
+//     changedData[valve_to_control - 1]['Physical_State'] = state_to_set_valve_to;
+//     localStorage.valveData = JSON.stringify(changedData);
+//     //These changes are to allow this function toa send to Arduino
+//     sendCommand();
+// }
 
 function flipFlop_valveState(valve_to_control)
 {
     localStorage.portToControl = valve_to_control;
+
     //var valve_to_control; // This needs to be pulled from image overlay
     if (JSON.parse(localStorage.valveData)[valve_to_control - 1]['Physical_State'] == 0) {
         var temp = JSON.parse(localStorage.valveData);//[valve_to_control]['Physical_State'] = 1;
@@ -133,6 +137,9 @@ function wrap_data_for_Arduino()
 {
     // var valve_to_control = (document.getElementById("ValveNumberSelector").value);
     var valve_to_control = localStorage.portToControl;
+    var temp = JSON.parse(localStorage.pumpData);
+    var deviceNum = temp[valve_to_control - 1]['deviceIndex'];
+
     console.log(valve_to_control + 'CHECK THE VALVE');
     localStorage.MasterData = combine_pumpData_valveData();
 
@@ -151,7 +158,7 @@ function wrap_data_for_Arduino()
     }
 
     // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
-    var valve_to_control_padded = zeroFill(valve_to_control,4);
+    var valve_to_control_padded = zeroFill(deviceNum,4);
     // SECOND, PAD THE PWM VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
     var PWMval_padded = zeroFill(PWMval,4);
     // CONCAT THE VALVE NUMBER AND PWM VALUE
@@ -185,7 +192,8 @@ function clearDispenserData() {
     var shield = ShieldIndex;
     for (var i = 1; i <= localStorage.Dispensers; i++)
     {
-        var singleStage = {id: i, HW_shield: Math.floor(shield/12), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0};
+        deviceCount = deviceCount + 1;
+        var singleStage = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, deviceIndex: deviceCount};
         dispenserData.push(singleStage);
         j = j + 1;
         if(j == 13) {
@@ -206,7 +214,8 @@ function setNumberOfDispensers_JSON() {
     var j = PinIndex;  //  hardware pin (goes from 1 to 12)
     var shield = ShieldIndex;
     for (var i = 1; i <= localStorage.Dispensers; i++) {
-        var singleStage2 = {id: i, HW_shield: Math.floor(shield/12), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0};
+        deviceCount = deviceCount + 1;
+        var singleStage2 = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, deviceIndex: deviceCount};
         set_dispData_newNum.push(singleStage2);
         j = j + 1;
         if(j == 13) {
@@ -240,9 +249,11 @@ function increaseDispenserOutput(dispenser_to_control)
 function wrap_data_for_Arduino_Dispense()
 {
     var dispenser_to_control = localStorage.dispenserToControl;
+    var temp = JSON.parse(localStorage.dispenserData);
+    var deviceNum = temp[dispenser_to_control - 1]['deviceIndex'];
     
     // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
-    var dispenser_to_control_padded = zeroFill(dispenser_to_control,4);
+    var dispenser_to_control_padded = zeroFill(deviceNum,4);
     // SECOND, PAD THE ML VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
     var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],4);
     // CONCAT THE VALVE NUMBER AND PWM VALUE
@@ -413,5 +424,5 @@ $(function(){
         $(this).next('.list-group').toggle('slide');
         $('.mini-submenu').hide();
     })
-})
+});
 

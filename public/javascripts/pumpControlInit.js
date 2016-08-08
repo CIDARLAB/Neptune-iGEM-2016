@@ -33,12 +33,13 @@ jQuery.fn.shift = [].shift;
 
 function exporting() {
     var $rows = $('#ValveTable').find('tr:not(:hidden):not(:empty)');
-    var keys = ["id", "HW_shield", "HW_pin", "Open_State", "Closed_State", "Current_State"];
+    var keys = ["id", "HW_shield", "HW_pin", "Open_State", "Closed_State", "Current_State", "deviceIndex"];
     var data = [];
     var x = 0; // making sure we are not counting the headers row here
     // Turn all existing rows into a loopable array
     $rows.each(function () {
         if(x > 0){
+            deviceCount = deviceCount + 1;
             var $td = $(this).find('td');
             var h = {};
             // Use pre-defined Hash keys
@@ -46,11 +47,17 @@ function exporting() {
                 if(header === "Current_State"){
                     h[header] = $td.eq(i).text();
                 }
+                else if(header === "deviceIndex"){
+                    h["deviceIndex"] = deviceCount;
+                }
                 else{
                     h[header] = parseInt($td.eq(i).text());
                 }
 
+
+
             });
+            console.log(h);
             data.push(h);
         }
         x = x + 1;
@@ -97,17 +104,24 @@ function drawDispRow(rowData) {
 
 function exportingDispenser() {
     var $rows = $('#DispenserTable').find('tr:not(:hidden):not(:empty)');
-    var keys = ["id", "HW_shield", "HW_pin", "Precision", "Min", "Max", "Current_State"];
+    var keys = ["id", "HW_shield", "HW_pin", "Precision", "Min", "Max", "Current_State", "deviceIndex"];
     var data = [];
     var x = 0; // making sure we are not counting the headers row here
     // Turn all existing rows into a loopable array
     $rows.each(function () {
         if(x > 0){
+            deviceCount = deviceCount + 1;
             var $td = $(this).find('td');
             var h = {};
             // Use pre-defined Hash keys
             keys.forEach(function (header, i) {
-                h[header] = parseInt($td.eq(i).text());
+                if(header === "deviceIndex"){
+                    h["deviceIndex"] = deviceCount;
+                }
+                else{
+                    h[header] = parseInt($td.eq(i).text());
+                }
+
             });
             data.push(h);
         }
@@ -117,4 +131,12 @@ function exportingDispenser() {
     // Output the result
     console.log(JSON.parse(JSON.stringify(data)));
     localStorage.dispenserData = JSON.stringify(data);
+};
+
+
+function totalExport() {
+    deviceCount = 0;
+    exporting();
+    exportingDispenser();
+    
 };

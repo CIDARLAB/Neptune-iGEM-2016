@@ -1,0 +1,38 @@
+# .uf output by muShroomMapper
+3D DEVICE testDevice
+
+LAYER FLOW
+
+
+PORT flowInPort0,flowInPort1,flowInPort2,flowInPort3,outPort0 r=100;
+
+V TREE fDevice0_YMixer 2 to 1 spacing=7500 flowChannelWidth=750;
+V TREE fDevice1_YMixer 2 to 1 spacing=7500 flowChannelWidth=750;
+V TREE fDevice2_YMixer 2 to 1 spacing=7500 flowChannelWidth=750;
+
+H 3DVALVE cDevice0_3DValve radius=1875 gap=600;
+H 3DVALVE cDevice1_3DValve radius=1875 gap=600;
+
+CHANNEL flowChannel0 from flowInPort0 2 to fDevice0_YMixer 1 w=100;
+CHANNEL flowChannel1 from flowInPort1 2 to fDevice0_YMixer 2 w=100;
+CHANNEL flowChannel2 from flowInPort2 2 to cDevice0_3DValve 4 w=100;
+CHANNEL flowChannel3 from flowInPort3 2 to cDevice1_3DValve 4 w=100;
+CHANNEL flowChannel4 from fDevice2_YMixer 3 to outPort0 4 w=100;
+CHANNEL flowChannel5 from fDevice0_YMixer 3 to fDevice1_YMixer 1 w=100;
+CHANNEL flowChannel6 from cDevice0_3DValve 2 to fDevice1_YMixer 2 w=100;
+CHANNEL flowChannel7 from fDevice1_YMixer 3 to fDevice2_YMixer 1 w=100;
+CHANNEL flowChannel8 from cDevice1_3DValve 2 to fDevice2_YMixer 2 w=100;
+
+
+END LAYER
+
+LAYER CONTROL
+
+
+PORT controlInPort0,controlInPort1 r=100;
+
+CHANNEL controlChannel0 from controlInPort0 1 to cDevice0_3DValve 3 w=100;
+CHANNEL controlChannel1 from controlInPort1 1 to cDevice1_3DValve 3 w=100;
+
+
+END LAYER

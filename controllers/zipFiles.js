@@ -60,15 +60,17 @@ exports.zipFiles = function(req,res)
     fileNames[10] = 'photolithogrophy_eps.eps';
 
 
-
-
     for (var i = 0; i < numFiles; i++)
     {
         var file = __dirname;
         var len = file.length;
         file = file.substring(0, len - 12);
         file = file + fileExtensions[i];
-        fullPath.push(file);
+
+        if(!(fs.exists(file)))
+        {
+            fullPath.push(file);
+        }
     }
 
     // for (var i = 0; i < numFiles; i++)

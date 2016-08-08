@@ -36,9 +36,11 @@ exports.translateLFR = function(req, res)
         console.log(`child process exited with code ${code}`);
         if (code == 0) {
             res.send({terminalStatus: 'Success'});
+            res.end();
         }
         if (code != 0) {
             res.send({terminalStatus: 'Failure'});
+            res.end();
         }
     });
 };

@@ -49,7 +49,7 @@ exports.writeToFile = function(req, res)
             var file = __dirname;
             var len = file.length;
             file = file.substring(0,len-12);
-            file = file + '/testDevice.uf';
+            file = file + '/testMINT.uf';
             var path = file;
             //path = "./public/uploads/Build_Verify/buildEPS_photo.eps";
             break;

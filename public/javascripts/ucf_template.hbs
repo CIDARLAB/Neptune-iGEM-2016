@@ -1,73 +1,76 @@
     <div class="panel-group" id="accordion">
         {{#.}}
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="op{{@index}}">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#content{{@index}}">
                        ( {{operator}} ) &nbsp  {{name}}
                     </a>
+                    <span class="pull-right">
+                        <button type="button" class="btn btn-xs btn-danger" onclick="deleteOp('op{{@index}}')">x</button>
+                    </span>
                 </h4>
             </div>
-            <div id="content{{@index}}" class="panel-collapse collapse in">
+            <div id="content{{@index}}" class="panel-collapse collapse">
                 <div class="panel-body">
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Operator </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{operator}}" id="operator_{{@index}}">
+                            <input name="operatorTag" class="form-control" type="text" value="{{operator}}" id="operator_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Name </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{name}}" id="name_{{@index}}">
+                            <input name="nameTag" class="form-control" type="text" value="{{name}}" id="name_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Inputs </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="number" value="{{inputs}}" id="inputs_{{@index}}">
+                            <input name="inputsTag" class="form-control" type="number" value="{{inputs}}" id="inputs_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Input Terms </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{inputTerms}}" id="inputTerms_{{@index}}">
+                            <input name="inputTermsTag" class="form-control" type="text" value="{{inputTerms}}" id="inputTerms_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Outputs </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="number" value="{{outputs}}" id="outputs_{{@index}}">
+                            <input name="outputsTag" class="form-control" type="number" value="{{outputs}}" id="outputs_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Output Terms </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{outputTerms}}" id="outputTerms_{{@index}}">
+                            <input name="outputTermsTag" class="form-control" type="text" value="{{outputTerms}}" id="outputTerms_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Import </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{import}}" id="import_{{@index}}">
+                            <input name="importTag" class="form-control" type="text" value="{{import}}" id="import_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Path </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{picpath}}" id="path_{{@index}}">
+                            <input name="pathTag" class="form-control" type="text" value="{{picpath}}" id="path_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Mint </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{mint}}" id="mint_{{@index}}">
+                            <input name="mintTag" class="form-control" type="text" value="{{mint}}" id="mint_{{@index}}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Layer </strong></label>
                         <div class="col-xs-10">
-                            <input class="form-control" type="text" value="{{layer}}" id="layer_{{@index}}">
+                            <input name="layerTag" class="form-control" type="text" value="{{layer}}" id="layer_{{@index}}">
                         </div>
                     </div>
                 </div>

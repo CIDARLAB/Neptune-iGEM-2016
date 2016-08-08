@@ -13,7 +13,7 @@ exports.clearFiles = function(req, res)
     var len = file.length;
     file = file.substring(0,len-12);
 
-    var file1 = file + '/testDevice.uf';
+    var file1 = file + '/testMINT.uf';
     var file2 = file + '/output/testDevice.json';
     var file3 = file + '/output/testDevice_device_bounding_box.svg';
     var file4 = file + '/output/testDevice_device_cell.svg';

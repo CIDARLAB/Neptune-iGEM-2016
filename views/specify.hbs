@@ -84,6 +84,7 @@
                         });
                         break;
                     case 'UCF':
+                        console.log('UCF File Loading... Will Fail if JSON Parse Error Occures; Fix ');
                         $('#preview_title').text('User Constrain File');
                         document.getElementById('previewModalFooter').innerHTML = '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearPreviewModalContent()"> Close </button><a href="download/../uploads/Specify/specifyUCF.json" download="specifyJSON.json"><button type="button" class="btn btn-primary"> Download UCF </button></a>';
                         $.get('../uploads/Specify/specifyUCF.json', function (data)
@@ -534,21 +535,42 @@
             <!-- START: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
             <div class="col-lg-4">
 
+                <!-- START: TERMINAL -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-play fa-fw"></i> Terminal
+                    </div>
+                    <div class="panel-body">
+                        <div id="terminal_specify"></div>
+                    </div>
+                </div>
+                <!-- END: TERMINAL -->
+
                 <!-- START: UCF Summary -->
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
                         <i class="fa fa-play fa-fw"></i> UCF Creator
-                        &nbsp &nbsp <button onclick="generateUCF()"> Generate New UCF </button>
+                        <!--&nbsp &nbsp <button onclick="generateUCF()"> Generate New UCF </button>-->
                     </div>
 
                     <div class="panel-body" id="ucf_maker" ></div>
 
                     <div class="panel-footer" id="add_del_operator">
-                        <button id="newOperator" onclick="generateUCF_UI()"></button>
+                        <button type="newOperator" class="btn btn-success" onclick="generateUCF_UI()"> + </button>
+                        <span class="pull-right">
+                        <button type="generateUCF" class="btn btn-link" onclick="generateUCF()"> Generate UCF </button>
+                        </span>
                     </div>
 
                 </div>
+                <script type="text/javascript">
+                    function deleteOp(op)
+                    {
+                        var oops = '#' + op;
+                        $(oops).remove();
+                    }
+                </script>
                 <!-- END: ACTION CENTER -->
 
                 <!-- START: ACTION CENTER -->
@@ -581,17 +603,6 @@
                     </div>
                 </div>
                 <!-- END: ACTION CENTER -->
-
-                <!-- START: TERMINAL -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-play fa-fw"></i> Terminal
-                    </div>
-                    <div class="panel-body">
-                        <div id="terminal_specify"></div>
-                    </div>
-                </div>
-                <!-- END: TERMINAL -->
 
                 <!-- START: UPLOAD FORM -->
                 <div class="panel panel-default">

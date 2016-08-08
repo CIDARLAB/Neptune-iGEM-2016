@@ -1024,11 +1024,11 @@ function downloadZip()
     });
 }
 
-generateUCF_UI()
+function generateUCF_UI()
 {
-
-    generateUCF_UI.count = generateUCF_UI.count++ || 100;
+    generateUCF_UI.count = generateUCF_UI.count + 1 || ( $("#accordion div.panel-default").length  );
     var titleRef = "#content" + generateUCF_UI.count;
+    var titleREF = "content" + generateUCF_UI.count;
     var operator_id = "operator_" + generateUCF_UI.count;
     var name_id = "name_" + generateUCF_UI.count;
     var input_id = "inputs_" + generateUCF_UI.count;
@@ -1040,19 +1040,129 @@ generateUCF_UI()
     var mint_id = "mint_" + generateUCF_UI.count;
     var layer_id = "layer_" + generateUCF_UI.count;
 
+    var divID = 'id' + generateUCF_UI.count;
     var operator;
     var name;
 
-    var html; 
+    var opId = 'op' + generateUCF_UI.count;
+    var boobs = '\'' + opId + '\'';
 
-    $("#ucf_maker").appendChild(html);
+    var html = '<div class="panel panel-default" id=opId > \
+        <div class="panel-heading"> \
+            <h4 class="panel-title"> \
+                <a data-toggle="collapse" data-parent="#accordion" href=titleRef> \
+                    (temp) &nbsp  temp \
+                </a> \
+                <span class="pull-right"> \
+                    <button type="button" class="btn btn-xs btn-danger" onclick="deleteOp(boobs)">x</button> \
+                </span> \
+            </h4> \
+        </div> \
+        <div id=titleREF class="panel-collapse collapse "> \
+            <div class="panel-body"> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Operator </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="operatorTag" class="form-control" type="text" value="" id=operator_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Name </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="nameTag" class="form-control" type="text" value="" id=name_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Inputs </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="inputsTag" class="form-control" type="number" value="" id=inputs_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Input Terms </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="inputTermsTag" class="form-control" type="text" value="" id=inputTerms_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Outputs </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="outputsTag" class="form-control" type="number" value="" id=outputs_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Output Terms </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="outputTermsTag" class="form-control" type="text" value="" id=outputTerms_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Import </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="importTag" class="form-control" type="text" value="" id=import_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Path </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input cname="pathTag" lass="form-control" type="text" value="" id=path_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Mint </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="mintTag" class="form-control" type="text" value="" id=mint_id> \
+                    </div> \
+                </div> \
+                <div class="form-group row"> \
+                    <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Layer </strong></label> \
+                    <div class="col-xs-10"> \
+                        <input name="layerTag" class="form-control" type="text" value="" id=layer_id> \
+                    </div> \
+                </div> \
+            </div> \
+        </div> \
+    </div> \ ';
 
+
+    html = html.replace('titleRef',titleRef);
+    html = html.replace('titleREF',titleREF);
+    html = html.replace('titleRef',titleRef);
+    html = html.replace('operator_id',operator_id);
+    html = html.replace('name_id',name_id);
+    html = html.replace('input_id',input_id);
+    html = html.replace('inputTerms_id',inputTerms_id);
+    html = html.replace('outputs_id',outputs_id);
+    html = html.replace('outputTerms_id',outputTerms_id);
+    html = html.replace('import_id',import_id);
+    html = html.replace('path_id',path_id);
+    html = html.replace('mint_id',mint_id);
+    html = html.replace('layer_id',layer_id);
+    html = html.replace('opId',opId);
+    html = html.replace('boobs',boobs);
+
+    //document.getElementById('ucf_maker').appendChild(html);
+    $("#accordion").append(html);
 }
 
 function generateUCF()
 {
     var numOperators = $("#accordion div.panel-default").length;
+    var ids = $('.form-control').id;
     var JSON = [];
+
+
+    var operatorInfo = document.getElementsByTagName('operatorTag');
+    var nameInfo = document.getElementsByTagName('nameTag');
+    var inputsInfo = document.getElementsByTagName('inputsTag');
+    var inputTermsInfo = document.getElementsByTagName('inputTermsTag');
+    var outputsInfo = document.getElementsByTagName('outputsTag');
+    var outputTermsInfo = document.getElementsByTagName('outputTermsTag');
+    var importInfo = document.getElementsByTagName('importTag');
+    var pathInfo = document.getElementsByTagName('pathTag');
+    var mintInfo = document.getElementsByTagName('mintTag');
+    var layerInfo = document.getElementsByTagName('layerTag');
+
     for (var i = 0; i < numOperators; i++)
     {
         var operator = document.getElementById('operator_' + i).value;
@@ -1080,8 +1190,17 @@ function generateUCF()
             "layer":layer
         };
 
+        for (var key in single_stage)
+        {
+            if (single_stage[key] == '')
+            {
+                delete single_stage.key;
+            }
+        }
+
         JSON.push(single_stage);
+
     }
     
-    $.post('/api/generateUCF',{content:JSON})
+    $.post('/api/generateUCF',{content:JSON});
 }

@@ -46,7 +46,7 @@ exports.download = function(req, res)
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testDevice.uf';
+                file = file + '/testMINT.uf';
                 var filename = path.basename(file);
                 //var mimetype = mime.lookup(file);
                 res.setHeader('Content-disposition', 'attachment; filename=' + filename);
@@ -59,7 +59,7 @@ exports.download = function(req, res)
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testDevice.uf';
+                file = file + '/testMINT.uf';
                 var filename = path.basename(file);
                 //var mimetype = mime.lookup(file);
                 res.setHeader('Content-disposition', 'attachment; filename=' + filename);
@@ -187,14 +187,14 @@ exports.download = function(req, res)
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testDevice.uf';
+                file = file + '/testMINT.uf';
                 break;
             case 'mint_previewImg':
                 //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/testDevice.uf';
                 var file = __dirname; // + '/backend_results/designMINT.uf'; // the right way to do it-- but __dirname is at /controllers, which is one down
                 var len = file.length;
                 file = file.substring(0, len - 12);
-                file = file + '/testDevice.uf';
+                file = file + '/testMINT.uf';
                 break;
             case 'json':
                 //var fileLong = 'c:/Users/kestas/Desktop/iGEM2016-GUI/output/testDevice.json';

@@ -236,7 +236,7 @@ function increaseDispenserOutput(dispenser_to_control)
     // assumes the capacity of the syringe is 9 mL
     if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max']) {
         var temp = JSON.parse(localStorage.dispenserData);//[valve_to_control]['Physical_State'] = 1;
-        temp[dispenser_to_control - 1]['Current_State'] += 1;
+        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State'] + 0.25);
         localStorage.dispenserData = JSON.stringify(temp);
         sendCommandDispense();
     }
@@ -255,7 +255,16 @@ function wrap_data_for_Arduino_Dispense()
     // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
     var dispenser_to_control_padded = zeroFill(deviceNum,4);
     // SECOND, PAD THE ML VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
-    var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],4);
+    console.log(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']);
+
+    if(Math.floor(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) {
+        var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],3);
+    }
+    else{
+        var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],4);
+    }
+
+
     // CONCAT THE VALVE NUMBER AND PWM VALUE
     var pre_command = dispenser_to_control_padded.concat(MLval_padded);
     // ADD A START CODON TO SIGNIFY THE BEGINING OF SIGNAL

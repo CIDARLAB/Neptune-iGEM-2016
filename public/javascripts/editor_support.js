@@ -517,7 +517,7 @@ function closeDownloadModal()
 function translateLFR()
 {
     localStorage.WORKFLOW_STAGE = 'design';
-    restartTranslateCenter();
+    //restartTranslateCenter();
 
     var translate = $.post('/api/translateLFR',{filePath: '../public/uploads/Specify/specifyLFR.v'},function(data)
     {
@@ -623,7 +623,7 @@ function MINTflow(method)
 function compileMINT()
 {
     localStorage.WORKFLOW_STAGE = 'build';
-    restartCompileCenter();
+    //restartCompileCenter();
     //$("#myModal_compileWait").modal();
     $.post('/api/compileMint',{filePath: '../public/uploads/Design/designMINT.uf'},function(data)
     {

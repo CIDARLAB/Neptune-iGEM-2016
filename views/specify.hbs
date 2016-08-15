@@ -494,6 +494,13 @@
                                 <li id="LFRtab" class="active"><a onclick="changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab])">LFR</a></li>
                                 <li id="UCFtab"><a onclick="changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])">UCF</a></li>
                                 <li> &nbsp &nbsp </li>
+
+                                <!--<div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
+                                    <!--<button type="button" id="select_lfr" class="btn btn-warning">LFR</button>-->
+                                    <!--<button type="button" id="select_ucf" class="btn btn-warning">UCF</button>-->
+                                    <!--<button type="button" id="select_translate" class="btn btn-secondary">UCF</button>-->
+                                <!--</div>-->
+
                                 <div class="pull-right">
                                 <!--<div class="btn-group">-->
                                     <!--<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">-->
@@ -501,8 +508,9 @@
                                         <!--<span class="caret"></span>-->
                                     <!--</button>-->
                                     <!--<ul class="dropdown-menu pull-right" role="menu">-->
-                                        <button class="btn btn-default" onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes</button>
-                                        <button class="btn btn-default" href="#"> Editor Settings</button>
+                                        <button class="btn btn-default" onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i></button>
+                                        <button class="btn btn-default" onclick="translateLFR()"> <i class="fa fa-play-circle-o  fa-fw"></i></button>
+                                        <!--<button class="btn btn-default" href="#"> Editor Settings</button>-->
                                         <!--<button class="btn btn-default" data-toggle="modal" href="#myModal_ucf" data-target="#myModal_ucf"> UCF Creator </button>-->
                                     <!--</ul>-->
                                 <!--</div>-->
@@ -574,34 +582,34 @@
                 <!-- END: ACTION CENTER -->
 
                 <!-- START: ACTION CENTER -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-play fa-fw"></i> Action Center
-                    </div>
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-heading">-->
+                        <!--<i class="fa fa-play fa-fw"></i> Action Center-->
+                    <!--</div>-->
 
-                    <div class="panel-body">
+                    <!--<div class="panel-body">-->
 
-                        <div class="row">
-                            <div class="col-md-1"> </div>
-                            <div class="col-md-4" > <a id="commit_LFR" onclick="commitLFR(editor_specify)" class="btn btn-default btn-block"> Commit LFR </a> </div>
-                            <div class="col-md-2"> </div>
-                            <div class="col-md-4" > <a id="commit_UCF" onclick="commitUCF(editor_specify)" class="btn btn-default btn-block"> Commit UCF </a> </div>
-                            <div class="col-md-1"> </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-1"> </div>-->
+                            <!--<div class="col-md-4" > <a id="commit_LFR" onclick="commitLFR(editor_specify)" class="btn btn-default btn-block"> Commit LFR </a> </div>-->
+                            <!--<div class="col-md-2"> </div>-->
+                            <!--<div class="col-md-4" > <a id="commit_UCF" onclick="commitUCF(editor_specify)" class="btn btn-default btn-block"> Commit UCF </a> </div>-->
+                            <!--<div class="col-md-1"> </div>-->
+                        <!--</div>-->
 
-                        <br>
+                        <!--<br>-->
 
-                        <div class="row">
-                            <div class="col-md-3"> </div>
-                            <div class="col-md-6" >
-                                <input id="translate_btnn" class="btn btn-default" value="TRANSLATE" onclick="translateLFR()" > </input>
-                                <!--<a data-toggle="modal" data-target="#myModal_translate"> </a>-->
-                            </div>
-                            <div class="col-md-3"> </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-3"> </div>-->
+                            <!--<div class="col-md-6" >-->
+                                <!--<input id="translate_btnn" class="btn btn-default" value="TRANSLATE" onclick="translateLFR()" > </input>-->
+                                <!--&lt;!&ndash;<a data-toggle="modal" data-target="#myModal_translate"> </a>&ndash;&gt;-->
+                            <!--</div>-->
+                            <!--<div class="col-md-3"> </div>-->
+                        <!--</div>-->
 
-                    </div>
-                </div>
+                    <!--</div>-->
+                <!--</div>-->
                 <!-- END: ACTION CENTER -->
 
                 <!-- START: UPLOAD FORM -->

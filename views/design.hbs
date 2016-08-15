@@ -494,8 +494,8 @@
                                         <!--<span class="caret"></span>-->
                                     <!--</button>-->
                                     <!--<ul class="dropdown-menu pull-right" role="menu">-->
-                                <button class="btn btn-default" onclick="saveEditorContent(editor_design,localStorage.design_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i> Save Changes</button>
-                                <button class="btn btn-default" href="#"> Editor Settings</button>
+                                <button class="btn btn-default" onclick="saveEditorContent(editor_design,localStorage.design_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i></button>
+                                <button class="btn btn-default" onclick="compileMINT()"> <i class="fa fa-play-circle-o  fa-fw"></i></button>
 
                                     <!--</ul>-->
                                 <!--</div>-->
@@ -529,34 +529,34 @@
             <div class="col-lg-4">
 
                 <!-- START: ACTION CENTER -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-play fa-fw"></i> Action Center
-                    </div>
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-heading">-->
+                        <!--<i class="fa fa-play fa-fw"></i> Action Center-->
+                    <!--</div>-->
 
-                    <div class="panel-body">
+                    <!--<div class="panel-body">-->
 
-                        <div class="row">
-                            <div class="col-md-1"> </div>
-                            <div class="col-md-4" > <a id="commit_MINT" onclick="commitMINT(editor_design)" class="btn btn-default btn-block"> Commit MINT </a> </div>
-                            <div class="col-md-2"> </div>
-                            <div class="col-md-4" > <a id="commit_INI" onclick="commitINI(editor_design)" class="btn btn-default btn-block"> Commit INI </a> </div>
-                            <div class="col-md-1"> </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-1"> </div>-->
+                            <!--<div class="col-md-4" > <a id="commit_MINT" onclick="commitMINT(editor_design)" class="btn btn-default btn-block"> Commit MINT </a> </div>-->
+                            <!--<div class="col-md-2"> </div>-->
+                            <!--<div class="col-md-4" > <a id="commit_INI" onclick="commitINI(editor_design)" class="btn btn-default btn-block"> Commit INI </a> </div>-->
+                            <!--<div class="col-md-1"> </div>-->
+                        <!--</div>-->
 
-                        <br>
+                        <!--<br>-->
 
-                        <div class="row">
-                            <div class="col-md-3"> </div>
-                            <div class="col-md-6" >
-                                <input id="compile_btnn" class="btn btn-default" value="COMPILE" onclick="compileMINT()"> </input>
-                                <!--<a id="compile_btn" href="#" class="btn btn-default btn-block"> COMPILE </a>-->
-                            </div>
-                            <div class="col-md-3"> </div>
-                        </div>
+                        <!--<div class="row">-->
+                            <!--<div class="col-md-3"> </div>-->
+                            <!--<div class="col-md-6" >-->
+                                <!--<input id="compile_btnn" class="btn btn-default" value="COMPILE" onclick="compileMINT()"> </input>-->
+                                <!--&lt;!&ndash;<a id="compile_btn" href="#" class="btn btn-default btn-block"> COMPILE </a>&ndash;&gt;-->
+                            <!--</div>-->
+                            <!--<div class="col-md-3"> </div>-->
+                        <!--</div>-->
 
-                    </div>
-                </div>
+                    <!--</div>-->
+                <!--</div>-->
                 <!-- END: ACTION CENTER -->
 
                 <!-- START: TERMINAL -->

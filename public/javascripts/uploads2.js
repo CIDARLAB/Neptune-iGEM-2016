@@ -31,6 +31,7 @@ MINT_form.onsubmit = function(event) {
                 localStorage.FILE_designMINT = JSON.stringify(content);
             });
             pushFileToEditor(editor_design,'designMINT',MINT_tab);
+            localStorage.design_editor_state = 'designMINT';
             MINT_uploadButton.innerHTML = 'Uploaded';
         } else {
             alert('File upload failed.');
@@ -69,6 +70,7 @@ INI_form.onsubmit = function(event) {
                 localStorage.FILE_designINI = JSON.stringify(content);
             });
             pushFileToEditor(editor_design,'designINI',INI_tab);
+            localStorage.design_editor_state = 'designINI';
             INI_uploadButton.innerHTML = 'Uploaded';
         } else {
             alert('File upload failed.');

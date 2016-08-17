@@ -22,7 +22,6 @@ LFR_form.onsubmit = function(event) {
         if (xhr.status === 200) {
             // File(s) uploaded.
             //fileTrayIndicators();
-            pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
             localStorage.WORKFLOW_STAGE = 'specify';
             $.get('../uploads/Specify/specifyLFR.v',function(data)
             {
@@ -31,6 +30,8 @@ LFR_form.onsubmit = function(event) {
                 var content = data.split(/[\r\n]+/);
                 localStorage.FILE_specifyLFR = JSON.stringify(content);
             });
+            pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
+            localStorage.specify_editor_state = 'specifyLFR';
             LFR_uploadButton.innerHTML = 'Uploaded';
         } else {
             alert('File upload failed.');
@@ -69,6 +70,7 @@ UCF_form.onsubmit = function(event) {
                 localStorage.FILE_specifyUCF = JSON.stringify(content);
             });
             pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
+            localStorage.specify_editor_state = 'specifyUCF';
             UCF_uploadButton.innerHTML = 'Uploaded';
         } else {
             alert('File upload failed.');

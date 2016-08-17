@@ -307,7 +307,7 @@
                                 </div>
                             <br><br>
                             <div style="text-align: center;">
-                            <textarea disabled id="orderList" style="border: none; background-color: white; width: 80%; height: 100px; resize: none;"> </textarea>
+                            <textarea disabled id="orderList" style="display:none"> </textarea>
                             <br><br><br>
                                 </div>
 
@@ -463,11 +463,46 @@
             var liquid = $('#liquid').val();
             var tolerance= $('#tolerance').val();
             var combo = $('#servoSyringe').find(":selected").text();
+            if (combo=="Recommended"){
+                localStorage.syringe= 10;
+                localStorage.servo= 'Hitec';
+            }
+            else if (combo=="Lowest cost"){
+                localStorage.syringe= 60;
+                localStorage.servo= 'Parallax';
+            }
+            else if (combo=="Highest tolerance"){
+                localStorage.syringe= 3;
+                localStorage.servo= 'Datan';
+            }
+            else {
+                //Custom
+                localStorage.syringe= 'custom';
+                localStorage.servo= 'custom';
+
+            }
             $('#orderList').val(
-                    'Volume of liquid required to dispense in ml: '  + liquid + '\n'
-                    + 'Tolerance of required servos: ' + tolerance + '\n'
-                    + 'You have selected the ' + combo + ' Servo and Syringe Combo'
+                    'Quantity, Item, Explanation, Link' +'\n'
+                    + 'Number of valves,' + localStorage.syringe + 'ml Syringes,' + 'To push liquids and open/close valves' +'\n'
+                    + 'Number of valves,' + localStorage.servo + ' Servos,' + 'To open and close syringes' +'\n'
+                    + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
+                    + '1, 3D Printing material roll,' + 'For 3D printing setup' +'\n'
+                    + '1, 3D Printing support roll,' + 'For 3D printing setup' +'\n'
+                    + '1, 1/4 inch endmill,'+ 'For CNC mill' +'\n'
+                    + '4, Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
+                    + '1, Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe' +'\n'
+                    + '1, Small machine screw,' + 'For screwing in servo and syringe' +'\n'
+                    + '1, Small nut,' + 'For screwing in servo and syringe' +'\n'
+                    + '1, Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
             );
+            var a = document.createElement('a');
+            with (a) {
+                href='data:text/csv;base64,' + btoa(document.getElementById('orderList').value);
+                download='orderlist.csv';
+            }
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
         });
 
         $('#checkVolume').click(function(){

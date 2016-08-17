@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
-
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
 
     <!--Walkthrough tour-->
 
@@ -16,7 +16,9 @@
     <script src="../javascripts/tour.js"></script>
 
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
-
+    <script type="text/javascript">
+        localStorage.WORKSPACE = 'C:/Users/kestas/Documents/Neptune'
+    </script>
 </head>
 
 
@@ -145,33 +147,92 @@
 
 
 <!-- Modal -->
-<div id="setSession" class="modal fade" role="dialog">
+<script type="text/javascript">
+    function workspace_set()
+    {
+        localStorage.WORKSPACE = document.getElementById('setWorkspace').value;
+
+        $.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)
+        {
+            var json_dir = [];
+            var length = data.projects.length;
+            for(var i = 0; i < length; i++)
+            {
+                var single_stage = {directory:data.projects[i]};
+                json_dir.push(single_stage);
+            }
+            render_projects(json_dir);
+        });
+
+        $('#setProject').modal('show');
+    }
+</script>
+<script type="text/javascript">
+    function render_projects(json)
+    {
+        $.get('../javascripts/project_select_template.hbs', function (data)
+        {
+            var template = Handlebars.compile(data);
+            var myhtml = template(json);
+            $("#project_select").html(myhtml);
+
+        },'html');
+
+
+    }
+</script>
+
+<div id="setWorkspace" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Resume Session or New Session?</h4>
+                <h4 class="modal-title">Confirm Workspace</h4>
             </div>
             <div class="modal-body">
-                <p>
-                    You may choose to resume your previous session, or start a new session.
-                    <br>
-                    If you choose to resume your previous session, you will have your old file content
-                    available to you to download and continue your session
-                </p>
+                    <div class="form-group">
+                        <label for="setWorkspace">Your current workspace is located at:</label>
+                        <input type="text" class="form-control" id="setWorkspace" >
+                    </div>
+
+                    Please confirm that this is your workspace folder.
+                    If this is not your workspace folder, please change the directory now.
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>
-                <button type="button" class="btn btn-default" data-dismiss="modal" > Resume Previous Session </button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="workspace_set()"> Confirm Workspace </button>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    $(document).ready(function(){
-        $('#setSession').modal('show');
+    document.getElementById("setWorkspace").value = localStorage.WORKSPACE;
+    $(document).ready(function()
+    {
+        $('#setWorkspace').modal('show');
     });
 </script>
+
+<!-- Modal -->
+<div id="setProject" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Choose your project, or start a new project.</h4>
+            </div>
+
+            <div class="modal-body" id="project_select"> </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="generateNewProject();" > New Project </button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal" "> Load Project</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Modal -->

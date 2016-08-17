@@ -175,4 +175,9 @@ global.server.timeout = 1000000000;
     var ucfMaker = require('./controllers/generateUCF');
     app.post('/api/generateUCF',ucfMaker.generateUCF);
 
+    var parser = require('./controllers/parseDir');
+    app.post('/api/parseDir',parser.parseDir);
+
+    var projectGetter = require('./controllers/getProjects');
+    app.post('/api/getProjects',projectGetter.getProjects);
 

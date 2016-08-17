@@ -1204,3 +1204,12 @@ function generateUCF()
     
     $.post('/api/generateUCF',{content:JSON});
 }
+
+function loadPreviousProject(project)
+{
+    console.log(project);
+}
+function generateNewProject()
+{
+
+}

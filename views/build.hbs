@@ -303,8 +303,8 @@
                                     Download SVG
                                 </button>
                             </a>
-                            <button class="btn btn-primary" id="get3DParts">Get 3D Printing Files</button>
-                            <button class="btn btn-primary" id="getParts">Get Ordering List</button>
+                            <button class="btn btn-primary" id="get3DParts">Download 3D Printing Files</button>
+                            <button class="btn btn-primary" id="getParts">Download Ordering List</button>
                                 </div>
                             <br><br>
                             <div style="text-align: center;">
@@ -573,17 +573,37 @@
             }
             $('#orderList').val(
                     'Quantity, Item, Explanation, Link' +'\n'
-                    + 'Number of valves,' + localStorage.syringe + 'ml Syringes,' + 'To push liquids and open/close valves' +'\n'
-                    + 'Number of valves,' + localStorage.servo + ' Servos,' + 'To open and close syringes' +'\n'
-                    + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
+                    +'Electric components,,,' +'\n'
+                    + '1, Arduino Control Shield,'+ 'To connect and power multiple servos' +'\n'
+                    + '1, Arduino Uno,'+ 'To control the microfluidic chip' +'\n'
+                    + '1, Power plugin for the arduino board,'+ 'For powering the servos' +'\n'
+                    + '1, Capacitor,'+ 'To prevent the servos from getting too much power' +'\n'
+                    + '1, Connecting Wires,'+ 'To connect the servos to the arduino' +'\n'
+                    + '1, Arduino Uno,'+ 'To control the microfluidic chip' +'\n'
+                    + '1, Stacking headers,'+ 'To connect the servo wires to the arduino' +'\n'
+                    + '1, Laptop power supply,'+ 'To power the servos' +'\n'
+
+                    +'Servo and syringe components,,,' +'\n'
+                    + localStorage.pumps +',' + localStorage.syringe + 'ml Syringes, To push liquids and open/close valves' +'\n'
+                    + localStorage.pumps +',' + localStorage.servo + ' servos, To open and close syringes' +'\n'
+                    + localStorage.pumps*5 +', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' +'\n'
+                    + localStorage.pumps*1 + ', Small machine screw,' + 'For screwing in servo arm' +'\n'
+                    + localStorage.pumps*1 +', Small nut,' + 'For screwing in servo arm' +'\n'
+                    + localStorage.pumps*5 +', Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+
+                    +'Hardware components,,,' +'\n'
+                    + '1, CNC Mill,'+ 'To create the microfluidic chip' +'\n'
+                    + '1, 3D Printer,'+ 'To build the setup to control the microfluidic chip' +'\n'
                     + '1, 3D Printing material roll,' + 'For 3D printing setup' +'\n'
                     + '1, 3D Printing support roll,' + 'For 3D printing setup' +'\n'
+                    + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
                     + '1, 1/4 inch endmill,'+ 'For CNC mill' +'\n'
-                    + '4, Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
-                    + '1, Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe' +'\n'
-                    + '1, Small machine screw,' + 'For screwing in servo and syringe' +'\n'
-                    + '1, Small nut,' + 'For screwing in servo and syringe' +'\n'
-                    + '1, Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+                    + localStorage.pumps*6 + ', Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
+
+                    +'Optional components,,,' +'\n'
+                    + '1, Peristaltic pump,'+ 'To pump fluids through the microfluidic chip' +'\n'
+                    + '2, Machine Screw: 4-40 5/8",' + 'For screwing in the peristaltic pump' +'\n'
+                    + '2, Nut: 4-40,' + 'For screwing in the peristaltic pump' +'\n'
             );
             var a = document.createElement('a');
             with (a) {

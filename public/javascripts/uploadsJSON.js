@@ -22,13 +22,9 @@ function loadButtons() {
         // Use Json as a string
         var jsonString = JSON.stringify(json);
 
-        // find size of entire SVG from JSON
-        localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
-        // console.log("width: " + JSON.stringify(Object(json.params.width)));
-        localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
-        // console.log("height: " + JSON.stringify(Object(json.params.height)));
-
-        // console.log("control only: " + controlOnly);
+        // find size of entire JSON
+        // localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
+        // localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
 
         // Now look for all Port in the control layer only
         var Re = /Port.+?\[(.+?),(.+?)\].+?/g;
@@ -54,8 +50,6 @@ function loadButtons() {
             setNumberOfPumps_JSON();
         }
         
-        // clearPumpData();
-        
         // Now look for all Ports (Dispensers) in the control layer only
         var myArrayDisp;
         var portArrayDisp = [];
@@ -69,27 +63,17 @@ function loadButtons() {
             portYDisp.push(myArrayDisp[2]);
             portArrayDisp.push(myArrayDisp.index);
         }
-
-
+        
         // Store json variables to localStorage in form of JSON object...
         localStorage.portXcoordsDisp = JSON.stringify(portXDisp);
         localStorage.portYcoordsDisp = JSON.stringify(portYDisp);
-        // console.log('portY coords Dispensers: ' + localStorage.portYcoordsDisp);
 
         //  Update number of Dispensers for settings page
         if (localStorage.initialDispensers == "TRUE") {
             setNumberOfDispensers_JSON();
         }
+
         
-        
-        
-        // console.log(localStorage.dispenserData);
-
-
-
-
-
-
 
 
         // Display JSON via 3DuF

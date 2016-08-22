@@ -50,27 +50,74 @@
     <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
 
 
-    <!--Template for valves to be placed over graph canvas-->
+    <!--Template for VALVES to be placed over graph canvas-->
     <template id="valve-template" action="this.preventDefault();">
         <div class ="valve"  action="this.preventDefault();">
             <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
                 <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/valveMarkerOpen.svg" width="40" height="40">
                 <p class="IDtext" style="pointer-events: none;">beb</p>
             </a>
-
         </div>
     </template>
 
-
-
-    <!--Template for valves to be placed over graph canvas-->
+    <!--Template for DISPENSERS to be placed over graph canvas-->
     <template id="dispenser-template" action="this.preventDefault();">
         <div class ="valve"  action="this.preventDefault();">
             <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
                 <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/dispenseMarker.svg" width="40" height="40">
                 <p class="IDtext" style="pointer-events: none;">beb</p>
             </a>
+        </div>
+    </template>
 
+
+
+    <style>
+        /* The Modal (background) */
+        .dispenserModal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content/Box */
+        .dispenserModalContent {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%; /* Could be more or less, depending on screen size */
+        }
+        /* The Close Button */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+
+
+    <!--Template for DISPENSER CONTROL UI-->
+    <template id="dispenserControl" action="this.preventDefault();">
+        <div class ="dispenserModal"  action="this.preventDefault();">
+            <div class="dispenserModalContent">
+                <span class="close">x</span>
+                <p>some text in the modal</p>
+            </div>
         </div>
     </template>
 
@@ -87,38 +134,23 @@
 <body>
 
 <nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation" style="margin: 0;">
-
     <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
     <div class="navbar-header">
-        <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">-->
-            <!--<span class="sr-only">Toggle navigation</span>-->
-            <!--<span class="icon-bar"></span>-->
-            <!--<span class="icon-bar"></span>-->
-            <!--<span class="icon-bar"></span>-->
-        <!--</button>-->
         <img class="pull-left" id="dropdownHover" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
         <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
     </div>
-
-
-
-
     <!-- START: SIDE NAVIGATION BAR -->
     <div class="navbar-default sidebar leftFocusedNav"  role="navigation">
         <div class="sidebar-nav navbar-collapse collapseNav">
             <ul class="nav" id="side-menu">
-
                 <!-- THIS LINKS TO HOME -->
-
                 <li>
                     <a href=""><i class="fa fa-home fa-fw"></i> Home </a>
                 </li>
-
                 <!-- THIS LINKS TO THE MAIN DASHBOARD -->
                 <li>
                     <a href="../dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard </a>
                 </li>
-
                 <!-- THESE LINKS PROVIDE USER NAVIGATION THROUGHOUT THE WORKFLOW -->
                 <li>
                     <a><i class="fa fa-share fa-fw"></i> Jump to Workflow Stage</a>
@@ -141,36 +173,26 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
-
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
     </div>
     <!-- END: SIDE NAVIGATION BAR -->
-
 </nav>
 
-
-<!-- Button trigger modal -->
-<!--<button type="button" class="btn btn-primary btn-lg" id="initializationToggle" onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal">-->
-    <!--Initialize-->
-<!--</button>-->
-
+<!--BUTTON ICONS ON CANVAS-->
 <a onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal" id="settingsToggle">
     <i class="fa fa-cog fa-3x"></i>
 </a>
-
 <a onclick= "window.open('../serialcommunication')" id="serialCommToggle">
     <i class="fa fa-usb fa-3x"></i>
 </a>
-
-
-
+<!--./ END BUTTON ICONS ON CANVAS-->
 
 
 <script src="../javascripts/pumpControlInit.js" type="application/javascript"></script>
 
-<!-- Modal -->
+<!-- Settings Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -181,8 +203,6 @@
                 <h2 class="modal-title" id="myModalLabel">Pump Initializations</h2>
             </div>
             <div class="modal-body">
-
-
                 <div class="editableTable">
                     <h3>Valve Settings</h3>
                     <table id="ValveTable" class="table table-striped">
@@ -196,9 +216,7 @@
                         </tr>
                     </table>
                 </div>
-
                 <br>
-
                 <div class="editableTable">
                     <h3>Dispenser Settings</h3>
                     <table id="DispenserTable" class="table table-striped">
@@ -222,30 +240,13 @@
         </div>
     </div>
 </div>
+<!--./ END SETTINGS MODAL-->
 
-
-
+<!--START: 3DuF Canvas-->
 <canvas id="c" tabindex="0" resize="true"></canvas>
 <!--This is where valves go!-->
 <div id="content"></div>
-
-
-
-<!--<div id="main_window" class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer-->
-            <!--mdl-layout--overlay-drawer-button ">-->
-        <!--<main id="fullPage">-->
-            <!--<div id="view_container" class="page-content" >-->
-                <!--<div id="canvas_block" class="shown-block fade-transition " >-->
-                    <!--<canvas id="c" tabindex="0" resize="true"></canvas>-->
-                    <!--&lt;!&ndash;This is where valves go!&ndash;&gt;-->
-                    <!--<div id="content"></div>-->
-                <!--</div>-->
-                <!--<div id="renderContainer" class="hidden-block fade-transition"></div>-->
-            <!--</div>-->
-        <!--</main>-->
-<!--</div>-->
-
-
+<!--./END 3DUF CANVAS-->
 
 <!-- jQuery -->
 <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
@@ -261,10 +262,6 @@
 <!-- 3DuF JavaScript -->
 <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
 <script src="../javascripts/3DuFApp.js"></script>
-
-
-
-
 
 
 </body>

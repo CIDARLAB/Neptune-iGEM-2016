@@ -55,20 +55,17 @@ function loadButtons() {
             flowOnly = JSON.stringify((json.layers[0]).features);
             console.log(flowOnly);
         }
-
-
-
-
+        
 
         // Use Json as a string
         var jsonString = JSON.stringify(json);
         // var controlOnly;
 
         // find size of entire SVG from JSON
-        localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
-        console.log("width: " + JSON.stringify(Object(json.params.width)));
-        localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
-        console.log("height: " + JSON.stringify(Object(json.params.height)));
+        // localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
+        // console.log("width: " + JSON.stringify(Object(json.params.width)));
+        // localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
+        // console.log("height: " + JSON.stringify(Object(json.params.height)));
 
         // controlOnly = JSON.stringify((json.layers[2]).features);
 
@@ -85,12 +82,7 @@ function loadButtons() {
 
         while ((myArray = Re.exec(controlOnly)) !== null) {
             portX.push(myArray[1]);
-            // console.log("should be x coord: " + myArray[1]);
             portY.push(myArray[2]);
-            // console.log("should be y coord: " + myArray[2]);
-            // portRadius1.push(myArray[3]);
-            // console.log("should be radius: " + myArray[3]);
-
             portArray.push(myArray.index);
         }
 
@@ -102,17 +94,6 @@ function loadButtons() {
         //  Update number of Pumps for settings page
         setNumberOfPumps_JSON();
         // clearPumpData();
-
-
-        // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[0]);
-        // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[1]);
-        // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[2]);
-        // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[3]);
-        // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[4]);
-        // console.log("Port x coordinates from localStorage: " + JSON.parse(localStorage.getItem('portXcoords'))[5]);
-
-        // console.log(JSON.parse(JSON.stringify(json)));
-        // var result = JSON.parse(JSON.stringify(json));
 
 
         // Display JSON via 3DuF

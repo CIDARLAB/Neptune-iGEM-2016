@@ -6,25 +6,17 @@ function loadButtons() {
 
     var fileOfChoice = "../uploads/Build_Verify/buildJSON.json";
     $.getJSON(fileOfChoice, function (json) {
-        // console.log(JSON.stringify((json.layers[2]).name));
-
         for(var i = 0; i < json.layers.length; i++){
             if(((json.layers[i]).name) === "control") {
                 controlOnly = JSON.stringify((json.layers[i]).features);
-                // console.log(controlOnly);
             }
             if(((json.layers[i]).name) === "flow"){
                 flowOnly = JSON.stringify((json.layers[i]).features);
-                // console.log(flowOnly);
             }
         }
 
         // Use Json as a string
         var jsonString = JSON.stringify(json);
-
-        // find size of entire JSON
-        // localStorage.SVGdimX = JSON.stringify(Object(json.params.width));
-        // localStorage.SVGdimY = JSON.stringify(Object(json.params.height));
 
         // Now look for all Port in the control layer only
         var Re = /Port.+?\[(.+?),(.+?)\].+?/g;

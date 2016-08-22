@@ -63,33 +63,6 @@ function onclickanchortagDispense(){
     console.log("Dispenser " + this.id + " clicked");
     dispenser_to_control = this.id;
     increaseDispenserOutput(dispenser_to_control);
-
-
-
-
-    // switch (location.pathname){
-    //     case "/images/fluigi/valveMarkerOpen.svg":
-    //         $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
-    //         console.log("Port " + this.id + " clicked");
-    //         valve_to_control = this.id;
-    //         flipFlop_valveState(valve_to_control);
-    //         break;
-    //
-    //     case "/images/fluigi/valveMarkerClosed.svg":
-    //         $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg");
-    //         console.log("Port " + this.id + " clicked");
-    //         valve_to_control = this.id;
-    //         flipFlop_valveState(valve_to_control);
-    //         break;
-    //
-    //     default:
-    //         $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
-    //         break;
-    // }
-    // if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
-    //
-    // }
-
     return false;
 }
 
@@ -97,32 +70,16 @@ function onclickanchortagDispense(){
 
 
 function placeButtons() {
-
-    // var canWidth = 1280;
-    // var canHeight = 725;
-    //
-    // var cx = document.querySelector("canvas").getContext("2d");
-    // // Formatting Canvas
-    // cx.canvas.width = canWidth;
-    // cx.canvas.height = canHeight;
-
     var canvasZoom = paper.view.zoom;
-
-
+    
     // for each pump, create new instance of valve template
     for(var i=0; i<JSON.parse(localStorage.getItem('portXcoords')).length; i++){
 
         var content = $("#content");
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
-
-
+        
         valveDiv.style.position = 'absolute';
-
-        // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        // valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])*(51000/localStorage.getItem('SVGdimY'))*0.010294117647058823 + 90 ) + 'px';
-        // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])*(75800/localStorage.getItem('SVGdimX'))*0.010294117647058823 - 20 + 363 + 100) + 'px';
-
 
         // valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])* paper.view.zoom)+ 'px';
         // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])* paper.view.zoom)+ 'px';
@@ -163,8 +120,7 @@ function placeButtons() {
 
         console.log("found another valve!");
         content.append(template);
-
-
+        
     }
 
 

@@ -250,9 +250,11 @@ function wrap_data_for_Arduino_Dispense()
 {
     var dispenser_to_control = localStorage.dispenserToControl;
     var temp = JSON.parse(localStorage.dispenserData);
+    console.log("dispenser to control: " + temp[dispenser_to_control - 1]['deviceIndex']);
     var deviceNum = temp[dispenser_to_control - 1]['deviceIndex'];
     
     // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
+    console.log("deviceNum: " + deviceNum);
     var dispenser_to_control_padded = zeroFill(deviceNum,4);
     // SECOND, PAD THE ML VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
     console.log(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']);

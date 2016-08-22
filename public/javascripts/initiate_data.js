@@ -66,12 +66,12 @@ if (localStorage.getItem('portRadius2vals') === null) {
     localStorage.setItem('portRadius2vals', 'default');
 }
 
-if (localStorage.getItem('SVGdimX') === null) {
-    localStorage.setItem('SVGdimX', 'default');
-}
-if (localStorage.getItem('SVGdimY') === null) {
-    localStorage.setItem('SVGdimY', 'default');
-}
+// if (localStorage.getItem('SVGdimX') === null) {
+//     localStorage.setItem('SVGdimX', 'default');
+// }
+// if (localStorage.getItem('SVGdimY') === null) {
+//     localStorage.setItem('SVGdimY', 'default');
+// }
 if(localStorage.getItem('portToControl') == null) {
     localStorage.setItem('portToControl', 'null');
 }

@@ -1,5 +1,4 @@
 <html>
-
 <head>
 
     <!--3Duf Dependencies-->
@@ -19,17 +18,12 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS for Page -->
     <link href="../stylesheets/controlFull.css" rel="stylesheet">
-
     <!-- MetisMenu CSS -->
     <link href="/javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-
     <!-- Custom CSS -->
     <link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">
-
     <!-- Toastr CDN -->
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
@@ -58,16 +52,6 @@
         </div>
     </template>
 
-    <!--Template for DISPENSERS to be placed over graph canvas-->
-    <template id="dispenser-template" action="this.preventDefault();">
-        <div class ="valve"  action="this.preventDefault();">
-            <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
-                <img class="valve_color" action="this.preventDefault();" src="../images/fluigi/dispenseMarker.svg" width="40" height="40">
-                <p class="IDtext" style="pointer-events: none;">beb</p>
-            </a>
-        </div>
-    </template>
-
 
 
     <style>
@@ -76,8 +60,6 @@
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
-            left: 0;
-            top: 0;
             width: 100%; /* Full width */
             height: 100%; /* Full height */
             overflow: auto; /* Enable scroll if needed */
@@ -86,12 +68,13 @@
         }
 
         /* Modal Content/Box */
-        .dispenserModalContent {
+        .dispenserModal {
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
+            /*margin: 15% auto; !* 15% from the top and centered *!*/
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 30%; /* Could be more or less, depending on screen size */
+            height: 30%;
         }
         /* The Close Button */
         .close {
@@ -109,25 +92,56 @@
     </style>
 
 
-    <!--Template for DISPENSER CONTROL UI-->
-    <template id="dispenserControl" action="this.preventDefault();">
-        <div class ="dispenserModal"  action="this.preventDefault();">
-            <div class="dispenserModalContent">
-                <span class="close">x</span>
-                <p>some text in the modal</p>
+
+    <!--Template for DISPENSERS to be placed over graph canvas-->
+    <template id="dispenser-template" action="this.preventDefault();">
+        <div class ="valve"  action="this.preventDefault();">
+            <a class="valve_marker" style="padding-left: 0px; padding-top: 0px;" action="this.preventDefault();">
+                <a class="catchDispenser" href=".dispenserModalClass" role="button" data-toggle="modal">
+                    <img class="dispenserImg" action="this.preventDefault();" src="../images/fluigi/dispenseMarker.svg" width="40" height="40">
+                </a>
+                <p class="IDtext" style="pointer-events: none;">beb</p>
+            </a>
+        </div>
+        <div class="modal fade dispenserModalClass" data-backdrop="false" id="dispenserModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="dispenserModalTitle">Dispenser Modal Title</h4>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!--<div class ="dispenserModal"  action="this.preventDefault();">-->
+            <!--<div class="dispenserModalContent">-->
+                <!--<span class="close">x</span>-->
+                <!--<p>some text in the modal</p>-->
+            <!--</div>-->
+        <!--</div>-->
+
     </template>
+
+
+
+
+
 
 
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 </head>
-
-
-
-
 
 <body>
 

@@ -59,12 +59,22 @@ var getLocation = function(href) {
 
 
 function onclickanchortagDispense(){
-    var location = getLocation(this.src);
     console.log("Dispenser " + this.id + " clicked");
     dispenser_to_control = this.id;
     increaseDispenserOutput(dispenser_to_control);
     return false;
 }
+
+
+// function onClickModalToggle() {
+//     console.log("Dispenser " + this.id + " clicked");
+//     dispenser_to_control = this.id;
+//     console.log("made it to toggle");
+//     var modalID = "dispenserModal" + this.id;
+//     console.log(modalID);
+//     $("#" + modalID).attr("style", "display: block;");
+//     return false;
+// }
 
 
 
@@ -131,23 +141,40 @@ function placeButtons() {
     for(var i=0; i<JSON.parse(localStorage.getItem('portXcoordsDisp')).length; i++){
 
         var content = $("#content");
+
+        // create new dispenser instance
         var template = document.getElementById("dispenser-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
+        var modalDiv = template.querySelector('.dispenserModalClass');
+        var gottaCatchEmAll = template.querySelector('.catchDispenser');
+
+
 
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
-        valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoordsDisp)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
-        valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
+        var yCoord = (parseInt(JSON.parse(localStorage.portYcoordsDisp)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5));
+        var xCoord = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5));
 
-        var specificImage = template.querySelector('.valve_color');
+        modalDiv.id = "dispenserModal" + (i + 1);
+
+        // style position of dispenser modal
+        // modalDiv.style.top = ((yCoord + 20) + 'px');
+        // console.log(modalDiv.style.top);
+        // modalDiv.style.left = (xCoord + 'px');
+        // console.log(modalDiv.style.left);
+
+        // place dispensers
+        valveDiv.style.top  = yCoord + 'px';
+        valveDiv.style.left = xCoord + 'px';
+
+
+        var specificImage = template.querySelector('.dispenserImg');
         // set id of each valve anchor based on location in array
         specificImage.id = i + 1;
 
-        specificImage.onclick = onclickanchortagDispense;
-
+        // specificImage.onclick = onclickanchortagDispense;
         valveButton = template.querySelector('.valve');
-        // valveButton.onclick = onclickanchortag;
 
 
         var valveIDLabel = template.querySelector('.IDtext');
@@ -156,22 +183,23 @@ function placeButtons() {
             template.querySelector('.IDtext').style = "padding-left: 9px";
         }
 
-        console.log("found another dispenser!");
+        var catchID = "catch" + (i + 1);
+        gottaCatchEmAll.id = catchID;
+
+        var dispenserTitle = template.querySelector('#dispenserModalTitle');
+        dispenserTitle.textContent = "Dispenser " + (i + 1);
+
+
+
+
+        var dispenserCatch = "#dispenserModal" + (i + 1);
         content.append(template);
+        // attach reference to correct dispenser modal
+        $("#" + catchID).attr("href", dispenserCatch);
+
 
 
     }
-
 }
 
-
-
-
-
-// GRAPH FORMATTING
-// $(document).ready(function(){
-//
-//     placeButtons();
-//
-// });
 

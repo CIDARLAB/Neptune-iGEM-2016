@@ -158,6 +158,10 @@ html, body, main {
     position: absolute;
 }
 
+.dispenserImg {
+    position: absolute;
+}
+
 #serialCommToggle {
 
     position: absolute;

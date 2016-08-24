@@ -189,6 +189,22 @@ function increaseDispenserOutput(dispenser_to_control) {
     }
     return false;
 }
+
+function decreaseDispenserOutput(dispenser_to_control) {
+    localStorage.dispenserToControl = dispenser_to_control;
+    // assumes the capacity of the syringe is 9 mL
+    if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] > JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Min']) {
+        var temp = JSON.parse(localStorage.dispenserData);//[valve_to_control]['Physical_State'] = 1;
+        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State'] - 0.25);
+        localStorage.dispenserData = JSON.stringify(temp);
+        sendCommandDispense();
+    }
+    else {
+        toastr.warning('You have reached minimum volume capacity.');
+    }
+    return false;
+}
+
 function wrap_data_for_Arduino_Dispense() {
     var dispenser_to_control = localStorage.dispenserToControl;
     var temp = JSON.parse(localStorage.dispenserData);
@@ -257,9 +273,47 @@ function paddy(n, p, c) {
 
 
 
+
+
+// dispenser arrow key functionality
+function upArrow() {
+    increaseDispenserOutput(localStorage.dispenserToControl);
+    return false;
+}
+
+function downArrow() {
+    decreaseDispenserOutput(localStorage.dispenserToControl);
+    return false;
+
+}
+
+function dispenseSelected(down) {
+    switch (down.keyCode) {
+        case 38:
+            if (localStorage.activeDispenser != "none") {
+                console.log("up arrow pressed");
+                upArrow();
+            }
+            break;
+        case 40:
+            if (localStorage.activeDispenser != "none") {
+                console.log("down arrow pressed");
+                downArrow();
+            }
+            break;
+    }
+};
+
+
+
+
+
+
+
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){
-    // placeButtons();
+
+    window.addEventListener('keydown', dispenseSelected);  // dispenser arrow key event listener
     loadButtons();
     paper.view.setCenter(2135.68, 610.967);
     paper.view.setZoom(0.269988);

@@ -85,3 +85,6 @@ if (localStorage.getItem('portYcoordsDisp') === null) {
 if(localStorage.getItem('DispenserToControl') == null) {
     localStorage.setItem('DispenserToControl', 'null');
 }
+if(localStorage.getItem('activeDispenser') == null) {
+    localStorage.setItem('activeDispenser', 'none');
+}

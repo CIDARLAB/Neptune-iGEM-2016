@@ -65,9 +65,6 @@ function loadButtons() {
             setNumberOfDispensers_JSON();
         }
 
-        
-
-
         // Display JSON via 3DuF
         // var result = json;
         // Registry.viewManager.loadDeviceFromJSON(result);

@@ -2,8 +2,7 @@ ShieldIndex = 0;
 PinIndex = 0;
 deviceCount = 0;
 
-
-
+// FUNCTIONALITY FOR VALVE DATA TRACKING AND COMMANDS
 function setNumberOfPumps_JSON() {
     localStorage.pumps = JSON.parse(localStorage.portXcoords).length;
     var set_pumpData_newNum = [];
@@ -26,9 +25,7 @@ function setNumberOfPumps_JSON() {
     localStorage.pumpData = JSON.stringify(DataToLoad);
     localStorage.pumpInitial = "FALSE";
 }
-
-function clearPumpData()
-{
+function clearPumpData() {
     deviceCount=0;
     var c_pumpData = [];
     var j = 1;  //  hardware pin (goes from 1 to 12)
@@ -46,12 +43,8 @@ function clearPumpData()
     }
     return JSON.stringify(c_pumpData);
 }
-
-function flipFlop_valveState(valve_to_control)
-{
+function flipFlop_valveState(valve_to_control) {
     localStorage.portToControl = valve_to_control;
-
-    //var valve_to_control; // This needs to be pulled from image overlay
     if (JSON.parse(localStorage.valveData)[valve_to_control - 1]['Physical_State'] == 0) {
         var temp = JSON.parse(localStorage.valveData);//[valve_to_control]['Physical_State'] = 1;
         temp[valve_to_control - 1]['Physical_State'] = 1;
@@ -65,9 +58,7 @@ function flipFlop_valveState(valve_to_control)
     sendCommand();
     return false;
 }
-
-function wrap_data_for_Arduino()
-{
+function wrap_data_for_Arduino() {
     // var valve_to_control = (document.getElementById("ValveNumberSelector").value);
     var valve_to_control = localStorage.portToControl;
     var temp = JSON.parse(localStorage.pumpData);
@@ -104,22 +95,52 @@ function wrap_data_for_Arduino()
     // RETURN THE DATA
     return command;
 }
+function sendCommand() {
+    var command = wrap_data_for_Arduino();
+    var stringgggg = "Sending to Arduino: ";
+    var command_info = stringgggg.concat(command);
+    // --- Include code to serial.write() the command to the Arduino here --- //
+    toastr.info(command_info);
+    console.log(command);
+    localStorage.setItem('myCommand', command);
+    $.ajax(
+        {
+            url: "/serialcommunication/send", type: 'POST', async: true,
+            data: {
+                commandData: command
+            },
+            success: function (response) {
+            },
+            error: function (response) {
+            }
+        });
+}
+function inititateValveStates() {
+    var init_valveState = [];
+    for( var i = 1; i <= localStorage.pumps; i++)
+    {
+        var singleStage = {id:i, Physical_State:0, Valve_Number:i};
+        init_valveState.push(singleStage);
+    }
+    return JSON.stringify(init_valveState);
+}
+function combine_pumpData_valveData() {
+    var master_data = [];
+    for (var i = 0; i < localStorage.pumps; i++)
+    {
+        var open_state_singleInstance = (JSON.parse(localStorage.pumpData))[i]['Open_State'];
+        var closed_state_singleInstance = (JSON.parse(localStorage.pumpData))[i]['Closed_State'];
+        var physical_state_singleInstance = (JSON.parse(localStorage.valveData))[i]['Physical_State'];
+        var singleStage = {id:i, State:{Open_State:open_state_singleInstance,Closed_State:closed_state_singleInstance,Physical_State:physical_state_singleInstance}, Number:i};
+        master_data.push(singleStage);
 
+    }
+    return JSON.stringify(master_data);
+}
+// ./ END VALVE FUNCTIONS
 
-
-
-
-
-
-
-
-
-
-
-
-
+// FUNCTIONALITY FOR DISPENSER DATA TRACKING AND COMMANDS
 function clearDispenserData() {
-
     var dispenserData = [];
     var j = PinIndex;  //  hardware pin (goes from 1 to 12)
     var shield = ShieldIndex;
@@ -132,15 +153,9 @@ function clearDispenserData() {
         if(j == 13) {
             j = 1;
         }
-
     }
-
-
     return JSON.stringify(dispenserData);
-
-
 }
-
 function setNumberOfDispensers_JSON() {
     localStorage.Dispensers = JSON.parse(localStorage.portXcoordsDisp).length;
     var set_dispData_newNum = [];
@@ -148,8 +163,8 @@ function setNumberOfDispensers_JSON() {
     var shield = ShieldIndex;
     for (var i = 1; i <= localStorage.Dispensers; i++) {
         deviceCount = deviceCount + 1;
-        var singleStage2 = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, deviceIndex: deviceCount};
-        set_dispData_newNum.push(singleStage2);
+        var tempDispense = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, deviceIndex: deviceCount};
+        set_dispData_newNum.push(tempDispense);
         j = j + 1;
         if(j == 13) {
             j = 1;
@@ -157,14 +172,10 @@ function setNumberOfDispensers_JSON() {
         ShieldIndex = i;
         PinIndex = j;
     }
-    var DataToLoad = set_dispData_newNum;
-    localStorage.dispenserData = JSON.stringify(DataToLoad);
+    localStorage.dispenserData = JSON.stringify(set_dispData_newNum);
     localStorage.dispenserInitial = "FALSE";
 }
-
-
-function increaseDispenserOutput(dispenser_to_control)
-{
+function increaseDispenserOutput(dispenser_to_control) {
     localStorage.dispenserToControl = dispenser_to_control;
     // assumes the capacity of the syringe is 9 mL
     if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max']) {
@@ -178,9 +189,7 @@ function increaseDispenserOutput(dispenser_to_control)
     }
     return false;
 }
-
-function wrap_data_for_Arduino_Dispense()
-{
+function wrap_data_for_Arduino_Dispense() {
     var dispenser_to_control = localStorage.dispenserToControl;
     var temp = JSON.parse(localStorage.dispenserData);
     console.log("dispenser to control: " + temp[dispenser_to_control - 1]['deviceIndex']);
@@ -198,8 +207,6 @@ function wrap_data_for_Arduino_Dispense()
     else{
         var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],4);
     }
-
-
     // CONCAT THE VALVE NUMBER AND PWM VALUE
     var pre_command = dispenser_to_control_padded.concat(MLval_padded);
     // ADD A START CODON TO SIGNIFY THE BEGINING OF SIGNAL
@@ -210,9 +217,7 @@ function wrap_data_for_Arduino_Dispense()
     // RETURN THE DATA
     return command;
 }
-
-function sendCommandDispense()
-{
+function sendCommandDispense() {
     var command = wrap_data_for_Arduino_Dispense();
     var stringgggg = "Sending to Arduino: ";
     var command_info = stringgggg.concat(command);
@@ -221,8 +226,6 @@ function sendCommandDispense()
     // writeToSerialConsole(command_info);
     console.log(command);
     localStorage.setItem('myCommand', command);
-    // document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
-
     $.ajax(
         {
             url: "/serialcommunication/send", type: 'POST', async: true,
@@ -235,27 +238,25 @@ function sendCommandDispense()
             }
         });
 }
+// ./ END DISPENSER FUNCTIONS
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Function to open Arduino Modal
-function openConnectionPage() {
-    (document.getElementById('connection_modal')).style.display = "block";
-
-
+// HELPER FUNCTIONS FOR SENDING COMMANDS FOR BOTH VALVES AND DISPENSERS
+function zeroFill( number, width ) {
+    width -= number.toString().length;
+    if (width > 0) {
+        return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
+    }
+    return number + ""; // always return a string
 }
+function paddy(n, p, c) {
+    var pad_char = typeof c !== 'undefined' ? c : '0';
+    var pad = new Array(1 + p).join(pad_char);
+    return (pad + n).slice(-pad.length);
+}
+// ./ END HELPER FUNCTIONS
+
+
+
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){
     // placeButtons();
@@ -276,94 +277,13 @@ $(document).ready(function(){
         });
     
 });
-
-function closeConnectionPage()
-{
-    (document.getElementById('connection_modal')).style.display = "none";
-}
-
-
-
-
-
-function sendCommand()
-{
-    var command = wrap_data_for_Arduino();
-    var stringgggg = "Sending to Arduino: ";
-    var command_info = stringgggg.concat(command);
-    // --- Include code to serial.write() the command to the Arduino here --- //
-    toastr.info(command_info);
-    // writeToSerialConsole(command_info);
-    console.log(command);
-    localStorage.setItem('myCommand', command);
-    // document.forms.form1.area.value = document.forms.form1.area.value + '\nSerial Command Sent: ' + localStorage.myCommand;
-
-    $.ajax(
-        {
-            url: "/serialcommunication/send", type: 'POST', async: true,
-            data: {
-                commandData: command
-            },
-            success: function (response) {
-            },
-            error: function (response) {
-            }
-        });
-}
-
-function inititateValveStates()
-{
-    var init_valveState = [];
-    for( var i = 1; i <= localStorage.pumps; i++)
-    {
-        var singleStage = {id:i, Physical_State:0, Valve_Number:i};
-        init_valveState.push(singleStage);
-    }
-    return JSON.stringify(init_valveState);
-}
-
-function combine_pumpData_valveData()
-{
-    var master_data = [];
-
-    for (var i = 0; i < localStorage.pumps; i++)
-    {
-        var open_state_singleInstance = (JSON.parse(localStorage.pumpData))[i]['Open_State'];
-        var closed_state_singleInstance = (JSON.parse(localStorage.pumpData))[i]['Closed_State'];
-        var physical_state_singleInstance = (JSON.parse(localStorage.valveData))[i]['Physical_State'];
-        var singleStage = {id:i, State:{Open_State:open_state_singleInstance,Closed_State:closed_state_singleInstance,Physical_State:physical_state_singleInstance}, Number:i};
-        master_data.push(singleStage);
-
-    }
-    return JSON.stringify(master_data);
-}
-
-function zeroFill( number, width )
-{
-    width -= number.toString().length;
-    if (width > 0) {
-        return new Array(width + (/\./.test(number) ? 2 : 1)).join('0') + number;
-    }
-    return number + ""; // always return a string
-}
-
-function paddy(n, p, c)
-{
-    var pad_char = typeof c !== 'undefined' ? c : '0';
-    var pad = new Array(1 + p).join(pad_char);
-    return (pad + n).slice(-pad.length);
-}
-
-//Navbar
-$(function(){
-
+// Navbar
+$(function() {
     $('#slide-submenu').on('click',function() {
         $(this).closest('.list-group').fadeOut('slide',function(){
             $('.mini-submenu').fadeIn();
         });
-
     });
-
     $('.mini-submenu').on('click',function(){
         $(this).next('.list-group').toggle('slide');
         $('.mini-submenu').hide();

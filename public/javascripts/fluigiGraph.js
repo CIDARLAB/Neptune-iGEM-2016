@@ -46,18 +46,6 @@ var getLocation = function(href) {
     return l;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 function onclickanchortagDispense(){
     console.log("Dispenser " + this.id + " clicked");
     dispenser_to_control = this.id;
@@ -65,18 +53,16 @@ function onclickanchortagDispense(){
     return false;
 }
 
+function activateDispenser(dispenserIDNum) {
+    console.log("Dispenser " + dispenserIDNum + " activated!");
+    localStorage.activeDispenser = dispenserIDNum;
+    localStorage.dispenserToControl = dispenserIDNum;
+}
 
-// function onClickModalToggle() {
-//     console.log("Dispenser " + this.id + " clicked");
-//     dispenser_to_control = this.id;
-//     console.log("made it to toggle");
-//     var modalID = "dispenserModal" + this.id;
-//     console.log(modalID);
-//     $("#" + modalID).attr("style", "display: block;");
-//     return false;
-// }
-
-
+function deactivateDispenser() {
+    console.log("All dispensers deactivated!");
+    localStorage.activeDispenser = "none";
+}
 
 
 function placeButtons() {
@@ -157,12 +143,11 @@ function placeButtons() {
         var xCoord = (parseInt(JSON.parse(localStorage.portXcoordsDisp)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5));
 
         modalDiv.id = "dispenserModal" + (i + 1);
+        var modalID = template.querySelector("#dispenserModal" + (i + 1));
 
         // style position of dispenser modal
-        // modalDiv.style.top = ((yCoord + 20) + 'px');
-        // console.log(modalDiv.style.top);
-        // modalDiv.style.left = (xCoord + 'px');
-        // console.log(modalDiv.style.left);
+        modalID.style.top = (yCoord + 'px');
+        modalID.style.left = (xCoord + 'px');
 
         // place dispensers
         valveDiv.style.top  = yCoord + 'px';
@@ -186,6 +171,8 @@ function placeButtons() {
         var catchID = "catch" + (i + 1);
         gottaCatchEmAll.id = catchID;
 
+
+
         var dispenserTitle = template.querySelector('#dispenserModalTitle');
         dispenserTitle.textContent = "Dispenser " + (i + 1);
 
@@ -196,6 +183,7 @@ function placeButtons() {
         content.append(template);
         // attach reference to correct dispenser modal
         $("#" + catchID).attr("href", dispenserCatch);
+        $("#" + catchID).attr("onclick", "activateDispenser(" + (i + 1) + ")");
 
 
 

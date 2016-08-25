@@ -177,3 +177,13 @@ html, body, main {
     right: 110px;
     z-index: 202;
 }
+
+.toast-info {
+    background-color: #337AB7 !important;
+}
+.toast-error {
+    background-color: #e74c3c !important;
+}
+.toast-warning {
+    background-color: #f39c12 !important;
+}

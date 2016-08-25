@@ -57,6 +57,7 @@ function activateDispenser(dispenserIDNum) {
     console.log("Dispenser " + dispenserIDNum + " activated!");
     localStorage.activeDispenser = dispenserIDNum;
     localStorage.dispenserToControl = dispenserIDNum;
+    updateDispenseProgressBar(dispenserIDNum);
 }
 
 function deactivateDispenser() {
@@ -133,6 +134,7 @@ function placeButtons() {
         var valveDiv = template.querySelector('.valve');
         var modalDiv = template.querySelector('.dispenserModalClass');
         var gottaCatchEmAll = template.querySelector('.catchDispenser');
+        var progress = template.querySelector('.progress-bar');
 
 
 
@@ -144,10 +146,18 @@ function placeButtons() {
 
         modalDiv.id = "dispenserModal" + (i + 1);
         var modalID = template.querySelector("#dispenserModal" + (i + 1));
+        
+        progress.id = "progress" + (i + 1);
 
         // style position of dispenser modal
+        if (xCoord + 600 > $(window).width()) {
+            modalID.style.left = ((xCoord - 610) + 'px');
+        }
+        else {
+            modalID.style.left = ((xCoord + 40) + 'px');
+        }
         modalID.style.top = (yCoord + 'px');
-        modalID.style.left = (xCoord + 'px');
+
 
         // place dispensers
         valveDiv.style.top  = yCoord + 'px';

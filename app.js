@@ -100,7 +100,7 @@ global.server.timeout = 1000000000;
     app.get('/dashboard',dashboardController.openDashboard);
     app.get('/specify',specifyController.openSpecifyPage);
     app.get('/design',designController.openDesignPage);
-    app.get('/control',controlController.openControllersPage);
+    // app.get('/control',controlController.openControllersPage);
     app.get('/controlFull',controlController.openControlFullPage);
     app.get('/Build',buildController.openBuildPage);
     app.get('/assembly', assemblyController.openAssemblyPage);
@@ -176,3 +176,5 @@ global.server.timeout = 1000000000;
     app.post('/api/generateUCF',ucfMaker.generateUCF);
 
 
+// forms 
+app.post('/api/runDispenseRate',controlController.runDispense);

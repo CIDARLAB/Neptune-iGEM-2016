@@ -174,6 +174,7 @@ function setNumberOfDispensers_JSON() {
     }
     localStorage.dispenserData = JSON.stringify(set_dispData_newNum);
     localStorage.dispenserInitial = "FALSE";
+
 }
 function increaseDispenserOutput(dispenser_to_control) {
     localStorage.dispenserToControl = dispenser_to_control;
@@ -183,6 +184,7 @@ function increaseDispenserOutput(dispenser_to_control) {
         temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State'] + 0.25);
         localStorage.dispenserData = JSON.stringify(temp);
         sendCommandDispense();
+        updateDispenseProgressBar(dispenser_to_control);
     }
     else {
         toastr.warning('You have already dispensed the full amount of this syringe.');
@@ -198,6 +200,7 @@ function decreaseDispenserOutput(dispenser_to_control) {
         temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State'] - 0.25);
         localStorage.dispenserData = JSON.stringify(temp);
         sendCommandDispense();
+        updateDispenseProgressBar(dispenser_to_control);
     }
     else {
         toastr.warning('You have reached minimum volume capacity.');
@@ -280,13 +283,10 @@ function upArrow() {
     increaseDispenserOutput(localStorage.dispenserToControl);
     return false;
 }
-
 function downArrow() {
     decreaseDispenserOutput(localStorage.dispenserToControl);
     return false;
-
 }
-
 function dispenseSelected(down) {
     switch (down.keyCode) {
         case 38:
@@ -303,21 +303,28 @@ function dispenseSelected(down) {
             break;
     }
 };
+// ./ end dispenser arrow key functionality
 
-
-
-
-
-
+// dispenser modal progress bar update
+function updateDispenseProgressBar(dispenserIDNum) {
+    currentState = JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['Current_State'];
+    maxVol = JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['Max'];
+    minVol = JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['Min'];
+    percentageUpdate = Math.floor(((currentState - minVol)/(maxVol - minVol)) * 100);
+    console.log("progress of " + dispenserIDNum + " : " + percentageUpdate);
+    // $('.progress-bar').innerHTML = "%";
+    $('#progress' + dispenserIDNum).css('width', percentageUpdate+'%').attr('aria-valuenow', percentageUpdate);
+    return false;
+}
 
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){
-
     window.addEventListener('keydown', dispenseSelected);  // dispenser arrow key event listener
     loadButtons();
+    console.log(localStorage.dispenserData);
+    localStorage.activeDispenser = 'none';
     paper.view.setCenter(2135.68, 610.967);
     paper.view.setZoom(0.269988);
-
     $.ajax(
         {   url: "/serialcommunication/list", type: 'POST', async: true,
             data:
@@ -329,7 +336,6 @@ $(document).ready(function(){
             error: function(response){
             }
         });
-    
 });
 // Navbar
 $(function() {

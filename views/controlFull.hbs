@@ -51,47 +51,6 @@
         </div>
     </template>
 
-
-
-    <style>
-        /* The Modal (background) */
-        .dispenserModal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content/Box */
-        .dispenserModal {
-            background-color: #fefefe;
-            /*margin: 15% auto; !* 15% from the top and centered *!*/
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%; /* Could be more or less, depending on screen size */
-            height: 30%;
-        }
-        /* The Close Button */
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
-    </style>
-
-
-
     <!--Template for DISPENSERS to be placed over graph canvas-->
     <template id="dispenser-template" action="this.preventDefault();">
         <div class ="valve"  action="this.preventDefault();">
@@ -110,11 +69,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                60%
+                            <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
                             </div>
                         </div>
-                        <form class="form-inline">
+                        <form class="form-inline" id="dispenseRate">
                             <div class="form-group">
                                 <label for="dispenseVol">Dispense </label>
                                 <input type="text" class="form-control" id="dispenseVol" placeholder="">
@@ -128,19 +86,11 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="deactivateDispenser()">Close</button>
-                        <button type="button" class="btn btn-primary">Run</button>
+                        <button type="button" class="btn btn-primary" onclick="sendForDispense();">Run</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!--<div class ="dispenserModal"  action="this.preventDefault();">-->
-            <!--<div class="dispenserModalContent">-->
-                <!--<span class="close">x</span>-->
-                <!--<p>some text in the modal</p>-->
-            <!--</div>-->
-        <!--</div>-->
-
     </template>
 
 
@@ -285,6 +235,8 @@
 <!-- 3DuF JavaScript -->
 <script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
 <script src="../javascripts/3DuFApp.js"></script>
+
+<script src="../javascripts/dispenserUI.js"></script>
 
 
 </body>

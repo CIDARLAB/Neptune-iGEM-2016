@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
 
     <!--Walkthrough tour-->
@@ -15,8 +14,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
     <script src="../javascripts/tour.js"></script>
 
+    <link href="../stylesheets/toastr.css" rel="stylesheet"/>
+    <script src="../javascripts/toastr.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }</script>
+
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript">
+        localStorage.clear();
         localStorage.WORKSPACE = 'C:/Users/kestas/Documents/Neptune'
     </script>
 </head>
@@ -32,7 +53,6 @@
     <img height= "100" src="../images/index/FluigiButton.png">
     <img height="100" src="../images/index/cidar-backgbround-no-js.png">
     <img height="100" src="../images/index/buLogo.png">
-
 
     <!--<a href="../dashboard"> <img class="DASHBOARD" height ="40" src="../images/index/dashboard.svg" > </a>-->
 
@@ -150,7 +170,7 @@
 <script type="text/javascript">
     function workspace_set()
     {
-        localStorage.WORKSPACE = document.getElementById('setWorkspace').value;
+        localStorage.WORKSPACE = document.getElementById('setWorkspace_in').value;
 
         $.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)
         {
@@ -177,8 +197,6 @@
             $("#project_select").html(myhtml);
 
         },'html');
-
-
     }
 </script>
 
@@ -191,8 +209,8 @@
             </div>
             <div class="modal-body">
                     <div class="form-group">
-                        <label for="setWorkspace">Your current workspace is located at:</label>
-                        <input type="text" class="form-control" id="setWorkspace" >
+                        <label for="setWorkspace_in">Your current workspace is located at:</label>
+                        <input type="text" class="form-control" id="setWorkspace_in">
                     </div>
 
                     Please confirm that this is your workspace folder.
@@ -207,9 +225,10 @@
     </div>
 </div>
 <script type="text/javascript">
-    document.getElementById("setWorkspace").value = localStorage.WORKSPACE;
+    //
     $(document).ready(function()
     {
+        document.getElementById("setWorkspace_in").value = localStorage.WORKSPACE;
         $('#setWorkspace').modal('show');
     });
 </script>
@@ -226,14 +245,26 @@
             <div class="modal-body" id="project_select"> </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="generateNewProject();" > New Project </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="nameProject();" data-target=".bd-example-modal-sm"> New Project </button>
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal" "> Load Project</button>-->
             </div>
         </div>
     </div>
 </div>
 
+<div id='name_project' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
 
+        <div class="modal-content">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button" onclick="generateNewProject()">Create Project</button>
+                </span>
+                    <input id='projectNameInput' type="text" class="form-control" placeholder="Enter Project Name">
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Modal -->
 <div id="HelpModal" class="modal fade" role="dialog">
@@ -296,7 +327,6 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
-
     </div>
 </div>
 
@@ -316,45 +346,5 @@
 <!-- Custom Theme JavaScript -->
 <script src="/javascripts/dist/js/sb-admin-2.js"></script>
 <!-- *** END: DEPENDENCIES *** -->
-
-<script type="text/javascript">
-    function setNewSession()
-    {
-        localStorage.clear();
-        localStorage.WORKFLOW_STAGE = 'start';
-        localStorage.FILE_specifyLFR = '';
-        localStorage.FILE_specifyUCF = '';
-        localStorage.FILE_designMINT = '';
-        localStorage.FILE_designINI = '';
-        localStorage.FILE_buildJSON = '';
-        localStorage.FILE_buildSVGcontrol = '';
-        localStorage.FILE_buildSVGcell = '';
-        localStorage.FILE_buildSVGflow = '';
-        localStorage.FILE_buildSVGboundary = '';
-        localStorage.FILE_buildEPSdevice = '';
-        localStorage.FILE_buildEPSphoto = '';
-
-//        downloadFile('','specifyLFR','','inputString');
-//        //downloadFile('','specifyUCF','','inputString');
-//        downloadFile('','designMINT','','inputString');
-//        //downloadFile('','designINI','','inputString');
-//        downloadFile('','buildJSON','','inputString');
-//        downloadFile('','buildSVG','','inputString');
-
-        initiateGUI();
-
-        $.get('../uploads/Specify/specifyUCF.json',function(data)
-        {
-            var Data = JSON.stringify(data);
-            var content = Data.split(/[\r\n]+/);
-            localStorage.FILE_specifyUCF = JSON.stringify(content);
-        });
-        $.get('../uploads/Design/designINI.txt',function(data)
-        {
-            var content = data.split("\n");
-            localStorage.FILE_designINI = JSON.stringify(content);
-        });
-    }
-</script>
 
 </html>

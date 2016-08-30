@@ -321,7 +321,6 @@ function updateDispenseProgressBar(dispenserIDNum) {
 $(document).ready(function(){
     window.addEventListener('keydown', dispenseSelected);  // dispenser arrow key event listener
     loadButtons();
-    console.log(localStorage.dispenserData);
     localStorage.activeDispenser = 'none';
     paper.view.setCenter(2135.68, 610.967);
     paper.view.setZoom(0.269988);

@@ -85,13 +85,13 @@ function placeButtons() {
         valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
         valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
 
-        console.log("canvas bounds: ");
-        console.log(paper.view.bounds);
-
-        console.log(canvasZoom);
+        // console.log("canvas bounds: ");
+        // console.log(paper.view.bounds);
+        //
+        // console.log(canvasZoom);
         
         // console.log(paper.view.zoom);
-        console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
+        // console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
 
 
         // console.log("this is the 3DUF Zoom: " + paper.view.zoom);
@@ -115,7 +115,6 @@ function placeButtons() {
             template.querySelector('.IDtext').style = "padding-left: 9px";
         }
 
-        console.log("found another valve!");
         content.append(template);
         
     }

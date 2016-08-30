@@ -76,12 +76,7 @@
 
         <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+         
             <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
             <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
         </div>
@@ -115,7 +110,7 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <h1 class="page-header" style="font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px">
+                <h1 class="page-header" style="font-family: 'Open Sans'; font-size: 45px; font-weight: normal; line-height: 48px">
                     <i class="fa fa-wrench" aria-hidden="true" style="color: #447294;"></i>
                     Build </h1>
             </div>
@@ -132,11 +127,11 @@
                         </div>
                         <div class="wizard-content">
                             <p>Volume of liquid to dispense in ml:</p>
-                            <input class="btn btn-default" id="liquid" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="liquid" type="text" />
                             <button class="btn btn-default" id="checkVolume">Check volume</button>
                             <br><br>
                             <p>Tolerance of servos:</p>
-                            <input class="btn btn-default" id="tolerance" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="tolerance" type="text" />
                             <button class="btn btn-default" id="checkTolerance">Check tolerance</button>
                             <br>
                             <button class="btn-green" type="submit" id="specs">Continue</button>
@@ -181,7 +176,7 @@
                                     <div class="carousel-inner" role="listbox">
                                         <div class="item active" id="recommended">
                                             <div style="text-align: center;">
-                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                            <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
                                                     Recommended
                                             </h2>
                                             </div>
@@ -203,7 +198,7 @@
 
                                         <div class="item" id="cost">
                                             <div style="text-align: center;">
-                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                            <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
                                                 Lowest cost
                                             </h2>
                                                 </div>
@@ -226,7 +221,7 @@
 
                                         <div class="item" id="tolerance">
                                             <div style="text-align: center;">
-                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                            <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
                                                 Highest tolerance
                                             </h2>
                                                 </div>
@@ -450,15 +445,15 @@
                         <div class="col-md-8">
                             <h4>Syringe</h4>
                             <p>1. Diameter of syringe in mm:
-                            <input class="btn btn-default" id="diameter" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="diameter" type="text" />
                             </p>
 
                             <p>2. Length in mm between 1 ml:
-                            <input class="btn btn-default" id="length" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="length" type="text"/>
                             </p>
 
                             <p>3. Diameter of the innner head of syringe in mm:
-                            <input class="btn btn-default" id="diameterInner" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="diameterInner" type="text" />
                             </p>
                         </div>
 
@@ -472,31 +467,31 @@
                         <div class="col-md-8">
                             <h4>Servo </h4>
                         <p>1. Width of servo in mm:
-                        <input class="btn btn-default" id="width" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="width" type="text" />
                         </p>
 
                         <p>2. Height of servo in mm:
-                        <input class="btn btn-default" id="height" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="height" type="text" />
                         </p>
 
                         <p>3. Distance holes are apart in mm:
-                        <input class="btn btn-default" id="distanceHoles" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="distanceHoles" type="text"/>
                         </p>
 
                         <p>4. Diameter of holes in mm:
-                        <input class="btn btn-default" id="diameterHoles" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="diameterHoles" type="text" />
                         </p>
 
                         <p>5. Length of extended servo in mm:
-                        <input class="btn btn-default" id="extendedLength" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="extendedLength" type="text"/>
                         </p>
 
                         <p>6. Torque at 5V (from datasheet):
-                        <input class="btn btn-default" id="torque" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="torque" type="text" />
                         </p>
 
                         <p>7. Limit angle (from datasheet):
-                        <input class="btn btn-default" id="angle" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="angle" type="text" />
                         </p>
                         </div>
                         <div class="col-md-4">
@@ -683,7 +678,7 @@
 
 
 <style>
-    body{float: left; align: center; width: 100%;}
+    body{float: left; align: center; width: 100%; font-family: 'Open Sans'}
     *{margin: 0; padding: 0; box-sizing: border-box;}
     :focus{outline: none;}
     a{text-decoration: none;}
@@ -693,7 +688,7 @@
     /*= wizard css =*/
     .payment-wizard{float: left; width: 100%;}
     .payment-wizard li.active{position: relative; z-index: 1;}
-    .wizard-heading{font-family: 'Trocchi', serif; float: left; width: 100%; padding: 10px 15px; background-color: #fafafa; margin-bottom: 1px; box-sizing: border-box; font-size: 18px; color: #4c4c4c; text-transform: uppercase; transition: 0.3s;}
+    .wizard-heading{float: left; width: 100%; padding: 10px 15px; background-color: #fafafa; margin-bottom: 1px; box-sizing: border-box; font-size: 18px; color: #4c4c4c; text-transform: uppercase; transition: 0.3s;}
     .wizard-content{display: none; float: left; width: 100%; background-color: #fff; box-shadow: 0 8px 8px #d2d2d2; padding: 15px; box-sizing: border-box;}
     li:first-child .wizard-content{display: block;}
     .wizard-content p{margin-bottom: 15px; font-size: 15px; line-height: 26px; color: #4c4c4c;}

@@ -76,39 +76,39 @@ function loadButtons() {
 
 
 
-var JSON_form = document.getElementById('upload_buildJSON');
-var JSON_fileSelect = document.getElementById('selectfile_JSON');
-var JSON_uploadButton = document.getElementById('uploadfile_JSON');
+// var JSON_form = document.getElementById('upload_buildJSON');
+// var JSON_fileSelect = document.getElementById('selectfile_JSON');
+// var JSON_uploadButton = document.getElementById('uploadfile_JSON');
 
-JSON_form.onsubmit = function(event) {
-
-    event.preventDefault();
-    JSON_uploadButton.innerHTML = 'Uploading...';
-
-    var file = JSON_fileSelect.files[0];
-    var formData = new FormData();
-
-    formData.append('buildJSON',file,'buildJSON');
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/build_JSON', true);
-    xhr.onload = function () {
-        if (xhr.status === 200) {
-            // File(s) uploaded.
-            localStorage.WORKFLOW_STAGE = 'build';
-            $.get('../uploads/Build_Verify/buildJSON.json',function(data)
-            {
-                var string = data + '';
-                var content = string.split(/[\r\n]+/);
-                localStorage.FILE_designMINT = JSON.stringify(content);
-
-            });
-            loadButtons();
-            // location.reload();
-            JSON_uploadButton.innerHTML = 'Uploaded';
-        } else {
-            alert('File upload failed.');
-        }
-    };
-    xhr.send(formData);
-};
+// JSON_form.onsubmit = function(event) {
+//
+//     event.preventDefault();
+//     JSON_uploadButton.innerHTML = 'Uploading...';
+//
+//     var file = JSON_fileSelect.files[0];
+//     var formData = new FormData();
+//
+//     formData.append('buildJSON',file,'buildJSON');
+//
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('POST', '/api/build_JSON', true);
+//     xhr.onload = function () {
+//         if (xhr.status === 200) {
+//             // File(s) uploaded.
+//             localStorage.WORKFLOW_STAGE = 'build';
+//             $.get('../uploads/Build_Verify/buildJSON.json',function(data)
+//             {
+//                 var string = data + '';
+//                 var content = string.split(/[\r\n]+/);
+//                 localStorage.FILE_designMINT = JSON.stringify(content);
+//
+//             });
+//             loadButtons();
+//             // location.reload();
+//             JSON_uploadButton.innerHTML = 'Uploaded';
+//         } else {
+//             alert('File upload failed.');
+//         }
+//     };
+//     xhr.send(formData);
+// };

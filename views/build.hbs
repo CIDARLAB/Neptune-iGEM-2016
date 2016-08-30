@@ -13,6 +13,8 @@
 
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
+
+
     <script>
         localStorage.design_editor_state = 'designMINT';
         localStorage.mint_state = 'write';
@@ -55,6 +57,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
     <script src="../javascripts/tour.js"></script>
+
+
+    <script type="text/javascript" src="../javascripts/servosyringe.js"></script>
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
 
     <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
@@ -111,7 +116,7 @@
             <div class="col-lg-12">
 
                 <h1 class="page-header" style="font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px">
-                    <i class="fa fa-gavel" aria-hidden="true" style="color: #447294;"></i>
+                    <i class="fa fa-wrench" aria-hidden="true" style="color: #447294;"></i>
                     Build </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -146,15 +151,9 @@
                         <div class="wizard-content">
 
                         <p>Feel free to scroll through our options and select a servo and syringe combination:</p>
-                            <!--&lt;!&ndash;Dropdown Options&ndash;&gt;-->
 
-                            <!--<p style="font-size: 15px;">Pick your selected hardware to add to the purchase list:</p>-->
-                            <!--<select id="servoSyringe" class="selectpicker btn btn-default">-->
-                                <!--<option>Recommended</option>-->
-                                <!--<option>Lowest cost</option>-->
-                                <!--<option>Highest tolerance</option>-->
-                                <!--<option>Custom hardware</option>-->
-                            <!--</select>-->
+
+
                             <br>
 
                             <!--Picture Options-->
@@ -303,7 +302,7 @@
                                     Download SVG
                                 </button>
                             </a>
-                            <button class="btn btn-primary" id="get3DParts">Download 3D Printing Files</button>
+                          <a href="../parametric">  <button class="btn btn-primary" id="get3DParts">Download 3D Printing Files</button></a>
                             <button class="btn btn-primary" id="getParts">Download Ordering List</button>
                                 </div>
                             <br><br>
@@ -626,7 +625,7 @@
         });
         $('#checkTolerance').click(function(){
             var tolerance = $('#tolerance').val();
-            if (tolerance<0.1) {
+            if (tolerance<0) {
                 toastr.warning('Tolerance must be greater than 0.1! Please enter again.');
             }
             else {
@@ -637,7 +636,9 @@
         $('#specs').click(function(){
             var tolerance = $('#tolerance').val();
             var liquid = $('#liquid').val();
-            if (liquid<=0 || liquid >100 || tolerance<0.1) {
+            localStorage.precision= tolerance;
+            localStorage.volume = liquid;
+            if (liquid<=0 || liquid >100 || tolerance<0) {
                 toastr.warning('Error! Please enter values to proceed');
             }
             else {
@@ -652,6 +653,7 @@
                     $(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();
                 }
             }
+            calculateRecommended();
         });
 
         $('#customize').click(function(){
@@ -669,6 +671,7 @@
             else{
                 $('#suggestion').val('Suggestion: Choose a 100ml syringe and a servo with '+tolerance+ ' tolerance.');
             }
+
 
         });
 

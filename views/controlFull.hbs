@@ -51,6 +51,15 @@
         </div>
     </template>
 
+
+    <style>
+        .dragable{
+            position:relative;
+            cursor: move;
+        }
+    </style>
+
+
     <!--Template for DISPENSERS to be placed over graph canvas-->
     <template id="dispenser-template" action="this.preventDefault();">
         <div class ="valve"  action="this.preventDefault();">
@@ -62,10 +71,24 @@
             </a>
         </div>
         <div class="modal fade dispenserModalClass" data-backdrop="false" id="dispenserModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document" style="margin:0 !important; width:600px;">
+            <div class="modal-dialog" role="document" style="margin:0 !important; width:400px;">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="dispenserModalTitle">Dispenser Modal Title</h4>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-7">
+                            <img src="../images/fluigi/SyringeTube.png">
+                            <img src="../images/fluigi/SyringePlunger.png" class="dragable">
+                        </div>
+                        <div class="col-sm-4">
+                            <label>Current State</label>
+                            <br>
+                            <div class="currentStateModalVal">mL value</div>
+                        </div>
+
                     </div>
                     <div class="modal-body">
                         <div class="progress">
@@ -75,11 +98,11 @@
                         <form class="form-inline" id="dispenseRate">
                             <div class="form-group">
                                 <label for="dispenseVol">Dispense </label>
-                                <input type="text" class="form-control" id="dispenseVol" placeholder="">
+                                <input type="text" class="form-control" id="dispenseVol" placeholder="" style="max-width: 80px !important;">
                             </div>
                             <div class="form-group">
                                 <label for="dispenseTime">mL over</label>
-                                <input type="text" class="form-control" id="dispenseTime" placeholder="">
+                                <input type="text" class="form-control" id="dispenseTime" placeholder="" style="max-width: 80px !important;">
                                 <label> seconds.</label>
                             </div>
                         </form>
@@ -240,7 +263,7 @@
 
 <!--JavaScript for Hardware Initializations-->
 <script src="../javascripts/HWSystemInit.js"></script>
-<script src="../javascripts/equalFlowRate.js"></script>
+<!--<script src="../javascripts/equalFlowRate.js"></script>-->
 
 
 </body>

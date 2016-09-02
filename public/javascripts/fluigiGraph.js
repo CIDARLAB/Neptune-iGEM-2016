@@ -134,6 +134,7 @@ function placeButtons() {
         var modalDiv = template.querySelector('.dispenserModalClass');
         var gottaCatchEmAll = template.querySelector('.catchDispenser');
         var progress = template.querySelector('.progress-bar');
+        var currentStateTxt = template.querySelector('.currentStateModalVal');
 
 
 
@@ -147,10 +148,12 @@ function placeButtons() {
         var modalID = template.querySelector("#dispenserModal" + (i + 1));
         
         progress.id = "progress" + (i + 1);
-
+        
+        currentStateTxt.id = "stateOf" + (i + 1);
+        console.log(currentStateTxt);
         // style position of dispenser modal
-        if (xCoord + 600 > $(window).width()) {
-            modalID.style.left = ((xCoord - 610) + 'px');
+        if (xCoord + 400 > $(window).width()) {
+            modalID.style.left = ((xCoord - 400) + 'px');
         }
         else {
             modalID.style.left = ((xCoord + 40) + 'px');

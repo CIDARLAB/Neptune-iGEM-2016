@@ -313,6 +313,9 @@ function updateDispenseProgressBar(dispenserIDNum) {
     percentageUpdate = Math.floor(((currentState - minVol)/(maxVol - minVol)) * 100);
     console.log("progress of " + dispenserIDNum + " : " + percentageUpdate);
     // $('.progress-bar').innerHTML = "%";
+    document.getElementById('progress' + dispenserIDNum).innerHTML = percentageUpdate + "% total vol";
+    document.getElementById('stateOf' + dispenserIDNum).innerHTML = currentState + " mL";
+
     $('#progress' + dispenserIDNum).css('width', percentageUpdate+'%').attr('aria-valuenow', percentageUpdate);
     return false;
 }
@@ -330,7 +333,6 @@ $(document).ready(function(){
             {
             },
             success: function(response){
-
             },
             error: function(response){
             }
@@ -348,4 +350,3 @@ $(function() {
         $('.mini-submenu').hide();
     })
 });
-

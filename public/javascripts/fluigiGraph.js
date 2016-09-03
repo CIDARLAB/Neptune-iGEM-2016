@@ -1,4 +1,14 @@
 //Graphing the SVG
+// function retrieveValues(){
+//     IDinQuestion = this.id;
+//     IDinQuestion = IDinQuestion.replace(/\D/g,'');
+//     console.log(IDinQuestion + " run was clicked");
+//     document.getElementById(IDinQuestion + "");
+//     // var volume = this.querySelector('.valve');
+//     return false;
+// }
+
+
 
 function onclickanchortag(){
     var location = getLocation(this.src);
@@ -78,26 +88,8 @@ function placeButtons() {
         
         valveDiv.style.position = 'absolute';
 
-        // valveDiv.style.top  = ((JSON.parse(localStorage.getItem('portYcoords'))[i])* paper.view.zoom)+ 'px';
-        // valveDiv.style.left = ((JSON.parse(localStorage.getItem('portXcoords'))[i])* paper.view.zoom)+ 'px';
-
-
         valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
         valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
-
-        // console.log("canvas bounds: ");
-        // console.log(paper.view.bounds);
-        //
-        // console.log(canvasZoom);
-        
-        // console.log(paper.view.zoom);
-        // console.log(paper.view.projectToView((parseInt(JSON.parse(localStorage.portXcoords)[i]), parseInt(JSON.parse(localStorage.portYcoords)[i]))));
-
-
-        // console.log("this is the 3DUF Zoom: " + paper.view.zoom);
-
-        // console.log( 'Y coordinate: ' + ((JSON.parse(localStorage.getItem('portYcoords'))[i])) );
-        // console.log( 'X coordinate: ' + ((JSON.parse(localStorage.getItem('portXcoords'))[i])) );
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
@@ -106,8 +98,6 @@ function placeButtons() {
         specificImage.onclick = onclickanchortag;
 
         valveButton = template.querySelector('.valve');
-        // valveButton.onclick = onclickanchortag;
-
 
         var valveIDLabel = template.querySelector('.IDtext');
         valveIDLabel.textContent = (i + 1);
@@ -135,6 +125,10 @@ function placeButtons() {
         var gottaCatchEmAll = template.querySelector('.catchDispenser');
         var progress = template.querySelector('.progress-bar');
         var currentStateTxt = template.querySelector('.currentStateModalVal');
+        var form = template.querySelector('.dispenseRate');
+        var sendDispense = template.querySelector('.sendDispense');
+        var dispenseVol = template.querySelector('.dispenseVol');
+        var dispenseTime = template.querySelector('.dispenseTime');
 
 
 
@@ -150,7 +144,7 @@ function placeButtons() {
         progress.id = "progress" + (i + 1);
         
         currentStateTxt.id = "stateOf" + (i + 1);
-        console.log(currentStateTxt);
+        // console.log(currentStateTxt);
         // style position of dispenser modal
         if (xCoord + 400 > $(window).width()) {
             modalID.style.left = ((xCoord - 400) + 'px');
@@ -170,8 +164,10 @@ function placeButtons() {
         // set id of each valve anchor based on location in array
         specificImage.id = i + 1;
 
-        // specificImage.onclick = onclickanchortagDispense;
+
         valveButton = template.querySelector('.valve');
+        
+
 
 
         var valveIDLabel = template.querySelector('.IDtext');
@@ -188,14 +184,30 @@ function placeButtons() {
         var dispenserTitle = template.querySelector('#dispenserModalTitle');
         dispenserTitle.textContent = "Dispenser " + (i + 1);
 
+        // reference to submit appropriate form
+        var sendID = "dispenseTo" + (i + 1);
+        var vol = "dispenseVol" + (i + 1);
+        var time = "dispenseTime" + (i + 1);
 
-
+        // form ID
+        form.id = "dispenseRate" + (i + 1);
+        sendDispense.id = sendID;
+        // sendDispense.onclick = retrieveValues;
+        dispenseVol.id = vol;
+        console.log(dispenseVol.id);
+        dispenseTime.id = time;
+        console.log(dispenseTime.id);
+        
+        
 
         var dispenserCatch = "#dispenserModal" + (i + 1);
         content.append(template);
         // attach reference to correct dispenser modal
         $("#" + catchID).attr("href", dispenserCatch);
         $("#" + catchID).attr("onclick", "activateDispenser(" + (i + 1) + ")");
+
+
+        
 
 
 

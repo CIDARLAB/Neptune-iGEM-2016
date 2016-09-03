@@ -91,6 +91,7 @@ global.server.timeout = 1000000000;
     var controlController = require('./controllers/control');
     var buildController = require('./controllers/build');
     var assemblyController = require('./controllers/assembly');
+    var dispenserController = require('./controllers/dispenseCommandControl');
 }
 
 /**************** RENDER PAGES ****************/
@@ -134,6 +135,9 @@ global.server.timeout = 1000000000;
     app.post('/api/design_MINT',fileController.send_designMINT);
     app.post('/api/build_SVG',fileController.send_buildSVG);
     app.post('/api/build_JSON',fileController.send_buildJSON);
+    
+    
+
 
     // Pre-Bootstrap:
     //  app.get('/lfrpage', fileController.sendToUploadsSpecify);
@@ -176,5 +180,5 @@ global.server.timeout = 1000000000;
     app.post('/api/generateUCF',ucfMaker.generateUCF);
 
 
-// forms 
-app.post('/api/runDispenseRate',controlController.runDispense);
+// forms
+// app.post('/api/dispenseCommand', dispenserController.runDispense);

@@ -2,8 +2,23 @@
  * Created by rebeccawolf on 8/22/16.
  */
 
-function sendForDispense() {
-    var dispenseVol = document.getElementById('dispenseVol');
-    var dispenseTime = document.getElementById('dispenseTime');
-    console.log(dispenseVol.value);
+$(document).ready(function(){
+
+
+
+});
+
+
+function sendDispense(sender){
+    // console.log("hello from " + sender.id);
+    var form = sender.parentNode.parentNode;
+    var volume = form.querySelector(".dispenseVol");
+    var time = form.querySelector(".dispenseTime");
+
+    console.log(volume.value);
+    console.log(time.value);
+
+
+
+    return false;
 }

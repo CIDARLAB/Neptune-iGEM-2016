@@ -289,13 +289,13 @@ function downArrow() {
 }
 function dispenseSelected(down) {
     switch (down.keyCode) {
-        case 38:
+        case 38:    // up key
             if (localStorage.activeDispenser != "none") {
                 console.log("up arrow pressed");
                 upArrow();
             }
             break;
-        case 40:
+        case 40:    // down key
             if (localStorage.activeDispenser != "none") {
                 console.log("down arrow pressed");
                 downArrow();

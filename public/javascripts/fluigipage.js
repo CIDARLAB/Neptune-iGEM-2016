@@ -310,12 +310,15 @@ function updateDispenseProgressBar(dispenserIDNum) {
     currentState = JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['Current_State'];
     maxVol = JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['Max'];
     minVol = JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['Min'];
-    percentageUpdate = Math.floor(((currentState - minVol)/(maxVol - minVol)) * 100);
+    if (currentState == 0){
+        percentageUpdate = 0;   // value is NaN otherwise
+    }
+    else {
+        percentageUpdate = Math.floor(((currentState - minVol)/(maxVol - minVol)) * 100);
+    }
     console.log("progress of " + dispenserIDNum + " : " + percentageUpdate);
-    // $('.progress-bar').innerHTML = "%";
     document.getElementById('progress' + dispenserIDNum).innerHTML = percentageUpdate + "% total vol";
     document.getElementById('stateOf' + dispenserIDNum).innerHTML = currentState + " mL";
-
     $('#progress' + dispenserIDNum).css('width', percentageUpdate+'%').attr('aria-valuenow', percentageUpdate);
     return false;
 }

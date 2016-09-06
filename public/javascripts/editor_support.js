@@ -413,6 +413,9 @@ function generateUCF_UI()
     var operator;
     var name;
 
+    var op_symbol = $('#operator_symbol_in').val();
+    var op_name = $('#operator_name_in').val();
+
     var opId = 'op' + generateUCF_UI.count;
     var boobs = '\'' + opId + '\'';
 
@@ -420,7 +423,7 @@ function generateUCF_UI()
         <div class="panel-heading"> \
             <h4 class="panel-title"> \
                 <a data-toggle="collapse" data-parent="#accordion" href=titleRef> \
-                    (temp) &nbsp  temp \
+                    (temp_symbol) &nbsp  temp_name \
                 </a> \
                 <span class="pull-right"> \
                     <button type="button" class="btn btn-xs btn-danger" onclick="deleteOp(boobs)">x</button> \
@@ -432,13 +435,13 @@ function generateUCF_UI()
                 <div class="form-group row"> \
                     <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Operator </strong></label> \
                     <div class="col-xs-10"> \
-                        <input name="operatorTag" class="form-control" type="text" value="" id=operator_id> \
+                        <input name="operatorTag" class="form-control" type="text" value="temp_symbol2" id=operator_id> \
                     </div> \
                 </div> \
                 <div class="form-group row"> \
                     <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Name </strong></label> \
                     <div class="col-xs-10"> \
-                        <input name="nameTag" class="form-control" type="text" value="" id=name_id> \
+                        <input name="nameTag" class="form-control" type="text" value="temp_name2" id=name_id> \
                     </div> \
                 </div> \
                 <div class="form-group row"> \
@@ -509,6 +512,10 @@ function generateUCF_UI()
     html = html.replace('layer_id',layer_id);
     html = html.replace('opId',opId);
     html = html.replace('boobs',boobs);
+    html = html.replace('temp_symbol',op_symbol);
+    html = html.replace('temp_name',op_name);
+    html = html.replace('temp_symbol2',op_symbol);
+    html = html.replace('temp_name2',op_name);
 
     //document.getElementById('ucf_maker').appendChild(html);
     $("#accordion").append(html);

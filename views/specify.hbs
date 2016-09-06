@@ -339,14 +339,14 @@
                     <div class="panel-body" id="ucf_maker" ></div>
 
                     <div class="panel-footer" id="add_del_operator">
-                        <button type="newOperator" class="btn btn-success" onclick="generateUCF_UI()"> + </button>
+                        <button type="newOperator" class="btn btn-success"  data-toggle="modal" data-target="#name_operator"> + </button>
                         <span class="pull-right">
                         <form class="form-inline" id="ucf_form">
                             <div class="form-group">
                                 <!--<label for="exampleInputName2">Name</label>-->
                                 <input type="text" class="form-control" id="ucf_name_in" placeholder="ucf_file">
                             </div>
-                            <button class="btn btn-primary" onclick="generateUCF()">Create UCF</button>
+                            <button class="btn btn-primary" onclick="generateUCF()" >Create UCF</button>
                         </form>
                         </span>
                         <!--<span class="pull-right">-->
@@ -368,6 +368,8 @@
                 <!-- END: ACTION CENTER -->
 
             </div>
+
+
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
 
             <!-- ALL MODALS BELOW HERE -->
@@ -689,6 +691,20 @@
                     <button class="btn btn-secondary" type="button" onclick="renameFile()">Rename UCF</button>
                 </span>
                 <input id='fileNameInput_ucf' type="text" class="form-control" placeholder="">
+            </div>
+        </div>
+    </div>
+</div>
+<div id='name_operator' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+
+        <div class="modal-content">
+            <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="generateUCF_UI()">Create Operator</button>
+                </span>
+                <input id='operator_symbol_in' type="text" class="form-control" placeholder="Enter Operator Symbol">
+                <input id='operator_name_in' type="text" class="form-control" placeholder="Enter Operator Name">
             </div>
         </div>
     </div>

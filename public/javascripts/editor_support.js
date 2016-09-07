@@ -502,7 +502,7 @@ function generateUCF_UI()
     html = html.replace('titleRef',titleRef);
     html = html.replace('operator_id',operator_id);
     html = html.replace('name_id',name_id);
-    html = html.replace('input_id',input_id);
+    html = html.replace('inputs_id',input_id);
     html = html.replace('inputTerms_id',inputTerms_id);
     html = html.replace('outputs_id',outputs_id);
     html = html.replace('outputTerms_id',outputTerms_id);
@@ -689,26 +689,38 @@ function scanFiles()
                     if (file_tree.children[i].children[j].type == '.v')
                     {
                         lfr_count++;
-                        localStorage.LFR = file_tree.children[i].children[j].path;
-                        localStorage.LFR_name = file_tree.children[i].children[j].name;
+                        if (localStorage.LFR == undefined)
+                        {
+                            localStorage.LFR = file_tree.children[i].children[j].path;
+                            localStorage.LFR_name = file_tree.children[i].children[j].name;
+                        }
                     }
                     if (file_tree.children[i].children[j].type == '.json')
                     {
                         ucf_count++;
-                        localStorage.UCF = file_tree.children[i].children[j].path;
-                        localStorage.UCF_name = file_tree.children[i].children[j].name;
+                        if (localStorage.UCF == undefined)
+                        {
+                            localStorage.UCF = file_tree.children[i].children[j].path;
+                            localStorage.UCF_name = file_tree.children[i].children[j].name;
+                        }
                     }
                     if (file_tree.children[i].children[j].type == '.uf')
                     {
                         mint_count++;
-                        localStorage.MINT = file_tree.children[i].children[j].path;
-                        localStorage.MINT_name = file_tree.children[i].children[j].name;
+                        if (localStorage.MINT == undefined)
+                        {
+                            localStorage.MINT = file_tree.children[i].children[j].path;
+                            localStorage.MINT_name = file_tree.children[i].children[j].name;
+                        }
                     }
                     if (file_tree.children[i].children[j].type == '.ini')
                     {
                         ini_count++;
-                        localStorage.INI = file_tree.children[i].children[j].path;
-                        localStorage.INI_name = file_tree.children[i].children[j].name;
+                        if (localStorage.INI == undefined)
+                        {
+                            localStorage.INI = file_tree.children[i].children[j].path;
+                            localStorage.INI_name = file_tree.children[i].children[j].name;
+                        }
                     }
                 }
             }

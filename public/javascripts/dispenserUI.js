@@ -16,6 +16,7 @@ function sendDispense(sender){
 
     var currentVolume = JSON.parse(localStorage.dispenserData)[dispenserID - 1]['Current_State'];
 
+
     var create_table_outputs = create_uL_table(32.6);
     var PWM_table = create_table_outputs.PWM_table;
     var uL_table = create_table_outputs.uL_table;
@@ -25,12 +26,18 @@ function sendDispense(sender){
 }
 
 function changeDispenseOrientation(sender) {
+    dispenserID = sender.id.replace(/\D/g,'');
+    var temp = JSON.parse(localStorage.dispenserData);
     currentOrientation = sender.innerHTML;
     if (currentOrientation === "pull") {
         sender.innerHTML = "push";
+        temp[dispenserID - 1]['orientation'] = "push";
+        localStorage.dispenserData = JSON.stringify(temp);
     }
     else {      // currentOrientation === "push"
         sender.innerHTML = "pull";
+        temp[dispenserID - 1]['orientation'] = "pull";
+        localStorage.dispenserData = JSON.stringify(temp);
     }
     return false;
 }

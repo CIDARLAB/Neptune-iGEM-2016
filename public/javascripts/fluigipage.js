@@ -147,7 +147,7 @@ function clearDispenserData() {
     for (var i = 1; i <= localStorage.Dispensers; i++)
     {
         deviceCount = deviceCount + 1;
-        var singleStage = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, deviceIndex: deviceCount};
+        var singleStage = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, orientation: "pull", deviceIndex: deviceCount};
         dispenserData.push(singleStage);
         j = j + 1;
         if(j == 13) {
@@ -163,7 +163,7 @@ function setNumberOfDispensers_JSON() {
     var shield = ShieldIndex;
     for (var i = 1; i <= localStorage.Dispensers; i++) {
         deviceCount = deviceCount + 1;
-        var tempDispense = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, deviceIndex: deviceCount};
+        var tempDispense = {id: i, HW_shield: (Math.floor(shield/12) + 1), HW_pin: j, Precision: 0, Min: 0, Max: 0, Current_State: 0, orientation: "pull", deviceIndex: deviceCount};
         set_dispData_newNum.push(tempDispense);
         j = j + 1;
         if(j == 13) {
@@ -271,6 +271,25 @@ function paddy(n, p, c) {
     var pad = new Array(1 + p).join(pad_char);
     return (pad + n).slice(-pad.length);
 }
+
+function orientationIncrease(){
+    if (JSON.parse(localStorage.dispenserData)[localStorage.dispenserToControl - 1]['orientation'] === "pull"){
+        increaseDispenserOutput(localStorage.dispenserToControl);
+    }
+    else {
+        decreaseDispenserOutput(localStorage.dispenserToControl);
+    }
+    return false;
+}
+function orientationDecrease() {
+    if (JSON.parse(localStorage.dispenserData)[localStorage.dispenserToControl - 1]['orientation'] === "pull"){
+        decreaseDispenserOutput(localStorage.dispenserToControl);
+    }
+    else {
+        increaseDispenserOutput(localStorage.dispenserToControl);
+    }
+    return false;
+}
 // ./ END HELPER FUNCTIONS
 
 
@@ -279,11 +298,13 @@ function paddy(n, p, c) {
 
 // dispenser arrow key functionality
 function upArrow() {
-    increaseDispenserOutput(localStorage.dispenserToControl);
+    // increaseDispenserOutput(localStorage.dispenserToControl);
+    orientationIncrease();
     return false;
 }
 function downArrow() {
-    decreaseDispenserOutput(localStorage.dispenserToControl);
+    // decreaseDispenserOutput(localStorage.dispenserToControl);
+    orientationDecrease();
     return false;
 }
 function dispenseSelected(down) {
@@ -315,8 +336,15 @@ function updateDispenseProgressBar(dispenserIDNum) {
     else {
         percentageUpdate = Math.floor(((currentState - minVol)/(maxVol - minVol)) * 100);
     }
+
+    // first update syringe
     updateDispenseSyringe(dispenserIDNum, percentageUpdate);
 
+    // now base percentage update on syringe orientation:
+    if(JSON.parse(localStorage.dispenserData)[dispenserIDNum - 1]['orientation'] === "push"){
+        percentageUpdate = 100 - percentageUpdate;
+    }
+    
     console.log("progress of " + dispenserIDNum + " : " + percentageUpdate);
     document.getElementById('progress' + dispenserIDNum).innerHTML = percentageUpdate + "% total vol";
     document.getElementById('stateOf' + dispenserIDNum).innerHTML = currentState + " uL";

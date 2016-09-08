@@ -71,15 +71,23 @@
                     </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-1"></div>
-                        <div class="col-sm-7">
-                            <img src="../images/fluigi/SyringeTube.png">
-                            <img src="../images/fluigi/SyringePlunger.png">
+                        <div class="col-sm-6">
+                            <img src="../images/fluigi/SyringeTube.png" style="left:28px; display:block; position:relative; z-index: 2;" class="syringeTube">
+                            <img src="../images/fluigi/SyringePlunger.png" style="top: -36px; left: 95px; display:block; position:relative; z-index: 1;" class="syringePlunger">
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
+                            <label>Orientation</label>
+                            <br>
+                            <div>
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-primary orientationBtn" onclick="changeDispenseOrientation(this);">pull</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
                             <label>Current State</label>
                             <br>
-                            <div class="currentStateModalVal">mL value</div>
+                            <div class="currentStateModalVal">uL value</div>
                         </div>
 
                     </div>
@@ -94,7 +102,7 @@
                                 <input type="text" class="form-control dispenseVol" placeholder="" style="max-width: 80px !important;">
                             </div>
                             <div class="form-group">
-                                <label for="dispenseTime">mL over</label>
+                                <label for="dispenseTime">uL over</label>
                                 <input type="text" class="form-control dispenseTime" placeholder="" style="max-width: 80px !important;">
                                 <label> seconds.</label>
                             </div>
@@ -302,7 +310,7 @@
 
 <!--JavaScript for Hardware Initializations-->
 <script src="../javascripts/HWSystemInit.js"></script>
-<!--<script src="../javascripts/equalFlowRate.js"></script>-->
+<script src="../javascripts/equalFlowRate.js"></script>
 
 
 </body>

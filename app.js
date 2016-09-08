@@ -8,12 +8,26 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 // var bodyParser = require('body-parser');
 var fs = require('fs');
+var io = require('socket.io')(global.server);
+var exports = module.exports;
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+<<<<<<< HEAD
 //Save application path into a global variable
+=======
+//Web Socket Connection ONLY ONCE
+io.on('connection', function(socket){
+    socket.emit('communications', { message:'world' });
+    websocketConnection = socket;
+    exports.webSocketConnection = socket;
+});
+
+
+//
+>>>>>>> Merged with Dev and applying their changes to my sensor code
 
 global.Neptune_ROOT_DIR = __dirname;
 
@@ -86,11 +100,13 @@ global.server.timeout = 1000000000;
     var writeController = require('./controllers/filewrite');
     var serialController = require('./controllers/serialcommunication');
     var workspaceController = require('./controllers/workspace');
+    var dataCollectionController = require('./controllers/datacollection');
 }
 
 /**************** RENDER PAGES ****************/
 {
     // Bootstrap:
+<<<<<<< HEAD
     app.get('/' , viewsController.openHomePage);
     app.get('/dashboard', viewsController.openDashboard);
     app.get('/specify', viewsController.openSpecifyPage);
@@ -107,6 +123,7 @@ global.server.timeout = 1000000000;
 
     app.get('/lfrpage', viewsController.openLfrPage);
     app.get('/lfrpage_bs', viewsController.openLfr_bsPage);
+    app.get('/datacollection', dataCollectionController.openDataCollectionPage);
 }
 
 /**************** SERIAL COMMUNICATION ****************/

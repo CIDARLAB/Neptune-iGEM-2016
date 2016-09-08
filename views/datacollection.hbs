@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+    <script src="../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="../javascripts/datacollection.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+    <script src="../socket.io/socket.io.js"></script>
+
+</head>
+<body class="content">
+
+<nav class="neptune-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header" >
+            <div class="neptune-logo">
+            <img height="50" width="50" src="../images/NeptuneLogo.png">
+            </div>
+            <div class="neptune-brand">
+                <a class="neptune-text" style="font-family: 'Open Sans'; font-size: 20px;" href="#">NEPTUNE</a>
+            </div>
+        </div>
+        <ul class="nav navbar-nav">
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <!--<li><a href="#">Page 1</a></li>-->
+            <!--<li><a href="#">Page 2</a></li>-->
+            <!--<li><a href="#">Page 3</a></li>-->
+        </ul>
+    </div>
+</nav>
+<div class="neptune-sideleft">
+    <h2> Sensors </h2>
+    <p> STUFF </p>
+    <p> STUFF 2</p>
+</div>
+
+<div id= "neptune-data-container" class="neptune-container">
+
+</div>
+<!--Footer-->
+<div class="neptune-footer">
+        <label for="ports" style="color:#777777">Serial Ports Available</label>
+        <select id="ports">
+            {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
+                <option value={{this.comName}}> name: {{ this.comName }} </option>​
+            {{/each}}
+        </select>
+    <div class="serial-communication-buttons">
+            <button class="btn btn-default serial-connection-button" id="begin-comm"> Open Comm</button>
+            <button class="btn btn-default connections serial-connection-button" id="end-comm"> Close Comm</button>
+            <button class="btn btn-default connections serial-connection-button" id="read-button"> Take Reading</button>
+            <button class="btn btn-default connections serial-connection-button" id="read-continuously-button"> Take Continuous Reading</button>
+    </div>
+</div>
+
+</body>
+</html>

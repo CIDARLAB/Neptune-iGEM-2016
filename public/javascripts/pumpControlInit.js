@@ -17,7 +17,7 @@ function drawValveTable(data) {
 
 function drawValveRow(rowData) {
     var row = $("<tr class='tempData' />")
-    $("#ValveTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+    $("#ValveTable").append(row);
     row.append($("<td>" + rowData.id + "</td>"));
     row.append($("<td>" + rowData.HW_shield + "</td>"));
     row.append($("<td>" + rowData.HW_pin + "</td>"));
@@ -53,18 +53,12 @@ function exporting() {
                 else{
                     h[header] = parseInt($td.eq(i).text());
                 }
-
-
-
             });
             console.log(h);
             data.push(h);
         }
         x = x + 1;
-
-
     });
-
     // Output the result
     console.log(JSON.parse(JSON.stringify(data)));
     localStorage.pumpData = JSON.stringify(data);
@@ -92,7 +86,7 @@ function drawDispenserTable(data) {
 
 function drawDispRow(rowData) {
     var row = $("<tr class='tempData' />")
-    $("#DispenserTable").append(row); //this will append tr element to table... keep its reference for a while since we will add cels into it
+    $("#DispenserTable").append(row);
     row.append($("<td>" + rowData.id + "</td>"));
     row.append($("<td>" + rowData.HW_shield + "</td>"));
     row.append($("<td>" + rowData.HW_pin + "</td>"));
@@ -100,11 +94,12 @@ function drawDispRow(rowData) {
     row.append($("<td contenteditable='true'>" + rowData.Min + "</td>"));
     row.append($("<td contenteditable='true'>" + rowData.Max + "</td>"));
     row.append($("<td contenteditable='true'>" + rowData.Current_State + "</td>"));
+    row.append($("<td>" + rowData.orientation + "</td>"));
 }
 
 function exportingDispenser() {
     var $rows = $('#DispenserTable').find('tr:not(:hidden):not(:empty)');
-    var keys = ["id", "HW_shield", "HW_pin", "Precision", "Min", "Max", "Current_State", "deviceIndex"];
+    var keys = ["id", "HW_shield", "HW_pin", "Precision", "Min", "Max", "Current_State", "orientation", "deviceIndex"];
     var data = [];
     var x = 0; // making sure we are not counting the headers row here
     // Turn all existing rows into a loopable array
@@ -117,6 +112,9 @@ function exportingDispenser() {
             keys.forEach(function (header, i) {
                 if(header === "deviceIndex"){
                     h["deviceIndex"] = deviceCount;
+                }
+                else if(header === "orientation") {
+                    h[header] = $td.eq(i).text();
                 }
                 else{
                     h[header] = parseInt($td.eq(i).text());
@@ -140,3 +138,4 @@ function totalExport() {
     exportingDispenser();
     
 };
+

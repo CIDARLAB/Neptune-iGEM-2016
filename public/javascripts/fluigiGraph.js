@@ -129,6 +129,8 @@ function placeButtons() {
         var sendDispense = template.querySelector('.sendDispense');
         var dispenseVol = template.querySelector('.dispenseVol');
         var dispenseTime = template.querySelector('.dispenseTime');
+        var plunger = template.querySelector('.syringePlunger');
+        var orientation = template.querySelector('.orientationBtn');
 
 
 
@@ -184,6 +186,9 @@ function placeButtons() {
         var dispenserTitle = template.querySelector('#dispenserModalTitle');
         dispenserTitle.textContent = "Dispenser " + (i + 1);
 
+        // id of each syringe tube
+        plunger.id = "plunger" + (i + 1);
+        
         // reference to submit appropriate form
         var sendID = "dispenseTo" + (i + 1);
         var vol = "dispenseVol" + (i + 1);
@@ -198,6 +203,8 @@ function placeButtons() {
         dispenseTime.id = time;
         console.log(dispenseTime.id);
         
+        // dispenser orientation (push/pull)
+        orientation.id = "orientation" + (i + 1);
         
 
         var dispenserCatch = "#dispenserModal" + (i + 1);

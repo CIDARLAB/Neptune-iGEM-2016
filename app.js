@@ -9,11 +9,22 @@ var cookieParser = require('cookie-parser');
 // var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var fs = require('fs');
+var io = require('socket.io')(global.server);
+var exports = module.exports;
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+//Web Socket Connection ONLY ONCE
+io.on('connection', function(socket){
+    socket.emit('communications', { message:'world' });
+    websocketConnection = socket;
+    exports.webSocketConnection = socket;
+});
+
+
+//
 
 
 //Create server
@@ -91,6 +102,7 @@ global.server.timeout = 1000000000;
     var controlController = require('./controllers/control');
     var buildController = require('./controllers/build');
     var assemblyController = require('./controllers/assembly');
+    var dataCollectionController = require('./controllers/datacollection');
 }
 
 /**************** RENDER PAGES ****************/
@@ -104,11 +116,10 @@ global.server.timeout = 1000000000;
     app.get('/controlFull',controlController.openControlFullPage);
     app.get('/Build',buildController.openBuildPage);
     app.get('/assembly', assemblyController.openAssemblyPage);
-
     app.get('/fluigipage', fluigiController.getFluigiPage);
     app.get('/uShroomPage',mmController.openMMPage);
     app.get('/serialcommunication', serialController.openSerialPage);
-
+    app.get('/datacollection', dataCollectionController.openDataCollectionPage);
     app.get('/lfrpage', lfrController.openLfrPage);
     app.get('/lfrpage_bs', lfr_bsController.openLfr_bsPage);
 }

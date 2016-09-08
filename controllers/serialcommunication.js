@@ -2,9 +2,8 @@ var cmd = require('node-cmd');
 var serialport = require('serialport');
 var exports = module.exports = {};
 var express = require('express');
-var SerialPortConnection;
-var returnPorts = [{}];
-
+var currentWebsocket = require('./websocket');
+var serialPortConnection = null;
 
 
 //******************* FUNCTIONS **************************************
@@ -27,6 +26,10 @@ function openConnection (fluigiPort) {
 
     function sendSerialData(data) {
         console.log(data);
+        var socket = currentWebsocket.socket();
+        if (socket != null) {
+            socket.emit('communications', {data: data});
+        }
     }
 
     function showError(error) {
@@ -38,7 +41,7 @@ function openConnection (fluigiPort) {
     myPort.on('error', showError);
 
 
-    SerialPortConnection = myPort;
+    serialPortConnection = myPort;
     // exports.myCommand= command;
 
     return {message:"Serial Connection Established"};
@@ -49,7 +52,7 @@ function closeConnection (myPort){
     myPort.close(function(err){
         console.log('port closed', err !== null ? err : "" );
     });
-    SerialPortConnection = "";
+    serialPortConnection = null;
 }
 
 function sendToSerial (data, myPort) {
@@ -61,20 +64,12 @@ function sendToSerial (data, myPort) {
 
 
 //******************* EXPORTS **************************************
-
-
-
-
-
-
 {
-    
-    
-
     exports.openSerialPage= function(req, res) {
         //exports.listPorts(); //populates ports export
-        var ports = exports.listPorts(); //populates ports export
-        res.render('serialcommunication', {title: 'COM', serialPorts: ports});
+        var ports = exports.listPorts(function (ports) {
+            res.render('serialcommunication', {title: 'COM', serialPorts: ports});
+        }); //populates ports export
 
     };
 
@@ -86,13 +81,16 @@ function sendToSerial (data, myPort) {
     };
 
     exports.closeSerialConnection = function(req, res){
-        var openPort = SerialPortConnection;
-        closeConnection(openPort);
+        var openPort = serialPortConnection;
+
+        if (openPort != null) {
+            closeConnection(openPort);
+        }
         res.send();
     };
 
     exports.arduinoSend = function(req, res){
-        var openPort = SerialPortConnection;
+        var openPort = serialPortConnection;
         console.log("Log: POST request on arduinoGetCode endpoint");
         var datacommand = req.body.commandData;
         console.log("Data to arduino: " + datacommand);
@@ -100,15 +98,10 @@ function sendToSerial (data, myPort) {
         res.send();
     };
 
-    exports.listPorts= function() {
-
-
+    exports.listPorts= function(callback) {
         // list serial ports:
         serialport.list(function (err, ports) {
-            returnPorts = ports;
-            console.log(ports);
-            exports.ports = ports; //makes it available outside of this file
+            callback(ports);
         });
-        return returnPorts;
     };
 }

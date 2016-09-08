@@ -6,7 +6,7 @@ $(document).ready(function(){
             {   url: "/serialcommunication/open", type: 'POST', async: true,
                 data:
                 {
-                  portName: $("#ports").val()
+                    portName: $("#ports").val()
 
                 },
                 success: function(response){
@@ -18,8 +18,8 @@ $(document).ready(function(){
             });
     });
 
-  //example for AJAX onclick 
-  $("#end-comm").click(function () {
+    //example for AJAX onclick
+    $("#end-comm").click(function () {
 
         $.ajax(
             {   url: "/serialcommunication/close", type: 'POST', async: true,
@@ -34,6 +34,6 @@ $(document).ready(function(){
             });
     });
 
-  
+
 });
 

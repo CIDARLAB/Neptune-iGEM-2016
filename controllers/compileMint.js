@@ -9,11 +9,11 @@ var fs = require('fs');
 const readline = require('readline');
 const path = require('path');
 var replace = require("replace");
-
-io = require('socket.io')(global.server);
-io.on('connection', function(socket){
-    console.log('a user connected');
-});
+//
+//io = require('socket.io')(global.server);
+//io.on('connection', function(socket){
+//    console.log('a user connected');
+//});
 
 exports.compileMint = function(req, res)
 {

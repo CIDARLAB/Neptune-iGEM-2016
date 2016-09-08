@@ -12,6 +12,14 @@ body
     /*background-color: #34495e;*/
 }
 
+a.neptune-text  {
+    color: #777777;
+    text-decoration: none;
+}
+
+
+
+
 canvas
 {
     margin-top: 160px;
@@ -65,6 +73,56 @@ canvas
     position: fixed;
     top: 300px;
     left: 550px;
+}
+
+.neptune-navbar {
+    top: 10px;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-bottom: 2px;
+}
+
+
+.neptune-logo {
+    float: left;
+}
+
+.neptune-brand {
+    float: right;
+    margin: 10px;
+
+}
+
+.neptune-footer {
+    bottom: 0px;
+    height: 80px;
+    position: absolute;
+    background-color: whitesmoke;
+    padding: 10px;
+    right: 0px;
+    left: 0px;
+
+}
+
+.neptune-sideleft {
+    padding: 10px;
+    background-color: whitesmoke;
+    font-size: 110%;
+    position:absolute;
+    left: 0px;
+    top: 60px;
+    bottom: 80px;
+    width: 260px;
+    float:left;
+
+}
+
+.neptune-container {
+    position: absolute;
+    right: 0px;
+    bottom: 80px;
+    left: 260px;
+    top: 60px;
 }
 
 .fluigiHelp

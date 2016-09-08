@@ -2,7 +2,7 @@
  * Created by Johan Ospina on 9/6/16.
  */
 var serialCommunication = require('./serialcommunication');
-var websocketConnection = module.exports.webSocketConnection;
+var currentWebsocket = require('./websocket');
 
 exports.openDataCollectionPage = function(req, res)
 {
@@ -11,3 +11,6 @@ exports.openDataCollectionPage = function(req, res)
     });
 
 };
+
+
+

@@ -8,10 +8,11 @@ $(document).ready(function() {
     var socket = io();
 
     socket.on('connect', function () {
-
+        console.log("connected");
     });
 
     socket.on('communications', function(data){
+        console.log(data.data.length);
         console.log(data.data);
     });
 
@@ -40,6 +41,34 @@ $(document).ready(function() {
                 data:
                 {
                     portName: $("#ports").val()
+                },
+                success: function(response){
+                },
+                error: function(response){
+                }
+            });
+    });
+
+    $("#read-button").click( function () {
+        $.ajax(
+            {   url: "/serialcommunication/send", type: 'POST', async: true,
+                data:
+                {
+                    commandData: "read\r"
+                },
+                success: function(response){
+                },
+                error: function(response){
+                }
+            });
+    });
+
+    $("#read-continuously-button").click( function () {
+        $.ajax(
+            {   url: "/serialcommunication/send", type: 'POST', async: true,
+                data:
+                {
+                    commandData: "read\r"
                 },
                 success: function(response){
                 },

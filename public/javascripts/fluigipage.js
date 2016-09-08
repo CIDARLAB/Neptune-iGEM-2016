@@ -178,7 +178,6 @@ function setNumberOfDispensers_JSON() {
 }
 function increaseDispenserOutput(dispenser_to_control) {
     localStorage.dispenserToControl = dispenser_to_control;
-    // assumes the capacity of the syringe is 9 mL
     if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max']) {
         var temp = JSON.parse(localStorage.dispenserData);//[valve_to_control]['Physical_State'] = 1;
         temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State'] + 0.25);
@@ -316,12 +315,23 @@ function updateDispenseProgressBar(dispenserIDNum) {
     else {
         percentageUpdate = Math.floor(((currentState - minVol)/(maxVol - minVol)) * 100);
     }
+    updateDispenseSyringe(dispenserIDNum, percentageUpdate);
+
     console.log("progress of " + dispenserIDNum + " : " + percentageUpdate);
     document.getElementById('progress' + dispenserIDNum).innerHTML = percentageUpdate + "% total vol";
-    document.getElementById('stateOf' + dispenserIDNum).innerHTML = currentState + " mL";
+    document.getElementById('stateOf' + dispenserIDNum).innerHTML = currentState + " uL";
     $('#progress' + dispenserIDNum).css('width', percentageUpdate+'%').attr('aria-valuenow', percentageUpdate);
     return false;
 }
+
+//  update dispenserUI modal syringe to dispensed value
+function updateDispenseSyringe(dispenserIDNum, percentUpdate) {
+    // min/max displacement for syringe is 92 - 40 = 52
+    var zeroDisplacement = (percentUpdate/100) * 52;
+    var displacement = zeroDisplacement + 40;
+    $('#plunger' + dispenserIDNum).css('left', displacement+'px');
+}
+
 
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){

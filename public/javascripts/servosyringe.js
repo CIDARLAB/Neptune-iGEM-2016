@@ -164,148 +164,181 @@ var servoTable =
             "torque": 143,
             "speed": 0.23,
             "url": "https://www.servocity.com/hs-5645mg-servo"
+        },
+        {
+            "id": "M",
+            "name": "HS-805BB",
+            "AD": 60,
+            "thetaMax": 170,
+            "thetaMin": 0,
+            "msRange": 1133.3,
+            "deadbandwidth": 2,
+            "cost": 39.99,
+            "torque": 143,
+            "speed": 0.23,
+            "url": "https://www.servocity.com/hs-5645mg-servo"
         }
 
 ];
 
+//1 * 10^-9 m3 = 1 microLitre
+//Find x1 such that Area*x1= 1*10^-9 m3
+//So x1 = (1 * 10^-9)/Area
 
 var syringeTable =
     [
         {
             "ids": "1",
-            "volume (ml)": 1,
-            "x1": 0.0001,
-            "costs": 4.99,
-            "url": "https://www.amazon.com/Duda-Energy-Syringepk001-Industrial-Syringes/dp/B00NDETMR2/ref=sr_1_2?ie=UTF8&qid=1471892958&sr=8-2&keywords=1ml+syringe"
+            "volume (ml)": 3,
+            "area": 0.091297,
+            "x1": 0.00001752521989,
+            "costs": 12,
+            "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
         {
             "ids": "2",
-            "volume": 1,
-            "x1": 0.0001,
-            "costs": 11.9,
-            "url": "https://www.amazon.com/Easy-Glide-Luer-Syringe-Needle/dp/B00XZ96DOA/ref=sr_1_1_a_it?ie=UTF8&qid=1471892958&sr=8-1&keywords=1ml+syringe"
+            "volume": 5,
+            "area": 0.177059,
+            "x1": 0.000009036535843,
+            "costs": 22,
+            "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
         {
             "ids": "3",
-            "volume": 1,
-            "x1": 0.00005,
-            "costs": 34.11,
-            "url": "https://www.amazon.com/04-04-02-01-Borosilicate-Reusable-Capacity-Graduation/dp/B00S4IH2EC/ref=sr_1_1?ie=UTF8&qid=1471887726&sr=8-1&keywords=0.1ml+syringe"
+            "volume": 10,
+            "area": 0.255952,
+            "x1": 0.000006251172094,
+            "costs": 18,
+            "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
         {
             "ids": "4",
-            "volume": 3,
-            "x1": 0.000067,
-            "costs": 6.99,
-            "url": "https://www.amazon.com/Duda-Energy-Syringepk003-Industrial-Syringes/dp/B00DXPQIFU/ref=sr_1_5?ie=UTF8&qid=1471893400&sr=8-5&keywords=3ml+syringe"
+            "volume": 20,
+            "area": 0.445505,
+            "x1": 0.00000359142995,
+            "costs": 23,
+            "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
         {
             "ids": "5",
-            "volume": 3,
-            "x1": 0.0000125,
-            "costs": 4.99,
-            "url": "https://www.amazon.com/10-Pack-Syringe-Tipped-Storage/dp/B01D6D3Y14/ref=sr_1_7?ie=UTF8&qid=1471893400&sr=8-7&keywords=3ml+syringe"
+            "volume": 30,
+            "area": 0.573247,
+            "x1": 0.000002791117965,
+            "costs": 48,
+            "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
         {
             "ids": "6",
-            "volume": 3,
-            "x1": 0.0000125,
-            "costs": 7.99,
-            "url": "https://www.amazon.com/Industrial-Syringes-Long-Needles-Protective/dp/B00NT35ZVO/ref=sr_1_11?ie=UTF8&qid=1471893400&sr=8-11&keywords=3ml+syringe"
-        },
-        {
-            "ids": "7",
-            "volume": 5,
-            "x1": 0.00005,
-            "costs": 5.36,
-            "url": "https://www.amazon.com/Pack-TSP-Slip-Syringes-needle/dp/B00EXXZSTI/ref=sr_1_2_a_it?ie=UTF8&qid=1471893798&sr=8-2&keywords=5ml+syringe"
-        },
-        {
-            "ids": "8",
-            "volume": 5,
-            "x1": 0.00005,
-            "costs": 6.69,
-            "url": "https://www.amazon.com/Pack-BDTM-Dispensing-Syringe-needle/dp/B00FUO2X06/ref=sr_1_3_a_it?ie=UTF8&qid=1471893798&sr=8-3&keywords=5ml+syringe"
-        },
-        {
-            "ids": "9",
-            "volume": 5,
-            "x1": 0.00005,
-            "costs": 18.98,
-            "url": "https://www.amazon.com/Syringes-Without-Needle-Syringe-MEDINT/dp/B00ZB51JCM/ref=sr_1_4_a_it?ie=UTF8&qid=1471893798&sr=8-4&keywords=5ml+syringe"
-        },
-        {
-            "ids": "10",
-            "volume": 20,
-            "x1": 0.000067,
-            "costs": 5.99,
-            "url": "https://www.amazon.com/Pack-20ML-20CC-Syringe-needle/dp/B00FHLEV02/ref=sr_1_4_a_it?ie=UTF8&qid=1471894056&sr=8-4&keywords=20+ml+syringe"
-        },
-        {
-            "ids": "11",
-            "volume": 50,
-            "x1": 0.0006,
-            "costs": 6.99,
-            "url": "https://www.amazon.com/Karlling-Syringe-Nutrient-Measuring-Handy/dp/B013DHJRPU/ref=sr_1_3?ie=UTF8&qid=1471894338&sr=8-3&keywords=50+ml+syringe"
-        },
-        {
-            "ids": "12",
             "volume": 60,
-            "x1": 0.000005,
-            "costs": 5.95,
-            "url": "https://www.amazon.com/EXELint-Disposable-Syringe-Sterile-Catheter/dp/B010BWOOXA/ref=sr_1_1_a_it?ie=UTF8&qid=1471894121&sr=8-1&keywords=50+ml+syringe"
+            "area": 0.867851,
+            "x1": 0.000001843634448,
+            "costs": 32,
+            "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         }
+        // ,
+        // {
+        //     "ids": "7",
+        //     "volume": 5,
+        //     "x1": 0.00005,
+        //     "costs": 191,
+        //     "url": "something.html"
+        // },
+        // {
+        //     "ids": "8",
+        //     "volume": 5,
+        //     "x1": 0.00005,
+        //     "costs": 6.69,
+        //     "url": "https://www.amazon.com/Pack-BDTM-Dispensing-Syringe-needle/dp/B00FUO2X06/ref=sr_1_3_a_it?ie=UTF8&qid=1471893798&sr=8-3&keywords=5ml+syringe"
+        // },
+        // {
+        //     "ids": "9",
+        //     "volume": 5,
+        //     "x1": 0.00005,
+        //     "costs": 18.98,
+        //     "url": "https://www.amazon.com/Syringes-Without-Needle-Syringe-MEDINT/dp/B00ZB51JCM/ref=sr_1_4_a_it?ie=UTF8&qid=1471893798&sr=8-4&keywords=5ml+syringe"
+        // },
+        // {
+        //     "ids": "10",
+        //     "volume": 20,
+        //     "x1": 0.000067,
+        //     "costs": 5.99,
+        //     "url": "https://www.amazon.com/Pack-20ML-20CC-Syringe-needle/dp/B00FHLEV02/ref=sr_1_4_a_it?ie=UTF8&qid=1471894056&sr=8-4&keywords=20+ml+syringe"
+        // },
+        // {
+        //     "ids": "11",
+        //     "volume": 50,
+        //     "x1": 0.0006,
+        //     "costs": 6.99,
+        //     "url": "https://www.amazon.com/Karlling-Syringe-Nutrient-Measuring-Handy/dp/B013DHJRPU/ref=sr_1_3?ie=UTF8&qid=1471894338&sr=8-3&keywords=50+ml+syringe"
+        // },
+        // {
+        //     "ids": "12",
+        //     "volume": 60,
+        //     "x1": 0.000005,
+        //     "costs": 5.95,
+        //     "url": "https://www.amazon.com/EXELint-Disposable-Syringe-Sterile-Catheter/dp/B010BWOOXA/ref=sr_1_1_a_it?ie=UTF8&qid=1471894121&sr=8-1&keywords=50+ml+syringe"
+        // }
     ];
 
 
 
 function calculateRecommended() {
     var arr = [];
-    var i = 0;
 
 // Iterate through syringes 1-12
 // Iterate through servos A-L
 // Calculate Vc and Pc
 // If Vc>=V and Pc<=P then save servo and syringe into table
 
-for (var key in servoTable) {
-    if (servoTable.hasOwnProperty(key)){
+    for (var key in servoTable) {
+        if (servoTable.hasOwnProperty(key)) {
 
-        var servoID = servoTable[key].id;
-        console.log ("Servo id : " + servoID);
-        var x1 =localStorage.crankradius * Math.cos(servoTable[key].thetaMax) + Math.sqrt((localStorage.pistonrod)^2 - (localStorage.crankradius* Math.sin(servoTable[key].thetaMax) + localStorage.offset)^2);
-        var x2 =localStorage.crankradius * Math.cos(servoTable[key].thetaMin) + Math.sqrt((localStorage.pistonrod)^2 - (localStorage.crankradius* Math.sin(servoTable[key].thetaMin) + localStorage.offset)^2);
-        var xtotal = Math.abs(x1-x2);
-        var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
-        var deltax = xtotal/pwm;
-        var servocost = servoTable[key].cost;
-    }
+            var servoID = servoTable[key].id;
+            // console.log("Servo id : " + servoID);
+            var x1 = localStorage.crankradius * Math.cos(servoTable[key].thetaMax) + Math.sqrt((localStorage.pistonrod) ^ 2 - (localStorage.crankradius * Math.sin(servoTable[key].thetaMax) + localStorage.offset) ^ 2);
+            var x2 = localStorage.crankradius * Math.cos(servoTable[key].thetaMin) + Math.sqrt((localStorage.pistonrod) ^ 2 - (localStorage.crankradius * Math.sin(servoTable[key].thetaMin) + localStorage.offset) ^ 2);
+            var xtotal = Math.abs(x1 - x2);
+            var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
+            var deltax = xtotal / pwm;
+            var servocost = servoTable[key].cost;
+        }
 
-    for (var key2 in syringeTable) {
-        if (syringeTable.hasOwnProperty(key2)) {
+        for (var key2 in syringeTable) {
+            if (syringeTable.hasOwnProperty(key2)) {
                 //loop through syringes
 
                 var syringeID = syringeTable[key2].ids;
-                console.log("Syringe id : " + syringeID);
-                var syringex1 = syringeTable[key2].x1;
+                // console.log("Syringe id : " + syringeID);
+                var syringex1 = syringeTable[key2].x1 * 1000;
+                // console.log("MY SYRINGE X1: " + syringex1);
                 var syringevolume = syringeTable[key2].volume;
                 var syringecost = syringeTable[key2].costs;
 
-                if (localStorage.volume <= syringevolume && xtotal / x1 >= localStorage.volume && deltax / x1 <= localStorage.precision) {
+                // console.log("Volume required: " + localStorage.volume);
+                // console.log("Volume we have which is greater than or equal to previous: " + syringevolume);
+                // console.log("Volume in calculation: " + localStorage.volume);
+                // console.log("Volume xtotal/x1 which is greater than or equal to previous: " + xtotal / syringex1);
+                // console.log("Precision in calculation: " + deltax / syringex1);
+                // console.log("Precision xtotal/x1 which is greater than or equal to previous: " + localStorage.precision);
+
+                // Add inside the if statement:
+                // xtotal / syringex1 >= localStorage.volume
+                if (localStorage.volume <= syringevolume && xtotal / syringex1 >= localStorage.volume && deltax / syringex1 <= localStorage.precision) {
                     //Save servo syringe combo in array
                     console.log("Servo ID passed: " + servoID);
                     console.log("Syringe ID passed: " + syringeID);
-                    arr[i].servoID = servoID;
-                    arr[i].syringeID = syringeID;
-                    arr[i].v = xtotal / syringex1;
-                    arr[i].p = deltax / syringex1;
-                    arr[i].cost = servocost + syringecost;
-                    i++;
+                    var singlestage = {};
+                    singlestage.servoID = servoID;
+                    singlestage.syringeID = syringeID;
+                    singlestage.v = xtotal / syringex1;
+                    singlestage.p = deltax / syringex1;
+                    singlestage.cost = servocost + syringecost;
+                    arr.push(singlestage);
                 }
             }
         }
 
-}
+    }
 
 
 // Iterate through table of acceptable combos
@@ -313,44 +346,90 @@ for (var key in servoTable) {
 // Then find highest Pc -> highest tolerance
 // Then find greatest v -> greatest volume
 
-console.log("Done with calculations. Moving on to find lowest cost, highest tolerance, and greatest volume");
-var lowestcost = 1000;
+    console.log("-----------------------------------------");
+    var lowestcost = 1000;
     var lowestservo = "";
-    var lowestsyringe= "";
-var highestprecision = 0;
+    var lowestsyringe = "";
+    var highestprecision = 0;
     var pservo = "";
-    var psyringe= "";
-var largestvolume = 0;
+    var psyringe = "";
+    var largestvolume = 0;
     var vservo = "";
-    var vsyringe= "";
+    var vsyringe = "";
 
-    for (var j = 0; j < i+1; j++){
-        if (arr[j].cost < lowestcost) {
-            lowestcost= arr[j].cost;
-            lowestservo= arr[j].servoID;
-            lowestsyringe= arr[j].syringeID;
-        }
-        if (arr[j].p > highestprecision) {
-            highestprecision = arr[j].p;
-            pservo= arr[j].servoID;
-            psyringe= arr[j].syringeID;
-        }
-        if (arr[j].v > largestvolume) {
-            largestvolume = arr[j].v;
-            vservo= arr[j].servoID;
-            vsyringe= arr[j].syringeID;
+
+    for (var key in arr) {
+        if (arr.hasOwnProperty(key)) {
+            // for (var j = 0; j < i+1; j++){
+            if (arr[key].cost < lowestcost) {
+                lowestcost = arr[key].cost;
+                lowestservo = arr[key].servoID;
+                lowestsyringe = arr[key].syringeID;
+            }
+            if (arr[key].p > highestprecision) {
+                highestprecision = arr[key].p;
+                pservo = arr[key].servoID;
+                psyringe = arr[key].syringeID;
+            }
+            if (arr[key].v > largestvolume) {
+                largestvolume = arr[key].v;
+                vservo = arr[key].servoID;
+                vsyringe = arr[key].syringeID;
+            }
+
         }
     }
 
-    console.log('Lowest cost is: ' + lowestcost);
-    console.log('Highest p is: ' + highestprecision);
-    console.log('Largest v is: ' + largestvolume);
+    if (lowestcost== 1000 || largestvolume == 0 || highestprecision ==0) {
+        $("#rstats").text("Sorry! No combinations found. Please return to the previous tab to re-enter values, or click the blue link below to create your own custom set up.");
+        $("#vstats").text("Sorry! No combinations found. Please return to the previous tab to re-enter values, or click the blue link below to create your own custom set up.");
+        $("#tstats").text("Sorry! No combinations found. Please return to the previous tab to re-enter values, or click the blue link below to create your own custom set up.");
+    }
+    else {
+        console.log('Lowest cost is: ' + lowestcost + ' with servo number ' + lowestservo + ' and syringe number ' + lowestsyringe);
+        console.log('Highest p is: ' + highestprecision + ' with servo number ' + pservo + ' and syringe number ' + psyringe);
+        console.log('Largest v accuracy is: ' + largestvolume + ' with servo number ' + vservo + ' and syringe number ' + vsyringe);
+
+        var lowestServoObject = getObjects(servoTable, 'id', lowestservo);
+        var lowestSyringeObject = getObjects(syringeTable, 'ids', lowestsyringe);
+        var largestVServo = getObjects(servoTable, 'id', vservo);
+        var largestVSyringe = getObjects(syringeTable, 'ids', vsyringe);
+        var highestPServo = getObjects(servoTable, 'id', pservo);
+        var highestPSyringe = getObjects(syringeTable, 'ids', psyringe);
+
+        // TEXT
+
+        $("#rstats").text("The " + lowestServoObject[0].name + " servo and " + lowestSyringeObject[0].volume + "ml syringe combination has cost of $" + lowestcost + " (as of Sept 2016), which makes it the cheapest option.");
+        $("#rservo").text("Servo Datasheet: " + lowestServoObject[0].url);
+        $("#rsyringe").text("Syringe Information: " + lowestSyringeObject[0].url);
+
+        $("#vstats").text("The " + largestVServo[0].name + " servo and " + largestVSyringe[0].volume + "ml syringe combination has a volume capacity of " + largestvolume + " (as of Sept 2016), which makes it the best in this category.");
+        $("#vservo").text("Servo Datasheet: " + largestVServo[0].url);
+        $("#vsyringe").text("Syringe Information: " + largestVSyringe[0].url);
+
+        $("#tstats").text("The " + highestPServo[0].name + " servo and " + highestPSyringe[0].volume + "ml syringe combination has a tolerance/precision level of " + highestprecision + " (as of Sept 2016), which makes it the most accurate servo-syringe combination.");
+        $("#tservo").text("Servo Datasheet: " + highestPServo[0].url);
+        $("#tsyringe").text("Syringe Information: " + highestPSyringe[0].url);
 
 
+        // IMAGES
 
+        //rservoimage, vservoimage, tservoimage
+        //rsyringeimage, vsyringeimage, tsyringeimage
+
+    }
 }
 
-//localStorage.precision
-//localStorage.volume
-//JSON.stringify
-//JSON.parse
+
+function getObjects(obj, key, val) {
+    var objects = [];
+    for (var i in obj) {
+        if (!obj.hasOwnProperty(i)) continue;
+        if (typeof obj[i] == 'object') {
+            objects = objects.concat(getObjects(obj[i], key, val));
+        } else if (i == key && obj[key] == val) {
+            objects.push(obj);
+        }
+    }
+    return objects;
+}

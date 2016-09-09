@@ -154,8 +154,8 @@
                     <div style="text-align: center;">
 
                         <button class="btn btn-default" href="#myCarousel" data-slide-to="1">
-                        <a class="glyphicon glyphicon-usd" style="font-size: 40px;"></a>
-                        <!--Lowest cost-->
+                        <a class="glyphicon glyphicon-star-empty" style="font-size: 40px;"></a>
+                        <!--Largest volume-->
                         </button>
                             <button class="btn btn-default" href="#myCarousel" data-slide-to="0">
                                 <a class="glyphicon glyphicon-star" style="font-size: 40px;"></a>
@@ -163,7 +163,7 @@
                             </button>
 
                             <button class="btn btn-default" href="#myCarousel" data-slide-to="2">
-                                <a class="glyphicon glyphicon-wrench" style="font-size: 40px;"></a>
+                                <a class="glyphicon glyphicon-star-empty" style="font-size: 40px;"></a>
                                 <!--Highest tolerance-->
                             </button>
                             <br><br>
@@ -180,41 +180,42 @@
                                             </h2>
                                             </div>
                                             <div class="picture">
-                                                <img style="margin-left: 100px" src="../images/build/hitec.jpg" width=334px;>
-                                                <img src="../images/build/10ml.jpg" width=334px;>
+                                                <img style="margin-left: 100px" id="rservoimage" width=334px;>
+                                                <img id="rsyringeimage" width=334px;>
                                             </div>
                                             <div class="texts">
-                                                <p>
-                                                    The servo has a speed of 0.16sec/60o, and torque of 4.1/57 Kg-cm/Oz-in.
-                                                    The Hitec HS-422 Servo Motor is one of the most durable and reliable servos Hitec has ever offered. With its dual iron-oilite bushings, high impact resin gear train and high performance circuitry, the HS-422 features excellent centering and resolution.
+                                                <p id="rstats">
+                                                   <!--Statistics-->
                                                 </p>
-                                                <p>
-                                                   <a href="http://www.robotshop.com/en/hitec-hs422-servo-motor.html">Link to Servo</a>
+                                                <p id="rservo">
+                                                  <!--Link to Servo-->
                                                 </p>
-                                                <p> Also, the 10ml syringe is a reliable size for most microfluidic experiments.</p>
+                                                <p id="rsyringe">
+                                                    <!--Link to Syringe-->
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <div class="item" id="cost">
+                                        <div class="item" id="volume">
                                             <div style="text-align: center;">
                                             <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
-                                                Lowest cost
+                                                Largest volume
                                             </h2>
                                                 </div>
                                             <div class="picture">
-                                                <img style="margin-left: 100px" src="../images/build/parallax.jpg" width=334px;>
-                                                <img src="../images/build/60ml.jpg" width=334px;>
+                                                <img style="margin-left: 100px" id="vservoimage" width=334px;>
+                                                <img id="vsyringeimage" width=334px;>
                                             </div>
                                             <div class="texts">
-                                                <p>The Parallax Standard Servo is ideal for adding bidirectional continuous rotation to your robotics projects.
-                                                    It has bidirectional continuous rotation, 0 to 50 RPM, with a linear response to PWM for easy
-                                                    ramping, and it is easy to interface with any Parallax microcontroller or PWM-capable device.
-                                                    It weighs only 1.50 oz (42.5 g) and has 38 oz-in torque at 6 V
+                                                <p id="vstats">
+                                                    <!--Statistics-->
                                                 </p>
-                                                <p>
-                                                    <a href="http://www.alliedelec.com/parallax-inc-900-00008/70372373/?mkwid=sabYU23qn&pcrid=30980760979&gclid=CPnt-cWTl84CFQkfhgod2nwHPQ">Link to Servo</a>
+                                                <p id="vservo">
+                                                    <!--Link to Servo-->
                                                 </p>
-                                                <p> Also, the 60ml syringe is big and cheap, but is not very accurate for microfluidic experiments.</p>
+                                                <p id="vsyringe">
+                                                    <!--Link to Syringe-->
+                                                </p>
                                             </div>
                                         </div>
 
@@ -225,17 +226,19 @@
                                             </h2>
                                                 </div>
                                             <div class="picture">
-                                                <img style="margin-left: 100px" src="../images/build/datan.jpg" width=334px;>
-                                                <img src="../images/build/3ml.jpg" width=334px;>
+                                                <img style="margin-left: 100px" id="tservoimage" width=334px;>
+                                                <img id="psyringeimage" width=334px;>
                                             </div>
                                             <div class="texts">
-                                                <p>The Datan has one of the highest tolerances and is made by the very reliable comapany Adafruit Industries LLC.
-                                                    It weighs only 	0.102 lb (46.27 g) and has the largest torque rated 90.26 / 637.38 oz-in / mNm.
+                                                <p id="tstats">
+                                                    <!--Statistics-->
                                                 </p>
-                                                <p>
-                                                    <a href="http://www.digikey.com/product-detail/en/1404/1528-1087-ND/5154662?WT.mc_id=IQ_7595_G_pla5154662&wt.srch=1&wt.medium=cpc&&gclid=CMLWgcWTl84CFcQehgodLEcFeQ">Link to Servo</a>
+                                                <p id="tservo">
+                                                    <!--Link to Servo-->
                                                 </p>
-                                                <p> Also, the 3ml syringe is very precise for microfluidic experiments.</p>
+                                                <p id="tsyringe">
+                                                    <!--Link to Syringe-->
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -271,7 +274,7 @@
                             <p style="font-size: 15px; text-align: right;" >Pick your selected hardware to add to the purchase list  :
                                 <select id="servoSyringe" class="selectpicker btn btn-green">
                                     <option>Recommended</option>
-                                    <option>Lowest cost</option>
+                                    <option>Largest volume</option>
                                     <option>Highest tolerance</option>
                                     <option>Custom hardware</option>
                                 </select></p>
@@ -550,7 +553,7 @@
                 localStorage.syringe= 10;
                 localStorage.servo= 'Hitec';
             }
-            else if (combo=="Lowest cost"){
+            else if (combo=="Largest volume"){
                 localStorage.syringe= 60;
                 localStorage.servo= 'Parallax';
             }

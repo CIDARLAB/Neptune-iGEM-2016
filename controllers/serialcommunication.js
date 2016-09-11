@@ -14,7 +14,7 @@ function openConnection (fluigiPort) {
     var myPort = new SerialPort(fluigiPort, {
         baudRate: 9600,
         // look for return and newline at the end of each data packet:
-        parser: serialport.parsers.readline("\n")
+        parser: serialport.parsers.readline("\r")
     });
 
 
@@ -28,7 +28,9 @@ function openConnection (fluigiPort) {
         console.log(data);
         var socket = currentWebsocket.socket();
         if (socket != null) {
-            socket.emit('communications', {data: data});
+            var time = new Date();
+            socket.emit('serial-communication-echo', {data: data, systemTime: time.getHours() + ":" + time.getMinutes() ,
+            systemTimeHours: time.getHours(), systemTimeMinutes: time.getMinutes()});
         }
     }
 

@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="../javascripts/datacollection.js"></script>
     <script type="text/javascript">
-        google.charts.load('current', {packages: ['corechart']});
+        google.charts.load('current', {packages: ['corechart', 'bar']});
         google.charts.setOnLoadCallback(drawChart);
     </script>
     <script src="../socket.io/socket.io.js"></script>
@@ -51,7 +51,7 @@
 <div class="neptune-footer">
         <label for="ports" style="color:#777777">Serial Ports Available</label>
         <select id="ports">
-            {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
+            {{#each serialPorts}} <!-- // Note the reference to the serialPorts object​-->
                 <option value={{this.comName}}> name: {{ this.comName }} </option>​
             {{/each}}
         </select>

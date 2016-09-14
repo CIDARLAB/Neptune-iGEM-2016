@@ -88,3 +88,8 @@ if(localStorage.getItem('DispenserToControl') == null) {
 if(localStorage.getItem('activeDispenser') == null) {
     localStorage.setItem('activeDispenser', 'none');
 }
+if(localStorage.getItem('dispenserConversions') == null) {
+    localStorage.setItem('dispenserConversions', '{}');
+}
+
+

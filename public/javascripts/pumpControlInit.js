@@ -116,6 +116,18 @@ function exportingDispenser() {
                 else if(header === "orientation") {
                     h[header] = $td.eq(i).text();
                 }
+                else if(header === "Precision") {
+                    h[header] = $td.eq(i).text();
+                }
+                else if(header === "Min") {
+                    h[header] = parseFloat($td.eq(i).text()).toFixed(1);
+                }
+                else if(header === "Max") {
+                    h[header] = parseFloat($td.eq(i).text()).toFixed(1);
+                }
+                else if(header === "Current_State") {
+                    h[header] = parseFloat($td.eq(i).text()).toFixed(1);
+                }
                 else{
                     h[header] = parseInt($td.eq(i).text());
                 }

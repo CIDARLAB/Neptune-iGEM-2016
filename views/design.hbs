@@ -281,7 +281,7 @@
                                     <!--</button>-->
                                     <!--<ul class="dropdown-menu pull-right" role="menu">-->
                                 <button class="btn btn-default" onclick="saveEditorContent(editor_design,localStorage.design_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i></button>
-                                <button class="btn btn-default" onclick="compileMINT()"> <i class="fa fa-play-circle-o  fa-fw"></i></button>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#name_outputSchematic"> <i class="fa fa-play-circle-o  fa-fw"></i></button>
                                     <!--</ul>-->
                                 <!--</div>-->
                             </div>
@@ -322,11 +322,14 @@
                     <div class="panel-heading">
                         <i class="fa fa-play fa-fw"></i> Schematic Preview
                     </div>
-                    <div class="panel-body" id="schematic_preview22">
+                    <div class="panel-body" id="schematic_preview">
                         <!--<div id="schematic_preview">-->
-                        <embed type="image/svg+xml" id="schematic_preview"/>
+                        <!--<embed type="image/svg+xml" id="schematic_preview"/>-->
 
                         <!--</div>-->
+                        <object id="svg">
+
+                        </object>
                     </div>
                     <div class="panel-footer">
 
@@ -521,6 +524,21 @@
                             </div>
                         </div>
                     </div>
+            </div>
+
+            <div id='name_outputSchematic' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+
+                    <div class="modal-content">
+                        <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="compileMINT(document.getElementById('folderIn').value,document.getElementById('nameIn').value)">Compile MINT</button>
+                </span>
+                            <input id='folderIn' type="text" class="form-control" placeholder="Enter Output Folder Name">
+                            <input id='nameIn' type="text" class="form-control" placeholder="Enter Microfluidic Name">
+                        </div>
+                    </div>
+                </div>
             </div>
 
 

@@ -278,7 +278,7 @@
                                     <!--</button>-->
                                     <!--<ul class="dropdown-menu pull-qweright" role="menu">-->
                                         <button class="btn btn-default" onclick="saveEditorContent(editor_specify,localStorage.specify_editor_state)"> <i class="fa fa-floppy-o  fa-fw"></i></button>
-                                        <button class="btn btn-default" onclick="translateLFR()"> <i class="fa fa-play-circle-o  fa-fw"></i></button>
+                                        <button class="btn btn-default" data-toggle="modal" data-target="#name_outputMINT"> <i class="fa fa-play-circle-o  fa-fw"></i></button>
                                         <!--<button class="btn btn-default" href="#"> Editor Settings</button>-->
                                         <!--<button class="btn btn-default" data-toggle="modal" href="#myModal_ucf" data-target="#myModal_ucf"> UCF Creator </button>-->
                                     <!--</ul>-->
@@ -415,6 +415,20 @@
 
                         <div class="modal-footer" id="previewModalFooter_img">
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id='name_outputMINT' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+
+                    <div class="modal-content">
+                        <div class="input-group">
+                <span class="input-group-btn">
+                    <button class="btn btn-secondary" type="button" onclick="translateLFR(document.getElementById('outputMINTname').value)">Translate LFR</button>
+                </span>
+                            <input id='outputMINTname' type="text" class="form-control" placeholder="MINT_result">
                         </div>
                     </div>
                 </div>

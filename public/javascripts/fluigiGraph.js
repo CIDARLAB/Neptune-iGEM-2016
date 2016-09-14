@@ -59,7 +59,7 @@ var getLocation = function(href) {
 function onclickanchortagDispense(){
     console.log("Dispenser " + this.id + " clicked");
     dispenser_to_control = this.id;
-    increaseDispenserOutput(dispenser_to_control);
+    incrementDispenserPosition(dispenser_to_control);
     return false;
 }
 

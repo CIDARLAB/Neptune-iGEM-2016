@@ -97,8 +97,8 @@ function wrap_data_for_Arduino() {
 }
 function sendCommand() {
     var command = wrap_data_for_Arduino();
-    var stringgggg = "Sending to Arduino: ";
-    var command_info = stringgggg.concat(command);
+    var message = "Sending to Arduino: ";
+    var command_info = message.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
     console.log(command);
@@ -177,30 +177,22 @@ function setNumberOfDispensers_JSON() {
 
 }
 
-// function nearestApprox(conversionTable, uLvalue){
-//     var length = conversionTable.length;
-//     for(i = 0; i < length; i++) {
-//         conversionTable
-//
-//     }
-// }
-
-function increaseDispenserOutput(dispenser_to_control) {
+function incrementDispenserPosition(dispenser_to_control) {
+    // identify which dispenser you are sending command to
     localStorage.dispenserToControl = dispenser_to_control;
-    if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max']) {
-        var conversionTable = JSON.parse(JSON.parse(localStorage.getItem("dispenserConversions"))[dispenser_to_control]);
-        // console.log(conversionTable);
+    // see if already maxed out at highest position
+    if (parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) <= parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max'])) {
+        var conversionTable = JSON.parse(JSON.parse(localStorage.getItem("dispenserConversions"))[dispenser_to_control]);   // conversion table for specific dispenser you are controlling
 
         // set current state to one which corresponds to a value in conversion table (incremented by precision)
-        var temp = JSON.parse(localStorage.dispenserData);//[valve_to_control]['Physical_State'] = 1;
+        var temp = JSON.parse(localStorage.dispenserData);
         temp[dispenser_to_control - 1]['Current_State'] = (parseFloat(temp[dispenser_to_control - 1]['Current_State']) + parseFloat(temp[dispenser_to_control - 1]['Precision'])).toFixed(1);
 
-        var index = temp[dispenser_to_control - 1]['Current_State'];
-        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State']).toString();
-        var PWM = conversionTable[index];
+        var index = parseFloat(temp[dispenser_to_control - 1]['Current_State']);    // mL value to be sent
+        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State']).toString(); // in string format so that settings does not freak out over floats
         localStorage.dispenserData = JSON.stringify(temp);
-        // console.log("uL: " + index);
-        // console.log("PWM: " + PWM);
+
+        var PWM = conversionTable[index];   // find the PWM value which corresponds to the mL value chosen to send to arduino
         sendCommandDispense(PWM);
         updateDispenseProgressBar(dispenser_to_control);
     }
@@ -210,24 +202,21 @@ function increaseDispenserOutput(dispenser_to_control) {
     return false;
 }
 
-function decreaseDispenserOutput(dispenser_to_control) {
+function decrementDispenserPosition(dispenser_to_control) {
     localStorage.dispenserToControl = dispenser_to_control;
     // assumes the capacity of the syringe is 9 mL
-    if (JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'] > JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Min']) {
+    if (parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) >= parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Min'])) {
         var conversionTable = JSON.parse(JSON.parse(localStorage.getItem("dispenserConversions"))[dispenser_to_control]);
-        // console.log(conversionTable);
 
-        var temp = JSON.parse(localStorage.dispenserData);//[valve_to_control]['Physical_State'] = 1;
+        var temp = JSON.parse(localStorage.dispenserData); // conversion table for specific dispenser you are controlling
         // set current state to one which corresponds to a value in conversion table (incremented by precision)
         temp[dispenser_to_control - 1]['Current_State'] = (parseFloat(temp[dispenser_to_control - 1]['Current_State']) - parseFloat(temp[dispenser_to_control - 1]['Precision'])).toFixed(1);
 
-        var index = temp[dispenser_to_control - 1]['Current_State'];
-        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State']).toString();
+        var index = temp[dispenser_to_control - 1]['Current_State'];    // mL value to be sent
+        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State']).toString(); // in string format so that settings does not freak out over floats
         var PWM = conversionTable[index];
         localStorage.dispenserData = JSON.stringify(temp);
-        // console.log("uL: " + index);
-        // console.log("PWM: " + PWM);
-        sendCommandDispense(PWM);
+        sendCommandDispense(PWM);   // find the PWM value which corresponds to the mL value chosen to send to arduino
         updateDispenseProgressBar(dispenser_to_control);
     }
     else {
@@ -242,18 +231,9 @@ function wrap_data_for_Arduino_Dispense(PWM) {
     console.log("dispenser to control: " + temp[dispenser_to_control - 1]['deviceIndex']);
     var deviceNum = temp[dispenser_to_control - 1]['deviceIndex'];
     
-    // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
+    // FIRST, PAD VALUES WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
     console.log("deviceNum: " + deviceNum);
     var dispenser_to_control_padded = zeroFill(deviceNum, 4);
-    // SECOND, PAD THE ML VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
-    // console.log(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']);
-
-    // if(Math.floor(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) < JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) {
-    //     var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],3);
-    // }
-    // else{
-    //     var MLval_padded = zeroFill(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State'],4);
-    // }
     var PWMval_padded = zeroFill(PWM, 4);
     // CONCAT THE VALVE NUMBER AND PWM VALUE
     var pre_command = dispenser_to_control_padded.concat(PWMval_padded);
@@ -267,8 +247,8 @@ function wrap_data_for_Arduino_Dispense(PWM) {
 }
 function sendCommandDispense(PWM) {
     var command = wrap_data_for_Arduino_Dispense(PWM);
-    var stringgggg = "Sending to Arduino: ";
-    var command_info = stringgggg.concat(command);
+    var message = "Sending to Arduino: ";
+    var command_info = message.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
     // writeToSerialConsole(command_info);
@@ -302,24 +282,7 @@ function paddy(n, p, c) {
     return (pad + n).slice(-pad.length);
 }
 
-function orientationIncrease(){
-    if (JSON.parse(localStorage.dispenserData)[localStorage.dispenserToControl - 1]['orientation'] === "pull"){
-        increaseDispenserOutput(localStorage.dispenserToControl);
-    }
-    else {
-        decreaseDispenserOutput(localStorage.dispenserToControl);
-    }
-    return false;
-}
-function orientationDecrease() {
-    if (JSON.parse(localStorage.dispenserData)[localStorage.dispenserToControl - 1]['orientation'] === "pull"){
-        decreaseDispenserOutput(localStorage.dispenserToControl);
-    }
-    else {
-        increaseDispenserOutput(localStorage.dispenserToControl);
-    }
-    return false;
-}
+
 // ./ END HELPER FUNCTIONS
 
 
@@ -328,13 +291,21 @@ function orientationDecrease() {
 
 // dispenser arrow key functionality
 function upArrow() {
-    // increaseDispenserOutput(localStorage.dispenserToControl);
-    orientationIncrease();
+    if (JSON.parse(localStorage.dispenserData)[localStorage.dispenserToControl - 1]['orientation'] === "pull"){
+        incrementDispenserPosition(localStorage.dispenserToControl); // output fluid for pull syringe = move syringe to higher position
+    }
+    else {
+        decrementDispenserPosition(localStorage.dispenserToControl);   // output fluid for push syringe = move syringe to lower position
+    }
     return false;
 }
 function downArrow() {
-    // decreaseDispenserOutput(localStorage.dispenserToControl);
-    orientationDecrease();
+    if (JSON.parse(localStorage.dispenserData)[localStorage.dispenserToControl - 1]['orientation'] === "pull"){
+        decrementDispenserPosition(localStorage.dispenserToControl);   // retract fluid for pull syringe = move syringe to lower position
+    }
+    else {
+        incrementDispenserPosition(localStorage.dispenserToControl);   // retract fluid for push syringe = move syringe to higher position
+    }
     return false;
 }
 function dispenseSelected(down) {

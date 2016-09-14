@@ -296,11 +296,12 @@ function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill,session)
     }
 }
 
-function translateLFR()
+function translateLFR(fileName)
 {
     localStorage.WORKFLOW_STAGE = 'design';
 
-    var fileName = 'testingOutput.uf';
+    fileName = fileName + '.uf';
+    //var fileName = 'testingOutput.uf';
 
     var translate = $.post('/api/translateLFR',{filePathLFR: localStorage.LFR, filePathUCF: localStorage.UCF, filePathOut: localStorage.PROJECT, name: fileName},function(data)
     {
@@ -333,46 +334,54 @@ function translateLFR()
     });
 }
 
-function compileMINT()
+function compileMINT(folderName,fileName)
 {
     localStorage.WORKFLOW_STAGE = 'build';
 
-    var outputFolder = 'design_schematics/';
-    var outputName = 'microfluidic';
+    var outputFolder = 'design_schematics/'; //This is overwritten, intentional
+    outputFolder = folderName + '/';
+    var outputName = 'microfluidic'; // This is overwritten, intentional
+    outputName = fileName;
     var out = outputName + '_device_flow';
     var out2 = outputName + '_device_flow.svg';
 
-    $.post('/api/compileMint',{filePathMINT: localStorage.MINT, filePathINI: localStorage.INI, outPath: localStorage.PROJECT, name: outputFolder, base_name: outputName},function(data)
+    $.post('/api/compileMint',{filePathMINT: localStorage.MINT, filePathINI: localStorage.INI, filePathUCF: localStorage.UCF, filePathLFR: localStorage.LFR, outPath: localStorage.PROJECT, name: outputFolder, base_name: outputName},function(data)
     {
         var status = data.terminalStatus;
         if (status == 'Success')
         {
 
             var str = localStorage.PROJECT + '/' + outputFolder + out2;
-            $('#schematic_preview').load('../mysvg.svg',function(){
-                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
 
-                var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
-                      panEnabled: true
-                    , controlIconsEnabled: false
-                    , zoomEnabled: true
-                    , dblClickZoomEnabled: true
-                    , mouseWheelZoomEnabled: true
-                    , preventMouseEventsDefault: true
-                    , zoomScaleSensitivity: 0.2
-                    , minZoom: 0.5
-                    , maxZoom: 10
-                    , fit: true
-                    , contain: false
-                    , center: true
-                    , refreshRate: 'auto'
-                    , beforeZoom: function(){}
-                    , onZoom: function(){}
-                    , beforePan: function(){}
-                    , onPan: function(){}
-                    , customEventsHandler: {}
-                    , eventsListenerElement: null
-                });
+            $('#svg').load('../mysvg.svg',function()
+            {
+
+                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
+                svgPanZoom(document.getElementById('svg'));
+
+                // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
+                //       panEnabled: true
+                //     , controlIconsEnabled: false
+                //     , zoomEnabled: true
+                //     , dblClickZoomEnabled: true
+                //     , mouseWheelZoomEnabled: true
+                //     , preventMouseEventsDefault: true
+                //     , zoomScaleSensitivity: 0.2
+                //     , minZoom: 0.5
+                //     , maxZoom: 10
+                //     , fit: true
+                //     , contain: false
+                //     , center: true
+                //     , refreshRate: 'auto'
+                //     , beforeZoom: function(){}
+                //     , onZoom: function(){}
+                //     , beforePan: function(){}
+                //     , onPan: function(){}
+                //     , customEventsHandler: {}
+                //     , eventsListenerElement: null
+                // });
+
+
             });
            // var panZoomTiger = svgPanZoom('#schematic_preview');
 

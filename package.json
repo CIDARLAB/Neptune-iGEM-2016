@@ -17,6 +17,7 @@
     "hbs": "~3.1.0",
     "jquery.terminal": "^0.10.12",
     "jsonfile": "^2.3.1",
+    "lineder": "^0.1.1",
     "morgan": "~1.6.1",
     "multer": "1.1.0",
     "node-cmd": "~1.1.1",
@@ -24,6 +25,7 @@
     "rimraf": "^2.5.4",
     "serialport": "~3.1.2",
     "serve-favicon": "~2.3.0",
+    "slash": "^1.0.0",
     "socket.io": "^1.4.8",
     "toastr": "^2.1.2",
     "webix": "~3.3.2"

@@ -15,9 +15,9 @@ var a = 0.25;
 var PWM_min = 180;
 var PWM_max = 500;
 var X_min = 2.071;
-var mL_max = 9.175;
+var mL_max = 6.23;
 var X_max = 3.645;
-var mL_min = 2.8779;
+var mL_min = 0;
 var mL_range = mL_max - mL_min;
 
 function PWM2rad(PWM) {
@@ -140,6 +140,8 @@ function even_uL_steps(uL_table, PWM_table, uL_precision, current_uL, goal_uL, t
     // Find current place and goal place in uL_table
     var f_found = false;						// set to true when the first_uL_index is found to avoid this if statment through rest of loop
     var going_up_uL = goal_uL - current_uL > 0;
+    
+    var conversion_table = {};
 
     if (going_up_uL) {                                              // if increasing in uL from current_uL to goal_uL
         for (var i=0; i < uL_table.length; i=i+2) {				// From 0 through length of uL_table in steps of 2, hitting just uL values
@@ -179,6 +181,7 @@ function even_uL_steps(uL_table, PWM_table, uL_precision, current_uL, goal_uL, t
                 if (Math.abs(uL_table[i] - goal_uL) < Math.abs(uL_table[i-2] - goal_uL)) {  // if this uL value from uL_table is closer to goal_uL than the previous one
                     var end_PWM = Math.round(uL_table[i+1]);                // used for PWM tracking
                     PWM_values.push(Math.round(uL_table[i+1]));             // Add rounded PWM value to PWM_values list for record keeping and debugging
+                    conversion_table[Math.round(uL_table[i+1])] = uL_table[i];
                     //console.log(end_PWM);                                   //////////// Send pump number and rounded PWM value to arduino
                 }
                 else {
@@ -189,6 +192,7 @@ function even_uL_steps(uL_table, PWM_table, uL_precision, current_uL, goal_uL, t
             else {													// Normal indexes
                 //console.log(Math.round(uL_table[i+1]));		                /////////// Send pump number and rounded PWM value to arduino
                 PWM_values.push(Math.round(uL_table[i+1]));             // Add rounded PWM value to PWM_values list for record keeping and debugging
+                conversion_table[Math.round(uL_table[i+1])] = uL_table[i];
             }
         }
     }
@@ -201,6 +205,7 @@ function even_uL_steps(uL_table, PWM_table, uL_precision, current_uL, goal_uL, t
                 if (Math.abs(uL_table[i] - goal_uL) < Math.abs(uL_table[i+2] - goal_uL)) {  // if this uL value from uL_table is closer to goal_uL than the previous one
                     var end_PWM = Math.round(uL_table[i+1]);                // used for PWM tracking
                     PWM_values.push(Math.round(uL_table[i+1]));             // Add rounded PWM value to PWM_values list for record keeping and debugging
+                    conversion_table[Math.round(uL_table[i+1])] = uL_table[i];
                     //console.log(end_PWM);                                   //////////// Send pump number and rounded PWM value to arduino
                 }
                 else {
@@ -211,6 +216,7 @@ function even_uL_steps(uL_table, PWM_table, uL_precision, current_uL, goal_uL, t
             else {                                                  // Normal indexes
                 //console.log(Math.round(uL_table[i+1]));                     /////////// Send pump number and rounded PWM value to arduino
                 PWM_values.push(Math.round(uL_table[i+1]));             // Add rounded PWM value to PWM_values list for record keeping and debugging
+                conversion_table[Math.round(uL_table[i+1])] = uL_table[i];
             }
         }
     }
@@ -233,11 +239,14 @@ function even_uL_steps(uL_table, PWM_table, uL_precision, current_uL, goal_uL, t
     }
     console.log(num_steps,steps_per_second,seconds_per_step); // debugging
     */
-    var returnArray = [];
-    returnArray.push(seconds_per_step);
-    returnArray.push(PWM_values);
-    // console.log("PWM Values: " + PWM_values);
-    return returnArray;
+    console.log("command conversion table: ");
+    console.log(conversion_table);
+
+    return {
+        PWM_values: PWM_values,		// Return PWM_table
+        seconds_per_step: seconds_per_step, 			// Return uL_table
+        conversion_table: conversion_table      // Return table to convert PWM to uL
+    };
     
 };
 

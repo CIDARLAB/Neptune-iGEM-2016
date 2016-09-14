@@ -37,27 +37,17 @@
     <!-- Timeline CSS -->
     <link href="/javascripts/dist/css/timeline.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <!--<link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">-->
-
     <!-- Toastr CDN -->
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!-- Morris Charts CSS -->
-    <!--<link href="/javascripts/bower_components/morrisjs/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
     <link href="/javascripts/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!--Walkthrough tour-->
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
@@ -67,6 +57,7 @@
     <script src="../javascripts/tour.js"></script>
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
 
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
 
     <style>
         body {  padding: 0 !important;  }
@@ -348,6 +339,56 @@
 
 </div>
 
+    <!-- Modal -->
+    <div id="setProject_build" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Choose your project.</h4>
+                </div>
+
+                <div class="modal-body" id="project_select_build"> </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="nameProject();" data-target=".bd-example-modal-sm"> New Project </button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" "> Load Project</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function workspace_set()
+        {
+            $.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)
+            {
+                var json_dir = [];
+                var length = data.projects.length;
+                for(var i = 0; i < length; i++)
+                {
+                    var single_stage = {directory:data.projects[i]};
+                    json_dir.push(single_stage);
+                }
+                render_projects(json_dir);
+            });
+
+            $('#setProject_build').modal('show');
+        }
+        $(document).ready(workspace_set);
+    </script>
+    <script type="text/javascript">
+        function render_projects(json)
+        {
+            $.get('../javascripts/project_select_template.hbs', function (data)
+            {
+                var template = Handlebars.compile(data);
+                var myhtml = template(json);
+                $("#project_select_build").html(myhtml);
+
+            },'html');
+        }
+    </script>
+
 
     <!-- Modal -->
     <div id="customHWModal" class="modal fade" role="dialog">
@@ -578,6 +619,9 @@
     })
 </script>
 
+
+
+
 <style>
     body{float: left; align: center; width: 100%;}
     *{margin: 0; padding: 0; box-sizing: border-box;}
@@ -693,10 +737,7 @@
 <!-- Morris Charts JavaScript -->
 <script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
 <script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
-<!--<script src="/javascripts/js/morris-data.js"></script>-->
-<!-- Custom Theme JavaScript -->
-<!--<script src="/javascripts/dist/js/sb-admin-2.js"></script>-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
 <!-- *** END: DEPENDENCIES *** -->
 
 </body>

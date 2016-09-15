@@ -224,6 +224,45 @@
 </div>
 
 
+<div id="findJSON" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Locate Design Schematic </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="json_in">Enter JSON location:</label>
+                    <input type="text" class="form-control" id="json_in">
+                </div>
+
+                Enter full file path to your JSON schematic, for example:
+
+                C:/home/Documents/Numptune/myProject/designJSON.json
+
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="pushJSON()"> Load  </button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //
+    $(document).ready(function()
+    {
+        //document.getElementById("json_in").value = localStorage.JSON_CONTROL;
+        $('#findJSON').modal('show');
+    });
+
+    function pushJSON()
+    {
+        localStorage.JSON_CONTROL = document.getElementById("json_in").value;
+    }
+</script>
+
 
 <canvas id="c" tabindex="0" resize="true"></canvas>
 <!--This is where valves go!-->

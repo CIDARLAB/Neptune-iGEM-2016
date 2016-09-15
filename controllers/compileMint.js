@@ -46,8 +46,6 @@ exports.compileMint = function(req, res)
         iniREGEX = (results[0]).value;
         iniREGEX = iniREGEX.substring(0, iniREGEX.length - 1);
         iniREGEX = slash(iniREGEX);
-
-        //TODO: ERROR OCCURING; REPLACE PATH BREAKS CODE. FIX THIS
         replace({
             regex: iniREGEX,
             replacement: slash(outputPath),

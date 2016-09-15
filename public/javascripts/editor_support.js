@@ -353,8 +353,9 @@ function compileMINT(folderName,fileName)
 
             var str = localStorage.PROJECT + '/' + outputFolder + out2;
 
-            $('#svg').load('../mysvg.svg',function()
+            $('#svg_flow').load('../mysvg.svg',function()
             {
+                document.getElementById("svg_flow");
 
                 //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
                 svgPanZoom(document.getElementById('svg'));
@@ -533,7 +534,13 @@ function generateUCF_UI()
 function generateUCF()
 {
     var numOperators = $("#accordion div.panel-default").length;
-    var ids = $('.form-control').id;
+    var idArray = [];
+    var idArrayClean = [];
+    for (var k = 0; k < numOperators; k++)
+    {
+        idArray[k] = $("#accordion div.panel-default")[k].id;
+        idArrayClean[k] = idArray[k].slice(-1);
+    }
     var JSON = [];
 
 
@@ -550,16 +557,17 @@ function generateUCF()
 
     for (var i = 0; i < numOperators; i++)
     {
-        var operator = document.getElementById('operator_' + i).value;
-        var name = document.getElementById('name_' + i).value;
-        var inputs = document.getElementById('inputs_' + i).value;
-        var inputTerms = document.getElementById('inputTerms_' + i).value;
-        var outputs = document.getElementById('outputs_' + i).value;
-        var outputTerms = document.getElementById('outputTerms_' + i).value;
-        var Import = document.getElementById('import_' + i).value;
-        var path = document.getElementById('path_' + i).value;
-        var mint = document.getElementById('mint_' + i).value;
-        var layer = document.getElementById('layer_' + i).value;
+        var w = idArrayClean[i];
+        var operator = document.getElementById('operator_' + w).value;
+        var name = document.getElementById('name_' + w).value;
+        var inputs = document.getElementById('inputs_' + w).value;
+        var inputTerms = document.getElementById('inputTerms_' + w).value;
+        var outputs = document.getElementById('outputs_' + w).value;
+        var outputTerms = document.getElementById('outputTerms_' + w).value;
+        var Import = document.getElementById('import_' + w).value;
+        var path = document.getElementById('path_' + w).value;
+        var mint = document.getElementById('mint_' + w).value;
+        var layer = document.getElementById('layer_' + w).value;
 
         var single_stage =
         {

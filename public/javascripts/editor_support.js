@@ -353,13 +353,13 @@ function compileMINT(folderName,fileName)
 
             var str = localStorage.PROJECT + '/' + outputFolder + out2;
 
-            $('#svg_flow').load('../mysvg.svg',function()
+            $('#svg_flow').load('../svg_flow.svg',function()
             {
-                document.getElementById("svg_flow");
-
+                document.getElementById('schematic_preview_flow').children[0].children[0].id = 'svg_flow_id';
+                //document.getElementById('schematic_preview').children[0].children[0].id = 'svg_flow_id'
+                //document.getElementById("svg_flow");
                 //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
-                svgPanZoom(document.getElementById('svg'));
-
+                svgPanZoom(document.getElementById('svg_flow_id'));
                 // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
                 //       panEnabled: true
                 //     , controlIconsEnabled: false
@@ -381,8 +381,62 @@ function compileMINT(folderName,fileName)
                 //     , customEventsHandler: {}
                 //     , eventsListenerElement: null
                 // });
-
-
+            });
+            $('#svg_control').load('../svg_control.svg',function()
+            {
+                document.getElementById('schematic_preview_control').children[0].children[0].id = 'svg_control_id';
+                //document.getElementById("svg_flow");
+                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
+                svgPanZoom(document.getElementById('svg_control_id'));
+                // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
+                //       panEnabled: true
+                //     , controlIconsEnabled: false
+                //     , zoomEnabled: true
+                //     , dblClickZoomEnabled: true
+                //     , mouseWheelZoomEnabled: true
+                //     , preventMouseEventsDefault: true
+                //     , zoomScaleSensitivity: 0.2
+                //     , minZoom: 0.5
+                //     , maxZoom: 10
+                //     , fit: true
+                //     , contain: false
+                //     , center: true
+                //     , refreshRate: 'auto'
+                //     , beforeZoom: function(){}
+                //     , onZoom: function(){}
+                //     , beforePan: function(){}
+                //     , onPan: function(){}
+                //     , customEventsHandler: {}
+                //     , eventsListenerElement: null
+                // });
+            });
+            $('#svg_cell').load('../svg_cell.svg',function()
+            {
+                document.getElementById('schematic_preview_cell').children[0].children[0].id = 'svg_cell_id';
+                //document.getElementById("svg_flow");
+                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
+                svgPanZoom(document.getElementById('svg_cell_id'));
+                // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
+                //       panEnabled: true
+                //     , controlIconsEnabled: false
+                //     , zoomEnabled: true
+                //     , dblClickZoomEnabled: true
+                //     , mouseWheelZoomEnabled: true
+                //     , preventMouseEventsDefault: true
+                //     , zoomScaleSensitivity: 0.2
+                //     , minZoom: 0.5
+                //     , maxZoom: 10
+                //     , fit: true
+                //     , contain: false
+                //     , center: true
+                //     , refreshRate: 'auto'
+                //     , beforeZoom: function(){}
+                //     , onZoom: function(){}
+                //     , beforePan: function(){}
+                //     , onPan: function(){}
+                //     , customEventsHandler: {}
+                //     , eventsListenerElement: null
+                // });
             });
            // var panZoomTiger = svgPanZoom('#schematic_preview');
 

@@ -374,6 +374,7 @@ var even_uL_steps = function(uL_table, PWM_table, uL_precision, current_uL, goal
     // Get number of steps per second and number of seconds per step
     var steps_per_second = num_steps/time_sec; // send to user, not used in program
     var seconds_per_step = time_sec/num_steps; // needed for delay between step
+    
 
     // Find current place and goal place in uL_table
     var f_found = false;                        // set to true when the first_uL_index is found to avoid this if statment through rest of loop

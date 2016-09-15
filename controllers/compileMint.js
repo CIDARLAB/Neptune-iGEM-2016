@@ -106,6 +106,11 @@ exports.compileMint = function(req, res)
             var json_stream_w = fs.createWriteStream(JSONpath_l);
             json_stream_r.pipe(json_stream_w);
 
+
+            // var jread = fs.createReadStream(JSONpath);
+            // var jwrite = fs.createWriteStream('./public/uploads/Build_Verify/buildJSON.json');
+            // jread.pipe(jwrite);
+
             var configFile = fs.openSync(configFileLoc,'w');
 
             res.send({terminalStatus: 'Success'});

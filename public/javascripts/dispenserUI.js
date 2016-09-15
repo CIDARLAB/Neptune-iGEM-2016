@@ -63,9 +63,10 @@ function sendDispense(sender){
     var even_uL_steps_output = even_uL_steps(uL_table,PWM_table,uL_precision,currentVolume,valueToDispense,time.value);   // [0] is seconds/step [1] is PWM value array to be sent
     // values needed for dispense rate
     var msecondsPerStep = even_uL_steps_output.seconds_per_step * 1000; // must be in milliseconds
+    console.log("step per sec: " + (1/msecondsPerStep));
     var stepsPerSecond = even_uL_steps_output.steps_per_second; // conversions only for commands being sent at the moment (this way its easier to update the current volume)
     var PWMvalueArray = even_uL_steps_output.PWM_values;
-    console.log("even steps array: ")
+    console.log("even steps array: ");
     console.log(PWMvalueArray);
 
     // set correct dispenser to command

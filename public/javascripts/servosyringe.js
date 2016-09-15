@@ -159,7 +159,7 @@ var servoTable =
             "thetaMax": 170,
             "thetaMin": 0,
             "msRange": 1133.3,
-            "deadbandwidth": 2,
+            "deadbandwidth": 1,
             "cost": 39.99,
             "torque": 143,
             "speed": 0.23,
@@ -169,15 +169,43 @@ var servoTable =
             "id": "M",
             "name": "HS-805BB",
             "AD": 60,
+            "thetaMax": 199.5,
+            "thetaMin": 0,
+            "msRange": 1864,
+            "deadbandwidth": 8,
+            "cost": 39.99,
+            "torque": 275,
+            "speed": 0.14,
+            "url": "https://www.servocity.com/hs-805bb-servo"
+        },
+        {
+            "id": "N",
+            "name": "HS-5485HB",
+            "AD": 300,
+            "thetaMax": 199.5,
+            "thetaMin": 0,
+            "msRange": 1500,
+            "deadbandwidth": 8,
+            "cost": 24.99,
+            "torque": 72,
+            "speed": 0.17,
+            "url": "https://www.servocity.com/hs-5485hb-servo"
+        },
+        {
+            "id": "O",
+            "name": "SG92R Tower Pro",
+            "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
             "msRange": 1133.3,
-            "deadbandwidth": 2,
-            "cost": 39.99,
-            "torque": 143,
-            "speed": 0.23,
-            "url": "https://www.servocity.com/hs-5645mg-servo"
+            "deadbandwidth": 1,
+            "cost": 2.60,
+            "torque": 22,
+            "speed": 0.12,
+            "url": "http://www.towerpro.com.tw/product/sg92r-7/"
         }
+
+
 
 ];
 
@@ -382,8 +410,30 @@ function calculateRecommended() {
 
     if (lowestcost== 1000 || largestvolume == 0 || highestprecision ==0) {
         $("#rstats").text("Sorry! No combinations found. Please return to the previous tab to re-enter values, or click the blue link below to create your own custom set up.");
+        $("#rservo").text("");
+        $("#rsyringe").text("");
         $("#vstats").text("Sorry! No combinations found. Please return to the previous tab to re-enter values, or click the blue link below to create your own custom set up.");
+        $("#vservo").text("");
+        $("#vsyringe").text("");
         $("#tstats").text("Sorry! No combinations found. Please return to the previous tab to re-enter values, or click the blue link below to create your own custom set up.");
+        $("#tservo").text("");
+        $("#tsyringe").text("");
+
+        localStorage.rservoselected = "";
+        localStorage.rservoselectedurl = "";
+        localStorage.rsyringeselected = "";
+        localStorage.rsyringeselectedurl = "";
+        localStorage.vservoselected = "";
+        localStorage.vservoselectedurl = "";
+        localStorage.vsyringeselected = "";
+        localStorage.vsyringeselectedurl = "";
+        localStorage.pservoselected = "";
+        localStorage.pservoselectedurl= "";
+        localStorage.psyringeselected = "";
+        localStorage.psyringeselectedurl= "";
+
+
+
     }
     else {
         console.log('Lowest cost is: ' + lowestcost + ' with servo number ' + lowestservo + ' and syringe number ' + lowestsyringe);
@@ -402,14 +452,27 @@ function calculateRecommended() {
         $("#rstats").text("The " + lowestServoObject[0].name + " servo and " + lowestSyringeObject[0].volume + "ml syringe combination has cost of $" + lowestcost + " (as of Sept 2016), which makes it the cheapest option.");
         $("#rservo").text("Servo Datasheet: " + lowestServoObject[0].url);
         $("#rsyringe").text("Syringe Information: " + lowestSyringeObject[0].url);
+        localStorage.rservoselected = lowestServoObject[0].name;
+        localStorage.rservoselectedurl = lowestServoObject[0].url;
+        localStorage.rsyringeselected = lowestSyringeObject[0].volume;
+        localStorage.rsyringeselectedurl = lowestSyringeObject[0].url;
+        
 
         $("#vstats").text("The " + largestVServo[0].name + " servo and " + largestVSyringe[0].volume + "ml syringe combination has a volume capacity of " + largestvolume + " (as of Sept 2016), which makes it the best in this category.");
         $("#vservo").text("Servo Datasheet: " + largestVServo[0].url);
         $("#vsyringe").text("Syringe Information: " + largestVSyringe[0].url);
+        localStorage.vservoselected = largestVServo[0].name;
+        localStorage.vservoselectedurl = largestVServo[0].url;
+        localStorage.vsyringeselected = largestVSyringe[0].volume;
+        localStorage.vsyringeselectedurl = largestVSyringe[0].url;
 
         $("#tstats").text("The " + highestPServo[0].name + " servo and " + highestPSyringe[0].volume + "ml syringe combination has a tolerance/precision level of " + highestprecision + " (as of Sept 2016), which makes it the most accurate servo-syringe combination.");
         $("#tservo").text("Servo Datasheet: " + highestPServo[0].url);
         $("#tsyringe").text("Syringe Information: " + highestPSyringe[0].url);
+        localStorage.pservoselected = highestPServo[0].name;
+        localStorage.pservoselectedurl= highestPServo[0].url;
+        localStorage.psyringeselected = highestPSyringe[0].volume;
+        localStorage.psyringeselectedurl= highestPSyringe[0].url;
 
 
         // IMAGES

@@ -173,10 +173,10 @@
                                 <div id="myCarousel" class="carousel slide" data-interval="false" style=" overflow: hidden; position: relative;">
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item active" id="recommended">
+                                        <div class="item active" id="cheapest">
                                             <div style="text-align: center;">
                                             <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
-                                                    Recommended
+                                                    Cheapest
                                             </h2>
                                             </div>
                                             <div class="picture">
@@ -273,7 +273,7 @@
 
                             <p style="font-size: 15px; text-align: right;" >Pick your selected hardware to add to the purchase list  :
                                 <select id="servoSyringe" class="selectpicker btn btn-green">
-                                    <option>Recommended</option>
+                                    <option>Cheapest</option>
                                     <option>Largest volume</option>
                                     <option>Highest tolerance</option>
                                     <option>Custom hardware</option>
@@ -549,17 +549,23 @@
             var liquid = $('#liquid').val();
             var tolerance= $('#tolerance').val();
             var combo = $('#servoSyringe').find(":selected").text();
-            if (combo=="Recommended"){
-                localStorage.syringe= 10;
-                localStorage.servo= 'Hitec';
+            if (combo=="Cheapest"){
+                localStorage.syringe= localStorage.rsyringeselected;
+                localStorage.servo= localStorage.rservoselected;
+                var syringeurl= localStorage.rsyringeselectedurl;
+                var servourl = localStorage.rservoselectedurl;
             }
             else if (combo=="Largest volume"){
-                localStorage.syringe= 60;
-                localStorage.servo= 'Parallax';
+                localStorage.syringe= localStorage.vsyringeselected;
+                localStorage.servo= localStorage.vservoselected;
+                var syringeurl= localStorage.vsyringeselectedurl;
+                var servourl = localStorage.vservoselectedurl;
             }
             else if (combo=="Highest tolerance"){
-                localStorage.syringe= 3;
-                localStorage.servo= 'Datan';
+                localStorage.syringe= localStorage.psyringeselected;
+                localStorage.servo= localStorage.pservoselected;
+                var syringeurl= localStorage.psyringeselectedurl;
+                var servourl = localStorage.pservoselectedurl;
             }
             else {
                 //Custom
@@ -580,8 +586,8 @@
                     + '1, Laptop power supply,'+ 'To power the servos' +'\n'
 
                     +'Servo and syringe components,,,' +'\n'
-                    + localStorage.pumps +',' + localStorage.syringe + 'ml Syringes, To push liquids and open/close valves' +'\n'
-                    + localStorage.pumps +',' + localStorage.servo + ' servos, To open and close syringes' +'\n'
+                    + localStorage.pumps +',' + localStorage.syringe + 'ml Syringes, To push liquids and open/close valves,' + syringeurl +'\n'
+                    + localStorage.pumps +',' + localStorage.servo + ' servos, To open and close syringes,' + servourl +'\n'
                     + localStorage.pumps*5 +', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' +'\n'
                     + localStorage.pumps*1 + ', Small machine screw,' + 'For screwing in servo arm' +'\n'
                     + localStorage.pumps*1 +', Small nut,' + 'For screwing in servo arm' +'\n'

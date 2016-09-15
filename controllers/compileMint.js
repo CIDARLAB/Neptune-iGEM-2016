@@ -98,6 +98,14 @@ exports.compileMint = function(req, res)
             var write_cell = fs.createWriteStream('./public/svg_cell.svg');
             read_cell.pipe(write_cell);
 
+            var jsonName = basename + '.json';
+            var JSONPATH = './output/';
+            var JSONpath = path.join(JSONPATH,jsonName);
+            var JSONpath_l = path.join(outp,jsonName);
+            var json_stream_r = fs.createReadStream(JSONpath);
+            var json_stream_w = fs.createWriteStream(JSONpath_l);
+            json_stream_r.pipe(json_stream_w);
+
             var configFile = fs.openSync(configFileLoc,'w');
 
             res.send({terminalStatus: 'Success'});

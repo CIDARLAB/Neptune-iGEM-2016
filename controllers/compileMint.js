@@ -36,7 +36,9 @@ exports.compileMint = function(req, res)
 
     var configFileLoc = path.join(outp,'proj.ini');
 
-    var svgloc = outp + basename + '_device_flow.svg';
+    var svgloc_flow = outp + basename + '_device_flow.svg';
+    var svgloc_control = outp + basename + '_device_control.svg';
+    var svgloc_cell = outp + basename + '_device_cell.svg';
 
     var iniREGEX = '';
     var mintREGEX = '';
@@ -86,9 +88,15 @@ exports.compileMint = function(req, res)
         console.log(`child process exited with code ${code}`);
         if (code == 0) {
 
-            var read = fs.createReadStream(svgloc);
-            var write = fs.createWriteStream('./public/mysvg.svg');
-            read.pipe(write);
+            var read_flow = fs.createReadStream(svgloc_flow);
+            var write_flow = fs.createWriteStream('./public/svg_flow.svg');
+            read_flow.pipe(write_flow);
+            var read_control = fs.createReadStream(svgloc_control);
+            var write_control = fs.createWriteStream('./public/svg_control.svg');
+            read_control.pipe(write_control);
+            var read_cell = fs.createReadStream(svgloc_cell);
+            var write_cell = fs.createWriteStream('./public/svg_cell.svg');
+            read_cell.pipe(write_cell);
 
             var configFile = fs.openSync(configFileLoc,'w');
 

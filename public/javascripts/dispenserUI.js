@@ -34,9 +34,9 @@ function sendDispense(sender){
     // var b = initializeSetup_outputs.b;
     // var d = initializeSetup_outputs.d;
     // var a = initializeSetup_outputs.a;
-    console.log('conversions (PWM and uL): ');
-    console.log(PWM_dic);
-    console.log(uL_dic);
+    // console.log('conversions (PWM and uL): ');
+    // console.log(PWM_dic);
+    // console.log(uL_dic);
 
 
     var temp = JSON.parse(localStorage.dispenserData);
@@ -46,8 +46,10 @@ function sendDispense(sender){
 
     // store conversion tables to be accessed by other parts of dispense operations
     var storedConversions = JSON.parse(localStorage.dispenserConversions);  // load here so as not to overwrite tables already stored
-    storedConversions[dispenserID] = JSON.stringify(PWM_dic);   // update computed conversions in temp variable
+    storedConversions[dispenserID] = JSON.stringify(uL_table);   // update computed conversions in temp variable
     localStorage.dispenserConversions = JSON.stringify(storedConversions);  // store temp in localStorage
+    console.log("uL table: ");
+    console.log(uL_table);
 
     var dispOrientation = JSON.parse(localStorage.dispenserData)[dispenserID - 1]['orientation'];   // determine whether is pull/push dispenser
     var valueToDispense;
@@ -63,16 +65,16 @@ function sendDispense(sender){
     var even_uL_steps_output = even_uL_steps(uL_table,PWM_table,uL_precision,currentVolume,valueToDispense,time.value);   // [0] is seconds/step [1] is PWM value array to be sent
     // values needed for dispense rate
     var msecondsPerStep = even_uL_steps_output.seconds_per_step * 1000; // must be in milliseconds
-    console.log("step per sec: " + (1/msecondsPerStep));
+    // console.log("step per sec: " + (1/msecondsPerStep));
     var stepsPerSecond = even_uL_steps_output.steps_per_second; // conversions only for commands being sent at the moment (this way its easier to update the current volume)
     var PWMvalueArray = even_uL_steps_output.PWM_values;
-    console.log("even steps array: ");
-    console.log(PWMvalueArray);
+    // console.log("even steps array: ");
+    // console.log(PWMvalueArray);
 
     // set correct dispenser to command
     localStorage.dispenserToControl = dispenserID;
-    console.log("Command arrray: ");
-    console.log(PWMvalueArray);
+    // console.log("Command arrray: ");
+    // console.log(PWMvalueArray);
 
     // iterate over command array at appropriate time intervals
     for(i = 0; i < PWMvalueArray.length; i++){

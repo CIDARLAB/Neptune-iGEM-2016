@@ -87,7 +87,7 @@ function sendDispense(sender){
                 var temp = JSON.parse(localStorage.dispenserData);
                 temp[dispenserID - 1]['Current_State'] = (PWM_dic[PWMvalueArray[iPrime]]).toString();
                 localStorage.dispenserData = JSON.stringify(temp);  // update local storage to correct new volume amount
-                sendCommandDispense(PWMvalueArray[iPrime]);     // now send command
+                sendCommandDispense(PWMvalueArray[iPrime], dispenser_to_control);     // now send command
                 updateDispenseProgressBar(dispenser_to_control);    // and update graphics
             }, i*msecondsPerStep);
         })();

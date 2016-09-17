@@ -212,7 +212,7 @@ function incrementDispenserPosition(dispenser_to_control) {
         temp[dispenser_to_control - 1]['Current_State'] = (nextuL).toString();
         localStorage.dispenserData = JSON.stringify(temp);
 
-        sendCommandDispense(nextPWM);
+        sendCommandDispense(nextPWM, dispenser_to_control);
         updateDispenseProgressBar(dispenser_to_control);
     }
     else {
@@ -256,7 +256,7 @@ function decrementDispenserPosition(dispenser_to_control) {
         temp[dispenser_to_control - 1]['Current_State'] = (nextuL).toString();
         localStorage.dispenserData = JSON.stringify(temp);
 
-        sendCommandDispense(nextPWM);
+        sendCommandDispense(nextPWM, dispenser_to_control);
         updateDispenseProgressBar(dispenser_to_control);
     }
     else {
@@ -265,8 +265,8 @@ function decrementDispenserPosition(dispenser_to_control) {
     return false;
 }
 
-function wrap_data_for_Arduino_Dispense(PWM) {
-    var dispenser_to_control = localStorage.dispenserToControl;
+function wrap_data_for_Arduino_Dispense(PWM, dispenser_to_control) {
+    // var dispenser_to_control = localStorage.dispenserToControl;
     var temp = JSON.parse(localStorage.dispenserData);
     var deviceNum = temp[dispenser_to_control - 1]['deviceIndex'];
     
@@ -283,8 +283,8 @@ function wrap_data_for_Arduino_Dispense(PWM) {
     // RETURN THE DATA
     return command;
 }
-function sendCommandDispense(PWM) {
-    var command = wrap_data_for_Arduino_Dispense(PWM);
+function sendCommandDispense(PWM, dispenser_to_control) {
+    var command = wrap_data_for_Arduino_Dispense(PWM, dispenser_to_control);
     var message = "Sending to Arduino: ";
     var command_info = message.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //

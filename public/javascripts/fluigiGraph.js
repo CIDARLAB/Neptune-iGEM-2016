@@ -85,17 +85,28 @@ function placeButtons() {
         var content = $("#content");
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
+        var state = template.querySelector('.valve_color');
         
         valveDiv.style.position = 'absolute';
 
         valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
         valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
 
+
+
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
         specificImage.id = i + 1;
-
+        // assign appropriate valve marker based on state
         specificImage.onclick = onclickanchortag;
+        if((JSON.parse(localStorage.pumpData))[i]['Current_State'] === "closed"){
+            state.src = "../images/fluigi/valveMarkerClosed.svg";
+        }
+        else{
+            state.src= "../images/fluigi/valveMarkerOpen.svg";
+
+        }
+
 
         valveButton = template.querySelector('.valve');
 
@@ -205,6 +216,7 @@ function placeButtons() {
         
         // dispenser orientation (push/pull)
         orientation.id = "orientation" + (i + 1);
+        orientation.textContent = (JSON.parse(localStorage.dispenserData))[i]['orientation'];
         
 
         var dispenserCatch = "#dispenserModal" + (i + 1);

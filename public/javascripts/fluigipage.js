@@ -10,7 +10,7 @@ function setNumberOfPumps_JSON() {
     for (var i = 1; i <= localStorage.pumps; i++) {
 
         deviceCount = i;
-        var singleStage2 = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount, PWMval: 0};
+        var singleStage2 = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount};
         set_pumpData_newNum.push(singleStage2);
         j = j + 1;
         if(j == 13) {
@@ -32,7 +32,7 @@ function clearPumpData() {
     for (var i = 1; i <= localStorage.pumps; i++)
     {
         deviceCount = i;
-        var singleStage = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount, PWMval: 0};
+        var singleStage = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount};
         c_pumpData.push(singleStage);
 
         j = j + 1;
@@ -64,7 +64,6 @@ function wrap_data_for_Arduino() {
     var temp = JSON.parse(localStorage.pumpData);
     var deviceNum = temp[valve_to_control - 1]['deviceIndex'];
 
-    console.log(valve_to_control + 'CHECK THE VALVE');
     localStorage.MasterData = combine_pumpData_valveData();
 
     var data_for_selected_object = JSON.parse(localStorage.MasterData);
@@ -184,16 +183,36 @@ function incrementDispenserPosition(dispenser_to_control) {
     if (parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) <= parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Max'])) {
         var conversionTable = JSON.parse(JSON.parse(localStorage.getItem("dispenserConversions"))[dispenser_to_control]);   // conversion table for specific dispenser you are controlling
 
-        // set current state to one which corresponds to a value in conversion table (incremented by precision)
         var temp = JSON.parse(localStorage.dispenserData);
-        temp[dispenser_to_control - 1]['Current_State'] = (parseFloat(temp[dispenser_to_control - 1]['Current_State']) + parseFloat(temp[dispenser_to_control - 1]['Precision'])).toFixed(1);
+        var index = parseFloat(temp[dispenser_to_control - 1]['Current_State']);    // current uL state
+        // var PWMcurrent = conversionTable[index];   // find the PWM value which corresponds to the mL value chosen to send to arduino
+        var foundIndex = false;
+        var nextuL = 0;
+        var nextPWM = 0;
+        // figure out which is the next increment of uL value we can dispenser from the conversion table
+        for(var uL=0; uL <= (conversionTable.length); uL = (uL + 2)){
+            if(foundIndex == true){
+                nextuL = conversionTable[uL];   // note the next uL value to send
+                nextPWM = conversionTable[(uL + 1)];
+                break;
+            }
+            if(conversionTable[uL] == index){
+                foundIndex = true;
+            }
+            if(conversionTable[uL] > index){ // surpassed current value, send this one!!
+                nextuL = conversionTable[uL];
+                nextPWM = conversionTable[(uL + 1)];
+                break;
+            }
+        }
+        nextPWM = (nextPWM).toFixed(0);
 
-        var index = parseFloat(temp[dispenser_to_control - 1]['Current_State']);    // mL value to be sent
-        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State']).toString(); // in string format so that settings does not freak out over floats
+
+        // set current state to one which corresponds to a value in conversion table
+        temp[dispenser_to_control - 1]['Current_State'] = (nextuL).toString();
         localStorage.dispenserData = JSON.stringify(temp);
 
-        var PWM = conversionTable[index];   // find the PWM value which corresponds to the mL value chosen to send to arduino
-        sendCommandDispense(PWM);
+        sendCommandDispense(nextPWM);
         updateDispenseProgressBar(dispenser_to_control);
     }
     else {
@@ -205,18 +224,39 @@ function incrementDispenserPosition(dispenser_to_control) {
 function decrementDispenserPosition(dispenser_to_control) {
     localStorage.dispenserToControl = dispenser_to_control;
     // assumes the capacity of the syringe is 9 mL
-    if (parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) >= parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Min'])) {
-        var conversionTable = JSON.parse(JSON.parse(localStorage.getItem("dispenserConversions"))[dispenser_to_control]);
+    if (parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Current_State']) > parseFloat(JSON.parse(localStorage.dispenserData)[dispenser_to_control - 1]['Min'])) {
+        var conversionTable = JSON.parse(JSON.parse(localStorage.getItem("dispenserConversions"))[dispenser_to_control]);   // conversion table for specific dispenser you are controlling
 
-        var temp = JSON.parse(localStorage.dispenserData); // conversion table for specific dispenser you are controlling
-        // set current state to one which corresponds to a value in conversion table (incremented by precision)
-        temp[dispenser_to_control - 1]['Current_State'] = (parseFloat(temp[dispenser_to_control - 1]['Current_State']) - parseFloat(temp[dispenser_to_control - 1]['Precision'])).toFixed(1);
+        var temp = JSON.parse(localStorage.dispenserData);
+        var index = parseFloat(temp[dispenser_to_control - 1]['Current_State']);    // current uL state
+        var foundIndex = false;
+        var nextuL = 0;
+        var nextPWM = 0;
 
-        var index = temp[dispenser_to_control - 1]['Current_State'];    // mL value to be sent
-        temp[dispenser_to_control - 1]['Current_State'] = (temp[dispenser_to_control - 1]['Current_State']).toString(); // in string format so that settings does not freak out over floats
-        var PWM = conversionTable[index];
+
+        // figure out which is the next increment of uL value we can dispenser from the conversion table
+        for(var uL= (conversionTable.length - 2); uL >= 0; uL = (uL - 2)){
+            if(foundIndex == true){
+                nextuL = conversionTable[uL];   // note the next uL value to send
+                nextPWM = conversionTable[(uL + 1)];
+                break;
+            }
+            if(conversionTable[uL] == index){
+                foundIndex = true;
+            }
+            if(conversionTable[uL] < index){ // surpassed current value, send this one!!
+                nextuL = conversionTable[uL];
+                nextPWM = conversionTable[(uL + 1)];
+                break;
+            }
+        }
+        nextPWM = (nextPWM).toFixed(0);
+
+        // set current state to one which corresponds to a value in conversion table
+        temp[dispenser_to_control - 1]['Current_State'] = (nextuL).toString();
         localStorage.dispenserData = JSON.stringify(temp);
-        sendCommandDispense(PWM);   // find the PWM value which corresponds to the mL value chosen to send to arduino
+
+        sendCommandDispense(nextPWM);
         updateDispenseProgressBar(dispenser_to_control);
     }
     else {
@@ -228,11 +268,9 @@ function decrementDispenserPosition(dispenser_to_control) {
 function wrap_data_for_Arduino_Dispense(PWM) {
     var dispenser_to_control = localStorage.dispenserToControl;
     var temp = JSON.parse(localStorage.dispenserData);
-    console.log("dispenser to control: " + temp[dispenser_to_control - 1]['deviceIndex']);
     var deviceNum = temp[dispenser_to_control - 1]['deviceIndex'];
     
     // FIRST, PAD VALUES WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
-    console.log("deviceNum: " + deviceNum);
     var dispenser_to_control_padded = zeroFill(deviceNum, 4);
     var PWMval_padded = zeroFill(PWM, 4);
     // CONCAT THE VALVE NUMBER AND PWM VALUE
@@ -312,13 +350,11 @@ function dispenseSelected(down) {
     switch (down.keyCode) {
         case 38:    // up key
             if (localStorage.activeDispenser != "none") {
-                console.log("up arrow pressed");
                 upArrow();
             }
             break;
         case 40:    // down key
             if (localStorage.activeDispenser != "none") {
-                console.log("down arrow pressed");
                 downArrow();
             }
             break;
@@ -359,7 +395,6 @@ function updateDispenseSyringe(dispenserIDNum, percentUpdate) {
     var displacement = zeroDisplacement + 40;
     $('#plunger' + dispenserIDNum).css('left', displacement+'px');
 }
-
 
 // THIS ENSURES SERIAL COMM LIST IS PRE-POPULATED!!!
 $(document).ready(function(){

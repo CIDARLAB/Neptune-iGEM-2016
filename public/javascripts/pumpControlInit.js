@@ -91,8 +91,8 @@ function drawDispRow(rowData) {
     row.append($("<td>" + rowData.HW_shield + "</td>"));
     row.append($("<td>" + rowData.HW_pin + "</td>"));
     row.append($("<td contenteditable='true'>" + rowData.Precision + "</td>"));
-    row.append($("<td contenteditable='true'>" + rowData.Min + "</td>"));
-    row.append($("<td contenteditable='true'>" + rowData.Max + "</td>"));
+    row.append($("<td>" + rowData.Min + "</td>"));
+    row.append($("<td>" + rowData.Max + "</td>"));
     row.append($("<td contenteditable='true'>" + rowData.Current_State + "</td>"));
     row.append($("<td>" + rowData.orientation + "</td>"));
 }

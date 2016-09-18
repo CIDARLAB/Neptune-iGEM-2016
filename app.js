@@ -1,4 +1,4 @@
-//Define all variables for modules
+#! /usr/bin/env node
 
 var express = require("express");
 var app = express();

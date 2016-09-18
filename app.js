@@ -80,6 +80,7 @@ global.server.timeout = 1000000000;
     var fileController = require('./controllers/fileupload');
     var writeController = require('./controllers/filewrite');
     var serialController = require('./controllers/serialcommunication');
+    var workspaceController = require('./controllers/workspace');
 }
 
 /**************** RENDER PAGES ****************/
@@ -164,17 +165,13 @@ global.server.timeout = 1000000000;
     var ucfMaker = require('./controllers/generateUCF');
     app.post('/api/generateUCF',ucfMaker.generateUCF);
 
-    var parser = require('./controllers/parseDir');
-    app.post('/api/parseDir',parser.parseDir);
+    app.post('/api/parseDir', workspaceController.parseDir);
 
-    var projectGetter = require('./controllers/getProjects');
-    app.post('/api/getProjects',projectGetter.getProjects);
+    app.post('/api/getProjects', workspaceController.getProjects);
 
-    var projectMaker = require('./controllers/makeProject');
-    app.post('/api/makeProject',projectMaker.makeProject);
+    app.post('/api/makeProject', workspaceController.makeProject);
 
-    var fileScanner = require('./controllers/scanFiles');
-    app.post('/api/scanFiles',fileScanner.scanFiles);
+    app.post('/api/scanFiles', workspaceController.scanFiles);
 
     var fileGetter = require('./controllers/fileGetter');
     app.post('/api/getFile',fileGetter.getFile);

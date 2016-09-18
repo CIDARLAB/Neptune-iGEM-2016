@@ -1,6 +1,10 @@
 {
-  "name": "FluigiGUI",
-  "version": "0.0.0",
+  "name": "Neptune",
+  "version": "0.1.0",
+  "description" : "The Microfluidic Design Automation Tool for Fluigi.",
+  "repository" :  { "type" : "git"
+  , "url" : "https://github.com/CIDARLAB/Neptune.git"
+  },
   "private": true,
   "scripts": {
     "start": "node app.js"

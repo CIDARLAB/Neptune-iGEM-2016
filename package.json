@@ -5,10 +5,14 @@
   "repository" :  { "type" : "git"
   , "url" : "https://github.com/CIDARLAB/Neptune.git"
   },
+  "main": "app.js",
   "private": true,
   "scripts": {
     "start": "node app.js"
   },
+  "bin": {
+	"start-neptune": "app.js"
+	},
   "dependencies": {
     "adm-zip": "^0.4.7",
     "archiver": "^1.0.1",

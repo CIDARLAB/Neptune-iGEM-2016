@@ -76,7 +76,7 @@ global.server.timeout = 1000000000;
 
 /**************** CONTROLLERS ****************/
 {
-    var routes = require('./controllers/routes');
+    var viewsController = require('./controllers/views');
     var fileController = require('./controllers/fileupload');
     var writeController = require('./controllers/filewrite');
     var serialController = require('./controllers/serialcommunication');
@@ -85,21 +85,21 @@ global.server.timeout = 1000000000;
 /**************** RENDER PAGES ****************/
 {
     // Bootstrap:
-    app.get('/' , routes.openHomePage);
-    app.get('/dashboard', routes.openDashboard);
-    app.get('/specify', routes.openSpecifyPage);
-    app.get('/design', routes.openDesignPage);
-    app.get('/control', routes.openControllersPage);
-    app.get('/controlFull', routes.openControlFullPage);
-    app.get('/Build', routes.openBuildPage);
-    app.get('/assembly', routes.openAssemblyPage);
+    app.get('/' , viewsController.openHomePage);
+    app.get('/dashboard', viewsController.openDashboard);
+    app.get('/specify', viewsController.openSpecifyPage);
+    app.get('/design', viewsController.openDesignPage);
+    app.get('/control', viewsController.openControllersPage);
+    app.get('/controlFull', viewsController.openControlFullPage);
+    app.get('/Build', viewsController.openBuildPage);
+    app.get('/assembly', viewsController.openAssemblyPage);
 
-    app.get('/fluigipage', routes.getFluigiPage);
-    app.get('/uShroomPage', routes.openMMPage);
+    app.get('/fluigipage', viewsController.getFluigiPage);
+    app.get('/uShroomPage', viewsController.openMMPage);
     app.get('/serialcommunication', serialController.openSerialPage);
 
-    app.get('/lfrpage', routes.openLfrPage);
-    app.get('/lfrpage_bs', routes.openLfr_bsPage);
+    app.get('/lfrpage', viewsController.openLfrPage);
+    app.get('/lfrpage_bs', viewsController.openLfr_bsPage);
 }
 
 /**************** SERIAL COMMUNICATION ****************/

@@ -31,6 +31,9 @@ global.server.timeout = 1000000000;
 
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'hbs');
+
+  var hbs = require('hbs');
+  hbs.registerPartials(__dirname + '/views/partials');
 }
 //app.use(express.static(__dirname + '/public'));
 
@@ -114,16 +117,16 @@ global.server.timeout = 1000000000;
 /************** FILE UPLOAD  ************/
 {
     // Bootstrap:
-    app.get('/specify',fileController.sendToUploadsSpecify);
-    app.get('/design',fileController.sendToUploadsDesign);
-    app.get('/build',fileController.sendToUploadsBuild_Verify);
+    // app.get('/specify',fileController.sendToUploadsSpecify);
+    // app.get('/design',fileController.sendToUploadsDesign);
+    // app.get('/build',fileController.sendToUploadsBuild_Verify);
 
-    app.post('/api/specify_LFR',fileController.send_specifyLFR);
-    app.post('/api/specify_UCF',fileController.send_specifyUCF);
-    app.post('/api/design_INI',fileController.send_designINI);
-    app.post('/api/design_MINT',fileController.send_designMINT);
-    app.post('/api/build_SVG',fileController.send_buildSVG);
-    app.post('/api/build_JSON',fileController.send_buildJSON);
+    // app.post('/api/specify_LFR',fileController.send_specifyLFR);
+    // app.post('/api/specify_UCF',fileController.send_specifyUCF);
+    // app.post('/api/design_INI',fileController.send_designINI);
+    // app.post('/api/design_MINT',fileController.send_designMINT);
+    // app.post('/api/build_SVG',fileController.send_buildSVG);
+    // app.post('/api/build_JSON',fileController.send_buildJSON);
 
     // Pre-Bootstrap:
     //  app.get('/lfrpage', fileController.sendToUploadsSpecify);

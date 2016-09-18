@@ -7,7 +7,6 @@ var multer = require("multer");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 // var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
 var fs = require('fs');
 
 var bodyParser = require('body-parser');
@@ -51,7 +50,7 @@ global.server.timeout = 1000000000;
 
 //Error handlers
 {
-  
+
 // development error handler
 // will print stacktrace
   if (app.get('env') === 'development') {
@@ -77,40 +76,30 @@ global.server.timeout = 1000000000;
 
 /**************** CONTROLLERS ****************/
 {
-    var homeController = require('./controllers/homepage');
-    var dashboardController = require('./controllers/dashboard');
+    var routes = require('./controllers/routes');
     var fileController = require('./controllers/fileupload');
     var writeController = require('./controllers/filewrite');
-    var specifyController = require('./controllers/specify');
-    var designController = require('./controllers/design');
-    var mmController = require('./controllers/mm');
     var serialController = require('./controllers/serialcommunication');
-    var fluigiController = require('./controllers/fluigi');
-    var lfrController = require('./controllers/lfrpage');
-    var lfr_bsController = require('./controllers/lfrpage_bs');
-    var controlController = require('./controllers/control');
-    var buildController = require('./controllers/build');
-    var assemblyController = require('./controllers/assembly');
 }
 
 /**************** RENDER PAGES ****************/
 {
     // Bootstrap:
-    app.get('/' , homeController.openHomePage);
-    app.get('/dashboard',dashboardController.openDashboard);
-    app.get('/specify',specifyController.openSpecifyPage);
-    app.get('/design',designController.openDesignPage);
-    app.get('/control',controlController.openControllersPage);
-    app.get('/controlFull',controlController.openControlFullPage);
-    app.get('/Build',buildController.openBuildPage);
-    app.get('/assembly', assemblyController.openAssemblyPage);
+    app.get('/' , routes.openHomePage);
+    app.get('/dashboard', routes.openDashboard);
+    app.get('/specify', routes.openSpecifyPage);
+    app.get('/design', routes.openDesignPage);
+    app.get('/control', routes.openControllersPage);
+    app.get('/controlFull', routes.openControlFullPage);
+    app.get('/Build', routes.openBuildPage);
+    app.get('/assembly', routes.openAssemblyPage);
 
-    app.get('/fluigipage', fluigiController.getFluigiPage);
-    app.get('/uShroomPage',mmController.openMMPage);
+    app.get('/fluigipage', routes.getFluigiPage);
+    app.get('/uShroomPage', routes.openMMPage);
     app.get('/serialcommunication', serialController.openSerialPage);
 
-    app.get('/lfrpage', lfrController.openLfrPage);
-    app.get('/lfrpage_bs', lfr_bsController.openLfr_bsPage);
+    app.get('/lfrpage', routes.openLfrPage);
+    app.get('/lfrpage_bs', routes.openLfr_bsPage);
 }
 
 /**************** SERIAL COMMUNICATION ****************/
@@ -161,7 +150,7 @@ global.server.timeout = 1000000000;
     var translateLFRController = require('./controllers/translateLFR');
     app.post('/api/translateLFR',translateLFRController.translateLFR);
 
-// download 
+// download
 
     var downloadController = require('./controllers/download');
     app.post('/api/download',downloadController.download);
@@ -192,4 +181,3 @@ global.server.timeout = 1000000000;
 
     var beccaGetter = require('./controllers/beccaGetter');
     app.post('/api/getJSON_forBecca',beccaGetter.getBecca);
-

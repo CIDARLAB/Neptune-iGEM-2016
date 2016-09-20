@@ -27,7 +27,7 @@ function sendDispense(sender){
         // var precision = parseFloat(JSON.parse(localStorage.dispenserData)[dispenserID - 1]['Precision']);   // pull precision from settings table
 
         // Hardware computations
-        var initializeSetup_outputs = initializeSetup(180,500,0.75,3,0.88,0.25);
+        var initializeSetup_outputs = initializeSetup(180,460,0.69,3,0.88,0.25);
         var PWM_table = initializeSetup_outputs.PWM_table;
         var PWM_dic = initializeSetup_outputs.PWM_dic;
         var uL_table = initializeSetup_outputs.uL_table;
@@ -43,9 +43,9 @@ function sendDispense(sender){
         // var b = initializeSetup_outputs.b;
         // var d = initializeSetup_outputs.d;
         // var a = initializeSetup_outputs.a;
-        // console.log('conversions (PWM and uL): ');
-        // console.log(PWM_dic);
-        // console.log(uL_dic);
+        console.log('conversions (PWM and uL): ');
+        console.log(PWM_table);
+        console.log(uL_table);
 
 
         var temp = JSON.parse(localStorage.dispenserData);
@@ -77,7 +77,7 @@ function sendDispense(sender){
             }
         }
 
-        var even_uL_steps_output = even_uL_steps(uL_table,PWM_table,uL_precision,currentVolume,valueToDispense,time.value);   // [0] is seconds/step [1] is PWM value array to be sent
+        var even_uL_steps_output = even_uL_steps(uL_table, PWM_table, uL_precision, currentVolume, valueToDispense, time.value);   // [0] is seconds/step [1] is PWM value array to be sent
         // values needed for dispense rate
         var msecondsPerStep = even_uL_steps_output.seconds_per_step * 1000; // must be in milliseconds
         // console.log("step per sec: " + (1/msecondsPerStep));

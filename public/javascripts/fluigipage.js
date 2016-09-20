@@ -58,6 +58,16 @@ function flipFlop_valveState(valve_to_control) {
     sendCommand();
     return false;
 }
+
+
+function valve_uL_to_PWM(uL_table,uL_precision,uL_goal) {
+    for (var i=0; i <= uL_table.length; i=i+2) {
+        if (uL_goal-uL_table[i] <= uL_precision/2) {
+            return Math.round(uL_table[i+1]);
+        }
+    }
+}
+
 function wrap_data_for_Arduino() {
     // var valve_to_control = (document.getElementById("ValveNumberSelector").value);
     var valve_to_control = localStorage.portToControl;
@@ -80,6 +90,11 @@ function wrap_data_for_Arduino() {
         var PWMval = closed_state_parameter;
     }
 
+    var initializeSetup_outputs = initializeSetup(180,460,0.69,3,0.88,0.25);
+    var uL_table = initializeSetup_outputs.uL_table;
+    var uL_precision = initializeSetup_outputs.uL_precision;
+    PWMval = valve_uL_to_PWM(uL_table,uL_precision,PWMval);
+
     // FIRST, PAD THE VALVE_TO_CONTROL WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
     var valve_to_control_padded = zeroFill(deviceNum,4);
     // SECOND, PAD THE PWM VALUE WITH 0's SUCH THAT THE VALUE IS 4 CHARACTERS LONG
@@ -100,7 +115,7 @@ function sendCommand() {
     var command_info = message.concat(command);
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
-    console.log(command);
+    // console.log(command);
     localStorage.setItem('myCommand', command);
     $.ajax(
         {
@@ -290,7 +305,7 @@ function sendCommandDispense(PWM, dispenser_to_control) {
     // --- Include code to serial.write() the command to the Arduino here --- //
     toastr.info(command_info);
     // writeToSerialConsole(command_info);
-    console.log(command);
+    // console.log(command);
     localStorage.setItem('myCommand', command);
     $.ajax(
         {

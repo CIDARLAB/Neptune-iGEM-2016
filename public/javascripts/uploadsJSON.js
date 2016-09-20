@@ -28,7 +28,6 @@ function loadButtons() {
         // look through control layer for ports
         while ((myArray = Re.exec(controlOnly)) !== null) {
             portX.push(myArray[1]);
-            // console.log("should be x coord: " + myArray[1]);
             portY.push(myArray[2]);
             portArray.push(myArray.index);
         }
@@ -64,12 +63,7 @@ function loadButtons() {
         if (localStorage.initialDispensers == "TRUE") {
             setNumberOfDispensers_JSON();
         }
-
-        // Display JSON via 3DuF
-        // var result = json;
-        // Registry.viewManager.loadDeviceFromJSON(result);
     });
-    // location.reload();
 };
 
 

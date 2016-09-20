@@ -76,6 +76,8 @@ function deactivateDispenser() {
 }
 
 
+
+
 function placeButtons() {
     var canvasZoom = paper.view.zoom;
     

@@ -13,6 +13,9 @@
 
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
+    <script type="text/javascript" src="../javascripts/precision_init.js"></script>
+    <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
+    <script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 
 
@@ -125,11 +128,11 @@
                             <span class="icon-user"></span>
                         </div>
                         <div class="wizard-content">
-                            <p>Volume of liquid to dispense in ml:</p>
+                            <p>Volume of liquid to dispense in Micro Liters:</p>
                             <input class="btn btn-default" id="liquid" type="text" />
                             <button class="btn btn-default" id="checkVolume">Check volume</button>
                             <br><br>
-                            <p>Tolerance of servos:</p>
+                            <p>Tolerance of servos in Micro Litres:</p>
                             <input class="btn btn-default" id="tolerance" type="text" />
                             <button class="btn btn-default" id="checkTolerance">Check tolerance</button>
                             <br>
@@ -586,12 +589,17 @@
                     + '1, Laptop power supply,'+ 'To power the servos' +'\n'
 
                     +'Servo and syringe components,,,' +'\n'
-                    + localStorage.pumps +',' + localStorage.syringe + 'ml Syringes, To push liquids and open/close valves,' + syringeurl +'\n'
-                    + localStorage.pumps +',' + localStorage.servo + ' servos, To open and close syringes,' + servourl +'\n'
-                    + localStorage.pumps*5 +', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' +'\n'
-                    + localStorage.pumps*1 + ', Small machine screw,' + 'For screwing in servo arm' +'\n'
-                    + localStorage.pumps*1 +', Small nut,' + 'For screwing in servo arm' +'\n'
-                    + localStorage.pumps*5 +', Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+                    + localStorage.numberofdispensers +',' + localStorage.syringe + 'ml Syringes, To dispense liquids,' + syringeurl +'\n'
+                    + localStorage.numberofdispensers +',' + localStorage.servo + ' servos, To open and close syringes to dispense liquid,' + servourl +'\n'
+                    + localStorage.numberofvalves +',' + localStorage.syringe + 'ml Syringes, To open/close valves,' + syringeurl +'\n'
+                    + localStorage.numberofvalves +',' + localStorage.servo + ' servos, To open/close valves,' + servourl +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*5 +', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves*1 + ', Small machine screw,' + 'For screwing in servo arm' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves*1 +', Small nut,' + 'For screwing in servo arm' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves*5 +', Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+
+            //localStorage.numberofvalves = number of valves
+            //localStorage.numberofdispensers = number of dispensers
 
                     +'Hardware components,,,' +'\n'
                     + '1, CNC Mill,'+ 'To create the microfluidic chip' +'\n'
@@ -600,7 +608,7 @@
                     + '1, 3D Printing support roll,' + 'For 3D printing setup' +'\n'
                     + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
                     + '1, 1/4 inch endmill,'+ 'For CNC mill' +'\n'
-                    + localStorage.pumps*6 + ', Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves*6 + ', Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
 
                     +'Optional components,,,' +'\n'
                     + '1, Peristaltic pump,'+ 'To pump fluids through the microfluidic chip' +'\n'
@@ -619,8 +627,8 @@
 
         $('#checkVolume').click(function(){
             var liquid = $('#liquid').val();
-            if (liquid<=0 || liquid >100) {
-                toastr.warning('Volume of liquid must be between 0 and 100! Please enter again.');
+            if (liquid<=0 || liquid >1000000) {
+                toastr.warning('Volume of liquid must be between 0 and 1000000! Please enter again.');
             }
             else {
                 toastr.info('Volume value accepted.');
@@ -641,7 +649,7 @@
             var liquid = $('#liquid').val();
             localStorage.precision= tolerance;
             localStorage.volume = liquid;
-            if (liquid<=0 || liquid >100 || tolerance<0) {
+            if (liquid<=0 || liquid >1000000 || tolerance<0) {
                 toastr.warning('Error! Please enter values to proceed');
             }
             else {

@@ -2,9 +2,9 @@
  * Created by Priya on 22/08/2016.
  */
 
-localStorage.crankradius = 0.01875;
-localStorage.pistonrod= 0.075;
-localStorage.offset= 0.022;
+localStorage.crankradius = 0.63;
+localStorage.pistonrod = 3;
+localStorage.offset = 0.88 ;
 
 
 var servoTable =
@@ -12,9 +12,11 @@ var servoTable =
         {
             "id":"A",
             "name":"FS5106B",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":157,
             "thetaMin": -13.6,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1511,
             "deadbandwidth":5,
             "cost":12.95,
@@ -25,9 +27,11 @@ var servoTable =
         {
             "id":"B",
             "name":"HS-422",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth":8,
             "cost":9.95,
@@ -38,9 +42,11 @@ var servoTable =
         {
             "id":"C",
             "name":"HS-425BB",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1857.7,
             "deadbandwidth":8,
             "cost":12.95,
@@ -51,9 +57,11 @@ var servoTable =
         {
             "id":"D",
             "name":"HS-625MG",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1857.7,
             "deadbandwidth":8,
             "cost":31.95,
@@ -64,9 +72,11 @@ var servoTable =
         {
             "id":"E",
             "name":"HS-85MG",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth":8,
             "cost":29.95,
@@ -77,9 +87,11 @@ var servoTable =
         {
             "id":"F",
             "name":"HS-311",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1780.3,
             "deadbandwidth":5,
             "cost":7.89,
@@ -90,9 +102,11 @@ var servoTable =
         {
             "id":"G",
             "name":"HS-645MG",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth":8,
             "cost":28.59,
@@ -103,9 +117,11 @@ var servoTable =
         {
             "id":"H",
             "name":"HS-53",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1621.6,
             "deadbandwidth":8,
             "cost":7.19,
@@ -116,9 +132,11 @@ var servoTable =
         {
             "id":"I",
             "name":"SR-1425CR",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth":8,
             "cost":16.99,
@@ -129,9 +147,11 @@ var servoTable =
         {
             "id":"J",
             "name":"HS-322",
-            "AD": 60,
+            "AD": 50,
             "thetaMax":170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1791.6,
             "deadbandwidth":5,
             "cost":9.89,
@@ -145,6 +165,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth": 2,
             "cost": 17.75,
@@ -158,6 +180,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth": 1,
             "cost": 39.99,
@@ -168,9 +192,11 @@ var servoTable =
         {
             "id": "M",
             "name": "HS-805BB",
-            "AD": 60,
+            "AD": 50,
             "thetaMax": 199.5,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1864,
             "deadbandwidth": 8,
             "cost": 39.99,
@@ -184,6 +210,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 199.5,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1500,
             "deadbandwidth": 8,
             "cost": 24.99,
@@ -197,6 +225,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
+            "PWM_min": 180,
+            "PWM_max": 500,
             "msRange": 1133.3,
             "deadbandwidth": 1,
             "cost": 2.60,
@@ -217,9 +247,9 @@ var syringeTable =
     [
         {
             "ids": "1",
-            "volume (ml)": 3,
-            "area": 0.091297,
-            "x1": 0.00001752521989,
+            "volume": 3,
+            // "area": 0.091297,
+            "area": 0.325 * 0.325 * 3.14159,
             "costs": 12,
             "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
@@ -227,7 +257,6 @@ var syringeTable =
             "ids": "2",
             "volume": 5,
             "area": 0.177059,
-            "x1": 0.000009036535843,
             "costs": 22,
             "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
@@ -235,7 +264,6 @@ var syringeTable =
             "ids": "3",
             "volume": 10,
             "area": 0.255952,
-            "x1": 0.000006251172094,
             "costs": 18,
             "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
@@ -243,7 +271,6 @@ var syringeTable =
             "ids": "4",
             "volume": 20,
             "area": 0.445505,
-            "x1": 0.00000359142995,
             "costs": 23,
             "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
@@ -251,7 +278,6 @@ var syringeTable =
             "ids": "5",
             "volume": 30,
             "area": 0.573247,
-            "x1": 0.000002791117965,
             "costs": 48,
             "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         },
@@ -259,7 +285,6 @@ var syringeTable =
             "ids": "6",
             "volume": 60,
             "area": 0.867851,
-            "x1": 0.000001843634448,
             "costs": 32,
             "url": "http://www.harvardapparatus.com/pumps-liquid-handling/syringes/plastic-syringes/plastic-syringes.html"
         }
@@ -312,6 +337,7 @@ var syringeTable =
 
 function calculateRecommended() {
     var arr = [];
+    var control_init = [];
 
 // Iterate through syringes 1-12
 // Iterate through servos A-L
@@ -320,38 +346,101 @@ function calculateRecommended() {
 
     for (var key in servoTable) {
         if (servoTable.hasOwnProperty(key)) {
-
+            console.log("______________________________________");
             var servoID = servoTable[key].id;
-            // console.log("Servo id : " + servoID);
-            var x1 = localStorage.crankradius * Math.cos(servoTable[key].thetaMax) + Math.sqrt((localStorage.pistonrod) ^ 2 - (localStorage.crankradius * Math.sin(servoTable[key].thetaMax) + localStorage.offset) ^ 2);
-            var x2 = localStorage.crankradius * Math.cos(servoTable[key].thetaMin) + Math.sqrt((localStorage.pistonrod) ^ 2 - (localStorage.crankradius * Math.sin(servoTable[key].thetaMin) + localStorage.offset) ^ 2);
-            var xtotal = Math.abs(x1 - x2);
-            var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
-            var deltax = xtotal / pwm;
-            var servocost = servoTable[key].cost;
-        }
 
+            console.log("Servo id : " + servoID);
+            var r = parseFloat(localStorage.crankradius);
+            var b = parseFloat (localStorage.pistonrod);
+            var d = parseFloat (localStorage.offset);
+            // console.log((b * b));
+            // console.log("d is :" +parseFloat(d));
+            // console.log(Math.pow((r * Math.sin(servoTable[key].thetaMax* Math.PI/180)) + d, 2));
+
+
+            // var insidesqrt = Math.pow((r*Math.sin(servoTable[key].thetaMax * Math.PI/180))+ parseFloat(d),2);
+            // var insidesqrt2 = Math.pow((r*Math.sin(servoTable[key].thetaMin * Math.PI/180))+ parseFloat(d),2);
+            // var x1 = (r * Math.cos(servoTable[key].thetaMax * Math.PI/180)) + Math.sqrt((b * b) - insidesqrt);
+            // var x2 = (r * Math.cos(servoTable[key].thetaMin * Math.PI/180)) + Math.sqrt((b *b) - insidesqrt2);
+            // var xtotal = Math.abs(x1 - x2);
+            // // var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
+            // // var deltax = xtotal / pwm;
+            // var servocost = servoTable[key].cost;
+            // var PWM_min = servoTable[key].PWM_min;
+            // var PWM_max = servoTable[key].PWM_max;
+
+        }
+        localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
+        localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
+        
         for (var key2 in syringeTable) {
             if (syringeTable.hasOwnProperty(key2)) {
                 //loop through syringes
 
                 var syringeID = syringeTable[key2].ids;
-                // console.log("Syringe id : " + syringeID);
-                var syringex1 = syringeTable[key2].x1 * 1000;
-                // console.log("MY SYRINGE X1: " + syringex1);
+                console.log("Syringe id : " + syringeID);
+                console.log("x1 is " + x1 + " and x2 is " + x2 + " so xtotal is " + xtotal);
+
+
+                //1 * 10^-9 m3 = 1 microLitre = 0.610237441 inch ^3
+                //Find x1 such that Area*x1= 0.610237441 inch ^3
+                //So x1 = (0.610237441 inch ^3)/Area = inches
+
+                var syringex1 = (0.610237441)/syringeTable[key2].area;
                 var syringevolume = syringeTable[key2].volume;
                 var syringecost = syringeTable[key2].costs;
 
-                // console.log("Volume required: " + localStorage.volume);
-                // console.log("Volume we have which is greater than or equal to previous: " + syringevolume);
-                // console.log("Volume in calculation: " + localStorage.volume);
-                // console.log("Volume xtotal/x1 which is greater than or equal to previous: " + xtotal / syringex1);
-                // console.log("Precision in calculation: " + deltax / syringex1);
-                // console.log("Precision xtotal/x1 which is greater than or equal to previous: " + localStorage.precision);
+                console.log("PWM MIN " + PWM_min + " PWM_MAX " + PWM_max + " syringex1 " + syringex1);
+                var setupvalues = initializeSetup(PWM_min,PWM_max, 0.63, 3, 0.88, syringex1);
 
-                // Add inside the if statement:
-                // xtotal / syringex1 >= localStorage.volume
-                if (localStorage.volume <= syringevolume && xtotal / syringex1 >= localStorage.volume && deltax / syringex1 <= localStorage.precision) {
+                var disp = {};
+                for (var i =1; i!=localStorage.numberofdispensers; i++)
+                {
+                    disp.dispenserID = i;
+                    disp.pwmtable = setupvalues.PWM_table;
+                    disp.pwmdic = setupvalues.PWM_dic;
+                    disp.ultable = setupvalues.uL_table;
+                    disp.uldic = setupvalues.uL_dic;
+                    disp.ulmax = setupvalues.uL_max;
+                    disp.ulmin = setupvalues.uL_min;
+                    disp.ulprecision = setupvalues.uL_precision;
+                    control_init.push(disp);
+                }
+                
+
+                // Error Check
+                var insidesqrt = Math.pow((r*Math.sin(setupvalues.theta_max * Math.PI/180))+ parseFloat(d),2);
+                var insidesqrt2 = Math.pow((r*Math.sin(setupvalues.theta_min * Math.PI/180))+ parseFloat(d),2);
+                var x1 = (r * Math.cos(setupvalues.theta_max * Math.PI/180)) + Math.sqrt((b * b) - insidesqrt);
+                var x2 = (r * Math.cos(setupvalues.theta_min * Math.PI/180)) + Math.sqrt((b *b) - insidesqrt2);
+                var xtotal = Math.abs(x1 - x2);
+                
+                // var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
+                // var deltax = xtotal / pwm;
+                
+                var servocost = servoTable[key].cost;
+                var PWM_min = servoTable[key].PWM_min;
+                var PWM_max = servoTable[key].PWM_max;
+
+
+                // console.log("______________________________________");
+                console.log("Hello World.. Build Data:");
+                console.log("Volume required: " + localStorage.volume/1000);
+                console.log("syringe volume: " + syringevolume);
+                console.log("Servo volume: = xtotal (" + xtotal + ") / syringex1 (" +syringex1 + "), which is " + xtotal/syringex1);
+                console.log("Precision required: " + localStorage.precision);
+                console.log("Precision obtained from calculations: " + setupvalues.uL_precision);
+                var servo_volume = xtotal / syringex1;
+                var my_servo_volume;
+                if (servo_volume > syringevolume)
+                {
+                    my_servo_volume = syringevolume;
+                }
+                else {
+                    my_servo_volume = servo_volume;
+                }
+                // console.log("Servo volume being used : " + my_servo_volume);
+                if (localStorage.volume/1000 <= syringevolume && my_servo_volume >= localStorage.volume/1000 && localStorage.precision >= setupvalues.uL_precision ) {
                     //Save servo syringe combo in array
                     console.log("Servo ID passed: " + servoID);
                     console.log("Syringe ID passed: " + syringeID);
@@ -359,7 +448,7 @@ function calculateRecommended() {
                     singlestage.servoID = servoID;
                     singlestage.syringeID = syringeID;
                     singlestage.v = xtotal / syringex1;
-                    singlestage.p = deltax / syringex1;
+                    singlestage.p = setupvalues.uL_precision;
                     singlestage.cost = servocost + syringecost;
                     arr.push(singlestage);
                 }
@@ -481,6 +570,10 @@ function calculateRecommended() {
         //rsyringeimage, vsyringeimage, tsyringeimage
 
     }
+
+    //GIVE TO BECCA:
+    localStorage.control_initialization = control_init;
+
 }
 
 
@@ -496,3 +589,130 @@ function getObjects(obj, key, val) {
     }
     return objects;
 }
+
+function initializeSetup(PWM_min,PWM_max,r, b, d, a) {
+    function deg2rad(degrees){
+        var pi = Math.PI;
+        return (degrees * (pi/180));
+    }
+
+    function PWM2rad(PWM) {
+        var deg = ( (PWM - PWM_min) * (theta_max-theta_min) / (PWM_max-PWM_min) ) + theta_min;
+        return (deg * (Math.PI/180));
+    }
+
+    function displacement(thetaX, r, b, d, a) {
+        return ( r*Math.cos( deg2rad(thetaX) ) ) + Math.sqrt( Math.pow(b, 2) - ( Math.pow((r*Math.sin(deg2rad(thetaX))+d), 2) ) );
+    }
+
+    var thetaXArray = [];               // create array of angles to be populated in for loop
+    var displacementArray = [];         // create array of displacement values
+    var increment = 1000;               // Set resolution of system; from -90 to 270 degrees, 1000 total intervals is sufficient
+    var stepSize = 360/increment;       // Set step size for thetas to start at -90 and end at 270, a total of 360s
+    for( var i = 0; i <= increment; i++){       // Iterate from 0 to 1000 by one
+        var thetaX_i = -90+stepSize*i;              // Calculate theta value from i
+        thetaXArray.push(thetaX_i);             // Add current theta value to theta array
+        displacementArray.push(displacement(thetaX_i, r, b, d, a));     // Add current displacement value to array
+    }
+
+    var displacement_min = Math.min.apply(null, displacementArray);         // Calculate value by finding minimum of displacement array
+    var displacement_max = Math.max.apply(null, displacementArray);         // Calculate value by finding maximum of displacement array
+
+
+    var theta_min = thetaXArray[displacementArray.indexOf(displacement_max)];       // Calculate theta_min by pulling theta value from theta array at the index where the displacement max was found
+    var theta_max = thetaXArray[displacementArray.indexOf(displacement_min)];       // Calculate theta_max by pulling theta value from theta array at the index where the displacement min was found
+    var X_max = displacement(theta_min,r,b,d,a);                             // Calculate Xmax by plugging in theta_min to displacement function
+    var X_min = displacement(theta_max,r,b,d,a);                             // Calculate Xmin by plugging in theta_max to displacement function
+    var mL_min = 0;      // Default value for mLmax, initalized by user in Assembly step. MUST be true
+    var mL_max = mL_min + (X_max-X_min)/a                                       // Calculate mLmax by S
+    var uL_min = mL_min*1000;		// convert incoming variables from mL to uL
+    var uL_max = mL_max*1000;
+    var mL_range = mL_max - mL_min
+    var uL_range = mL_range*1000; 	// convert incoming variables from mL to uL
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Create PWM_table and find uL_precision
+    var PWM_table = [];    // used in this inner function
+    var PWM_dic = {};       // passed as output to easily hash
+
+    var not_found = true;
+    for (var i=PWM_min; i<=PWM_max; i++) {		// From PWM_min value to PWM_max value
+        PWM_table.push(i);						// Add current PWM value to PWM_table
+        var mL_temp = mL_max - ((( r*Math.cos(PWM2rad(i)) ) + Math.sqrt(Math.pow(b,2) - ( Math.pow((r*Math.sin(PWM2rad(i))+d),2) ))) - X_min)/a;	// Calculate mL value with formula of motion
+        var uL_temp = Math.round(mL_temp*100000)/100;		// convert to uL and round to first decimal place
+        PWM_table.push(uL_temp);				// Add uL value to PWM_table
+
+        PWM_dic[i] = uL_temp;
+
+        // Find uL_precision by finding the max uL difference between PWM values.
+        var uL_diff = PWM_table[PWM_table.length-1] - PWM_table[PWM_table.length-3];
+        var uL_diff_prev = PWM_table[PWM_table.length-3] - PWM_table[PWM_table.length-5];
+        if( uL_diff < uL_diff_prev && not_found) {
+            var uL_precision = Math.round(uL_diff_prev*100)/100;
+            not_found = false;
+        };
+    };
+
+
+    // create uL_table
+    var uL_table = [];
+    var uL_dic = {};
+    for (var i=uL_min; i<uL_range+uL_min+uL_precision; i=i+uL_precision) {		// From uL_min (a given) to uL_min+uL_range! uL_precision added on to allow last uL value to be iterated through. Increase by steps of uL_precision
+        // rename i (which is current uL value)
+        var uL_current = i ;									// rename i to something more readable
+        uL_current = Math.round(uL_current*100)/100;		// round to 2 decimal places
+
+        // Add uL to table
+        uL_table.push(uL_current); 							// Add the current uL value to uL_table
+
+        // Find PWM values
+        // Add First PWM value, matched easily
+        if (i == uL_min) {		// We know the first value, which can't be found with linear interpolation
+            uL_table.push(PWM_table[0]);
+            uL_dic[uL_current] = PWM_table[0];
+            continue;
+        }
+        // Linear interpolation to find other PWM values
+        // Skip to 2nd value as we already logged the first
+        for (var j = 3; j <= PWM_table.length; j=j+2) {			// Iterate through uL values in PWM_table (start at 2nd uL value, index 3. Go length of PWM table. Increase by 2 to avoid looking at PWM values)
+            if (PWM_table[j] >= uL_current && j%2 > 0) { 		// If uL value in PWM_table is greater than or equal to our current uL value, find PWM inbetween PWMs in PWM_table
+                var PWM_between = PWM_table[j-3] + (uL_current - PWM_table[j-2])*((PWM_table[j-1]-PWM_table[j-3])/(PWM_table[j]-PWM_table[j-2]));	// Find PWM value via linear interpolation
+                var PWM_between = Math.round(PWM_between*100)/100;	// Round calculated PWM value to 2 decimal places
+                uL_table.push(PWM_between);						// Add calculated PWM value to table
+
+                uL_dic[uL_current] = PWM_between;
+                break;
+            }
+        }
+
+        if (i >= uL_range+uL_min) {
+            uL_table.push(PWM_max)      // Add last PWM value, not calculated above with linear interpolation
+            uL_dic[uL_current] = PWM_max;
+        }
+    };
+
+    return {
+        theta_min: theta_min,
+        theta_max: theta_max,
+        X_min: X_min,
+        X_max: X_max,
+        uL_min: uL_min,
+        uL_max: uL_max,
+        PWM_table: PWM_table,
+        PWM_dic: PWM_dic,
+        uL_table: uL_table,
+        uL_dic: uL_dic,
+        uL_precision: uL_precision,
+        r: r,
+        b: b,
+        d: d,
+        a: a
+    };
+};
+
+
+// TO DO:
+// 1) Fix syringex1 for all syringes based on database
+// 2) Take out thetas in servoTable, and replace them with thetarange from datasheet
+// 3) Debug thetamin, thetamax from Zach's function

@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 //Create server
 {
-  global.server = app.listen(3000, function () {
+    global.server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log("Running the server on " + host + " " + port);
@@ -184,3 +184,7 @@ global.server.timeout = 1000000000;
 
     var beccaGetter = require('./controllers/beccaGetter');
     app.post('/api/getJSON_forBecca',beccaGetter.getBecca);
+
+    var findHome = require('./controllers/findHome');
+    app.post('/api/findHome',findHome.findHome);
+

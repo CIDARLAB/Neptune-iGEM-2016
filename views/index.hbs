@@ -39,8 +39,19 @@
 
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript">
+
+        if (localStorage.firstUse == undefined)
+        {
+            $.post('/api/findHome',function(result,error)
+            {
+                localStorage.WORKSPACE = result.home_directory;
+                localStorage.firstUse = 'defined';
+            });
+        }
+        var tempWorkspace = localStorage.WORKSPACE;
         localStorage.clear();
-        localStorage.WORKSPACE = 'C:/Users/kestas/Documents/Neptune'
+        localStorage.WORKSPACE = tempWorkspace;
+
     </script>
 </head>
 
@@ -254,16 +265,29 @@
     </div>
 </div>
 
-<div id='name_project' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+<div id='name_project' class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
 
         <div class="modal-content">
-            <div class="input-group">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button" onclick="generateNewProject()">Create Project</button>
-                </span>
-                    <input id='projectNameInput' type="text" class="form-control" placeholder="Enter Project Name">
+
+            <div class="modal-header modal-header-primary">
+                <h4 class="modal-title">Name your project: </h4>
             </div>
+
+            <div class="modal-body" id="project_select">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-info" type="button" onclick="generateNewProject()">Create Project</button>
+                    </span>
+                        <input id='projectNameInput' type="text" class="form-control" placeholder="Enter Project Name">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <p>Select a project name. Neptune will generate a project folder in your workspace directory.</p>
+                <p>This project folder will be pre-configured with the files necessary for you to get started with your microfluidic chip design.</p>
+            </div>
+
         </div>
     </div>
 </div>
@@ -332,6 +356,68 @@
     </div>
 </div>
 
+<style type="text/css">
+    .modal-header-success {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #5cb85c;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-warning {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #f0ad4e;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-danger {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #d9534f;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-info {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #5bc0de;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-primary {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #428bca;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+</style>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
 <!-- Latest compiled and minified JavaScript -->

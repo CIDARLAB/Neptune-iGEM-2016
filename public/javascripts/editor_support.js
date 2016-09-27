@@ -726,11 +726,6 @@ function loadFileToEditor(file)
 
 }
 
-function saveFileFromEditor(file)
-{
-
-}
-
 function scanFiles()
 {
     var apple = $.post('/api/scanFiles',{workspace:localStorage.WORKSPACE},function(data,error)

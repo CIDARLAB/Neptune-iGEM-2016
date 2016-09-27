@@ -9,7 +9,23 @@ exports.getFile = function(req,res)
 {
     var path = req.body.path;
 
-    var readStream = fs.createReadStream(path);
-    readStream.pipe(res);
+    if ((typeof path) == 'string')
+    {
+        var readStream = fs.createReadStream(path);
+        readStream.on('error',function()
+        {
+            res.send('filepath_error');
+        });
+        readStream.on('success',function()
+        {
+            readStream.pipe(res);
+        });
+    }
+    else
+    {
+        res.send('filepath_error');
+    }
+
+
 };
 

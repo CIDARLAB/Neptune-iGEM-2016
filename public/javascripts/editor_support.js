@@ -245,32 +245,32 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
         case 'specifyLFR':
             $.post('/api/getFile',{path:localStorage.LFR},function(data)
             {
-                if (data == 'filepath_error')
-                {
+                // if (data == 'filepath_error')
+                // {
+                //     toastr.warning('Neptune cannot detect your LFR filepath','Workspace Error!');
+                // }
+                // else
+                // {
                     CONTENT_TO_PUSH = data.split("\n");
                     fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
                     changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab])
-                }
-                else
-                {
-                    toastr.warning('Neptune cannot detect your LFR filepath','Workspace Error!');
-                }
+               // }
 
             });
             break;
         case 'specifyUCF':
             $.post('/api/getFile',{path:localStorage.UCF},function(data)
             {
-                if (data == 'filepath_error')
-                {
+                // if (data == 'filepath_error')
+                // {
+                //     toastr.warning('Neptune cannot detect your UCF filepath','Workspace Error!');
+                // }
+                // else
+                // {
                     CONTENT_TO_PUSH = data.split("\n");
                     fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
                     changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])
-                }
-                else
-                {
-                    toastr.warning('Neptune cannot detect your UCF filepath','Workspace Error!');
-                }
+                //}
 
             });
             break;
@@ -280,13 +280,12 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
                 if (data == 'filepath_error')
                 {
                     toastr.warning('Neptune cannot detect your INI filepath','Workspace Error!');
-                    CONTENT_TO_PUSH = data.split("\n");
-                    fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-                    changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])
                 }
                 else
                 {
-
+                    CONTENT_TO_PUSH = data.split("\n");
+                    fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+                    changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])
                 }
 
             });
@@ -716,7 +715,7 @@ function generateNewProject()
 {
     var projectName = $('#projectNameInput').val();
     $('#name_project').modal('hide');
-    localStorage.PROJECT = localStorage.WORKSPACE + '/' + projectName;
+    localStorage.PROJECT = localStorage.WORKSPACE + '\\' + projectName;
 
     $.post('/api/makeProject',{projectName:localStorage.PROJECT},function(data,error)
     {
@@ -730,32 +729,6 @@ function generateNewProject()
             toastr.success(projectName, 'New Project Created:')
         }
     });
-}
-
-function loadFileToEditor(file)
-{
-    switch (file)
-    {
-        case 'lfr':
-            $.get(localStorage.PROJECT + '/specifyLFR.v',function(data)
-            {
-                CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-
-                document.getElementById('LFRtab').className = 'active';
-                document.getElementById('UCFtab').className = '';
-            });
-            //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
-            break;
-            break;
-        case 'ucf':
-            break;
-        case 'mint':
-            break;
-        case 'ini':
-            break;
-    }
-
 }
 
 function scanFiles()
@@ -1519,3 +1492,29 @@ function color_ui()
 //         editor_previewFFOutput.session.setValue(JSON.stringify(data, null, '\t'));
 //     });
 // });
+
+// function loadFileToEditor(file)
+// {
+//     switch (file)
+//     {
+//         case 'lfr':
+//             $.get(localStorage.PROJECT + '\\specifyLFR.v',function(data)
+//             {
+//                 CONTENT_TO_PUSH = data.split("\n");
+//                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+//
+//                 document.getElementById('LFRtab').className = 'active';
+//                 document.getElementById('UCFtab').className = '';
+//             });
+//             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
+//             break;
+//             break;
+//         case 'ucf':
+//             break;
+//         case 'mint':
+//             break;
+//         case 'ini':
+//             break;
+//     }
+//
+// }

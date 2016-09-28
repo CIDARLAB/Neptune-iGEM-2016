@@ -1,22 +1,13 @@
 # .uf output by muShroomMapper
-3D DEVICE m1
+3D DEVICE 
 
 LAYER FLOW
 
 
-PORT flowInPort0,flowInPort1,flowInPort2,outPort0 r=2020;
+PORT  r=2020;
 
-V TREE fDevice0_YMixer 2 to 1 spacing=7500 flowChannelWidth=750;
-V TREE fDevice1_YMixer 2 to 1 spacing=7500 flowChannelWidth=750;
 
-H 3DVALVE cDevice0_3DValve radius=1875 gap=600;
 
-CHANNEL flowChannel0 from flowInPort0 2 to fDevice0_YMixer 1 w=750;
-CHANNEL flowChannel1 from flowInPort1 2 to fDevice0_YMixer 2 w=750;
-CHANNEL flowChannel2 from flowInPort2 2 to cDevice0_3DValve 4 w=750;
-CHANNEL flowChannel3 from fDevice1_YMixer 3 to outPort0 4 w=750;
-CHANNEL flowChannel4 from fDevice0_YMixer 3 to fDevice1_YMixer 1 w=750;
-CHANNEL flowChannel5 from cDevice0_3DValve 2 to fDevice1_YMixer 2 w=750;
 
 
 END LAYER
@@ -24,9 +15,8 @@ END LAYER
 LAYER CONTROL
 
 
-PORT controlInPort0 r=2020;
+PORT  r=2020;
 
-CHANNEL controlChannel0 from controlInPort0 1 to cDevice0_3DValve 3 w=750;
 
 
 END LAYER

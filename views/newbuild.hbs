@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> {{title}} </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Custom CSS -->
+    <link href="../stylesheets/newbuild.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <!--<link href="../vendor/morrisjs/morris.css" rel="stylesheet">-->
+
+
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../javascripts/dist/css/timeline.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Toastr CDN -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+
+
+    <!-- Custom Fonts -->
+    <link href="../javascripts/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
+    <script src="../javascripts/tour.js"></script>
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
+
+    <script type="text/javascript" src="../javascripts/servosyringe.js"></script>
+    <script type="text/javascript" src="../javascripts/newbuildbuttons.js"></script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+    <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
+    <script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!--<div >-->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+            <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
+        </div>
+        <!-- /.navbar-header -->
+
+
+    </nav>
+
+    <div id="page-wrapper" style="margin-left: 0;">
+        <div class="row">
+            <!--<div class="col-lg-12">-->
+            <h1 class="page-header" style="margin-left: 10px;"> <i class="fa fa-wrench" style="color: #447294"></i> Build</h1>
+            <!--</div>-->
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row" style="margin: 10px;">
+            <!--<div class="">-->
+            <div class="row  panel-default  panel" >
+                <div class="panel-heading">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    Step 1: Specify Your Settings
+                </div>
+                <div class="panel-body">
+                    <div style="float: left; margin-left: 10px;">
+                        <strong style="font-size: 15px;">Volume of liquid to dispense in Micro Liters:</strong>
+                    </div>
+                    <div style="float: left; margin-left: 20px;">
+                        <input  id="liquid" type="text" />
+                    </div>
+                    <div style="float: left; margin-left: 50px;">
+                        <strong style="font-size: 15px;">Tolerance of servos in Micro Litres:</strong>
+                    </div>
+                    <div style="float: left; margin-left: 20px;">
+                        <input  id="tolerance" type="text" />
+                    </div>
+                    <div style="float: left; margin-left: 100px;">
+                        <!--<br><br>-->
+                        <button  type="submit" id="update" class="btn btn-sm" style="background-color: lightblue;">Update</button>
+
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+        </div>
+
+
+        <br>
+
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Step 2: Browse Suitable Combinations
+
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <li class="left clearfix">
+                                <!--<span class="chat-img pull-left">-->
+                                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+                                <!--</span>-->
+                                <div class="header">
+                                    <strong class="primary-font" style="font-size: 20px">Combo D5</strong>
+
+                                </div>
+                                <div class="chat-body clearfix">
+
+                                    <div class="col-xs-6">
+
+                                        <p>
+                                            HITEC-FS322 Servo and 60ml Syringe
+                                        </p>
+                                        <p>
+                                            Precision: 0.005 litres
+                                        </p>
+                                        <p>
+                                            Cost: $25
+                                        </p>
+                                        <p>
+                                            Maximum volume: 50 litres
+                                        </p>
+                                        <p>
+                                            Torque: 50
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="../hitec.jpg" style="height: 100px">
+                                        <img src="../3ml.jpg" style="padding-left: 50px; height: 100px">
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="left clearfix">
+                                <!--<span class="chat-img pull-left">-->
+                                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+                                <!--</span>-->
+                                <div class="header">
+                                    <strong class="primary-font" style="font-size: 20px">Combo C2</strong>
+
+
+                                </div>
+                                <div class="chat-body clearfix">
+
+                                    <div class="col-xs-6">
+
+                                        <p>
+                                            Parallax Servo and 60ml Syringe
+                                        </p>
+                                        <p>
+                                            Precision: 0.005 litres
+                                        </p>
+                                        <p>
+                                            Cost: $25
+                                        </p>
+                                        <p>
+                                            Maximum volume: 50 litres
+                                        </p>
+                                        <p>
+                                            Torque: 50
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="../parallax.jpg" style="height: 100px">
+                                        <img src="../3ml.jpg" style="padding-left: 50px; height: 100px">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="left clearfix">
+                                <!--<span class="chat-img pull-left">-->
+                                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+                                <!--</span>-->
+                                <div class="header">
+                                    <strong class="primary-font" style="font-size: 20px">Combo D5</strong>
+                                </div>
+                                <div class="chat-body clearfix">
+                                    <div class="col-xs-6">
+                                        <p>
+                                            HITEC-FS322 Servo and 60ml Syringe
+                                        </p>
+                                        <p>
+                                            Precision: 0.005 litres
+                                        </p>
+                                        <p>
+                                            Cost: $25
+                                        </p>
+                                        <p>
+                                            Maximum volume: 50 litres
+                                        </p>
+                                        <p>
+                                            Torque: 50
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="../tower.jpg" style="height: 100px">
+                                        <img src="../3ml.jpg" style="padding-left: 50px; height: 100px">
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="left clearfix">
+                                <!--<span class="chat-img pull-left">-->
+                                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+                                <!--</span>-->
+                                <div class="header">
+                                    <strong class="primary-font" style="font-size: 20px">Combo C2</strong>
+
+
+                                </div>
+                                <div class="chat-body clearfix">
+
+                                    <div class="col-xs-6">
+
+                                        <p>
+                                            Parallax Servo and 60ml Syringe
+                                        </p>
+                                        <p>
+                                            Precision: 0.005 litres
+                                        </p>
+                                        <p>
+                                            Cost: $25
+                                        </p>
+                                        <p>
+                                            Maximum volume: 50 litres
+                                        </p>
+                                        <p>
+                                            Torque: 50
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="../tower.jpg" style="height: 100px">
+                                        <img src="../3ml.jpg" style="padding-left: 50px; height: 100px">
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="left clearfix">
+                                <!--<span class="chat-img pull-left">-->
+                                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+                                <!--</span>-->
+                                <div class="header">
+                                    <strong class="primary-font" style="font-size: 20px">Combo D5</strong>
+
+                                </div>
+                                <div class="chat-body clearfix">
+
+                                    <div class="col-xs-6">
+
+                                        <p>
+                                            HITEC-FS322 Servo and 60ml Syringe
+                                        </p>
+                                        <p>
+                                            Precision: 0.005 litres
+                                        </p>
+                                        <p>
+                                            Cost: $25
+                                        </p>
+                                        <p>
+                                            Maximum volume: 50 litres
+                                        </p>
+                                        <p>
+                                            Torque: 50
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="../hitec.jpg" style="height: 100px">
+                                        <img src="../3ml.jpg" style="padding-left: 50px; height: 100px">
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="left clearfix">
+                                <!--<span class="chat-img pull-left">-->
+                                <!--<img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />-->
+                                <!--</span>-->
+                                <div class="header">
+                                    <strong class="primary-font" style="font-size: 20px">Combo C2</strong>
+
+
+                                </div>
+                                <div class="chat-body clearfix">
+
+                                    <div class="col-xs-6">
+
+                                        <p>
+                                            Parallax Servo and 60ml Syringe
+                                        </p>
+                                        <p>
+                                            Precision: 0.005 litres
+                                        </p>
+                                        <p>
+                                            Cost: $25
+                                        </p>
+                                        <p>
+                                            Maximum volume: 50 litres
+                                        </p>
+                                        <p>
+                                            Torque: 50
+                                        </p>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img src="../parallax.jpg" style="height: 100px">
+                                        <img src="../3ml.jpg" style="padding-left: 50px; height: 100px">
+                                    </div>
+                                </div>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4" >
+                <div class="chat-panel panel panel-default" style="position: fixed; width: 30%; ">
+                    <div class="panel-heading" >
+                        <i class="fa fa-shopping-cart fa-fw"></i> Step 3: Map Dispensers to Preselected Combos
+
+                    </div>
+                    <!-- /.panel-heading -->
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4"  style="width: 100%;">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped" id="combo_table">
+                                        <thead>
+                                        <tr>
+                                            <th>Dispenser ID</th>
+                                            <th>Combo ID</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.col-lg-4 (nested) -->
+                            <div class="col-lg-8">
+                                <div id="morris-bar-chart"></div>
+                            </div>
+                            <!-- /.col-lg-8 (nested) -->
+                        </div>
+                        <div class="row">
+                            <p style="text-align: center; ">  PLACEHOLDER FOR PICTURE OF CHIP WITH DISPENSER ID LABELLED <br><br></p>
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.panel-body -->
+                    <div class="panel-footer">
+                        <div class="input-group">
+                                <span class="input-group-btn" style="text-align: right;">
+                                    <button class="btn btn-sm" id="btn-chat" style="background-color: lightblue; border-radius: 3px;">
+                                        Get ordering list
+                                    </button>
+                                </span>
+                        </div>
+                    </div>
+                    <!-- /.panel-footer -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+<!--</div>-->
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<!--<script src="../vendor/jquery/jquery.min.js"></script>-->
+
+<!-- Bootstrap Core JavaScript -->
+<!--<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>-->
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../javascripts/newbuildstyle.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<!--<script src="../vendor/raphael/raphael.min.js"></script>-->
+<!--<script src="../vendor/morrisjs/morris.min.js"></script>-->
+<!--<script src="../data/morris-data.js"></script>-->
+
+<!-- Custom Theme JavaScript -->
+<!--<script src="../dist/js/sb-admin-2.js"></script>-->
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $('#update').click(function(){
+        var tolerance = $('#tolerance').val();
+        var liquid = $('#liquid').val();
+        localStorage.precision= tolerance;
+        localStorage.volume = liquid;
+        console.log("hello");
+        if (liquid<=0 || liquid >1000000 || tolerance<0) {
+            toastr.warning('Error! Please enter a valid volume and precision.');
+        }
+        else{
+            toastr.info('Values accepted! Please see options of hardware below.');
+          //  updateTable();
+        }
+    });
+
+    window.onload = function() {
+        updateTable();
+    };
+
+</script>
+

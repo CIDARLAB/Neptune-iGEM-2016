@@ -337,7 +337,10 @@ var syringeTable =
 
 function calculateRecommended() {
     var arr = [];
-    var control_init = [];
+
+    loadButtons();
+    setNumberOfDispensers_JSON();
+    setNumberOfPumps_JSON();
 
 // Iterate through syringes 1-12
 // Iterate through servos A-L
@@ -381,7 +384,6 @@ function calculateRecommended() {
                 console.log("Syringe id : " + syringeID);
                 console.log("x1 is " + x1 + " and x2 is " + x2 + " so xtotal is " + xtotal);
 
-
                 //1 * 10^-9 m3 = 1 microLitre = 0.610237441 inch ^3
                 //Find x1 such that Area*x1= 0.610237441 inch ^3
                 //So x1 = (0.610237441 inch ^3)/Area = inches
@@ -390,23 +392,17 @@ function calculateRecommended() {
                 var syringevolume = syringeTable[key2].volume;
                 var syringecost = syringeTable[key2].costs;
 
+
+
+
+
+                
+                var servocost = servoTable[key].cost;
+                var PWM_min = servoTable[key].PWM_min;
+                var PWM_max = servoTable[key].PWM_max;
+
                 console.log("PWM MIN " + PWM_min + " PWM_MAX " + PWM_max + " syringex1 " + syringex1);
                 var setupvalues = initializeSetup(PWM_min,PWM_max, 0.63, 3, 0.88, syringex1);
-
-                var disp = {};
-                for (var i =1; i!=localStorage.numberofdispensers; i++)
-                {
-                    disp.dispenserID = i;
-                    disp.pwmtable = setupvalues.PWM_table;
-                    disp.pwmdic = setupvalues.PWM_dic;
-                    disp.ultable = setupvalues.uL_table;
-                    disp.uldic = setupvalues.uL_dic;
-                    disp.ulmax = setupvalues.uL_max;
-                    disp.ulmin = setupvalues.uL_min;
-                    disp.ulprecision = setupvalues.uL_precision;
-                    control_init.push(disp);
-                }
-                
 
                 // Error Check
                 var insidesqrt = Math.pow((r*Math.sin(setupvalues.theta_max * Math.PI/180))+ parseFloat(d),2);
@@ -414,13 +410,9 @@ function calculateRecommended() {
                 var x1 = (r * Math.cos(setupvalues.theta_max * Math.PI/180)) + Math.sqrt((b * b) - insidesqrt);
                 var x2 = (r * Math.cos(setupvalues.theta_min * Math.PI/180)) + Math.sqrt((b *b) - insidesqrt2);
                 var xtotal = Math.abs(x1 - x2);
-                
+
                 // var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
                 // var deltax = xtotal / pwm;
-                
-                var servocost = servoTable[key].cost;
-                var PWM_min = servoTable[key].PWM_min;
-                var PWM_max = servoTable[key].PWM_max;
 
 
                 // console.log("______________________________________");
@@ -535,6 +527,13 @@ function calculateRecommended() {
         var largestVSyringe = getObjects(syringeTable, 'ids', vsyringe);
         var highestPServo = getObjects(servoTable, 'id', pservo);
         var highestPSyringe = getObjects(syringeTable, 'ids', psyringe);
+        localStorage.lowestservo = lowestservo;
+        localStorage.lowestsyringe = lowestsyringe;
+        localStorage.vservo = vservo;
+        localStorage.vsyringe = vsyringe;
+        localStorage.pservo = pservo;
+        localStorage.psyringe = psyringe;
+
 
         // TEXT
 
@@ -563,16 +562,12 @@ function calculateRecommended() {
         localStorage.psyringeselected = highestPSyringe[0].volume;
         localStorage.psyringeselectedurl= highestPSyringe[0].url;
 
-
         // IMAGES
-
         //rservoimage, vservoimage, tservoimage
         //rsyringeimage, vsyringeimage, tsyringeimage
 
     }
 
-    //GIVE TO BECCA:
-    localStorage.control_initialization = control_init;
 
 }
 
@@ -716,3 +711,52 @@ function initializeSetup(PWM_min,PWM_max,r, b, d, a) {
 // 1) Fix syringex1 for all syringes based on database
 // 2) Take out thetas in servoTable, and replace them with thetarange from datasheet
 // 3) Debug thetamin, thetamax from Zach's function
+
+
+function givecheapestjson(){
+    var lowestServoObject = getObjects(servoTable, 'id', localStorage.lowestservo);
+    var lowestSyringeObject = getObjects(syringeTable, 'ids', localStorage.lowestsyringe);
+    var syringex1 = (0.610237441)/lowestSyringeObject[0].area;
+    var PWM_min = lowestServoObject[0].PWM_min;
+    var PWM_max = lowestServoObject[0].PWM_max;
+    givetocontrol(PWM_min, PWM_max, syringex1);
+
+}
+function givevolumejson(){
+    var vServoObject = getObjects(servoTable, 'id', localStorage.vservo);
+    var vSyringeObject = getObjects(syringeTable, 'ids', localStorage.vsyringe);
+
+    var syringex1 = (0.610237441)/vSyringeObject[0].area;
+    var PWM_min = vServoObject[0].PWM_min;
+    var PWM_max = vServoObject[0].PWM_max;
+    givetocontrol(PWM_min, PWM_max, syringex1);
+}
+
+function givetolerancejson(){
+    var pServoObject = getObjects(servoTable, 'id', localStorage.pservo);
+    var pSyringeObject = getObjects(syringeTable, 'ids', localStorage.psyringe);
+
+    var syringex1 = (0.610237441)/pSyringeObject[0].area;
+    var PWM_min = pServoObject[0].PWM_min;
+    var PWM_max = pServoObject[0].PWM_max;
+    givetocontrol(PWM_min, PWM_max, syringex1);
+}
+
+function givetocontrol(PWM_min , PWM_max, syringex1 ) {
+    var setupvalues = initializeSetup(PWM_min,PWM_max, 0.63, 3, 0.88, syringex1);
+    var control_init = [];
+    var disp = {};
+    for (var j = 1; j != (parseInt(JSON.parse(localStorage.numberofdispensers) + 1)); j++) {
+        disp.pwmtable = setupvalues.PWM_table;
+        disp.pwmdic = setupvalues.PWM_dic;
+        disp.ultable = setupvalues.uL_table;
+        disp.uldic = setupvalues.uL_dic;
+        disp.ulmax = setupvalues.uL_max;
+        disp.ulmin = setupvalues.uL_min;
+        disp.ulprecision = setupvalues.uL_precision;
+        control_init.push(disp);
+    }
+//GIVE TO BECCA:
+   // localStorage.control_initialization = control_init;
+    localStorage.setItem('control_initialization', JSON.stringify(control_init));
+}

@@ -49,3 +49,7 @@ exports.openLfrPage= function(req, res) {
 exports.openLfr_bsPage= function(req, res) {
     res.render('lfrPage_bs', {title: 'LFR Page Bootstrap'});
 };
+
+exports.openNewBuildPage = function (req, res){
+    res.render('newbuild', {title: 'Build'});
+};

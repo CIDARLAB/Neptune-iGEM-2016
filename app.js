@@ -96,6 +96,7 @@ global.server.timeout = 1000000000;
     app.get('/control', viewsController.openControllersPage);
     app.get('/controlFull', viewsController.openControlFullPage);
     app.get('/Build', viewsController.openBuildPage);
+    app.get('/buildfull', viewsController.openNewBuildPage);
     app.get('/assembly', viewsController.openAssemblyPage);
 
     app.get('/fluigipage', viewsController.getFluigiPage);

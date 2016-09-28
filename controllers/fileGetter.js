@@ -9,14 +9,14 @@ exports.getFile = function(req,res)
 {
     var path = req.body.path;
 
-    if ((typeof path) == 'string')
+    if ((typeof path) === 'string')
     {
         var readStream = fs.createReadStream(path);
         readStream.on('error',function()
         {
             res.send('filepath_error');
         });
-        readStream.on('success',function()
+         readStream.on('open',function()
         {
             readStream.pipe(res);
         });

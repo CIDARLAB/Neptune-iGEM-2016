@@ -35,7 +35,8 @@
             "hideEasing": "linear",
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
-        }</script>
+        }
+    </script>
 
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript">
@@ -53,45 +54,148 @@
         localStorage.WORKSPACE = tempWorkspace;
 
     </script>
+
+
+
+    <script type="text/javascript">
+
+        var num;
+        var temp=0;
+        var speed=20000; /* this is set for 10 seconds, edit value to suit requirements */
+        var preloads=[];
+
+        /* add any number of images here */
+
+        preload(
+                '../images/NeptuneHome.png',
+                '../images/CNCpic.png',
+                '../images/UltimakerPic.png',
+                '../images/WiresPic.png'
+        );
+
+        function preload(){
+
+            for(var c=0;c<arguments.length;c++) {
+                preloads[preloads.length]=new Image();
+                preloads[preloads.length-1].src=arguments[c];
+            }
+        }
+
+        function rotateImages() {
+            num=Math.floor(Math.random()*preloads.length);
+            if(num==temp){
+                rotateImages();
+            }
+            else{
+                document.body.style.backgroundImage='url('+preloads[num].src+')';
+                temp=num;
+
+                setTimeout(function(){rotateImages()},speed);
+            }
+        }
+
+        if(window.addEventListener){
+            window.addEventListener('load',function(){setTimeout(function(){rotateImages()},speed)},false);
+        }
+        else {
+            if(window.attachEvent){
+                window.attachEvent('onload',function(){setTimeout(function(){rotateImages()},speed)});
+            }
+        }
+    </script>
+
+
+
+    <style>
+        body {
+            background: url(../images/NeptuneHome.png) no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+        #neptuneTitle {
+            margin-left:10%;
+            margin-top:15%;
+            color:white;
+        }
+        .getStarted {
+            /*margin-left:470px;*/
+
+            background-color: transparent;
+            border-bottom-style: solid;
+            border-right-style: solid;
+            border-width: medium;
+            border-color: white;
+            box-shadow: none;
+            font-family: "Open Sans";
+            width: 230px;
+            height: 70px;
+            font-size: 30px;
+            color: white;
+        }
+        .getStarted:active {
+            background-color: white;
+            color: black;
+            border-top-style: solid;
+            border-left-style: solid;
+        }
+        .getStarted:focus {
+            outline:none;
+        }
+
+        .selectProject {
+            /*margin-left:470px;*/
+
+            background-color: transparent;
+            border-bottom-style: solid;
+            border-right-style: solid;
+            border-width: medium;
+            border-color: white;
+            box-shadow: none;
+            font-family: "Open Sans";
+            width: 260px;
+            height: 70px;
+            font-size: 30px;
+            color: white;
+        }
+        .selectProject:active {
+            background-color: white;
+            color: black;
+            border-top-style: solid;
+            border-left-style: solid;
+        }
+        .selectProject:focus {
+            outline:none;
+        }
+
+        #instructions {
+            font-size: 25px;
+            padding-right: 300px;
+        }
+
+
+    </style>
+
 </head>
 
 
 
-<body style="background-image:url(../images/index/backgroundImg.png)">
+<body>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!--Top Bar-->
-<div class="topBar">
-    <img height= "100" src="../images/index/FluigiButton.png">
-    <img height="100" src="../images/index/cidar-backgbround-no-js.png">
-    <img height="100" src="../images/index/buLogo.png">
-
-    <!--<a href="../dashboard"> <img class="DASHBOARD" height ="40" src="../images/index/dashboard.svg" > </a>-->
+<div class="row" id="neptuneTitle">
+    <img src="../images/NEPTUNEtitle.png" width="700px">
+    <br><br><br>
+    <p id="instructions">To create a new design or open a previous one, start by selecting a project. Then get started working on your microfluidic system. </p>
+    <br>
+    <button class="selectProject" data-toggle="modal" data-target="#setWorkspace">Select Project</button>
+    <br><br>
+    <a href="../dashboard"><button class="getStarted" >Get Started</button></a>
 
 </div>
 
-<header>
-    <!--<div class="container">-->
-        <div class="row">
-            <div style="text-align: center;">
-                <a href="../dashboard">
-                    <img id="dashboard" style="cursor: pointer; padding-top: 5%; text-align: center;" height="400px" src="../images/NeptuneLogo.png" alt=""
-                         onmouseover="this.height='410'" onmouseout="this.height='400'">
-                </a>
-                <div>
-                    <br>
-                    <h1  style="font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; color: white;"> Welcome to Neptune </h1>
-                    <br><br><br>
-                    <a style="cursor:pointer;"><img height= "75" class="myBtn" data-toggle="modal" data-target="#HelpModal" src="../images/index/helpButtonTransparent.png"
-                        onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>
-                    <a style="padding-left: 50px;" href="http://cidarlab.org/Fluigi"><img height= "75" class="myBtn" src="../images/index/aboutButtonTransparent.png"
-                        onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>
-                </div>
-            </div>
-        </div>
-    <!--</div>-->
-</header>
+
 
 </body>
 
@@ -160,7 +264,6 @@
     $(document).ready(function()
     {
         document.getElementById("setWorkspace_in").value = localStorage.WORKSPACE;
-        $('#setWorkspace').modal('show');
     });
 </script>
 
@@ -216,70 +319,6 @@
                 <p>This project folder will be pre-configured with the files necessary for you to get started with your microfluidic chip design.</p>
             </div>
 
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div id="HelpModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">FAQ </h4>
-            </div>
-            <div class="modal-body">
-                Do I need to download anything? <br/>
-                Yes! You need to download node.js to create a local server.
-                <br/><br/>
-                My computer is not recognizing ports when I connect my arduino! <br/>
-                Please download the drivers for the arduino, and remember to connect the arduino before you open connections.
-                <br/><br/>
-                Email us here for further questions:
-                <a href="mailto:bu.igemhw2016@gmail.com" style="font-size:12px; color:blue; font-weight:400;">The FluigiGUI Team</a>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="mushroomModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">muShroom Mapper </h4>
-            </div>
-            <div class="modal-body">
-                Click on the Mushroom to get started! Import your verilog and ucf file to display the mint file and the code. Then, save your files and proceed back to the home page.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="fluigiModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title"> MakerFluidics </h4>
-            </div>
-            <div class="modal-body">
-                Import your svg and json files to display the microfluidics.
-                The buttons on the svg display will help you turn on and off the valves, and the settings button leads you to a table where you can set the open and closed states.
-                The connectivity button allows you to connect to your arduino.
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
         </div>
     </div>
 </div>
@@ -364,84 +403,3 @@
 <!-- *** END: DEPENDENCIES *** -->
 
 </html>
-
-
-<!--Main Page-->
-
-<!--&lt;!&ndash; SPECIFY LINK &ndash;&gt;-->
-<!--<div id="specify"  class="centeredMiddle" >-->
-<!--<div align="center"> <a href="../lfrpage">-->
-<!--<img  height="75" src="../images/index/specify_logo.svg"-->
-<!--onmouseover="this.height='85'" onmouseout="this.height='75'">-->
-<!--</a>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<label style="font-size:40px; color: white; font-family: FontAwesome "> Specify </label>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<label style="font-size:15px; color: white; font-family: FontAwesome "> Describe the function of your device. </label>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<a class="btn btn-default" role="button" data-toggle="modal" data-target="#lfrModal"> See details </a>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; DESIGN LINK &ndash;&gt;-->
-<!--<div id= "design" class="centeredTop" >-->
-<!--<div align="center"> <a href="../uShroomPage">-->
-<!--<img  height="75" src="../images/index/design_logo.svg"-->
-<!--onmouseover="this.height='85'" onmouseout="this.height='75'">-->
-<!--</a>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<label style="font-size:40px; color: white; font-family: FontAwesome "> Design </label>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<label style="font-size:15px; color: white; font-family: FontAwesome "> Create the design schematic of your device </label>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<a class="btn btn-default" role="button" data-toggle="modal" data-target="#fluigiModal"> See details </a>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; BUILD & VERIFY LINK &ndash;&gt;-->
-<!--<div id="buildverify" class="centeredBottom">-->
-<!--<div align="center"> <a href="../fluigipage">-->
-<!--<img  height= "75" src="../images/index/build_logo.svg" onmouseover="this.height='85'" onmouseout="this.height='75'">-->
-<!--</a>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<label style="font-size:40px; color: white; font-family: FontAwesome "> Build & Verify </label>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<label style="font-size:15px; color: white; font-family: FontAwesome "> Build and control your physical microfluidic chip </label>-->
-<!--</div>-->
-<!--<div align="center">-->
-<!--<a class="btn btn-default" role="button" data-toggle="modal" data-target="#mushroomModal"> See details </a>-->
-<!--</div>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; EXTRA CONTENT LINKS &ndash;&gt;-->
-<!--<div>-->
-<!--<a class="rightBottom"><img height= "75" class="myBtn" data-toggle="modal" data-target="#HelpModal" src="../images/index/helpButtonTransparent.png"-->
-<!--onmouseover="this.src='../images/index/helpButton.png'" onmouseout="this.src='../images/index/helpButtonTransparent.png'"> </a>-->
-<!--</div>-->
-<!--<div>-->
-<!--<a class="rightCenter" href="http://cidarlab.org/Fluigi"><img height= "75" class="myBtn" src="../images/index/aboutButtonTransparent.png"-->
-<!--onmouseover="this.src='../images/index/aboutButton.png'" onmouseout="this.src='../images/index/aboutButtonTransparent.png'"></a>-->
-<!--</div>-->
-
-<!--&lt;!&ndash; WORKFLOW RESET &ndash;&gt;-->
-<!--<div class="modal show" id="startmod">-->
-<!--<div class="modal-header">-->
-<!--<a class="close" data-dismiss="modal">×</a>-->
-<!--<h3>Modal header</h3>-->
-<!--</div>-->
-<!--<div class="modal-body">-->
-<!--<p>One fine body…</p>-->
-<!--</div>-->
-<!--<div class="modal-footer">-->
-<!--<a href="#" class="btn">Close</a>-->
-<!--<a href="#" class="btn btn-primary">Save changes</a>-->
-<!--</div>-->
-<!--</div>-->

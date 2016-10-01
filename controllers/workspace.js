@@ -83,6 +83,7 @@ exports.parseDir = function(req,res)
 
 }
 
+
 exports.scanFiles = function(req,res)
 {
     var workspace = req.body.workspace;
@@ -93,6 +94,13 @@ exports.scanFiles = function(req,res)
 
 function dirTree(filename)
 {
+    filename = filename.replace(/\\/g,'/');
+    filename = path.normalize(filename);
+    if (process.platform === 'win32')
+    {
+        filename = filename.replace(/\\/g,'\\\\');
+    }
+
     var stats = fs.lstatSync(filename),
         info =
         {
@@ -103,7 +111,7 @@ function dirTree(filename)
     {
         info.type = "folder";
         info.children = fs.readdirSync(filename).map(function(child) {
-            return dirTree(filename + '\\' + child);
+            return dirTree(filename + '/' + child);
         });
     }
     else

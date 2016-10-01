@@ -110,6 +110,7 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
 
 function pre_pushFileToEditor(path,name,type)
 {
+    //var path = path.substr(7,path.length);
     var filename = path.replace(/^.*[\\\/]/, '');
     var len = filename.length;
     //var len = name.length;
@@ -701,7 +702,7 @@ function generateUCF()
 function loadPreviousProject(project)
 {
     console.log(project);
-    localStorage.PROJECT = localStorage.WORKSPACE + '/' + project;
+    localStorage.PROJECT = localStorage.WORKSPACE + '\\' + project;
     toastr.success(project, 'Project Selected: ')
 
 }

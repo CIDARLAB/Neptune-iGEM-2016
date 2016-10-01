@@ -60,10 +60,10 @@ exports.compileMint = function(req, res)
     lineder(mint_path).find("3D DEVICE",function(err,results){
         //console.log(results);
         mintREGEX = (results[0]).value;
-        mintREGEX = mintREGEX.substring(0, mintREGEX.length - 1);
-        mintREGEX = slash(mintREGEX);
+        //mintREGEX = mintREGEX.substring(0, mintREGEX.length);
+        //mintREGEX = slash(mintREGEX);
         replace({
-            regex: mintREGEX,
+            regex: (results[0]).value,
             replacement: slash(uName),
             paths: [mint_path],
             recursive: true,

@@ -478,6 +478,10 @@ function compileMINT(folderName,fileName)
             // {
             //     console.log(data);
             // });
+
+            (document.getElementById('design_preview')).hidden = false;
+            (document.getElementById('flow_btn')).className = 'page-item active';
+            (document.getElementById('schematic_preview_flow')).hidden = false;
         }
         if (status == 'Failure')
         {

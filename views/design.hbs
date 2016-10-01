@@ -262,11 +262,14 @@
 
                         <ul class="nav nav-tabs">
                             <div class="well well-sm project_title">
-                                Project: <span class="pull-right project_title" id="project_title"> </span>
+                                <h4 class="prj"> <em id="pj_t"> Project: </em> </h4><span class="pull-right project_title" id="project_title"> </span>
                             </div>
                             <li id="MINTtab" class="active"><a id="MINTtab_t" onclick="changeDesignTabs(editor_design,'MINTtab',[MINT_tab,INI_tab])"></a></li>
                             <li id="INItab"><a id="INItab_t" onclick="changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])"></a></li>
                             <li> &nbsp &nbsp </li>
+                            <style>
+                                .prj {  text-align: center  }
+                            </style>
 
                             <!--<div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
                                 <!--<button type="button" id="select_lfr" class="btn btn-warning">LFR</button>-->
@@ -317,14 +320,14 @@
             <!-- END: LFR EDITOR & 2 other panels-->
 
             <!-- START: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
-            <div class="col-lg-4">
+            <div class="col-lg-4" >
 
-                <div class="panel panel-default text-center">
+                <div class="panel panel-default text-center" hidden = 'true' id="design_preview">
                     <div class="panel-heading">
-                        <i class="fa fa-play fa-fw"></i> Schematic Preview
+                        <i class="fa fa-fw"></i> Schematic Preview
                     </div>
 
-                    <div class="panel-body" id="schematic_preview_flow">
+                    <div class="panel-body" id="schematic_preview_flow" hidden = 'true'>
                         <!--<div id="schematic_preview">-->
                         <!--<embed type="image/svg+xml" id="schematic_preview"/>-->
 
@@ -332,7 +335,7 @@
                         <object id="svg_flow"> </object>
 
                     </div>
-                    <div class="panel-body" id="schematic_preview_control">
+                    <div class="panel-body" id="schematic_preview_control" hidden = 'true'>
                         <!--<div id="schematic_preview">-->
                         <!--<embed type="image/svg+xml" id="schematic_preview"/>-->
 
@@ -340,7 +343,7 @@
                         <object id="svg_control"> </object>
 
                     </div>
-                    <div class="panel-body" id="schematic_preview_cell">
+                    <div class="panel-body" id="schematic_preview_cell" hidden = 'true'>
                         <!--<div id="schematic_preview">-->
                         <!--<embed type="image/svg+xml" id="schematic_preview"/>-->
 
@@ -352,40 +355,78 @@
 
                         <nav aria-label="..." >
                             <ul class="pagination pagination-lg">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
+                                <!--<li class="page-item">-->
+                                    <!--<a class="page-link" href="#" aria-label="Previous">-->
+                                        <!--<span aria-hidden="true">&laquo;</span>-->
+                                        <!--<span class="sr-only">Previous</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
+                                <li class="page-item" id="flow_btn"><a class="page-link" onclick="changeDiv('flow')">Flow</a></li>
+                                <li class="page-item" id="control_btn"><a class="page-link" onclick="changeDiv('control')">Control</a></li>
+                                <li class="page-item" id="cell_btn"><a class="page-link" onclick="changeDiv('cell')">Cell</a></li>
+                                <!--<li class="page-item">-->
+                                    <!--<a class="page-link" href="#" aria-label="Next">-->
+                                        <!--<span aria-hidden="true">&raquo;</span>-->
+                                        <!--<span class="sr-only">Next</span>-->
+                                    <!--</a>-->
+                                <!--</li>-->
                             </ul>
                         </nav>
 
                     </div>
                 </div>
+                <script type="text/javascript">
+                    function changeDiv(type)
+                    {
+                        if (type == 'flow')
+                        {
+                            (document.getElementById('schematic_preview_control')).hidden = true;
+                            (document.getElementById('schematic_preview_cell')).hidden = true;
+                            (document.getElementById('schematic_preview_flow')).hidden = false;
+
+                            (document.getElementById('control_btn')).className = 'page-item';
+                            (document.getElementById('cell_btn')).className = 'page-item';
+                            (document.getElementById('flow_btn')).className = 'page-item active';
+
+                            svgPanZoom(document.getElementById('svg_flow_id'));
+                        }
+                        if (type == 'control')
+                        {
+                            (document.getElementById('schematic_preview_flow')).hidden = true;
+                            (document.getElementById('schematic_preview_cell')).hidden = true;
+                            (document.getElementById('schematic_preview_control')).hidden = false;
+
+                            (document.getElementById('flow_btn')).className = 'page-item';
+                            (document.getElementById('cell_btn')).className = 'page-item';
+                            (document.getElementById('control_btn')).className = 'page-item active';
+
+                            svgPanZoom(document.getElementById('svg_control_id'));
+                        }
+                        if (type == 'cell')
+                        {
+                            (document.getElementById('schematic_preview_flow')).hidden = true;
+                            (document.getElementById('schematic_preview_control')).hidden = true;
+                            (document.getElementById('schematic_preview_cell')).hidden = false;
+
+                            (document.getElementById('control_btn')).className = 'page-item';
+                            (document.getElementById('flow_btn')).className = 'page-item';
+                            (document.getElementById('cell_btn')).className = 'page-item active';
+
+                            svgPanZoom(document.getElementById('svg_cell_id'));
+                        }
+                    }
+                </script>
 
                 <!-- START: TERMINAL -->
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-play fa-fw"></i> Terminal
+                        <i class="fa fa-fw"></i> Terminal
                     </div>
                     <div class="panel-body">
                         <div id="terminal_design"></div>
                     </div>
                 </div>
                 <!-- END: TERMINAL -->
-
-
-
 
             </div>
             <!-- END: UPLOAD FORM, UCF SUMMARY, INI SUMMARY -->
@@ -417,102 +458,6 @@
                 fontSize: "12pt"
             });</script>
 
-
-            <!--<div class="modal fade" id="output_flow_layer">-->
-                <!--<div class="modal-dialog" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title">Design Schematic Preview: Flow Layer</h4>-->
-                        <!--</div>-->
-                        <!--<div class="modal-body">-->
-                            <!--<p>One fine body&hellip;</p>-->
-                        <!--</div>-->
-                        <!--<div class="modal-footer">-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
-                        <!--</div>-->
-                    <!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-                <!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
-            <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
-
-
-            <!--&lt;!&ndash; Modal: Compile Actions &ndash;&gt;-->
-            <!--<div class="modal fade" id="myModal_compileComplete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">-->
-                <!--<div class="modal-dialog modal-lg" role="document">-->
-                    <!--<div class="modal-content">-->
-                        <!--<div class="modal-header">-->
-                            <!--<button type="button" class="close" data-dismiss="modal" onclick="hideProceed()" aria-label="Close">-->
-                                <!--<span aria-hidden="true">&times;</span>-->
-                            <!--</button>-->
-                            <!--<h4 class="modal-title" id="myModalLabel">-->
-                                <!--Compilation successful: Design Schematic Preview-->
-                            <!--</h4>-->
-                        <!--</div>-->
-
-                    <!--<div class="modal-content">-->
-                        <!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
-
-                            <!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
-                            <!--<div class="carousel-inner">-->
-                                <!--<div class="item active" id="editor_previewFFOutput"></div>-->
-                                <!--<div class="item">-->
-                                    <!--<img class="img-responsive text-center" style="margin-left: 28%" src="../output/testDevice_device_flow.svg" alt="...">-->
-                                    <!--<div class="carousel-caption">-->
-                                        <!--Flow Layer-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="item">-->
-                                    <!--<img class="img-responsive text-center" style="margin-left: 28%" src="../output/testDevice_device_control.svg" alt="...">-->
-                                    <!--<div class="carousel-caption">-->
-                                        <!--Control Layer-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                                <!--<div class="item">-->
-                                    <!--<img class="img-responsive text-center" style="margin-left: 28%" src="../output/testDevice_device_cell.svg" alt="...">-->
-                                    <!--<div class="carousel-caption">-->
-                                        <!--Cell Layer-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</div>-->
-
-                            <!--&lt;!&ndash; Controls &ndash;&gt;-->
-                            <!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
-                                <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
-                            <!--</a>-->
-                            <!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
-                                <!--<span class="glyphicon glyphicon-chevron-right"></span>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="modal-footer">-->
-                        <!--<a href="" download="buildJSON.json">-->
-                            <!--<button type="button" class="btn btn-primary">-->
-                                <!--Download Schematic Zip-->
-                            <!--</button>-->
-                        <!--</a>-->
-                        <!--<a>-->
-                            <!--<button type="button" class="btn btn-primary" onclick="JSON_SVGflow('push')">-->
-                                <!--Push Schematic-->
-                            <!--</button>-->
-                        <!--</a>-->
-                        <!--<a>-->
-                            <!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideProceed()">-->
-                                <!--Close-->
-                            <!--</button>-->
-                        <!--</a>-->
-                        <!--<div class="row"><br>-->
-                            <!--<a href="../controlFull">-->
-                                <!--<button type="button" class="btn btn-success btn-lg center-block" id="proceedVerify" onclick="hideProceed()">-->
-                                    <!--Proceed to Verify Stage-->
-                                <!--</button>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
 
             <script src="/javascripts/ace/ace.js" type="text/javascript" charset="utf-8"></script>
             <script> var editor_previewFFOutput = ace.edit("editor_previewFFOutput"); editor_previewFFOutput.setTheme("ace/theme/crimson_editor");
@@ -634,7 +579,8 @@
     {
         var prj = localStorage.PROJECT;
         var projectName = prj.replace(/^.*[\\\/]/, '');
-        document.getElementById('project_title').innerText = projectName;
+        projectName = 'Project: ' + '\t' + '\t' + projectName;
+        document.getElementById('pj_t').innerText = projectName;
 
         var file_tree_raw = scanFiles();
     }
@@ -942,6 +888,102 @@
 
 <!--</div>-->
 
+
+<!--<div class="modal fade" id="output_flow_layer">-->
+<!--<div class="modal-dialog" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title">Design Schematic Preview: Flow Layer</h4>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<p>One fine body&hellip;</p>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--</div>-->
+<!--</div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal-dialog &ndash;&gt;-->
+<!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+
+
+<!--&lt;!&ndash; Modal: Compile Actions &ndash;&gt;-->
+<!--<div class="modal fade" id="myModal_compileComplete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">-->
+<!--<div class="modal-dialog modal-lg" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<button type="button" class="close" data-dismiss="modal" onclick="hideProceed()" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--<h4 class="modal-title" id="myModalLabel">-->
+<!--Compilation successful: Design Schematic Preview-->
+<!--</h4>-->
+<!--</div>-->
+
+<!--<div class="modal-content">-->
+<!--<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">-->
+
+<!--&lt;!&ndash; Wrapper for slides &ndash;&gt;-->
+<!--<div class="carousel-inner">-->
+<!--<div class="item active" id="editor_previewFFOutput"></div>-->
+<!--<div class="item">-->
+<!--<img class="img-responsive text-center" style="margin-left: 28%" src="../output/testDevice_device_flow.svg" alt="...">-->
+<!--<div class="carousel-caption">-->
+<!--Flow Layer-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="item">-->
+<!--<img class="img-responsive text-center" style="margin-left: 28%" src="../output/testDevice_device_control.svg" alt="...">-->
+<!--<div class="carousel-caption">-->
+<!--Control Layer-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="item">-->
+<!--<img class="img-responsive text-center" style="margin-left: 28%" src="../output/testDevice_device_cell.svg" alt="...">-->
+<!--<div class="carousel-caption">-->
+<!--Cell Layer-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--&lt;!&ndash; Controls &ndash;&gt;-->
+<!--<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">-->
+<!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+<!--</a>-->
+<!--<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">-->
+<!--<span class="glyphicon glyphicon-chevron-right"></span>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--<a href="" download="buildJSON.json">-->
+<!--<button type="button" class="btn btn-primary">-->
+<!--Download Schematic Zip-->
+<!--</button>-->
+<!--</a>-->
+<!--<a>-->
+<!--<button type="button" class="btn btn-primary" onclick="JSON_SVGflow('push')">-->
+<!--Push Schematic-->
+<!--</button>-->
+<!--</a>-->
+<!--<a>-->
+<!--<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="hideProceed()">-->
+<!--Close-->
+<!--</button>-->
+<!--</a>-->
+<!--<div class="row"><br>-->
+<!--<a href="../controlFull">-->
+<!--<button type="button" class="btn btn-success btn-lg center-block" id="proceedVerify" onclick="hideProceed()">-->
+<!--Proceed to Verify Stage-->
+<!--</button>-->
+<!--</a>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
 <!--<div class="modal-footer">-->
 <!--<a href="" download="buildJSON.json">-->

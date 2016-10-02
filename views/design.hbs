@@ -488,17 +488,44 @@
                     </div>
             </div>
 
-            <div id='name_outputSchematic' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+            <!--<div id='name_outputSchematic' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
+                <!--<div class="modal-dialog modal-sm">-->
+
+                    <!--<div class="modal-content">-->
+                        <!--<div class="input-group">-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="compileMINT(document.getElementById('folderIn').value,document.getElementById('nameIn').value)">Compile MINT</button>-->
+                <!--</span>-->
+                            <!--<input id='folderIn' type="text" class="form-control" placeholder="Enter Output Folder Name">-->
+                            <!--<input id='nameIn' type="text" class="form-control" placeholder="Enter Microfluidic Name">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div id='name_outputSchematic' class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
 
                     <div class="modal-content">
-                        <div class="input-group">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" data-dismiss="modal" type="button" onclick="compileMINT(document.getElementById('folderIn').value,document.getElementById('nameIn').value)">Compile MINT</button>
-                </span>
-                            <input id='folderIn' type="text" class="form-control" placeholder="Enter Output Folder Name">
-                            <input id='nameIn' type="text" class="form-control" placeholder="Enter Microfluidic Name">
+
+                        <div class="modal- modal-header-primary">
+                            <h4 class="modal-title">Choose output MINT file name: </h4>
                         </div>
+
+                        <div class="modal-body" id="project_select">
+                            <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" data-dismiss="modal" onclick="compileMINT(document.getElementById('folderIn').value,document.getElementById('nameIn').value)">Compile MINT</button>
+                    </span>
+                                <input id='folderIn' type="text" class="form-control" placeholder="Enter Output Folder Name">
+                                <input id='nameIn' type="text" class="form-control" placeholder="Enter Microfluidic Name">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <p>You are about to compile a design schematic.</p>
+                            <p>Please enter the name of your microfluidic design schematic folder, and a name for your chip design.</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -579,7 +606,7 @@
     {
         var prj = localStorage.PROJECT;
         var projectName = prj.replace(/^.*[\\\/]/, '');
-        projectName = 'Project: ' + '\t' + '\t' + projectName;
+        projectName = 'Project: ' + projectName;
         document.getElementById('pj_t').innerText = projectName;
 
         var file_tree_raw = scanFiles();
@@ -779,7 +806,80 @@
 </style>
 
 
+<style type="text/css">
+    .modal-header-success {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #5cb85c;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-warning {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #f0ad4e;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-danger {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #d9534f;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-info {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #5bc0de;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-primary {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #428bca;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-custom-blue {
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #0480be;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
 
+</style>
 <!-- ZIP OVERVIEW MODAL -->
 <!--<div class="modal fade" id="myModal_zip">-->
 <!--<div class="modal-dialog" role="document">-->

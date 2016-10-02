@@ -96,6 +96,12 @@ function dirTree(filename)
 {
     filename = filename.replace(/\\/g,'/');
     filename = path.normalize(filename);
+
+    var prjname = filename + '..';
+    prjname = path.resolve(prjname);
+    prjname = path.basename(prjname);
+    var file = path.basename(filename);
+
     if (process.platform === 'win32')
     {
         filename = filename.replace(/\\/g,'\\\\');
@@ -105,12 +111,14 @@ function dirTree(filename)
         info =
         {
             path: filename,
-            name: path.basename(filename)
+            name: path.basename(filename),
+            id: prjname + "_" + file + "_id"
         };
     if (stats.isDirectory())
     {
         info.type = "folder";
-        info.children = fs.readdirSync(filename).map(function(child) {
+        info.children = fs.readdirSync(filename).map(function(child)
+        {
             return dirTree(filename + '/' + child);
         });
     }

@@ -189,9 +189,9 @@
     <br><br><br>
     <p id="instructions">To create a new design or open a previous one, start by selecting a project. Then get started working on your microfluidic system. </p>
     <br>
-    <button class="selectProject" data-toggle="modal" data-target="#setWorkspace">Select Project</button>
+    <button class="selectProject" data-toggle="modal" data-target="#setWorkspace">Get Started</button>
     <br><br>
-    <a href="../dashboard"><button class="getStarted" >Get Started</button></a>
+    <a href="../dashboard"><button class="getStarted" >Documentation</button></a>
 
 </div>
 
@@ -205,7 +205,7 @@
 <script type="text/javascript">
     function workspace_set()
     {
-        localStorage.WORKSPACE = document.getElementById('setWorkspace_in').value;
+        localStorage.WORKSPACE = (document.getElementById('setWorkspace_in').value);//.replace(/\\/g,'\\\\');
 
         $.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)
         {
@@ -239,7 +239,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-header-primary"">
                 <h4 class="modal-title">Confirm Workspace</h4>
             </div>
             <div class="modal-body">
@@ -272,7 +272,7 @@
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header modal-header-primary"">
                 <h4 class="modal-title">Choose your project, or start a new project.</h4>
             </div>
 
@@ -308,7 +308,7 @@
             <div class="modal-body" id="project_select">
                 <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-info" type="button" onclick="generateNewProject()">Create Project</button>
+                        <button class="btn btn-primary" type="button" onclick="generateNewProject()">Create Project</button>
                     </span>
                         <input id='projectNameInput' type="text" class="form-control" placeholder="Enter Project Name">
                 </div>
@@ -322,6 +322,7 @@
         </div>
     </div>
 </div>
+
 
 <style type="text/css">
     .modal-header-success {
@@ -384,6 +385,18 @@
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
     }
+    .modal-header-custom-blue {
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #0480be;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
 </style>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->

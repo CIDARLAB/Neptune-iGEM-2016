@@ -259,12 +259,14 @@
 
                             <ul class="nav nav-tabs" id='tabs_drpdwn'>
                                 <div class="well well-sm project_title">
-                                Project: <span class="pull-right project_title" id="project_title"> </span>
+                                    <h4 class="prj"> <em id="pj_t"> Project: </em> </h4><span class="pull-right project_title" id="project_title"> </span>
                                 </div>
                                 <li id="LFRtab" class="active"><a id="LFRtab_t" onclick="changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab])"></a></li>
                                 <li id="UCFtab"><a id="UCFtab_t" onclick="changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])"></a></li>
                                 <li> &nbsp &nbsp </li>
-
+                                <style>
+                                    .prj {  text-align: center  }
+                                </style>
                                 <!--<div class="btn-group" role="group" aria-label="Button group with nested dropdown">-->
                                     <!--<button type="button" id="select_lfr" class="btn btn-warning">LFR</button>-->
                                     <!--<button type="button" id="select_ucf" class="btn btn-warning">UCF</button>-->
@@ -423,26 +425,54 @@
                 </div>
             </div>
 
-            <div id='name_outputMINT' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-sm">
+            <!--<div id='name_outputMINT' class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">-->
+                <!--<div class="modal-dialog modal-sm">-->
+
+                    <!--<div class="modal-content">-->
+                        <!--<div class="input-group">-->
+                <!--<span class="input-group-btn">-->
+                    <!--<button class="btn btn-secondary" type="button" onclick="translateLFR(document.getElementById('outputMINTname').value)">Translate LFR</button>-->
+                <!--</span>-->
+                            <!--<input id='outputMINTname' type="text" class="form-control" placeholder="MINT_result">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div id='name_outputMINT' class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
 
                     <div class="modal-content">
-                        <div class="input-group">
-                <span class="input-group-btn">
-                    <button class="btn btn-secondary" type="button" onclick="translateLFR(document.getElementById('outputMINTname').value)">Translate LFR</button>
-                </span>
-                            <input id='outputMINTname' type="text" class="form-control" placeholder="MINT_result">
+
+                        <div class="modal- modal-header-primary">
+                            <h4 class="modal-title">Choose output MINT file name: </h4>
                         </div>
+
+                        <div class="modal-body" id="project_select">
+                            <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" onclick="translateLFR(document.getElementById('outputMINTname').value)">Translate LFR</button>
+                    </span>
+                                <input id='outputMINTname' type="text" class="form-control" placeholder="MINT_result">
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <p>You are about to compile your LFR into a MINT file.</p>
+                            <p>Please enter the name of your output MINT file.</p>
+                        </div>
+
                     </div>
                 </div>
             </div>
+
+
 
 
             <!-- Modal: Translate Actions -->
             <div class="modal fade" id="myModal_translateComplete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header modal-header-primary">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="hideProceed()">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -470,7 +500,7 @@
                             </a>
                             <div class="row"><br>
                                 <a href="../design">
-                                    <button type="button" class="btn btn-success btn-lg center-block" id="proceedDesign" onclick="hideProceed()">
+                                    <button type="button" class="btn btn-primary btn-lg center-block" id="proceedDesign" onclick="hideProceed()">
                                         Proceed to Design Stage
                                     </button>
                                 </a>
@@ -583,83 +613,11 @@
     {
         var prj = localStorage.PROJECT;
         var projectName = prj.replace(/^.*[\\\/]/, '');
-        document.getElementById('project_title').innerText = projectName;
+        projectName = 'Project: ' + projectName;
+        document.getElementById('pj_t').innerText = projectName;
 
         var file_tree_raw = scanFiles();
     }
-//    function templateTree()
-//    {
-//        var file_tree = JSON.parse(localStorage.FILE_TREE);
-//        $.get('../javascripts/file_tree_template.hbs', function (data)
-//        {
-//            var template = Handlebars.compile(data);
-//            var myhtml = template(file_tree);
-//            $("#file_tree").html(myhtml);
-//            color_ui();
-//        },'html');
-//
-//        var project = baseName(localStorage.PROJECT);
-//        for (var i = 0; i < file_tree.children.length; i++)
-//        {
-//            if (file_tree.children[i].name == project)
-//            {
-//                var lfr_count = 0;
-//                var ucf_count = 0;
-//                var mint_count = 0;
-//                var ini_count = 0;
-//                for(var j = 0; j < file_tree.children[i].children.length; j++)
-//                {
-//                    if (file_tree.children[i].children[j].type == '.v')
-//                    {
-//                        lfr_count++;
-//                        localStorage.LFR = file_tree.children[i].children[j].path;
-//                        localStorage.LFR_name = file_tree.children[i].children[j].name;
-//                    }
-//                    if (file_tree.children[i].children[j].type == '.json')
-//                    {
-//                        ucf_count++;
-//                        localStorage.UCF = file_tree.children[i].children[j].path;
-//                        localStorage.UCF_name = file_tree.children[i].children[j].name;
-//                    }
-//                    if (file_tree.children[i].children[j].type == '.uf')
-//                    {
-//                        mint_count++;
-//                        localStorage.MINT = file_tree.children[i].children[j].path;
-//                        localStorage.MINT_name = file_tree.children[i].children[j].name;
-//                    }
-//                    if (file_tree.children[i].children[j].type == '.ini')
-//                    {
-//                        ini_count++;
-//                        localStorage.INI = file_tree.children[i].children[j].path;
-//                        localStorage.INI_name = file_tree.children[i].children[j].name;
-//                    }
-//                }
-//            }
-//        }
-//        document.getElementById('LFRtab_t').innerText = localStorage.LFR_name;
-//        document.getElementById('UCFtab_t').innerText = localStorage.UCF_name;
-//        pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);
-//        pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);
-//    }
-//
-//    function baseName(path)
-//    {
-//        return path.split(/[\\/]/).pop();
-//    }
-//
-//    function color_ui()
-//    {
-//        var proj_id = localStorage.PROJECT + '_pid';
-//        var lfr_id = localStorage.LFR + '_fid';
-//        var ucf_id = localStorage.UCF + '_fid';
-//        var mint_id = localStorage.MINT + '_fid';
-//        var ini_id = localStorage.INI + '_fid';
-//        document.getElementById(proj_id).style.color = 'purple';
-//        document.getElementById(lfr_id).style.color = 'green';
-//        document.getElementById(ucf_id).style.color = 'green';
-//        document.getElementById(mint_id).style.color = 'green';
-//        document.getElementById(ini_id).style.color = 'green';
-//    }
 
     $( document ).ready( file_sync );
 
@@ -751,9 +709,156 @@
 
 </html>
 
+<style type="text/css">
+    .modal-header-success {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #5cb85c;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-warning {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #f0ad4e;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-danger {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #d9534f;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-info {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #5bc0de;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-primary {
+        color:#fff;
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #428bca;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    .modal-header-custom-blue {
+        padding:9px 15px;
+        border-bottom:1px solid #eee;
+        background-color: #0480be;
+        -webkit-border-top-left-radius: 5px;
+        -webkit-border-top-right-radius: 5px;
+        -moz-border-radius-topleft: 5px;
+        -moz-border-radius-topright: 5px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+</style>
 
 
 
+<!--//    function templateTree()-->
+<!--//    {-->
+<!--//        var file_tree = JSON.parse(localStorage.FILE_TREE);-->
+<!--//        $.get('../javascripts/file_tree_template.hbs', function (data)-->
+<!--//        {-->
+<!--//            var template = Handlebars.compile(data);-->
+<!--//            var myhtml = template(file_tree);-->
+<!--//            $("#file_tree").html(myhtml);-->
+<!--//            color_ui();-->
+<!--//        },'html');-->
+<!--//-->
+<!--//        var project = baseName(localStorage.PROJECT);-->
+<!--//        for (var i = 0; i < file_tree.children.length; i++)-->
+<!--//        {-->
+<!--//            if (file_tree.children[i].name == project)-->
+<!--//            {-->
+<!--//                var lfr_count = 0;-->
+<!--//                var ucf_count = 0;-->
+<!--//                var mint_count = 0;-->
+<!--//                var ini_count = 0;-->
+<!--//                for(var j = 0; j < file_tree.children[i].children.length; j++)-->
+<!--//                {-->
+<!--//                    if (file_tree.children[i].children[j].type == '.v')-->
+<!--//                    {-->
+<!--//                        lfr_count++;-->
+<!--//                        localStorage.LFR = file_tree.children[i].children[j].path;-->
+<!--//                        localStorage.LFR_name = file_tree.children[i].children[j].name;-->
+<!--//                    }-->
+<!--//                    if (file_tree.children[i].children[j].type == '.json')-->
+<!--//                    {-->
+<!--//                        ucf_count++;-->
+<!--//                        localStorage.UCF = file_tree.children[i].children[j].path;-->
+<!--//                        localStorage.UCF_name = file_tree.children[i].children[j].name;-->
+<!--//                    }-->
+<!--//                    if (file_tree.children[i].children[j].type == '.uf')-->
+<!--//                    {-->
+<!--//                        mint_count++;-->
+<!--//                        localStorage.MINT = file_tree.children[i].children[j].path;-->
+<!--//                        localStorage.MINT_name = file_tree.children[i].children[j].name;-->
+<!--//                    }-->
+<!--//                    if (file_tree.children[i].children[j].type == '.ini')-->
+<!--//                    {-->
+<!--//                        ini_count++;-->
+<!--//                        localStorage.INI = file_tree.children[i].children[j].path;-->
+<!--//                        localStorage.INI_name = file_tree.children[i].children[j].name;-->
+<!--//                    }-->
+<!--//                }-->
+<!--//            }-->
+<!--//        }-->
+<!--//        document.getElementById('LFRtab_t').innerText = localStorage.LFR_name;-->
+<!--//        document.getElementById('UCFtab_t').innerText = localStorage.UCF_name;-->
+<!--//        pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);-->
+<!--//        pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);-->
+<!--//    }-->
+<!--//-->
+<!--//    function baseName(path)-->
+<!--//    {-->
+<!--//        return path.split(/[\\/]/).pop();-->
+<!--//    }-->
+<!--//-->
+<!--//    function color_ui()-->
+<!--//    {-->
+<!--//        var proj_id = localStorage.PROJECT + '_pid';-->
+<!--//        var lfr_id = localStorage.LFR + '_fid';-->
+<!--//        var ucf_id = localStorage.UCF + '_fid';-->
+<!--//        var mint_id = localStorage.MINT + '_fid';-->
+<!--//        var ini_id = localStorage.INI + '_fid';-->
+<!--//        document.getElementById(proj_id).style.color = 'purple';-->
+<!--//        document.getElementById(lfr_id).style.color = 'green';-->
+<!--//        document.getElementById(ucf_id).style.color = 'green';-->
+<!--//        document.getElementById(mint_id).style.color = 'green';-->
+<!--//        document.getElementById(ini_id).style.color = 'green';-->
+<!--//    }-->
 
 <!--&lt;!&ndash; UCF CREATOR &ndash;&gt;-->
 <!--<div class="modal fade" id="myModal_ucf">-->

@@ -706,7 +706,7 @@ function generateUCF()
 function loadPreviousProject(project)
 {
     console.log(project);
-    localStorage.PROJECT = localStorage.WORKSPACE + '\\' + project;
+    localStorage.PROJECT = localStorage.WORKSPACE + '/' + project;
     toastr.success(project, 'Project Selected: ')
     window.location.href = '../dashboard';
 }
@@ -720,7 +720,7 @@ function generateNewProject()
 {
     var projectName = $('#projectNameInput').val();
     $('#name_project').modal('hide');
-    localStorage.PROJECT = localStorage.WORKSPACE + '\\' + projectName;
+    localStorage.PROJECT = localStorage.WORKSPACE + '/' + projectName;
 
     $.post('/api/makeProject',{projectName:localStorage.PROJECT},function(data,error)
     {

@@ -708,7 +708,7 @@ function loadPreviousProject(project)
     console.log(project);
     localStorage.PROJECT = localStorage.WORKSPACE + '\\' + project;
     toastr.success(project, 'Project Selected: ')
-
+    window.location.href = '../dashboard';
 }
 
 function nameProject()
@@ -731,7 +731,8 @@ function generateNewProject()
         }
         if (data.status == 'project_created')
         {
-            toastr.success(projectName, 'New Project Created:')
+            toastr.success(projectName, 'New Project Created:');
+            window.location.href = '../dashboard';
         }
     });
 }
@@ -833,6 +834,11 @@ function color_ui()
     var ucf_id = localStorage.UCF + '_fid';
     var mint_id = localStorage.MINT + '_fid';
     var ini_id = localStorage.INI + '_fid';
+    proj_id = proj_id.replace(/\\/g,'\\\\');
+    lfr_id = lfr_id.replace(/\\/g,'\\\\');
+    ucf_id = ucf_id.replace(/\\/g,'\\\\');
+    mint_id = mint_id.replace(/\\/g,'\\\\');
+    ini_id = ini_id.replace(/\\/g,'\\\\');
     document.getElementById(proj_id).style.color = 'purple';
     document.getElementById(lfr_id).style.color = 'green';
     document.getElementById(ucf_id).style.color = 'green';

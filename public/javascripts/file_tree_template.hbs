@@ -38,12 +38,12 @@
 <a href="#"><i class="fa fa-sitemap fa-fw"></i> {{name}} <span class="fa arrow"></span></a>
 <ul class="nav nav-second-level">
 {{#each children}}
-    <li>
-        <a onclick="pre_pushFileToEditor('{{path}}','{{name}}','{{type}}')" id='{{path}}_pid' href="#"> {{name}} <span class="fa arrow"></span></a>
+    <li id='{{path}}_pid'>
+        <a onclick="pre_pushFileToEditor('{{path}}','{{name}}','{{type}}')"  href="#"> {{name}} <span class="fa arrow"></span></a>
         <ul class="nav nav-third-level">
             {{#each children}}
-            <li>
-                <a onclick="pre_pushFileToEditor('{{path}}','{{name}}','{{type}}')" id='{{path}}_fid' href="#"> {{name}} </a>
+            <li id='{{path}}_fid'>
+                <a onclick="pre_pushFileToEditor('{{path}}','{{name}}','{{type}}')"  href="#"> {{name}} </a>
             </li>
             {{/each}}
         </ul>

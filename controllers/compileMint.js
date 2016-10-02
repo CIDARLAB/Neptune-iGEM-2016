@@ -49,7 +49,7 @@ exports.compileMint = function(req, res)
         iniREGEX = iniREGEX.substring(0, iniREGEX.length - 1);
         iniREGEX = slash(iniREGEX);
         replace({
-            regex: iniREGEX,
+            regex: slash(((results[0]).value).substring(0, iniREGEX.length - 1)),
             replacement: slash(outputPath),
             paths: [ini_path],
             recursive: true,

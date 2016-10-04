@@ -37,6 +37,7 @@
     "socket.io": "^1.4.8",
     "toastr": "^2.1.2",
     "webix": "~3.3.2",
-    "home-dir":"1.0.0"
+    "home-dir":"1.0.0",
+    "mkdirp":"0.5.1"
   }
 }

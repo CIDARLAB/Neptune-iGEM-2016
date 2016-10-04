@@ -4,6 +4,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var mkdirp = require('mkdirp');
 
 exports.getProjects = function(req,res)
 {
@@ -14,6 +15,13 @@ exports.getProjects = function(req,res)
 
 function getDirectories(srcpath)
 {
+    try{
+        fs.accessSync(srcpath, fs.F_OK);
+    }
+    catch(e){
+        console.log("Workspace Directory does not exist. Createing a new Directory");
+        mkdirp.sync(srcpath);
+    }
     return fs.readdirSync(srcpath).filter(function(file) {
         return fs.statSync(path.join(srcpath, file)).isDirectory();
     });

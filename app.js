@@ -13,6 +13,10 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+//Save application path into a global variable
+
+global.Neptune_ROOT_DIR = __dirname;
+
 //Create server
 {
     global.server = app.listen(3000, function () {
@@ -185,4 +189,3 @@ global.server.timeout = 1000000000;
 
     var findHome = require('./controllers/findHome');
     app.post('/api/findHome',findHome.findHome);
-

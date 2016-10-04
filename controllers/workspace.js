@@ -31,12 +31,12 @@ exports.makeProject = function(req,res)
         fs.openSync(projectName + '/designMINT.uf', 'w');
         fs.openSync(projectName + '/designINI.ini', 'w');
 
-
-        var readingStream = fs.createReadStream('./defaults/defaultUCF.json');
+        //console.log("Testing out __dirname: " + path.join(global.Neptune_ROOT_DIR,"defaults","defaultUCF.json"));
+        var readingStream = fs.createReadStream(path.join(global.Neptune_ROOT_DIR,"defaults","defaultUCF.json"));
         var writingStream = fs.createWriteStream(projectName + '/specifyUCF.json');
         readingStream.pipe(writingStream);
 
-        var readStream = fs.createReadStream('./defaults/defaultINI.txt');
+        var readStream = fs.createReadStream(path.join(global.Neptune_ROOT_DIR,"defaults","defaultINI.txt"));
         var writeStream = fs.createWriteStream(projectName + '/designINI.ini');
         readStream.pipe(writeStream);
 

@@ -2,6 +2,16 @@
  * Created by Priya on 22/06/2016.
  */
 
+var serialCommunication = require('./serialcommunication');
+
+exports.openDataCollectionPage = function(req, res)
+{
+    serialCommunication.listPorts( function(ports) {
+        res.render('datacollection', {title: 'Data Collection', serialPorts: ports});
+    });
+
+};
+
 exports.openHomePage = function(req, res) {
     res.render('index', { title: 'Neptune' });
 };
@@ -52,4 +62,8 @@ exports.openLfr_bsPage= function(req, res) {
 
 exports.openNewBuildPage = function (req, res){
     res.render('newbuild', {title: 'Build'});
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> merging again

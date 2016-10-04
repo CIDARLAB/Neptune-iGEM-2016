@@ -3,10 +3,14 @@
  */
 
 var chart;
-var chartData;
-var chartOptions;
+var chartDataContinuous;
+var chartOptionsContinuous;
 var sensors = [];
+var oldReadings = []; //arrays in js function like stacks.
 var numOfSensors = 0;
+var sensorCollectionStyle ;
+//0 is visualize a single reading // 1 is visualize multiple readings from now on.
+// if you want to load something from memory or a file write a new function to do that with.
 
 $(document).ready(function() {
     var socket = io();
@@ -19,8 +23,12 @@ $(document).ready(function() {
         console.log(data.data);
         //do stuff to display data in real time. but also send it off to the server to add it to the CSV for that time frame
         //console.log(parseArduinoOutput(data.data));
-
-        updateChart(parseArduinoOutput(data.data));
+        if (data.data == '\0'){
+            //done sending data
+            handleDataDisplay();
+        } else {
+            addToQueues(parseArduinoOutput(data.data));
+        }
 
         //put it to somewhere
 
@@ -60,6 +68,7 @@ $(document).ready(function() {
     });
 
     $("#read-button").click( function () {
+        sensorCollectionStyle = 0;
         $.ajax(
             {   url: "/serialcommunication/send", type: 'POST', async: true,
                 data:
@@ -75,6 +84,11 @@ $(document).ready(function() {
     });
 
     $("#read-continuously-button").click( function () {
+        sensorCollectionStyle = 1;
+        chartDataContinuous = "";
+        //maybe set up continuous chart here?
+
+        //
         $.ajax(
             {   url: "/serialcommunication/send", type: 'POST', async: true,
                 data:
@@ -152,7 +166,6 @@ function parseArduinoOutput( output ) {
     return  {address: address, type: type, readingValue: value, minutes: timeElapsed.substring(0,2), seconds: timeElapsed.substring(2,5)};
 }
 
-
 function initSensorListFromButton() {
     var numberOfSensors = parseInt($("#sensor-menu").val());
     numOfSensors = numberOfSensors;
@@ -176,13 +189,12 @@ function initHardwareFromListedData() {
     alert (numOfSensors);
     sensors = new Array(numOfSensors);
     var i;
-    for ( i = 0; i < numOfSensors ; i++ ) {
+    for ( i = 1; i < numOfSensors + 1 ; i++ ) {
         var sensor = {
-            address: "",
-            type: "",
-            code: "",
+            address: parseInt($("#sensor-index-" + i).val()),
+            type: $("#sensor-index-" + i + "-type").val(),
             queue: new Queue()
-        }
+        };
         sensors[i] = sensor;
     }
 }
@@ -195,14 +207,93 @@ function sensorTemplate() {
 }
 
 function flubAbout() {
-    alert("FLUBBBING");
+    var sensorVar = {
+        address: 12,
+        type: 'PH',
+        value: 7.00,
+        timeElapsed: "00.07"
+    };
+    var i;
+    for (i = 0; i < numOfSensors; i++){
+        sensors[i].queue.enqueue(sensorVar);
+    }
 }
 
-function sensorMapping(index, address, type, code){
+function sensorMapping(index, address, type, code, timeElapsed){
     var sensor = {
         address: address,
         type: type,
         code: code,
+        timeElapsed: timeElapsed
     };
     return sensor
+}
+
+function addToQueues(sensorData){
+    //look into using a hash map approach for constant time look up complexity
+
+    //todo -> add to a var to check if I need to update the sensor data
+
+    //THIS CAN BE IMPROVED WITH A HASH MAP { sensor address -> value }
+    var i;
+    for (i = 1; i < numOfSensors + 1; i++){
+        if (sensorData.address == sensors[i].address) {
+            sensors[i].queue.enqueue(sensorData);
+        }
+    }
+}
+
+function handleDataDisplay(){
+    switch(sensorCollectionStyle) {
+        case 0: //this is the single read mode
+
+            var dataTable = new google.visualization.DataTable();
+            dataTable.addColumn('string', 'Sensor');
+            dataTable.addColumn('number', 'Reading');
+            var sensorReadingNow = [];
+
+            var i;
+            for (i = 1; i < numOfSensors + 1; i++){ //AGAIN -> can't use address 0, if you map this to sensor addresses in js.
+                var sensorData = sensors[i].queue.dequeue();
+                if (sensorData != null){
+                    sensorReadingNow.push(sensorData);
+                }
+
+                dataTable.addRows([[sensorData.type + '\nNum:' + sensorData.address, sensorData.readingValue]]);
+            }
+            var date = new Date();
+            var payload = { data: sensorReadingNow, timeStamp: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() };
+            oldReadings.push(payload);
+
+            chart.draw(dataTable, chartOptions);
+
+            //so this is done and it's adding payloads to my history object (which is NOICE)
+
+            break;
+        case 1: //this is the continuous read mode
+            //need to implement something that will keep track of this.
+            //to that end i'm probably gonna need some sort of global var for the chart data here. I'd want to minimize O(n) look ups
+            //so in that way I'm not creating something that's O(n^2) (look up and populate a chart data from the list of queues
+
+
+            break;
+        default:
+            break;
+    }
+
+}
+
+function sendKillCmd(){
+    $.ajax(
+        {   url: "/serialcommunication/send", type: 'POST', async: true,
+            data:
+            {
+                commandData: "q\r"
+            },
+            success: function(response){
+
+            },
+            error: function(response){
+            }
+        });
 }

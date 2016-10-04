@@ -110,6 +110,7 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
 
 function pre_pushFileToEditor(path,name,type)
 {
+    //var path = path.substr(7,path.length);
     var filename = path.replace(/^.*[\\\/]/, '');
     var len = filename.length;
     //var len = name.length;
@@ -245,33 +246,64 @@ function pushFileToEditor(Editor_To_Push_Toward,FILE_TYPE,session)
         case 'specifyLFR':
             $.post('/api/getFile',{path:localStorage.LFR},function(data)
             {
-                CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-                changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab])
+                // if (data == 'filepath_error')
+                // {
+                //     toastr.warning('Neptune cannot detect your LFR filepath','Workspace Error!');
+                // }
+                // else
+                // {
+                    CONTENT_TO_PUSH = data.split("\n");
+                    fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+                    changeSpecifyTabs(editor_specify,'LFRtab',[LFR_tab,UCF_tab])
+               // }
+
             });
             break;
         case 'specifyUCF':
             $.post('/api/getFile',{path:localStorage.UCF},function(data)
             {
-                CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-                changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])
+                // if (data == 'filepath_error')
+                // {
+                //     toastr.warning('Neptune cannot detect your UCF filepath','Workspace Error!');
+                // }
+                // else
+                // {
+                    CONTENT_TO_PUSH = data.split("\n");
+                    fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+                    changeSpecifyTabs(editor_specify,'UCFtab',[LFR_tab,UCF_tab])
+                //}
+
             });
             break;
         case 'designINI':
             $.post('/api/getFile',{path:localStorage.INI},function(data)
             {
-                CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-                changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])
+                if (data == 'filepath_error')
+                {
+                    toastr.warning('Neptune cannot detect your INI filepath','Workspace Error!');
+                }
+                else
+                {
+                    CONTENT_TO_PUSH = data.split("\n");
+                    fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+                    changeDesignTabs(editor_design,'INItab',[MINT_tab,INI_tab])
+                }
+
             });
             break;
         case 'designMINT':
             $.post('/api/getFile',{path:localStorage.MINT},function(data)
             {
-                CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-                changeDesignTabs(editor_design,'MINTtab',[MINT_tab,INI_tab])
+                if (data == 'filepath_error')
+                {
+                    toastr.warning('Neptune cannot detect your MINT filepath','Workspace Error!');
+                }
+                else
+                {
+                    CONTENT_TO_PUSH = data.split("\n");
+                    fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+                    changeDesignTabs(editor_design,'MINTtab',[MINT_tab,INI_tab])
+                }
             });
             break;
     }
@@ -296,11 +328,12 @@ function fill_editor(File_To_Fill_Editor_With,Editor_To_Fill,session)
     }
 }
 
-function translateLFR()
+function translateLFR(fileName)
 {
     localStorage.WORKFLOW_STAGE = 'design';
 
-    var fileName = 'testingOutput.uf';
+    fileName = fileName + '.uf';
+    //var fileName = 'testingOutput.uf';
 
     var translate = $.post('/api/translateLFR',{filePathLFR: localStorage.LFR, filePathUCF: localStorage.UCF, filePathOut: localStorage.PROJECT, name: fileName},function(data)
     {
@@ -333,46 +366,109 @@ function translateLFR()
     });
 }
 
-function compileMINT()
+function compileMINT(folderName,fileName)
 {
     localStorage.WORKFLOW_STAGE = 'build';
 
-    var outputFolder = 'design_schematics/';
-    var outputName = 'microfluidic';
+    var outputFolder = 'design_schematics/'; //This is overwritten, intentional
+    outputFolder = folderName + '/';
+    var outputName = 'microfluidic'; // This is overwritten, intentional
+    outputName = fileName;
     var out = outputName + '_device_flow';
     var out2 = outputName + '_device_flow.svg';
 
-    $.post('/api/compileMint',{filePathMINT: localStorage.MINT, filePathINI: localStorage.INI, outPath: localStorage.PROJECT, name: outputFolder, base_name: outputName},function(data)
+    $.post('/api/compileMint',{filePathMINT: localStorage.MINT, filePathINI: localStorage.INI, filePathUCF: localStorage.UCF, filePathLFR: localStorage.LFR, outPath: localStorage.PROJECT, name: outputFolder, base_name: outputName},function(data)
     {
         var status = data.terminalStatus;
         if (status == 'Success')
         {
 
             var str = localStorage.PROJECT + '/' + outputFolder + out2;
-            $('#schematic_preview').load('../mysvg.svg',function(){
-                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
 
-                var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
-                      panEnabled: true
-                    , controlIconsEnabled: false
-                    , zoomEnabled: true
-                    , dblClickZoomEnabled: true
-                    , mouseWheelZoomEnabled: true
-                    , preventMouseEventsDefault: true
-                    , zoomScaleSensitivity: 0.2
-                    , minZoom: 0.5
-                    , maxZoom: 10
-                    , fit: true
-                    , contain: false
-                    , center: true
-                    , refreshRate: 'auto'
-                    , beforeZoom: function(){}
-                    , onZoom: function(){}
-                    , beforePan: function(){}
-                    , onPan: function(){}
-                    , customEventsHandler: {}
-                    , eventsListenerElement: null
-                });
+            $('#svg_flow').load('../svg_flow.svg',function()
+            {
+                document.getElementById('schematic_preview_flow').children[0].children[0].id = 'svg_flow_id';
+                //document.getElementById('schematic_preview').children[0].children[0].id = 'svg_flow_id'
+                //document.getElementById("svg_flow");
+                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
+                svgPanZoom(document.getElementById('svg_flow_id'));
+                // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
+                //       panEnabled: true
+                //     , controlIconsEnabled: false
+                //     , zoomEnabled: true
+                //     , dblClickZoomEnabled: true
+                //     , mouseWheelZoomEnabled: true
+                //     , preventMouseEventsDefault: true
+                //     , zoomScaleSensitivity: 0.2
+                //     , minZoom: 0.5
+                //     , maxZoom: 10
+                //     , fit: true
+                //     , contain: false
+                //     , center: true
+                //     , refreshRate: 'auto'
+                //     , beforeZoom: function(){}
+                //     , onZoom: function(){}
+                //     , beforePan: function(){}
+                //     , onPan: function(){}
+                //     , customEventsHandler: {}
+                //     , eventsListenerElement: null
+                // });
+            });
+            $('#svg_control').load('../svg_control.svg',function()
+            {
+                document.getElementById('schematic_preview_control').children[0].children[0].id = 'svg_control_id';
+                //document.getElementById("svg_flow");
+                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
+                svgPanZoom(document.getElementById('svg_control_id'));
+                // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
+                //       panEnabled: true
+                //     , controlIconsEnabled: false
+                //     , zoomEnabled: true
+                //     , dblClickZoomEnabled: true
+                //     , mouseWheelZoomEnabled: true
+                //     , preventMouseEventsDefault: true
+                //     , zoomScaleSensitivity: 0.2
+                //     , minZoom: 0.5
+                //     , maxZoom: 10
+                //     , fit: true
+                //     , contain: false
+                //     , center: true
+                //     , refreshRate: 'auto'
+                //     , beforeZoom: function(){}
+                //     , onZoom: function(){}
+                //     , beforePan: function(){}
+                //     , onPan: function(){}
+                //     , customEventsHandler: {}
+                //     , eventsListenerElement: null
+                // });
+            });
+            $('#svg_cell').load('../svg_cell.svg',function()
+            {
+                document.getElementById('schematic_preview_cell').children[0].children[0].id = 'svg_cell_id';
+                //document.getElementById("svg_flow");
+                //var panZoomTiger = svgPanZoom(document.getElementById('schematic_preview'));
+                svgPanZoom(document.getElementById('svg_cell_id'));
+                // var zoom = svgPanZoom(document.getElementById('schematic_preview'), {
+                //       panEnabled: true
+                //     , controlIconsEnabled: false
+                //     , zoomEnabled: true
+                //     , dblClickZoomEnabled: true
+                //     , mouseWheelZoomEnabled: true
+                //     , preventMouseEventsDefault: true
+                //     , zoomScaleSensitivity: 0.2
+                //     , minZoom: 0.5
+                //     , maxZoom: 10
+                //     , fit: true
+                //     , contain: false
+                //     , center: true
+                //     , refreshRate: 'auto'
+                //     , beforeZoom: function(){}
+                //     , onZoom: function(){}
+                //     , beforePan: function(){}
+                //     , onPan: function(){}
+                //     , customEventsHandler: {}
+                //     , eventsListenerElement: null
+                // });
             });
            // var panZoomTiger = svgPanZoom('#schematic_preview');
 
@@ -382,6 +478,10 @@ function compileMINT()
             // {
             //     console.log(data);
             // });
+
+            (document.getElementById('design_preview')).hidden = false;
+            (document.getElementById('flow_btn')).className = 'page-item active';
+            (document.getElementById('schematic_preview_flow')).hidden = false;
         }
         if (status == 'Failure')
         {
@@ -413,6 +513,9 @@ function generateUCF_UI()
     var operator;
     var name;
 
+    var op_symbol = $('#operator_symbol_in').val();
+    var op_name = $('#operator_name_in').val();
+
     var opId = 'op' + generateUCF_UI.count;
     var boobs = '\'' + opId + '\'';
 
@@ -420,7 +523,7 @@ function generateUCF_UI()
         <div class="panel-heading"> \
             <h4 class="panel-title"> \
                 <a data-toggle="collapse" data-parent="#accordion" href=titleRef> \
-                    (temp) &nbsp  temp \
+                    (temp_symbol) &nbsp  temp_name \
                 </a> \
                 <span class="pull-right"> \
                     <button type="button" class="btn btn-xs btn-danger" onclick="deleteOp(boobs)">x</button> \
@@ -432,13 +535,13 @@ function generateUCF_UI()
                 <div class="form-group row"> \
                     <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Operator </strong></label> \
                     <div class="col-xs-10"> \
-                        <input name="operatorTag" class="form-control" type="text" value="" id=operator_id> \
+                        <input name="operatorTag" class="form-control" type="text" value="temp_symbol2" id=operator_id> \
                     </div> \
                 </div> \
                 <div class="form-group row"> \
                     <label for="example-text-input" class="col-xs-2 col-form-label"><strong> Name </strong></label> \
                     <div class="col-xs-10"> \
-                        <input name="nameTag" class="form-control" type="text" value="" id=name_id> \
+                        <input name="nameTag" class="form-control" type="text" value="temp_name2" id=name_id> \
                     </div> \
                 </div> \
                 <div class="form-group row"> \
@@ -499,7 +602,7 @@ function generateUCF_UI()
     html = html.replace('titleRef',titleRef);
     html = html.replace('operator_id',operator_id);
     html = html.replace('name_id',name_id);
-    html = html.replace('input_id',input_id);
+    html = html.replace('inputs_id',input_id);
     html = html.replace('inputTerms_id',inputTerms_id);
     html = html.replace('outputs_id',outputs_id);
     html = html.replace('outputTerms_id',outputTerms_id);
@@ -509,6 +612,10 @@ function generateUCF_UI()
     html = html.replace('layer_id',layer_id);
     html = html.replace('opId',opId);
     html = html.replace('boobs',boobs);
+    html = html.replace('temp_symbol',op_symbol);
+    html = html.replace('temp_name',op_name);
+    html = html.replace('temp_symbol2',op_symbol);
+    html = html.replace('temp_name2',op_name);
 
     //document.getElementById('ucf_maker').appendChild(html);
     $("#accordion").append(html);
@@ -517,7 +624,13 @@ function generateUCF_UI()
 function generateUCF()
 {
     var numOperators = $("#accordion div.panel-default").length;
-    var ids = $('.form-control').id;
+    var idArray = [];
+    var idArrayClean = [];
+    for (var k = 0; k < numOperators; k++)
+    {
+        idArray[k] = $("#accordion div.panel-default")[k].id;
+        idArrayClean[k] = idArray[k].slice(-1);
+    }
     var JSON = [];
 
 
@@ -534,16 +647,17 @@ function generateUCF()
 
     for (var i = 0; i < numOperators; i++)
     {
-        var operator = document.getElementById('operator_' + i).value;
-        var name = document.getElementById('name_' + i).value;
-        var inputs = document.getElementById('inputs_' + i).value;
-        var inputTerms = document.getElementById('inputTerms_' + i).value;
-        var outputs = document.getElementById('outputs_' + i).value;
-        var outputTerms = document.getElementById('outputTerms_' + i).value;
-        var Import = document.getElementById('import_' + i).value;
-        var path = document.getElementById('path_' + i).value;
-        var mint = document.getElementById('mint_' + i).value;
-        var layer = document.getElementById('layer_' + i).value;
+        var w = idArrayClean[i];
+        var operator = document.getElementById('operator_' + w).value;
+        var name = document.getElementById('name_' + w).value;
+        var inputs = document.getElementById('inputs_' + w).value;
+        var inputTerms = document.getElementById('inputTerms_' + w).value;
+        var outputs = document.getElementById('outputs_' + w).value;
+        var outputTerms = document.getElementById('outputTerms_' + w).value;
+        var Import = document.getElementById('import_' + w).value;
+        var path = document.getElementById('path_' + w).value;
+        var mint = document.getElementById('mint_' + w).value;
+        var layer = document.getElementById('layer_' + w).value;
 
         var single_stage =
         {
@@ -594,7 +708,7 @@ function loadPreviousProject(project)
     console.log(project);
     localStorage.PROJECT = localStorage.WORKSPACE + '/' + project;
     toastr.success(project, 'Project Selected: ')
-
+    window.location.href = '../dashboard';
 }
 
 function nameProject()
@@ -617,40 +731,10 @@ function generateNewProject()
         }
         if (data.status == 'project_created')
         {
-            toastr.success(projectName, 'New Project Created:')
+            toastr.success(projectName, 'New Project Created:');
+            window.location.href = '../dashboard';
         }
     });
-}
-
-function loadFileToEditor(file)
-{
-    switch (file)
-    {
-        case 'lfr':
-            $.get(localStorage.PROJECT + '/specifyLFR.v',function(data)
-            {
-                CONTENT_TO_PUSH = data.split("\n");
-                fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
-
-                document.getElementById('LFRtab').className = 'active';
-                document.getElementById('UCFtab').className = '';
-            });
-            //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
-            break;
-            break;
-        case 'ucf':
-            break;
-        case 'mint':
-            break;
-        case 'ini':
-            break;
-    }
-
-}
-
-function saveFileFromEditor(file)
-{
-
 }
 
 function scanFiles()
@@ -682,26 +766,38 @@ function scanFiles()
                     if (file_tree.children[i].children[j].type == '.v')
                     {
                         lfr_count++;
-                        localStorage.LFR = file_tree.children[i].children[j].path;
-                        localStorage.LFR_name = file_tree.children[i].children[j].name;
+                        if (localStorage.LFR == undefined)
+                        {
+                            localStorage.LFR = file_tree.children[i].children[j].path;
+                            localStorage.LFR_name = file_tree.children[i].children[j].name;
+                        }
                     }
                     if (file_tree.children[i].children[j].type == '.json')
                     {
                         ucf_count++;
-                        localStorage.UCF = file_tree.children[i].children[j].path;
-                        localStorage.UCF_name = file_tree.children[i].children[j].name;
+                        if (localStorage.UCF == undefined)
+                        {
+                            localStorage.UCF = file_tree.children[i].children[j].path;
+                            localStorage.UCF_name = file_tree.children[i].children[j].name;
+                        }
                     }
                     if (file_tree.children[i].children[j].type == '.uf')
                     {
                         mint_count++;
-                        localStorage.MINT = file_tree.children[i].children[j].path;
-                        localStorage.MINT_name = file_tree.children[i].children[j].name;
+                        if (localStorage.MINT == undefined)
+                        {
+                            localStorage.MINT = file_tree.children[i].children[j].path;
+                            localStorage.MINT_name = file_tree.children[i].children[j].name;
+                        }
                     }
                     if (file_tree.children[i].children[j].type == '.ini')
                     {
                         ini_count++;
-                        localStorage.INI = file_tree.children[i].children[j].path;
-                        localStorage.INI_name = file_tree.children[i].children[j].name;
+                        if (localStorage.INI == undefined)
+                        {
+                            localStorage.INI = file_tree.children[i].children[j].path;
+                            localStorage.INI_name = file_tree.children[i].children[j].name;
+                        }
                     }
                 }
             }
@@ -738,6 +834,11 @@ function color_ui()
     var ucf_id = localStorage.UCF + '_fid';
     var mint_id = localStorage.MINT + '_fid';
     var ini_id = localStorage.INI + '_fid';
+    proj_id = proj_id.replace(/\\/g,'\\\\');
+    lfr_id = lfr_id.replace(/\\/g,'\\\\');
+    ucf_id = ucf_id.replace(/\\/g,'\\\\');
+    mint_id = mint_id.replace(/\\/g,'\\\\');
+    ini_id = ini_id.replace(/\\/g,'\\\\');
     document.getElementById(proj_id).style.color = 'purple';
     document.getElementById(lfr_id).style.color = 'green';
     document.getElementById(ucf_id).style.color = 'green';
@@ -1402,3 +1503,29 @@ function color_ui()
 //         editor_previewFFOutput.session.setValue(JSON.stringify(data, null, '\t'));
 //     });
 // });
+
+// function loadFileToEditor(file)
+// {
+//     switch (file)
+//     {
+//         case 'lfr':
+//             $.get(localStorage.PROJECT + '\\specifyLFR.v',function(data)
+//             {
+//                 CONTENT_TO_PUSH = data.split("\n");
+//                 fill_editor(CONTENT_TO_PUSH,Editor_To_Push_Toward,session);
+//
+//                 document.getElementById('LFRtab').className = 'active';
+//                 document.getElementById('UCFtab').className = '';
+//             });
+//             //CONTENT_TO_PUSH = JSON.parse(localStorage.LFR_start_STRING);
+//             break;
+//             break;
+//         case 'ucf':
+//             break;
+//         case 'mint':
+//             break;
+//         case 'ini':
+//             break;
+//     }
+//
+// }

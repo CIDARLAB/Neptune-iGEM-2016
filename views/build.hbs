@@ -13,6 +13,12 @@
 
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
     <script type="text/javascript" src="../javascripts/actionCenter_support.js"></script>
+    <script type="text/javascript" src="../javascripts/precision_init.js"></script>
+    <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
+    <script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+
     <script>
         localStorage.design_editor_state = 'designMINT';
         localStorage.mint_state = 'write';
@@ -37,27 +43,17 @@
     <!-- Timeline CSS -->
     <link href="/javascripts/dist/css/timeline.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <!--<link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">-->
-
     <!-- Toastr CDN -->
     <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
-    <!-- Morris Charts CSS -->
-    <!--<link href="/javascripts/bower_components/morrisjs/morris.css" rel="stylesheet">-->
 
     <!-- Custom Fonts -->
     <link href="/javascripts/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!--Walkthrough tour-->
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
@@ -65,8 +61,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
     <script src="../javascripts/tour.js"></script>
-    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
 
+    <script type="text/javascript" src="../javascripts/servosyringe.js"></script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
 
     <style>
         body {  padding: 0 !important;  }
@@ -80,12 +78,7 @@
 
         <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+
             <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
             <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
         </div>
@@ -97,9 +90,7 @@
     <div class="navbar-default nav-fixed-top"  role="navigation">
         <!--<div class="sidebar-nav navbar-collapse collapseNav">-->
         <ul class="nav" id="side-menu">
-            <li style="display: inline-block;">
-                <a href="../"><i class="fa fa-home fa-fw"></i> Home </a>
-            </li>
+
 
             <!-- THIS LINKS TO THE MAIN DASHBOARD -->
             <li style="display: inline-block;">
@@ -119,8 +110,8 @@
         <div class="row">
             <div class="col-lg-12">
 
-                <h1 class="page-header" style="font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px">
-                    <i class="fa fa-gavel" aria-hidden="true" style="color: #447294;"></i>
+                <h1 class="page-header" style="font-family: 'Open Sans'; font-size: 45px; font-weight: normal; line-height: 48px">
+                    <i class="fa fa-wrench" aria-hidden="true" style="color: #447294;"></i>
                     Build </h1>
             </div>
             <!-- /.col-lg-12 -->
@@ -135,12 +126,12 @@
                             <span class="icon-user"></span>
                         </div>
                         <div class="wizard-content">
-                            <p>Volume of liquid to dispense in ml:</p>
-                            <input class="btn btn-default" id="liquid" type="text" style="font-family: 'Open Sans'"/>
+                            <p>Volume of liquid to dispense in Micro Liters:</p>
+                            <input class="btn btn-default" id="liquid" type="text" />
                             <button class="btn btn-default" id="checkVolume">Check volume</button>
                             <br><br>
-                            <p>Tolerance of servos:</p>
-                            <input class="btn btn-default" id="tolerance" type="text" style="font-family: 'Open Sans'"/>
+                            <p>Tolerance of servos in Micro Litres:</p>
+                            <input class="btn btn-default" id="tolerance" type="text" />
                             <button class="btn btn-default" id="checkTolerance">Check tolerance</button>
                             <br>
                             <button class="btn-green" type="submit" id="specs">Continue</button>
@@ -155,23 +146,17 @@
                         <div class="wizard-content">
 
                         <p>Feel free to scroll through our options and select a servo and syringe combination:</p>
-                            <!--&lt;!&ndash;Dropdown Options&ndash;&gt;-->
 
-                            <!--<p style="font-size: 15px;">Pick your selected hardware to add to the purchase list:</p>-->
-                            <!--<select id="servoSyringe" class="selectpicker btn btn-default">-->
-                                <!--<option>Recommended</option>-->
-                                <!--<option>Lowest cost</option>-->
-                                <!--<option>Highest tolerance</option>-->
-                                <!--<option>Custom hardware</option>-->
-                            <!--</select>-->
+
+
                             <br>
 
                             <!--Picture Options-->
                     <div style="text-align: center;">
 
                         <button class="btn btn-default" href="#myCarousel" data-slide-to="1">
-                        <a class="glyphicon glyphicon-usd" style="font-size: 40px;"></a>
-                        <!--Lowest cost-->
+                        <a class="glyphicon glyphicon-star-empty" style="font-size: 40px;"></a>
+                        <!--Largest volume-->
                         </button>
                             <button class="btn btn-default" href="#myCarousel" data-slide-to="0">
                                 <a class="glyphicon glyphicon-star" style="font-size: 40px;"></a>
@@ -179,7 +164,7 @@
                             </button>
 
                             <button class="btn btn-default" href="#myCarousel" data-slide-to="2">
-                                <a class="glyphicon glyphicon-wrench" style="font-size: 40px;"></a>
+                                <a class="glyphicon glyphicon-star-empty" style="font-size: 40px;"></a>
                                 <!--Highest tolerance-->
                             </button>
                             <br><br>
@@ -189,69 +174,72 @@
                                 <div id="myCarousel" class="carousel slide" data-interval="false" style=" overflow: hidden; position: relative;">
                                     <!-- Wrapper for slides -->
                                     <div class="carousel-inner" role="listbox">
-                                        <div class="item active" id="recommended">
+                                        <div class="item active" id="cheapest">
                                             <div style="text-align: center;">
-                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
-                                                    Recommended
+                                            <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
+                                                    Cheapest
                                             </h2>
                                             </div>
                                             <div class="picture">
-                                                <img style="margin-left: 100px" src="../images/build/hitec.jpg" width=334px;>
-                                                <img src="../images/build/10ml.jpg" width=334px;>
+                                                <img style="margin-left: 100px" id="rservoimage" width=334px;>
+                                                <img id="rsyringeimage" width=334px;>
                                             </div>
                                             <div class="texts">
-                                                <p>
-                                                    The servo has a speed of 0.16sec/60o, and torque of 4.1/57 Kg-cm/Oz-in.
-                                                    The Hitec HS-422 Servo Motor is one of the most durable and reliable servos Hitec has ever offered. With its dual iron-oilite bushings, high impact resin gear train and high performance circuitry, the HS-422 features excellent centering and resolution.
+                                                <p id="rstats">
+                                                   <!--Statistics-->
                                                 </p>
-                                                <p>
-                                                   <a href="http://www.robotshop.com/en/hitec-hs422-servo-motor.html">Link to Servo</a>
+                                                <p id="rservo">
+                                                  <!--Link to Servo-->
                                                 </p>
-                                                <p> Also, the 10ml syringe is a reliable size for most microfluidic experiments.</p>
+                                                <p id="rsyringe">
+                                                    <!--Link to Syringe-->
+                                                </p>
                                             </div>
                                         </div>
 
-                                        <div class="item" id="cost">
+                                        <div class="item" id="volume">
                                             <div style="text-align: center;">
-                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
-                                                Lowest cost
+                                            <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
+                                                Largest volume
                                             </h2>
                                                 </div>
                                             <div class="picture">
-                                                <img style="margin-left: 100px" src="../images/build/parallax.jpg" width=334px;>
-                                                <img src="../images/build/60ml.jpg" width=334px;>
+                                                <img style="margin-left: 100px" id="vservoimage" width=334px;>
+                                                <img id="vsyringeimage" width=334px;>
                                             </div>
                                             <div class="texts">
-                                                <p>The Parallax Standard Servo is ideal for adding bidirectional continuous rotation to your robotics projects.
-                                                    It has bidirectional continuous rotation, 0 to 50 RPM, with a linear response to PWM for easy
-                                                    ramping, and it is easy to interface with any Parallax microcontroller or PWM-capable device.
-                                                    It weighs only 1.50 oz (42.5 g) and has 38 oz-in torque at 6 V
+                                                <p id="vstats">
+                                                    <!--Statistics-->
                                                 </p>
-                                                <p>
-                                                    <a href="http://www.alliedelec.com/parallax-inc-900-00008/70372373/?mkwid=sabYU23qn&pcrid=30980760979&gclid=CPnt-cWTl84CFQkfhgod2nwHPQ">Link to Servo</a>
+                                                <p id="vservo">
+                                                    <!--Link to Servo-->
                                                 </p>
-                                                <p> Also, the 60ml syringe is big and cheap, but is not very accurate for microfluidic experiments.</p>
+                                                <p id="vsyringe">
+                                                    <!--Link to Syringe-->
+                                                </p>
                                             </div>
                                         </div>
 
                                         <div class="item" id="tolerance">
                                             <div style="text-align: center;">
-                                            <h2 style="font-family: 'Trocchi', serif; font-size: 30px; font-weight: normal; line-height: 48px;">
+                                            <h2 style=" font-size: 30px; font-weight: normal; line-height: 48px;">
                                                 Highest tolerance
                                             </h2>
                                                 </div>
                                             <div class="picture">
-                                                <img style="margin-left: 100px" src="../images/build/datan.jpg" width=334px;>
-                                                <img src="../images/build/3ml.jpg" width=334px;>
+                                                <img style="margin-left: 100px" id="tservoimage" width=334px;>
+                                                <img id="psyringeimage" width=334px;>
                                             </div>
                                             <div class="texts">
-                                                <p>The Datan has one of the highest tolerances and is made by the very reliable comapany Adafruit Industries LLC.
-                                                    It weighs only 	0.102 lb (46.27 g) and has the largest torque rated 90.26 / 637.38 oz-in / mNm.
+                                                <p id="tstats">
+                                                    <!--Statistics-->
                                                 </p>
-                                                <p>
-                                                    <a href="http://www.digikey.com/product-detail/en/1404/1528-1087-ND/5154662?WT.mc_id=IQ_7595_G_pla5154662&wt.srch=1&wt.medium=cpc&&gclid=CMLWgcWTl84CFcQehgodLEcFeQ">Link to Servo</a>
+                                                <p id="tservo">
+                                                    <!--Link to Servo-->
                                                 </p>
-                                                <p> Also, the 3ml syringe is very precise for microfluidic experiments.</p>
+                                                <p id="tsyringe">
+                                                    <!--Link to Syringe-->
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -286,8 +274,8 @@
 
                             <p style="font-size: 15px; text-align: right;" >Pick your selected hardware to add to the purchase list  :
                                 <select id="servoSyringe" class="selectpicker btn btn-green">
-                                    <option>Recommended</option>
-                                    <option>Lowest cost</option>
+                                    <option>Cheapest</option>
+                                    <option>Largest volume</option>
                                     <option>Highest tolerance</option>
                                     <option>Custom hardware</option>
                                 </select></p>
@@ -312,8 +300,8 @@
                                     Download SVG
                                 </button>
                             </a>
-                            <button class="btn btn-primary" id="get3DParts">Get 3D Printing Files</button>
-                            <button class="btn btn-primary" id="getParts">Get Ordering List</button>
+                          <a href="../parametric">  <button class="btn btn-primary" id="get3DParts">Download 3D Printing Files</button></a>
+                            <button class="btn btn-primary" id="getParts">Download Ordering List</button>
                                 </div>
                             <br><br>
                             <div style="text-align: center;">
@@ -333,7 +321,7 @@
                         <div class="wizard-content">
                             <p> Feel free to go back and change any of your selections!
                                 If not, then proceed to assembly where we'll teach you how to put everything together.</p>
-                            <a href="../assembly"><button class="btn-green">Proceed to Assembly</button></a>
+                            <a href="../assembly"><button class="btn-green" id="proceed">Proceed to Assembly</button></a>
                         </div>
                     </li>
                 </ul>
@@ -347,6 +335,95 @@
     <!-- END: PAGE WRAPER -->
 
 </div>
+
+    <!--<div id="findJSON" class="modal fade" role="dialog">-->
+    <!--<div class="modal-dialog">-->
+    <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+    <!--<div class="modal-content">-->
+    <!--<div class="modal-header">-->
+    <!--<h4 class="modal-title">Locate Design Schematic </h4>-->
+    <!--</div>-->
+    <!--<div class="modal-body">-->
+    <!--<div class="form-group">-->
+    <!--<label for="json_in">Enter JSON location:</label>-->
+    <!--<input type="text" class="form-control" id="json_in">-->
+    <!--</div>-->
+
+    <!--Enter full file path to your project folder, for example:-->
+
+    <!--C:/home/Documents/Numptune/myProject/-->
+
+    <!--</div>-->
+    <!--<div class="modal-footer">-->
+    <!--&lt;!&ndash;<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>&ndash;&gt;-->
+    <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="pushJSON()"> Load  </button>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<script type="text/javascript">-->
+    <!--//-->
+    <!--$(document).ready(function()-->
+    <!--{-->
+    <!--//document.getElementById("json_in").value = localStorage.JSON_CONTROL;-->
+    <!--$('#findJSON').modal('show');-->
+    <!--});-->
+
+    <!--function pushJSON()-->
+    <!--{-->
+    <!--localStorage.PRIYA_VAR = document.getElementById("json_in").value;-->
+    <!--}-->
+    <!--</script>-->
+
+    <!-- Modal -->
+    <div id="setProject_build" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Choose your project.</h4>
+                </div>
+
+                <div class="modal-body" id="project_select_build"> </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="nameProject();" data-target=".bd-example-modal-sm"> New Project </button>
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" "> Load Project</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function workspace_set()
+        {
+            $.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)
+            {
+                var json_dir = [];
+                var length = data.projects.length;
+                for(var i = 0; i < length; i++)
+                {
+                    var single_stage = {directory:data.projects[i]};
+                    json_dir.push(single_stage);
+                }
+                render_projects(json_dir);
+            });
+
+            $('#setProject_build').modal('show');
+        }
+        $(document).ready(workspace_set);
+    </script>
+    <script type="text/javascript">
+        function render_projects(json)
+        {
+            $.get('../javascripts/project_select_template.hbs', function (data)
+            {
+                var template = Handlebars.compile(data);
+                var myhtml = template(json);
+                $("#project_select_build").html(myhtml);
+
+            },'html');
+        }
+    </script>
 
 
     <!-- Modal -->
@@ -371,15 +448,15 @@
                         <div class="col-md-8">
                             <h4>Syringe</h4>
                             <p>1. Diameter of syringe in mm:
-                            <input class="btn btn-default" id="diameter" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="diameter" type="text" />
                             </p>
 
                             <p>2. Length in mm between 1 ml:
-                            <input class="btn btn-default" id="length" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="length" type="text"/>
                             </p>
 
                             <p>3. Diameter of the innner head of syringe in mm:
-                            <input class="btn btn-default" id="diameterInner" type="text" style="font-family: 'Open Sans'"/>
+                            <input class="btn btn-default" id="diameterInner" type="text" />
                             </p>
                         </div>
 
@@ -393,31 +470,31 @@
                         <div class="col-md-8">
                             <h4>Servo </h4>
                         <p>1. Width of servo in mm:
-                        <input class="btn btn-default" id="width" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="width" type="text" />
                         </p>
 
                         <p>2. Height of servo in mm:
-                        <input class="btn btn-default" id="height" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="height" type="text" />
                         </p>
 
                         <p>3. Distance holes are apart in mm:
-                        <input class="btn btn-default" id="distanceHoles" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="distanceHoles" type="text"/>
                         </p>
 
                         <p>4. Diameter of holes in mm:
-                        <input class="btn btn-default" id="diameterHoles" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="diameterHoles" type="text" />
                         </p>
 
                         <p>5. Length of extended servo in mm:
-                        <input class="btn btn-default" id="extendedLength" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="extendedLength" type="text"/>
                         </p>
 
                         <p>6. Torque at 5V (from datasheet):
-                        <input class="btn btn-default" id="torque" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="torque" type="text" />
                         </p>
 
                         <p>7. Limit angle (from datasheet):
-                        <input class="btn btn-default" id="angle" type="text" style="font-family: 'Open Sans'"/>
+                        <input class="btn btn-default" id="angle" type="text" />
                         </p>
                         </div>
                         <div class="col-md-4">
@@ -437,8 +514,6 @@
     </div>
 
 <!-- *** END: THIS DIVISION WRAPS EVERYTHING *** -->
-
-
 
 
 <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -475,17 +550,26 @@
             var liquid = $('#liquid').val();
             var tolerance= $('#tolerance').val();
             var combo = $('#servoSyringe').find(":selected").text();
-            if (combo=="Recommended"){
-                localStorage.syringe= 10;
-                localStorage.servo= 'Hitec';
+            if (combo=="Cheapest"){
+                localStorage.syringe= localStorage.rsyringeselected;
+                localStorage.servo= localStorage.rservoselected;
+                var syringeurl= localStorage.rsyringeselectedurl;
+                var servourl = localStorage.rservoselectedurl;
+                givecheapestjson();
             }
-            else if (combo=="Lowest cost"){
-                localStorage.syringe= 60;
-                localStorage.servo= 'Parallax';
+            else if (combo=="Largest volume"){
+                localStorage.syringe= localStorage.vsyringeselected;
+                localStorage.servo= localStorage.vservoselected;
+                var syringeurl= localStorage.vsyringeselectedurl;
+                var servourl = localStorage.vservoselectedurl;
+                givevolumejson();
             }
             else if (combo=="Highest tolerance"){
-                localStorage.syringe= 3;
-                localStorage.servo= 'Datan';
+                localStorage.syringe= localStorage.psyringeselected;
+                localStorage.servo= localStorage.pservoselected;
+                var syringeurl= localStorage.psyringeselectedurl;
+                var servourl = localStorage.pservoselectedurl;
+                givetolerancejson();
             }
             else {
                 //Custom
@@ -495,17 +579,121 @@
             }
             $('#orderList').val(
                     'Quantity, Item, Explanation, Link' +'\n'
-                    + 'Number of valves,' + localStorage.syringe + 'ml Syringes,' + 'To push liquids and open/close valves' +'\n'
-                    + 'Number of valves,' + localStorage.servo + ' Servos,' + 'To open and close syringes' +'\n'
-                    + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
+                    +'Electric components,,,' +'\n'
+                    + '1, Arduino Control Shield,'+ 'To connect and power multiple servos' +'\n'
+                    + '1, Arduino Uno,'+ 'To control the microfluidic chip' +'\n'
+                    + '1, Power plugin for the arduino board,'+ 'For powering the servos' +'\n'
+                    + '1, Capacitor,'+ 'To prevent the servos from getting too much power' +'\n'
+                    + '1, Connecting Wires,'+ 'To connect the servos to the arduino' +'\n'
+                    + '1, Arduino Uno,'+ 'To control the microfluidic chip' +'\n'
+                    + '1, Stacking headers,'+ 'To connect the servo wires to the arduino' +'\n'
+                    + '1, Laptop power supply,'+ 'To power the servos' +'\n'
+
+                    +'Servo and syringe components,,,' +'\n'
+                    + localStorage.numberofdispensers +',' + localStorage.syringe + 'ml Syringes, To dispense liquids,' + syringeurl +'\n'
+                    + localStorage.numberofdispensers +',' + localStorage.servo + ' servos, To open and close syringes to dispense liquid,' + servourl +'\n'
+                    + localStorage.numberofvalves +',' + localStorage.syringe + 'ml Syringes, To open/close valves,' + syringeurl +'\n'
+                    + localStorage.numberofvalves +',' + localStorage.servo + ' servos, To open/close valves,' + servourl +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*5 +', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*1 + ', Small machine screw,' + 'For screwing in servo arm' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*1 +', Small nut,' + 'For screwing in servo arm' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*5 +', Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+
+            //localStorage.numberofvalves = number of valves
+            //localStorage.numberofdispensers = number of dispensers
+
+                    +'Hardware components,,,' +'\n'
+                    + '1, CNC Mill,'+ 'To create the microfluidic chip' +'\n'
+                    + '1, 3D Printer,'+ 'To build the setup to control the microfluidic chip' +'\n'
                     + '1, 3D Printing material roll,' + 'For 3D printing setup' +'\n'
                     + '1, 3D Printing support roll,' + 'For 3D printing setup' +'\n'
+                    + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
                     + '1, 1/4 inch endmill,'+ 'For CNC mill' +'\n'
-                    + '4, Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
-                    + '1, Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe' +'\n'
-                    + '1, Small machine screw,' + 'For screwing in servo and syringe' +'\n'
-                    + '1, Small nut,' + 'For screwing in servo and syringe' +'\n'
-                    + '1, Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*6 + ', Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
+
+                    +'Optional components,,,' +'\n'
+                    + '1, Peristaltic pump,'+ 'To pump fluids through the microfluidic chip' +'\n'
+                    + '2, Machine Screw: 4-40 5/8",' + 'For screwing in the peristaltic pump' +'\n'
+                    + '2, Nut: 4-40,' + 'For screwing in the peristaltic pump' +'\n'
+            );
+            var a = document.createElement('a');
+            with (a) {
+                href='data:text/csv;base64,' + btoa(document.getElementById('orderList').value);
+                download='orderlist.csv';
+            }
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
+        $('#proceed').click(function(){
+            var liquid = $('#liquid').val();
+            var tolerance= $('#tolerance').val();
+            var combo = $('#servoSyringe').find(":selected").text();
+            if (combo=="Cheapest"){
+                localStorage.syringe= localStorage.rsyringeselected;
+                localStorage.servo= localStorage.rservoselected;
+                var syringeurl= localStorage.rsyringeselectedurl;
+                var servourl = localStorage.rservoselectedurl;
+                givecheapestjson();
+            }
+            else if (combo=="Largest volume"){
+                localStorage.syringe= localStorage.vsyringeselected;
+                localStorage.servo= localStorage.vservoselected;
+                var syringeurl= localStorage.vsyringeselectedurl;
+                var servourl = localStorage.vservoselectedurl;
+                givevolumejson();
+            }
+            else if (combo=="Highest tolerance"){
+                localStorage.syringe= localStorage.psyringeselected;
+                localStorage.servo= localStorage.pservoselected;
+                var syringeurl= localStorage.psyringeselectedurl;
+                var servourl = localStorage.pservoselectedurl;
+                givetolerancejson();
+            }
+            else {
+                //Custom
+                localStorage.syringe= 'custom';
+                localStorage.servo= 'custom';
+
+            }
+            $('#orderList').val(
+                    'Quantity, Item, Explanation, Link' +'\n'
+                    +'Electric components,,,' +'\n'
+                    + '1, Arduino Control Shield,'+ 'To connect and power multiple servos' +'\n'
+                    + '1, Arduino Uno,'+ 'To control the microfluidic chip' +'\n'
+                    + '1, Power plugin for the arduino board,'+ 'For powering the servos' +'\n'
+                    + '1, Capacitor,'+ 'To prevent the servos from getting too much power' +'\n'
+                    + '1, Connecting Wires,'+ 'To connect the servos to the arduino' +'\n'
+                    + '1, Arduino Uno,'+ 'To control the microfluidic chip' +'\n'
+                    + '1, Stacking headers,'+ 'To connect the servo wires to the arduino' +'\n'
+                    + '1, Laptop power supply,'+ 'To power the servos' +'\n'
+
+                    +'Servo and syringe components,,,' +'\n'
+                    + localStorage.numberofdispensers +',' + localStorage.syringe + 'ml Syringes, To dispense liquids,' + syringeurl +'\n'
+                    + localStorage.numberofdispensers +',' + localStorage.servo + ' servos, To open and close syringes to dispense liquid,' + servourl +'\n'
+                    + localStorage.numberofvalves +',' + localStorage.syringe + 'ml Syringes, To open/close valves,' + syringeurl +'\n'
+                    + localStorage.numberofvalves +',' + localStorage.servo + ' servos, To open/close valves,' + servourl +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*5 +', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*1 + ', Small machine screw,' + 'For screwing in servo arm' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*1 +', Small nut,' + 'For screwing in servo arm' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*5 +', Nut: 4-40,' + 'For screwing in servo and syringe' +'\n'
+
+                    //localStorage.numberofvalves = number of valves
+                    //localStorage.numberofdispensers = number of dispensers
+
+                    +'Hardware components,,,' +'\n'
+                    + '1, CNC Mill,'+ 'To create the microfluidic chip' +'\n'
+                    + '1, 3D Printer,'+ 'To build the setup to control the microfluidic chip' +'\n'
+                    + '1, 3D Printing material roll,' + 'For 3D printing setup' +'\n'
+                    + '1, 3D Printing support roll,' + 'For 3D printing setup' +'\n'
+                    + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' +'\n'
+                    + '1, 1/4 inch endmill,'+ 'For CNC mill' +'\n'
+                    + (localStorage.numberofdispensers + localStorage.numberofvalves)*6 + ', Woodscrews 29 8-1",' + 'For mounting onto board' +'\n'
+
+                    +'Optional components,,,' +'\n'
+                    + '1, Peristaltic pump,'+ 'To pump fluids through the microfluidic chip' +'\n'
+                    + '2, Machine Screw: 4-40 5/8",' + 'For screwing in the peristaltic pump' +'\n'
+                    + '2, Nut: 4-40,' + 'For screwing in the peristaltic pump' +'\n'
             );
             var a = document.createElement('a');
             with (a) {
@@ -519,8 +707,8 @@
 
         $('#checkVolume').click(function(){
             var liquid = $('#liquid').val();
-            if (liquid<=0 || liquid >100) {
-                toastr.warning('Volume of liquid must be between 0 and 100! Please enter again.');
+            if (liquid<=0 || liquid >1000000) {
+                toastr.warning('Volume of liquid must be between 0 and 1000000! Please enter again.');
             }
             else {
                 toastr.info('Volume value accepted.');
@@ -528,7 +716,7 @@
         });
         $('#checkTolerance').click(function(){
             var tolerance = $('#tolerance').val();
-            if (tolerance<0.1) {
+            if (tolerance<0) {
                 toastr.warning('Tolerance must be greater than 0.1! Please enter again.');
             }
             else {
@@ -539,7 +727,9 @@
         $('#specs').click(function(){
             var tolerance = $('#tolerance').val();
             var liquid = $('#liquid').val();
-            if (liquid<=0 || liquid >100 || tolerance<0.1) {
+            localStorage.precision= tolerance;
+            localStorage.volume = liquid;
+            if (liquid<=0 || liquid >1000000 || tolerance<0) {
                 toastr.warning('Error! Please enter values to proceed');
             }
             else {
@@ -554,6 +744,7 @@
                     $(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();
                 }
             }
+            calculateRecommended();
         });
 
         $('#customize').click(function(){
@@ -572,14 +763,18 @@
                 $('#suggestion').val('Suggestion: Choose a 100ml syringe and a servo with '+tolerance+ ' tolerance.');
             }
 
+
         });
 
 
     })
 </script>
 
+
+
+
 <style>
-    body{float: left; align: center; width: 100%;}
+    body{float: left; align: center; width: 100%; font-family: 'Open Sans'}
     *{margin: 0; padding: 0; box-sizing: border-box;}
     :focus{outline: none;}
     a{text-decoration: none;}
@@ -589,7 +784,7 @@
     /*= wizard css =*/
     .payment-wizard{float: left; width: 100%;}
     .payment-wizard li.active{position: relative; z-index: 1;}
-    .wizard-heading{font-family: 'Trocchi', serif; float: left; width: 100%; padding: 10px 15px; background-color: #fafafa; margin-bottom: 1px; box-sizing: border-box; font-size: 18px; color: #4c4c4c; text-transform: uppercase; transition: 0.3s;}
+    .wizard-heading{float: left; width: 100%; padding: 10px 15px; background-color: #fafafa; margin-bottom: 1px; box-sizing: border-box; font-size: 18px; color: #4c4c4c; text-transform: uppercase; transition: 0.3s;}
     .wizard-content{display: none; float: left; width: 100%; background-color: #fff; box-shadow: 0 8px 8px #d2d2d2; padding: 15px; box-sizing: border-box;}
     li:first-child .wizard-content{display: block;}
     .wizard-content p{margin-bottom: 15px; font-size: 15px; line-height: 26px; color: #4c4c4c;}
@@ -693,10 +888,7 @@
 <!-- Morris Charts JavaScript -->
 <script src="/javascripts/bower_components/raphael/raphael-min.js"></script>
 <script src="/javascripts/bower_components/morrisjs/morris.min.js"></script>
-<!--<script src="/javascripts/js/morris-data.js"></script>-->
-<!-- Custom Theme JavaScript -->
-<!--<script src="/javascripts/dist/js/sb-admin-2.js"></script>-->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+
 <!-- *** END: DEPENDENCIES *** -->
 
 </body>

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" class="home_page">
 <head>
+
+    <!-- HEAD -->
+    <!-- NEEDS CLEANING: CONSOLIDATE AND SEGREGATE JAVASCRIPTS-->
     <title>Neptune</title>
     {{> favicon }}
     <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
@@ -181,28 +184,50 @@
 </head>
 
 
-
+<!-- BODY -->
 <body>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<div class="row" id="neptuneTitle">
-    <img src="../images/NEPTUNEtitle.png" width="700px">
-    <br><br><br>
-    <p id="instructions">To create a new design or open a previous one, start by selecting a project. Then get started working on your microfluidic system. </p>
-    <br>
-    <button class="selectProject" data-toggle="modal" data-target="#setWorkspace">Get Started</button>
-    <br><br>
-    <a href="../dashboard"><button class="getStarted" >Documentation</button></a>
-
-</div>
-
-
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <div class="row" id="neptuneTitle">
+        <img src="../images/NEPTUNEtitle.png" width="700px">
+        <br><br><br>
+        <p id="instructions">To create a new design or open a previous one, start by selecting a project. Then get started working on your microfluidic system. </p>
+        <br>
+        <button class="selectProject" data-toggle="modal" data-target="#setWorkspace">Get Started</button>
+        <br><br>
+        <a href="../dashboard"><button class="getStarted" >Documentation</button></a>
+    </div>
 
 </body>
 
+<!-- MODALS -->
 
+<!-- Select Workspace Modal Javascript -->
 
-<!-- Modal -->
+<div id="setWorkspace" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary"">
+                <h4 class="modal-title">Confirm Workspace</h4>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                        <label for="setWorkspace_in">Your current workspace is located at:</label>
+                        <input type="text" class="form-control" id="setWorkspace_in">
+                    </div>
+
+                    Please confirm that this is your workspace folder.
+                    If this is not your workspace folder, please change the directory now.
+
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="workspace_set()"> Confirm Workspace </button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     function workspace_set()
     {
@@ -235,31 +260,6 @@
         },'html');
     }
 </script>
-
-<div id="setWorkspace" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header modal-header-primary"">
-                <h4 class="modal-title">Confirm Workspace</h4>
-            </div>
-            <div class="modal-body">
-                    <div class="form-group">
-                        <label for="setWorkspace_in">Your current workspace is located at:</label>
-                        <input type="text" class="form-control" id="setWorkspace_in">
-                    </div>
-
-                    Please confirm that this is your workspace folder.
-                    If this is not your workspace folder, please change the directory now.
-
-            </div>
-            <div class="modal-footer">
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="workspace_set()"> Confirm Workspace </button>
-            </div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript">
     //
     $(document).ready(function()
@@ -268,12 +268,12 @@
     });
 </script>
 
-<!-- Modal -->
+<!-- Select Project Modal -->
 <div id="setProject" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog prj_select_dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header modal-header-primary"">
+            <div class="modal-header modal-header-primary">
                 <h4 class="modal-title">Choose your project, or start a new project.</h4>
             </div>
 
@@ -291,8 +291,13 @@
     {
     overflow-y: auto;
     }
-    #setProject {
+    #setProject
+    {
         position: absolute !important;
+    }
+    .prj_select_dialog
+    {
+
     }
 </style>
 

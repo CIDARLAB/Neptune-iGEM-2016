@@ -5,6 +5,8 @@
 var chart;
 var chartData;
 var chartOptions;
+var sensors = [];
+var numOfSensors = 0;
 
 $(document).ready(function() {
     var socket = io();
@@ -148,4 +150,59 @@ function parseArduinoOutput( output ) {
     value   = parseFloat(output.substring(typeRange, valueRange));
     timeElapsed = output.substring(valueRange + 1, timeElapsedRange);
     return  {address: address, type: type, readingValue: value, minutes: timeElapsed.substring(0,2), seconds: timeElapsed.substring(2,5)};
+}
+
+
+function initSensorListFromButton() {
+    var numberOfSensors = parseInt($("#sensor-menu").val());
+    numOfSensors = numberOfSensors;
+    var template = sensorTemplate();
+    $("#sensor-list").html("");
+    var i;
+    for (i = 1; i < (numberOfSensors + 1); i++) { //sensors can't have address 0
+        var context = {};
+        context.address = i;
+        var html = Mustache.to_html(template, context);
+        $("#sensor-list").append(html);
+    }
+}
+//feed this puppy a json object for the sensors to populate;
+function initSensorsFromCachedData(data){
+
+}
+
+function initHardwareFromListedData() {
+    //here i need to create a referece to the n queues that I will make
+    alert (numOfSensors);
+    sensors = new Array(numOfSensors);
+    var i;
+    for ( i = 0; i < numOfSensors ; i++ ) {
+        var sensor = {
+            address: "",
+            type: "",
+            code: "",
+            queue: new Queue()
+        }
+        sensors[i] = sensor;
+    }
+}
+
+function sensorTemplate() {
+    return "\<li> <label for=\"sensor-index-{{address}}\">Sensor Address {{address}} </label>" +
+        "\<br><input id=\"sensor-index-{{address}}\" type=\"number\" value=\"0\" min=\"0\" max=\"102\">" +
+        "\<label for='sensor-index-{{address}}-type'>Type: </label>" +
+        "\<input id='sensor-index-{{address}}-type' style='width: 50px;' type='text'></li>"
+}
+
+function flubAbout() {
+    alert("FLUBBBING");
+}
+
+function sensorMapping(index, address, type, code){
+    var sensor = {
+        address: address,
+        type: type,
+        code: code,
+    };
+    return sensor
 }

@@ -31,3 +31,14 @@ Queue.prototype.dequeue = function() {
         return deletedData;
     }
 };
+
+Queue.prototype.peek = function() {
+    var oldestIndex = this._oldestIndex,
+        newestIndex = this._newestIndex,
+        peekData;
+
+    if (oldestIndex !== newestIndex) {
+        peekData = this._storage[oldestIndex];
+        return peekData;
+    }
+};

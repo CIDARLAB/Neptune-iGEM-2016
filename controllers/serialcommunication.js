@@ -12,7 +12,7 @@ function openConnection (fluigiPort) {
     var SerialPort = serialport.SerialPort;
 
     var myPort = new SerialPort(fluigiPort, {
-        baudRate: 9600,
+        baudRate: 19200,
         // look for return and newline at the end of each data packet:
         parser: serialport.parsers.readline("\r")
     });

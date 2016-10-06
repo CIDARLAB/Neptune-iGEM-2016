@@ -1,10 +1,29 @@
 <html>
 <head>
     <title> {{title}} </title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../stylesheets/main_fluigi.css" />
-    <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
-    <script src="../javascripts/serialcommunication.js"></script>
+
+    <link rel="stylesheet" href="../lib/nouislider/nouislider.min.css">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <!--<link rel="stylesheet" href="../stylesheets/modified.css">-->
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS for Page -->
+    <link href="../stylesheets/controlFull.css" rel="stylesheet">
+    <!-- MetisMenu CSS -->
+    <link href="/javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/javascripts/dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- Toastr CDN -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <!-- Custom Fonts -->
+    <link href="/javascripts/bower_components/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
 
     <!--Walkthrough tour-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />
@@ -13,6 +32,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
     <script src="../javascripts/tour.js"></script>
+
+    <script src="/javascripts/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../javascripts/serialcommunication.js" type="application/javascript"></script>
 
 
     <style>
@@ -25,49 +47,63 @@
     </style>
 </head>
 
-<nav class="navbar navbar-fixed-top" id="navBar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" >
-                <img alt="Brand" src="../images/fluigi/fluigiLogoFluigi.png">
-            </a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="../"> <img src="../images/fluigi/homeButtonTransparent.png"> </a>
-                </li>
-            </ul>
-        </div>
+
+
+
+<nav class="navbar navbar-default navbar-static-top navbarFloating" role="navigation" style="margin: 0;">
+    <!-- START: TOP LEFT HALF OF NAVIGATION BAR; WE CAN PUT OUR FLUIGI LOGOS HERE -->
+    <div class="navbar-header">
+        <img class="pull-left" id="dropdownHover" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+        <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
     </div>
+    <!-- END: SIDE NAVIGATION BAR -->
 </nav>
 
 
-<body style="background-color: #34495e">
+<br>
+<div class="row">
+    <!-- START: Open Com pannel-->
+    <div class="col-lg-1 col-md-1"></div>
+    <div class="col-lg-10 col-md-10">
 
-<ul id="ui">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav">
+                    <div class="well well-sm project_title">
+                        <h4>  Serial Comm Connect </h4><span class="pull-right project_title" id="project_title"> </span>
+                    </div>
 
-    <div class="btn-group" role="group" style="padding-left: 10px; padding-top: 150px;">
-        <li>
-            <button class="btn btn-default" id="begin-comm"> Open Comm</button>
-        </li>
-        <li>
-            <button class="btn btn-default" id="end-comm"> Close Comm</button>
-        </li>
+                </ul>
+            </div>
+
+            <div class="panel-body">
+                <ul id="ui">
+                    <div>
+                        <li id="port-list">
+                            <br/>
+                            <label for="ports">Serial Ports Available</label>
+                            <select id="ports">
+                                {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
+                                    <option value={{this.comName}}> name: {{ this.comName }} </option>​
+                                {{/each}}
+                            </select>
+                        </li>
+                    </div>
+                    <div class="btn-group" role="group" style="padding-top: 50px;">
+                        <li>
+                            <button class="btn btn-default" id="begin-comm"> Open Comm</button>
+                        </li>
+                        <li>
+                            <button class="btn btn-default" id="end-comm"> Close Comm</button>
+                        </li>
+                    </div>
+                </ul>
+            </div>
+        </div>
     </div>
+    <div class="col-lg-1 col-md-1"></div>
+</div>
 
-    <li id="port-list">
-        <br/>
-        <label for="ports" style="color:white">Serial Ports Available</label>
-        <select id="ports">
-            {{#each serialPorts}} <!-- // Note the reference to the customers object​-->
-                <option value={{this.comName}}> name: {{ this.comName }} </option>​
-            {{/each}}
-        </select>
-    </li>
-</ul>
-
-<!--<iframe src="../uploads/console.txt" height="100px" width="100%"> </iframe>-->
-<!--<h1 id="myConsoleText" style="color: white;"> </h1>-->
 
 </body>
 </html>

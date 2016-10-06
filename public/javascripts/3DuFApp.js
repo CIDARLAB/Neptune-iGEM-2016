@@ -30711,6 +30711,7 @@
             loadButtons();
             setNumberOfPumps_JSON();
             setNumberOfDispensers_JSON();
+            localStorage.valveData = inititateValveStates();
             placeButtons(); // external function
             localStorage.setItem('loadControls', 'false');
         }

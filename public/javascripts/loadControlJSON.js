@@ -13,23 +13,18 @@ if (localStorage.JSONloaded != "true") {
     // on change run the 'handleFiles' method
     inputElement.addEventListener("change", handleFiles, false);
     function handleFiles() {
-        var file = this.files[0]; /* now you can work with the file list */
-
-        console.log(file.name); /* logged the filename */
-        console.log(file.size); /* logged the filesize  */
-        reader.readAsText(file); /* this will make sense in a bit */
+        var file = this.files[0];
+        reader.readAsText(file);
 
     }
     var reader = new FileReader();
     reader.onload = function (e) {
-        console.log(reader.result);
-        /* Do something with the read reader.result */
-        var JSONstring = reader.result;
-        localStorage.setItem('JSONtoLoad', JSONstring);
+        defaultJSON = reader.result;
+        localStorage.setItem('JSONtoLoad', defaultJSON);
         localStorage.setItem('JSONloaded', 'true');
+        localStorage.setItem('loadControls', 'true');
     }
 }
 else {
-    console.log("got to else statement.");
     var defaultJSON = JSON.parse(localStorage.getItem('JSONtoLoad'));
 }

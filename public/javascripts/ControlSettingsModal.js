@@ -1,12 +1,6 @@
 /**
  * Created by rebeccawolf on 7/26/16.
  */
-//
-// This now powers the new version of the Settings Modal using Bootstrap
-//
-// ***********************************************************************
-//
-
 // Sets up settings Modal
 // Settings table save functionality
 

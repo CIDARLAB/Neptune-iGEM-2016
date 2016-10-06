@@ -1,6 +1,10 @@
 <html>
 <head>
 
+
+
+
+
     <!--3Duf Dependencies-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,13 +36,37 @@
     <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src="../javascripts/uploadsJSON.js" type="application/javascript"></script>
+    <script src="../javascripts/JSONValveDispenserLoad.js" type="application/javascript"></script>
 
-    <script>loadButtons();</script>
+    <div id="findJSON" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Upload Design Schematic </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="json_in">Select your JSON file:</label>
+                        <input type="file" class="upload" id="JSONinput" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();"> Load  </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../javascripts/loadControlJSON.js"></script>
+
+
+
+
 
     <link href="../stylesheets/controlFull.css" rel="stylesheet">
     <script type="text/javascript" src="../javascripts/serialcommunication.js"></script>
-    <script type="text/javascript" src="../javascripts/fluigipage.js" > </script>
+    <script type="text/javascript" src="../javascripts/ValveDispenserJSONTracking.js" > </script>
     <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
 
 
@@ -178,6 +206,9 @@
 </nav>
 
 <!--BUTTON ICONS ON CANVAS-->
+<a data-toggle="modal" data-target="#findJSON" id="uploadToggle">
+    <i class="fa fa-folder fa-3x"></i>
+</a>
 <a onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal" id="settingsToggle">
     <i class="fa fa-cog fa-3x"></i>
 </a>
@@ -187,7 +218,7 @@
 <!--./ END BUTTON ICONS ON CANVAS-->
 
 
-<script src="../javascripts/pumpControlInit.js" type="application/javascript"></script>
+<script src="../javascripts/ControlSettingsModal.js" type="application/javascript"></script>
 
 <!-- Settings Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -241,50 +272,6 @@
 <!--./ END SETTINGS MODAL-->
 
 
-<div id="findJSON" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Locate Design Schematic </h4>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="json_in">Enter JSON location:</label>
-                    <input type="text" class="form-control" id="json_in">
-                </div>
-
-                Enter full file path to your JSON schematic, for example:
-
-                C:/home/Documents/Numptune/myProject/designJSON.json
-
-            </div>
-            <div class="modal-footer">
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="pushJSON()"> Load  </button>
-            </div>
-        </div>
-    </div>
-</div>
-<script type="text/javascript">
-    //
-    $(document).ready(function()
-    {
-        //document.getElementById("json_in").value = localStorage.JSON_CONTROL;
-        $('#findJSON').modal('show');
-    });
-
-    function pushJSON()
-    {
-        localStorage.JSON_CONTROL = document.getElementById("json_in").value;
-
-        $.post('/api/getJSON_forBecca', {jsonpath: localStorage.JSON_CONTROL} ,function()
-        {
-
-        });
-
-    }
-</script>
 
 
 <canvas id="c" tabindex="0" resize="true"></canvas>
@@ -304,14 +291,14 @@
 <!-- Custom Theme JavaScript -->
 <script src="/javascripts/dist/js/sb-admin-2.js"></script>
 <!-- 3DuF JavaScript -->
-<script src="../javascripts/fluigiGraph.js" type="application/javascript"></script>
+<script src="../javascripts/ValveCommands.js" type="application/javascript"></script>
+<script src="../javascripts/DispenserCommands.js" type="application/javascript"></script>
 <script src="../javascripts/3DuFApp.js"></script>
 
-<script src="../javascripts/dispenserUI.js"></script>
+<script src="../javascripts/SetDispenseRate.js"></script>
 
 <!--JavaScript for Hardware Initializations-->
-<!--<script src="../javascripts/HWSystemInit.js"></script>-->
-<script src="../javascripts/equalFlowRate.js"></script>
+<script src="../javascripts/EqualFlowRateInit.js"></script>
 
 
 </body>

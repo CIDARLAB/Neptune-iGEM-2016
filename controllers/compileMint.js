@@ -32,6 +32,7 @@ exports.compileMint = function(req, res)
     var outputPath = path.join(out_folder,name);
     var outp = outputPath;
     outputPath = 'outputDirectory=' + outputPath;
+    outputPath = outputPath.replace('t/','');
     var uName = '3D DEVICE ' + basename;
 
     var configFileLoc = path.join(outp,'proj.ini');

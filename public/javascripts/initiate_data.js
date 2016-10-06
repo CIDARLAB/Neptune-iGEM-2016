@@ -93,3 +93,14 @@ if(localStorage.getItem('dispenserConversions') == null) {
 }
 
 
+if(localStorage.getItem('JSONloaded') == null) {
+    localStorage.setItem('JSONloaded', 'false');
+}
+
+
+
+if(localStorage.getItem('JSONtoLoad') == null) {
+    localStorage.setItem('JSONtoLoad', '{}');
+}
+
+

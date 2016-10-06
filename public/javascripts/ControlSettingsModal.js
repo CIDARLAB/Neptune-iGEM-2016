@@ -7,8 +7,10 @@
 // ***********************************************************************
 //
 
+// Sets up settings Modal
+// Settings table save functionality
+
 function drawValveTable(data) {
-    // $("#ValveTable td").remove();
     $("#ValveTable").find("tr:gt(0)").remove();
     for (var i = 0; i < data.length; i++) {
         drawValveRow(data[i]);
@@ -60,7 +62,6 @@ function exporting() {
         x = x + 1;
     });
     // Output the result
-    console.log(JSON.parse(JSON.stringify(data)));
     localStorage.pumpData = JSON.stringify(data);
 };
 
@@ -77,7 +78,6 @@ function exporting() {
 
 
 function drawDispenserTable(data) {
-    // $("#ValveTable td").remove();
     $("#DispenserTable").find("tr:gt(0)").remove();
     for (var i = 0; i < data.length; i++) {
         drawDispRow(data[i]);
@@ -91,8 +91,8 @@ function drawDispRow(rowData) {
     row.append($("<td>" + rowData.HW_shield + "</td>"));
     row.append($("<td>" + rowData.HW_pin + "</td>"));
     row.append($("<td contenteditable='true'>" + rowData.Precision + "</td>"));
-    row.append($("<td>" + rowData.Min + "</td>"));
-    row.append($("<td>" + rowData.Max + "</td>"));
+    row.append($("<td contenteditable='true'>" + rowData.Min + "</td>"));
+    row.append($("<td contenteditable='true'>" + rowData.Max + "</td>"));
     row.append($("<td contenteditable='true'>" + rowData.Current_State + "</td>"));
     row.append($("<td>" + rowData.orientation + "</td>"));
 }
@@ -148,6 +148,5 @@ function totalExport() {
     deviceCount = 0;
     exporting();
     exportingDispenser();
-    
 };
 

@@ -2,6 +2,12 @@
  * Created by rebeccawolf on 8/22/16. DIspenserUI
  */
 
+
+
+// Controls initializing dispensers if they have not been already
+// triggers commands to be sent for dispensing
+// functionality for changing dispenser orientation
+
 function sendDispense(sender){
 
     // VALUES FROM THE FORM:
@@ -10,9 +16,6 @@ function sendDispense(sender){
     var time = form.querySelector(".dispenseTime");
     var dispenserID = sender.id;    // ID of dispenser you are controlling
     dispenserID = dispenserID.replace(/\D/g,'');
-    // console.log((JSON.parse(localStorage.dispenserData)[dispenserID])[HW_pin]);
-    // console.log(volume.value);
-    // console.log(time.value);
 
     if(isNaN(volume.value)){
         toastr.error("Please enter a valid number for dispense volume.");
@@ -32,17 +35,10 @@ function sendDispense(sender){
         var PWM_dic = initializeSetup_outputs.PWM_dic;
         var uL_table = initializeSetup_outputs.uL_table;
         var uL_dic = initializeSetup_outputs.uL_dic;
-        // var theta_min = initializeSetup_outputs.theta_min;
-        // var theta_max = initializeSetup_outputs.theta_max;
-        // var X_min = initializeSetup_outputs.X_min;
-        // var X_max = initializeSetup_outputs.X_max;
         var uL_min = initializeSetup_outputs.uL_min;
         var uL_max = initializeSetup_outputs.uL_max;
         var uL_precision = initializeSetup_outputs.uL_precision;
-        // var r = initializeSetup_outputs.r;
-        // var b = initializeSetup_outputs.b;
-        // var d = initializeSetup_outputs.d;
-        // var a = initializeSetup_outputs.a;
+
         console.log('conversions (PWM and uL): ');
         console.log(PWM_table);
         console.log(uL_table);
@@ -80,16 +76,12 @@ function sendDispense(sender){
         var even_uL_steps_output = even_uL_steps(uL_table, PWM_table, uL_precision, currentVolume, valueToDispense, time.value);   // [0] is seconds/step [1] is PWM value array to be sent
         // values needed for dispense rate
         var msecondsPerStep = even_uL_steps_output.seconds_per_step * 1000; // must be in milliseconds
-        // console.log("step per sec: " + (1/msecondsPerStep));
         var stepsPerSecond = even_uL_steps_output.steps_per_second; // conversions only for commands being sent at the moment (this way its easier to update the current volume)
         var PWMvalueArray = even_uL_steps_output.PWM_values;
-        // console.log("even steps array: ");
-        // console.log(PWMvalueArray);
+
 
         // set correct dispenser to command
         localStorage.dispenserToControl = dispenserID;
-        // console.log("Command arrray: ");
-        // console.log(PWMvalueArray);
 
         // iterate over command array at appropriate time intervals
         for(i = 0; i < PWMvalueArray.length; i++){
@@ -112,9 +104,9 @@ function sendDispense(sender){
 }
 
 function changeDispenseOrientation(sender) {
-    dispenserID = sender.id.replace(/\D/g,'');
+    var dispenserID = sender.id.replace(/\D/g,'');
     var temp = JSON.parse(localStorage.dispenserData);
-    currentOrientation = sender.innerHTML;
+    var currentOrientation = sender.innerHTML;
     if (currentOrientation === "pull") {
         sender.innerHTML = "push";
         temp[dispenserID - 1]['orientation'] = "push";

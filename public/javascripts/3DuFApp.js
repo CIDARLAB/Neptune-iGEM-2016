@@ -30701,13 +30701,14 @@
 
         Registry.viewManager = viewManager;
 
-        // Load last uploaded file  to canvas
-        $.getJSON("../uploads/Build_Verify/buildJSON.json", function (json) {
-            viewManager.loadDeviceFromJSON(JSON.parse(JSON.stringify((json))));
-            viewManager.updateGrid();
-            Registry.currentDevice.updateView();
-            placeButtons(); // external function found in fluigiGraph.js
-        });
+        console.log("3Duf: ");
+        console.log(defaultJSON);
+        viewManager.loadDeviceFromJSON(defaultJSON);
+
+        viewManager.updateGrid();
+        Registry.currentDevice.updateView();
+        placeButtons(); // external function
+
 
         window.dev = Registry.currentDevice;
         window.Registry = Registry;

@@ -1,7 +1,8 @@
+
 [
-	{		
-		"operator":"general information",
-		"channelWidth":750,
+	{
+		"General":"Info",
+		"channelWidth":1000,
 		"portRadius":2020
 	},
 	{
@@ -12,18 +13,29 @@
 		"outputTerms": 3,
 		"outputs":1,
 		"picpath":"SampleIcons/ymixer.png",
-		"mint":"V TREE NAME 2 to 1 spacing=7500 flowChannelWidth=750",
+		"mint":"V TREE NAME 2 to 1 spacing=10000 flowChannelWidth=1000",
 		"layer":"flow"
 	},
 	{
 		"operator":"~",
-		"name":"serpmixer",
+		"name":"SerpMixer",
 		"inputs":1,
 		"outputs":1,
 		"inputTerms":[1],
 		"outputTerms":"2",
 		"picpath":"path/to/serpmixer/pic",
-		"mint":"H MIXER NAME numBends=10 bendSpacing=750 bendLength=1500 channelWidth=750",
+		"mint":"H MIXER NAME numBends=5 bendSpacing=1000 bendLength=2000 channelWidth=1000",
+		"layer":"flow"
+	},
+	{
+		"operator":"#",
+		"name":"CellTrap",
+		"inputs":1,
+		"outputs":1,
+		"inputTerms":[1],
+		"outputTerms":"2",
+		"picpath":"path/to/serpmixer/pic",
+		"mint":"H LONG CELL TRAP NAME numChambers=6 chamberWidth=1000 chamberLength=1000 chamberSpacing=1000 channelWidth=1000",
 		"layer":"flow"
 	},
 	{
@@ -35,14 +47,26 @@
 		"inputTerms":"4",
 		"outputTerms":"2",
 		"picpath":"path/to/valve/pic",
-		"mint":"H 3DVALVE NAME radius=1875 gap=600",
+		"mint":"H 3DVALVE NAME radius=2000 gap=1000",
+		"layer":"control"
+	},
+	{
+		"operator":"-",
+		"name":"3DValve",
+		"inputs":2,
+		"outputs":1,
+		"controlTerms":"1",
+		"inputTerms":"4",
+		"outputTerms":"2",
+		"picpath":"path/to/valve/pic",
+		"mint":"H 3DVALVE NAME radius=2000 gap=1000",
 		"layer":"control"
 	},
 	{
 		"operator":"*",
-		"name":"node",
+		"name":"Node",
 		"inputs":3,
-		"inputTerms": [1,4,3],
+		"inputTerms": [4,1,3],
 		"outputTerms": 2,
 		"outputs":1,
 		"picpath":"SampleIcons/node.png",

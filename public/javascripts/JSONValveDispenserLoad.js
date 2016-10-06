@@ -5,7 +5,6 @@
 function loadButtons() {
 
     // load file for parsing used for counting and locating buttons
-    var fileOfChoice = "../uploads/Build_Verify/buildJSON.json";
     var json = defaultJSON;
     console.log("found the loadButtons function: ");
     console.log(json);
@@ -39,10 +38,6 @@ function loadButtons() {
         localStorage.portXcoords = JSON.stringify(portX);
         localStorage.portYcoords = JSON.stringify(portY);
 
-        //  Update number of Pumps for settings page
-        if(localStorage.pumpsInitial == "TRUE") {
-            setNumberOfPumps_JSON();
-        }
         
         // Now look for all Ports (Dispensers) in the control layer only
         var myArrayDisp;
@@ -62,10 +57,6 @@ function loadButtons() {
         localStorage.portXcoordsDisp = JSON.stringify(portXDisp);
         localStorage.portYcoordsDisp = JSON.stringify(portYDisp);
 
-        //  Update number of Dispensers for settings page
-        if (localStorage.initialDispensers == "TRUE") {
-            setNumberOfDispensers_JSON();
-        }
 
 };
 
@@ -97,7 +88,6 @@ function placeButtons() {
         }
         else{
             state.src= "../images/fluigi/valveMarkerOpen.svg";
-
         }
 
         valveButton = template.querySelector('.valve');

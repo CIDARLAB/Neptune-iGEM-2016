@@ -3,7 +3,7 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
 {
     localStorage.clear();
     //      DECLARING PUMP VALVE STATE
-    localStorage.valveData = [];
+
     localStorage.pumpData = [];
     localStorage.MasterData = [];
     //localStorage.dataCenter = new Object();

@@ -1,86 +1,79 @@
-//Graphing the SVG
-// function retrieveValues(){
-//     IDinQuestion = this.id;
-//     IDinQuestion = IDinQuestion.replace(/\D/g,'');
-//     console.log(IDinQuestion + " run was clicked");
-//     document.getElementById(IDinQuestion + "");
-//     // var volume = this.querySelector('.valve');
-//     return false;
-// }
+/**
+ * Created by rebeccawolf on 7/26/16.
+ */
 
+function loadButtons() {
 
+    // load file for parsing used for counting and locating buttons
+    var fileOfChoice = "../uploads/Build_Verify/buildJSON.json";
+    var json = defaultJSON;
+    console.log("found the loadButtons function: ");
+    console.log(json);
+        for(var i = 0; i < json.layers.length; i++){
+            if(((json.layers[i]).name) === "control") {
+                controlOnly = JSON.stringify((json.layers[i]).features);
+            }
+            if(((json.layers[i]).name) === "flow"){
+                flowOnly = JSON.stringify((json.layers[i]).features);
+            }
+        }
 
-function onclickanchortag(){
-    var location = getLocation(this.src);
+        // Use Json as a string
+        var jsonString = JSON.stringify(json);
 
-    switch (location.pathname){
-        case "/images/fluigi/valveMarkerOpen.svg":
-            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
-            console.log("Port " + this.id + " clicked");
-            valve_to_control = this.id;
-            // change recorded state in table
-            var temp = JSON.parse(localStorage.pumpData);
-            temp[valve_to_control - 1]['Current_State'] = "closed";
-            localStorage.pumpData = JSON.stringify(temp);
-            flipFlop_valveState(valve_to_control);
-            break;
+        // Now look for all Port in the control layer only
+        var Re = /Port.+?\[(.+?),(.+?)\].+?/g;
+        var myArray;
+        var portArray = [];
+        var portX = [];
+        var portY = [];
 
-        case "/images/fluigi/valveMarkerClosed.svg":
-            $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg");
-            console.log("Port " + this.id + " clicked");
-            valve_to_control = this.id;
-            // change recorded state in table
-            var temp = JSON.parse(localStorage.pumpData);
-            temp[valve_to_control - 1]['Current_State'] = "opened";
-            localStorage.pumpData = JSON.stringify(temp);
-            flipFlop_valveState(valve_to_control);
-            break;
+        // look through control layer for ports
+        while ((myArray = Re.exec(controlOnly)) !== null) {
+            portX.push(myArray[1]);
+            portY.push(myArray[2]);
+            portArray.push(myArray.index);
+        }
 
-        default:
-            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
-            break;
-    }
-    if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
+        // Store json variables to localStorage in form of JSON object...
+        localStorage.portXcoords = JSON.stringify(portX);
+        localStorage.portYcoords = JSON.stringify(portY);
 
-    }
+        //  Update number of Pumps for settings page
+        if(localStorage.pumpsInitial == "TRUE") {
+            setNumberOfPumps_JSON();
+        }
+        
+        // Now look for all Ports (Dispensers) in the control layer only
+        var myArrayDisp;
+        var portArrayDisp = [];
+        var portXDisp = [];
+        var portYDisp = [];
 
-    return false;
-}
+        // look through flow layer for ports
+        while ((myArrayDisp = Re.exec(flowOnly)) !== null) {
+            portXDisp.push(myArrayDisp[1]);
+            // console.log("should be x coord in flow layer: " + myArrayDisp[1]);
+            portYDisp.push(myArrayDisp[2]);
+            portArrayDisp.push(myArrayDisp.index);
+        }
+        
+        // Store json variables to localStorage in form of JSON object...
+        localStorage.portXcoordsDisp = JSON.stringify(portXDisp);
+        localStorage.portYcoordsDisp = JSON.stringify(portYDisp);
 
+        //  Update number of Dispensers for settings page
+        if (localStorage.initialDispensers == "TRUE") {
+            setNumberOfDispensers_JSON();
+        }
 
-
-
-var getLocation = function(href) {
-    var l = document.createElement("a");
-    l.href = href;
-    return l;
 };
-
-function onclickanchortagDispense(){
-    console.log("Dispenser " + this.id + " clicked");
-    dispenser_to_control = this.id;
-    incrementDispenserPosition(dispenser_to_control);
-    return false;
-}
-
-function activateDispenser(dispenserIDNum) {
-    console.log("Dispenser " + dispenserIDNum + " activated!");
-    localStorage.activeDispenser = dispenserIDNum;
-    localStorage.dispenserToControl = dispenserIDNum;
-    updateDispenseProgressBar(dispenserIDNum);
-}
-
-function deactivateDispenser() {
-    console.log("All dispensers deactivated!");
-    localStorage.activeDispenser = "none";
-}
-
 
 
 
 function placeButtons() {
     var canvasZoom = paper.view.zoom;
-    
+
     // for each pump, create new instance of valve template
     for(var i=0; i<JSON.parse(localStorage.getItem('portXcoords')).length; i++){
 
@@ -88,13 +81,11 @@ function placeButtons() {
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
         var state = template.querySelector('.valve_color');
-        
+
         valveDiv.style.position = 'absolute';
 
         valveDiv.style.top  = (parseInt(JSON.parse(localStorage.portYcoords)[i]) - paper.view.bounds.topLeft['_y']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
         valveDiv.style.left = (parseInt(JSON.parse(localStorage.portXcoords)[i]) - paper.view.bounds.topLeft['_x']) * canvasZoom + (1.25 * Math.pow((canvasZoom *5), 5)) + 'px';
-
-
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
@@ -109,7 +100,6 @@ function placeButtons() {
 
         }
 
-
         valveButton = template.querySelector('.valve');
 
         var valveIDLabel = template.querySelector('.IDtext');
@@ -119,12 +109,8 @@ function placeButtons() {
         }
 
         content.append(template);
-        
+
     }
-
-
-
-
 
     // for each DISPENSER, create new instance of DISPENSER template
     for(var i=0; i<JSON.parse(localStorage.getItem('portXcoordsDisp')).length; i++){
@@ -145,8 +131,6 @@ function placeButtons() {
         var plunger = template.querySelector('.syringePlunger');
         var orientation = template.querySelector('.orientationBtn');
 
-
-
         valveDiv.style.position = 'absolute';
 
         // +220 bc canvas is positioned 220px from top & -20 so that valve is positioned from center of circle
@@ -155,11 +139,11 @@ function placeButtons() {
 
         modalDiv.id = "dispenserModal" + (i + 1);
         var modalID = template.querySelector("#dispenserModal" + (i + 1));
-        
+
         progress.id = "progress" + (i + 1);
-        
+
         currentStateTxt.id = "stateOf" + (i + 1);
-        // console.log(currentStateTxt);
+
         // style position of dispenser modal
         if (xCoord + 400 > $(window).width()) {
             modalID.style.left = ((xCoord - 400) + 'px');
@@ -179,11 +163,7 @@ function placeButtons() {
         // set id of each valve anchor based on location in array
         specificImage.id = i + 1;
 
-
         valveButton = template.querySelector('.valve');
-        
-
-
 
         var valveIDLabel = template.querySelector('.IDtext');
         valveIDLabel.textContent = (i + 1);
@@ -194,14 +174,12 @@ function placeButtons() {
         var catchID = "catch" + (i + 1);
         gottaCatchEmAll.id = catchID;
 
-
-
         var dispenserTitle = template.querySelector('#dispenserModalTitle');
         dispenserTitle.textContent = "Dispenser " + (i + 1);
 
         // id of each syringe tube
         plunger.id = "plunger" + (i + 1);
-        
+
         // reference to submit appropriate form
         var sendID = "dispenseTo" + (i + 1);
         var vol = "dispenseVol" + (i + 1);
@@ -215,11 +193,10 @@ function placeButtons() {
         console.log(dispenseVol.id);
         dispenseTime.id = time;
         console.log(dispenseTime.id);
-        
+
         // dispenser orientation (push/pull)
         orientation.id = "orientation" + (i + 1);
         orientation.textContent = (JSON.parse(localStorage.dispenserData))[i]['orientation'];
-        
 
         var dispenserCatch = "#dispenserModal" + (i + 1);
         content.append(template);
@@ -227,12 +204,5 @@ function placeButtons() {
         $("#" + catchID).attr("href", dispenserCatch);
         $("#" + catchID).attr("onclick", "activateDispenser(" + (i + 1) + ")");
 
-
-        
-
-
-
     }
 }
-
-

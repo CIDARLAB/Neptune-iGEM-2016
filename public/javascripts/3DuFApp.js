@@ -30707,7 +30707,17 @@
 
         viewManager.updateGrid();
         Registry.currentDevice.updateView();
-        placeButtons(); // external function
+        if (localStorage.loadControls === "true") {
+            loadButtons();
+            setNumberOfPumps_JSON();
+            setNumberOfDispensers_JSON();
+            placeButtons(); // external function
+            localStorage.setItem('loadControls', 'false');
+        }
+        else {
+            placeButtons();
+        }
+
 
 
         window.dev = Registry.currentDevice;

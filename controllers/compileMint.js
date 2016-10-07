@@ -12,6 +12,8 @@ var slash = require('slash');
 var replace = require("replace");
 var lineder = require( "lineder" );
 
+var FLUIGI_BINARY_PATH = path.join(global.Neptune_ROOT_DIR, "backend", "Fluigi-jar-with-dependencies.jar");
+
 io = require('socket.io')(global.server);
 io.on('connection', function(socket){
     console.log('a user connected');
@@ -73,7 +75,7 @@ exports.compileMint = function(req, res)
     });
 
     var par_terminal = require('child_process').spawn(
-        'java', ['-jar', './backend/Fluigi-jar-with-dependencies.jar', mint_path, '-i', ini_path, '-o', 'sej']
+        'java', ['-jar', FLUIGI_BINARY_PATH , mint_path, '-i', ini_path, '-o', 'sej']
     );
 
     par_terminal.stdout.on('data', function(data) {

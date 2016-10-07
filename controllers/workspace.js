@@ -5,6 +5,13 @@
 var fs = require('fs');
 var path = require('path');
 var mkdirp = require('mkdirp');
+var homeDir = require('home-dir');
+
+exports.findHome = function(req, res)
+{
+    var dir = homeDir();
+    res.send({home_directory: dir});
+};
 
 exports.getProjects = function(req,res)
 {

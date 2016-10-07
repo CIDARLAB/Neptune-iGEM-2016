@@ -182,10 +182,5 @@ global.server.timeout = 1000000000;
 
     var fileGetter = require('./controllers/fileGetter');
     app.post('/api/getFile',fileGetter.getFile);
-
-
-    var beccaGetter = require('./controllers/beccaGetter');
-    app.post('/api/getJSON_forBecca',beccaGetter.getBecca);
-
-    var findHome = require('./controllers/findHome');
-    app.post('/api/findHome',findHome.findHome);
+    
+    app.post('/api/findHome',workspaceController.findHome);

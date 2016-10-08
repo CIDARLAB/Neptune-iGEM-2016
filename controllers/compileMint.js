@@ -1,4 +1,4 @@
-/**
+ /**
  * Created by kestas on 7/19/2016.
  */
 var cmd = require('node-cmd');
@@ -60,7 +60,7 @@ exports.compileMint = function(req, res)
         });
     });
 
-    lineder(mint_path).find("3D DEVICE",function(err,results){
+    lineder(mint_path).find("DEVICE",function(err,results){
         //console.log(results);
         mintREGEX = (results[0]).value;
         //mintREGEX = mintREGEX.substring(0, mintREGEX.length);

@@ -17,9 +17,6 @@ function openConnection (fluigiPort) {
         parser: serialport.parsers.readline("\r")
     });
 
-
-
-
     function showPortOpen() {
         console.log('port open. Data rate: ' + myPort.options.baudRate);
     }

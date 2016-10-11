@@ -2,9 +2,9 @@
  * Created by Johan Ospina on 9/7/16.
  */
 
-var chart;
 var chartDataContinuous;
 var chartOptionsContinuous;
+var dataTableObject;
 var sensors = [];
 var oldReadings = []; //arrays in js function like stacks.
 var numOfSensors = 0;
@@ -12,12 +12,18 @@ var sensorCollectionStyle ;
 //0 is visualize a single reading // 1 is visualize multiple readings from now on.
 // if you want to load something from memory or a file write a new function to do that with.
 
+$(window).ready(function() {
+    $('#myModal2').modal('show');
+});
+
 $(document).ready(function() {
     var socket = io();
 
     socket.on('connect', function () {
         console.log("connected");
     });
+
+
 
     socket.on('serial-communication-echo', function(data){
         console.log(data.data);
@@ -86,7 +92,27 @@ $(document).ready(function() {
     $("#read-continuously-button").click( function () {
         sensorCollectionStyle = 1;
         chartDataContinuous = "";
-        //maybe set up continuous chart here?
+        //maybe set up continuous chart here.. MO DEF TBH
+
+
+        dataTableObject = {type: sensors[1].type , dataTableArray: []};
+
+        dataTableObject.dataTableArray = [['time', 'value'], [0,0]];
+
+        chartDataContinuous = google.visualization.arrayToDataTable(dataTableObject.dataTableArray);
+
+
+        chartOptionsContinuous = {
+            title: 'Value of \<SENSOR\> as time goes on',
+            hAxis: {title: 'Time'},
+            vAxis: {title: 'Value'},
+            legend: 'none',
+            trendlines: { 0: {} }    // Draw a trendline for data series 0.
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('neptune-data-container'));
+        chart.draw(chartDataContinuous, chartOptionsContinuous);
+
 
         //
         $.ajax(
@@ -107,24 +133,7 @@ $(document).ready(function() {
 // instantiates the pie chart, passes in the data and
 // draws it.
 function drawChart() { // Data Object I will pass in.
-    chartData = new google.visualization.DataTable();
-    chartData.addColumn('string', 'Sensor');
-    chartData.addColumn('number', 'Reading');
 
-    chartOptions = {
-        title: 'Sensor Readings',
-        chartArea: {width: '50%' },
-        hAxis: {
-            title: 'Sensor Reading',
-            minValue: 0
-        },
-        vAxis: {
-            title: 'Sensor Type'
-        }
-    };
-
-    chart = new google.charts.Bar(document.getElementById('neptune-data-container'));
-    chart.draw(chartData, chartOptions);
 }
 
 
@@ -200,10 +209,10 @@ function initHardwareFromListedData() {
 }
 
 function sensorTemplate() {
-    return "\<li> <label for=\"sensor-index-{{address}}\">Sensor Address {{address}} </label>" +
-        "\<br><input id=\"sensor-index-{{address}}\" type=\"number\" value=\"0\" min=\"0\" max=\"102\">" +
-        "\<label for='sensor-index-{{address}}-type'>Type: </label>" +
-        "\<input id='sensor-index-{{address}}-type' style='width: 50px;' type='text'></li>"
+    return "\<li style='padding: 10px 5px 10px 0px'>  <label for='sensor-index-{{address}}' style='margin: 10px 10px 0px 0px; text-align:center;'> Sensor Address {{address}}: </label>" +
+        "\<input id='sensor-index-{{address}}' class= 'sensor-input' type='number' value='0' min='0' max='102'> <br> " +
+        "\<label for='sensor-index-{{address}}-type'>Type: </label> <input id='sensor-index-{{address}}-type' class='sensor-type' style='' type='text'>" +
+        "\<label for='sensor-index-{{address}}-code'>Code: </label> <input id='sensor-index-{{address}}-code' class='sensor-code' style='' type='text'> </li>"
 }
 
 function flubAbout() {
@@ -265,7 +274,22 @@ function handleDataDisplay(){
             var payload = { data: sensorReadingNow, timeStamp: date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() };
             oldReadings.push(payload);
 
+            var chartOptions = {
+                title: 'Sensor Readings',
+                chartArea: {width: '50%' },
+                hAxis: {
+                    title: 'Sensor Reading',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Sensor Type'
+                }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('neptune-data-container'));
             chart.draw(dataTable, chartOptions);
+
+
 
             //so this is done and it's adding payloads to my history object (which is NOICE)
 
@@ -274,6 +298,29 @@ function handleDataDisplay(){
             //need to implement something that will keep track of this.
             //to that end i'm probably gonna need some sort of global var for the chart data here. I'd want to minimize O(n) look ups
             //so in that way I'm not creating something that's O(n^2) (look up and populate a chart data from the list of queues
+
+            //queue has the readings queued up. now I need to feed the scatter plot for one value. lets choose sensor at index 1
+            dataTableObject = {type: sensors[1].type , dataTableArray: []};
+            dataTableObject.dataTableArray = [['time', 'value']];
+            var theQueue = sensors[1].queue;
+            for (key in theQueue._storage){ //this is to be changed as the user specifies which sensor they want to focus on.
+                if (theQueue._storage.hasOwnProperty(key)) {
+                    dataTableObject.dataTableArray.push([theQueue._storage[key].minutes, theQueue._storage[key].readingValue]);
+                }
+            }
+
+            chartDataContinuous = google.visualization.arrayToDataTable(dataTableObject.dataTableArray);
+
+            chartOptionsContinuous = {
+                title: 'Value of ' + sensors[1].type + ":" + sensors[1].address + ' as time goes on',
+                hAxis: {title: 'Time'},
+                vAxis: {title: 'Value'},
+                legend: 'none',
+                trendlines: { 0: {} }    // Draw a trendline for data series 0.
+            };
+
+            var chart = new google.visualization.ScatterChart(document.getElementById('neptune-data-container'));
+            chart.draw(chartDataContinuous, chartOptionsContinuous);
 
 
             break;
@@ -297,3 +344,4 @@ function sendKillCmd(){
             }
         });
 }
+

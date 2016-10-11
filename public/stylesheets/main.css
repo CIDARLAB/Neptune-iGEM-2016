@@ -8,7 +8,7 @@ html, body
 
 body
 {
-    /*background-color: #34495e;*/
+    background-color: whitesmoke;
 }
 
 a.neptune-text  {
@@ -54,8 +54,6 @@ canvas
     margin-top: 0px;
     margin-left: 0px;
 }
-
-
 /* TOP TOOLBAR WITH OUT LOGOS: BU, CIDAR, UROP, iGEM, ect... */
 .topBar
 {
@@ -73,31 +71,26 @@ canvas
     top: 300px;
     left: 550px;
 }
-
 .neptune-navbar {
     top: 10px;
     background-color: whitesmoke;
     padding: 10px;
     border-bottom: 2px;
 }
-
-
 .neptune-logo {
     float: left;
 }
-
 .neptune-brand {
     float: right;
     margin: 10px;
 
 }
-
 .neptune-footer {
     bottom: 0px;
     height: 80px;
     position: absolute;
     background-color: whitesmoke;
-    padding: 10px;
+    padding: 10px 0px 10px 10px;
     right: 0px;
     left: 0px;
 
@@ -111,7 +104,7 @@ canvas
     left: 0px;
     top: 60px;
     bottom: 80px;
-    width: 260px;
+    width: 350px;
     float:left;
 
 }
@@ -120,7 +113,7 @@ canvas
     position: absolute;
     right: 0px;
     bottom: 80px;
-    left: 260px;
+    left: 320px;
     top: 60px;
 }
 
@@ -129,6 +122,38 @@ canvas
     position: fixed;
     top: 300px;
     left: 1250px;
+}
+
+.serial-ports-dropdown {
+    margin: 10px 0px 10px 10px;
+    border: 1px solid #111;
+    background: transparent;
+    width: 500px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 50px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+.sensor-input {
+    width:45px;
+    padding: 5px;
+    margin: 10px 5px 10px 0px;
+    height: 25px;
+}
+
+.sensor-type {
+    width:65px;
+    padding: 5px;
+}
+
+.sensor-code {
+    width:50px;
+    padding: 5px;
 }
 
 .lfrHelp

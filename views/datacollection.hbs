@@ -21,7 +21,6 @@
 
 </head>
 <body class="content">
-
 <nav class="neptune-navbar">
     <div class="container-fluid">
         <div class="navbar-header" >
@@ -29,7 +28,7 @@
             <img height="50" width="50" src="../images/NeptuneLogo.png">
             </div>
             <div class="neptune-brand">
-                <a class="neptune-text" style="font-family: 'Open Sans'; font-size: 20px;" href="#">NEPTUNE</a>
+                <a class="neptune-text" style="font-family: 'Open Sans'; font-size: 20px;" href="/">NEPTUNE</a>
             </div>
         </div>
         <ul class="nav navbar-nav">
@@ -41,38 +40,76 @@
     </div>
 </nav>
 <div class="neptune-sideleft">
-    <h2> Sensors </h2>
+    <h2 style="text-align: center"> Sensors </h2>
     <div>
-        <label for="sensor-menu">Connected Sensors: </label> <input id="sensor-menu" type="number" value="0" min="0" max="102">
-        <input id="sensor-init-btn" type="button" value="Initialize Sensors" onclick="initSensorListFromButton();">
-        <input id="hardware-init-btn" type="button" value="Init Hardware / Clear Data" onclick="initHardwareFromListedData();">
-
         <div style="overflow: scroll; height: 75vh; margin-top: 10px; position: float ">
-            <ul id="sensor-list">
-
+            <ul id="sensor-list" style="list-style-type: none">
+            </ul>
+            <input id="hardware-init-btn" class="btn btn-default" type="button" value="Init Hardware / Clear Data" onclick="initHardwareFromListedData();">
+            <ul id="continuos-reading-settings" >
             </ul>
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sensor Series Settings</h4>
+            </div>
+            <div class="modal-body">
+                <p>Here you will choose which sensor you want to display a trendline for</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sensor Settings</h4>
+            </div>
+            <div class="modal-body">
+                <h3 style="text-align: center">Initialize the sensors you want to use.</h3>
+                <br>
+                <p style="text-align: center">Then set a two character code corresponding to what's been programmed in the firmware</p>
+                <br>
+                <label for="sensor-menu">Connected Sensors: </label> <input id="sensor-menu" style="height: 33.5px;" type="number" value="0" min="0" max="102">
+                <input id="sensor-init-btn"   class="btn btn-default" type="button" value="Initialize Sensors" onclick="initSensorListFromButton(); document.getElementById('sensor-setup-done-btn').disabled = false;">
+            </div>
+            <div class="modal-footer">
+                <button id="sensor-setup-done-btn" type="button" class="btn btn-default" data-dismiss="modal" disabled>Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 
 <div id= "neptune-data-container" class="neptune-container">
-
 </div>
 <!--Footer-->
-<div class="neptune-footer">
+<div class="neptune-footer" style="background-color: whitesmoke">
         <label for="ports" style="color:#777777">Serial Ports Available</label>
-        <select id="ports">
+        <select id="ports" class="serial-ports-dropdown">
             {{#each serialPorts}} <!-- // Note the reference to the serialPorts object​-->
                 <option value={{this.comName}}> name: {{ this.comName }} </option>​
             {{/each}}
         </select>
-    <div class="serial-communication-buttons">
-            <button class="btn btn-default serial-connection-button" id="begin-comm"> Open Comm</button>
-            <button class="btn btn-default connections serial-connection-button" id="end-comm"> Close Comm</button>
-            <button class="btn btn-default connections serial-connection-button" id="read-button"> Take Reading</button>
-            <button class="btn btn-default connections serial-connection-button" id="read-continuously-button"> Take Continuous Reading</button>
-            <button class="btn btn-default connections serial-connection-button" id="fuck-around-button" onclick="flubAbout()"> Flub about </button>
-            <button class="btn btn-default connections serial-connection-button" id="quit-action-button" onclick="sendKillCmd()">Return To Standby</button>
+    <div style="background-color: inherit">
+        <button class="btn btn-default serial-connection-button" id="begin-comm"> Open Comm </button>
+        <button class="btn btn-default connections serial-connection-button" id="end-comm"> Close Comm </button>
+        <button class="btn btn-default connections serial-connection-button" id="read-button"> Take Reading </button>
+        <button class="btn btn-default connections serial-connection-button" id="read-continuously-button"> Take Continuous Reading </button>
+        <button type="button" class="btn btn-default connections serial-connection-button" data-toggle="modal" data-target="#myModal"> Open Modal </button>
+        <button class="btn btn-default connections serial-connection-button" id="quit-action-button" onclick="sendKillCmd()"> Return To Standby </button>
     </div>
 </div>
 

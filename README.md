@@ -30,7 +30,7 @@ To create microfluidic chip designs in Neptune,
 ## Contributions and Attributions 
 
 ## License 
-Neptune is licensed as an open source software tool under BSD 2-Clause License as specified in 
+Neptune is licensed as an open source software tool under BSD 2-Clause License as specified in [LICENSE.md](LICENSE.md).
 
 ## Contact Us 
 If you would like to receive updates from the Neptune team regarding bug fixes, patches, feature updates, or if you would like to contact the Neptune team, please check the links in [CONTACT.md](CONTACT.md). 

@@ -15,22 +15,31 @@ And please, for installation, see [Install and Run Neptune](#install-and-run-nep
 
 ## LFR Specification 
 
-To create microfluidic chip designs in Neptune, 
+High-level english-language specifications are a much more robust, parameterizable and modular way to define microfluidic designs. Neptune provides a very simple, high-level way to specify the layout and function of a microfluidic chip, using Liquid Flow Relation (LFR) files. The following section is a quick intro to how to use LFR files to generate a microfluidic design schematic. 
 
 ## MINT Elaboration
+There are some details in your microfluidic design that you may need to fine tune, or certain parameters you may need to elaborate on. Neptune provides fine grained control over a microfluidic design schematic through Microfluidic Netlist (MINT) files, which allow you to have far greater control over certain design parameters that LFR files could not describe. The following section described how to leverage MINT files to fine tune your microfluidic design schematic 
+
 
 ## 3D Printed Control Infrastructure 
+Have a microfluidic chip to run experiments on, but no way to control it? Thankfully, Neptune provides you with all 3D printed designs so that you can fabricate a pump array infrastructure over night! This section described how to use Neptune to get your 3D print designs. 
 
 ## Assembly 
+Need help putting the pieces together? In this section we detail how to use Neptune to assemble your microfluidic chip. 
 
 ## Control 
+Running experiments on a microfluidic chip means having fine control over many experimental aspects: a researcher needs to be able to open and close valves on the fly to mediate fluid flow, and running an experiment requires the ability to precisely control flow rates and fluid dispension amounts. Thankfully, Neptune can do all of this! This section describes how to use Neptune to run a simple microfluidic chip experiment, detailing how to open and close valves and how to control flow rates and dispension parameters. 
 
 ## Install and Run Neptune 
+Can’t wait to try it!? Please follow these installation instructions :) 
+Problems installing or running Neptune? Please contact us! 
 
 ## Contributions and Attributions 
 
+
+
 ## License 
-Neptune is licensed as an open source software tool under BSD 2-Clause License as specified in [LICENSE.md](LICENSE.md).
+Neptune is licensed as an open source software tool under BSD 2-Clause License as specified in [LICENSE.md](LICENSE.md)
 
 ## Contact Us 
 If you would like to receive updates from the Neptune team regarding bug fixes, patches, feature updates, or if you would like to contact the Neptune team, please check the links in [CONTACT.md](CONTACT.md). 

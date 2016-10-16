@@ -356,10 +356,6 @@ function calculateRecommended() {
             var r = parseFloat(localStorage.crankradius);
             var b = parseFloat (localStorage.pistonrod);
             var d = parseFloat (localStorage.offset);
-            // console.log((b * b));
-            // console.log("d is :" +parseFloat(d));
-            // console.log(Math.pow((r * Math.sin(servoTable[key].thetaMax* Math.PI/180)) + d, 2));
-
 
             // var insidesqrt = Math.pow((r*Math.sin(servoTable[key].thetaMax * Math.PI/180))+ parseFloat(d),2);
             // var insidesqrt2 = Math.pow((r*Math.sin(servoTable[key].thetaMin * Math.PI/180))+ parseFloat(d),2);
@@ -392,10 +388,6 @@ function calculateRecommended() {
                 var syringevolume = syringeTable[key2].volume;
                 var syringecost = syringeTable[key2].costs;
 
-
-
-
-
                 
                 var servocost = servoTable[key].cost;
                 var PWM_min = servoTable[key].PWM_min;
@@ -413,15 +405,7 @@ function calculateRecommended() {
 
                 // var pwm = servoTable[key].msRange * servoTable[key].AD * 0.004095;
                 // var deltax = xtotal / pwm;
-
-
-                // console.log("______________________________________");
-                console.log("Hello World.. Build Data:");
-                console.log("Volume required: " + localStorage.volume/1000);
-                console.log("syringe volume: " + syringevolume);
-                console.log("Servo volume: = xtotal (" + xtotal + ") / syringex1 (" +syringex1 + "), which is " + xtotal/syringex1);
-                console.log("Precision required: " + localStorage.precision);
-                console.log("Precision obtained from calculations: " + setupvalues.uL_precision);
+                
                 var servo_volume = xtotal / syringex1;
                 var my_servo_volume;
                 if (servo_volume > syringevolume)

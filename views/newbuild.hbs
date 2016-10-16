@@ -52,7 +52,7 @@
     <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
     <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
 
-    <script type="text/javascript" src="../javascripts/servosyringe.js"></script>
+    <!--<script type="text/javascript" src="../javascripts/servosyringe.js"></script>-->
     <script type="text/javascript" src="../javascripts/newbuildbuttons.js"></script>
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
@@ -128,11 +128,12 @@
                     <div class="panel-body">
                         <ul class="chat">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover table-striped tablesorter" id="comboList">
+                                <table class="table table-hover tablesorter" id="comboList">
                                     <thead>
-                                    <tr>
+                                    <tr style="font-size: 20px;">
                                         <th>Combo ID</th>
-                                        <th>Servo and Syringe</th>
+                                        <th>Servo </th>
+                                        <th>Syringe</th>
                                         <th>Precision</th>
                                         <th>Volume</th>
                                         <th>Cost</th>
@@ -142,196 +143,196 @@
 
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id ="comboListBody">
 
                                     </tbody>
                                 </table>
                             </div>
 
-                            <li class="left clearfix">
-                                <div class="header">
-                                    <strong class="primary-font" style="font-size: 20px">Combo A1</strong>
+                            <!--<li class="left clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font" style="font-size: 20px">Combo A1</strong>-->
 
-                                </div>
-                                <div class="chat-body clearfix">
+                                <!--</div>-->
+                                <!--<div class="chat-body clearfix">-->
 
-                                    <div class="col-xs-6">
+                                    <!--<div class="col-xs-6">-->
 
-                                        <p>
-                                            HITEC-FS322 Servo and 60ml Syringe
-                                        </p>
-                                        <p>
-                                            Precision: 0.005 litres
-                                        </p>
-                                        <p>
-                                            Cost: $25
-                                        </p>
-                                        <p>
-                                            Maximum volume: 50 litres
-                                        </p>
-                                        <p>
-                                            Torque: 50
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="../images/build/hitec.jpg" style="height: 100px">
-                                        <img src="../images/build/3ml.jpg" style="padding-left: 50px; height: 100px">
-                                    </div>
-                                </div>
-                            </li>
+                                        <!--<p>-->
+                                            <!--HITEC-FS322 Servo and 60ml Syringe-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Precision: 0.005 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Cost: $25-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Maximum volume: 50 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Torque: 50-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<img src="../images/build/hitec.jpg" style="height: 100px">-->
+                                        <!--<img src="../images/build/3ml.jpg" style="padding-left: 50px; height: 100px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
 
-                            <li class="left clearfix">
-                                <div class="header">
-                                    <strong class="primary-font" style="font-size: 20px">Combo A2</strong>
-                                </div>
-                                <div class="chat-body clearfix">
+                            <!--<li class="left clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font" style="font-size: 20px">Combo A2</strong>-->
+                                <!--</div>-->
+                                <!--<div class="chat-body clearfix">-->
 
-                                    <div class="col-xs-6">
+                                    <!--<div class="col-xs-6">-->
 
-                                        <p>
-                                            Parallax Servo and 60ml Syringe
-                                        </p>
-                                        <p>
-                                            Precision: 0.005 litres
-                                        </p>
-                                        <p>
-                                            Cost: $25
-                                        </p>
-                                        <p>
-                                            Maximum volume: 50 litres
-                                        </p>
-                                        <p>
-                                            Torque: 50
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="../images/build/parallax.jpg" style="height: 100px">
-                                        <img src="../images/build/10ml.jpg" style="padding-left: 30px; height: 100px">
-                                    </div>
-                                </div>
-                            </li>
+                                        <!--<p>-->
+                                            <!--Parallax Servo and 60ml Syringe-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Precision: 0.005 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Cost: $25-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Maximum volume: 50 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Torque: 50-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<img src="../images/build/parallax.jpg" style="height: 100px">-->
+                                        <!--<img src="../images/build/10ml.jpg" style="padding-left: 30px; height: 100px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
 
-                            <li class="left clearfix">
-                                <div class="header">
-                                    <strong class="primary-font" style="font-size: 20px">Combo A3</strong>
-                                </div>
-                                <div class="chat-body clearfix">
-                                    <div class="col-xs-6">
-                                        <p>
-                                            HITEC-FS322 Servo and 60ml Syringe
-                                        </p>
-                                        <p>
-                                            Precision: 0.005 litres
-                                        </p>
-                                        <p>
-                                            Cost: $25
-                                        </p>
-                                        <p>
-                                            Maximum volume: 50 litres
-                                        </p>
-                                        <p>
-                                            Torque: 50
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="../images/build/tower.jpg" style="height: 100px">
-                                        <img src="../images/build/60ml.jpg" style="padding-left: 50px; height: 100px">
-                                    </div>
-                                </div>
-                            </li>
+                            <!--<li class="left clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font" style="font-size: 20px">Combo A3</strong>-->
+                                <!--</div>-->
+                                <!--<div class="chat-body clearfix">-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<p>-->
+                                            <!--HITEC-FS322 Servo and 60ml Syringe-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Precision: 0.005 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Cost: $25-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Maximum volume: 50 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Torque: 50-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<img src="../images/build/tower.jpg" style="height: 100px">-->
+                                        <!--<img src="../images/build/60ml.jpg" style="padding-left: 50px; height: 100px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
 
-                            <li class="left clearfix">
-                                <div class="header">
-                                    <strong class="primary-font" style="font-size: 20px">Combo B1</strong>
-                                </div>
-                                <div class="chat-body clearfix">
+                            <!--<li class="left clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font" style="font-size: 20px">Combo B1</strong>-->
+                                <!--</div>-->
+                                <!--<div class="chat-body clearfix">-->
 
-                                    <div class="col-xs-6">
+                                    <!--<div class="col-xs-6">-->
 
-                                        <p>
-                                            Parallax Servo and 60ml Syringe
-                                        </p>
-                                        <p>
-                                            Precision: 0.005 litres
-                                        </p>
-                                        <p>
-                                            Cost: $25
-                                        </p>
-                                        <p>
-                                            Maximum volume: 50 litres
-                                        </p>
-                                        <p>
-                                            Torque: 50
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="../images/build/hextronik.jpg" style="height: 100px">
-                                        <img src="../images/build/3ml.jpg" style="padding-left: 50px; height: 100px">
-                                    </div>
-                                </div>
-                            </li>
+                                        <!--<p>-->
+                                            <!--Parallax Servo and 60ml Syringe-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Precision: 0.005 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Cost: $25-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Maximum volume: 50 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Torque: 50-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<img src="../images/build/hextronik.jpg" style="height: 100px">-->
+                                        <!--<img src="../images/build/3ml.jpg" style="padding-left: 50px; height: 100px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
 
-                            <li class="left clearfix">
-                                <div class="header">
-                                    <strong class="primary-font" style="font-size: 20px">Combo B2</strong>
-                                </div>
-                                <div class="chat-body clearfix">
+                            <!--<li class="left clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font" style="font-size: 20px">Combo B2</strong>-->
+                                <!--</div>-->
+                                <!--<div class="chat-body clearfix">-->
 
-                                    <div class="col-xs-6">
+                                    <!--<div class="col-xs-6">-->
 
-                                        <p>
-                                            HITEC-FS322 Servo and 60ml Syringe
-                                        </p>
-                                        <p>
-                                            Precision: 0.005 litres
-                                        </p>
-                                        <p>
-                                            Cost: $25
-                                        </p>
-                                        <p>
-                                            Maximum volume: 50 litres
-                                        </p>
-                                        <p>
-                                            Torque: 50
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="../images/build/hitec2.jpg" style="height: 100px">
-                                        <img src="../images/build/60ml.jpg" style="padding-left: 50px; height: 100px">
-                                    </div>
-                                </div>
-                            </li>
+                                        <!--<p>-->
+                                            <!--HITEC-FS322 Servo and 60ml Syringe-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Precision: 0.005 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Cost: $25-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Maximum volume: 50 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Torque: 50-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<img src="../images/build/hitec2.jpg" style="height: 100px">-->
+                                        <!--<img src="../images/build/60ml.jpg" style="padding-left: 50px; height: 100px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
 
-                            <li class="left clearfix">
-                                <div class="header">
-                                    <strong class="primary-font" style="font-size: 20px">Combo B3</strong>
-                                </div>
-                                <div class="chat-body clearfix">
+                            <!--<li class="left clearfix">-->
+                                <!--<div class="header">-->
+                                    <!--<strong class="primary-font" style="font-size: 20px">Combo B3</strong>-->
+                                <!--</div>-->
+                                <!--<div class="chat-body clearfix">-->
 
-                                    <div class="col-xs-6">
+                                    <!--<div class="col-xs-6">-->
 
-                                        <p>
-                                            Parallax Servo and 60ml Syringe
-                                        </p>
-                                        <p>
-                                            Precision: 0.005 litres
-                                        </p>
-                                        <p>
-                                            Cost: $25
-                                        </p>
-                                        <p>
-                                            Maximum volume: 50 litres
-                                        </p>
-                                        <p>
-                                            Torque: 50
-                                        </p>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <img src="../images/build/turnigy.jpg" style="height: 100px">
-                                        <img src="../images/build/10ml.jpg" style="padding-left: 50px; height: 100px">
-                                    </div>
-                                </div>
-                            </li>
+                                        <!--<p>-->
+                                            <!--Parallax Servo and 60ml Syringe-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Precision: 0.005 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Cost: $25-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Maximum volume: 50 litres-->
+                                        <!--</p>-->
+                                        <!--<p>-->
+                                            <!--Torque: 50-->
+                                        <!--</p>-->
+                                    <!--</div>-->
+                                    <!--<div class="col-xs-6">-->
+                                        <!--<img src="../images/build/turnigy.jpg" style="height: 100px">-->
+                                        <!--<img src="../images/build/10ml.jpg" style="padding-left: 50px; height: 100px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</li>-->
 
 
 
@@ -356,7 +357,7 @@
                         <div class="row">
                             <div class="col-lg-4"  style="width: 100%;">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover table-striped" id="combo_table">
+                                    <table class="table table-hover " id="combo_table">
                                         <thead>
                                         <tr>
                                             <th>Dispenser ID</th>
@@ -432,18 +433,25 @@
 </html>
 
 <script type="text/javascript">
-    $('#update').click(function(){
+    $('#update').click(function() {
         console.log("hello update function");
         var mytolerance = $('#mytolerance').val();
         var myliquid = $('#myliquid').val();
-        if (myliquid<=0 || myliquid >1000000 || mytolerance<0) {
+        if (myliquid <= 0 || myliquid > 1000000 || mytolerance < 0) {
             toastr.warning('Error! Please enter a valid volume and precision.');
         }
-        else{
+        else {
             toastr.info('Values accepted! Please see options of hardware below.');
-            localStorage.precision= mytolerance;
+            localStorage.precision = mytolerance;
             localStorage.volume = myliquid;
+
+//            var row = document.getElementById("comboListBody").length;
+//            while (document.getElementById("comboListBody").length!=0){
+//             document.getElementById("comboListBody").deleteRow(-1);
+//            }
+
             calculateRecommended();
+
         }
     });
 
@@ -611,7 +619,7 @@ var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
         console.log("X_max: ",X_max);
         console.log("uL_min: ",uL_min);
         console.log("uL_max: ",uL_max);
-        console.log("uL_precision: ",uL_precision)
+        console.log("uL_precision: ",uL_precision);
         console.log("r: ",r);
         console.log("b: ",b);
         console.log("d: ",d);

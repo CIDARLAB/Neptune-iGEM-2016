@@ -317,9 +317,9 @@ var syringeTable =
 function calculateRecommended() {
     var arr = [];
 
-    loadButtons();
-    setNumberOfDispensers_JSON();
-    setNumberOfPumps_JSON();
+    // loadButtons();
+    // setNumberOfDispensers_JSON();
+    // setNumberOfPumps_JSON();
 
 // Iterate through syringes 1-12
 // Iterate through servos A-L
@@ -335,8 +335,8 @@ function calculateRecommended() {
             var d = parseFloat (localStorage.offset);
 
         }
-        localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
-        localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
+        // localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
+        // localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
 
         for (var key2 in syringeTable) {
             if (syringeTable.hasOwnProperty(key2)) {
@@ -404,25 +404,29 @@ function calculateRecommended() {
         if (arr.hasOwnProperty(key)) {
             console.log("hello list");
             var row = combolist.insertRow(i + 1);
+            row.style.fontSize = 20;
             var cell1 = row.insertCell(0); //Combo ID
-            var cell2 = row.insertCell(1); //Servo and Syringe Names
-            var cell3 = row.insertCell(2); //Precision
-            var cell4 = row.insertCell(3); //Volume
-            var cell5 = row.insertCell(4); //Cost
+            var cell2 = row.insertCell(1); //Servo
+            var cell3 = row.insertCell(2);// Syringe Names
+            var cell4 = row.insertCell(3); //Precision
+            var cell5 = row.insertCell(4); //Volume
+            var cell6 = row.insertCell(5); //Cost
             // var cell6 = row.insertCell(5); //Syringe URL
             // var cell7 = row.insertCell(6); //Servo URL
 
             var ServoObject = getObjects(servoTable, 'id', arr[key].servoID);
             var SyringeObject = getObjects(syringeTable, 'ids', arr[key].syringeID);
 
-            cell1.innerHTML = arr[key].servoID +arr[key].syringeID;
-            cell2.innerHTML = "Servo: " + ServoObject[0].name + " and Syringe: "+ SyringeObject[0].volume + "ml";
-            cell3.innerHTML = Math.round(arr[key].p * 1000) / 1000;
-            cell4.innerHTML = Math.round(arr[key].v * 1000) / 1000;
-            cell5.innerHTML = Math.round(arr[key].cost * 1000) / 1000;
+            // cell1.innerHTML = arr[key].servoID +arr[key].syringeID;
+            cell1.innerHTML= "<strong class='primary-font' style='font-size: 20px'>" + arr[key].servoID +arr[key].syringeID + "</strong>";
+            cell2.innerHTML = "<p style='font-size:17px; font:bold'>" + "Servo: " + ServoObject[0].name
+                + "</br><img src='../images/build/standardservo.JPG' style='height: 60px;'>"  + "</p>";
+            cell3.innerHTML = "<p style='font-size:17px; font:bold'>" + "Syringe: "+ SyringeObject[0].volume + "ml"
+                + "</br></br><img src='../images/fluigi/SyringeTube.png' style='height: 30px;'>"  + "</p>";
+            cell4.innerHTML = "<p style='font-size:17px; font:bold'>"+ Math.round(arr[key].p * 1000) / 1000  + " microlitre precision</p>";
+            cell5.innerHTML =  "<p style='font-size:17px; font:bold'>"+ "Dispension of " + Math.round(arr[key].v * 1000) / 1000  + " litres" + "</p>";
+            cell6.innerHTML = "<p style='font-size:17px; font:bold'>"+ "Cost of $" + Math.round(arr[key].cost * 1000) / 1000 + " (as of Oct 2016)" + "</p>";
 
-            // cell6.innerHTML = ServoObject[0].url;
-            // cell7.innerHTML = SyringeObject[0].url;
 
             i++;
             count++;
@@ -431,6 +435,20 @@ function calculateRecommended() {
 
     if(count==0){ //If no possible combinations found
         console.log("No Combinations Found!");
+        var row = combolist.insertRow(i + 1);
+        var cell1 = row.insertCell(0); //Combo ID
+        var cell2 = row.insertCell(1); //Servo
+        var cell3 = row.insertCell(2);// Syringe Names
+        var cell4 = row.insertCell(3); //Precision
+        var cell5 = row.insertCell(4); //Volume
+        var cell6 = row.insertCell(5); //Cost
+
+        cell1.innerHTML = 'No combinations found';
+        cell2.innerHTML = '-';
+        cell3.innerHTML = '-';
+        cell4.innerHTML = '-';
+        cell5.innerHTML = '-';
+        cell6.innerHTML = '-';
     }
 
 }

@@ -398,6 +398,10 @@ function calculateRecommended() {
 
     //comboList
     var combolist = document.getElementById("comboList");
+    for(var index = combolist.rows.length - 1; index > 0; index--)
+    {
+        combolist.deleteRow(index);
+    }
     var i = 0;
     var count = 0;
     for (var key in arr) {
@@ -425,7 +429,7 @@ function calculateRecommended() {
                 + "</br></br><img src='../images/fluigi/SyringeTube.png' style='height: 30px;'>"  + "</p>";
             cell4.innerHTML = "<p style='font-size:17px; font:bold'>"+ Math.round(arr[key].p * 1000) / 1000  + " microlitre precision</p>";
             cell5.innerHTML =  "<p style='font-size:17px; font:bold'>"+ "Dispension of " + Math.round(arr[key].v * 1000) / 1000  + " litres" + "</p>";
-            cell6.innerHTML = "<p style='font-size:17px; font:bold'>"+ "Cost of $" + Math.round(arr[key].cost * 1000) / 1000 + " (as of Oct 2016)" + "</p>";
+            cell6.innerHTML = "<p style='font-size:17px; font:bold'>"+ "$" + Math.round(arr[key].cost * 1000) / 1000 + " (as of Oct 2016)" + "</p>";
 
 
             i++;

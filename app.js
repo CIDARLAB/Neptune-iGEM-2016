@@ -15,19 +15,12 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
-<<<<<<< HEAD
-//Save application path into a global variable
-=======
 //Web Socket Connection ONLY ONCE
 io.on('connection', function(socket){
     socket.emit('communications', { message:'world' });
     websocketConnection = socket;
     exports.webSocketConnection = socket;
 });
-
-
-//
->>>>>>> Merged with Dev and applying their changes to my sensor code
 
 global.Neptune_ROOT_DIR = __dirname;
 
@@ -106,7 +99,6 @@ global.server.timeout = 1000000000;
 /**************** RENDER PAGES ****************/
 {
     // Bootstrap:
-<<<<<<< HEAD
     app.get('/' , viewsController.openHomePage);
     app.get('/dashboard', viewsController.openDashboard);
     app.get('/specify', viewsController.openSpecifyPage);

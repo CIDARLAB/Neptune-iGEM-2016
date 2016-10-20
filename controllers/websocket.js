@@ -2,8 +2,6 @@
  * Created by kestas on 7/21/2016.
  */
 
-var app = require('express')();
-var http = require('http').Server(app);
 var io = require('socket.io')(global.server);
 var socketConnection;
 var socketConnectionSet = false;
@@ -11,7 +9,6 @@ var socketConnectionSet = false;
 io.on('connection', function (socket) {
     socketConnection = socket;
     socketConnectionSet = true;
-
 });
 exports.socket = function() {
     if (socketConnectionSet) {

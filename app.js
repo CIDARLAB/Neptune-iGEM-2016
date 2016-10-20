@@ -17,13 +17,6 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 
 
-//Web Socket Connection ONLY ONCE
-io.on('connection', function(socket){
-    socket.emit('communications', { message:'world' });
-    websocketConnection = socket;
-    exports.webSocketConnection = socket;
-});
-
 
 //
 //Save application path into a global variable

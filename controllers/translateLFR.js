@@ -13,6 +13,8 @@ const path = require('path');
 //io.on('connection', function(socket){
 //    console.log('a user connected');
 //});
+var MM_BINARY_PATH = path.join(global.Neptune_ROOT_DIR, "backend", "MuShroomMapper.jar");
+
 
 exports.translateLFR = function(req, res)
 {
@@ -26,7 +28,7 @@ exports.translateLFR = function(req, res)
 
 
     var par_terminal = require('child_process').spawn(
-        'java', ['-jar', './backend/MuShroomMapper.jar', '-l', lfr_path, '-u', ucf_path , '-uf', out_path]
+        'java', ['-jar', MM_BINARY_PATH, '-l', lfr_path, '-u', ucf_path , '-uf', out_path]
     );
 
     par_terminal.stdout.on('data', function(data) {
@@ -55,4 +57,3 @@ exports.translateLFR = function(req, res)
         }
     });
 };
-

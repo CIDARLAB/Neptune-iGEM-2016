@@ -211,8 +211,8 @@ function initHardwareFromListedData() {
 function sensorTemplate() {
     return "\<li style='padding: 10px 5px 10px 0px'>  <label for='sensor-index-{{address}}' style='margin: 10px 10px 0px 0px; text-align:center;'> Sensor Address {{address}}: </label>" +
         "\<input id='sensor-index-{{address}}' class= 'sensor-input' type='number' value='0' min='0' max='102'> <br> " +
-        "\<label for='sensor-index-{{address}}-type'>Type: </label> <input id='sensor-index-{{address}}-type' class='sensor-type' style='' type='text'>" +
-        "\<label for='sensor-index-{{address}}-code'>Code: </label> <input id='sensor-index-{{address}}-code' class='sensor-code' style='' type='text'> </li>"
+        "\<label for='sensor-index-{{address}}-type'>Type: </label> <input id='sensor-index-{{address}}-type' class='sensor-type' type='text'>" +
+        "\<label for='sensor-index-{{address}}-code'>Code: </label> <input id='sensor-index-{{address}}-code' class='sensor-code' type='text'> </li>"
 }
 
 function flubAbout() {

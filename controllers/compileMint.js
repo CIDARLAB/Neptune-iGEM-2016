@@ -1,4 +1,4 @@
-/**
+ /**
  * Created by kestas on 7/19/2016.
  */
 var cmd = require('node-cmd');
@@ -12,6 +12,8 @@ var slash = require('slash');
 var replace = require("replace");
 
 var lineder = require( "lineder" );
+var FLUIGI_BINARY_PATH = path.join(global.Neptune_ROOT_DIR, "backend", "Fluigi-jar-with-dependencies.jar");
+
 /*
 io = require('socket.io')(global.server);
 io.on('connection', function(socket){
@@ -34,6 +36,7 @@ exports.compileMint = function(req, res)
     var outputPath = path.join(out_folder,name);
     var outp = outputPath;
     outputPath = 'outputDirectory=' + outputPath;
+    outputPath = outputPath.replace('t/','');
     var uName = '3D DEVICE ' + basename;
 
     var configFileLoc = path.join(outp,'proj.ini');
@@ -59,7 +62,7 @@ exports.compileMint = function(req, res)
         });
     });
 
-    lineder(mint_path).find("3D DEVICE",function(err,results){
+    lineder(mint_path).find("DEVICE",function(err,results){
         //console.log(results);
         mintREGEX = (results[0]).value;
         //mintREGEX = mintREGEX.substring(0, mintREGEX.length);
@@ -74,7 +77,7 @@ exports.compileMint = function(req, res)
     });
 
     var par_terminal = require('child_process').spawn(
-        'java', ['-jar', './backend/Fluigi-jar-with-dependencies.jar', mint_path, '-i', ini_path, '-o', 'sej']
+        'java', ['-jar', FLUIGI_BINARY_PATH , mint_path, '-i', ini_path, '-o', 'sej']
     );
 
     par_terminal.stdout.on('data', function(data) {

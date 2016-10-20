@@ -3,13 +3,13 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
 {
     localStorage.clear();
     //      DECLARING PUMP VALVE STATE
-    localStorage.valveData = [];
+
     localStorage.pumpData = [];
     localStorage.MasterData = [];
     //localStorage.dataCenter = new Object();
     localStorage.unsavedData = [];
     localStorage.oldPumpData = [];
-    localStorage.pumps =  12;
+    localStorage.pumps =  0;
     localStorage.settings_X_pos = 200;
     localStorage.settings_Y_pos= 200;
     localStorage.DataToLoad;
@@ -29,7 +29,7 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     
     
     // Dispenser Control
-    localStorage.Dispensers = 1;
+    localStorage.Dispensers = 0;
     localStorage.dispenserData = clearDispenserData();
     localStorage.dispenserToControl;
     localStorage.dispenserInitial == "TRUE";    //  keeps track if this is the first time dispenser data is being displayed (so that its not cleared on page reload)
@@ -90,6 +90,17 @@ if(localStorage.getItem('activeDispenser') == null) {
 }
 if(localStorage.getItem('dispenserConversions') == null) {
     localStorage.setItem('dispenserConversions', '{}');
+}
+
+
+if(localStorage.getItem('JSONloaded') == null) {
+    localStorage.setItem('JSONloaded', 'false');
+}
+
+
+
+if(localStorage.getItem('JSONtoLoad') == null) {
+    localStorage.setItem('JSONtoLoad', '{}');
 }
 
 

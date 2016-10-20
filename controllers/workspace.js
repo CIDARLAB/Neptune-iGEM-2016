@@ -4,6 +4,14 @@
 
 var fs = require('fs');
 var path = require('path');
+var mkdirp = require('mkdirp');
+var homeDir = require('home-dir');
+
+exports.findHome = function(req, res)
+{
+    var dir = homeDir();
+    res.send({home_directory: dir});
+};
 
 exports.getProjects = function(req,res)
 {
@@ -14,6 +22,13 @@ exports.getProjects = function(req,res)
 
 function getDirectories(srcpath)
 {
+    try{
+        fs.accessSync(srcpath, fs.F_OK);
+    }
+    catch(e){
+        console.log("Workspace Directory does not exist. Createing a new Directory");
+        mkdirp.sync(srcpath);
+    }
     return fs.readdirSync(srcpath).filter(function(file) {
         return fs.statSync(path.join(srcpath, file)).isDirectory();
     });
@@ -31,12 +46,12 @@ exports.makeProject = function(req,res)
         fs.openSync(projectName + '/designMINT.uf', 'w');
         fs.openSync(projectName + '/designINI.ini', 'w');
 
-
-        var readingStream = fs.createReadStream('./defaults/defaultUCF.json');
+        //console.log("Testing out __dirname: " + path.join(global.Neptune_ROOT_DIR,"defaults","defaultUCF.json"));
+        var readingStream = fs.createReadStream(path.join(global.Neptune_ROOT_DIR,"defaults","defaultUCF.json"));
         var writingStream = fs.createWriteStream(projectName + '/specifyUCF.json');
         readingStream.pipe(writingStream);
 
-        var readStream = fs.createReadStream('./defaults/defaultINI.txt');
+        var readStream = fs.createReadStream(path.join(global.Neptune_ROOT_DIR,"defaults","defaultINI.txt"));
         var writeStream = fs.createWriteStream(projectName + '/designINI.ini');
         readStream.pipe(writeStream);
 

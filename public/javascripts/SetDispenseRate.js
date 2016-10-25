@@ -27,10 +27,11 @@ function sendDispense(sender){
     }
     else{
         var currentVolume = parseFloat(JSON.parse(localStorage.dispenserData)[dispenserID - 1]['Current_State']);   // current volume state of selected syringe
-        // var precision = parseFloat(JSON.parse(localStorage.dispenserData)[dispenserID - 1]['Precision']);   // pull precision from settings table
+        //var precision = parseFloat(JSON.parse(localStorage.dispenserData)[dispenserID - 1]['Precision']);   // pull precision from settings table
 
         // Hardware computations
-        var initializeSetup_outputs = initializeSetup(180,460,0.69,3,0.88,0.25);
+        // Digital Servos 12cc
+        var initializeSetup_outputs = initializeSetup(1000,2500,0.625,3,0,0.25);
         var PWM_table = initializeSetup_outputs.PWM_table;
         var PWM_dic = initializeSetup_outputs.PWM_dic;
         var uL_table = initializeSetup_outputs.uL_table;
@@ -39,14 +40,22 @@ function sendDispense(sender){
         var uL_max = initializeSetup_outputs.uL_max;
         var uL_precision = initializeSetup_outputs.uL_precision;
 
+        var temp = JSON.parse(localStorage.dispenserData);
+        temp[dispenserID - 1]['Min'] = (uL_min).toString();
+        temp[dispenserID - 1]['Max'] = (uL_max).toString();
+        temp[dispenserID - 1]['Precision'] = (uL_precision).toString();
+        localStorage.dispenserData = JSON.stringify(temp);
+
+
         console.log('conversions (PWM and uL): ');
         console.log(PWM_table);
         console.log(uL_table);
 
 
         var temp = JSON.parse(localStorage.dispenserData);
-        temp[dispenserID - 1]['Min'] = (uL_min).toString();
-        temp[dispenserID - 1]['Max'] = (uL_max).toString();
+        temp[dispenserID - 1]['Min'] = (uL_min.toFixed(2)).toString();
+        temp[dispenserID - 1]['Max'] = (uL_max.toFixed(2)).toString();
+        temp[dispenserID - 1]['Precision'] = (uL_precision.toFixed(2)).toString(); 
         localStorage.dispenserData = JSON.stringify(temp);
 
         // store conversion tables to be accessed by other parts of dispense operations
@@ -91,11 +100,14 @@ function sendDispense(sender){
                 var iPrime = i;
                 var dispenser_to_control = dispenserID;
                 setTimeout(function(){
-                    var temp = JSON.parse(localStorage.dispenserData);
-                    temp[dispenserID - 1]['Current_State'] = (PWM_dic[PWMvalueArray[iPrime]]).toString();
-                    localStorage.dispenserData = JSON.stringify(temp);  // update local storage to correct new volume amount
-                    sendCommandDispense(PWMvalueArray[iPrime], dispenser_to_control);     // now send command
-                    updateDispenseProgressBar(dispenser_to_control);    // and update graphics
+                    if(PWMvalueArray[iPrime] != PWMvalueArray[iPrime - 1]) {
+                        var temp = JSON.parse(localStorage.dispenserData);
+                        temp[dispenserID - 1]['Current_State'] = (PWM_dic[PWMvalueArray[iPrime]]).toString();
+                        localStorage.dispenserData = JSON.stringify(temp);  // update local storage to correct new volume amount
+                        sendCommandDispense(PWMvalueArray[iPrime], dispenser_to_control);     // now send command
+                        updateDispenseProgressBar(dispenser_to_control);    // and update graphics
+                    }
+
                 }, i*msecondsPerStep);
             })();
         }

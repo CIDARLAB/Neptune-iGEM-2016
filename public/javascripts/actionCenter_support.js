@@ -11,7 +11,7 @@ var chartreuse = 'chartreuse';
 
 
 function commitLFR(EDITOR){
-    if ((document.getElementById('commit_LFR')).style.backgroundColor == chartreuse) // FILE IS ALREADY COMMITED -- UNDO COMMIT
+    if ((document.getElementById('commit_LFR')).class == chartreuse) // FILE IS ALREADY COMMITED -- UNDO COMMIT
     {
         (document.getElementById('commit_LFR')).style.backgroundColor = '';
         localStorage.lfr_state = 'write';

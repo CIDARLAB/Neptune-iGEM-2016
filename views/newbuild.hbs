@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> {{title}} </title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Custom CSS -->
+    <link href="../stylesheets/newbuild.css" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/javascripts/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../javascripts/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="../javascripts/dist/css/timeline.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- Toastr CDN -->
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.3/toastr.min.js"></script>
+
+
+    <!-- Custom Fonts -->
+    <link href="../javascripts/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" />-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/css/bootstrap-tour.min.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tour/0.10.1/js/bootstrap-tour.js"></script>
+    <script src="../javascripts/tour.js"></script>
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
+    <script type="text/javascript" src="../javascripts/handlebars-v4.0.5.js"></script>
+
+    <!--<script type="text/javascript" src="../javascripts/servosyringe.js"></script>-->
+    <script type="text/javascript" src="../javascripts/newbuildbuttons.js"></script>
+    <script type="text/javascript" src="../javascripts/editor_support.js"></script>
+    <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
+    <script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!--<div >-->
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+            <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
+        </div>
+        <!-- /.navbar-header -->
+
+
+    </nav>
+
+    <div id="page-wrapper" style="margin-left: 0;">
+        <div class="row">
+            <!--<div class="col-lg-12">-->
+            <h1 class="page-header" style="margin-left: 10px;"> <i class="fa fa-wrench" style="color: #447294"></i> Build</h1>
+            <!--</div>-->
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row" style="margin: 10px;">
+            <!--<div class="">-->
+            <div class="row  panel-default  panel" >
+                <div class="panel-heading" style="font-size: 17px;">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Step 1: Specify Your Settings
+                </div>
+                <div class="panel-body">
+                    <div style="float: left; margin-left: 10px;">
+                        <strong style="font-size: 15px;">Volume of liquid to dispense in Micro Liters:</strong>
+                    </div>
+                    <div style="float: left; margin-left: 20px;">
+                        <input  id="myliquid" type="text" />
+                    </div>
+                    <div style="float: left; margin-left: 50px;">
+                        <strong style="font-size: 15px;">Tolerance of servos in Micro Litres:</strong>
+                    </div>
+                    <div style="float: left; margin-left: 20px;">
+                        <input  id="mytolerance" type="text" />
+                    </div>
+                    <div style="float: left; margin-left: 100px;">
+                        <!--<br><br>-->
+                        <button  type="submit" id="update" class="btn btn-sm" style="background-color: lightblue; font-size: 15px;">Update</button>
+
+                    </div>
+                </div>
+                <!--</div>-->
+            </div>
+        </div>
+
+
+        <br>
+
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="font-size: 17px;">
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Step 2: Browse Suitable Combinations
+
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <ul class="chat">
+                            <div class="table-responsive">
+                                <table class="table table-hover display " id="comboList">
+                                    <thead>
+                                    <tr style="font-size: 20px;">
+                                        <th>Combo ID</th>
+                                        <th>Servo </th>
+                                        <th>Syringe</th>
+                                        <th>Precision</th>
+                                        <th>Volume</th>
+                                        <th>Cost</th>
+                                        <!--<td><img src="../images/build/3ml.jpg" height="50px"></img></td>-->
+                                        <!--<th>Syringe URL</th>-->
+                                        <!--<th>Servo URL</th>-->
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id ="comboListBody">
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+                        </ul>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-8 -->
+            <div class="col-lg-4" >
+                <div class="chat-panel panel panel-default">
+                    <div class="panel-heading" style="font-size: 17px;">
+                        <i class="fa fa-shopping-cart fa-fw"></i> Step 3: Map Dispensers to Preselected Combos
+
+                    </div>
+                    <!-- /.panel-heading -->
+
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-4"  style="width: 100%;">
+                                <div class="table-responsive">
+                                    <table class="table table-hover " id="combo_table">
+                                        <thead>
+                                        <tr style="font-size: 20px;">
+                                            <th>Dispenser ID</th>
+                                            <th>Combo ID</th>
+
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.table-responsive -->
+                            </div>
+                            <!-- /.col-lg-4 (nested) -->
+                            <div class="col-lg-8">
+                                <div id="morris-bar-chart"></div>
+                            </div>
+                            <!-- /.col-lg-8 (nested) -->
+                        </div>
+                        <div class="row">
+                            <!--<p style="text-align: center; ">  PLACEHOLDER FOR PICTURE OF CHIP WITH DISPENSER ID LABELLED <br><br></p>-->
+                            <!--<img src="../images/build/sample_image.png" style="text-align: center;">-->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.panel-body -->
+                    <div class="panel-footer">
+                        <div class="input-group">
+                                <span class="input-group-btn" style="text-align: right;">
+                                  <button class="btn btn-sm" id="getParts2" style="margin-left: 5px; background-color: lightblue; border-radius: 3px; font-size: 15px">
+                                        Get ordering list
+                                    </button>
+                                    <a href="../assembly" type="button" id="proceed" class="btn btn-default" style="background-color:rgba(19, 35, 47, 0.9); margin-left: 5px; color: white;">
+                                        Proceed to Assembly </a>
+
+                                     <textarea disabled id="orderList2" style="display:none"> </textarea>
+                                </span>
+                        </div>
+                    </div>
+                    <!-- /.panel-footer -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /#page-wrapper -->
+
+<!--</div>-->
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<!--<script src="../vendor/jquery/jquery.min.js"></script>-->
+
+<!-- Bootstrap Core JavaScript -->
+<!--<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>-->
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="../javascripts/newbuildstyle.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<!--<script src="../vendor/raphael/raphael.min.js"></script>-->
+<!--<script src="../vendor/morrisjs/morris.min.js"></script>-->
+<!--<script src="../data/morris-data.js"></script>-->
+
+<!-- Custom Theme JavaScript -->
+<!--<script src="../dist/js/sb-admin-2.js"></script>-->
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $('#update').click(function() {
+        console.log("hello update function");
+        var mytolerance = $('#mytolerance').val();
+        var myliquid = $('#myliquid').val();
+        if (myliquid <= 0 || myliquid > 1000000 || mytolerance < 0) {
+            toastr.warning('Error! Please enter a valid volume and precision.');
+        }
+        else {
+            toastr.info('Values accepted! Please see options of hardware below.');
+            localStorage.precision = mytolerance;
+            localStorage.volume = myliquid;
+
+
+            calculateRecommended();
+        }
+    });
+
+    window.onload = function() {
+//        function updateTable(){
+//            loadButtons();
+//            setNumberOfDispensers_JSON();
+//            setNumberOfPumps_JSON();
+            var table = document.getElementById("combo_table");
+            localStorage.numberofvalves = 5;
+            localStorage.numberofdispensers = 6;
+            // localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
+            // localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
+            for (var i=0; i!= parseFloat(localStorage.numberofdispensers); i++) {
+                console.log("hello table");
+                var row = table.insertRow(i+1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                cell2.id = i;
+                console.log("My cell id: " + cell2.id);
+
+                // cell1.innerHTML = "<p style='font-size:17px;'>"+ i+1 +"</p>";
+                cell1.innerHTML = i+1;
+                cell2.innerHTML=  "<select> " +
+                        "<option value='a1'>A1</option>    " +
+                        "<option value='a2'>A2</option> " +
+                        "<option value='a3'>A3</option> " +
+                        "<option value='a4'>A4</option>    " +
+                        "<option value='a5'>A5</option> " +
+                        "<option value='a6'>A6</option> " +
+                        "<option value='a1'>B1</option>    " +
+                        "<option value='a2'>B2</option> " +
+                        "<option value='a3'>B3</option> " +
+                        "<option value='a4'>B4</option>    " +
+                        "<option value='a5'>B5</option> " +
+                        "<option value='a6'>B6</option> " +
+                        "<option value='a1'>C1</option>    " +
+                        "<option value='a2'>C2</option> " +
+                        "<option value='a3'>C3</option> " +
+                        "<option value='a4'>C4</option>    " +
+                        "<option value='a5'>C5</option> " +
+                        "<option value='a6'>C6</option> " +
+                        "<option value='a1'>D1</option>    " +
+                        "<option value='a2'>D2</option> " +
+                        "<option value='a3'>D3</option> " +
+                        "<option value='a4'>D4</option>    " +
+                        "<option value='a5'>D5</option> " +
+                        "<option value='a6'>D6</option> " +
+                        "<option value='a1'>E1</option>    " +
+                        "<option value='a2'>E2</option> " +
+                        "<option value='a3'>E3</option> " +
+                        "<option value='a4'>E4</option>    " +
+                        "<option value='a5'>E5</option> " +
+                        "<option value='a6'>E6</option> " +
+                        "<option value='a1'>F1</option>    " +
+                        "<option value='a2'>F2</option> " +
+                        "<option value='a3'>F3</option> " +
+                        "<option value='a4'>F4</option>    " +
+                        "<option value='a5'>F5</option> " +
+                        "<option value='a6'>F6</option> " +
+                        "<option value='a1'>G1</option>    " +
+                        "<option value='a2'>G2</option> " +
+                        "<option value='a3'>G3</option> " +
+                        "<option value='a4'>G4</option>    " +
+                        "<option value='a5'>G5</option> " +
+                        "<option value='a6'>G6</option> " +
+                        "<option value='a1'>H1</option>    " +
+                        "<option value='a2'>H2</option> " +
+                        "<option value='a3'>H3</option> " +
+                        "<option value='a4'>H4</option>    " +
+                        "<option value='a5'>H5</option> " +
+                        "<option value='a6'>H6</option> " +
+                        "<option value='a1'>I1</option>    " +
+                        "<option value='a2'>I2</option> " +
+                        "<option value='a3'>I3</option> " +
+                        "<option value='a4'>I4</option>    " +
+                        "<option value='a5'>I5</option> " +
+                        "<option value='a6'>I6</option> " +
+                        "<option value='a1'>J1</option>    " +
+                        "<option value='a2'>J2</option> " +
+                        "<option value='a3'>J3</option> " +
+                        "<option value='a4'>J4</option>    " +
+                        "<option value='a5'>J5</option> " +
+                        "<option value='a6'>J6</option> " +
+                        "<option value='a1'>K1</option>    " +
+                        "<option value='a2'>K2</option> " +
+                        "<option value='a3'>K3</option> " +
+                        "<option value='a4'>K4</option>    " +
+                        "<option value='a5'>K5</option> " +
+                        "<option value='a6'>K6</option> " +
+                        "<option value='a1'>L1</option>    " +
+                        "<option value='a2'>L2</option> " +
+                        "<option value='a3'>L3</option> " +
+                        "<option value='a4'>L4</option>    " +
+                        "<option value='a5'>L5</option> " +
+                        "<option value='a6'>L6</option> " +
+                        "<option value='a1'>M1</option>    " +
+                        "<option value='a2'>M2</option> " +
+                        "<option value='a3'>M3</option> " +
+                        "<option value='a4'>M4</option>    " +
+                        "<option value='a5'>M5</option> " +
+                        "<option value='a6'>M6</option> " +
+                        "<option value='a1'>N1</option>    " +
+                        "<option value='a2'>N2</option> " +
+                        "<option value='a3'>N3</option> " +
+                        "<option value='a4'>N4</option>    " +
+                        "<option value='a5'>N5</option> " +
+                        "<option value='a6'>N6</option> " +
+                        "<option value='a1'>O1</option>    " +
+                        "<option value='a2'>O2</option> " +
+                        "<option value='a3'>O3</option> " +
+                        "<option value='a4'>O4</option>    " +
+                        "<option value='a5'>O5</option> " +
+                        "<option value='a6'>O6</option> " +
+                        "</select>";
+
+            }
+//        }
+
+        //**************************************************************************************************************
+
+        function initializeSetup(PWM_min,PWM_max,r, b, d, a) {
+            function deg2rad(degrees){
+                var pi = Math.PI;
+                return (degrees * (pi/180));
+            }
+
+            function PWM2rad(PWM) {
+                var deg = ( (PWM - PWM_min) * (theta_max-theta_min) / (PWM_max-PWM_min) ) + theta_min
+                return (deg * (Math.PI/180));
+            }
+
+            function displacement(thetaX, r, b, d, a) {
+                return ( r*Math.cos( deg2rad(thetaX) ) ) + Math.sqrt( Math.pow(b, 2) - ( Math.pow((r*Math.sin(deg2rad(thetaX))+d), 2) ) );
+            }
+
+            var thetaXArray = [];               // create array of angles to be populated in for loop
+            var displacementArray = [];         // create array of displacement values
+            var increment = 1000;               // Set resolution of system; from -90 to 270 degrees, 1000 total intervals is sufficient
+            var stepSize = 360/increment;       // Set step size for thetas to start at -90 and end at 270, a total of 360s
+            for( var i = 0; i <= increment; i++){       // Iterate from 0 to 1000 by one
+                var thetaX_i = -90+stepSize*i;              // Calculate theta value from i
+                thetaXArray.push(thetaX_i);             // Add current theta value to theta array
+                displacementArray.push(displacement(thetaX_i, r, b, d, a));     // Add current displacement value to array
+            }
+
+            var displacement_min = Math.min.apply(null, displacementArray);         // Calculate value by finding minimum of displacement array
+            var displacement_max = Math.max.apply(null, displacementArray);         // Calculate value by finding maximum of displacement array
+
+
+            var theta_min = thetaXArray[displacementArray.indexOf(displacement_max)];       // Calculate theta_min by pulling theta value from theta array at the index where the displacement max was found
+            var theta_max = thetaXArray[displacementArray.indexOf(displacement_min)];       // Calculate theta_max by pulling theta value from theta array at the index where the displacement min was found
+            var X_max = displacement(theta_min,r,b,d,a);                             // Calculate Xmax by plugging in theta_min to displacement function
+            var X_min = displacement(theta_max,r,b,d,a);                             // Calculate Xmin by plugging in theta_max to displacement function
+            var mL_min = 0;      // Default value for mLmax, initalized by user in Assembly step. MUST be true
+            var mL_max = mL_min + (X_max-X_min)/a                                       // Calculate mLmax by S
+            var uL_min = mL_min*1000;		// convert incoming variables from mL to uL
+            var uL_max = mL_max*1000;
+            var mL_range = mL_max - mL_min
+            var uL_range = mL_range*1000; 	// convert incoming variables from mL to uL
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+            // Create PWM_table and find uL_precision
+            var PWM_table = [];    // used in this inner function
+            var PWM_dic = {};       // passed as output to easily hash
+
+            var not_found = true;
+            for (var i=PWM_min; i<=PWM_max; i++) {		// From PWM_min value to PWM_max value
+                PWM_table.push(i);						// Add current PWM value to PWM_table
+                var mL_temp = mL_max - ((( r*Math.cos(PWM2rad(i)) ) + Math.sqrt(Math.pow(b,2) - ( Math.pow((r*Math.sin(PWM2rad(i))+d),2) ))) - X_min)/a;	// Calculate mL value with formula of motion
+                var uL_temp = Math.round(mL_temp*100000)/100;		// convert to uL and round to first decimal place
+                PWM_table.push(uL_temp);				// Add uL value to PWM_table
+
+                PWM_dic[i] = uL_temp;
+
+                // Find uL_precision by finding the max uL difference between PWM values.
+                var uL_diff = PWM_table[PWM_table.length-1] - PWM_table[PWM_table.length-3];
+                var uL_diff_prev = PWM_table[PWM_table.length-3] - PWM_table[PWM_table.length-5];
+                if( uL_diff < uL_diff_prev && not_found) {
+                    var uL_precision = Math.round(uL_diff_prev*100)/100;
+                    not_found = false;
+                };
+            };
+
+
+            // create uL_table
+            var uL_table = [];
+            var uL_dic = {};
+            for (var i=uL_min; i<uL_range+uL_min+uL_precision; i=i+uL_precision) {		// From uL_min (a given) to uL_min+uL_range! uL_precision added on to allow last uL value to be iterated through. Increase by steps of uL_precision
+                // rename i (which is current uL value)
+                var uL_current = i 									// rename i to something more readable
+                uL_current = Math.round(uL_current*100)/100;		// round to 2 decimal places
+
+                // Add uL to table
+                uL_table.push(uL_current); 							// Add the current uL value to uL_table
+
+                // Find PWM values
+                // Add First PWM value, matched easily
+                if (i == uL_min) {		// We know the first value, which can't be found with linear interpolation
+                    uL_table.push(PWM_table[0]);
+                    uL_dic[uL_current] = PWM_table[0];
+                    continue;
+                }
+                // Linear interpolation to find other PWM values
+                // Skip to 2nd value as we already logged the first
+                for (var j = 3; j <= PWM_table.length; j=j+2) {			// Iterate through uL values in PWM_table (start at 2nd uL value, index 3. Go length of PWM table. Increase by 2 to avoid looking at PWM values)
+                    if (PWM_table[j] >= uL_current && j%2 > 0) { 		// If uL value in PWM_table is greater than or equal to our current uL value, find PWM inbetween PWMs in PWM_table
+                        var PWM_between = PWM_table[j-3] + (uL_current - PWM_table[j-2])*((PWM_table[j-1]-PWM_table[j-3])/(PWM_table[j]-PWM_table[j-2]));	// Find PWM value via linear interpolation
+                        var PWM_between = Math.round(PWM_between*100)/100;	// Round calculated PWM value to 2 decimal places
+                        uL_table.push(PWM_between);						// Add calculated PWM value to table
+
+                        uL_dic[uL_current] = PWM_between;
+                        break;
+                    }
+                }
+
+                if (i >= uL_range+uL_min) {
+                    uL_table.push(PWM_max)      // Add last PWM value, not calculated above with linear interpolation
+                    uL_dic[uL_current] = PWM_max;
+                }
+            };
+
+            return {
+                theta_min: theta_min,
+                theta_max: theta_max,
+                X_min: X_min,
+                X_max: X_max,
+                uL_min: uL_min,
+                uL_max: uL_max,
+                PWM_table: PWM_table,
+                PWM_dic: PWM_dic,
+                uL_table: uL_table,
+                uL_dic: uL_dic,
+                uL_precision: uL_precision,
+                r: r,
+                b: b,
+                d: d,
+                a: a
+            };
+        };
+
+
+
+// Small syringe
+var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
+
+// 3 mL syringe
+//var initializeSetup_outputs = initializeSetup(180,500,0.75,3,0.9,0.5);
+
+
+// Medium syringe
+        //var initializeSetup_outputs = initializeSetup(180,470,0.63,3,0.88,0.25);
+
+        var PWM_table = initializeSetup_outputs.PWM_table;
+        var PWM_dic = initializeSetup_outputs.PWM_dic;
+        var uL_table = initializeSetup_outputs.uL_table;
+        var uL_dic = initializeSetup_outputs.uL_dic;
+        var theta_min = initializeSetup_outputs.theta_min;
+        var theta_max = initializeSetup_outputs.theta_max;
+        var X_min = initializeSetup_outputs.X_min;
+        var X_max = initializeSetup_outputs.X_max;
+        var uL_min = initializeSetup_outputs.uL_min;
+        var uL_max = initializeSetup_outputs.uL_max;
+        var uL_precision = initializeSetup_outputs.uL_precision;
+        var r = initializeSetup_outputs.r;
+        var b = initializeSetup_outputs.b;
+        var d = initializeSetup_outputs.d;
+        var a = initializeSetup_outputs.a;
+
+
+        console.log("PWM_dic: ",PWM_dic);
+        console.log("uL_table: ",uL_table);
+        console.log("uL_dic: ",uL_dic);
+        console.log("ThetaMin: ",theta_min);
+        console.log("ThetaMax: ",theta_max);
+        console.log("X_min: ",X_min);
+        console.log("X_max: ",X_max);
+        console.log("uL_min: ",uL_min);
+        console.log("uL_max: ",uL_max);
+        console.log("uL_precision: ",uL_precision);
+        console.log("r: ",r);
+        console.log("b: ",b);
+        console.log("d: ",d);
+        console.log("a: ",a);
+
+
+
+        //**************************************************************************************************************
+
+
+
+
+
+
+    };
+
+    $('#getParts2').click(function() {
+        $('#orderList2').val(
+                'Quantity, Item, Explanation, Link' + '\n'
+                + 'Electric components,,,' + '\n'
+                + '1, Arduino Control Shield,' + 'To connect and power multiple servos' + '\n'
+                + '1, Arduino Uno,' + 'To control the microfluidic chip' + '\n'
+                + '1, Power plugin for the arduino board,' + 'For powering the servos' + '\n'
+                + '1, Capacitor,' + 'To prevent the servos from getting too much power' + '\n'
+                + '1, Connecting Wires,' + 'To connect the servos to the arduino' + '\n'
+                + '1, Arduino Uno,' + 'To control the microfluidic chip' + '\n'
+                + '1, Stacking headers,' + 'To connect the servo wires to the arduino' + '\n'
+                + '1, Laptop power supply,' + 'To power the servos' + '\n'
+
+                + 'Servo and syringe components,,,' + '\n'
+//                + localStorage.numberofdispensers +',' + localStorage.syringe + 'ml Syringes, To dispense liquids,' + syringeurl +'\n'
+//                + localStorage.numberofdispensers +',' + localStorage.servo + ' servos, To open and close syringes to dispense liquid,' + servourl +'\n'
+//                + localStorage.numberofvalves +',' + localStorage.syringe + 'ml Syringes, To open/close valves,' + syringeurl +'\n'
+//                + localStorage.numberofvalves +',' + localStorage.servo + ' servos, To open/close valves,' + servourl +'\n'
+                + (localStorage.numberofdispensers + localStorage.numberofvalves) * 5 + ', Machine Screw: 4-40 5/8",' + 'For screwing in servo and syringe attachment' + '\n'
+                + (localStorage.numberofdispensers + localStorage.numberofvalves) * 1 + ', Small machine screw,' + 'For screwing in servo arm' + '\n'
+                + (localStorage.numberofdispensers + localStorage.numberofvalves) * 1 + ', Small nut,' + 'For screwing in servo arm' + '\n'
+                + (localStorage.numberofdispensers + localStorage.numberofvalves) * 5 + ', Nut: 4-40,' + 'For screwing in servo and syringe' + '\n'
+
+                //localStorage.numberofvalves = number of valves
+                //localStorage.numberofdispensers = number of dispensers
+
+                + 'Hardware components,,,' + '\n'
+                + '1, CNC Mill,' + 'To create the microfluidic chip' + '\n'
+                + '1, 3D Printer,' + 'To build the setup to control the microfluidic chip' + '\n'
+                + '1, 3D Printing material roll,' + 'For 3D printing setup' + '\n'
+                + '1, 3D Printing support roll,' + 'For 3D printing setup' + '\n'
+                + '2, 1/4 inch polycarbonate sheet,' + 'For microfluidic chip' + '\n'
+                + '1, 1/4 inch endmill,' + 'For CNC mill' + '\n'
+                + (localStorage.numberofdispensers + localStorage.numberofvalves) * 6 + ', Woodscrews 29 8-1",' + 'For mounting onto board' + '\n'
+
+                + 'Optional components,,,' + '\n'
+                + '1, Peristaltic pump,' + 'To pump fluids through the microfluidic chip' + '\n'
+                + '2, Machine Screw: 4-40 5/8",' + 'For screwing in the peristaltic pump' + '\n'
+                + '2, Nut: 4-40,' + 'For screwing in the peristaltic pump' + '\n'
+        );
+        var a = document.createElement('a');
+        with (a) {
+            href = 'data:text/csv;base64,' + btoa(document.getElementById('orderList2').value);
+            download = 'orderlist.csv';
+        }
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        //    });
+
+
+        //   $('#proceed').click(function() {
+        for (var i = 0; i != parseFloat(localStorage.numberofdispensers); i++) {
+            console.log("hello proceed");
+//            var chosencombo = document.getElementById(i).value;
+            var chosencombo = document.getElementById(i).getAttribute(value);
+            console.log("i: " +i);
+            console.log("chosen combo is " + chosencombo);
+
+            // cell1.innerHTML = "<p style='font-size:17px;'>"+ i+1 +"</p>";
+            // cell1.innerHTML = i+1;
+
+        }
+    });
+
+</script>
+

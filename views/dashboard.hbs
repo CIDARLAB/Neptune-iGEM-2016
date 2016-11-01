@@ -9,9 +9,18 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="../images/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="../images/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="../images/favicons/manifest.json">
+    <link rel="mask-icon" href="../images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="../images/favicons/favicon.ico">
+    <meta name="msapplication-config" content="../images/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript" src="../javascripts/workflow_tracker.js"></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <script type="text/javascript">
         if (localStorage.firstVisit_dashboard == undefined) {
             localStorage.firstVisit_dashboard = 'visited';
@@ -360,10 +369,10 @@
                                 <a href="../design"><i class="fa fa-cogs" aria-hidden="true"></i> Design </a>
                             </li>
                             <li>
-                                <a href="../build"><i class="fa fa-briefcase" aria-hidden="true"></i> Build</a>
+                                <a href="../buildfull"><i class="fa fa-wrench" aria-hidden="true"></i> Build</a>
                             </li>
                             <li>
-                                <a href="../assembly"><i class="fa fa-gavel" aria-hidden="true"></i> Assembly</a>
+                                <a href="../assembly"><i class="fa fa-briefcase" aria-hidden="true"></i> Assembly</a>
                             </li>
                             <li>
                                 <a href="../controlFull"><i class="fa fa-bars" aria-hidden="true"></i> Control</a>
@@ -372,61 +381,61 @@
                         <!-- /.nav-second-level -->
                     </li>
 
-                    <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Files <span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="#"> Specify Files <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('LFR')"> LFR File </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('UCF')"> UCF File </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> Design Files <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('MINT')"> MINT File </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('INI')"> INI File </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="#"> Build Files <span class="fa arrow"></span></a>
-                                <ul class="nav nav-third-level">
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('JSON')"> JSON File </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('SVG_cell')"> SVG Cell </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('SVG_control')"> SVG Control </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('SVG_flow')"> SVG Flow </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('EPS_device')"> EPS Device </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onclick="openEditorPreview('EPS_photo')"> EPS Photolithography </a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-third-level -->
-                            </li>
-                            <li>
-                                <a data-toggle="modal" href="#myModal_zip" onclick="downloadZip()" data-target="#myModal_zip"> Download Project Zip </a>
-                            </li>
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
+                    <!--<li>-->
+                        <!--<a href="#"><i class="fa fa-sitemap fa-fw"></i> Project Files <span class="fa arrow"></span></a>-->
+                        <!--<ul class="nav nav-second-level">-->
+                            <!--<li>-->
+                                <!--<a href="#"> Specify Files <span class="fa arrow"></span></a>-->
+                                <!--<ul class="nav nav-third-level">-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('LFR')"> LFR File </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('UCF')"> UCF File </a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a href="#"> Design Files <span class="fa arrow"></span></a>-->
+                                <!--<ul class="nav nav-third-level">-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('MINT')"> MINT File </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('INI')"> INI File </a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a href="#"> Build Files <span class="fa arrow"></span></a>-->
+                                <!--<ul class="nav nav-third-level">-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('JSON')"> JSON File </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('SVG_cell')"> SVG Cell </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('SVG_control')"> SVG Control </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('SVG_flow')"> SVG Flow </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('EPS_device')"> EPS Device </a>-->
+                                    <!--</li>-->
+                                    <!--<li>-->
+                                        <!--<a href="#" onclick="openEditorPreview('EPS_photo')"> EPS Photolithography </a>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--&lt;!&ndash; /.nav-third-level &ndash;&gt;-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a data-toggle="modal" href="#myModal_zip" onclick="downloadZip()" data-target="#myModal_zip"> Download Project Zip </a>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                        <!--&lt;!&ndash; /.nav-second-level &ndash;&gt;-->
+                    <!--</li>-->
 
                     <!--<li>-->
                     <!--<a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>-->
@@ -473,7 +482,7 @@
                 <div class="panel panel-default">
 
                     <!-- TITLE -->
-                    <div class="panel-heading" style="font-family: 'Trocchi', serif; font-size: 25px;">
+                    <div class="panel-heading" style="font-family: 'Open Sans'; font-size: 25px;">
                         <i class="fa fa-code-fork fa-fw"></i> Microfluidic Fabrication Workflow Overview
                     </div>
 
@@ -534,7 +543,7 @@
 
                             <!-- Build -->
                             <li class="timeline-inverted">
-                                <div class="timeline-badge build"><a href="../build"><i class="fa fa-gavel" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
+                                <div class="timeline-badge build"><a href="../buildfull"><i class="fa fa-wrench" aria-hidden="true" style="color: white; cursor:pointer;"></i></a> <!-- class: draws circle; i: adds image to circle -->
                                 </div>
                                 <div class="timeline-panel" id="build_box">
                                     <div class="timeline-heading">

@@ -1,4 +1,4 @@
-//Define all variables for modules
+#! /usr/bin/env node
 
 var express = require("express");
 var app = express();
@@ -7,18 +7,19 @@ var multer = require("multer");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 // var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
 var fs = require('fs');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+//Save application path into a global variable
 
+global.Neptune_ROOT_DIR = __dirname;
 
 //Create server
 {
-  global.server = app.listen(3000, function () {
+    global.server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
     console.log("Running the server on " + host + " " + port);
@@ -32,6 +33,9 @@ global.server.timeout = 1000000000;
 
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'hbs');
+
+  var hbs = require('hbs');
+  hbs.registerPartials(__dirname + '/views/partials');
 }
 //app.use(express.static(__dirname + '/public'));
 
@@ -51,7 +55,7 @@ global.server.timeout = 1000000000;
 
 //Error handlers
 {
-  
+
 // development error handler
 // will print stacktrace
   if (app.get('env') === 'development') {
@@ -77,40 +81,32 @@ global.server.timeout = 1000000000;
 
 /**************** CONTROLLERS ****************/
 {
-    var homeController = require('./controllers/homepage');
-    var dashboardController = require('./controllers/dashboard');
+    var viewsController = require('./controllers/views');
     var fileController = require('./controllers/fileupload');
     var writeController = require('./controllers/filewrite');
-    var specifyController = require('./controllers/specify');
-    var designController = require('./controllers/design');
-    var mmController = require('./controllers/mm');
     var serialController = require('./controllers/serialcommunication');
-    var fluigiController = require('./controllers/fluigi');
-    var lfrController = require('./controllers/lfrpage');
-    var lfr_bsController = require('./controllers/lfrpage_bs');
-    var controlController = require('./controllers/control');
-    var buildController = require('./controllers/build');
-    var assemblyController = require('./controllers/assembly');
+    var workspaceController = require('./controllers/workspace');
 }
 
 /**************** RENDER PAGES ****************/
 {
     // Bootstrap:
-    app.get('/' , homeController.openHomePage);
-    app.get('/dashboard',dashboardController.openDashboard);
-    app.get('/specify',specifyController.openSpecifyPage);
-    app.get('/design',designController.openDesignPage);
-    app.get('/control',controlController.openControllersPage);
-    app.get('/controlFull',controlController.openControlFullPage);
-    app.get('/Build',buildController.openBuildPage);
-    app.get('/assembly', assemblyController.openAssemblyPage);
+    app.get('/' , viewsController.openHomePage);
+    app.get('/dashboard', viewsController.openDashboard);
+    app.get('/specify', viewsController.openSpecifyPage);
+    app.get('/design', viewsController.openDesignPage);
+    app.get('/control', viewsController.openControllersPage);
+    app.get('/controlFull', viewsController.openControlFullPage);
+    app.get('/Build', viewsController.openBuildPage);
+    app.get('/buildfull', viewsController.openNewBuildPage);
+    app.get('/assembly', viewsController.openAssemblyPage);
 
-    app.get('/fluigipage', fluigiController.getFluigiPage);
-    app.get('/uShroomPage',mmController.openMMPage);
+    app.get('/fluigipage', viewsController.getFluigiPage);
+    app.get('/uShroomPage', viewsController.openMMPage);
     app.get('/serialcommunication', serialController.openSerialPage);
 
-    app.get('/lfrpage', lfrController.openLfrPage);
-    app.get('/lfrpage_bs', lfr_bsController.openLfr_bsPage);
+    app.get('/lfrpage', viewsController.openLfrPage);
+    app.get('/lfrpage_bs', viewsController.openLfr_bsPage);
 }
 
 /**************** SERIAL COMMUNICATION ****************/
@@ -124,16 +120,17 @@ global.server.timeout = 1000000000;
 /************** FILE UPLOAD  ************/
 {
     // Bootstrap:
-    app.get('/specify',fileController.sendToUploadsSpecify);
-    app.get('/design',fileController.sendToUploadsDesign);
-    app.get('/build',fileController.sendToUploadsBuild_Verify);
+    // app.get('/specify',fileController.sendToUploadsSpecify);
+    // app.get('/design',fileController.sendToUploadsDesign);
+    // app.get('/build',fileController.sendToUploadsBuild_Verify);
 
-    app.post('/api/specify_LFR',fileController.send_specifyLFR);
-    app.post('/api/specify_UCF',fileController.send_specifyUCF);
-    app.post('/api/design_INI',fileController.send_designINI);
-    app.post('/api/design_MINT',fileController.send_designMINT);
-    app.post('/api/build_SVG',fileController.send_buildSVG);
-    app.post('/api/build_JSON',fileController.send_buildJSON);
+
+    // app.post('/api/specify_LFR',fileController.send_specifyLFR);
+    // app.post('/api/specify_UCF',fileController.send_specifyUCF);
+    // app.post('/api/design_INI',fileController.send_designINI);
+    // app.post('/api/design_MINT',fileController.send_designMINT);
+    // app.post('/api/build_SVG',fileController.send_buildSVG);
+    // app.post('/api/build_JSON',fileController.send_buildJSON);
 
     // Pre-Bootstrap:
     //  app.get('/lfrpage', fileController.sendToUploadsSpecify);
@@ -161,7 +158,7 @@ global.server.timeout = 1000000000;
     var translateLFRController = require('./controllers/translateLFR');
     app.post('/api/translateLFR',translateLFRController.translateLFR);
 
-// download 
+// download
 
     var downloadController = require('./controllers/download');
     app.post('/api/download',downloadController.download);
@@ -175,4 +172,15 @@ global.server.timeout = 1000000000;
     var ucfMaker = require('./controllers/generateUCF');
     app.post('/api/generateUCF',ucfMaker.generateUCF);
 
+    app.post('/api/parseDir', workspaceController.parseDir);
 
+    app.post('/api/getProjects', workspaceController.getProjects);
+
+    app.post('/api/makeProject', workspaceController.makeProject);
+
+    app.post('/api/scanFiles', workspaceController.scanFiles);
+
+    var fileGetter = require('./controllers/fileGetter');
+    app.post('/api/getFile',fileGetter.getFile);
+    
+    app.post('/api/findHome',workspaceController.findHome);

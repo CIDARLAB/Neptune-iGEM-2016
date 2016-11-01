@@ -5,19 +5,6 @@ html, body {
     padding: 0;
     background-color: #34495e;
 }
-
-
-body {
-    /*background-color: #34495e;*/
-}
-
-
-/*canvas {*/
-    /*padding-top: 220px;*/
-/*}*/
-
-
-
 .clear_button{
     float: right;
 }

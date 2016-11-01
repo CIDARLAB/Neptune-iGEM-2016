@@ -158,6 +158,10 @@ html, body, main {
     position: absolute;
 }
 
+.dispenserImg {
+    position: absolute;
+}
+
 #serialCommToggle {
 
     position: absolute;
@@ -172,4 +176,21 @@ html, body, main {
     top: 70px;
     right: 110px;
     z-index: 202;
+}
+
+#uploadToggle{
+    position: absolute;
+    top: 70px;
+    right: 175px;
+    z-index: 203;
+}
+
+.toast-info {
+    background-color: #337AB7 !important;
+}
+.toast-error {
+    background-color: #e74c3c !important;
+}
+.toast-warning {
+    background-color: #f39c12 !important;
 }

@@ -45,35 +45,6 @@ function clearPumpData() {
     return JSON.stringify(c_pumpData);
 }
 
-/*
-function inititateValveStates() {
-    var init_valveState = [];
-    for( var i = 1; i <= localStorage.pumps; i++)
-    {
-        var singleStage = {id:i, Physical_State:0, Valve_Number:i};
-        init_valveState.push(singleStage);
-    }
-    return JSON.stringify(init_valveState);
-}
-
-
-
-function combine_pumpData_valveData() {
-    var master_data = [];
-    for (var i = 0; i < localStorage.pumps; i++)
-    {
-        var open_state_singleInstance = (JSON.parse(localStorage.pumpData))[i]['Open_State'];
-        var closed_state_singleInstance = (JSON.parse(localStorage.pumpData))[i]['Closed_State'];
-        var physical_state_singleInstance = (JSON.parse(localStorage.valveData))[i]['Physical_State'];
-        var singleStage = {id:i, State:{Open_State:open_state_singleInstance,Closed_State:closed_state_singleInstance,Physical_State:physical_state_singleInstance}, Number:i};
-        master_data.push(singleStage);
-
-    }
-    return JSON.stringify(master_data);
-}
-// ./ END VALVE FUNCTIONS
-*/
-
 // FUNCTIONALITY FOR DISPENSER DATA TRACKING AND COMMANDS
 function clearDispenserData() {
     var dispenserData = [];

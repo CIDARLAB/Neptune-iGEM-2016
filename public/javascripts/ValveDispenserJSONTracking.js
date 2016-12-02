@@ -8,10 +8,10 @@ function setNumberOfPumps_JSON() {
     var set_pumpData_newNum = [];
     var j = 1;  //  hardware pin (goes from 1 to 12)
     for (var i = 1; i <= localStorage.pumps; i++) {
-
+        var initialize_valve_conversion = initializeSetup(180,460,0.69,3,0.88,0.25);
         deviceCount = i;
-        var singleStage2 = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount};
-        set_pumpData_newNum.push(singleStage2);
+        var singleStage = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: initialize_valve_conversion.uL_max, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount, uL_Conversion_Table: (initialize_valve_conversion.uL_table), uL_Precision: (initialize_valve_conversion.uL_precision)};
+        set_pumpData_newNum.push(singleStage);
         j = j + 1;
         if(j == 13) {
             j = 1;
@@ -26,13 +26,14 @@ function setNumberOfPumps_JSON() {
     localStorage.pumpInitial = "FALSE";
 }
 function clearPumpData() {
-    deviceCount=0;
+    deviceCount = 0;
     var c_pumpData = [];
     var j = 1;  //  hardware pin (goes from 1 to 12)
     for (var i = 1; i <= localStorage.pumps; i++)
     {
+        var initialize_valve_conversion = initializeSetup(180,460,0.69,3,0.88,0.25);
         deviceCount = i;
-        var singleStage = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: 0, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount};
+        var singleStage = {id: i, HW_shield: (Math.floor(i/12) + 1), HW_pin: j, Open_State: initialize_valve_conversion.uL_max, Closed_State: 0, Current_State: 'opened', deviceIndex: deviceCount, uL_Conversion_Table: (initialize_valve_conversion.uL_table), uL_Precision: (initialize_valve_conversion.uL_precision)};
         c_pumpData.push(singleStage);
 
         j = j + 1;
@@ -44,6 +45,7 @@ function clearPumpData() {
     return JSON.stringify(c_pumpData);
 }
 
+/*
 function inititateValveStates() {
     var init_valveState = [];
     for( var i = 1; i <= localStorage.pumps; i++)
@@ -53,6 +55,9 @@ function inititateValveStates() {
     }
     return JSON.stringify(init_valveState);
 }
+
+
+
 function combine_pumpData_valveData() {
     var master_data = [];
     for (var i = 0; i < localStorage.pumps; i++)
@@ -67,6 +72,7 @@ function combine_pumpData_valveData() {
     return JSON.stringify(master_data);
 }
 // ./ END VALVE FUNCTIONS
+*/
 
 // FUNCTIONALITY FOR DISPENSER DATA TRACKING AND COMMANDS
 function clearDispenserData() {

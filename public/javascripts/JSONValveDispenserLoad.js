@@ -178,7 +178,6 @@ function placeButtons() {
         // form ID
         form.id = "dispenseRate" + (i + 1);
         sendDispense.id = sendID;
-        // sendDispense.onclick = retrieveValues;
         dispenseVol.id = vol;
         console.log(dispenseVol.id);
         dispenseTime.id = time;

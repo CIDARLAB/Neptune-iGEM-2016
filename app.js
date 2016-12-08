@@ -8,11 +8,17 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 // var bodyParser = require('body-parser');
 var fs = require('fs');
+var io = require('socket.io')(global.server);
+var exports = module.exports;
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
+
+
+
+//
 //Save application path into a global variable
 
 global.Neptune_ROOT_DIR = __dirname;
@@ -82,15 +88,16 @@ global.server.timeout = 1000000000;
 /**************** CONTROLLERS ****************/
 {
     var viewsController = require('./controllers/views');
-    var fileController = require('./controllers/fileupload');
     var writeController = require('./controllers/filewrite');
     var serialController = require('./controllers/serialcommunication');
+    var dataCollectionController = require('./controllers/datacollection');
     var workspaceController = require('./controllers/workspace');
 }
 
 /**************** RENDER PAGES ****************/
 {
     // Bootstrap:
+    app.get('/datacollection', dataCollectionController.openDataCollectionPage);
     app.get('/' , viewsController.openHomePage);
     app.get('/dashboard', viewsController.openDashboard);
     app.get('/specify', viewsController.openSpecifyPage);

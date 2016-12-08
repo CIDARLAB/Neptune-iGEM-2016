@@ -1,0 +1,117 @@
+<html>
+<head>
+    <title>{{title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../stylesheets/main.css" />
+    <script src="../socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="../javascripts/Queue.js"></script>
+    <script src="../javascripts/datacollection.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawChart);
+    </script>
+    <script src="../socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.js"></script>
+
+
+</head>
+<body class="content">
+<nav class="neptune-navbar">
+    <div class="container-fluid">
+        <div class="navbar-header" >
+            <div class="neptune-logo">
+            <img height="50" width="50" src="../images/NeptuneLogo.png">
+            </div>
+            <div class="neptune-brand">
+                <a class="neptune-text" style="font-family: 'Open Sans'; font-size: 20px;" href="/">NEPTUNE</a>
+            </div>
+        </div>
+        <ul class="nav navbar-nav">
+            <!--<li class="active"><a href="#">Home</a></li>-->
+            <!--<li><a href="#">Page 1</a></li>-->
+            <!--<li><a href="#">Page 2</a></li>-->
+            <!--<li><a href="#">Page 3</a></li>-->
+        </ul>
+    </div>
+</nav>
+<div class="neptune-sideleft">
+    <h2 style="text-align: center"> Sensors </h2>
+    <div>
+        <div style="overflow: scroll; height: 75vh; margin-top: 10px; position: float ">
+            <ul id="sensor-list" style="list-style-type: none">
+            </ul>
+            <input id="hardware-init-btn" class="btn btn-default" type="button" value="Init Hardware / Clear Data" onclick="initHardwareFromListedData();">
+            <ul id="continuos-reading-settings" >
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Sensor Series Settings</h4>
+            </div>
+            <div class="modal-body">
+                <p>Here you will choose which sensor you want to display a trendline for</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal2" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary" style="background-color: #428bca;" >
+                <h4 class="modal-title" style="color:white;">Sensor Settings</h4>
+            </div>
+            <div class="modal-body">
+                <h3 style="text-align: center">Initialize the sensors you want to use.</h3>
+                <br>
+                <p style="text-align: center">Then set a two character code corresponding to what's been programmed in the firmware</p>
+                <br>
+                <label for="sensor-menu">Connected Sensors: </label> <input id="sensor-menu" style="height: 33.5px;" type="number" value="0" min="0" max="102">
+                <input id="sensor-init-btn"   class="btn btn-default" type="button" value="Initialize Sensors" onclick="initSensorListFromButton(); document.getElementById('sensor-setup-done-btn').disabled = false;">
+            </div>
+            <div class="modal-footer">
+                <button id="sensor-setup-done-btn" type="button" class="btn btn-default" data-dismiss="modal" disabled>Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id= "neptune-data-container" class="neptune-container">
+</div>
+<!--Footer-->
+<div class="neptune-footer" style="background-color: whitesmoke">
+        <label for="ports" style="color:#777777">Serial Ports Available</label>
+        <select id="ports" class="serial-ports-dropdown">
+            {{#each serialPorts}} <!-- // Note the reference to the serialPorts object​-->
+                <option value={{this.comName}}> name: {{ this.comName }} </option>​
+            {{/each}}
+        </select>
+    <div style="background-color: inherit">
+        <button class="btn btn-default serial-connection-button" id="begin-comm"> Open Comm </button>
+        <button class="btn btn-default connections serial-connection-button" id="end-comm"> Close Comm </button>
+        <button class="btn btn-default connections serial-connection-button" id="read-button"> Take Reading </button>
+        <button class="btn btn-default connections serial-connection-button" id="read-continuously-button"> Take Continuous Reading </button>
+        <button type="button" class="btn btn-default connections serial-connection-button" data-toggle="modal" data-target="#myModal"> Open Modal </button>
+        <button class="btn btn-default connections serial-connection-button" id="quit-action-button" onclick="sendKillCmd()"> Return To Standby </button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -2,17 +2,20 @@
  * Created by kestas on 7/21/2016.
  */
 
-var app = require('express')();
-var http = require('http').Server(app);
+var io = require('socket.io')(global.server);
+var socketConnection;
+var socketConnectionSet = false;
 
-exports.socket = function(req,res){
-
-    var io = require('socket.io');
-
-    io.on('connection', function (socket) {
-        socket.emit('news', { hello: 'world' });
-        socket.on('my other event', function (data) {
-            console.log(data);
-        });
-    });
+io.on('connection', function (socket) {
+    socketConnection = socket;
+    socketConnectionSet = true;
+});
+exports.socket = function() {
+    if (socketConnectionSet) {
+        return socketConnection;
+    } else {
+        console.log("Web socket connection has not been set before it was requested");
+        return null;
+    }
 };
+

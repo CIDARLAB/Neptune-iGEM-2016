@@ -6,15 +6,16 @@ var exports = module.exports;
 var multer = require('multer');
 var express = require('express');
 var fs = require('fs');
+var currentWebsocket = require('./websocket');
 const readline = require('readline');
 const path = require('path');
 
+//io = require('socket.io')(global.server);
+//io.on('connection', function(socket){
+//    console.log('a user connected');
+//});
 var MM_BINARY_PATH = path.join(global.Neptune_ROOT_DIR, "backend", "MuShroomMapper.jar");
 
-io = require('socket.io')(global.server);
-io.on('connection', function(socket){
-    console.log('a user connected');
-});
 
 exports.translateLFR = function(req, res)
 {
@@ -33,7 +34,7 @@ exports.translateLFR = function(req, res)
 
     par_terminal.stdout.on('data', function(data) {
         console.log(data.toString());
-        io.emit('translate_console_readout',data.toString());
+        currentWebsocket.socket().emit('translate_console_readout',data.toString());
     });
 
     par_terminal.stderr.on("data", function (data) {

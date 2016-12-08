@@ -10,14 +10,16 @@ const readline = require('readline');
 const path = require('path');
 var slash = require('slash');
 var replace = require("replace");
+var currentWebsocket = require('./websocket');
 var lineder = require( "lineder" );
-
 var FLUIGI_BINARY_PATH = path.join(global.Neptune_ROOT_DIR, "backend", "Fluigi-jar-with-dependencies.jar");
 
+/*
 io = require('socket.io')(global.server);
 io.on('connection', function(socket){
     console.log('a user connected');
 });
+*/
 
 exports.compileMint = function(req, res)
 {
@@ -80,7 +82,7 @@ exports.compileMint = function(req, res)
 
     par_terminal.stdout.on('data', function(data) {
         console.log(data.toString());
-        io.emit('compile_console_readout',data.toString());
+        currentWebsocket.socket().emit('compile_console_readout',data.toString());
     });
 
     par_terminal.stderr.on("data", function (data) {

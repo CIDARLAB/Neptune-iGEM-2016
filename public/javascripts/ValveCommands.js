@@ -2,7 +2,6 @@
 // functionality attached to valves
 function onclickanchortag(){
     var location = getLocation(this.src);
-
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");

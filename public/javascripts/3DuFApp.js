@@ -30691,9 +30691,8 @@
     var grid;
 
     paper.setup("c");
-    
-    window.onload = function () {
 
+    window.onload = function () {
         view = new PaperView(document.getElementById("c"));
         viewManager = new ViewManager(view);
         grid = new AdaptiveGrid();
@@ -30711,13 +30710,14 @@
             loadButtons();
             setNumberOfPumps_JSON();
             setNumberOfDispensers_JSON();
-            //localStorage.valveData = inititateValveStates();
             placeButtons(); // external function
             localStorage.setItem('loadControls', 'false');
         }
         else {
             placeButtons();
         }
+
+
 
 
 
@@ -30728,8 +30728,6 @@
 
         Registry.threeRenderer = new ThreeDeviceRenderer(document.getElementById("renderContainer"));
         PageSetup.setupAppPage();
-
-
     };
 
 },{"./core/device":263,"./core/layer":265,"./core/registry":274,"./examples/jsonExamples":275,"./view/colors":289,"./view/grid/adaptiveGrid":290,"./view/pageSetup":291,"./view/paperView":292,"./view/render3D/ThreeDeviceRenderer":298,"./view/viewManager":313}],263:[function(require,module,exports){

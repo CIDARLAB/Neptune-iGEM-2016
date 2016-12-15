@@ -43,9 +43,9 @@ function exporting() {
                 if(header === "Current_State"){
                     valveData[x - 1][header] = $td.eq(i).text();
                 }
-                else if(header === "deviceIndex") {
-                    valveData[x - 1][header] = deviceCount;
-                }
+                //else if(header === "deviceIndex") {
+                //    valveData[x - 1][header] = deviceCount;
+                //}
                 else{
                     valveData[x - 1][header] = parseInt($td.eq(i).text());
                 }
@@ -102,10 +102,10 @@ function exportingDispenser() {
             var h = {};
             // Use pre-defined Hash keys
             keys.forEach(function (header, i) {
-                if(header === "deviceIndex"){
-                    h["deviceIndex"] = deviceCount;
-                }
-                else if(header === "orientation") {
+                //if(header === "deviceIndex"){
+                //    h["deviceIndex"] = deviceCount;
+                //}
+                if(header === "orientation") {
                     h[header] = $td.eq(i).text();
                 }
                 else if(header === "Precision") {

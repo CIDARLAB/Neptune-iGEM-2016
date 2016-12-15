@@ -23,10 +23,10 @@ if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
     
     // Valve Control
     localStorage.pumpData = clearPumpData();
-    localStorage.valveData = inititateValveStates();
+    localStorage.valveData = initiateValveData();
     localStorage.firstVisit = false;
     localStorage.pumpInitial = "TRUE";  //  keeps track if this is the first time pump data is being displayed (so that its not cleared on page reload)
-    
+    localStorage.valveClusters = "{}";
     
     // Dispenser Control
     localStorage.Dispensers = 0;

@@ -30706,9 +30706,11 @@
 
         viewManager.updateGrid();
         Registry.currentDevice.updateView();
-        if (localStorage.loadControls === "true") {
+        if (localStorage.loadControls != "false") {
             loadButtons();
             setNumberOfPumps_JSON();
+            console.log("pumpData JSON:");
+            console.log(JSON.parse(localStorage.pumpData));
             setNumberOfDispensers_JSON();
             placeButtons(); // external function
             localStorage.setItem('loadControls', 'false');

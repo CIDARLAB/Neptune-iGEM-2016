@@ -1,33 +1,51 @@
-
-// functionality attached to valves
-function onclickanchortag(){
-    var location = getLocation(this.src);
-    var valve_to_control = this.id.split("valve").pop();
+// toggle any valve given its DivID
+function toggleValve(valveDivID){   // will be in form of #valve1, #valve2, ... numbers correspond to valve id in JSON
+    var divElement = ($(valveDivID))[0];
+    var location = getLocation(divElement.src);
+    var valve_to_control = divElement.id.split("valve").pop();
+    var temp = JSON.parse(localStorage.pumpData);
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
-            $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
+            $(divElement).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             // change recorded state in table
-            var temp = JSON.parse(localStorage.pumpData);
             temp[valve_to_control - 1]['Current_State'] = "closed";
-            localStorage.pumpData = JSON.stringify(temp);
-            localStorage.portToControl = valve_to_control;
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
-            $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg");
+            $(divElement).attr("src", "../images/fluigi/valveMarkerOpen.svg");
             // change recorded state in table
-            var temp = JSON.parse(localStorage.pumpData);
             temp[valve_to_control - 1]['Current_State'] = "opened";
-            localStorage.pumpData = JSON.stringify(temp);
-            localStorage.portToControl = valve_to_control;
             break;
         default:
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             break;
     }
+    localStorage.pumpData = JSON.stringify(temp);
+    localStorage.portToControl = valve_to_control;
     sendCommand();
     if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
     }
+    return false;
+}
+
+// functionality attached to valves
+function onclickanchortag(){
+
+    var temp = JSON.parse(localStorage.pumpData);
+    var valve_to_control = this.id.split("valve").pop();
+    if(temp[valve_to_control - 1]['Cluster'].length > 0){
+        for(var i = 0; i < temp[valve_to_control - 1]['Cluster'].length; i++){
+            toggleValve("#valve" + (temp[valve_to_control - 1]['Cluster'][i] + 1));
+        }
+    }
+    else{
+        toggleValve("#" + this.id);
+    }
+
+
+
+
+
     return false;
 }
 
@@ -65,8 +83,10 @@ function valve_uL_to_PWM(uL_table,uL_precision,uL_goal) {
 function wrap_data_for_Arduino() {
 
     var valve_to_control = localStorage.portToControl;
+
     var data_for_selected_object = JSON.parse(localStorage.pumpData);
     var deviceNum = data_for_selected_object[valve_to_control - 1]['deviceIndex'];
+    console.log("wrapping command for " + deviceNum);
     var open_state_parameter = data_for_selected_object[valve_to_control - 1]['Open_State'];
     var closed_state_parameter = data_for_selected_object[valve_to_control - 1]['Closed_State'];
     var physical_state_parameter = data_for_selected_object[valve_to_control - 1]['Current_State'];
@@ -81,7 +101,7 @@ function wrap_data_for_Arduino() {
     }
 
     var uL_table = ((data_for_selected_object[valve_to_control - 1]['uL_Conversion_Table']));
-    console.log("uL_table: " + uL_table);
+    //console.log("uL_table: " + uL_table);
     var uL_precision = ((data_for_selected_object[valve_to_control - 1]['uL_Precision']));
     var PWMval = valve_uL_to_PWM(uL_table,uL_precision,uLVal);
 

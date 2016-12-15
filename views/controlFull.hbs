@@ -219,6 +219,7 @@
 
 
 <script src="../javascripts/ControlSettingsModal.js" type="application/javascript"></script>
+<script src="../javascripts/clusterValves.js" type="application/javascript"></script>
 
 <!-- Settings Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -244,6 +245,25 @@
                         </tr>
                     </table>
                 </div>
+                <br>
+                <h3>Valve Clusters</h3>
+                <table id="valveClusterTable" class="table table-striped">
+                    <col width="130">
+                    <tr>
+                        <th>Cluster</th>
+                        <th>Members</th>
+                    </tr>
+                </table>
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" data-toggle="modal" data-target="#valveClusterModal" onclick="drawClusterTable(JSON.parse(localStorage.pumpData)); updateClusterList();">New</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-secondary">Edit</button>
+                    </div>
+                </div>
+
                 <br>
                 <div class="editableTable">
                     <h3>Dispenser Settings</h3>
@@ -271,7 +291,42 @@
 </div>
 <!--./ END SETTINGS MODAL-->
 
+<!-- Valve Cluster Modal -->
+<div class="modal fade" id="valveClusterModal" tabindex="-1" data-backdrop="false" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document" style="width: 220px; position: absolute; top: 50px; left: 50px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h4 class="modal-title">New Cluster:</h4>
+                    </div>
+                    <div class="col-md-4">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#e67e22" /></svg>
+                    </div>
+                </div>
 
+            </div>
+            <div class="modal-body">
+                <!--this is where we display the full list to be clustered: -->
+                <div id="newClusterList"></div>
+                <br>
+                <div class="row">
+                    <table id="makeValveCluster" class="table table-striped">
+                        <tr>
+                            <th>Valves</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- ./End Valve Cluster Modal -->
 
 
 <canvas id="c" tabindex="0" resize="true"></canvas>

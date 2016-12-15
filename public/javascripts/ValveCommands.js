@@ -2,37 +2,30 @@
 // functionality attached to valves
 function onclickanchortag(){
     var location = getLocation(this.src);
+    var valve_to_control = this.id.split("valve").pop();
     switch (location.pathname){
         case "/images/fluigi/valveMarkerOpen.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
-            console.log("Port " + this.id + " clicked");
-            valve_to_control = this.id;
             // change recorded state in table
             var temp = JSON.parse(localStorage.pumpData);
             temp[valve_to_control - 1]['Current_State'] = "closed";
             localStorage.pumpData = JSON.stringify(temp);
-            //flipFlop_valveState(valve_to_control);
             localStorage.portToControl = valve_to_control;
-            sendCommand();
             break;
 
         case "/images/fluigi/valveMarkerClosed.svg":
             $(this).attr("src", "../images/fluigi/valveMarkerOpen.svg");
-            console.log("Port " + this.id + " clicked");
-            valve_to_control = this.id;
             // change recorded state in table
             var temp = JSON.parse(localStorage.pumpData);
             temp[valve_to_control - 1]['Current_State'] = "opened";
             localStorage.pumpData = JSON.stringify(temp);
-            //flipFlop_valveState(valve_to_control);
             localStorage.portToControl = valve_to_control;
-            sendCommand();
             break;
-
         default:
             $(this).attr("src", "../images/fluigi/valveMarkerClosed.svg");
             break;
     }
+    sendCommand();
     if (location.pathname == "/images/fluigi/valveMarkerOpen.svg"){
     }
     return false;

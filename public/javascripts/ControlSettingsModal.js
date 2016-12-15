@@ -12,7 +12,7 @@ function drawValveTable(data) {
 }
 
 function drawValveRow(rowData) {
-    var row = $("<tr class='tempData' />")
+    var row = $("<tr class='tempData' />");
     $("#ValveTable").append(row);
     row.append($("<td>" + rowData.id + "</td>"));
     row.append($("<td>" + rowData.HW_shield + "</td>"));
@@ -32,35 +32,24 @@ jQuery.fn.shift = [].shift;
 function exporting() {
     var $rows = $('#ValveTable').find('tr:not(:hidden):not(:empty)');
     var keys = ["id", "HW_shield", "HW_pin", "Open_State", "Closed_State", "Current_State", "deviceIndex"];
-    //var data = [];
     var x = 0; // making sure we are not counting the headers row here
     var valveData = JSON.parse(localStorage.pumpData);
     // Turn all existing rows into a loopable array
     $rows.each(function () {
         if(x > 0){
-            //deviceCount = deviceCount + 1;
             var $td = $(this).find('td');
-            var h = {};
             // Use pre-defined Hash keys
             keys.forEach(function (header, i) {
                 if(header === "Current_State"){
-                    //h[header] = $td.eq(i).text();
                     valveData[x - 1][header] = $td.eq(i).text();
-                    console.log("Editing header " + header + " for index " + (x - 1) + " which should be " + $td.eq(i).text());
                 }
                 else if(header === "deviceIndex") {
-                    //h["deviceIndex"] = deviceCount;
                     valveData[x - 1][header] = deviceCount;
-                    console.log("Editing header " + header + " for index " + (x - 1) + " which should be " + deviceCount);
                 }
                 else{
-                    //h[header] = parseInt($td.eq(i).text());
                     valveData[x - 1][header] = parseInt($td.eq(i).text());
-                    console.log("Editing header " + header + " for index " + (x - 1) + " which should be " + parseInt($td.eq(i).text()));
                 }
             });
-            //console.log(h);
-            //data.push(h);
         }
         x = x + 1;
     });

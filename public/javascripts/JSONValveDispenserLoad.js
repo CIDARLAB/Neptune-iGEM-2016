@@ -71,7 +71,6 @@ function placeButtons() {
         var content = $("#content");
         var template = document.getElementById("valve-template").content.cloneNode(true);
         var valveDiv = template.querySelector('.valve');
-        var state = template.querySelector('.valve_color');
 
         valveDiv.style.position = 'absolute';
 
@@ -80,14 +79,14 @@ function placeButtons() {
 
         var specificImage = template.querySelector('.valve_color');
         // set id of each valve anchor based on location in array
-        specificImage.id = i + 1;
+        specificImage.id =  "valve" + (i + 1);
         // assign appropriate valve marker based on state
         specificImage.onclick = onclickanchortag;
         if((JSON.parse(localStorage.pumpData))[i]['Current_State'] === "closed"){
-            state.src = "../images/fluigi/valveMarkerClosed.svg";
+            specificImage.src = "../images/fluigi/valveMarkerClosed.svg";
         }
         else{
-            state.src= "../images/fluigi/valveMarkerOpen.svg";
+            specificImage.src= "../images/fluigi/valveMarkerOpen.svg";
         }
 
         valveButton = template.querySelector('.valve');

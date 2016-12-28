@@ -96,6 +96,7 @@ function wrap_data_for_Arduino_Dispense(PWM, dispenser_to_control) {
     // var dispenser_to_control = localStorage.dispenserToControl;
     var temp = JSON.parse(localStorage.dispenserData);
     var deviceNum = temp[dispenser_to_control - 1]['deviceIndex'];
+    console.log("the device num is: " + deviceNum);
 
     // FIRST, PAD VALUES WITH 0's SUCH THAT THE VALUE IS 3 CHARACTERS LONG
     var dispenser_to_control_padded = zeroFill(deviceNum, 4);

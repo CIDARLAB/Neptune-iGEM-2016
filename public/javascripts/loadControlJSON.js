@@ -15,7 +15,6 @@ if (localStorage.JSONloaded != "true") {
     function handleFiles() {
         var file = this.files[0];
         reader.readAsText(file);
-
     }
     var reader = new FileReader();
     reader.onload = function (e) {

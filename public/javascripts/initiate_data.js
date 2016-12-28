@@ -1,23 +1,15 @@
 
 if (localStorage.firstVisit == true || localStorage.firstVisit == undefined )
 {
-    localStorage.clear();
     //      DECLARING PUMP VALVE STATE
 
     localStorage.pumpData = [];
     localStorage.MasterData = [];
-    //localStorage.dataCenter = new Object();
     localStorage.unsavedData = [];
     localStorage.oldPumpData = [];
     localStorage.pumps =  0;
     localStorage.settings_X_pos = 200;
     localStorage.settings_Y_pos= 200;
-    localStorage.DataToLoad;
-    // localStorage.dataTable_config = [
-    //     { id:"Pump_Number",    header:"Pump Number",   width:50},
-    //     { id:"Open_State",   header:"Open State",    width:200, editor:"text"},
-    //     { id:"Closed_State",    header:"Closed State",  width:80, editor:"text"}
-    //                                 ];
     
     
     
@@ -92,9 +84,10 @@ if(localStorage.getItem('dispenserConversions') == null) {
     localStorage.setItem('dispenserConversions', '{}');
 }
 
-
-if(localStorage.getItem('JSONloaded') == null) {
+console.log("checking JSONloaded now in initiate_data.js");
+if(localStorage.getItem('JSONloaded') == undefined) {
     localStorage.setItem('JSONloaded', 'false');
+    console.log("Successfully set JSONloaded to false in initiate_data.js");
 }
 
 

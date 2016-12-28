@@ -16,6 +16,7 @@ function sendDispense(sender){
     var time = form.querySelector(".dispenseTime");
     var dispenserID = sender.id;    // ID of dispenser you are controlling
     dispenserID = dispenserID.replace(/\D/g,'');
+    //console.log("Dispenser to be controlled is: " + dispenserID);
 
     if(isNaN(volume.value)){
         toastr.error("Please enter a valid number for dispense volume.");
@@ -40,11 +41,11 @@ function sendDispense(sender){
         var uL_max = initializeSetup_outputs.uL_max;
         var uL_precision = initializeSetup_outputs.uL_precision;
 
-        var temp = JSON.parse(localStorage.dispenserData);
-        temp[dispenserID - 1]['Min'] = (uL_min).toString();
-        temp[dispenserID - 1]['Max'] = (uL_max).toString();
-        temp[dispenserID - 1]['Precision'] = (uL_precision).toString();
-        localStorage.dispenserData = JSON.stringify(temp);
+        var globalDispenserData = JSON.parse(localStorage.dispenserData);
+        globalDispenserData[dispenserID - 1]['Min'] = (uL_min).toString();
+        globalDispenserData[dispenserID - 1]['Max'] = (uL_max).toString();
+        globalDispenserData[dispenserID - 1]['Precision'] = (uL_precision).toString();
+        localStorage.dispenserData = JSON.stringify(globalDispenserData);
 
 
         console.log('conversions (PWM and uL): ');
@@ -52,11 +53,15 @@ function sendDispense(sender){
         console.log(uL_table);
 
 
-        var temp = JSON.parse(localStorage.dispenserData);
-        temp[dispenserID - 1]['Min'] = (uL_min.toFixed(2)).toString();
-        temp[dispenserID - 1]['Max'] = (uL_max.toFixed(2)).toString();
-        temp[dispenserID - 1]['Precision'] = (uL_precision.toFixed(2)).toString(); 
-        localStorage.dispenserData = JSON.stringify(temp);
+        //var temp = JSON.parse(localStorage.dispenserData);
+        globalDispenserData[dispenserID - 1]['Min'] = (uL_min.toFixed(2)).toString();
+        globalDispenserData[dispenserID - 1]['Max'] = (uL_max.toFixed(2)).toString();
+        globalDispenserData[dispenserID - 1]['Precision'] = (uL_precision.toFixed(2)).toString();
+        localStorage.dispenserData = JSON.stringify(globalDispenserData);
+
+
+
+        // DISPENSERCONVERSIONS NOT DEFINED BEFORE HERE????
 
         // store conversion tables to be accessed by other parts of dispense operations
         var storedConversions = JSON.parse(localStorage.dispenserConversions);  // load here so as not to overwrite tables already stored
@@ -77,7 +82,7 @@ function sendDispense(sender){
         }
         else {      // pull orientaion
             valueToDispense = currentVolume + parseFloat(volume.value);
-            if(valueToDispense >= (parseFloat(temp[dispenserID - 1]['Max']) - parseFloat(temp[dispenserID - 1]['Current_State']))){
+            if(valueToDispense >= (parseFloat(globalDispenserData[dispenserID - 1]['Max']) - parseFloat(globalDispenserData[dispenserID - 1]['Current_State']))){
                 toastr.error("Requested dispense volume exceedes remaining syringe volume");
             }
         }
@@ -93,7 +98,7 @@ function sendDispense(sender){
         localStorage.dispenserToControl = dispenserID;
 
         // iterate over command array at appropriate time intervals
-        for(i = 0; i < PWMvalueArray.length; i++){
+        for(var i = 0; i < PWMvalueArray.length; i++){
 
             (function () {
                 // need to re-define some variables here due to scope

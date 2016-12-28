@@ -1,3 +1,18 @@
+// functionality attached directly to valve icons; find in JSONValveDispenserLoad.js
+function onclickanchortag(){
+    var temp = JSON.parse(localStorage.pumpData);
+    var valve_to_control = this.id.split("valve").pop();
+    if(temp[valve_to_control - 1]['Cluster'].length > 0){
+        for(var i = 0; i < temp[valve_to_control - 1]['Cluster'].length; i++){
+            toggleValve("#valve" + (temp[valve_to_control - 1]['Cluster'][i] + 1));
+        }
+    }
+    else{
+        toggleValve("#" + this.id);
+    }
+    return false;
+}
+
 // toggle any valve given its DivID
 function toggleValve(valveDivID){   // will be in form of #valve1, #valve2, ... numbers correspond to valve id in JSON
     var divElement = ($(valveDivID))[0];
@@ -28,27 +43,6 @@ function toggleValve(valveDivID){   // will be in form of #valve1, #valve2, ... 
     return false;
 }
 
-// functionality attached to valves
-function onclickanchortag(){
-
-    var temp = JSON.parse(localStorage.pumpData);
-    var valve_to_control = this.id.split("valve").pop();
-    if(temp[valve_to_control - 1]['Cluster'].length > 0){
-        for(var i = 0; i < temp[valve_to_control - 1]['Cluster'].length; i++){
-            toggleValve("#valve" + (temp[valve_to_control - 1]['Cluster'][i] + 1));
-        }
-    }
-    else{
-        toggleValve("#" + this.id);
-    }
-
-
-
-
-
-    return false;
-}
-
 var getLocation = function(href) {
     var l = document.createElement("a");
     l.href = href;
@@ -61,12 +55,14 @@ function onclickanchortagDispense(){
     return false;
 }
 
+
+
+// functionality directly connected to dispenser icons; find in JSONValveDispenserLoad.js
 function activateDispenser(dispenserIDNum) {
     localStorage.activeDispenser = dispenserIDNum;
     localStorage.dispenserToControl = dispenserIDNum;
     updateDispenseProgressBar(dispenserIDNum);
 }
-
 function deactivateDispenser() {
     localStorage.activeDispenser = "none";
 }

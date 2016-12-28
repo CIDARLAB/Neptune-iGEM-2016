@@ -31,7 +31,7 @@ jQuery.fn.shift = [].shift;
 
 function exporting() {
     var $rows = $('#ValveTable').find('tr:not(:hidden):not(:empty)');
-    var keys = ["id", "HW_shield", "HW_pin", "Open_State", "Closed_State", "Current_State", "deviceIndex"];
+    var keys = ["id", "HW_shield", "HW_pin", "Open_State", "Closed_State", "Current_State"];
     var x = 0; // making sure we are not counting the headers row here
     var valveData = JSON.parse(localStorage.pumpData);
     // Turn all existing rows into a loopable array
@@ -43,9 +43,6 @@ function exporting() {
                 if(header === "Current_State"){
                     valveData[x - 1][header] = $td.eq(i).text();
                 }
-                //else if(header === "deviceIndex") {
-                //    valveData[x - 1][header] = deviceCount;
-                //}
                 else{
                     valveData[x - 1][header] = parseInt($td.eq(i).text());
                 }
@@ -91,48 +88,36 @@ function drawDispRow(rowData) {
 
 function exportingDispenser() {
     var $rows = $('#DispenserTable').find('tr:not(:hidden):not(:empty)');
-    var keys = ["id", "HW_shield", "HW_pin", "Precision", "Min", "Max", "Current_State", "orientation", "deviceIndex"];
-    var data = [];
+    var keys = ["id", "HW_shield", "HW_pin", "Precision", "Min", "Max", "Current_State", "orientation"];
     var x = 0; // making sure we are not counting the headers row here
+    var dispenserData = JSON.parse(localStorage.dispenserData);
     // Turn all existing rows into a loopable array
     $rows.each(function () {
         if(x > 0){
-            deviceCount = deviceCount + 1;
             var $td = $(this).find('td');
-            var h = {};
             // Use pre-defined Hash keys
             keys.forEach(function (header, i) {
-                //if(header === "deviceIndex"){
-                //    h["deviceIndex"] = deviceCount;
-                //}
-                if(header === "orientation") {
-                    h[header] = $td.eq(i).text();
+                if(header === "Current_State"){
+                    dispenserData[x - 1][header] = parseFloat($td.eq(i).text()).toFixed(1);
                 }
                 else if(header === "Precision") {
-                    h[header] = $td.eq(i).text();
+                    dispenserData[x - 1][header] = $td.eq(i).text();
                 }
                 else if(header === "Min") {
-                    h[header] = parseFloat($td.eq(i).text()).toFixed(1);
+                    dispenserData[x - 1][header] = parseFloat($td.eq(i).text()).toFixed(1);
                 }
                 else if(header === "Max") {
-                    h[header] = parseFloat($td.eq(i).text()).toFixed(1);
-                }
-                else if(header === "Current_State") {
-                    h[header] = parseFloat($td.eq(i).text()).toFixed(1);
+                    dispenserData[x - 1][header] = parseFloat($td.eq(i).text()).toFixed(1);
                 }
                 else{
-                    h[header] = parseInt($td.eq(i).text());
+                    dispenserData[x - 1][header] = parseInt($td.eq(i).text());
                 }
-
             });
-            data.push(h);
         }
         x = x + 1;
     });
-
     // Output the result
-    console.log(JSON.parse(JSON.stringify(data)));
-    localStorage.dispenserData = JSON.stringify(data);
+    localStorage.dispenserData = JSON.stringify(dispenserData);
 };
 
 

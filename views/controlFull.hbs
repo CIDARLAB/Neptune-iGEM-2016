@@ -48,7 +48,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="json_in">Select your JSON file:</label>
-                        <input type="file" class="upload" id="JSONinput" />
+                        <input type="file" class="upload" id="JSONinput" accept=".json, .JSON|json designs/*"/>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -66,7 +66,7 @@
 
     <link href="../stylesheets/controlFull.css" rel="stylesheet">
     <script type="text/javascript" src="../javascripts/serialcommunication.js"></script>
-    <script type="text/javascript" src="../javascripts/ValveDispenserJSONTracking.js" > </script>
+    <script type="text/javascript" src="../javascripts/ValveDispenserJSONTracking.js"></script>
     <script type="text/javascript" src="../javascripts/initiate_data.js"></script>
 
 
@@ -206,7 +206,7 @@
 </nav>
 
 <!--BUTTON ICONS ON CANVAS-->
-<a data-toggle="modal" data-target="#findJSON" id="uploadToggle">
+<a data-toggle="modal" data-target="#findJSON" onclick="localStorage.setItem('JSONloaded', 'false');" id="uploadToggle">
     <i class="fa fa-folder fa-3x"></i>
 </a>
 <a onclick="drawValveTable(JSON.parse(localStorage.pumpData)); drawDispenserTable(JSON.parse(localStorage.dispenserData));" data-toggle="modal" data-target="#myModal" id="settingsToggle">

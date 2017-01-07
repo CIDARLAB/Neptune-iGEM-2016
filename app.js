@@ -117,34 +117,6 @@ global.server.timeout = 1000000000;
     app.post('/serialcommunication/list', serialController.listPorts);
 }
 
-/************** FILE UPLOAD  ************/
-{
-    // Bootstrap:
-    // app.get('/specify',fileController.sendToUploadsSpecify);
-    // app.get('/design',fileController.sendToUploadsDesign);
-    // app.get('/build',fileController.sendToUploadsBuild_Verify);
-
-
-    // app.post('/api/specify_LFR',fileController.send_specifyLFR);
-    // app.post('/api/specify_UCF',fileController.send_specifyUCF);
-    // app.post('/api/design_INI',fileController.send_designINI);
-    // app.post('/api/design_MINT',fileController.send_designMINT);
-    // app.post('/api/build_SVG',fileController.send_buildSVG);
-    // app.post('/api/build_JSON',fileController.send_buildJSON);
-
-    // Pre-Bootstrap:
-    //  app.get('/lfrpage', fileController.sendToUploadsSpecify);
-    //  app.get('/lfrpage_bs', fileController.sendToUploadsSpecify);
-    //  app.get('/uShroomPage', fileController.sendToUploadsDesign);
-    //  app.get('/fluigipage', fileController.sendToUploadsBuild_Verify);
-     // app.post('/api/JSON', fileController.sendJSON);
-     // app.post('/api/SVG', fileController.sendSVG);
-     // app.post('/api/LFR', fileController.sendLFR);
-     // app.post('/api/LFR_start', fileController.sendLFR_start);
-     // app.post('/api/UCF', fileController.sendUCF);
-     // app.post('/api/MINT',fileController.sendMINT);
-}
-
 /************** FILE WRITE ********************/
 {
     app.post('/api/writeToFile',writeController.writeToFile)
@@ -182,5 +154,5 @@ global.server.timeout = 1000000000;
 
     var fileGetter = require('./controllers/fileGetter');
     app.post('/api/getFile',fileGetter.getFile);
-    
+
     app.post('/api/findHome',workspaceController.findHome);

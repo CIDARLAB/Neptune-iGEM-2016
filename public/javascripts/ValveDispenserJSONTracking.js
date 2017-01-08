@@ -8,6 +8,8 @@ function initiateValveData(){
 
 
 // FUNCTIONALITY FOR VALVE DATA TRACKING
+
+// Create Valve JSON
 function setNumberOfPumps_JSON() {
     localStorage.pumps = JSON.parse(localStorage.portXcoords).length;
     var DataToLoad = [];
@@ -47,6 +49,7 @@ function clearPumpData() {
     }
     return JSON.stringify(c_pumpData);
 }
+// Combine these 2 if they cannot be run non-consecutively
 
 // FUNCTIONALITY FOR DISPENSER DATA TRACKING AND COMMANDS
 function clearDispenserData() {
@@ -65,6 +68,8 @@ function clearDispenserData() {
     }
     return JSON.stringify(dispenserData);
 }
+
+// Create JSON for dispensers
 function setNumberOfDispensers_JSON() {
     localStorage.Dispensers = JSON.parse(localStorage.portXcoordsDisp).length;
     var set_dispData_newNum = [];
@@ -112,16 +117,4 @@ $(document).ready(function(){
             error: function(response){
             }
         });
-});
-// Navbar
-$(function() {
-    $('#slide-submenu').on('click',function() {
-        $(this).closest('.list-group').fadeOut('slide',function(){
-            $('.mini-submenu').fadeIn();
-        });
-    });
-    $('.mini-submenu').on('click',function(){
-        $(this).next('.list-group').toggle('slide');
-        $('.mini-submenu').hide();
-    })
 });

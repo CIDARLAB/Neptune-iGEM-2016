@@ -2,6 +2,7 @@
  * Created by rebeccawolf on 7/26/16.
  */
 
+// Parsing JSON to look for control features (valves and dispensers); load information into global variables
 function loadButtons() {
 
     // load file for parsing used for counting and locating buttons
@@ -54,14 +55,14 @@ function loadButtons() {
         }
         
         // Store json variables to localStorage in form of JSON object...
-        localStorage.portXcoordsDisp = JSON.stringify(portXDisp);
+        localStorage.portXcoordyessDisp = JSON.stringify(portXDisp);
         localStorage.portYcoordsDisp = JSON.stringify(portYDisp);
 
 
 };
 
 
-
+// after parsing JSON we can create instances of HTML templates to place over canvas
 function placeButtons() {
     var canvasZoom = paper.view.zoom;
 

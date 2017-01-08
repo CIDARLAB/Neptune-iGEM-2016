@@ -73,7 +73,7 @@ function valve_uL_to_PWM(uL_table,uL_precision,uL_goal) {
             return Math.round(uL_table[i+1]);
         }
     }
-    console.log("ERROR!");
+    console.log("ERROR! Cannot find value");
 }
 
 function wrap_data_for_Arduino() {

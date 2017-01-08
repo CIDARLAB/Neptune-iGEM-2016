@@ -106,41 +106,40 @@
                 <i class="fa fa-briefcase" aria-hidden="true" style="color: rgba(19, 35, 47, 0.9);"></i>
                 Assembly </h1>
         </div>
+        <div class="stepwizard col-md-offset-3 navbar-fixed-top" style="padding-top: 15px; text-align: right; overflow: hidden;">
+            <div class="stepwizard-row setup-panel">
+                <div class="stepwizard-step">
+                    <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
+                    <p>Order</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-2" type="button" class="btn btn-primary btn-circle" >2</a>
+                    <p>Make</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-3" type="button" class="btn btn-primary btn-circle" >3</a>
+                    <p>Connect</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-4" type="button" class="btn btn-primary btn-circle" >4</a>
+                    <p>Assemble</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-5" type="button" class="btn btn-primary btn-circle" >5</a>
+                    <p>Chip</p>
+                </div>
+                <div class="stepwizard-step">
+                    <a href="#step-6" type="button" class="btn btn-primary btn-circle" >6</a>
+                    <p>Use</p>
+                </div>
+            </div>
+        </div>
+
         <!-- /.col-lg-12 -->
     </div>
     <div class="row col-lg-12">
 
-        <div>
-            <!--class="container"-->
-
-            <div class="stepwizard col-md-offset-3 navbar-fixed-top" style="padding-top: 15px; text-align: right; overflow: hidden;">
-                <div class="stepwizard-row setup-panel">
-                    <div class="stepwizard-step">
-                        <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                        <p>Order</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-2" type="button" class="btn btn-primary btn-circle" >2</a>
-                        <p>Make</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-3" type="button" class="btn btn-primary btn-circle" >3</a>
-                        <p>Connect</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-4" type="button" class="btn btn-primary btn-circle" >4</a>
-                        <p>Assemble</p>
-                    </div>
-                    <div class="stepwizard-step">
-                        <a href="#step-5" type="button" class="btn btn-primary btn-circle" >5</a>
-                        <p>Chip</p>
-                    </div>
-                    <div class="stepwizard-step">
-                    <a href="#step-6" type="button" class="btn btn-primary btn-circle" >6</a>
-                    <p>Use</p>
-                </div>
-                </div>
-            </div>
+        <div style="padding-left: 80px; padding-right: 80px;">
             <div class="row setup-content" id="step-1">
                 <!--<div class="col-xs-6 col-md-offset-3">-->
                 <div class="col-md-12">
@@ -149,6 +148,7 @@
                     </h3>
                     <p> First, order all of your parts. We need all of the parts to create the entire setup. </p>
                     <p> Next, depending on what CNC mill you have, and 3D printer you have, download the open-source software you need.
+                        The Ultimaker 2 uses <a href="https://ultimaker.com/en/products/cura-software">Cura</a>, and the OtherMill uses <a href="https://othermachine.co/otherplan/">Otherplan.</a>
                         <br><br>
                     </p>
                     <div style="text-align: center;">
@@ -163,26 +163,34 @@
                 </div>
                 <!--</div>-->
             </div>
-            <div class="row setup-content navbar-default" id="step-2">
+            <div class="row setup-content" id="step-2">
                 <!--<div class="col-xs-6 col-md-offset-3">-->
                 <div class="col-md-12">
                     <h3 style=" font-size: 30px;"> <br><br> Step 2: Make
                         <br><br>
                     </h3>
-                    <p> First, 3D print all the parts provided to you in the Build page. To do so, simply drag and drop the .stl files into your 3D printer program. </p>
-                    <p> Next, CNC mill the microfluidic chip by dragging and dropping the .svg file into the mill program.
-                        You should use a small drillbit to carve out the small valves within your microfluidic chip.
-                        <br>
+                    <p> First, 3D print all the parts provided to you. To do so, simply drag and drop the .stl files into your 3D printer program.
+                        The configuration file specific to the Ultimaker 2 is available <a href="https://github.com/CIDARLAB/Neptune-Hardware/blob/master/Syringe%20Pump/Mechanical/ABS_iGEM.ini">here.</a>
+                        Cura for the Ultimaker will place the object on the 3D printing bed.
+                        The user can adjust the location of the object to be printed, and select the density of material.
+                    Then, you would simply need to send the job to the machine by printing to it.
+                    Objects to be printed include the piston arm, servo holder, syringe attachment, and syringe holder available <a href="https://github.com/CIDARLAB/Neptune-Hardware/tree/master/Syringe%20Pump/Mechanical">here.</a>
+                    The quantities of each depend on how many setups you have.</p>
+                    <p> Next, CNC mill the microfluidic chip by dragging and dropping the .svg file into the mill program. You will need to mill out both the control layer and the flow layer.
+                        The Otherplan requires a material and tool configuration. Set the material size and the thickness on the software, and send the job to the OtherMill.
+                        You should use a small endmill to carve out the small valves within your microfluidic chip.
+                        After milling out the chip, mill out the MEC base board to place the setup on. The files are available on Github <a href="https://github.com/CIDARLAB/Neptune-Hardware/tree/master/Mounting%20Board">here.</a>
+                        <br><br><br>
                     </p>
-                    <div style="text-align: center;">
-                        <a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySVG.svg">
-                            <button type="button" style="background:rgba(19, 35, 47, 0.9);" class="btn btn-primary">
-                                Download SVG
-                            </button>
-                        </a>
-                        <button class="btn btn-primary" style="background:rgba(19, 35, 47, 0.9);" id="get3DParts">Download 3D Printing Files</button>
-                        <br> <br> <br>
-                    </div>
+                    <!--<div style="text-align: center;">-->
+                        <!--<a href="download/../uploads/Build_Verify/buildSVG.svg" download="mySVG.svg">-->
+                            <!--<button type="button" style="background:rgba(19, 35, 47, 0.9);" class="btn btn-primary">-->
+                                <!--Download SVG-->
+                            <!--</button>-->
+                        <!--</a>-->
+                        <!--&lt;!&ndash;<button class="btn btn-primary" style="background:rgba(19, 35, 47, 0.9);" id="get3DParts">Download 3D Printing Files</button>&ndash;&gt;-->
+                        <!--<br> <br> <br>-->
+                    <!--</div>-->
                     <div style="text-align: center;">
                         <!--<iframe width="854" height="480" src="https://www.youtube.com/embed/vVoBc4fET_U?list=UUAmSyv1xQXCg9-jRaxpA4qg" frameborder="0" allowfullscreen></iframe>-->
                         <img src="../images/build/machines.jpg" height="480">
@@ -202,12 +210,15 @@
                         <br><br>
                     </h3>
                     <p>
-                        We now need to set up the arduino.
-                        Connect the syringes to the arduino based on the <a href="../controlFull">Control page</a> of Neptune.
+                        We now need to set up the arduino. Place the arduino shield on top of the arduino and connect the servos to the arduino based on the <a href="../controlFull">Control page</a> of Neptune.
+                        Then, upload the following <a href="https://github.com/CIDARLAB/Neptune-Hardware/tree/master/Syringe%20Pump/Firmware">firmware </a>to the arduino so that it can start receiving commands and control the syringes accordingly.
+
                     </p>
                     <p>
                         Also, in the settings popup of the same page,
                         Neptune will provide you with pin numbers that correspond to where you should connect the servos on the arduino board.
+                        Each servo controls a specific valve on the microfluidic chip, and to control the valve, it needs to be connected to the right pin on the arduino.
+                        Currently implemented, this firmware has the capability to work with both digital and analog servos, up to 13 servo shields stacked on top of the Arduino Mega (enabling the control of over 200 servos at once), control valves with instant motion, and control dispensers with variable flow-rates.
                         <br><br><br>
                     </p>
                     <div style="text-align: center;">
@@ -222,31 +233,27 @@
                 </div>
                 <!--</div>-->
             </div>
-            <div class="row setup-content navbar-default" id="step-4" >
-                <!--<div class="col-xs-6 col-md-offset-3">-->
+            <div class="row setup-content" id="step-4" >
                 <div class="col-md-12">
                     <h3 style=" font-size: 30px;"> <br><br> Step 4: Assemble
                         <br><br>
                     </h3>
-                    <p><b>Part A:</b> Put the servos inside their holder, and connect the servo to the arduino as shown in the video.
-                        Power the servos as well by connecting the arduino to a power supply.
-                        <br> <br>
-                        <b> Part B:</b> Click on the button below to set the servo to 90 degress. Then, attach the servo arm.
+                    <p>To assemble the entire structure, Neptune uses an MEC board which is a new emerging standard in microfluidics. The pre-drilled holes ensure proper component alignment and spacing, further adding to Neptune’s ease-of-use.
+                        The entire servo-syringe setup will be mounted onto the MEC board. Neptune uses a piston-rod concept to control the mechanical motion of the servos.
                         <br><br>
-                        <button class="btn btn-primary" style="background:rgba(19, 35, 47, 0.9);" id="startservo">Start servo initialization</button>
+                        First, put the servos inside their holder, and attach the servos to the syringe using the syringe attachment and arm.
+                        Power the servos as well by connecting the arduino to a power supply.
+                        The power is delivered through 5v 10W laptop power supplies which are readily available, safe, and deliver enough power to control up to 16 servos at once.
+                        Set the servo arm at 180 degrees so that the arm attached to the syringe is pushed forward to its maximum.
+                       So, the syringe would be at 0ml. Alternatively, set the minimum point on the settings modal in the control page.
                         <br> <br>
-                        <b>Part C: </b>Screw in the syringes to the board using their holders, and attach the servo arm to the syringe using the small attachment piece.
-                        Then, screw in the servo holder to the board such that the arm is in the center of the syringe attachment.
+                        <b>(Optional) </b>Attach the peristaltic pump to the board using the preset holes.
                         <br> <br>
-                        <b>Part D: </b>Set the syringe at 0ml, or set the minimum point on the settings modal in the control page.
-                        <br> <br>
-                        <b>(Optional) Part E: </b>Attach the peristaltic pump to the board using the preset holes used for the syringe.
-                        <br> <br><br>
                     </p>
 
                     <div style="text-align: center;">
                         <!--<iframe width="854" height="480" src="https://www.youtube.com/embed/vVoBc4fET_U?list=UUAmSyv1xQXCg9-jRaxpA4qg" frameborder="0" allowfullscreen></iframe>-->
-                        <img src="../images/build/3Dparts.jpg" height="300">
+                        <!--<img src="../images/build/3Dparts.jpg" height="300">-->
                         <br><br>
                         <img src="../images/build/setup.jpg" height="480">
                     </div>
@@ -265,8 +272,10 @@
                         <br><br>
                     </h3>
                     <p>
-                        To setup your microfluidic chip, use the milled out control layer and flow layer. </p>
-                    <p> Use the PDMS to seal both layers, and add valves where needed to control the flow.
+                        To setup your microfluidic chip, use the milled out control layer and flow layer.
+                    </p>
+                    <p> Use the PDMS to seal both layers using a vacuum chamber. This enables the chip to be sealed to prevent liquid from flowing out.
+                        Then add valves where needed to control the flow.
                         <br><br><br>
                     </p>
                     <div style="text-align: center;">
@@ -281,19 +290,19 @@
                 </div>
                 <!--</div>-->
             </div>
-            <div class="row setup-content navbar-default" id="step-6">
+            <div class="row setup-content" id="step-6">
                 <!--<div class="col-xs-6 col-md-offset-3">-->
                 <div class="col-md-12">
                     <h3 style=" font-size: 30px;"><br><br> Step 6: Use
                         <br><br>
                     </h3>
                     <p>
-                        Now, go back to the 'Control' page of Neptune and click on buttons to open and close valves to push liquids through the microfluidic chip
+                        Now, proceed to the 'Control' page of Neptune and click on buttons to open and close valves to push liquids through the microfluidic chip
                         <br><br><br>
                     </p>
                     <div style="text-align: center;">
                         <!--<iframe width="854" height="480" src="https://www.youtube.com/embed/vVoBc4fET_U?list=UUAmSyv1xQXCg9-jRaxpA4qg" frameborder="0" allowfullscreen></iframe>-->
-                        <video controls="controls" height="480" src="../images/build/demo.mov">
+                        <video controls="controls" height="480" src="../images/build/demo2.mov">
                         </video>
                         <!--<video controls="controls" width="800" height="600" name="Video Name" src="http://www.myserver.com/myvideo.mov"></video>-->
                     </div>
@@ -308,18 +317,19 @@
                 </div>
                 <!--</div>-->
             </div>
-            <div class="row setup-content navbar-default">
+            <div class="row setup-content">
                 <!--<div class="col-xs-6 col-md-offset-3">-->
                 <div class="col-md-12">
                     <h3 style=" font-size: 30px;"><br><br> Moving forward <br><br></h3>
                     <p>
-                        Does your project work? Congratulations! Support other researchers in the field of synthetic biology by sharing your microfluidic design schematic on GitHub!
-                    </p>
-                    <p> If not, that's not a problem! We're here to help! Questions, comments, or suggestions?
+
+                        Visit our iGEM wiki page where you can view more documentation, tutorial videos, and so on.
+                        You could also reach out to the synthetic biology community to talk to other biologists and how they used Neptune for their research experiments.
+                        This interaction using Neptune would enable biologists around the world to share their ideas, get feedback, and progress the advancement of science.
                         Reach out to us through our <a href="mailto:bu.igemhw2016@gmail.com">email</a>.
                     </p>
                     <p> Learn more about us on <a href="https://github.com/CIDARLAB/iGEM2016-GUI">GitHub</a>,
-                        visit our <a href="http://cidarlab.org/fluigi/">webpage</a>.
+                        visit our <a href="http://2016.igem.org/Team:BostonU_HW">webpage</a>.
                         <br><br>
                     <div style="text-align: center;">
 
@@ -327,7 +337,7 @@
                             <a class="fa fa-envelope fa-2x" style="font-size: 40px; color: white;"></a>
                             <!--Mail-->
                         </button>
-                        <button class="btn" onclick="window.location='http://cidarlab.org/fluigi/'" style="background-color:rgba(19, 35, 47, 0.9); color: white;">
+                        <button class="btn" onclick="window.location='http://2016.igem.org/Team:BostonU_HW'" style="background-color:rgba(19, 35, 47, 0.9); color: white;">
                             <a class="fa fa-file fa-2x" style="font-size: 40px; color: white;"></a>
                             <!--website-->
                         </button>

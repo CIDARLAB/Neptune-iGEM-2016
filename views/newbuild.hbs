@@ -48,8 +48,8 @@
     <!--<script type="text/javascript" src="../javascripts/servosyringe.js"></script>-->
     <script type="text/javascript" src="../javascripts/newbuildbuttons.js"></script>
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
-    <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
-    <script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>
+    <!--<script type="text/javascript" src="../javascripts/fluigipage.js"></script>-->
+    <!--<script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>-->
     <![endif]-->
 
 </head>
@@ -58,142 +58,142 @@
 
 <!--<div >-->
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-        <div class="navbar-header">
-            <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
-            <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
-        </div>
-        <!-- /.navbar-header -->
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <img class="pull-left" height="40" width="40" style="margin-top: 5px; margin-left: 5px;" src="../images/NeptuneLogo.png">
+        <a class="navbar-brand" style="font-family: 'Open Sans'"> NEPTUNE </a>
+    </div>
+    <!-- /.navbar-header -->
 
 
-    </nav>
+</nav>
 
-    <div id="page-wrapper" style="margin-left: 0;">
-        <div class="row">
-            <!--<div class="col-lg-12">-->
-            <h1 class="page-header" style="margin-left: 10px;"> <i class="fa fa-wrench" style="color: #447294"></i> Build</h1>
-            <!--</div>-->
-            <!-- /.col-lg-12 -->
-        </div>
-        <div class="row" style="margin: 10px;">
-            <!--<div class="">-->
-            <div class="row  panel-default  panel" >
-                <div class="panel-heading" style="font-size: 17px;">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> Step 1: Specify Your Settings
-                </div>
-                <div class="panel-body">
-                    <div style="float: left; margin-left: 10px;">
-                        <strong style="font-size: 15px;">Volume of liquid to dispense in Micro Liters:</strong>
-                    </div>
-                    <div style="float: left; margin-left: 20px;">
-                        <input  id="myliquid" type="text" />
-                    </div>
-                    <div style="float: left; margin-left: 50px;">
-                        <strong style="font-size: 15px;">Tolerance of servos in Micro Litres:</strong>
-                    </div>
-                    <div style="float: left; margin-left: 20px;">
-                        <input  id="mytolerance" type="text" />
-                    </div>
-                    <div style="float: left; margin-left: 100px;">
-                        <!--<br><br>-->
-                        <button  type="submit" id="update" class="btn btn-sm" style="background-color: lightblue; font-size: 15px;">Update</button>
-
-                    </div>
-                </div>
-                <!--</div>-->
+<div id="page-wrapper" style="margin-left: 0;">
+    <div class="row">
+        <!--<div class="col-lg-12">-->
+        <h1 class="page-header" style="margin-left: 10px;"> <i class="fa fa-wrench" style="color: #447294"></i> Build</h1>
+        <!--</div>-->
+        <!-- /.col-lg-12 -->
+    </div>
+    <div class="row" style="margin: 10px;">
+        <!--<div class="">-->
+        <div class="row  panel-default  panel" >
+            <div class="panel-heading" style="font-size: 17px;">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Step 1: Specify Your Settings
             </div>
+            <div class="panel-body">
+                <div style="float: left; margin-left: 10px;">
+                    <strong style="font-size: 15px;">Volume of liquid to dispense in uL:</strong>
+                </div>
+                <div style="float: left; margin-left: 20px;">
+                    <input  id="myliquid" type="text" />
+                </div>
+                <div style="float: left; margin-left: 50px;">
+                    <strong style="font-size: 15px;">Tolerance of servos in uL:</strong>
+                </div>
+                <div style="float: left; margin-left: 20px;">
+                    <input  id="mytolerance" type="text" />
+                </div>
+                <div style="float: left; margin-left: 100px;">
+                    <!--<br><br>-->
+                    <button  type="submit" id="update" class="btn btn-sm" style="background-color: lightblue; font-size: 15px;">Update</button>
+
+                </div>
+            </div>
+            <!--</div>-->
         </div>
+    </div>
 
 
-        <br>
+    <br>
 
-        <div class="row">
-            <div class="col-lg-8">
+    <div class="row">
+        <div class="col-lg-8">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading" style="font-size: 17px;">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Step 2: Browse Suitable Combinations
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-size: 17px;">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Step 2: Browse Suitable Combinations
 
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <ul class="chat">
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <ul class="chat">
+                        <div class="table-responsive">
+                            <table class="table table-hover display " id="comboList">
+                                <thead>
+                                <tr style="font-size: 20px;">
+                                    <th>Combo ID</th>
+                                    <th>Servo </th>
+                                    <th>Syringe</th>
+                                    <th>Precision</th>
+                                    <th>Volume</th>
+                                    <th>Cost</th>
+                                    <!--<td><img src="../images/build/3ml.jpg" height="50px"></img></td>-->
+                                    <!--<th>Syringe URL</th>-->
+                                    <!--<th>Servo URL</th>-->
+
+                                </tr>
+                                </thead>
+                                <tbody id ="comboListBody">
+
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </ul>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-4" >
+            <div class="chat-panel panel panel-default">
+                <div class="panel-heading" style="font-size: 17px;">
+                    <i class="fa fa-shopping-cart fa-fw"></i> Step 3: Map Fluid Flower to Preselected Combos
+
+                </div>
+                <!-- /.panel-heading -->
+
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4"  style="width: 100%;">
                             <div class="table-responsive">
-                                <table class="table table-hover display " id="comboList">
+                                <table class="table table-hover " id="combo_table">
                                     <thead>
                                     <tr style="font-size: 20px;">
+                                        <th>Fluid Flower ID</th>
                                         <th>Combo ID</th>
-                                        <th>Servo </th>
-                                        <th>Syringe</th>
-                                        <th>Precision</th>
-                                        <th>Volume</th>
-                                        <th>Cost</th>
-                                        <!--<td><img src="../images/build/3ml.jpg" height="50px"></img></td>-->
-                                        <!--<th>Syringe URL</th>-->
-                                        <!--<th>Servo URL</th>-->
 
                                     </tr>
                                     </thead>
-                                    <tbody id ="comboListBody">
+                                    <tbody>
 
                                     </tbody>
                                 </table>
                             </div>
-
-
-
-                        </ul>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.col-lg-4 (nested) -->
+                        <div class="col-lg-8">
+                            <div id="morris-bar-chart"></div>
+                        </div>
+                        <!-- /.col-lg-8 (nested) -->
                     </div>
-                    <!-- /.panel-body -->
+                    <div class="row">
+                        <!--<p style="text-align: center; ">  PLACEHOLDER FOR PICTURE OF CHIP WITH DISPENSER ID LABELLED <br><br></p>-->
+                        <!--<img src="../images/build/sample_image.png" style="text-align: center;">-->
+                    </div>
+                    <!-- /.row -->
                 </div>
-                <!-- /.panel -->
-
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-8 -->
-            <div class="col-lg-4" >
-                <div class="chat-panel panel panel-default">
-                    <div class="panel-heading" style="font-size: 17px;">
-                        <i class="fa fa-shopping-cart fa-fw"></i> Step 3: Map Dispensers to Preselected Combos
-
-                    </div>
-                    <!-- /.panel-heading -->
-
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-4"  style="width: 100%;">
-                                <div class="table-responsive">
-                                    <table class="table table-hover " id="combo_table">
-                                        <thead>
-                                        <tr style="font-size: 20px;">
-                                            <th>Dispenser ID</th>
-                                            <th>Combo ID</th>
-
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.table-responsive -->
-                            </div>
-                            <!-- /.col-lg-4 (nested) -->
-                            <div class="col-lg-8">
-                                <div id="morris-bar-chart"></div>
-                            </div>
-                            <!-- /.col-lg-8 (nested) -->
-                        </div>
-                        <div class="row">
-                            <!--<p style="text-align: center; ">  PLACEHOLDER FOR PICTURE OF CHIP WITH DISPENSER ID LABELLED <br><br></p>-->
-                            <!--<img src="../images/build/sample_image.png" style="text-align: center;">-->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.panel-body -->
-                    <div class="panel-footer">
-                        <div class="input-group">
+                <!-- /.panel-body -->
+                <div class="panel-footer">
+                    <div class="input-group">
                                 <span class="input-group-btn" style="text-align: right;">
                                   <button class="btn btn-sm" id="getParts2" style="margin-left: 5px; background-color: lightblue; border-radius: 3px; font-size: 15px">
                                         Get ordering list
@@ -203,17 +203,17 @@
 
                                      <textarea disabled id="orderList2" style="display:none"> </textarea>
                                 </span>
-                        </div>
                     </div>
-                    <!-- /.panel-footer -->
                 </div>
-                <!-- /.panel .chat-panel -->
+                <!-- /.panel-footer -->
             </div>
-            <!-- /.col-lg-4 -->
+            <!-- /.panel .chat-panel -->
         </div>
-        <!-- /.row -->
+        <!-- /.col-lg-4 -->
     </div>
-    <!-- /#page-wrapper -->
+    <!-- /.row -->
+</div>
+<!-- /#page-wrapper -->
 
 <!--</div>-->
 <!-- /#wrapper -->
@@ -237,6 +237,30 @@
 
 </body>
 
+<div id='quantities' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width:40%">
+
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-primary">
+                <h4 class="modal-title">Hardware Required </h4>
+            </div>
+
+            <div class="modal-body">
+                Number of Fluid Flowers:<br>
+                <input type="text" id="mydispensers"><br>
+                Number of Valves:<br>
+                <input type="text" id="myvalves">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="maketable()"> Save </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </html>
 
 <script type="text/javascript">
@@ -258,119 +282,124 @@
     });
 
     window.onload = function() {
+        $('#quantities').modal('show');
 //        function updateTable(){
 //            loadButtons();
 //            setNumberOfDispensers_JSON();
 //            setNumberOfPumps_JSON();
-            var table = document.getElementById("combo_table");
-            localStorage.numberofvalves = 5;
-            localStorage.numberofdispensers = 6;
-            // localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
-            // localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
-            for (var i=0; i!= parseFloat(localStorage.numberofdispensers); i++) {
-                console.log("hello table");
-                var row = table.insertRow(i+1);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                cell2.id = i;
-                console.log("My cell id: " + cell2.id);
+    }
+    function maketable(){
+        var table = document.getElementById("combo_table");
+        localStorage.numberofvalves = document.getElementById("myvalves").value;
+        localStorage.numberofdispensers = document.getElementById("mydispensers").value;
+//            localStorage.numberofvalves = document.getElementById("myvalves").value;
+//            localStorage.numberofdispensers = document.getElementById("mydispensers").value;
+        // localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
+        // localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
+        for (var i=0; i!= parseFloat(localStorage.numberofdispensers); i++) {
+            console.log("hello table");
+            var row = table.insertRow(i+1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell2.id = i;
+            console.log("My cell id: " + cell2.id);
 
-                // cell1.innerHTML = "<p style='font-size:17px;'>"+ i+1 +"</p>";
-                cell1.innerHTML = i+1;
-                cell2.innerHTML=  "<select> " +
-                        "<option value='a1'>A1</option>    " +
-                        "<option value='a2'>A2</option> " +
-                        "<option value='a3'>A3</option> " +
-                        "<option value='a4'>A4</option>    " +
-                        "<option value='a5'>A5</option> " +
-                        "<option value='a6'>A6</option> " +
-                        "<option value='a1'>B1</option>    " +
-                        "<option value='a2'>B2</option> " +
-                        "<option value='a3'>B3</option> " +
-                        "<option value='a4'>B4</option>    " +
-                        "<option value='a5'>B5</option> " +
-                        "<option value='a6'>B6</option> " +
-                        "<option value='a1'>C1</option>    " +
-                        "<option value='a2'>C2</option> " +
-                        "<option value='a3'>C3</option> " +
-                        "<option value='a4'>C4</option>    " +
-                        "<option value='a5'>C5</option> " +
-                        "<option value='a6'>C6</option> " +
-                        "<option value='a1'>D1</option>    " +
-                        "<option value='a2'>D2</option> " +
-                        "<option value='a3'>D3</option> " +
-                        "<option value='a4'>D4</option>    " +
-                        "<option value='a5'>D5</option> " +
-                        "<option value='a6'>D6</option> " +
-                        "<option value='a1'>E1</option>    " +
-                        "<option value='a2'>E2</option> " +
-                        "<option value='a3'>E3</option> " +
-                        "<option value='a4'>E4</option>    " +
-                        "<option value='a5'>E5</option> " +
-                        "<option value='a6'>E6</option> " +
-                        "<option value='a1'>F1</option>    " +
-                        "<option value='a2'>F2</option> " +
-                        "<option value='a3'>F3</option> " +
-                        "<option value='a4'>F4</option>    " +
-                        "<option value='a5'>F5</option> " +
-                        "<option value='a6'>F6</option> " +
-                        "<option value='a1'>G1</option>    " +
-                        "<option value='a2'>G2</option> " +
-                        "<option value='a3'>G3</option> " +
-                        "<option value='a4'>G4</option>    " +
-                        "<option value='a5'>G5</option> " +
-                        "<option value='a6'>G6</option> " +
-                        "<option value='a1'>H1</option>    " +
-                        "<option value='a2'>H2</option> " +
-                        "<option value='a3'>H3</option> " +
-                        "<option value='a4'>H4</option>    " +
-                        "<option value='a5'>H5</option> " +
-                        "<option value='a6'>H6</option> " +
-                        "<option value='a1'>I1</option>    " +
-                        "<option value='a2'>I2</option> " +
-                        "<option value='a3'>I3</option> " +
-                        "<option value='a4'>I4</option>    " +
-                        "<option value='a5'>I5</option> " +
-                        "<option value='a6'>I6</option> " +
-                        "<option value='a1'>J1</option>    " +
-                        "<option value='a2'>J2</option> " +
-                        "<option value='a3'>J3</option> " +
-                        "<option value='a4'>J4</option>    " +
-                        "<option value='a5'>J5</option> " +
-                        "<option value='a6'>J6</option> " +
-                        "<option value='a1'>K1</option>    " +
-                        "<option value='a2'>K2</option> " +
-                        "<option value='a3'>K3</option> " +
-                        "<option value='a4'>K4</option>    " +
-                        "<option value='a5'>K5</option> " +
-                        "<option value='a6'>K6</option> " +
-                        "<option value='a1'>L1</option>    " +
-                        "<option value='a2'>L2</option> " +
-                        "<option value='a3'>L3</option> " +
-                        "<option value='a4'>L4</option>    " +
-                        "<option value='a5'>L5</option> " +
-                        "<option value='a6'>L6</option> " +
-                        "<option value='a1'>M1</option>    " +
-                        "<option value='a2'>M2</option> " +
-                        "<option value='a3'>M3</option> " +
-                        "<option value='a4'>M4</option>    " +
-                        "<option value='a5'>M5</option> " +
-                        "<option value='a6'>M6</option> " +
-                        "<option value='a1'>N1</option>    " +
-                        "<option value='a2'>N2</option> " +
-                        "<option value='a3'>N3</option> " +
-                        "<option value='a4'>N4</option>    " +
-                        "<option value='a5'>N5</option> " +
-                        "<option value='a6'>N6</option> " +
-                        "<option value='a1'>O1</option>    " +
-                        "<option value='a2'>O2</option> " +
-                        "<option value='a3'>O3</option> " +
-                        "<option value='a4'>O4</option>    " +
-                        "<option value='a5'>O5</option> " +
-                        "<option value='a6'>O6</option> " +
-                        "</select>";
+            // cell1.innerHTML = "<p style='font-size:17px;'>"+ i+1 +"</p>";
+            cell1.innerHTML = i+1;
+            cell2.innerHTML=  "<select> " +
+                    "<option value='a1'>A1</option>    " +
+                    "<option value='a2'>A2</option> " +
+                    "<option value='a3'>A3</option> " +
+                    "<option value='a4'>A4</option>    " +
+                    "<option value='a5'>A5</option> " +
+                    "<option value='a6'>A6</option> " +
+                    "<option value='a1'>B1</option>    " +
+                    "<option value='a2'>B2</option> " +
+                    "<option value='a3'>B3</option> " +
+                    "<option value='a4'>B4</option>    " +
+                    "<option value='a5'>B5</option> " +
+                    "<option value='a6'>B6</option> " +
+                    "<option value='a1'>C1</option>    " +
+                    "<option value='a2'>C2</option> " +
+                    "<option value='a3'>C3</option> " +
+                    "<option value='a4'>C4</option>    " +
+                    "<option value='a5'>C5</option> " +
+                    "<option value='a6'>C6</option> " +
+                    "<option value='a1'>D1</option>    " +
+                    "<option value='a2'>D2</option> " +
+                    "<option value='a3'>D3</option> " +
+                    "<option value='a4'>D4</option>    " +
+                    "<option value='a5'>D5</option> " +
+                    "<option value='a6'>D6</option> " +
+                    "<option value='a1'>E1</option>    " +
+                    "<option value='a2'>E2</option> " +
+                    "<option value='a3'>E3</option> " +
+                    "<option value='a4'>E4</option>    " +
+                    "<option value='a5'>E5</option> " +
+                    "<option value='a6'>E6</option> " +
+                    "<option value='a1'>F1</option>    " +
+                    "<option value='a2'>F2</option> " +
+                    "<option value='a3'>F3</option> " +
+                    "<option value='a4'>F4</option>    " +
+                    "<option value='a5'>F5</option> " +
+                    "<option value='a6'>F6</option> " +
+                    "<option value='a1'>G1</option>    " +
+                    "<option value='a2'>G2</option> " +
+                    "<option value='a3'>G3</option> " +
+                    "<option value='a4'>G4</option>    " +
+                    "<option value='a5'>G5</option> " +
+                    "<option value='a6'>G6</option> " +
+                    "<option value='a1'>H1</option>    " +
+                    "<option value='a2'>H2</option> " +
+                    "<option value='a3'>H3</option> " +
+                    "<option value='a4'>H4</option>    " +
+                    "<option value='a5'>H5</option> " +
+                    "<option value='a6'>H6</option> " +
+                    "<option value='a1'>I1</option>    " +
+                    "<option value='a2'>I2</option> " +
+                    "<option value='a3'>I3</option> " +
+                    "<option value='a4'>I4</option>    " +
+                    "<option value='a5'>I5</option> " +
+                    "<option value='a6'>I6</option> " +
+                    "<option value='a1'>J1</option>    " +
+                    "<option value='a2'>J2</option> " +
+                    "<option value='a3'>J3</option> " +
+                    "<option value='a4'>J4</option>    " +
+                    "<option value='a5'>J5</option> " +
+                    "<option value='a6'>J6</option> " +
+                    "<option value='a1'>K1</option>    " +
+                    "<option value='a2'>K2</option> " +
+                    "<option value='a3'>K3</option> " +
+                    "<option value='a4'>K4</option>    " +
+                    "<option value='a5'>K5</option> " +
+                    "<option value='a6'>K6</option> " +
+                    "<option value='a1'>L1</option>    " +
+                    "<option value='a2'>L2</option> " +
+                    "<option value='a3'>L3</option> " +
+                    "<option value='a4'>L4</option>    " +
+                    "<option value='a5'>L5</option> " +
+                    "<option value='a6'>L6</option> " +
+                    "<option value='a1'>M1</option>    " +
+                    "<option value='a2'>M2</option> " +
+                    "<option value='a3'>M3</option> " +
+                    "<option value='a4'>M4</option>    " +
+                    "<option value='a5'>M5</option> " +
+                    "<option value='a6'>M6</option> " +
+                    "<option value='a1'>N1</option>    " +
+                    "<option value='a2'>N2</option> " +
+                    "<option value='a3'>N3</option> " +
+                    "<option value='a4'>N4</option>    " +
+                    "<option value='a5'>N5</option> " +
+                    "<option value='a6'>N6</option> " +
+                    "<option value='a1'>O1</option>    " +
+                    "<option value='a2'>O2</option> " +
+                    "<option value='a3'>O3</option> " +
+                    "<option value='a4'>O4</option>    " +
+                    "<option value='a5'>O5</option> " +
+                    "<option value='a6'>O6</option> " +
+                    "</select>";
 
-            }
+        }
 //        }
 
         //**************************************************************************************************************
@@ -499,7 +528,7 @@
 
 
 // Small syringe
-var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
+//var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
 
 // 3 mL syringe
 //var initializeSetup_outputs = initializeSetup(180,500,0.75,3,0.9,0.5);

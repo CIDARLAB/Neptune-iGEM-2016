@@ -6,7 +6,7 @@ var path = require('path');
 var multer = require("multer");
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 var fs = require('fs');
 
 var bodyParser = require('body-parser');
@@ -86,6 +86,8 @@ global.server.timeout = 1000000000;
     var writeController = require('./controllers/filewrite');
     var serialController = require('./controllers/serialcommunication');
     var workspaceController = require('./controllers/workspace');
+    var compileMintController = require('./controllers/compileMint');
+    var translateLFRController = require('./controllers/translateLFR');
 }
 
 /**************** RENDER PAGES ****************/
@@ -122,37 +124,36 @@ global.server.timeout = 1000000000;
     app.post('/api/writeToFile',writeController.writeToFile)
 }
 
-// MINT and LFR compiler
+/**************** USHROOM MAPPER & FLUIGI ****************/
+{
+    app.post('/api/compileMint', compileMintController.compileMint);
+    app.post('/api/translateLFR', translateLFRController.translateLFR);
+}
 
-    var compileMintController = require('./controllers/compileMint');
-    app.post('/api/compileMint',compileMintController.compileMint);
-
-    var translateLFRController = require('./controllers/translateLFR');
-    app.post('/api/translateLFR',translateLFRController.translateLFR);
-
-// download
-
-    var downloadController = require('./controllers/download');
-    app.post('/api/download',downloadController.download);
-
-    var clearFilesController = require('./controllers/clearFiles');
-    app.post('/api/clearFiles',clearFilesController.clearFiles);
-
-    var zipController = require('./controllers/zipFiles');
-    app.post('/api/zipFiles',zipController.zipFiles);
-
-    var ucfMaker = require('./controllers/generateUCF');
-    app.post('/api/generateUCF',ucfMaker.generateUCF);
-
+/**************** WORKSPACE INITIATION AND MAINTAINENCE ****************/
+{
+    app.post('/api/clearFiles', workspaceController.clearFiles);
+    app.post('/api/generateUCF', workspaceController.generateUCF);
+    app.post('/api/getFile', workspaceController.getFile);
+    app.post('/api/download', workspaceController.download);
     app.post('/api/parseDir', workspaceController.parseDir);
-
     app.post('/api/getProjects', workspaceController.getProjects);
-
     app.post('/api/makeProject', workspaceController.makeProject);
-
     app.post('/api/scanFiles', workspaceController.scanFiles);
+    app.post('/api/findHome', workspaceController.findHome);
+}
 
-    var fileGetter = require('./controllers/fileGetter');
-    app.post('/api/getFile',fileGetter.getFile);
 
-    app.post('/api/findHome',workspaceController.findHome);
+
+
+
+
+
+
+/**************** DEPRECATED CONTROLLERS ****************/
+//var downloadController = require('./controllers/download');
+//var zipController = require('./controllers/zipFiles');
+//      app.post('/api/zipFiles',zipController.zipFiles);
+//var fileGetter = require('./controllers/fileGetter');
+//var ucfMaker = require('./controllers/generateUCF');
+//var clearFilesController = require('./controllers/clearFiles');

@@ -1,6 +1,7 @@
 // Workspace Controller
 //      This file houses all functions related to instantiating and maintaining a users workspace in Neptune.
 //
+
 var exports = module.exports;
 var express = require('express');
 var cmd = require('node-cmd');

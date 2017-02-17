@@ -107,9 +107,10 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
     switch(FILE_TYPE)
     {
         case 'specifyLFR':
-            $.post("/api/writeToFile",{fileData: editor_session, fileType: 'specifyLFR', path: localStorage.LFR},function(data){
-                toastr.info(data, "Saved to:")
-            });
+            // $.post("/api/writeToFile",{fileData: editor_session, fileType: 'specifyLFR', path: localStorage.LFR},function(data){
+            //     toastr.info(data, "Saved to:")
+            // });
+            $.post("/api/Create_Bucket_Object",{Target_Bucket_ID:'Neptune_Probe',Target_Bucket_KEY:'specifyLFR',Target_Bucket_BODY:editor_session});
             break;
         case 'specifyUCF':
             $.post("/api/writeToFile",{fileData: editor_session, fileType: 'specifyUCF', path: localStorage.UCF},function(data){

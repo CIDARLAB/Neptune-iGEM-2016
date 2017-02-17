@@ -1,9 +1,10 @@
 {
   "name": "Neptune",
   "version": "0.1.0",
-  "description" : "The Microfluidic Design Automation Tool for Fluigi.",
-  "repository" :  { "type" : "git"
-  , "url" : "https://github.com/CIDARLAB/Neptune.git"
+  "description": "The Microfluidic Design Automation Tool for Fluigi.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CIDARLAB/Neptune.git"
   },
   "main": "app.js",
   "private": true,
@@ -11,8 +12,8 @@
     "start": "node app.js"
   },
   "bin": {
-	"start-neptune": "app.js"
-	},
+    "start-neptune": "app.js"
+  },
   "dependencies": {
     "adm-zip": "^0.4.7",
     "archiver": "^1.0.1",
@@ -23,21 +24,24 @@
     "express": "~4.13.1",
     "handlebars": "^4.0.5",
     "hbs": "~3.1.0",
+    "home-dir": "1.0.0",
     "jquery.terminal": "^0.10.12",
     "jsonfile": "^2.3.1",
     "lineder": "^0.1.1",
+    "mkdirp": "0.5.1",
+    "mongodb": "^2.2.22",
+    "mongoose": "^4.8.1",
     "morgan": "~1.6.1",
     "multer": "1.1.0",
     "node-cmd": "~1.1.1",
     "replace": "^0.3.0",
     "rimraf": "^2.5.4",
+    "s3": "^4.4.0",
     "serialport": "~3.1.2",
     "serve-favicon": "~2.3.0",
     "slash": "^1.0.0",
     "socket.io": "^1.4.8",
     "toastr": "^2.1.2",
-    "webix": "~3.3.2",
-    "home-dir":"1.0.0",
-    "mkdirp":"0.5.1"
+    "webix": "~3.3.2"
   }
 }

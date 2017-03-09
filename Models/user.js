@@ -2,22 +2,16 @@
  * Created by kestas on 2/9/2017.
  */
 
-// grab the things we need
+
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 //mongodb://localhost/myTestDB
 
-var projectSchema = new Schema({
-
-});
-
-// create a schema
 var userSchema = new Schema({
-    name: String,
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    admin: Boolean,
-    location: String,
+    workspaces: { type: [String], required: false },
+    currentWorkspace: { type: String, required: false },
     meta: {
         age: Number,
         website: String
@@ -26,40 +20,25 @@ var userSchema = new Schema({
     updated_at: Date
 });
 
-// on every save, add the date
-userSchema.pre('save', function(next) {
-    // get the current date
-    var currentDate = new Date();
-
-    // change the updated_at field to current date
-    this.updated_at = currentDate;
-
-    // if created_at doesn't exist, add to that field
+// Upon creation of a new user schema, generate and save the following content:
+userSchema.pre('save', function(next)
+{
+    // Save date of creation
+    var currentDate = new Date();       // Get the current date
+    this.updated_at = currentDate;      // Change the updated_at field to current date
     if (!this.created_at)
-        this.created_at = currentDate;
+        this.created_at = currentDate;  // If created_at doesn't exist, add to that field
 
-    next();
+                                        // Unique id is automatically generated
+
+    next();                             // Execute next function.
 });
 
-// the schema is useless so far
-// we need to create a model using it
+// Create model
 var User = mongoose.model('User', userSchema);
 
-// make this available to our users in our Node applications
+// Export model
 module.exports = User;
 
 
 
-
-
-/*
- // custom method to add string to end of name
- // you can create more important methods like name validations or formatting
- // you can also do queries and find similar users
- userSchema.methods.dudify = function() {
- // add some stuff to the users name
- this.name = this.name + '-dude';
-
- return this.name;
- };
- */

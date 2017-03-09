@@ -40,7 +40,6 @@
             "hideMethod": "fadeOut"
         }
     </script>
-
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
     <script type="text/javascript">
 
@@ -57,9 +56,6 @@
         localStorage.WORKSPACE = tempWorkspace;
 
     </script>
-
-
-
     <script type="text/javascript">
 
         var num;
@@ -105,8 +101,6 @@
             }
         }
     </script>
-
-
 
     <style>
         body {
@@ -190,9 +184,11 @@
     <div class="row" id="neptuneTitle">
         <img src="../images/NEPTUNEtitle.png" width="700px">
         <br><br><br>
-        <p id="instructions">To create a new design or open a previous one, start by selecting a project. Then get started working on your microfluidic system. </p>
+        <p id="instructions">Welcome to Fluigi Cloud. Please login or create a new account.</p>
         <br>
-        <button class="selectProject" data-toggle="modal" data-target="#setWorkspace">Get Started</button>
+        <button class="selectProject" data-toggle="modal" data-target="#login">Login</button>
+        <br><br>
+        <a href="../Specify"><button class="getStarted" > Proceed To Specify </button></a>
         <br><br>
         <a href="../dashboard"><button class="getStarted" >Documentation</button></a>
     </div>
@@ -201,133 +197,209 @@
 
 <!-- MODALS -->
 
-<!-- Select Workspace Modal Javascript -->
-
-<div id="setWorkspace" class="modal fade" role="dialog">
+<!-- BEGIN: SESSION AUTHENTICATION          -->
+<!-- STEP 1: client login, fetch workspaces -->
+<!--                                        -->
+<!-- INPUT : USERNAME                       -->
+<!--       : PASSWORD                       -->
+<!-- QUERY : USER_WORKSPACES                -->
+<div id="login" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header modal-header-primary"">
-                <h4 class="modal-title">Confirm Workspace</h4>
-            </div>
+            <div class="modal-header modal-header-primary">
+            <h4 class="modal-title">Enter Username and Password</h4>
+        </div>
             <div class="modal-body">
-                    <div class="form-group">
-                        <label for="setWorkspace_in">Your current workspace is located at:</label>
-                        <input type="text" class="form-control" id="setWorkspace_in">
-                    </div>
-
-                    Please confirm that this is your workspace folder.
-                    If this is not your workspace folder, please change the directory now.
-
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">Enter your profile name.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<label for="setWorkspace_in">Username: </label>-->
+                    <!--<input type="text" class="form-control" id="setWorkspace_in">-->
+                <!--</div>-->
             </div>
             <div class="modal-footer">
-                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>-->
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="workspace_set()"> Confirm Workspace </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" data-toggle="modal" data-target="#new_user"> New User </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="get_forum_contents_and_login()"> Login </button>
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    function workspace_set()
+    function get_forum_contents_and_login()
     {
-        localStorage.WORKSPACE = (document.getElementById('setWorkspace_in').value);//.replace(/\\/g,'\\\\');
-
-        $.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)
-        {
-            var json_dir = [];
-            var length = data.projects.length;
-            for(var i = 0; i < length; i++)
-            {
-                var single_stage = {directory:data.projects[i]};
-                json_dir.push(single_stage);
-            }
-            render_projects(json_dir);
-        });
-
-        $('#setProject').modal('show');
+        localStorage.USERNAME = (document.getElementById('exampleInputEmail1').value);
+        localStorage.PASS     = (document.getElementById('exampleInputPassword1').value);
+        // Add post request logic below, and nest login call within requst; send req for user query, match username+pass, get id.
+        login();
     }
 </script>
 <script type="text/javascript">
-    function render_projects(json)
+    function create_user()
     {
-        $.get('../javascripts/project_select_template.hbs', function (data)
+        localStorage.USERNAME = (document.getElementById('exampleInputEmail2').value);
+        localStorage.PASS     = (document.getElementById('exampleInputPassword2').value);
+        $.post('/api/Create_User',{username:localStorage.USERNAME,password:localStorage.PASS},function(id,error)
+        {
+            localStorage.ID = id;
+            login(id);
+        });
+    }
+</script>
+<script type="text/javascript">
+    function login(id)
+    {
+        $.post('/api/Query_User',{id:id,lookupType:'Id',inquery:'workspace'},function(data,error)
+        {
+            console.log('Recieving at Client: ', data.length);
+            var workspace_template = [];
+            var number_of_workspaces = data.length;
+            for(var i = 0; i < number_of_workspaces; i++)
+            {
+                var single_stage = {directory:data[i]};
+                console.log(single_stage);
+                workspace_template.push(single_stage);
+            }
+            render_workspaces(workspace_template);
+            $('#selectWorkspace').modal('show');
+        });
+
+    }
+</script>
+<script type="text/javascript">
+    function render_workspaces(json)
+    {
+        $.get('../Templates/workspace_select_template.hbs', function (data)
         {
             var template = Handlebars.compile(data);
             var myhtml = template(json);
-            $("#project_select").html(myhtml);
+            $("#workspace_select").html(myhtml);
 
         },'html');
     }
 </script>
-<script type="text/javascript">
-    //
-    $(document).ready(function()
-    {
-        document.getElementById("setWorkspace_in").value = localStorage.WORKSPACE;
-    });
-</script>
-
-<!-- Select Project Modal -->
-<div id="setProject" class="modal fade" role="dialog">
-    <div class="modal-dialog prj_select_dialog">
+<div id="new_user" class="modal fade" role="dialog">
+    <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header modal-header-primary">
-                <h4 class="modal-title">Choose your project, or start a new project.</h4>
+                <h4 class="modal-title">Enter Username and Password</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="exampleInputEmail2">Username</label>
+                    <input type="text" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">Enter your profile name.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword2">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-default" data-dismiss="modal" onclick="create_user()"> Create! </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- STEP 2: client select workspace, fetch project -->
+<!--                                                -->
+<!-- INPUT : WORKSPACE                              -->
+<!-- QUERY : USER_PROJECTS                          -->
+<div id="selectWorkspace" class="modal fade" role="dialog">
+    <div class="modal-dialog Workspace_select_dialog">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h4 class="modal-title"> Select a workspace: </h4>
             </div>
 
-            <div class="modal-body" id="project_select"> </div>
+            <div class="modal-body" id="workspace_select"> </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="nameProject();" data-target=".bd-example-modal-sm"> New Project </button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="nameProject();" data-target=".bd-example-modal-sm"> New Project </button>-->
                 <!--<button type="button" class="btn btn-default" data-dismiss="modal" "> Load Project</button>-->
             </div>
         </div>
     </div>
 </div>
-<style type="text/css">
-    #project_select
+<script type="text/javascript">
+    function render_workspaces(json)
     {
-        height: 400px;
-        overflow-y: auto;
+        $.get('../Templates/workspace_select_template.hbs', function (data)
+        {
+            var template = Handlebars.compile(data);
+            var myhtml = template(json);
+            $("#workspace_select").html(myhtml);
+        },'html');
     }
-    #setProject
+</script>
+<script type="text/javascript">
+    function loadWorkspaceProjects(workspace)
     {
-        position: absolute !important;
+        localStorage.WORKSPACE = workspace;
+        $.post('/api/redirectToSpecify');
     }
-    .prj_select_dialog
-    {
+</script>
 
-    }
-</style>
 
+
+<!-- Select Project Modal -->
+<div id="setProject" class="modal fade" role="dialog">
+    <!--<div class="modal-dialog prj_select_dialog">-->
+        <!--&lt;!&ndash; Modal content&ndash;&gt;-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-header modal-header-primary">-->
+                <!--<h4 class="modal-title">Choose your project, or start a new project.</h4>-->
+            <!--</div>-->
+
+            <!--<div class="modal-body" id="project_select"> </div>-->
+
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="nameProject();" data-target=".bd-example-modal-sm"> New Project </button>-->
+                <!--&lt;!&ndash;<button type="button" class="btn btn-default" data-dismiss="modal" "> Load Project</button>&ndash;&gt;-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
 
 <div id='name_project' class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <!--<div class="modal-dialog modal-lg">-->
 
-        <div class="modal-content">
+        <!--<div class="modal-content">-->
 
-            <div class="modal-header modal-header-primary">
-                <h4 class="modal-title">Name your project: </h4>
-            </div>
+            <!--<div class="modal-header modal-header-primary">-->
+                <!--<h4 class="modal-title">Name your project: </h4>-->
+            <!--</div>-->
 
-            <div class="modal-body" id="project_select">
-                <div class="input-group">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" onclick="generateNewProject()">Create Project</button>
-                    </span>
-                        <input id='projectNameInput' type="text" class="form-control" placeholder="Enter Project Name">
-                </div>
-            </div>
+            <!--<div class="modal-body" id="project_select">-->
+                <!--<div class="input-group">-->
+                    <!--<span class="input-group-btn">-->
+                        <!--<button class="btn btn-primary" type="button" onclick="generateNewProject()">Create Project</button>-->
+                    <!--</span>-->
+                        <!--<input id='projectNameInput' type="text" class="form-control" placeholder="Enter Project Name">-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <div class="modal-footer">
-                <p>Select a project name. Neptune will generate a project folder in your workspace directory.</p>
-                <p>This project folder will be pre-configured with the files necessary for you to get started with your microfluidic chip design.</p>
-            </div>
+            <!--<div class="modal-footer">-->
+                <!--<p>Select a project name. Neptune will generate a project folder in your workspace directory.</p>-->
+                <!--<p>This project folder will be pre-configured with the files necessary for you to get started with your microfluidic chip design.</p>-->
+            <!--</div>-->
 
-        </div>
-    </div>
+        <!--</div>-->
+    <!--</div>-->
 </div>
+
+
 
 <style type="text/css">
     .modal-header-success {
@@ -465,6 +537,20 @@
         border-top-right-radius: 5px;
     }
 
+    #workspace_select
+    {
+        height: 400px;
+        overflow-y: auto;
+    }
+    #setWorkspace
+    {
+        position: absolute !important;
+    }
+    .workspace_select_dialog
+    {
+
+    }
+
 </style>
 
 <!-- LEAVE JS FOR LAST - faster loading time -->
@@ -484,3 +570,77 @@
 <!-- *** END: DEPENDENCIES *** -->
 
 </html>
+
+
+
+
+
+
+
+
+
+
+
+<!--<div id="setWorkspace" class="modal fade" role="dialog">-->
+<!--<div class="modal-dialog">-->
+<!--&lt;!&ndash; Modal content&ndash;&gt;-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header modal-header-primary"">-->
+<!--<h4 class="modal-title">Confirm Workspace</h4>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<div class="form-group">-->
+<!--<label for="setWorkspace_in">Your current workspace is located at:</label>-->
+<!--<input type="text" class="form-control" id="setWorkspace_in">-->
+<!--</div>-->
+
+<!--Please confirm that this is your workspace folder.-->
+<!--If this is not your workspace folder, please change the directory now.-->
+
+<!--</div>-->
+<!--<div class="modal-footer">-->
+<!--&lt;!&ndash;<button type="button" class="btn btn-default" data-dismiss="modal" onclick="setNewSession();" > Start New Session </button>&ndash;&gt;-->
+<!--<button type="button" class="btn btn-default" data-dismiss="modal" onclick="workspace_set()"> Confirm Workspace </button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<script type="text/javascript">-->
+<!--function workspace_set()-->
+<!--{-->
+<!--localStorage.WORKSPACE = (document.getElementById('setWorkspace_in').value);//.replace(/\\/g,'\\\\');-->
+
+<!--$.post('/api/getProjects',{workspace:localStorage.WORKSPACE},function(data,error)-->
+<!--{-->
+<!--var json_dir = [];-->
+<!--var length = data.projects.length;-->
+<!--for(var i = 0; i < length; i++)-->
+<!--{-->
+<!--var single_stage = {directory:data.projects[i]};-->
+<!--json_dir.push(single_stage);-->
+<!--}-->
+<!--render_projects(json_dir);-->
+<!--});-->
+
+<!--$('#setProject').modal('show');-->
+<!--}-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--function render_projects(json)-->
+<!--{-->
+<!--$.get('../javascripts/project_select_template.hbs', function (data)-->
+<!--{-->
+<!--var template = Handlebars.compile(data);-->
+<!--var myhtml = template(json);-->
+<!--$("#project_select").html(myhtml);-->
+
+<!--},'html');-->
+<!--}-->
+<!--</script>-->
+<!--<script type="text/javascript">-->
+<!--//-->
+<!--$(document).ready(function()-->
+<!--{-->
+<!--document.getElementById("setWorkspace_in").value = localStorage.WORKSPACE;-->
+<!--});-->
+<!--</script>-->

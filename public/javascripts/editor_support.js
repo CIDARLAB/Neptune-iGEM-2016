@@ -106,6 +106,7 @@ function saveEditorContent(Editor_To_Save_Content,FILE_TYPE)
     }
     switch(FILE_TYPE)
     {
+        // Add starter files to workspace, and then make in S3. populate with hello world lfr and ucf. Then template a UI. then good.
         case 'specifyLFR':
             // $.post("/api/writeToFile",{fileData: editor_session, fileType: 'specifyLFR', path: localStorage.LFR},function(data){
             //     toastr.info(data, "Saved to:")

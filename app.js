@@ -33,37 +33,22 @@ var app = express();
 /*
     Initiate connection to mongoDB.
  */
-// var db = mongoose.connection;
-// var mongoDB = 'mongodb://localhost/myTestDB';
-// mongoose.connect(mongoDB);
-// db.on('error', function (err)
-// {
-//     console.log('connection error', err);
-// });
-// db.once('open', function ()
-// {
-//     console.log('connected.');
-// });
+ var db = mongoose.connection;
+ var mongoDB = 'mongodb://localhost:27017/Neptune';
+ mongoose.connect(mongoDB);
+ db.on('error', function (err)
+ {
+     console.log('Connection Failed:', err);
+ });
+ db.once('open', function ()
+ {
+     console.log('Connection Established');
+ });
 
 
 /*
      Initiate connection to S3.
  */
-// var client = s3.createClient({
-//     maxAsyncS3: 20,     // this is the default
-//     s3RetryCount: 3,    // this is the default
-//     s3RetryDelay: 1000, // this is the default
-//     multipartUploadThreshold: 20971520, // this is the default (20 MB)
-//     multipartUploadSize: 15728640, // this is the default (15 MB)
-//     s3Options:
-//     {
-//         accessKeyId: "AKIAILNCWP4S2WM4VLPA",
-//         secretAccessKey: "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"
-//         // any other options are passed to new AWS.S3()
-//         // See: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/Config.html#constructor-property
-//     }
-// });
-
 
 
 /*
@@ -211,6 +196,36 @@ global.server.timeout = 1000000000;                                 // Set timeo
     app.post('/api/Delete_Unique_Bucket', AWS_S3_Controller.Delete_Unique_Bucket);
     app.post('/api/Delete_Bucket_Object', AWS_S3_Controller.Delete_Bucket_Object);
     app.post('/api/Create_Bucket_Object', AWS_S3_Controller.Create_Bucket_Object);
+    app.post('/api/Get_Bucket_Object'   , AWS_S3_Controller.Get_Bucket_Object);
+    app.post('/api/Read_S3_Link'        , AWS_S3_Controller.Read_S3_Link);
+}
+
+/************** Mongoose DataBase Calls **************/
+{
+    /************** CRUD ***************/
+
+    /************** C - Create ***************/
+    app.post('/api/Create_User', AWS_S3_Controller.Create_User);
+    //app.post('/api/Create_Workspace', AWS_S3_Controller.Create_Unique_Bucket);
+    //app.post('/api/Create_File', AWS_S3_Controller.Create_Unique_Bucket);
+
+    /************** R - Read ***************/
+    app.post('/api/Query_User', AWS_S3_Controller.queryUser);
+    app.post('/api/Query_Workspace', AWS_S3_Controller.queryWorkspace);
+    //app.post('/api/Read_File', AWS_S3_Controller.Create_Unique_Bucket);
+
+    // BAD PRACTICE -- MOVE LATER
+    app.post('/api/redirectToSpecify',AWS_S3_Controller.redirectToSpecify);
+
+    /************** U - Update ***************/
+    //app.post('/api/Update_User', AWS_S3_Controller.Create_Unique_Bucket);
+    //app.post('/api/Update_Workspace', AWS_S3_Controller.Create_Unique_Bucket);
+    //app.post('/api/Update_File', AWS_S3_Controller.Create_Unique_Bucket);
+
+    /************** D - Delete ***************/
+    //app.post('/api/Delete_User', AWS_S3_Controller.Create_Unique_Bucket);
+    //app.post('/api/Delete_Workspace', AWS_S3_Controller.Create_Unique_Bucket);
+    //app.post('/api/Delete_File', AWS_S3_Controller.Create_Unique_Bucket);
 }
 
 /**************** USHROOM MAPPER & FLUIGI ****************/
@@ -234,11 +249,8 @@ global.server.timeout = 1000000000;                                 // Set timeo
 
 /**************** AWS - MONGOOSE - MONGODB - FILE SYSTEM  ****************/
 {
-    app.post('/api/AWS_FS', filesystemController.AWS_FS);
+    //app.post('/api/AWS_FS', filesystemController.AWS_FS);
 }
-
-
-
 
 /**************** DEPRECATED CONTROLLERS ****************/
 //var downloadController = require('./controllers/download');

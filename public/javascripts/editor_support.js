@@ -869,4 +869,34 @@ function color_ui()
     document.getElementById(ini_id).style.color = 'green';
 }
 
+// ALL NEW FLUIGI CLOUD FUNCTIONS SHOULD GO DOWN HERE
 
+function newFile(filetype)
+{
+    var filename = (document.getElementById('new_file_name').value);
+    console.log(filename);
+    switch (filetype)
+    {
+        case 'LFR':
+            $.post("/api/Create_Bucket_Object",{Target_Bucket_ID:'neptune.primary.fs',Target_Bucket_KEY:filename,Target_Bucket_BODY:'New LFR'});
+            break;
+        case 'UCF':
+            $.post("/api/Create_Bucket_Object",{Target_Bucket_ID:'neptune.primary.fs',Target_Bucket_KEY:filename,Target_Bucket_BODY:'New UCF'});
+            break;
+        case 'MINT':
+            $.post("/api/Create_Bucket_Object",{Target_Bucket_ID:'neptune.primary.fs',Target_Bucket_KEY:filename,Target_Bucket_BODY:'New MINT'});
+            break;
+        case 'INI':
+            $.post("/api/Create_Bucket_Object",{Target_Bucket_ID:'neptune.primary.fs',Target_Bucket_KEY:filename,Target_Bucket_BODY:'New INI'});
+            break;
+    }
+}
+
+function queryWorkspace(workspace_id)
+{
+    $.post('/api/queryWorkspace',{workspace_id:workspace_id},function(workspace){
+        var workspace_json = workspace.design_files;
+        console.log(workspace_json);
+    });
+
+}

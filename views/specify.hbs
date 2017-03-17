@@ -158,22 +158,6 @@
         <!-- START: TOP RIGHT HALF OF NAVIGATION BAR; WE CAN PUT OUR LOGOUT, SETTINGS, ECT HERE -->
         <ul class="nav navbar-top-links navbar-right">
 
-            <!-- START: SETTINGS DROP DOWN MENU -->
-            <!--<li class="dropdown">-->
-                <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#">-->
-                    <!--<i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>-->
-                <!--</a>-->
-                <!--<ul class="dropdown-menu dropdown-user">-->
-                    <!--<li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>-->
-                    <!--</li>-->
-                    <!--<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>-->
-                    <!--</li>-->
-                    <!--<li class="divider"></li>-->
-                    <!--<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</li>-->
-            <!-- END: SETTINGS DROP DOWN MENU -->
 
         </ul>
         <!-- END: TOP RIGHT HALF OF NAVIGATION BAR; WE CAN PUT OUR LOGOUT, SETTINGS, ECT HERE -->
@@ -333,33 +317,70 @@
                 </div>
                 <!-- END: TERMINAL -->
 
-                <!-- START: UCF Summary -->
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        <i class="fa fa-play fa-fw"></i> My Operators
-                        <!--&nbsp &nbsp <button onclick="generateUCF()"> Generate New UCF </button>-->
+                        Actions
                     </div>
 
-                    <div class="panel-body" id="ucf_maker" ></div>
+                    <div class="panel-body" id="ucf_maker" >
+                        <div class="col-sm-6">
+                            <button class="btn btn-primary" onclick="newFile('LFR')" >New LFR</button>
 
-                    <div class="panel-footer" id="add_del_operator">
-                        <button type="newOperator" class="btn btn-success"  data-toggle="modal" data-target="#name_operator"> + </button>
-                        <span class="pull-right">
-                        <form class="form-inline" id="ucf_form">
-                            <div class="form-group">
-                                <!--<label for="exampleInputName2">Name</label>-->
-                                <input type="text" class="form-control" id="ucf_name_in" placeholder="ucf_file">
+                            <div class="col-sm-12">
+
                             </div>
-                            <button class="btn btn-primary" onclick="generateUCF()" >Create UCF</button>
-                        </form>
-                        </span>
-                        <!--<span class="pull-right">-->
-                        <!--<button type="generateUCF" class="btn btn-link" onclick="generateUCF()"> Generate UCF </button>-->
-                        <!--</span>-->
+
+                            <span class="pull-left top-buffer">
+                                <form class="form-inline" id="ucf_form">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" id="new_file_name" placeholder="file name">
+                                    </div>
+                                </form>
+                            </span>
+
+                        </div>
+
+                        <div class="col-sm-6">
+                            <button class="btn btn-primary" onclick="newFile('UCF')" >New UCF</button>
+                        </div>
+
+
+                    </div>
+
+                    <div class="panel-footer" id="footer">
+
                     </div>
 
                 </div>
+
+                <!-- START: UCF Summary -->
+                <!--<div class="panel panel-default">-->
+
+                    <!--<div class="panel-heading">-->
+                        <!--<i class="fa fa-play fa-fw"></i> My Operators-->
+                        <!--&lt;!&ndash;&nbsp &nbsp <button onclick="generateUCF()"> Generate New UCF </button>&ndash;&gt;-->
+                    <!--</div>-->
+
+                    <!--<div class="panel-body" id="ucf_maker" ></div>-->
+
+                    <!--<div class="panel-footer" id="add_del_operator">-->
+                        <!--<button type="newOperator" class="btn btn-success"  data-toggle="modal" data-target="#name_operator"> + </button>-->
+                        <!--<span class="pull-right">-->
+                        <!--<form class="form-inline" id="ucf_form">-->
+                            <!--<div class="form-group">-->
+                                <!--&lt;!&ndash;<label for="exampleInputName2">Name</label>&ndash;&gt;-->
+                                <!--<input type="text" class="form-control" id="ucf_name_in" placeholder="ucf_file">-->
+                            <!--</div>-->
+                            <!--<button class="btn btn-primary" onclick="generateUCF()" >Create UCF</button>-->
+                        <!--</form>-->
+                        <!--</span>-->
+                        <!--&lt;!&ndash;<span class="pull-right">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<button type="generateUCF" class="btn btn-link" onclick="generateUCF()"> Generate UCF </button>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                    <!--</div>-->
+
+                <!--</div>-->
                 <script type="text/javascript">
                     $("#ucf_form").submit(function(e){
                         e.preventDefault();
@@ -598,28 +619,16 @@
 
 <script type="text/javascript">
 
-//    $.when($.ajax(scanFiles())).then(function () {
-//        templateTree();
-//    });
-//    $.when($.ajax(generateUCF())).then(function () {
-//        file_sync();
-//    });
-    //$.when(generateUCF()).then(file_sync);​
+    $.post('/api/Query_Workspace',{workspace_id: localStorage.workspace},function(workspace){
+        console.log(workspace);
+    });
 
-    //$.when(scanFiles()).then(templateTree);
-
-
-    function file_sync()
+    $.get('../Templates/workspace_files.hbs', function (data)
     {
-        var prj = localStorage.PROJECT;
-        var projectName = prj.replace(/^.*[\\\/]/, '');
-        projectName = 'Project: ' + projectName;
-        document.getElementById('pj_t').innerText = projectName;
-
-        var file_tree_raw = scanFiles();
-    }
-
-    $( document ).ready( file_sync );
+        var template = Handlebars.compile(data);
+        var myhtml = template(file_tree);
+        $("#file_tree").html(myhtml);
+    },'html');
 
 </script>
 
@@ -710,6 +719,9 @@
 </html>
 
 <style type="text/css">
+
+    .top-buffer { margin-top:20px; }
+
     .modal-header-success {
         color:#fff;
         padding:9px 15px;
@@ -785,80 +797,105 @@
 </style>
 
 
-
-<!--//    function templateTree()-->
-<!--//    {-->
-<!--//        var file_tree = JSON.parse(localStorage.FILE_TREE);-->
-<!--//        $.get('../javascripts/file_tree_template.hbs', function (data)-->
-<!--//        {-->
-<!--//            var template = Handlebars.compile(data);-->
-<!--//            var myhtml = template(file_tree);-->
-<!--//            $("#file_tree").html(myhtml);-->
-<!--//            color_ui();-->
-<!--//        },'html');-->
+<!--//    $.when($.ajax(scanFiles())).then(function () {-->
+<!--//        templateTree();-->
+<!--//    });-->
+<!--//    $.when($.ajax(generateUCF())).then(function () {-->
+<!--//        file_sync();-->
+<!--//    });-->
+<!--//    $.when(generateUCF()).then(file_sync);​-->
+<!--//    $.when(scanFiles()).then(templateTree);-->
 <!--//-->
-<!--//        var project = baseName(localStorage.PROJECT);-->
-<!--//        for (var i = 0; i < file_tree.children.length; i++)-->
+<!--//-->
+<!--//        function templateTree()-->
 <!--//        {-->
-<!--//            if (file_tree.children[i].name == project)-->
+<!--//            //var file_tree = JSON.parse(localStorage.FILE_TREE);-->
+<!--//-->
+<!--//-->
+<!--//            $.get('../javascripts/file_tree_template.hbs', function (data)-->
 <!--//            {-->
-<!--//                var lfr_count = 0;-->
-<!--//                var ucf_count = 0;-->
-<!--//                var mint_count = 0;-->
-<!--//                var ini_count = 0;-->
-<!--//                for(var j = 0; j < file_tree.children[i].children.length; j++)-->
+<!--//                var template = Handlebars.compile(data);-->
+<!--//                var myhtml = template(file_tree);-->
+<!--//                $("#file_tree").html(myhtml);-->
+<!--//                color_ui();-->
+<!--//            },'html');-->
+<!--//-->
+<!--//            var project = baseName(localStorage.PROJECT);-->
+<!--//            for (var i = 0; i < file_tree.children.length; i++)-->
+<!--//            {-->
+<!--//                if (file_tree.children[i].name == project)-->
 <!--//                {-->
-<!--//                    if (file_tree.children[i].children[j].type == '.v')-->
+<!--//                    var lfr_count = 0;-->
+<!--//                    var ucf_count = 0;-->
+<!--//                    var mint_count = 0;-->
+<!--//                    var ini_count = 0;-->
+<!--//                    for(var j = 0; j < file_tree.children[i].children.length; j++)-->
 <!--//                    {-->
-<!--//                        lfr_count++;-->
-<!--//                        localStorage.LFR = file_tree.children[i].children[j].path;-->
-<!--//                        localStorage.LFR_name = file_tree.children[i].children[j].name;-->
-<!--//                    }-->
-<!--//                    if (file_tree.children[i].children[j].type == '.json')-->
-<!--//                    {-->
-<!--//                        ucf_count++;-->
-<!--//                        localStorage.UCF = file_tree.children[i].children[j].path;-->
-<!--//                        localStorage.UCF_name = file_tree.children[i].children[j].name;-->
-<!--//                    }-->
-<!--//                    if (file_tree.children[i].children[j].type == '.uf')-->
-<!--//                    {-->
-<!--//                        mint_count++;-->
-<!--//                        localStorage.MINT = file_tree.children[i].children[j].path;-->
-<!--//                        localStorage.MINT_name = file_tree.children[i].children[j].name;-->
-<!--//                    }-->
-<!--//                    if (file_tree.children[i].children[j].type == '.ini')-->
-<!--//                    {-->
-<!--//                        ini_count++;-->
-<!--//                        localStorage.INI = file_tree.children[i].children[j].path;-->
-<!--//                        localStorage.INI_name = file_tree.children[i].children[j].name;-->
+<!--//                        if (file_tree.children[i].children[j].type == '.v')-->
+<!--//                        {-->
+<!--//                            lfr_count++;-->
+<!--//                            localStorage.LFR = file_tree.children[i].children[j].path;-->
+<!--//                            localStorage.LFR_name = file_tree.children[i].children[j].name;-->
+<!--//                        }-->
+<!--//                        if (file_tree.children[i].children[j].type == '.json')-->
+<!--//                        {-->
+<!--//                            ucf_count++;-->
+<!--//                            localStorage.UCF = file_tree.children[i].children[j].path;-->
+<!--//                            localStorage.UCF_name = file_tree.children[i].children[j].name;-->
+<!--//                        }-->
+<!--//                        if (file_tree.children[i].children[j].type == '.uf')-->
+<!--//                        {-->
+<!--//                            mint_count++;-->
+<!--//                            localStorage.MINT = file_tree.children[i].children[j].path;-->
+<!--//                            localStorage.MINT_name = file_tree.children[i].children[j].name;-->
+<!--//                        }-->
+<!--//                        if (file_tree.children[i].children[j].type == '.ini')-->
+<!--//                        {-->
+<!--//                            ini_count++;-->
+<!--//                            localStorage.INI = file_tree.children[i].children[j].path;-->
+<!--//                            localStorage.INI_name = file_tree.children[i].children[j].name;-->
+<!--//                        }-->
 <!--//                    }-->
 <!--//                }-->
 <!--//            }-->
+<!--//            document.getElementById('LFRtab_t').innerText = localStorage.LFR_name;-->
+<!--//            document.getElementById('UCFtab_t').innerText = localStorage.UCF_name;-->
+<!--//            pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);-->
+<!--//            pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);-->
 <!--//        }-->
-<!--//        document.getElementById('LFRtab_t').innerText = localStorage.LFR_name;-->
-<!--//        document.getElementById('UCFtab_t').innerText = localStorage.UCF_name;-->
-<!--//        pushFileToEditor(editor_specify,'specifyUCF',UCF_tab);-->
-<!--//        pushFileToEditor(editor_specify,'specifyLFR',LFR_tab);-->
+<!--//-->
+<!--//        function baseName(path)-->
+<!--//        {-->
+<!--//            return path.split(/[\\/]/).pop();-->
+<!--//        }-->
+<!--//-->
+<!--//        function color_ui()-->
+<!--//        {-->
+<!--//            var proj_id = localStorage.PROJECT + '_pid';-->
+<!--//            var lfr_id = localStorage.LFR + '_fid';-->
+<!--//            var ucf_id = localStorage.UCF + '_fid';-->
+<!--//            var mint_id = localStorage.MINT + '_fid';-->
+<!--//            var ini_id = localStorage.INI + '_fid';-->
+<!--//            document.getElementById(proj_id).style.color = 'purple';-->
+<!--//            document.getElementById(lfr_id).style.color = 'green';-->
+<!--//            document.getElementById(ucf_id).style.color = 'green';-->
+<!--//            document.getElementById(mint_id).style.color = 'green';-->
+<!--//            document.getElementById(ini_id).style.color = 'green';-->
+<!--//        }-->
+<!--//-->
+<!--//-->
+<!--//    function file_sync()-->
+<!--//    {-->
+<!--//        var prj = localStorage.PROJECT;-->
+<!--//        var projectName = prj.replace(/^.*[\\\/]/, '');-->
+<!--//        projectName = 'Project: ' + projectName;-->
+<!--//        document.getElementById('pj_t').innerText = projectName;-->
+<!--//-->
+<!--//        var file_tree_raw = scanFiles();-->
 <!--//    }-->
 <!--//-->
-<!--//    function baseName(path)-->
-<!--//    {-->
-<!--//        return path.split(/[\\/]/).pop();-->
-<!--//    }-->
-<!--//-->
-<!--//    function color_ui()-->
-<!--//    {-->
-<!--//        var proj_id = localStorage.PROJECT + '_pid';-->
-<!--//        var lfr_id = localStorage.LFR + '_fid';-->
-<!--//        var ucf_id = localStorage.UCF + '_fid';-->
-<!--//        var mint_id = localStorage.MINT + '_fid';-->
-<!--//        var ini_id = localStorage.INI + '_fid';-->
-<!--//        document.getElementById(proj_id).style.color = 'purple';-->
-<!--//        document.getElementById(lfr_id).style.color = 'green';-->
-<!--//        document.getElementById(ucf_id).style.color = 'green';-->
-<!--//        document.getElementById(mint_id).style.color = 'green';-->
-<!--//        document.getElementById(ini_id).style.color = 'green';-->
-<!--//    }-->
+<!--//    $( document ).ready( file_sync );-->
+
 
 <!--&lt;!&ndash; UCF CREATOR &ndash;&gt;-->
 <!--<div class="modal fade" id="myModal_ucf">-->

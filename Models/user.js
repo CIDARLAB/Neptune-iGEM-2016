@@ -11,14 +11,31 @@ var userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     workspaces: { type: [String], required: false },
-    currentWorkspace: { type: String, required: false },
-    meta: {
-        age: Number,
-        website: String
-    },
     created_at: Date,
     updated_at: Date
 });
+
+userSchema.methods.generateWorkspaces_and_updateSchema = function generateWorkspaces_and_updateSchema()
+{
+    var AWS_S3 = require('../controllers/AWS_S3');
+
+    var body ={body:{name:'Playground'}};
+    AWS_S3.Create_Workspace(body,function(workspace_id){
+        this.workspaces.push(workspace_id);
+    });
+    var body ={body:{name:'Microfluidic Examples'}};
+    AWS_S3.Create_Workspace(body,function(workspace_id){
+        this.workspaces.push(workspace_id);
+    })
+
+    // $.post('/api/Create_Workspace',{name:'Playground'},function(workspace_id){
+    //     this.workspaces.push(workspace_id);
+    // });
+    // $.post('/api/Create_Workspace',{name:'Microfluidic Examples'},function(workspace_id){
+    //     this.workspaces.push(workspace_id);
+    // });
+
+};
 
 // Upon creation of a new user schema, generate and save the following content:
 userSchema.pre('save', function(next)
@@ -34,10 +51,7 @@ userSchema.pre('save', function(next)
     next();                             // Execute next function.
 });
 
-// Create model
 var User = mongoose.model('User', userSchema);
-
-// Export model
 module.exports = User;
 
 

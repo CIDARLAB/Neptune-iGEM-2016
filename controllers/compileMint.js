@@ -34,6 +34,7 @@ exports.compileMint = function(req, res)
     var outputPath = path.join(out_folder,name);
     var outp = outputPath;
     outputPath = 'outputDirectory=' + outputPath;
+    console.log(outputPath);
     outputPath = outputPath.replace('t/','');
     var uName = '3D DEVICE ' + basename;
 
@@ -52,12 +53,20 @@ exports.compileMint = function(req, res)
         iniREGEX = iniREGEX.substring(0, iniREGEX.length - 1);
         iniREGEX = slash(iniREGEX);
         replace({
-            regex: slash(((results[0]).value).substring(0, iniREGEX.length - 1)),
+            regex:  iniREGEX,
+            //slash(((results[0]).value).substring(0, iniREGEX.length - 1)),
             replacement: slash(outputPath),
             paths: [ini_path],
             recursive: true,
             silent: true,
         });
+        // replace({
+        //     regex: '/t/',
+        //     replacement: '/',
+        //     paths: [ini_path],
+        //     recursive: true,
+        //     silent: true,
+        // });
     });
 
     lineder(mint_path).find("DEVICE",function(err,results){
@@ -102,7 +111,7 @@ exports.compileMint = function(req, res)
             read_cell.pipe(write_cell);
 
             var jsonName = basename + '.json';
-            var JSONPATH = './output/';
+            var JSONPATH = out_folder + '\\' + name;
             var JSONpath = path.join(JSONPATH,jsonName);
             var JSONpath_l = path.join(outp,jsonName);
             var json_stream_r = fs.createReadStream(JSONpath);

@@ -48,8 +48,8 @@
     <!--<script type="text/javascript" src="../javascripts/servosyringe.js"></script>-->
     <script type="text/javascript" src="../javascripts/newbuildbuttons.js"></script>
     <script type="text/javascript" src="../javascripts/editor_support.js"></script>
-    <script type="text/javascript" src="../javascripts/fluigipage.js"></script>
-    <script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>
+    <!--<script type="text/javascript" src="../javascripts/fluigipage.js"></script>-->
+    <!--<script type="text/javascript" src="../javascripts/uploadsJSON.js"></script>-->
     <![endif]-->
 
 </head>
@@ -84,13 +84,13 @@
                 </div>
                 <div class="panel-body">
                     <div style="float: left; margin-left: 10px;">
-                        <strong style="font-size: 15px;">Volume of liquid to dispense in Micro Liters:</strong>
+                        <strong style="font-size: 15px;">Volume of liquid to dispense in uL:</strong>
                     </div>
                     <div style="float: left; margin-left: 20px;">
                         <input  id="myliquid" type="text" />
                     </div>
                     <div style="float: left; margin-left: 50px;">
-                        <strong style="font-size: 15px;">Tolerance of servos in Micro Litres:</strong>
+                        <strong style="font-size: 15px;">Tolerance of servos in uL:</strong>
                     </div>
                     <div style="float: left; margin-left: 20px;">
                         <input  id="mytolerance" type="text" />
@@ -155,7 +155,7 @@
             <div class="col-lg-4" >
                 <div class="chat-panel panel panel-default">
                     <div class="panel-heading" style="font-size: 17px;">
-                        <i class="fa fa-shopping-cart fa-fw"></i> Step 3: Map Dispensers to Preselected Combos
+                        <i class="fa fa-shopping-cart fa-fw"></i> Step 3: Map Fluid Flower to Preselected Combos
 
                     </div>
                     <!-- /.panel-heading -->
@@ -167,7 +167,7 @@
                                     <table class="table table-hover " id="combo_table">
                                         <thead>
                                         <tr style="font-size: 20px;">
-                                            <th>Dispenser ID</th>
+                                            <th>Fluid Flower ID</th>
                                             <th>Combo ID</th>
 
                                         </tr>
@@ -237,6 +237,30 @@
 
 </body>
 
+<div id='quantities' class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content">
+
+            <div class="modal-header modal-header-primary">
+                <h4 class="modal-title">Hardware Required </h4>
+            </div>
+
+            <div class="modal-body">
+                Number of Fluid Flowers:<br>
+                <input type="text" id="mydispensers"><br>
+                Number of Valves:<br>
+                <input type="text" id="myvalves">
+            </div>
+
+            <div class="modal-footer">
+                 <button type="button" class="btn btn-default" data-dismiss="modal" onclick="maketable()"> Save </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 </html>
 
 <script type="text/javascript">
@@ -258,13 +282,18 @@
     });
 
     window.onload = function() {
+        $('#quantities').modal('show');
 //        function updateTable(){
 //            loadButtons();
 //            setNumberOfDispensers_JSON();
 //            setNumberOfPumps_JSON();
+    }
+    function maketable(){
             var table = document.getElementById("combo_table");
-            localStorage.numberofvalves = 5;
-            localStorage.numberofdispensers = 6;
+        localStorage.numberofvalves = document.getElementById("myvalves").value;
+        localStorage.numberofdispensers = document.getElementById("mydispensers").value;
+//            localStorage.numberofvalves = document.getElementById("myvalves").value;
+//            localStorage.numberofdispensers = document.getElementById("mydispensers").value;
             // localStorage.numberofvalves = JSON.parse(localStorage.pumpData).length;
             // localStorage.numberofdispensers = JSON.parse(localStorage.dispenserData).length;
             for (var i=0; i!= parseFloat(localStorage.numberofdispensers); i++) {
@@ -499,7 +528,7 @@
 
 
 // Small syringe
-var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
+//var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
 
 // 3 mL syringe
 //var initializeSetup_outputs = initializeSetup(180,500,0.75,3,0.9,0.5);
@@ -617,4 +646,3 @@ var initializeSetup_outputs = initializeSetup(180,500,0.75,3,1.0512,2.277);
     });
 
 </script>
-

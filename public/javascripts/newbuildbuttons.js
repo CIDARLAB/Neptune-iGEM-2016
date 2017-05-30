@@ -165,8 +165,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
-            "PWM_min": 180,
-            "PWM_max": 500,
+            "PWM_min": 1000,
+            "PWM_max": 2500,
             "msRange": 1133.3,
             "deadbandwidth": 2,
             "cost": 17.75,
@@ -180,8 +180,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
-            "PWM_min": 180,
-            "PWM_max": 500,
+            "PWM_min": 1000,
+            "PWM_max": 2500,
             "msRange": 1133.3,
             "deadbandwidth": 1,
             "cost": 39.99,
@@ -210,8 +210,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 199.5,
             "thetaMin": 0,
-            "PWM_min": 180,
-            "PWM_max": 500,
+            "PWM_min": 1000,
+            "PWM_max": 2500,
             "msRange": 1500,
             "deadbandwidth": 8,
             "cost": 24.99,
@@ -225,8 +225,8 @@ var servoTable =
             "AD": 300,
             "thetaMax": 170,
             "thetaMin": 0,
-            "PWM_min": 180,
-            "PWM_max": 500,
+            "PWM_min": 1000,
+            "PWM_max": 2500,
             "msRange": 1133.3,
             "deadbandwidth": 1,
             "cost": 2.60,
@@ -321,7 +321,7 @@ function calculateRecommended() {
                 //Find x1 such that Area*x1= 0.610237441 inch ^3
                 //So x1 = (0.610237441 inch ^3)/Area = inches
 
-                var syringex1 = (0.610237441)/syringeTable[key2].area;
+                var syringex1 = (0.0610237441)/syringeTable[key2].area;
                 var syringevolume = syringeTable[key2].volume;
                 var syringecost = syringeTable[key2].costs;
 
@@ -331,7 +331,7 @@ function calculateRecommended() {
                 var PWM_max = servoTable[key].PWM_max;
 
                 console.log("PWM MIN " + PWM_min + " PWM_MAX " + PWM_max + " syringex1 " + syringex1);
-                var setupvalues = initializeSetup(PWM_min,PWM_max, 0.63, 3, 0.88, syringex1);
+                var setupvalues = initializeSetup(PWM_min,PWM_max, 0.63, 3, 0, syringex1);
 
                 // Error Check
                 var insidesqrt = Math.pow((r*Math.sin(setupvalues.theta_max * Math.PI/180))+ parseFloat(d),2);
@@ -400,8 +400,8 @@ function calculateRecommended() {
                 + "</br><img src='../images/build/standardservo.JPG' style='height: 60px;'>"  + "</p>";
             cell3.innerHTML = "<p style='font-size:17px; font:bold'>" + "Syringe: "+ SyringeObject[0].volume + "ml"
                 + "</br></br><img src='../images/fluigi/SyringeTube.png' style='height: 30px;'>"  + "</p>";
-            cell4.innerHTML = "<p style='font-size:17px; font:bold'>"+ Math.round(arr[key].p * 1000) / 1000  + " microlitre precision</p>";
-            cell5.innerHTML =  "<p style='font-size:17px; font:bold'>"+ "Dispension of " + Math.round(arr[key].v * 1000) / 1000  + " litres" + "</p>";
+            cell4.innerHTML = "<p style='font-size:17px; font:bold'>"+ Math.round(arr[key].p * 1000) / 1000  + " uL precision</p>";
+            cell5.innerHTML =  "<p style='font-size:17px; font:bold'>"+ "Dispension of " + Math.round(arr[key].v * 1000) / 1000  + " ml" + "</p>";
             cell6.innerHTML = "<p style='font-size:17px; font:bold'>"+ "$" + Math.round(arr[key].cost * 1000) / 1000 + " (as of Oct 2016)" + "</p>";
 
 

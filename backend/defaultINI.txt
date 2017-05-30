@@ -17,14 +17,14 @@ maxDeviceLength=76800
 % Design Rules
 % Minimum spacing to leave for around components and to leave for routing channels during placement
 % Measurements in um
-routingSpacing=400
+routingSpacing=200
 portSpacing=800
 channelSpacing=400
 valveSpacing=400
-componentSpacing=400
+componentSpacing=200
 
 % Place and Route Parameters
-iterations=8
+iterations=3
 
 % Simulated Annealing
 movesPerTempPerComponent=250
